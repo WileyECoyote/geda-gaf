@@ -3071,8 +3071,6 @@ static void geda_menu_item_position_menu (GedaMenu  *menu,
   tx += allocation.x;
   ty += allocation.y;
 
-  get_offsets (menu, &horizontal_offset, &vertical_offset);
-
   available_left  = tx - monitor.x;
   available_right = monitor.x + monitor.width - (tx + allocation.width);
 
@@ -3155,6 +3153,8 @@ static void geda_menu_item_position_menu (GedaMenu  *menu,
         priv->submenu_direction = SUBMENU_DIR_LEFT;
       }
     }
+
+    get_offsets (menu, &horizontal_offset, &vertical_offset);
 
     if (priv->submenu_direction == SUBMENU_DIR_LEFT) {
 
