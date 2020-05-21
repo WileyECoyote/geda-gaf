@@ -3140,8 +3140,6 @@ static void geda_menu_item_position_menu (GedaMenu  *menu,
       parent_menu_item = NULL;
     }
 
-    parent_xthickness = geda_get_widget_style(parent)->xthickness;
-
     if (parent_menu_item && !geda_tearoff_menu_is_torn(parent)) {
       priv->submenu_direction = parent_menu_item->priv->submenu_direction;
     }
@@ -3156,6 +3154,8 @@ static void geda_menu_item_position_menu (GedaMenu  *menu,
     }
 
     get_offsets (menu, &horizontal_offset, &vertical_offset);
+
+    parent_xthickness = geda_get_widget_style(parent)->xthickness;
 
     if (priv->submenu_direction == SUBMENU_DIR_LEFT) {
 
