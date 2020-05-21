@@ -213,7 +213,7 @@ static bool geda_menu_item_mnemonic_activate         (GtkWidget        *widget,
 
 static void geda_menu_item_ensure_label              (GedaMenuItem     *menu_item);
 static int  geda_menu_item_popup_timeout             (void             *data);
-static void geda_menu_item_position_menu             (GedaMenu          *menu,
+static void geda_menu_item_position_menu             (GedaMenu         *menu,
                                                       int              *x,
                                                       int              *y,
                                                       bool             *push_in,
