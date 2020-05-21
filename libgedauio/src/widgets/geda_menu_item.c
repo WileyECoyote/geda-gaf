@@ -2883,8 +2883,8 @@ static int geda_menu_item_popup_timeout (void *data)
   parent_is_menushell = GEDA_IS_MENU_SHELL (parent);
   parent_is_menu      = GEDA_IS_MENU (parent);
 
-  if ((parent_is_menushell && GEDA_MENU_SHELL(parent)->active) ||
-      (parent_is_menu && GEDA_MENU(parent)->torn_off))
+  if ((parent_is_menushell && ((GedaMenuShell*)parent)->active) ||
+      (parent_is_menu && ((GedaMenu*)parent)->torn_off))
   {
     geda_menu_item_real_popup_submenu ((GtkWidget*)menu_item, TRUE);
 
