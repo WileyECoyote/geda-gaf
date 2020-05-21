@@ -2889,7 +2889,7 @@ static int geda_menu_item_popup_timeout (void *data)
     geda_menu_item_real_popup_submenu ((GtkWidget*)menu_item, TRUE);
 
     if (priv->timer_from_keypress && priv->submenu) {
-      GEDA_MENU_SHELL(priv->submenu)->ignore_enter = TRUE;
+      ((GedaMenuShell*)priv->submenu)->ignore_enter = TRUE;
     }
   }
 
