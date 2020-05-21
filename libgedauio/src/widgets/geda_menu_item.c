@@ -3027,8 +3027,6 @@ static void geda_menu_item_position_menu (GedaMenu  *menu,
   int twidth, theight;
   int tx, ty;
   int monitor_num;
-  int horizontal_offset;
-  int vertical_offset;
   int parent_xthickness;
   int available_left, available_right;
 
@@ -3120,6 +3118,9 @@ static void geda_menu_item_position_menu (GedaMenu  *menu,
   else /* submenu_placement == MENU_LEFT_RIGHT */ {
 
     GedaMenuItem *parent_menu_item;
+
+    int horizontal_offset;
+    int vertical_offset;
 
     if (GEDA_IS_MENU(parent)) {
 
