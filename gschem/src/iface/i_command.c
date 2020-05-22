@@ -4392,8 +4392,9 @@ COMMAND (do_unembed)
 
           int result;
 
-           result = geda_object_unembed (o_current);
+          result = geda_object_unembed (o_current);
 
+          /* 2 == component not found in library */
           if (result == 2) {
             not_found = g_list_append(not_found, o_current);
           }
