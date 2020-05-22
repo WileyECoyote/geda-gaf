@@ -59,7 +59,7 @@ volatile int console_window_type;
  *  \par Description
  * Gschem currently uses 7 glist buffers, the first 5 are used
  * as auxillary clipboard buffers. These are the buffers in the
- * menu labeled 1 through 5, cooresponding to object_buffer[0]
+ * menus labeled 1 through 5, cooresponding to object_buffer[0]
  * thru object_buffer[4]. The system clipboard is not mixed with
  * these buffers. The system clipboard data is stored in toplevel
  * member clipboard_buffer.
@@ -70,4 +70,3 @@ GList *object_buffer[MAX_BUFFERS];
 
 /* Hooks */
 SCM complex_place_list_changed_hook;
-
