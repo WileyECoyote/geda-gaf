@@ -70,8 +70,6 @@ x_dialog_attrib_edit_update_selection (GschemToplevel *w_current,
 {
   GtkWidget *ThisDialog = w_current->aewindow;
 
-  char *name = NULL;
-  char *val  = NULL;
 
   if (object != NULL && object->type == OBJ_TEXT) {
 
@@ -81,6 +79,8 @@ x_dialog_attrib_edit_update_selection (GschemToplevel *w_current,
 
     button = GEDA_OBJECT_GET_DATA (ThisDialog, "visbutton");
 
+      char *name = NULL;
+      char *val  = NULL;
     /* Update the visibility button widget*/
     if (geda_object_get_visibility(object) != VISIBLE) {
       gtk_toggle_button_set_active(button, FALSE);

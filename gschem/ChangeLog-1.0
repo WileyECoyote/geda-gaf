@@ -1,21 +1,18 @@
+2020-05-22 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_edit_attrib.c: Reduce the scope of name and value pointers
+      in x_dialog_attrib_edit_update_selection.
+
 2020-05-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/ar.po: Update Arabic translations.
-
     * po/bs.po: Update Bosnian translations
-
     * po/ru.po: Update Russian translations.
-
     * po/sl.po: Update Slovenian translations.
-
     * po/sv.po: Update Swedish translations.
-
     * po/tr.po: Update Turkish translations.
-
     * po/uk.po: Update Ukrainian translations.
-
     * po/zh_CN.po: Update Chinese simplified translations.
-
     * po/zh_TW.po: Update Chinese traditional translations.
 
 2020-05-09 Wiley E. Hill <wileyhill@gmail.com>
