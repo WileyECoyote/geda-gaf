@@ -503,7 +503,7 @@ static void x_dialog_edit_properties_ok(GtkWidget     *dialog,
 /*! \brief Response Function for the Component Properties Dialog
  *  \par Function Description
  *  This function handles the response to the Component Properties dialog.
- *  Either the is called to retrieve and process data in the dialog or
+ *  This is called to either retrieve and process data in the dialog or
  *  the dialog session is terminated.
  */
 static void x_dialog_edit_properties_response(GtkWidget     *Dialog,
