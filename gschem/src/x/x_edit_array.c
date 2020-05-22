@@ -580,15 +580,15 @@ create_array (GtkWidget *dialog, int columns, int rows, int x_pitch, int y_pitch
 }
 
 /*!
- * \brief Component Properties Dialog Apply Settings
+ * \brief Array Dialog Accept Handler
  * \par Function Description
- *  This function applies the settings of the properties dialog to the
- *  selected objects or to the symbol page depending on whether object
- *  has a value. The function handles the case of exchanging the symbol
- *  and calls helper functions for attribute handling.
+ *  This function handles the GEDA_RESPONSE_ACCEPT response. Values
+ *  are extracted from the dialog and the array is created unless
+ *  and error occurs, in which case a dialog is presented requesting
+ *  use confirmation or notification of the error.
  *
- * \param [in] dialog      Pointer to a Component Dialog instance.
- * \param [in] dialog_data Pointer to a Component Dialog data structure
+ * \param [in] dialog      Pointer to Array instance.
+ * \param [in] dialog_data Pointer to the Array Dialog data structure
  */
 static void x_dialog_array_edit_ok(GtkWidget  *dialog,
                                    array_data *dialog_data)
