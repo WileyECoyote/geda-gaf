@@ -329,8 +329,8 @@ Page *edascm_to_page (SCM smob)
  *  Create a new smob representing \a object.
  *
  * \warning The returned smob is initially marked as owned by the C
- *   code. If it should be permitted to be garbage-collected, you
- *   should set the garbage-collectable flag by calling:
+ *          code. If it should be permitted to be garbage-collected,
+ *          you should set the garbage-collectable flag by calling:
  *
  * \code
  *   SCM x = edascm_from_object (object);
@@ -338,10 +338,10 @@ Page *edascm_to_page (SCM smob)
  * \endcode
  *
  * \note We currently have to bake a GedaToplevel pointer into the smob,
- *  so that if the object becomes garbage-collectable we can obtain a
- *  GedaToplevel to use for deleting the smob without accessing the
- *  GedaToplevel fluid and potentially causing a race condition (see
- *  bug 909358).
+ *       so that if the object becomes garbage-collectable we can obtain
+ *       a GedaToplevel to use for deleting the smob without accessing the
+ *       GedaToplevel fluid and potentially causing a race condition (see
+ *       bug 909358).
  *
  * \param object #GedaObject to create a smob for.
  * \return a smob representing \a object.
