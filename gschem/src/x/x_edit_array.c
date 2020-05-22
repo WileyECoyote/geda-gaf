@@ -675,10 +675,10 @@ static void x_dialog_array_edit_ok(GtkWidget  *dialog,
 }
 
 /*!
- * \brief Response Function for the Component Properties Dialog
+ * \brief Response Function for the Array Dialog
  * \par Function Description
- *  This function handles the response to the Component Properties dialog.
- *  Either the is called to retrieve and process data in the dialog or
+ *  This function handles the response to the Array dialog. This is
+ *  either called to retrieve and process data in the dialog or
  *  the dialog session is terminated.
  */
 static void x_dialog_array_edit_response(GtkWidget  *dialog,

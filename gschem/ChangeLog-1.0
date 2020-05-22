@@ -1,5 +1,7 @@
 2020-05-22 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/x/x_edit_array.c: Update copied function documentation.
+
     * src/x/x_edit_attrib.c: Reduce the scope of name and value pointers
       in x_dialog_attrib_edit_update_selection.
 
