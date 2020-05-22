@@ -627,7 +627,7 @@ attrib_edit_dialog (GschemToplevel *w_current, GedaObject *object, int flag)
  * \brief Launch the Single Attribute Dialog in Add mode
  * \par Function Description
  *  This function calls the main dialog routine to construct and
- *  display the single attribute editor in #SAE_ADD_MODE mode,
+ *  or present the single attribute editor in #SAE_ADD_MODE mode,
  *  this mode is used to add new attributes to objects.
  *
  * \param [in] w_current Pointer to a GschemToplevel object
