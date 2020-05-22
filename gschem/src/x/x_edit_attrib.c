@@ -70,54 +70,66 @@ x_dialog_attrib_edit_update_selection (GschemToplevel *w_current,
 {
   GtkWidget *ThisDialog = w_current->aewindow;
 
+  if (object != NULL) {
 
-  if (object != NULL && object->type == OBJ_TEXT) {
+    GtkEntry *entry;
 
-    GtkToggleButton *button;
-    GedaOptionMenu  *optionmenu;
-    GtkEntry        *entry;
+    if (object->type == OBJ_TEXT) {
 
-    button = GEDA_OBJECT_GET_DATA (ThisDialog, "visbutton");
+      GtkToggleButton *button;
+      GedaOptionMenu  *optionmenu;
 
       char *name = NULL;
       char *val  = NULL;
-    /* Update the visibility button widget*/
-    if (geda_object_get_visibility(object) != VISIBLE) {
-      gtk_toggle_button_set_active(button, FALSE);
+
+      button = GEDA_OBJECT_GET_DATA (ThisDialog, "visbutton");
+
+      /* Update the visibility button widget*/
+      if (geda_object_get_visibility(object) != VISIBLE) {
+        gtk_toggle_button_set_active(button, FALSE);
+      }
+      else {
+        gtk_toggle_button_set_active(button, TRUE);
+      }
+
+      /* Update Show Options */
+      optionmenu = GEDA_OBJECT_GET_DATA (ThisDialog, "show_options");
+
+      if (object->show_name_value == SHOW_VALUE) {
+        geda_option_menu_set_history (optionmenu, 0);
+      }
+      else if (object->show_name_value == SHOW_NAME) {
+        geda_option_menu_set_history (optionmenu, 1);
+      }
+      else {
+        geda_option_menu_set_history (optionmenu, 2);
+      }
+
+      /* Get the attribute name and value string components */
+      geda_attrib_object_get_name_value (object, &name, &val);
+
+      /* Update the Value Entry */
+      entry = GEDA_OBJECT_GET_DATA (ThisDialog, "value_entry");
+      if (val) {
+        SetEntryText   (entry, val);
+        EntrySelectAll (entry);
+      }
+
+      entry = GEDA_OBJECT_GET_DATA (ThisDialog, "attrib_name_entry");
+      SetEntryText (entry, name);
+
+      GEDA_FREE (name);
+      GEDA_FREE (val);
+
     }
-    else {
-      gtk_toggle_button_set_active(button, TRUE);
+    else if (object->type == OBJ_NET) {
+
+      entry = GEDA_OBJECT_GET_DATA (ThisDialog, "attrib_name_entry");
+      SetEntryText (entry, "netname");
+
+      entry = GEDA_OBJECT_GET_DATA (ThisDialog, "value_entry");
+      gtk_widget_grab_focus((GtkWidget*)entry);
     }
-
-    /* Update Show Options */
-    optionmenu = GEDA_OBJECT_GET_DATA (ThisDialog, "show_options");
-
-    if (object->show_name_value == SHOW_VALUE) {
-      geda_option_menu_set_history (optionmenu, 0);
-    }
-    else if (object->show_name_value == SHOW_NAME) {
-      geda_option_menu_set_history (optionmenu, 1);
-    }
-    else {
-      geda_option_menu_set_history (optionmenu, 2);
-    }
-
-    /* Get the attribute name and value string components */
-    geda_attrib_object_get_name_value (object, &name, &val);
-
-    /* Update the Value Entry */
-    entry = GEDA_OBJECT_GET_DATA (ThisDialog, "value_entry");
-    if (val) {
-      SetEntryText   (entry, val);
-      EntrySelectAll (entry);
-    }
-
-    entry = GEDA_OBJECT_GET_DATA (ThisDialog, "attrib_name_entry");
-    SetEntryText (entry, name);
-
-    GEDA_FREE (name);
-    GEDA_FREE (val);
-
   }
 
   GEDA_OBJECT_SET_DATA (ThisDialog, object, "attrib");
