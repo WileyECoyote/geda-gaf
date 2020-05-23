@@ -12,6 +12,8 @@
 
     * po/sr.po: Update Serbian translations.
 
+    * po/sv.po: Update Swedish translations.
+
 2020-05-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_edit_array.c: Update copied function documentation.
