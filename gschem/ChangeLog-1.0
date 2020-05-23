@@ -8,6 +8,8 @@
 
     * po/el.po: Update Greek translations
 
+    * po/es.po: Update Spanish translations.
+
 2020-05-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_edit_array.c: Update copied function documentation.
