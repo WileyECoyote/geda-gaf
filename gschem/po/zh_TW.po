@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2020-04-20 13:00-0500\n"
+"POT-Creation-Date: 2020-05-23 13:19-0500\n"
 "PO-Revision-Date: 2012-01-27 14:22+0000\n"
 "Last-Translator:  Wiley E. Hill <wileyhill@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -592,243 +592,243 @@ msgstr ""
 msgid "Found invalid gschem window smob ~S"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:137 gschem/src/iface/i_command.c:5337
+#: gschem/src/iface/i_command.c:137 gschem/src/iface/i_command.c:5354
 msgid "current value of"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:137 gschem/src/iface/i_command.c:5338
+#: gschem/src/iface/i_command.c:137 gschem/src/iface/i_command.c:5355
 msgid "is"
 msgstr ""
 
 # Processing operation
-#: gschem/src/iface/i_command.c:506
+#: gschem/src/iface/i_command.c:523
 msgid "Processing Action"
 msgstr "處理操作"
 
 # Select object first; Shǒuxiān xuǎnzé duìxiàng
-#: gschem/src/iface/i_command.c:625
+#: gschem/src/iface/i_command.c:642
 msgid "Select object first"
 msgstr "首先選擇對象"
 
-#: gschem/src/iface/i_command.c:636
+#: gschem/src/iface/i_command.c:653
 msgid "Cannot"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:636
+#: gschem/src/iface/i_command.c:653
 msgid "while inside an action!\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:903 gschem/src/iface/i_command.c:2952
+#: gschem/src/iface/i_command.c:920 gschem/src/iface/i_command.c:2969
 msgid "New page created"
 msgstr ""
 
 # New Window created
-#: gschem/src/iface/i_command.c:943
+#: gschem/src/iface/i_command.c:960
 msgid "New Window created"
 msgstr "新窗口創建"
 
-#: gschem/src/iface/i_command.c:1145
+#: gschem/src/iface/i_command.c:1162
 msgid "Failed to Save All"
 msgstr "儲存全部失敗"
 
-#: gschem/src/iface/i_command.c:1148 gschem/src/iface/i_command.c:1165
+#: gschem/src/iface/i_command.c:1165 gschem/src/iface/i_command.c:1182
 msgid "Saved All"
 msgstr "儲存全部"
 
-#: gschem/src/iface/i_command.c:1162
+#: gschem/src/iface/i_command.c:1179
 msgid "Error encountered, Save Failed"
 msgstr ""
 
 # Write Image
-#: gschem/src/iface/i_command.c:1232 gschem/src/x/x_image.c:545
+#: gschem/src/iface/i_command.c:1249 gschem/src/x/x_image.c:545
 msgid "Write Image"
 msgstr "寫圖像"
 
-#: gschem/src/iface/i_command.c:1254
+#: gschem/src/iface/i_command.c:1271
 msgid "Write PDF"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:1350
+#: gschem/src/iface/i_command.c:1367
 msgid "Canceled close all\n"
 msgstr ""
 
 # Closing all documents
-#: gschem/src/iface/i_command.c:1359 gschem/src/iface/i_sessions.c:193
+#: gschem/src/iface/i_command.c:1376 gschem/src/iface/i_sessions.c:193
 msgid "Closing all documents\n"
 msgstr "關閉所有文檔\n"
 
-#: gschem/src/iface/i_command.c:1382
+#: gschem/src/iface/i_command.c:1399
 msgid "starting shut-down"
 msgstr "關閉"
 
-#: gschem/src/iface/i_command.c:1396
+#: gschem/src/iface/i_command.c:1413
 msgid "Symbol is not embedded, export anyway?"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:1420
+#: gschem/src/iface/i_command.c:1437
 msgid "Picture is not embedded, export anyway?"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:1567
+#: gschem/src/iface/i_command.c:1584
 msgid "Empty buffer"
 msgstr ""
 
 # Offset Mode
-#: gschem/src/iface/i_command.c:1832
+#: gschem/src/iface/i_command.c:1849
 msgid "Offset Mode"
 msgstr "偏移模式"
 
-#: gschem/src/iface/i_command.c:1833
+#: gschem/src/iface/i_command.c:1850
 msgid "Specify offset distance:"
 msgstr ""
 
 # Zoom Magnification
-#: gschem/src/iface/i_command.c:2429
+#: gschem/src/iface/i_command.c:2446
 msgid "Zoom Magnification"
 msgstr "縮放倍率"
 
-#: gschem/src/iface/i_command.c:2429
+#: gschem/src/iface/i_command.c:2446
 msgid "Specify new zoom:"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:2471 gschem/src/iface/i_command.c:4819
-#: gschem/src/iface/i_command.c:4849 gschem/src/iface/i_command.c:4870
-#: gschem/src/iface/i_command.c:4890
+#: gschem/src/iface/i_command.c:2488 gschem/src/iface/i_command.c:4836
+#: gschem/src/iface/i_command.c:4866 gschem/src/iface/i_command.c:4887
+#: gschem/src/iface/i_command.c:4907
 msgid "Check path:"
 msgstr ""
 
 # error
-#: gschem/src/iface/i_command.c:2482
+#: gschem/src/iface/i_command.c:2499
 msgid "error"
 msgstr "錯誤"
 
-#: gschem/src/iface/i_command.c:2493
+#: gschem/src/iface/i_command.c:2510
 msgid "No component selected\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:3038
+#: gschem/src/iface/i_command.c:3055
 msgid "Confirm revert ALL documents"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:3220
+#: gschem/src/iface/i_command.c:3237
 msgid "Searching for source"
 msgstr ""
 
 # Can not drop down to the hierarchy
-#: gschem/src/iface/i_command.c:3255
+#: gschem/src/iface/i_command.c:3272
 msgid "Failed to descend into"
 msgstr "無法下降到層次結構"
 
 # Hierarchy Error
-#: gschem/src/iface/i_command.c:3264
+#: gschem/src/iface/i_command.c:3281
 msgid "Hierarchy Error"
 msgstr "層次錯誤"
 
-#: gschem/src/iface/i_command.c:3341
+#: gschem/src/iface/i_command.c:3358
 msgid "Searching for symbol"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:3351
+#: gschem/src/iface/i_command.c:3368
 msgid "Symbol is not a real file. Symbol cannot be loaded.\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:3399
+#: gschem/src/iface/i_command.c:3416
 msgid "Cannot find any schematics above the current one!\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:3529
+#: gschem/src/iface/i_command.c:3546
 msgid "Object is attached to something\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:3932
+#: gschem/src/iface/i_command.c:3949
 msgid "Attribute is already attached\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4346
+#: gschem/src/iface/i_command.c:4363
 msgid "WARNING: Do not translate with snap off!\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4347
+#: gschem/src/iface/i_command.c:4364
 msgid "WARNING: Turning snap on and continuing with translate.\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4353
+#: gschem/src/iface/i_command.c:4370
 msgid "WARNING: Snap grid size is not equal to 100!\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4354
+#: gschem/src/iface/i_command.c:4371
 msgid ""
 "WARNING: If you are translating a symbol to the origin, the snap grid size "
 "should be set to 100\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4566
+#: gschem/src/iface/i_command.c:4583
 msgid "Grid OFF\n"
 msgstr "關閉網格\n"
 
-#: gschem/src/iface/i_command.c:4567
+#: gschem/src/iface/i_command.c:4584
 msgid "Dot grid activated\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4568
+#: gschem/src/iface/i_command.c:4585
 msgid "Mesh grid activated\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4647
+#: gschem/src/iface/i_command.c:4664
 msgid "Snap OFF (CAUTION!)\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4653
+#: gschem/src/iface/i_command.c:4670
 msgid "Snap ON\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4658
+#: gschem/src/iface/i_command.c:4675
 msgid "Snap back to the grid (CAUTION!)\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4683
+#: gschem/src/iface/i_command.c:4700
 msgid "Rubber band mode is OFF\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4687
+#: gschem/src/iface/i_command.c:4704
 msgid "Rubber band mode is ON\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4698
+#: gschem/src/iface/i_command.c:4715
 msgid "Magnetic net mode is ON\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4701
+#: gschem/src/iface/i_command.c:4718
 msgid "Magnetic net mode is OFF\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4718 gschem/src/iface/i_command.c:4761
+#: gschem/src/iface/i_command.c:4735 gschem/src/iface/i_command.c:4778
 #: gschem/src/x/x_compselect.c:135
 msgid "Off"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4722 gschem/src/iface/i_command.c:4765
+#: gschem/src/iface/i_command.c:4739 gschem/src/iface/i_command.c:4782
 #: gschem/src/x/x_compselect.c:134
 msgid "On"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4724
+#: gschem/src/iface/i_command.c:4741
 msgid "Drag-Can-Move is now"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4736
+#: gschem/src/iface/i_command.c:4753
 msgid "Action feedback mode set to OUTLINE\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4740
+#: gschem/src/iface/i_command.c:4757
 msgid "Action feedback mode set to BOUNDINGBOX\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4767
+#: gschem/src/iface/i_command.c:4784
 msgid "Auto-Pan is now"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4990
+#: gschem/src/iface/i_command.c:5007
 #, c-format
 msgid "(read only) width=%d, height=%d\n"
 msgstr ""
@@ -1486,43 +1486,43 @@ msgid "File order"
 msgstr ""
 
 # Filter
-#: gschem/src/x/x_autonumber.c:1668
+#: gschem/src/x/x_autonumber.c:1670
 msgid "Filter:"
 msgstr "過濾器:"
 
-#: gschem/src/x/x_autonumber.c:1673
+#: gschem/src/x/x_autonumber.c:1675
 msgid "_History"
 msgstr ""
 
-#: gschem/src/x/x_autonumber.c:1681
+#: gschem/src/x/x_autonumber.c:1683
 msgid "_Unset"
 msgstr ""
 
-#: gschem/src/x/x_autonumber.c:1686
+#: gschem/src/x/x_autonumber.c:1688
 msgid "_Wild"
 msgstr ""
 
-#: gschem/src/x/x_autonumber.c:1709
+#: gschem/src/x/x_autonumber.c:1711
 msgid "Selected objects"
 msgstr "選擇物件"
 
-#: gschem/src/x/x_autonumber.c:1710
+#: gschem/src/x/x_autonumber.c:1712
 msgid "Current page"
 msgstr ""
 
-#: gschem/src/x/x_autonumber.c:1711
+#: gschem/src/x/x_autonumber.c:1713
 msgid "Whole hierarchy"
 msgstr ""
 
-#: gschem/src/x/x_autonumber.c:1762
+#: gschem/src/x/x_autonumber.c:1764
 msgid "Autonumber text"
 msgstr ""
 
-#: gschem/src/x/x_autonumber.c:1785
+#: gschem/src/x/x_autonumber.c:1787
 msgid "Scope"
 msgstr ""
 
-#: gschem/src/x/x_autonumber.c:1859
+#: gschem/src/x/x_autonumber.c:1861
 msgid "Options"
 msgstr "選項"
 
@@ -2535,98 +2535,98 @@ msgstr ""
 msgid "entry for array vertical pitch"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:221
+#: gschem/src/x/x_edit_attrib.c:233
 #, c-format
 msgid "invalid show option; defaulting to show both\n"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:342
+#: gschem/src/x/x_edit_attrib.c:354
 msgid "Select to choose an attribute visibility options"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:343
+#: gschem/src/x/x_edit_attrib.c:355
 msgid "Show only the name of the attribute"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:344
+#: gschem/src/x/x_edit_attrib.c:356
 msgid "Show only the value of the attribute"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:345
+#: gschem/src/x/x_edit_attrib.c:357
 msgid "Show both the name and the value of the attribute"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:353
+#: gschem/src/x/x_edit_attrib.c:365
 msgid "Show Value Only"
 msgstr "僅顯示數值"
 
-#: gschem/src/x/x_edit_attrib.c:357
+#: gschem/src/x/x_edit_attrib.c:369
 msgid "Show Name Only"
 msgstr "僅顯示名稱"
 
-#: gschem/src/x/x_edit_attrib.c:361 gschem/src/x/x_multiattrib.c:1706
+#: gschem/src/x/x_edit_attrib.c:373 gschem/src/x/x_multiattrib.c:1706
 #: gschem/scheme/gschem/builtins.scm:413
 msgid "Show Name & Value"
 msgstr "顯示名稱與數值"
 
-#: gschem/src/x/x_edit_attrib.c:426
+#: gschem/src/x/x_edit_attrib.c:438
 msgid "Enter or type an attribute name"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:427 gschem/src/x/x_multiattrib.c:2276
+#: gschem/src/x/x_edit_attrib.c:439 gschem/src/x/x_multiattrib.c:2276
 #: gschem/scheme/gschem/builtins.scm:350
 msgid "Add Attribute"
 msgstr ""
 
 # Edit Attribute
-#: gschem/src/x/x_edit_attrib.c:428
+#: gschem/src/x/x_edit_attrib.c:440
 msgid "Edit Attribute"
 msgstr "編輯屬性"
 
-#: gschem/src/x/x_edit_attrib.c:430
+#: gschem/src/x/x_edit_attrib.c:442
 msgid "Select the name of the attribute to add"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:431
+#: gschem/src/x/x_edit_attrib.c:443
 msgid "Select the name of the attribute to edit"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:433
+#: gschem/src/x/x_edit_attrib.c:445
 msgid "Input a value for the new attribute"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:434
+#: gschem/src/x/x_edit_attrib.c:446
 msgid "Input or edit the value of the attribute"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:436
+#: gschem/src/x/x_edit_attrib.c:448
 msgid "Enable or disable visibility of the attribute"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:453
+#: gschem/src/x/x_edit_attrib.c:465
 msgid "Single Attribute Editor"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:481 gschem/src/x/x_multiattrib.c:2293
+#: gschem/src/x/x_edit_attrib.c:493 gschem/src/x/x_multiattrib.c:2293
 msgid "Name:"
 msgstr "名稱:"
 
-#: gschem/src/x/x_edit_attrib.c:498 gschem/src/x/x_multiattrib.c:2312
+#: gschem/src/x/x_edit_attrib.c:510 gschem/src/x/x_multiattrib.c:2312
 msgid "Value:"
 msgstr "數值:"
 
-#: gschem/src/x/x_edit_attrib.c:512 gschem/src/x/x_multiattrib.c:2091
+#: gschem/src/x/x_edit_attrib.c:524 gschem/src/x/x_multiattrib.c:2091
 #: gschem/src/x/x_multiattrib.c:2367
 msgid "Visible"
 msgstr ""
 
 # Attribute Name List
-#: gschem/src/x/x_edit_attrib.c:541
+#: gschem/src/x/x_edit_attrib.c:553
 msgid "Attribute Name List"
 msgstr "屬性名稱列表"
 
 # Attribute Value Entry
-#: gschem/src/x/x_edit_attrib.c:545
+#: gschem/src/x/x_edit_attrib.c:557
 msgid "Attribute Value Entry"
 msgstr "屬性值輸入"
 
