@@ -11,6 +11,8 @@
             * simulation/verilog/xor4-1.sym
             * simulation/verilog/xor5-1.sym
 
+            * simulation/verilog/xor6-1.sym: Update pin type attributes.
+
 2020-05-17 Wiley E. Hill <wileyhill@gmail.com>
 
     * simulation/verilog/pulldown-1.sym: Update pin type attribute, convert
