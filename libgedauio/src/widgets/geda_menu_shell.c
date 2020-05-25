@@ -1277,6 +1277,8 @@ geda_menu_shell_realize (GtkWidget *widget)
 
   gdk_window_set_user_data (window, widget);
 
+  widget->style = gtk_style_attach (widget->style, window);
+
 }
 
 /* widget_class->screen_changed */
