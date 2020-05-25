@@ -691,7 +691,7 @@ static void geda_handle_box_remove (GtkContainer *container, GtkWidget *widget)
   * @{
   */
 
-/*! \internal widget_class->button_press == callback for mouse button press event */
+/*! \internal widget_class->button_press_event == mouse button press event */
 static bool geda_handle_box_button_press (GtkWidget      *widget,
                                           GdkEventButton *event)
 {
