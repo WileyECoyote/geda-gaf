@@ -5,6 +5,7 @@
       macro:
 
           * geda_get_widget_allocation
+          * geda_set_widget_window
 
 2020-05-21 Wiley E. Hill <wileyhill@gmail.com>
 

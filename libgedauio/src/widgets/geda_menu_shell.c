@@ -1246,6 +1246,7 @@ geda_menu_shell_realize (GtkWidget *widget)
 {
   GtkAllocation *allocation;
   GdkWindowAttr  attributes;
+  GdkWindow     *window;
   int attributes_mask;
 
   gtk_widget_set_realized (widget, TRUE);
@@ -1269,11 +1270,13 @@ geda_menu_shell_realize (GtkWidget *widget)
                             GDK_LEAVE_NOTIFY_MASK);
 
   attributes_mask = GDK_WA_X | GDK_WA_Y | GDK_WA_VISUAL | GDK_WA_COLORMAP;
-  widget->window = gdk_window_new (gtk_widget_get_parent_window (widget), &attributes, attributes_mask);
-  gdk_window_set_user_data (widget->window, widget);
 
-  widget->style = gtk_style_attach (widget->style, widget->window);
-  gtk_style_set_background (widget->style, widget->window, GTK_STATE_NORMAL);
+  window = gdk_window_new (gtk_widget_get_parent_window (widget), &attributes, attributes_mask);
+
+  geda_set_widget_window(widget, window);
+
+  gdk_window_set_user_data (window, widget);
+
 }
 
 /* widget_class->screen_changed */
