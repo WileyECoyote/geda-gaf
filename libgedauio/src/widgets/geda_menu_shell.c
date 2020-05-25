@@ -805,10 +805,9 @@ static int geda_menu_shell_button_press (GtkWidget *widget, GdkEventButton *even
   }
 
   menu_item = geda_menu_shell_get_item (widget, event);
+  parent    = (GedaMenuShell*)geda_get_widget_parent(menu_item);
 
   if (menu_item) {
-
-    parent = (GedaMenuShell*)geda_get_widget_parent(menu_item);
 
     if (geda_menu_item_is_widget_selectable (menu_item) &&
         menu_item != parent->active_menu_item)
@@ -1089,7 +1088,8 @@ static int geda_menu_shell_enter_notify (GtkWidget *widget, GdkEventCrossing *ev
         {
           GedaMenuShellPriv *priv;
 
-          priv = ((GedaMenuShell*)(menu_item->parent))->priv;
+          priv = ((GedaMenuShell*)parent)->priv;
+
           priv->activated_submenu = TRUE;
 
           if (!gtk_widget_get_visible (submenu)) {
