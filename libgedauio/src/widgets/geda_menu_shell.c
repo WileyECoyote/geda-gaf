@@ -1244,15 +1244,18 @@ static int geda_menu_shell_leave_notify (GtkWidget *widget, GdkEventCrossing *ev
 static void
 geda_menu_shell_realize (GtkWidget *widget)
 {
-  GdkWindowAttr attributes;
+  GtkAllocation *allocation;
+  GdkWindowAttr  attributes;
   int attributes_mask;
 
   gtk_widget_set_realized (widget, TRUE);
 
-  attributes.x = widget->allocation.x;
-  attributes.y = widget->allocation.y;
-  attributes.width = widget->allocation.width;
-  attributes.height = widget->allocation.height;
+  allocation = geda_get_widget_allocation(widget);
+
+  attributes.x = allocation->x;
+  attributes.y = allocation->y;
+  attributes.width = allocation->width;
+  attributes.height = allocation->height;
   attributes.window_type = GDK_WINDOW_CHILD;
   attributes.wclass = GDK_INPUT_OUTPUT;
   attributes.visual = gtk_widget_get_visual (widget);
