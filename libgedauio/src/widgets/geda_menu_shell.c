@@ -787,7 +787,7 @@ static void geda_menu_shell_forall (GtkContainer *container,
   * @{
   */
 
-/* widget_class->button_press_event */
+/*! \internal widget_class->button_press_event == mouse button press event */
 static int geda_menu_shell_button_press (GtkWidget *widget, GdkEventButton *event)
 {
   GedaMenuShell *menu_shell;

@@ -1,6 +1,7 @@
 2020-05-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu_shell.c: Add Doxygen group geda-menu-shell-wcvo.
+      Convert plain source documentation to Doxygen documentation.
 
 2020-05-21 Wiley E. Hill <wileyhill@gmail.com>
 
