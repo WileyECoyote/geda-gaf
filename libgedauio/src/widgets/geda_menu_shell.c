@@ -783,6 +783,9 @@ static void geda_menu_shell_forall (GtkContainer *container,
 }
 
 /* GtkWidget Over-rides */
+/** \defgroup geda-menu-shell-wcvo GedaMenuShell Widget Class Virtual Overrides
+  * @{
+  */
 
 /* widget_class->button_press_event */
 static int geda_menu_shell_button_press (GtkWidget *widget, GdkEventButton *event)
@@ -1274,6 +1277,8 @@ geda_menu_shell_screen_changed (GtkWidget *widget, GdkScreen *previous_screen)
 {
   geda_menu_shell_reset_key_hash ((GedaMenuShell*)widget);
 }
+
+/** @} geda-menu-shell-ccvo */
 
 /* GObject over-rides */
 

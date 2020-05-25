@@ -1,3 +1,7 @@
+2020-05-25 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_menu_shell.c: Add Doxygen group geda-menu-shell-wcvo.
+
 2020-05-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu_item.c: Defer calling get_offsets and reduce the
