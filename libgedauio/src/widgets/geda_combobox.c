@@ -984,10 +984,10 @@ static bool tree_first_func (GtkTreeModel *model,
     return FALSE;
 
   if (search_data->visible &&
-      !path_visible ((GtkTreeView*)search_data->combo->priv->tree_view, path))
+     !path_visible ((GtkTreeView*)search_data->combo->priv->tree_view, path))
     return FALSE;
 
-  search_data->set = TRUE;
+  search_data->set  = TRUE;
   search_data->iter = *iter;
 
   return TRUE;
