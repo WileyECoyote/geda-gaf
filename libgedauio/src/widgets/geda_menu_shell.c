@@ -1247,6 +1247,8 @@ geda_menu_shell_realize (GtkWidget *widget)
   GtkAllocation *allocation;
   GdkWindowAttr  attributes;
   GdkWindow     *window;
+  GtkStyle      *style;
+
   int attributes_mask;
 
   gtk_widget_set_realized (widget, TRUE);
@@ -1277,8 +1279,9 @@ geda_menu_shell_realize (GtkWidget *widget)
 
   gdk_window_set_user_data (window, widget);
 
-  widget->style = gtk_style_attach (widget->style, window);
+  style = geda_get_widget_style(widget);
 
+  style = gtk_style_attach (style, window);
   gtk_style_set_background (widget->style, window, GTK_STATE_NORMAL);
 }
 
