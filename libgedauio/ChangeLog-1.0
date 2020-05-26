@@ -4,6 +4,10 @@
       with gdk_display_get_monitor_at_window and gdk_screen_get_monitor_workarea
       with gdk_monitor_get_workarea in gtk3::geda_menu_item_position_menu.
 
+    * src/widgets/geda_option_menu.c Utilize macro:
+
+          * geda_get_widget_style
+
 2020-05-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu_shell.c: Add Doxygen group geda-menu-shell-wcvo.

@@ -467,6 +467,7 @@ geda_option_menu_size_request (GtkWidget *widget, GtkRequisition *requisition)
 {
   GedaOptionMenu *option_menu = (GedaOptionMenu*)widget;
   GtkWidget      *child;
+  GtkStyle       *style;
 
   GedaOptionMenuProps props;
   GtkRequisition      child_requisition = { 0, 0 };
@@ -487,9 +488,10 @@ geda_option_menu_size_request (GtkWidget *widget, GtkRequisition *requisition)
   }
 
   border_width = geda_get_container_border_width(widget);
+  style        = geda_get_widget_style(widget);
 
   requisition->width = ((border_width +
-                         widget->style->xthickness + props.focus_pad) * 2 +
+                         style->xthickness + props.focus_pad) * 2 +
                          MAX (child_requisition.width, option_menu->width) +
                          props.indicator_size.width +
                          props.indicator_spacing.left + props.indicator_spacing.right +
