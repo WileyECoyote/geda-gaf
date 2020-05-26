@@ -3417,7 +3417,6 @@ char geda_menu_item_get_mnemonic (GedaMenuItem *menu_item)
   return menu_item->priv->mnemonic;
 }
 
-
 /*!
  * \brief  Set the GedaMenuItem mnemonic char
  * \par Function Description
