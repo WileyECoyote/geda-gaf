@@ -1036,6 +1036,7 @@ static bool geda_combo_box_scroll_event (GtkWidget      *widget,
       geda_combo_box_set_active_iter (combo_box, &new_iter);
     }
   }
+
   return TRUE;
 }
 
@@ -1593,6 +1594,7 @@ static void geda_combo_box_finalize (GObject *object)
     g_object_unref (info->cell);
     g_free (info);
   }
+
   g_slist_free (combo_box->priv->cells);
 
   g_free (combo_box->priv->tearoff_title);
@@ -7003,6 +7005,7 @@ GedaEntry *geda_combo_get_entry (GedaComboBox *combo_box) {
   if (widget) {
     return GEDA_ENTRY(widget);
   }
+
   return NULL;
 }
 
@@ -7029,6 +7032,7 @@ GtkWidget *geda_combo_get_entry_widget (GedaComboBox *combo_box) {
   else {
     BUG_MSG ("Operative is not a GedaComboBox");
   }
+
   return NULL;
 }
 
@@ -7115,6 +7119,7 @@ bool geda_combo_widget_get_add_tearoffs (GtkWidget *combo_box) {
   }
 
   BUG_MSG ("Operative is not a GedaComboBox");
+
   return FALSE;
 }
 
@@ -7150,6 +7155,7 @@ int geda_combo_widget_get_column_span_column (GtkWidget *combo_box) {
     return ((GedaComboBox*)combo_box)->priv->col_column;
 
   BUG_MSG ("Operative is not a GedaComboBox");
+
   return -1;
 }
 
@@ -7187,6 +7193,7 @@ int geda_combo_widget_get_row_span_column (GtkWidget *combo_box) {
     return ((GedaComboBox*)combo_box)->priv->row_column;
 
   BUG_MSG ("Operative is not a GedaComboBox");
+
   return -1;
 }
 
@@ -7224,7 +7231,9 @@ void geda_combo_widget_set_row_span_column (GtkWidget *combo, int row_span)
 const char *geda_combo_widget_get_title (GtkWidget *combo_box) {
   if (GEDA_IS_COMBO_BOX (combo_box))
     return ((GedaComboBox*)combo_box)->priv->tearoff_title;
+
   BUG_MSG ("Operative is not a GedaComboBox");
+
   return NULL;
 }
 
@@ -7277,7 +7286,9 @@ int
 geda_combo_widget_get_wrap_width (GtkWidget *combo_box) {
   if (GEDA_IS_COMBO_BOX (combo_box))
     return ((GedaComboBox*)combo_box)->priv->wrap_width;
+
   BUG_MSG ("Operative is not a GedaComboBox");
+
   return -1;
 }
 
@@ -7387,7 +7398,9 @@ int geda_combo_widget_get_count(GtkWidget *widget)
 bool geda_combo_widget_get_focus_on_click (GtkWidget *combo_box) {
   if (GEDA_IS_COMBO_BOX (combo_box))
     return ((GedaComboBox*)combo_box)->priv->focus_on_click;
+
   BUG_MSG ("Operative is not a GedaComboBox");
+
   return FALSE;
 }
 
@@ -7419,7 +7432,9 @@ bool geda_combo_widget_get_has_entry (GtkWidget *combo_box)
 {
   if (GEDA_IS_COMBO_BOX (combo_box))
     return ((GedaComboBox*)combo_box)->priv->has_entry;
+
   BUG_MSG ("Operative is not a GedaComboBox");
+
   return FALSE;
 }
 
@@ -7443,6 +7458,7 @@ GedaEntry *geda_combo_widget_get_entry (GtkWidget *combo_box)
   if (widget) {
     return GEDA_ENTRY(widget);
   }
+
   return NULL;
 }
 
