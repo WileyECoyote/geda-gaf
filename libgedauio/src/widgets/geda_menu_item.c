@@ -3250,8 +3250,10 @@ static void geda_menu_item_position_menu (GedaMenu  *menu,
   GedaMenuItem        *parent_menu_item;
   GtkWidget           *parent;
   GdkScreen           *screen;
-  GtkTextDirection    direction;
-  GdkRectangle        monitor;
+  GtkTextDirection     direction;
+  GdkDisplay          *display;
+  GdkMonitor          *monitor;
+  GdkRectangle         rect;
 
   int monitor_num;
   int horizontal_offset;
@@ -3274,19 +3276,15 @@ static void geda_menu_item_position_menu (GedaMenu  *menu,
     *push_in = FALSE;
   }
 
-  direction   = gtk_widget_get_direction (widget);
+  direction = gtk_widget_get_direction (widget);
 
-  twidth      = gtk_widget_get_allocated_width ((GtkWidget*)menu);
-  theight     = gtk_widget_get_allocated_height ((GtkWidget*)menu);
+  twidth    = gtk_widget_get_allocated_width ((GtkWidget*)menu);
+  theight   = gtk_widget_get_allocated_height ((GtkWidget*)menu);
 
-  screen      = gtk_widget_get_screen ((GtkWidget*)menu);
-  monitor_num = gdk_screen_get_monitor_at_window (screen, priv->event_window);
+  display   = gtk_widget_get_display ((GtkWidget*)menu);
+  monitor   = gdk_display_get_monitor_at_window (display, priv->event_window);
 
-  if (monitor_num < 0) {
-    monitor_num = 0;
-  }
-
-  gdk_screen_get_monitor_workarea (screen, monitor_num, &monitor);
+  gdk_monitor_get_workarea (monitor, &rect);
 
   if (!gdk_window_get_origin (gtk_widget_get_window (widget), &tx, &ty)) {
     g_warning ("Menu not on screen");
@@ -3300,8 +3298,8 @@ static void geda_menu_item_position_menu (GedaMenu  *menu,
 
   get_offsets (menu, &horizontal_offset, &vertical_offset);
 
-  available_left  = tx - monitor.x;
-  available_right = monitor.x + monitor.width - (tx + allocation.width);
+  available_left  = tx - rect.x;
+  available_right = rect.x + rect.width - (tx + allocation.width);
 
   parent = geda_get_widget_parent (widget);
   priv->from_menubar = GEDA_IS_MENU_BAR(parent);
@@ -3316,13 +3314,13 @@ static void geda_menu_item_position_menu (GedaMenu  *menu,
       tx += allocation.width - twidth;
     }
 
-    if ((ty + allocation.height + theight) <= monitor.y + monitor.height) {
+    if ((ty + allocation.height + theight) <= rect.y + rect.height) {
       ty += allocation.height;
     }
-    else if ((ty - theight) >= monitor.y) {
+    else if ((ty - theight) >= rect.y) {
       ty -= theight;
     }
-    else if (monitor.y + monitor.height - (ty + allocation.height) > ty) {
+    else if (rect.y + rect.height - (ty + allocation.height) > ty) {
       ty += allocation.height;
     }
     else {
@@ -3359,7 +3357,7 @@ static void geda_menu_item_position_menu (GedaMenu  *menu,
 
     if (priv->submenu_direction == SUBMENU_DIR_LEFT) {
 
-      if (tx - twidth - parent_padding.left - horizontal_offset >= monitor.x ||
+      if (tx - twidth - parent_padding.left - horizontal_offset >= rect.x ||
         available_left >= available_right)
       {
         tx -= twidth + parent_padding.left + horizontal_offset;
@@ -3371,7 +3369,7 @@ static void geda_menu_item_position_menu (GedaMenu  *menu,
     }
     else /* submenu_direction == SUBMENU_DIR_RIGHT */ {
 
-      if (tx + allocation.width + parent_padding.right + horizontal_offset + twidth <= monitor.x + monitor.width ||
+      if (tx + allocation.width + parent_padding.right + horizontal_offset + twidth <= rect.x + rect.width ||
         available_right >= available_left)
       {
         tx += allocation.width + parent_padding.right + horizontal_offset;
@@ -3387,13 +3385,13 @@ static void geda_menu_item_position_menu (GedaMenu  *menu,
     ty += vertical_offset;
 
     /* If the height of the menu does not fit we move it upward. */
-    ty = CLAMP (ty, monitor.y, MAX (monitor.y, monitor.y + monitor.height - theight));
+    ty = CLAMP (ty, rect.y, MAX (rect.y, rect.y + rect.height - theight));
   }
 
   /* If we have negative, tx, here it is because we cannot get
    * the menu all the way on screen. Favor the left portion.
    */
-  *x = CLAMP (tx, monitor.x, MAX (monitor.x, monitor.x + monitor.width - twidth));
+  *x = CLAMP (tx, rect.x, MAX (rect.x, rect.x + rect.width - twidth));
   *y = ty;
 
   geda_menu_set_monitor (menu, monitor_num);
