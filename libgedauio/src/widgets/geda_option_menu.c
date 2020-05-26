@@ -498,7 +498,7 @@ geda_option_menu_size_request (GtkWidget *widget, GtkRequisition *requisition)
                          CHILD_LEFT_SPACING + CHILD_RIGHT_SPACING + props.focus_width * 2);
 
   requisition->height = ((border_width +
-                          widget->style->ythickness + props.focus_pad) * 2 +
+                          style->ythickness + props.focus_pad) * 2 +
                           MAX (child_requisition.height, option_menu->height) +
                           CHILD_TOP_SPACING + CHILD_BOTTOM_SPACING + props.focus_width * 2);
 
