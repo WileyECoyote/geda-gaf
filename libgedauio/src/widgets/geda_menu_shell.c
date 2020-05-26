@@ -1282,7 +1282,8 @@ geda_menu_shell_realize (GtkWidget *widget)
   style = geda_get_widget_style(widget);
 
   style = gtk_style_attach (style, window);
-  gtk_style_set_background (widget->style, window, GTK_STATE_NORMAL);
+
+  gtk_style_set_background (style, window, GTK_STATE_NORMAL);
 }
 
 /* widget_class->screen_changed */
