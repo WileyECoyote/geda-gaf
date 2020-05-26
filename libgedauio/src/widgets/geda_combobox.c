@@ -884,7 +884,7 @@ static bool tree_prev_func (GtkTreeModel *model,
                             GtkTreeIter  *iter,
                             void         *data)
 {
-  SearchData *search_data = (SearchData *)data;
+  SearchData *search_data = (SearchData*)data;
 
   if (gtk_tree_path_compare (path, search_data->path) == 0) {
     search_data->found = TRUE;
@@ -935,7 +935,7 @@ static bool tree_last_func (GtkTreeModel *model,
                             GtkTreeIter  *iter,
                             void         *data)
 {
-  SearchData *search_data = (SearchData *)data;
+  SearchData *search_data = (SearchData*)data;
 
   if (!tree_column_row_is_sensitive (search_data->combo, iter)) {
     return FALSE;
@@ -978,7 +978,7 @@ static bool tree_first_func (GtkTreeModel *model,
                              GtkTreeIter  *iter,
                              void         *data)
 {
-  SearchData *search_data = (SearchData *)data;
+  SearchData *search_data = (SearchData*)data;
 
   if (!tree_column_row_is_sensitive (search_data->combo, iter))
     return FALSE;
