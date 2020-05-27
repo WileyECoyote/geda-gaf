@@ -520,7 +520,7 @@ geda_option_menu_size_allocate (GtkWidget *widget, GtkAllocation *allocation)
 
   geda_option_menu_get_props ((GedaOptionMenu*)widget, &props);
 
-  border_width = ((GtkContainer*)widget)->border_width;
+  border_width = geda_get_container_border_width(widget);
 
   widget->allocation = *allocation;
 
