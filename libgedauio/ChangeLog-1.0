@@ -8,6 +8,7 @@
 
           * geda_get_container_border_width
           * geda_set_widget_allocation
+          * geda_get_button_event_window
 
 2020-05-26 Wiley E. Hill <wileyhill@gmail.com>
 

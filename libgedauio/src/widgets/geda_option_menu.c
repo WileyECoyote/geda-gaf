@@ -532,7 +532,7 @@ geda_option_menu_size_allocate (GtkWidget *widget, GtkAllocation *allocation)
 
     bwidth_x2 = border_width << 1;
 
-    gdk_window_move_resize (button->event_window,
+    gdk_window_move_resize (geda_get_button_event_window(button),
                             allocation->x + border_width,
                             allocation->y + border_width,
                             allocation->width - bwidth_x2,
