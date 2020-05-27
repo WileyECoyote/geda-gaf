@@ -1,5 +1,9 @@
 2020-05-27 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/geda_gtk_compat.h: Add macros:
+
+          * geda_get_button_event_window
+
     * src/widgets/geda_option_menu.c Utilize macro:
 
           * geda_get_container_border_width

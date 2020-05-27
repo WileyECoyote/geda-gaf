@@ -240,6 +240,8 @@ gtk_window_group_get_current_grab (GtkWindowGroup *window_group)
 
 #define geda_device_grab_remove(w,p) gtk_grab_remove(GTK_WIDGET(w))
 
+#define geda_get_button_event_window(b) ((GtkButton*)b)->event_window
+
 #define geda_get_container_border_width(w) ((GtkContainer*)w)->border_width
 
 #define geda_set_bin_child(b,c) GTK_BIN (b)->child = c
@@ -379,6 +381,8 @@ void gdk_font_unref (GdkFont *font);
 #   define gtk_vscrollbar_new(adj) gtk_scrollbar_new(GTK_ORIENTATION_VERTICAL, (adj))
 #   define gtk_hscrollbar_new(adj) gtk_scrollbar_new(GTK_ORIENTATION_HORIZONTAL, (adj))
 #endif
+
+#   define geda_get_button_event_window(b) gtk_button_get_event_window((GtkButton*)b)
 
 #   define geda_get_container_border_width(w) gtk_container_get_border_width((GtkContainer*)w)
 
