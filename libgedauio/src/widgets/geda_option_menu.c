@@ -551,7 +551,7 @@ geda_option_menu_size_allocate (GtkWidget *widget, GtkAllocation *allocation)
     int ythickness = style->ythickness;
 
     child_allocation.x = allocation.x + border_width + xthickness + props.focus_width + props.focus_pad + CHILD_LEFT_SPACING;
-    child_allocation.y = widget->allocation.y + border_width + ythickness + props.focus_width + props.focus_pad + CHILD_TOP_SPACING;
+    child_allocation.y = allocation.y + border_width + ythickness + props.focus_width + props.focus_pad + CHILD_TOP_SPACING;
 
     child_allocation.width = MAX (1, allocation->width - (border_width + xthickness + props.focus_width + props.focus_pad) * 2 -
                              props.indicator_size.width - props.indicator_spacing.left - props.indicator_spacing.right -
