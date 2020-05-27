@@ -522,7 +522,7 @@ geda_option_menu_size_allocate (GtkWidget *widget, GtkAllocation *allocation)
 
   border_width = geda_get_container_border_width(widget);
 
-  widget->allocation = *allocation;
+  geda_set_widget_allocation (widget, allocation);
 
   if (gtk_widget_get_realized (widget)) {
 
