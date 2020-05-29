@@ -597,8 +597,9 @@ geda_option_menu_paint (GtkWidget *widget, GdkRectangle *area)
   }
 
   state = gtk_widget_get_state (widget);
+  style = geda_get_widget_style (widget);
 
-  gtk_paint_box (widget->style, widget->window, state, GTK_SHADOW_OUT,
+  gtk_paint_box (style, widget->window, state, GTK_SHADOW_OUT,
                  area, widget, "optionmenu",
                  button_area.x, button_area.y,
                  button_area.width, button_area.height);
