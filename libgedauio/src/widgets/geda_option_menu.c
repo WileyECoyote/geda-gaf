@@ -626,7 +626,7 @@ geda_option_menu_paint (GtkWidget *widget, GdkRectangle *area)
 
       int xpad, ypad;
 
-      xpad = widget->style->xthickness + props.focus_pad;
+      xpad = style->xthickness + props.focus_pad;
       ypad = widget->style->ythickness + props.focus_pad;
 
       button_area.x += xpad;
