@@ -606,7 +606,7 @@ geda_option_menu_paint (GtkWidget *widget, GdkRectangle *area)
 
   if (gtk_widget_get_direction (widget) == GTK_TEXT_DIR_RTL) {
     tab_x = button_area.x + props.indicator_spacing.right +
-            widget->style->xthickness;
+            style->xthickness;
   }
   else {
     tab_x = button_area.x + button_area.width -
