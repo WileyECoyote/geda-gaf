@@ -576,10 +576,11 @@ geda_option_menu_paint (GtkWidget *widget, GdkRectangle *area)
   GdkRectangle        button_area;
   GedaOptionMenuProps props;
   GtkStateType        state;
+  GtkStyle           *style;
   int border_width;
   int tab_x;
 
-  border_width = ((GtkContainer*)widget)->border_width;
+  border_width = geda_get_container_border_width(widget)
   geda_option_menu_get_props ((GedaOptionMenu*)widget, &props);
 
   button_area.x      = widget->allocation.x + border_width;
