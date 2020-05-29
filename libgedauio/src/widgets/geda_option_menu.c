@@ -611,7 +611,7 @@ geda_option_menu_paint (GtkWidget *widget, GdkRectangle *area)
   else {
     tab_x = button_area.x + button_area.width -
             props.indicator_size.width - props.indicator_spacing.right -
-            widget->style->xthickness;
+            style->xthickness;
   }
 
   gtk_paint_tab (widget->style, widget->window, state, GTK_SHADOW_OUT,
