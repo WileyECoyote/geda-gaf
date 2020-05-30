@@ -557,29 +557,35 @@ msgstr "eller ordning, fortsætter med"
 msgid "maximum value"
 msgstr "maksimal værdi"
 
+# minimum value
 #: gschem/src/guile/g_rc.c:137
 msgid "minimum value"
-msgstr ""
+msgstr "minimumsværdi"
 
+# default value
 #: gschem/src/guile/g_rc.c:141
 msgid "default value"
-msgstr ""
+msgstr "standard værdi"
 
+# Invalid type assignment, check
 #: gschem/src/guile/g_rc.c:155
 msgid "Invalid type assignment, check"
-msgstr ""
+msgstr "Ugyldig typetildeling, kontroller"
 
+# This is gEDA/gschem version
 #: gschem/src/guile/g_rc.c:196
 msgid "This is gEDA/gschem version"
-msgstr ""
+msgstr "Dette er gEDA/gschem version"
 
+# but you have a version
 #: gschem/src/guile/g_rc.c:197
 msgid "but you have a version"
-msgstr ""
+msgstr "men du har en version"
 
+# Please be sure that you have the latest rc file
 #: gschem/src/guile/g_rc.c:198
 msgid "Please be sure that you have the latest rc file"
-msgstr ""
+msgstr "Sørg for, at du har den nyeste rc-fil"
 
 #: gschem/src/guile/g_rc.c:205 gschem/src/x/x_image.c:537
 msgid "file"
