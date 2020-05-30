@@ -568,29 +568,35 @@ msgstr "tai Scheme, jatkamalla"
 msgid "maximum value"
 msgstr "maksimiarvo"
 
+# minimum value
 #: gschem/src/guile/g_rc.c:137
 msgid "minimum value"
-msgstr ""
+msgstr "minimiarvo"
 
+# default value
 #: gschem/src/guile/g_rc.c:141
 msgid "default value"
-msgstr ""
+msgstr "oletusarvo"
 
+# Invalid type assignment, check
 #: gschem/src/guile/g_rc.c:155
 msgid "Invalid type assignment, check"
-msgstr ""
+msgstr "Virheellinen tyyppimääritys, tarkista"
 
+# This is gEDA/gschem version
 #: gschem/src/guile/g_rc.c:196
 msgid "This is gEDA/gschem version"
-msgstr ""
+msgstr "Tämä on gEDA/gschem-versio"
 
+# but you have a version
 #: gschem/src/guile/g_rc.c:197
 msgid "but you have a version"
-msgstr ""
+msgstr "mutta sinulla on versio"
 
+# Please be sure that you have the latest rc file
 #: gschem/src/guile/g_rc.c:198
 msgid "Please be sure that you have the latest rc file"
-msgstr ""
+msgstr "Varmista, että sinulla on uusin rc-tiedosto"
 
 #: gschem/src/guile/g_rc.c:205 gschem/src/x/x_image.c:537
 msgid "file"
