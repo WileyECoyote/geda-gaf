@@ -486,29 +486,37 @@ msgstr "أو مخطط مستمر"
 msgid "maximum value"
 msgstr "القيمة القصوى"
 
+# minimum value; alhadu al'adnaa lilqima
 #: gschem/src/guile/g_rc.c:137
 msgid "minimum value"
-msgstr ""
+msgstr "الحد الأدنى للقيمة"
 
+# default value; alqimat alaiftiradia
 #: gschem/src/guile/g_rc.c:141
 msgid "default value"
-msgstr ""
+msgstr "القيمة الافتراضية"
 
+# Invalid type assignment, check
+# taeyin nawe ghayr salih , tahaqaq
 #: gschem/src/guile/g_rc.c:155
 msgid "Invalid type assignment, check"
-msgstr ""
+msgstr "تعيين نوع غير صالح ، تحقق"
 
+# This is gEDA/gschem version
 #: gschem/src/guile/g_rc.c:196
 msgid "This is gEDA/gschem version"
 msgstr "الإصدار gEDA/gschem هذا هو"
 
+# but you have a version; walakun ladayk nuskha
 #: gschem/src/guile/g_rc.c:197
 msgid "but you have a version"
-msgstr ""
+msgstr "ولكن لديك نسخة"
 
+# Please be sure that you have the latest rc file
+# yrja alta'akud min 'ana ladayk 'ahdath milafa RC
 #: gschem/src/guile/g_rc.c:198
 msgid "Please be sure that you have the latest rc file"
-msgstr ""
+msgstr "يرجى التأكد من أن لديك أحدث ملف RC"
 
 #: gschem/src/guile/g_rc.c:205 gschem/src/x/x_image.c:537
 msgid "file"
