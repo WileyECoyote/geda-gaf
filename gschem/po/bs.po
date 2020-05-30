@@ -556,26 +556,32 @@ msgstr "ili Šema, nastavljajući sa"
 msgid "maximum value"
 msgstr "maksimalna vrijednost"
 
+# minimum value
 #: gschem/src/guile/g_rc.c:137
 msgid "minimum value"
-msgstr ""
+msgstr "minimalna vrijednost"
 
+# default value
 #: gschem/src/guile/g_rc.c:141
 msgid "default value"
-msgstr ""
+msgstr "zadana vrijednost"
 
+# Invalid type assignment, check
 #: gschem/src/guile/g_rc.c:155
 msgid "Invalid type assignment, check"
-msgstr ""
+msgstr "Nevažeća dodjela tipa, provjerite"
 
+# This is gEDA/gschem version
 #: gschem/src/guile/g_rc.c:196
 msgid "This is gEDA/gschem version"
 msgstr "Ovo je gEDA/gschem verzija"
 
+# but you have a version
 #: gschem/src/guile/g_rc.c:197
 msgid "but you have a version"
-msgstr ""
+msgstr "ali imate verziju"
 
+# Please be sure that you have the latest rc file
 #: gschem/src/guile/g_rc.c:198
 msgid "Please be sure that you have the latest rc file"
 msgstr ""
