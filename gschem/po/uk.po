@@ -569,69 +569,89 @@ msgstr "ВИКЛ"
 msgid "Error"
 msgstr "Помилка"
 
+# NONE; NIKOLY
 #: gschem/src/base/gschem_status_bar.c:1909
 msgid "NONE"
-msgstr ""
+msgstr "НІКОЛИ"
 
+# Object ~A is not included in the current page.
+# Ob'yekt ~A ne vklyuchenyy u potochnu storinku
 #: gschem/src/guile/g_attrib.c:100
 msgid "Object ~A is not included in the current page."
-msgstr ""
+msgstr "Об'єкт ~A не включений у поточну сторінку."
 
+# Invalid text name/value visibility ~A.
+# Nediysne vydymistʹ tekstu/znachennya ~A.
 #: gschem/src/guile/g_attrib.c:121
 msgid "Invalid text name/value visibility ~A."
-msgstr ""
+msgstr "Недійсне видимість тексту/значення ~A."
 
+# Processing; Obrobka
 #: gschem/src/guile/g_rc.c:83 gschem/src/guile/g_rc.c:95
 msgid "Processing"
-msgstr ""
+msgstr "Обробка"
 
+# Skipping; Propusk
 #: gschem/src/guile/g_rc.c:87 gschem/src/guile/g_rc.c:99
 msgid "Skipping"
-msgstr ""
+msgstr "Пропуск"
 
+# entry in rc file; zapys u rc-fayl
 #: gschem/src/guile/g_rc.c:119
 msgid "entry in rc file"
-msgstr ""
+msgstr "запис у rc-файл"
 
+# Bad Value; Pohane znachennya
 #: gschem/src/guile/g_rc.c:123
 msgid "Bad Value"
-msgstr ""
+msgstr "Погане значення"
 
+# Check => Inspect; ohlyanuty
 #: gschem/src/guile/g_rc.c:124 gschem/src/guile/g_rc.c:2088
 msgid "check"
-msgstr ""
+msgstr "оглянути"
 
+# or Scheme, continuing with; abo Skhema, prodovzhuyuchy s
 #: gschem/src/guile/g_rc.c:125
 msgid "or Scheme, continuing with"
-msgstr ""
+msgstr "або Схема, продовжуючи с"
 
+# maximum value; maksymalʹne znachennya
 #: gschem/src/guile/g_rc.c:133
 msgid "maximum value"
-msgstr ""
+msgstr "максимальне значення"
 
+# minimum value; maksymalʹne znachennya
 #: gschem/src/guile/g_rc.c:137
 msgid "minimum value"
-msgstr ""
+msgstr "максимальне значення"
 
+# default value; znachennya za zamovchuvannyam
 #: gschem/src/guile/g_rc.c:141
 msgid "default value"
-msgstr ""
+msgstr "значення за замовчуванням"
 
+# Invalid type assignment, check
+# Nediysne pryznachennya typu, perevirte
 #: gschem/src/guile/g_rc.c:155
 msgid "Invalid type assignment, check"
-msgstr ""
+msgstr "Недійсне призначення типу, перевірте"
 
+# This is gEDA/gschem version; Tse versiya gEDA/gschem
 #: gschem/src/guile/g_rc.c:196
 msgid "This is gEDA/gschem version"
-msgstr ""
+msgstr "Це версія gEDA/gschem"
 
+# but you have a version; ale u vas ye versiya
 #: gschem/src/guile/g_rc.c:197
 msgid "but you have a version"
-msgstr ""
+msgstr "але у вас є версія"
 
+# Please be sure that you have the latest rc file
+# Budʹte vpevneni, shcho u vas ye ostanniy fayl rc
 #: gschem/src/guile/g_rc.c:198
 msgid "Please be sure that you have the latest rc file"
-msgstr ""
+msgstr "Будьте впевнені, що у вас є останній файл rc"
 
 #: gschem/src/guile/g_rc.c:205 gschem/src/x/x_image.c:537
 msgid "file"
