@@ -55,7 +55,7 @@ pinlabel=IN2
 T 100 550 5 8 0 1 0 0 1
 pintype=in
 }
-T 1350 600 8 10 1 1 0 6 1
+T 900 250 8 10 1 1 0 6 1
 refdes=U?
 T 300 650 5 8 0 0 0 0 1
 device=AND

@@ -1,3 +1,9 @@
+2020-05-31 Wiley E. Hill <wileyhill@gmail.com>
+
+    * simulation/verilog: Relocate attribute positions:
+
+            * simulation/verilog/and3-2.sym
+
 2020-05-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * simulation/verilog: Update attribute positions and visibility:
