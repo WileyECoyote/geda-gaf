@@ -104,13 +104,13 @@ pinlabel=IN7
 T 450 1500 5 8 0 1 0 0 1
 pintype=in
 }
-T 1200 1200 8 10 1 1 0 6 1
+T 850 750 8 10 1 1 0 6 1
 refdes=U?
-T 600 750 5 8 0 1 0 0 1
+T 100 1700 5 8 0 0 0 0 1
 device=AND
-T 100 1700 5 8 0 1 0 0 1
+T 100 1850 5 8 0 1 0 0 1
 description=VERILOG_PORTS=POSITIONAL
-T 100 2000 9 10 0 0 0 0 1
+T 100 2150 9 10 0 0 0 0 1
 numslots=0
-T 100 1850 9 10 0 0 0 0 1
+T 100 2000 9 10 0 0 0 0 1
 footprint=unknown
