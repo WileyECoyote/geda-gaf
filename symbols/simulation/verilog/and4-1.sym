@@ -60,11 +60,11 @@ pinlabel=IN3
 T 450 750 5 8 0 1 0 0 1
 pintype=in
 }
-T 1000 800 8 10 1 1 0 6 1
+T 800 350 8 10 1 1 0 6 1
 refdes=U?
-T 100 1150 5 8 0 0 0 0 1
-device=and
-T 100 1000 5 8 0 1 0 0 1
+T 100 1000 5 8 0 0 0 0 1
+device=AND
+T 100 1150 5 8 0 1 0 0 1
 description=VERILOG_PORTS=POSITIONAL
 T 100 1450 9 10 0 0 0 0 1
 numslots=0
