@@ -29,7 +29,7 @@ T 450 150 5 8 0 1 0 0 1
 pinseq=2
 T 0 150 5 8 0 1 0 0 1
 pinlabel=IN0
-T 600 150 5 8 0 1 0 0 1
+T 550 150 5 8 0 1 0 0 1
 pintype=in
 }
 V 250 300 50 6 0 0 0 -1 -1 0 0 -1 -1 -1 -1
@@ -71,7 +71,7 @@ pintype=in
 T 900 350 8 10 1 1 0 6 1
 refdes=U?
 T 200 900 5 8 0 0 0 0 1
-device=and
+device=AND
 T 200 1200 5 8 0 0 0 0 1
 description=VERILOG_PORTS=POSITIONAL
 T 200 1350 9 10 0 0 0 0 1
