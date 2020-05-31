@@ -71,10 +71,10 @@ pinlabel=IN4
 T 450 875 5 8 0 1 0 0 1
 pintype=in
 }
-T 1150 850 8 10 1 1 0 6 1
+T 850 450 8 10 1 1 0 6 1
 refdes=U?
 T 100 1150 5 8 0 0 0 0 1
-device=and
+device=AND
 T 100 1300 5 8 0 1 0 0 1
 description=VERILOG_PORTS=POSITIONAL
 T 100 1600 9 10 0 0 0 0 1
