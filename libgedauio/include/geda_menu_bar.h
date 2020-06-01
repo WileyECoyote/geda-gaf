@@ -58,7 +58,6 @@ struct _GedaMenuBar
 struct _GedaMenuBarClass
 {
   GedaMenuShellClass parent_class;
-
 };
 
 #ifdef __cplusplus
