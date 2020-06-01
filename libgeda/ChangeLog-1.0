@@ -6,6 +6,7 @@
           * geda_pin_set_whichend
           * geda_pin_set_sequence
           * geda_pin_set_number
+          * geda_pin_set_label
 
 2020-05-04 Wiley E. Hill <wileyhill@gmail.com>
 

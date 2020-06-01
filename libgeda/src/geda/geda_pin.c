@@ -553,10 +553,14 @@ bool geda_pin_set_electrical(GedaPin *pin, const char *electrical)
   return changed;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Set GedaPin pin label
+ * \par Function Description
+ *  Sets the pin->label to a copy of the string pointed to
+ *  by \a label. If label is NULL the current label is not
+ *  modified.
  *
+ *  \returns TRUE if pin->number was modified
  */
 bool geda_pin_set_label(GedaPin *pin, const char *label)
 {
@@ -636,7 +640,7 @@ bool geda_pin_set_mechanical(GedaPin *pin, const char *mechanical)
 }
 
 /*!
- * \brief Set GedaPin number
+ * \brief Set GedaPin pin number
  * \par Function Description
  *  Sets the pin->number to the integer conversion of
  *  \a number, which must only contain ASKII numeric
@@ -670,7 +674,7 @@ bool geda_pin_set_number(GedaPin *pin, const char *number)
 }
 
 /*!
- * \brief Set GedaPin sequence
+ * \brief Set GedaPin pin sequence
  * \par Function Description
  *  Sets the pin->sequence to the integer conversion of
  *  \a sequence, which must only contain ASKII numeric
@@ -708,7 +712,7 @@ bool geda_pin_set_sequence(GedaPin *pin, const char *sequence)
 }
 
 /*!
- * \brief Set GedaPin whichend
+ * \brief Set GedaPin whichend property
  * \par Function Description
  *  Sets the pin->whichend to the value of \a whichend without
  *  check the value.
