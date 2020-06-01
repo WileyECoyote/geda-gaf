@@ -699,10 +699,13 @@ bool geda_pin_set_sequence(GedaPin *pin, const char *sequence)
   return changed;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Set GedaPin whichend
+ * \par Function Description
+ *  Sets the pin->whichend to the value of \a whichend without
+ *  check the value.
  *
+ *  \returns TRUE if \a pin is a valid GedaPin
  */
 bool geda_pin_set_whichend(GedaPin *pin, int whichend)
 {
