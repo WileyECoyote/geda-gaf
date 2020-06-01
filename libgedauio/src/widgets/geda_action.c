@@ -588,7 +588,7 @@ void geda_action_disconnect_accelerator (GedaAction *action)
 /*!
  * \brief Synchronize Visibility of Proxy widget with GedaAction
  * \par Function Description
- *  Set the visibility of \a proxy to the visibility if \a action.
+ *  Set the visibility of \a proxy to the visibility of \a action.
  *  If \a action is NULL, set the visibility of \a proxy to the
  *  visibility of the related activatable if set, otherwise the
  *  visibility of \a proxy is set to visible.
