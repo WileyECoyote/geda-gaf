@@ -289,9 +289,9 @@ static void geda_pin_instance_init(GTypeInstance *instance, void *g_class)
   line->line_options.line_width = default_thick_pin_width;
 }
 
-/*! \brief Function to retrieve Pin's Type identifier.
- *
- *  \par Function Description
+/*!
+ * \brief Function to retrieve Pin's Type identifier.
+ * \par Function Description
  *  Function to retrieve a #Pin Type identifier. When first called,
  *  the function registers a #Pin in the GedaObjectType system to
  *  obtain an identifier that uniquely itentifies a Pin and returns
@@ -330,9 +330,9 @@ GedaObjectType geda_pin_get_type (void)
   return geda_pin_type;
 }
 
-/*! \brief Determine if object is a Geda Pin GedaObject.
- *
- *  \par Function Description
+/*!
+ * \brief Determine if object is a Geda Pin GedaObject.
+ * \par Function Description
  *  Returns true if the argument is a Geda Pin object.
  *
  *  \return boolean.
@@ -342,9 +342,9 @@ bool is_a_geda_pin (const GedaPin *pin)
   return GEDA_IS_OBJECT(pin) && (((GedaObject*)pin)->type == OBJ_PIN);
 }
 
-/*! \brief Returns a pointer to a new Pin object.
- *
- *  \par Function Description
+/*!
+ * \brief Returns a pointer to a new Pin object.
+ * \par Function Description
  *  Returns a pointer to a new Pin object.
  *
  *  \return pointer to the new Pin object.
@@ -508,8 +508,9 @@ const char *geda_pin_lookup_mstring(PIN_MECH m_type) {
   return str;
 }
 
-/*! \brief Set Pin Electrical String
- *  \par Function Description
+/*!
+ * \brief Set Pin Electrical String
+ * \par Function Description
  *  Sets the electrical description property for \a pin to the value
  *  \a electrical, this function looks for the \a electical in the
  *  e_strings structure above and updates the elect_type, formally
@@ -588,8 +589,9 @@ bool geda_pin_set_label(GedaPin *pin, const char *label)
   return changed;
 }
 
-/*! \brief Set Pin Mechanical String
- *  \par Function Description
+/*!
+ * \brief Set Pin Mechanical String
+ * \par Function Description
  *  Sets the mechanical description property for \a pin to the value
  *  \a mechanical, this function looks for the \a mechanical in the
  *  e_strings structure above and updates the elect_type, formally
