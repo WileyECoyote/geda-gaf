@@ -974,9 +974,9 @@ GtkWidget *geda_bulb_new_visible (GSList *group)
 /*!
  * \brief Create a New GedaBulb with a Label
  * \par Function Description
- *  Creates a new #GedaBulb object with a text label, the bulb is added to
- *  \a group if the group exist. If the group does not exist a new bulb group
- *  is created.
+ *  Creates a new #GedaBulb object with a text label, the bulb is added
+ *  to \a group if the group exist. If the group does not exist a new
+ *  bulb group is created.
  *
  * \param [in] group  The group to use for the new #GedaBulb
  * \param [in] label  The string to use use for the label
@@ -1006,8 +1006,8 @@ GtkWidget *geda_bulb_new_with_label (GSList     *group,
  * \brief Create a New Visible GedaBulb with a Label
  * \par Function Description
  *  Creates a new #GedaBulb object with a text label, the bulb is add to
- *  \a group if the group exist. If the group does not exist a new bulb group
- *  is created.
+ *  \a group if the group exist. If the group does not exist a new bulb
+ *  group is created.
  *
  * \param [in] group  The group to use for the new #GedaBulb
  * \param [in] label  The string to use use for the label
@@ -1030,9 +1030,9 @@ GtkWidget *geda_bulb_new_visible_with_label (GSList     *group,
  * \brief Create a New GedaBulb with a Mnemonic Label
  * \par Function Description
  *  Creates a new #GedaBulb object with a text label, the bulb is add to
- *  \a group if the group exist. If the group does not exist a new bulb group
- *  is created. \a label can, and should, include an underscores in indicate
- *  the mnemonic for the widget.
+ *  \a group if the group exist. If the group does not exist a new bulb
+ *  group is created. \a label can, and should, include an underscores in
+ *  indicate the mnemonic for the widget.
  *
  * \param [in] group  The group to use for the new #GedaBulb
  * \param [in] label  The string to use use for the label
@@ -1059,9 +1059,9 @@ GtkWidget *geda_bulb_new_with_mnemonic (GSList     *group,
  * \brief Create a New Visible GedaBulb with a Mnemonic Label
  * \par Function Description
  *  Creates a new #GedaBulb object with a text label, the bulb is add to
- *  \a group if the group exist. If the group does not exist a new bulb group
- *  is created. \a label can, and should, include an underscores in indicate
- *  the mnemonic for the widget.
+ *  \a group if the group exist. If the group does not exist a new bulb
+ *  group is created. \a label can, and should, include an underscores in
+ *  indicate the mnemonic for the widget.
  *
  * \param [in] group  The group to use for the new #GedaBulb
  * \param [in] label  The string to use use for the label
