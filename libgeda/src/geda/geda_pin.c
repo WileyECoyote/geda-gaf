@@ -635,10 +635,14 @@ bool geda_pin_set_mechanical(GedaPin *pin, const char *mechanical)
   return changed;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Set GedaPin number
+ * \par Function Description
+ *  Sets the pin->number to the integer conversion of
+ *  \a number, which must only contain ASKII numeric
+ *  characters.
  *
+ *  \returns TRUE if pin->number was modified
  */
 bool geda_pin_set_number(GedaPin *pin, const char *number)
 {
