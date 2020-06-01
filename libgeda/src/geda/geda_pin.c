@@ -665,10 +665,14 @@ bool geda_pin_set_number(GedaPin *pin, const char *number)
   return changed;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Set GedaPin sequence
+ * \par Function Description
+ *  Sets the pin->sequence to the integer conversion of
+ *  \a sequence, which must only contain ASKII numeric
+ *  characters.
  *
+ *  \returns TRUE if pin->sequence was modified
  */
 bool geda_pin_set_sequence(GedaPin *pin, const char *sequence)
 {
