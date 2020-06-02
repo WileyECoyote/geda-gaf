@@ -10,6 +10,11 @@
             * transistor/npn-smt/2N3904_npn_40V_1A_SOT-23-5.sym
             * transistor/npn-smt/2N3904_npn_40V_1A_SOT-23-6.sym
 
+    * transistor/npn-thru/2N3904_npn_40V_0.625W_TO-92-?.sym: Update
+      pinseq attributes:
+
+            * transistor/npn-thru/2N3904_npn_40V_0.625W_TO-92-1.sym
+
 2020-05-31 Wiley E. Hill <wileyhill@gmail.com>
 
     * simulation/verilog: Relocate attribute positions:
