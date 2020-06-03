@@ -580,7 +580,7 @@ geda_option_menu_paint (GtkWidget *widget, GdkRectangle *area)
   int border_width;
   int tab_x;
 
-  border_width = geda_get_container_border_width(widget)
+  border_width = geda_get_container_border_width(widget);
 
   geda_option_menu_get_props ((GedaOptionMenu*)widget, &props);
 
