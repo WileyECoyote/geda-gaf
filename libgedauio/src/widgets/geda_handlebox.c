@@ -712,7 +712,7 @@ static bool geda_handle_box_button_press (GtkWidget      *widget,
 
     if (child) {
 
-      GtkAllocation child_allocation;
+      GtkAllocation *child_allocation;
       unsigned int  border_widthx2;
 
       child_allocation = geda_get_widget_allocation (child);
@@ -729,11 +729,11 @@ static bool geda_handle_box_button_press (GtkWidget      *widget,
           break;
 
         case GTK_POS_RIGHT:
-          in_handle = event->x > border_widthx2 + child_allocation.width;
+          in_handle = event->x > border_widthx2 + child_allocation->width;
           break;
 
         case GTK_POS_BOTTOM:
-          in_handle = event->y > border_widthx2 + child_allocation.height;
+          in_handle = event->y > border_widthx2 + child_allocation->height;
           break;
 
         default:
