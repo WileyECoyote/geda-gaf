@@ -582,12 +582,13 @@ geda_option_menu_paint (GtkWidget *widget, GdkRectangle *area)
 
   border_width = geda_get_container_border_width(widget);
 
-  geda_option_menu_get_props ((GedaOptionMenu*)widget, &props);
 
   button_area.x      = widget->allocation.x + border_width;
   button_area.y      = widget->allocation.y + border_width;
   button_area.width  = widget->allocation.width - 2 * border_width;
   button_area.height = widget->allocation.height - 2 * border_width;
+
+  geda_option_menu_get_props ((GedaOptionMenu*)widget, &props);
 
   if (!props.interior_focus && gtk_widget_has_focus (widget)) {
 
