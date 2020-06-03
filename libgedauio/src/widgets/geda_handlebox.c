@@ -833,6 +833,7 @@ static bool geda_handle_box_button_press (GtkWidget      *widget,
       event_handled = TRUE;
     }
   }
+
   return event_handled;
 }
 
