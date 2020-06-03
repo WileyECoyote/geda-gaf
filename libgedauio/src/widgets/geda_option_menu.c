@@ -585,7 +585,7 @@ geda_option_menu_paint (GtkWidget *widget, GdkRectangle *area)
   allocation   = geda_get_widget_allocation (widget);
 
   button_area.x      = allocation->x + border_width;
-  button_area.y      = widget->allocation.y + border_width;
+  button_area.y      = allocation->y + border_width;
   button_area.width  = widget->allocation.width - 2 * border_width;
   button_area.height = widget->allocation.height - 2 * border_width;
 
