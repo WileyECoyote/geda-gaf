@@ -715,8 +715,8 @@ static bool geda_handle_box_button_press (GtkWidget      *widget,
       GtkAllocation child_allocation;
       unsigned int  border_widthx2;
 
-      gtk_widget_get_allocation (child, &child_allocation);
-      border_widthx2  = geda_get_container_border_width(handlebox) << 1;
+      child_allocation = geda_get_widget_allocation (child);
+      border_widthx2   = geda_get_container_border_width(handlebox) << 1;
 
       switch (effective_handle_position (handlebox)) {
 
