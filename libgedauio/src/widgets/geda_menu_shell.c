@@ -2216,8 +2216,9 @@ void geda_menu_shell_update_mnemonics (GedaMenuShell *menu_shell)
   g_object_get (gtk_widget_get_settings ((GtkWidget*)menu_shell),
                 "gtk-auto-mnemonics", &auto_mnemonics, NULL);
 
-  if (!auto_mnemonics)
+  if (!auto_mnemonics) {
     return;
+  }
 
   target = menu_shell;
   found  = FALSE;
