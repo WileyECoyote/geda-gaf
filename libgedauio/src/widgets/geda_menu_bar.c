@@ -216,7 +216,7 @@ remove_settings_signal (GedaMenuBar *menubar, GdkScreen *screen)
  *  @{
  */
 
-/* Common helper called by:
+/*! \internal Common helper called by:
  *
  * geda_menu_bar_size_allocate
  * geda_menu_bar_size_request
