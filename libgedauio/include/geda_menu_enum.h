@@ -44,8 +44,8 @@ typedef enum
  * Placement of submenus */
 typedef enum
 {
-  MENU_TOP_BOTTOM,
-  MENU_LEFT_RIGHT
+  MENU_TOP_BOTTOM,   /* GTK_TOP_BOTTOM */
+  MENU_LEFT_RIGHT,   /* GTK_LEFT_RIGHT */
 } SubmenuPlacement;
 
 #endif /* __GEDA_MENU_ENUM_H__ */
