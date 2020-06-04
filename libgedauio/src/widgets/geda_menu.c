@@ -5152,7 +5152,6 @@ static bool geda_menu_scroll_timeout_initial (void *data)
   menu->timeout_id = gdk_threads_add_timeout (timeout,
                                               geda_menu_scroll_timeout,
                                               menu);
-
   return FALSE;
 }
 
@@ -5834,7 +5833,7 @@ static void geda_menu_scroll_to (GedaMenu *menu, int offset)
 }
 
 /*!
- * \internal Reparent the menu, taking care of the refcounting
+ * \internal Reparent the menu, taking care of the reference counting.
  *
  * If unrealize is true we force a unrealize while reparenting the parent.
  * This can help eliminate flicker in some cases.
