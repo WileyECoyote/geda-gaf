@@ -7,6 +7,7 @@
 
           * geda_menu_shell_set_keyboard_mode
           * geda_menu_shell_prepend
+          * geda_menu_shell_remove_mnemonic
 
 2020-05-27 Wiley E. Hill <wileyhill@gmail.com>
 

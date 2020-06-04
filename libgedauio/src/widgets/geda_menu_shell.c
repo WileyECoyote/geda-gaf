@@ -1990,10 +1990,14 @@ void geda_menu_shell_prepend (GedaMenuShell *menu_shell, GtkWidget *child)
   geda_menu_shell_insert (menu_shell, child, 0);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Remove Mnemonic from a Menu Widget
+ * \par Function Description
+ *  Removes \a keyval as the mnemonic from \a target widget.
  *
+ * \param [in] menu_shell  Pointer to a GedaMenuShell
+ * \param [in] keyval      The mnemonic key value
+ * \param [in] target      The widget the mnemonic is associated with
  */
 void geda_menu_shell_remove_mnemonic (GedaMenuShell *menu_shell,
                                       unsigned int   keyval,
