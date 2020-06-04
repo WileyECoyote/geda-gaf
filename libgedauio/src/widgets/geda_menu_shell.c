@@ -2008,10 +2008,13 @@ void geda_menu_shell_remove_mnemonic (GedaMenuShell *menu_shell,
   geda_menu_shell_reset_key_hash (menu_shell);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Set the GedaMenuShell keyboard mode
+ * \par Function Description
+ *  The idea with keyboard mode is that once the user starts using
+ *  the keyboard to navigate the menus, the mnemonics are shown
+ *  until the menu navigation is over. To that end, the keyboard
+ *  mode is propagated upwards in the menu hierarchy.
  */
 void geda_menu_shell_set_keyboard_mode (GedaMenuShell *menu_shell,
                                                  bool  keyboard_mode)

@@ -3,6 +3,9 @@
     * src/widgets/geda_action.c: Revise geda_action_sync_menu_visible
       to eliminate GtkWidget pointer and nested conditional.
 
+    * src/widgets/geda_menu_shell.c: Add function documentation for
+      geda_menu_shell_set_keyboard_mode.
+
 2020-05-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_gtk_compat.h: Add macros:
