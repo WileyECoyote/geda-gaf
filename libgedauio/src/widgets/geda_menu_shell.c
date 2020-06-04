@@ -1977,10 +1977,13 @@ void geda_menu_shell_insert (GedaMenuShell *menu_shell,
   }
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Prepend a GedaMenuItem to a GedaMenuShell
+ * \par Function Description
+ *  Prepends \a child to \a menu_shell.
  *
+ * \param [in] menu_shell  Pointer to a GedaMenuShell
+ * \param [in] child       Must be a GedaMenuItem
  */
 void geda_menu_shell_prepend (GedaMenuShell *menu_shell, GtkWidget *child)
 {
