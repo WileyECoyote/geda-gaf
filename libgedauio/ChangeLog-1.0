@@ -1,10 +1,15 @@
+2020-06-04 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_action.c: Revise geda_action_sync_menu_visible
+      to eliminate GtkWidget pointer and nested conditional.
+
 2020-05-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_gtk_compat.h: Add macros:
 
           * geda_get_button_event_window
 
-    * src/widgets/geda_option_menu.c Utilize macro:
+    * src/widgets/geda_option_menu.c: Utilize macro:
 
           * geda_get_container_border_width
           * geda_set_widget_allocation

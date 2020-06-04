@@ -601,7 +601,7 @@ void geda_action_disconnect_accelerator (GedaAction *action)
 void
 geda_action_sync_menu_visible(GedaAction *action, GtkWidget *proxy, bool empty)
 {
-  GtkWidget *object;
+  GtkAction *object;
   bool visible       = TRUE;
   bool hide_if_empty = TRUE;
 
@@ -609,17 +609,7 @@ geda_action_sync_menu_visible(GedaAction *action, GtkWidget *proxy, bool empty)
 
   /* A Menu object for a popup does not have to have an action */
   if (action == NULL) {
-
-    GtkAction *relative;
-
-    relative = gtk_activatable_get_related_action (GTK_ACTIVATABLE(proxy));
-
-    if (relative) {
-      object = (GtkWidget*)relative;
-    }
-    else {
-      object = NULL;
-    }
+    object = gtk_activatable_get_related_action (GTK_ACTIVATABLE(proxy));
   }
   else {
     object = NULL;
