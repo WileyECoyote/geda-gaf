@@ -554,25 +554,30 @@ msgstr "запись в файле rc"
 msgid "Bad Value"
 msgstr "Плохое значение"
 
+# check => examine; issledovat
 #: gschem/src/guile/g_rc.c:124 gschem/src/guile/g_rc.c:2088
 msgid "check"
-msgstr ""
+msgstr "исследовать"
 
+# or Scheme, continuing with; ili skhema, prodolzhaya s
 #: gschem/src/guile/g_rc.c:125
 msgid "or Scheme, continuing with"
-msgstr ""
+msgstr "или схема, продолжая с"
 
+# maximum value; maksimal'noye znacheniye
 #: gschem/src/guile/g_rc.c:133
 msgid "maximum value"
-msgstr ""
+msgstr "максимальное значение"
 
+# minimum value; minimal'noye znacheniye
 #: gschem/src/guile/g_rc.c:137
 msgid "minimum value"
-msgstr ""
+msgstr "минимальное значение"
 
+# default value; znacheniye po umolchaniyu
 #: gschem/src/guile/g_rc.c:141
 msgid "default value"
-msgstr ""
+msgstr "значение по умолчанию"
 
 # Invalid type assignment, check
 #: gschem/src/guile/g_rc.c:155
@@ -594,39 +599,50 @@ msgstr "Но у Вас есть версия"
 msgid "Please be sure that you have the latest rc file"
 msgstr "Удостоверьтесь, что у вас последняя версия файла настроек"
 
+# file; fayl
 #: gschem/src/guile/g_rc.c:205 gschem/src/x/x_image.c:537
 msgid "file"
-msgstr ""
+msgstr "файл"
 
+# Неверное значение, коэффициент увеличения не может быть нулевым,
+# проверьте запись в файле RC
 #: gschem/src/guile/g_rc.c:733
 #, c-format
 msgid "Invalid value, zoom-gain cannot be zero, check entry in rc file\n"
-msgstr ""
+msgstr "Неверное значение, коэффициент увеличения не может быть нулевым, "
+"проверьте запись в файле RC\n"
 
+# Nevernoye prisvoyeniye tipa, prover'te zapis' uvelicheniya-usileniya v fayle RC
 #: gschem/src/guile/g_rc.c:738
 #, c-format
 msgid "Invalid type assignment, check zoom-gain entry in rc file\n"
-msgstr ""
+msgstr "Неверное присвоение типа, проверьте запись увеличения-усиления в файле RC\n"
 
+# Continuing with default value; Prodolzhaya so znacheniyem po umolchaniyu
 #: gschem/src/guile/g_rc.c:739 gschem/src/guile/g_rc.c:1298
 #: gschem/src/guile/g_rc.c:1444 gschem/src/guile/g_rc.c:2040
 msgid "Continuing with default value"
-msgstr ""
+msgstr "Продолжая со значением по умолчанию"
 
+# Nevernoye prisvoyeniye tipa, prover'te zapis' v zhurnale v fayle rc
 #: gschem/src/guile/g_rc.c:819
 #, c-format
 msgid "Invalid type assignment, check logging entry in rc file\n"
-msgstr ""
+msgstr "Неверное присвоение типа, проверьте запись в журнале в файле rc\n"
 
+# Nevernoye znacheniye, razmer privyazki ne mozhet byt' nulevym, prover'te
+# zapis' v fayle rc
 #: gschem/src/guile/g_rc.c:1292
 #, c-format
 msgid "Invalid value, snap-size cannot be zero, check entry rc file\n"
-msgstr ""
+msgstr "Неверное значение, размер привязки не может быть нулевым, проверьте "
+"запись в файле rc\n"
 
+# Nevernoye naznacheniye tipa, prover'te zapis' razmera snimka v fayle RC
 #: gschem/src/guile/g_rc.c:1297
 #, c-format
 msgid "Invalid type assignment, check snap-size entry in rc file\n"
-msgstr ""
+msgstr "Неверное назначение типа, проверьте запись размера снимка в файле RC"
 
 #: gschem/src/guile/g_rc.c:1438
 #, c-format
