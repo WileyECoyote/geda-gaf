@@ -577,39 +577,41 @@ msgstr "ama bir versiyonun var"
 msgid "Please be sure that you have the latest rc file"
 msgstr "Lütfen en son rc dosyasına sahip olduğunuzdan emin olun"
 
+# file
 #: gschem/src/guile/g_rc.c:205 gschem/src/x/x_image.c:537
 msgid "file"
-msgstr ""
+msgstr "dosya"
 
 #: gschem/src/guile/g_rc.c:733
 #, c-format
 msgid "Invalid value, zoom-gain cannot be zero, check entry in rc file\n"
-msgstr ""
+msgstr "Geçersiz değer, zum kazancı sıfır olamaz, rc dosyasındaki girişi kontrol edin\n"
 
 #: gschem/src/guile/g_rc.c:738
 #, c-format
 msgid "Invalid type assignment, check zoom-gain entry in rc file\n"
-msgstr ""
+msgstr "Geçersiz tür ataması, rc dosyasında yakınlaştırma-kazanç girişini kontrol edin\n"
 
+# Continuing with default value
 #: gschem/src/guile/g_rc.c:739 gschem/src/guile/g_rc.c:1298
 #: gschem/src/guile/g_rc.c:1444 gschem/src/guile/g_rc.c:2040
 msgid "Continuing with default value"
-msgstr ""
+msgstr "Varsayılan değerle devam etme"
 
 #: gschem/src/guile/g_rc.c:819
 #, c-format
 msgid "Invalid type assignment, check logging entry in rc file\n"
-msgstr ""
+msgstr "Geçersiz tür ataması, rc dosyasında günlük girişini denetleme\n"
 
 #: gschem/src/guile/g_rc.c:1292
 #, c-format
 msgid "Invalid value, snap-size cannot be zero, check entry rc file\n"
-msgstr ""
+msgstr "Geçersiz değer, ek boyut sıfır olamaz, giriş rc dosyasını kontrol edin\n"
 
 #: gschem/src/guile/g_rc.c:1297
 #, c-format
 msgid "Invalid type assignment, check snap-size entry in rc file\n"
-msgstr ""
+msgstr "Geçersiz tür ataması, rc dosyasında ek boyutlu girişi kontrol edin\n"
 
 #: gschem/src/guile/g_rc.c:1438
 #, c-format
