@@ -587,39 +587,41 @@ msgstr "men du har en version"
 msgid "Please be sure that you have the latest rc file"
 msgstr "Sørg for, at du har den nyeste rc-fil"
 
+# file
 #: gschem/src/guile/g_rc.c:205 gschem/src/x/x_image.c:537
 msgid "file"
-msgstr ""
+msgstr "fil"
 
 #: gschem/src/guile/g_rc.c:733
 #, c-format
 msgid "Invalid value, zoom-gain cannot be zero, check entry in rc file\n"
-msgstr ""
+msgstr "Ugyldig værdi, zoomforstærkning kan ikke være nul, kontroller indtastning i rc-fil\n"
 
 #: gschem/src/guile/g_rc.c:738
 #, c-format
 msgid "Invalid type assignment, check zoom-gain entry in rc file\n"
-msgstr ""
+msgstr "Ugyldig typetildeling, kontroller indtastning af zoom-gain i rc-fil\n"
 
+# Continuing with default value
 #: gschem/src/guile/g_rc.c:739 gschem/src/guile/g_rc.c:1298
 #: gschem/src/guile/g_rc.c:1444 gschem/src/guile/g_rc.c:2040
 msgid "Continuing with default value"
-msgstr ""
+msgstr "Fortsætter med standardværdien"
 
 #: gschem/src/guile/g_rc.c:819
 #, c-format
 msgid "Invalid type assignment, check logging entry in rc file\n"
-msgstr ""
+msgstr "Ugyldig typetildeling, kontroller loggerpost i rc-fil\n"
 
 #: gschem/src/guile/g_rc.c:1292
 #, c-format
 msgid "Invalid value, snap-size cannot be zero, check entry rc file\n"
-msgstr ""
+msgstr "Ugyldig værdi, snap-størrelse kan ikke være nul, kontroller indtastning rc-fil\n"
 
 #: gschem/src/guile/g_rc.c:1297
 #, c-format
 msgid "Invalid type assignment, check snap-size entry in rc file\n"
-msgstr ""
+msgstr "Ugyldig typetildeling, kontroller post i snap-størrelse i rc-fil\n"
 
 #: gschem/src/guile/g_rc.c:1438
 #, c-format
