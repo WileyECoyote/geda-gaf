@@ -604,39 +604,44 @@ msgstr "però teniu una versió"
 msgid "Please be sure that you have the latest rc file"
 msgstr "Assegureu-vos que teniu el darrer fitxer rc"
 
+# file
 #: gschem/src/guile/g_rc.c:205 gschem/src/x/x_image.c:537
 msgid "file"
-msgstr ""
+msgstr "dossier"
 
 #: gschem/src/guile/g_rc.c:733
 #, c-format
 msgid "Invalid value, zoom-gain cannot be zero, check entry in rc file\n"
-msgstr ""
+msgstr "El valor no vàlid, el guany de zoom no pot ser zero, comproveu l’entrada al fitxer rc\n"
 
 #: gschem/src/guile/g_rc.c:738
 #, c-format
 msgid "Invalid type assignment, check zoom-gain entry in rc file\n"
-msgstr ""
+msgstr "Assignació de tipus no vàlida, comproveu l'entrada de zoom de guany al fitxer rc\n"
 
+# Continuing with default value
 #: gschem/src/guile/g_rc.c:739 gschem/src/guile/g_rc.c:1298
 #: gschem/src/guile/g_rc.c:1444 gschem/src/guile/g_rc.c:2040
 msgid "Continuing with default value"
-msgstr ""
+msgstr "Continuació amb el valor per defecte"
 
 #: gschem/src/guile/g_rc.c:819
 #, c-format
 msgid "Invalid type assignment, check logging entry in rc file\n"
-msgstr ""
+msgstr "Assignació de tipus no vàlida, comproveu l’entrada de registre al "
+"fitxer rc\n"
 
 #: gschem/src/guile/g_rc.c:1292
 #, c-format
 msgid "Invalid value, snap-size cannot be zero, check entry rc file\n"
-msgstr ""
+msgstr "El valor no vàlid, la mida snap no pot ser zero, comproveu el fitxer "
+"rc d’entrada\n"
 
 #: gschem/src/guile/g_rc.c:1297
 #, c-format
 msgid "Invalid type assignment, check snap-size entry in rc file\n"
-msgstr ""
+msgstr "Assignació de tipus no vàlida, comproveu l’entrada de mida instantània "
+"al fitxer rc\n"
 
 #: gschem/src/guile/g_rc.c:1438
 #, c-format
