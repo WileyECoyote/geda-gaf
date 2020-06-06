@@ -653,39 +653,48 @@ msgstr "але у вас є версія"
 msgid "Please be sure that you have the latest rc file"
 msgstr "Будьте впевнені, що у вас є останній файл rc"
 
+# file; fayl
 #: gschem/src/guile/g_rc.c:205 gschem/src/x/x_image.c:537
 msgid "file"
-msgstr ""
+msgstr "файл"
 
+# Nediysne znachennya, koefitsiyent zbilʹshennya ta zbilʹshennya ne mozhe
+# buty nulʹovym, perevirte zapys u fayli rc
 #: gschem/src/guile/g_rc.c:733
 #, c-format
 msgid "Invalid value, zoom-gain cannot be zero, check entry in rc file\n"
-msgstr ""
+msgstr "Недійсне значення, коефіцієнт збільшення та збільшення не може бути "
+"нульовим, перевірте запис у файлі rc\n"
 
+# Nediysne pryznachennya typu, perevirte zbilʹshennya masshtabuvannya u fayli rc
 #: gschem/src/guile/g_rc.c:738
 #, c-format
 msgid "Invalid type assignment, check zoom-gain entry in rc file\n"
-msgstr ""
+msgstr "Недійсне призначення типу, перевірте збільшення масштабування у файлі rc\n"
 
+# Continuing with default value; Prodovzhuyuchy znachennya za zamovchuvannyam
 #: gschem/src/guile/g_rc.c:739 gschem/src/guile/g_rc.c:1298
 #: gschem/src/guile/g_rc.c:1444 gschem/src/guile/g_rc.c:2040
 msgid "Continuing with default value"
-msgstr ""
+msgstr "Продовжуючи значення за замовчуванням"
 
+# Nediysne pryznachennya typu, perevirte zapys zhurnalu v rc-fayl
 #: gschem/src/guile/g_rc.c:819
 #, c-format
 msgid "Invalid type assignment, check logging entry in rc file\n"
-msgstr ""
+msgstr "Недійсне призначення типу, перевірте запис журналу в rc-файл\n"
 
+# Nediysne znachennya, rozmir osnashchennya ne mozhe buty nulʹovym, perevirte vkhidnyy fayl rc
 #: gschem/src/guile/g_rc.c:1292
 #, c-format
 msgid "Invalid value, snap-size cannot be zero, check entry rc file\n"
-msgstr ""
+msgstr "Недійсне значення, розмір оснащення не може бути нульовим, перевірте вхідний файл rc\n"
 
+# Nediysne pryznachennya typu, perevirte zapys snap-rozmiru u fayli rc
 #: gschem/src/guile/g_rc.c:1297
 #, c-format
 msgid "Invalid type assignment, check snap-size entry in rc file\n"
-msgstr ""
+msgstr "Недійсне призначення типу, перевірте запис snap-розміру у файлі rc\n"
 
 #: gschem/src/guile/g_rc.c:1438
 #, c-format
