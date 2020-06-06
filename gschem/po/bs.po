@@ -586,39 +586,42 @@ msgstr "ali imate verziju"
 msgid "Please be sure that you have the latest rc file"
 msgstr ""
 
+# file
 #: gschem/src/guile/g_rc.c:205 gschem/src/x/x_image.c:537
 msgid "file"
-msgstr ""
+msgstr "datoteka"
 
 #: gschem/src/guile/g_rc.c:733
 #, c-format
 msgid "Invalid value, zoom-gain cannot be zero, check entry in rc file\n"
-msgstr ""
+msgstr "Nevažeća vrijednost, pojačani zum ne može biti nula, provjerite unos u rc datoteku\n"
 
 #: gschem/src/guile/g_rc.c:738
 #, c-format
 msgid "Invalid type assignment, check zoom-gain entry in rc file\n"
-msgstr ""
+msgstr "Nevažeća dodjela tipa, provjerite unos zoom-pojačanja u rc datoteci\n"
 
+# Continuing with default value
 #: gschem/src/guile/g_rc.c:739 gschem/src/guile/g_rc.c:1298
 #: gschem/src/guile/g_rc.c:1444 gschem/src/guile/g_rc.c:2040
 msgid "Continuing with default value"
-msgstr ""
+msgstr "Nastavlja se sa zadanom vrijednošću"
 
 #: gschem/src/guile/g_rc.c:819
 #, c-format
 msgid "Invalid type assignment, check logging entry in rc file\n"
-msgstr ""
+msgstr "Nevažeća dodjela tipa, provjerite zapis unosa u rc datoteku\n"
 
 #: gschem/src/guile/g_rc.c:1292
 #, c-format
 msgid "Invalid value, snap-size cannot be zero, check entry rc file\n"
-msgstr ""
+msgstr "Nevažeća vrijednost, veličina snap-a ne može biti jednaka nuli, "
+"provjerite ulaznu rc datoteku\n"
 
 #: gschem/src/guile/g_rc.c:1297
 #, c-format
 msgid "Invalid type assignment, check snap-size entry in rc file\n"
-msgstr ""
+msgstr "Nevažeća dodjela tipa, provjerite unos veličine kopče u rc datoteci\n"
 
 #: gschem/src/guile/g_rc.c:1438
 #, c-format
