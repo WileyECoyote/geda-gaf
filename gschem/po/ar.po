@@ -518,39 +518,47 @@ msgstr "ولكن لديك نسخة"
 msgid "Please be sure that you have the latest rc file"
 msgstr "يرجى التأكد من أن لديك أحدث ملف RC"
 
+# file
 #: gschem/src/guile/g_rc.c:205 gschem/src/x/x_image.c:537
 msgid "file"
-msgstr ""
+msgstr "ملف"
 
+# qimat ghyr salihat , la ymkn 'an yakun kasab altakbir sfrana , tuhaqiq
+# min al'iidkhal fi milafi RC
 #: gschem/src/guile/g_rc.c:733
 #, c-format
 msgid "Invalid value, zoom-gain cannot be zero, check entry in rc file\n"
-msgstr ""
+msgstr "قيمة غير صالحة ، لا يمكن أن يكون كسب التكبير صفرًا ، تحقق من الإدخال في ملف RC\n"
 
+# taeyin nawe ghayr salih , tuhaqiq min 'iidkhal takbir / tasghir fi milafin RC
 #: gschem/src/guile/g_rc.c:738
 #, c-format
 msgid "Invalid type assignment, check zoom-gain entry in rc file\n"
-msgstr ""
+msgstr "تعيين نوع غير صالح ، تحقق من إدخال تكبير / تصغير في ملف RC\n"
 
+# Continuing with default value; almutabaeat mae alqimat alaiftiradia
 #: gschem/src/guile/g_rc.c:739 gschem/src/guile/g_rc.c:1298
 #: gschem/src/guile/g_rc.c:1444 gschem/src/guile/g_rc.c:2040
 msgid "Continuing with default value"
-msgstr ""
+msgstr "المتابعة مع القيمة الافتراضية"
 
 #: gschem/src/guile/g_rc.c:819
 #, c-format
 msgid "Invalid type assignment, check logging entry in rc file\n"
-msgstr ""
+msgstr "تعيين نوع غير صالح ، تحقق من إدخال التسجيل في ملف RC\n"
 
+# qimat ghyr salihat , la ymkn 'an yakun hajm al'adat al'iidafiat sfrana,
+# tuhaqiq min milafi rc lil'iidkhal
 #: gschem/src/guile/g_rc.c:1292
 #, c-format
 msgid "Invalid value, snap-size cannot be zero, check entry rc file\n"
-msgstr ""
+msgstr "قيمة غير صالحة ، لا يمكن أن يكون حجم الأداة الإضافية صفرًا ، تحقق من ملف rc للإدخال\n"
 
+# taeyin nawe ghayr salih , tuhaqiq min 'iidkhal alhajm almafaji fi milafi RC
 #: gschem/src/guile/g_rc.c:1297
 #, c-format
 msgid "Invalid type assignment, check snap-size entry in rc file\n"
-msgstr ""
+msgstr "تعيين نوع غير صالح ، تحقق من إدخال الحجم المفاجئ في ملف RC\n"
 
 #: gschem/src/guile/g_rc.c:1438
 #, c-format
