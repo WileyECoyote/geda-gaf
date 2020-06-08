@@ -37,7 +37,7 @@ T 300 900 9 10 0 1 0 0 1
 footprint=SOD123
 T 600 550 9 10 0 0 0 0 1
 symversion=0.5
-T 850 0 5 10 1 1 0 0 1
+T 950 0 5 10 1 1 0 0 1
 value=MBR0540T1
 T 800 400 9 10 0 0 0 0 1
 numslots=0
