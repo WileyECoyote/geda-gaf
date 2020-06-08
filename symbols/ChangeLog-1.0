@@ -1,6 +1,9 @@
 2020-06-08 Wiley E. Hill <wileyhill@gmail.com>
 
-    * linear/switchreg/LM3489-1.sym: Update pinseq attributes.
+    * linear/switchreg/LM3489-1.sym: Update pinseq attributes:
+
+            * linear/switchreg/LM3489-1.sym
+            * linear/switchreg/LM3489-2.sym
 
 2020-06-07 Wiley E. Hill <wileyhill@gmail.com>
 
