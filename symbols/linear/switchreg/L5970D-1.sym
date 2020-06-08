@@ -9,7 +9,7 @@ description=UP TO 1A STEP DOWN SWITCHING REGULATOR
 T 2300 1000 5 10 1 1 0 0 1
 device=L5970D
 T 0 2900 5 10 0 0 0 0 1
-dist-license=GPL 3
+dist-license=GPLv2
 T 0 3100 5 10 0 0 0 0 1
 use-license=unlimited
 T 0 3300 5 10 0 0 0 0 1

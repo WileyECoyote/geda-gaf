@@ -5,6 +5,8 @@
             * linear/switchreg/LM3489-1.sym
             * linear/switchreg/LM3489-2.sym
 
+    * linear/switchreg/L5970D-1.sym: Update dist-license=GPLv2.
+
 2020-06-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * transistor/npn-smt/2N3904_npn_40V_1A_SOT-223-?.sym: Update
