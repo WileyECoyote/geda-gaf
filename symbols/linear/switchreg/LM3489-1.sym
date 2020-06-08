@@ -1,98 +1,98 @@
 v 20150101 2
-B 300 300 1800 1100 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
-P 2400 1000 2100 1000 1 0 0
-{
-T 2400 1000 5 10 0 1 0 8 1
-pintype=pas
-T 2045 995 9 10 1 1 0 7 1
-pinlabel=Isense
-T 2145 1045 5 10 1 1 0 0 1
-pinnumber=1
-T 2150 1050 5 10 0 1 0 0 1
-pinseq=1
-}
-P 1200 1700 1200 1400 1 0 0
-{
-T 1200 1700 5 10 0 0 180 0 1
-pintype=pas
-T 1245 1300 9 10 1 1 0 5 1
-pinlabel=Pgate
-T 1245 1450 5 10 1 1 0 0 1
-pinnumber=7
-T 1250 1450 5 10 0 1 0 0 1
-pinseq=7
-}
-P 2400 600 2100 600 1 0 0
-{
-T 2400 600 5 10 0 1 0 8 1
-pintype=pas
-T 2045 595 9 10 1 1 0 7 1
-pinlabel=FB
-T 2145 645 5 10 1 1 0 0 1
-pinnumber=4
-T 2150 650 5 10 0 1 0 0 1
-pinseq=4
-}
-P 1500 0 1500 300 1 0 0
-{
-T 1500 0 5 10 0 1 0 6 1
-pintype=pas
-T 1505 350 9 10 1 1 0 3 1
-pinlabel=GND
-T 1655 150 5 10 1 1 0 6 1
-pinnumber=2
-T 1650 150 5 10 0 1 0 6 1
-pinseq=2
-}
-P 0 800 300 800 1 0 0
-{
-T 0 800 5 10 0 1 0 2 1
-pintype=pas
-T 355 795 9 10 1 1 0 1 1
-pinlabel=Vin
-T 205 845 5 10 1 1 0 6 1
-pinnumber=8
-T 200 850 5 10 0 1 0 6 1
-pinseq=8
-}
-P 0 500 300 500 1 0 0
-{
-T 0 500 5 10 0 1 0 2 1
-pintype=pas
-T 355 495 9 10 1 1 0 1 1
-pinlabel=EN
-T 205 545 5 10 1 1 0 6 1
-pinnumber=3
-T 200 550 5 10 0 1 0 6 1
-pinseq=3
-}
 T 2100 1450 8 10 1 1 0 6 1
 refdes=U?
 T 0 1800 8 10 0 0 0 0 1
 device=LM3489
 T 0 2200 5 10 0 0 0 0 1
-footprint=unkown
+footprint=VSSOP-8
 T 0 2000 8 10 0 0 0 0 1
 description=LM3489 Hysteretic PFET Buck Controller
-P 900 0 900 300 1 0 0
+B 300 300 1800 1100 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
+P 2400 1000 2100 1000 1 0 0
 {
-T 900 0 5 10 0 1 0 6 1
-pintype=pas
-T 905 350 9 10 1 1 0 3 1
-pinlabel=PGND
-T 1055 150 5 10 1 1 0 6 1
-pinnumber=6
-T 1050 150 5 10 0 1 0 6 1
+T 2145 1045 5 10 1 1 0 0 1
+pinnumber=1
+T 2150 1050 5 10 0 1 0 0 1
 pinseq=6
+T 2045 995 9 10 1 1 0 7 1
+pinlabel=Isense
+T 2400 1000 5 10 0 1 0 8 1
+pintype=pas
+}
+P 1500 0 1500 300 1 0 0
+{
+T 1655 150 5 10 1 1 0 6 1
+pinnumber=2
+T 1650 150 5 10 0 1 0 6 1
+pinseq=8
+T 1505 350 9 10 1 1 0 3 1
+pinlabel=GND
+T 1500 0 5 10 0 1 0 6 1
+pintype=pas
+}
+P 0 500 300 500 1 0 0
+{
+T 205 545 5 10 1 1 0 6 1
+pinnumber=3
+T 200 550 5 10 0 1 0 6 1
+pinseq=2
+T 355 495 9 10 1 1 0 1 1
+pinlabel=EN
+T 0 500 5 10 0 1 0 2 1
+pintype=pas
+}
+P 2400 600 2100 600 1 0 0
+{
+T 2145 645 5 10 1 1 0 0 1
+pinnumber=4
+T 2150 650 5 10 0 1 0 0 1
+pinseq=3
+T 2045 595 9 10 1 1 0 7 1
+pinlabel=FB
+T 2400 600 5 10 0 1 0 8 1
+pintype=pas
 }
 P 0 1100 300 1100 1 0 0
 {
-T 0 1100 5 10 0 1 0 2 1
-pintype=pas
-T 355 1095 9 10 1 1 0 0 1
-pinlabel=Adj
 T 205 1145 5 10 1 1 0 6 1
 pinnumber=5
 T 200 1150 5 10 0 1 0 6 1
 pinseq=5
+T 355 1095 9 10 1 1 0 0 1
+pinlabel=Adj
+T 0 1100 5 10 0 1 0 2 1
+pintype=pas
+}
+P 900 0 900 300 1 0 0
+{
+T 1055 150 5 10 1 1 0 6 1
+pinnumber=6
+T 1050 150 5 10 0 1 0 6 1
+pinseq=4
+T 905 350 9 10 1 1 0 3 1
+pinlabel=PGND
+T 900 0 5 10 0 1 0 6 1
+pintype=pas
+}
+P 1200 1700 1200 1400 1 0 0
+{
+T 1245 1450 5 10 1 1 0 0 1
+pinnumber=7
+T 1250 1450 5 10 0 1 0 0 1
+pinseq=1
+T 1245 1300 9 10 1 1 0 5 1
+pinlabel=Pgate
+T 1200 1700 5 10 0 0 180 0 1
+pintype=pas
+}
+P 0 800 300 800 1 0 0
+{
+T 205 845 5 10 1 1 0 6 1
+pinnumber=8
+T 200 850 5 10 0 1 0 6 1
+pinseq=7
+T 355 795 9 10 1 1 0 1 1
+pinlabel=Vin
+T 0 800 5 10 0 1 0 2 1
+pintype=pas
 }

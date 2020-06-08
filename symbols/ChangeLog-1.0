@@ -1,3 +1,7 @@
+2020-06-08 Wiley E. Hill <wileyhill@gmail.com>
+
+    * linear/switchreg/LM3489-1.sym: Update pinseq attributes.
+
 2020-06-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * transistor/npn-smt/2N3904_npn_40V_1A_SOT-223-?.sym: Update
