@@ -5,7 +5,10 @@
             * linear/switchreg/LM3489-1.sym
             * linear/switchreg/LM3489-2.sym
 
-    * linear/switchreg/L5970D-1.sym: Update dist-license=GPLv2.
+    * linear/switchreg: Update dist-license=GPLv2:
+
+            * linear/switchreg/L5970D-1.sym
+            * linear/switchreg/LM2574-12-14-1.sym
 
 2020-06-07 Wiley E. Hill <wileyhill@gmail.com>
 
