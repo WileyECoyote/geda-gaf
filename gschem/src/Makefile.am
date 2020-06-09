@@ -71,7 +71,7 @@ LIBTOOL          = @LIBTOOL@ --silent
 SUFFIXES = .x
 
 snarf_cpp_opts   = $(DEFS) $(INCLUDES) $(AM_CPPFLAGS) $(gschem_CFLAGS) \
-				   $(gschem_CPPFLAGS)  $(gschem_CFLAGS)
+		   $(gschem_CPPFLAGS)  $(gschem_CFLAGS) $(CPPFLAGS)
 
 .c.x:
 	     @CPP="$(CPP)" $(GUILE_SNARF) -o $@ $< $(snarf_cpp_opts)

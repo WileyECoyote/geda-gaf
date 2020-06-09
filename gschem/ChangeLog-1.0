@@ -1,3 +1,15 @@
+2020-06-09 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/Makefile.am: Pass CPPFLAGS to `guile-snarf', see commit to
+      master branch 2019-10-03, d7fc8d933c41324d0309a3e9abf36b13347b5fbe.
+      This allows running
+        make clean
+        make CPPFLAGS=-DSCM_DEBUG_TYPING_STRICTNESS=2
+        # ...fix errors...
+        make clean
+        make
+      in order to detect SCM typing errors.
+=
 2020-06-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/ar.po: Update Arabic translations.
