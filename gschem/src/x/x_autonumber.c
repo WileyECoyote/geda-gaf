@@ -1139,6 +1139,10 @@ static void autonumber_text_autonumber(AUTONUMBER_TEXT *autotext)
   geda_struct_page_goto(pages->data); /* go back to the root page */
   o_invalidate_all (w_current);
   g_list_free(pages);
+
+  /* FIXME: If hierarchy renumbering is enabled, an undo step should be
+   *        added for all pages which were modified.  Also, an undo step
+   *        shouldn't be added if the page wasn't actually modified. */
   o_undo_savestate(w_current, UNDO_ALL);
 }
 
