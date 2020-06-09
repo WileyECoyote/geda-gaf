@@ -1344,7 +1344,7 @@ GedaObject *o_edit_update_component (GschemToplevel *w_current,
   /* A redraw attributes in case a property (size) was restored */
   o_invalidate_list (w_current, o_new->attribs);
 
-  /* mark the page as modified */
+  /* Not normally desired but symbol update can be undone */
   o_undo_savestate (w_current, UNDO_ALL);
 
   return o_new;
