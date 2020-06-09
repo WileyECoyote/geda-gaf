@@ -117,6 +117,7 @@ int x_event_button_pressed(GtkWidget      *widget,
 
   SCREENtoWORLD (w_current, (int) event->x, (int) event->y,
                  &unsnapped_wx, &unsnapped_wy);
+
   w_x = snap_grid (w_current, unsnapped_wx);
   w_y = snap_grid (w_current, unsnapped_wy);
 
