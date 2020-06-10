@@ -152,7 +152,7 @@ static void cmd_shell_impl (void *data, int argc, char **argv)
   scm_set_program_arguments (argc - gaf_optind, argv + gaf_optind, "gaf shell");
 
   /* First run the setup list */
-  if (path_lst != SCM_EOL) {
+  if (!scm_is_null (path_lst)) { /* if path_lst != SCM_EOL */
     /* Reverse lists */
     path_lst = scm_reverse_x (path_lst, SCM_UNDEFINED);
     path_lst = scm_cons (sym_begin, path_lst);

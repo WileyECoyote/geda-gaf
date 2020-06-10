@@ -1,3 +1,8 @@
+2020-06-10 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/shell.c: Revised cmd_shell_impl to use scm_is_null inconditional
+      check for SCM_EOL.
+
 2020-06-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/Makefile.am: Pass CPPFLAGS to `guile-snarf', see commit to
