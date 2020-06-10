@@ -331,7 +331,6 @@ geda_pin_object_print(GedaToplevel *toplevel, FILE *fp, GedaObject *o_current,
   cap_style = toplevel->print_output_capstyle;
 
   fprintf(fp, "%d %d %d %d %d %d pin\n", x1,y1,x2,y2,pin_width,cap_style);
-
 }
 
 /*!
