@@ -1,3 +1,8 @@
+2020-06-10 Wiley E. Hill <wileyhill@gmail.com>
+
+    * etc/system-gschemrc.scm: Remove hotkey <Shift>HO for hierarchy
+      documentation
+
 2020-06-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/Makefile.am: Pass CPPFLAGS to `guile-snarf', see commit to

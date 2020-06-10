@@ -1698,7 +1698,6 @@
 (map-keys "<Shift>H D" "hierarchy-down-schematic")
 (map-keys "<Shift>H S" "hierarchy-down-symbol")
 (map-keys "<Shift>H U" "hierarchy-up")
-(map-keys "<Shift>H O" "hierarchy-documentation")
 
 (map-keys "I"          "add-component")
 (map-keys "L"          "add-line")
