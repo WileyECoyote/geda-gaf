@@ -2,7 +2,7 @@
 
     * etc/system-gschemrc.scm: Remove hotkey <Shift>HO for hierarchy
       documentation and remove hierarchy-documentation from the page
-      menu.
+      menu. Add tooltip for hierarchy-documentation help menu item.
 
 2020-06-09 Wiley E. Hill <wileyhill@gmail.com>
 

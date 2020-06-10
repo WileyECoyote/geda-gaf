@@ -2376,7 +2376,7 @@
         (,(N_ "_Hotkeys...")            help-show-hotkeys         "keyboard-shortcuts")
         (,(N_ "gschem _FAQ...")         help-show-faq             "help-faq")
         ("SEPARATOR"                   #f                         #f)
-        (,(N_ "Component D_ocumentation...") hierarchy-documentation  #f)
+        (,(N_ "Component D_ocumentation...")hierarchy-documentation  #f                 ,(N_ "Find component documentation"))
         ("SEPARATOR"                   #f                         #f)
         (,(N_ "gEDA Docu_mentation...") help-show-geda            "symbol-datasheet")
         (,(N_ "gEDA _Wiki...")          help-show-wiki            "web-browser")
