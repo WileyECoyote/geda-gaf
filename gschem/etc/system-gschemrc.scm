@@ -2264,7 +2264,6 @@
         (,(N_ "Down _Schematic")   hierarchy-down-schematic #f                 ,(N_ "Descend down in the schematic hierarchy"))
         (,(N_ "Down S_ymbol")      hierarchy-down-symbol    #f                 ,(N_ "Descend down in the symbol hierarchy"))
         (,(N_ "_Hierarchy Up")     hierarchy-up             #f                 ,(N_ "ascend up in the schematic hierarchy"))
-        (,(N_ "D_ocumentation...") hierarchy-documentation  #f                 ,(N_ "Find component documentation"))
       )
 )
 

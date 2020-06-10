@@ -1,7 +1,8 @@
 2020-06-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * etc/system-gschemrc.scm: Remove hotkey <Shift>HO for hierarchy
-      documentation
+      documentation and remove hierarchy-documentation from the page
+      menu.
 
 2020-06-09 Wiley E. Hill <wileyhill@gmail.com>
 
