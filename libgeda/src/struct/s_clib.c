@@ -797,7 +797,7 @@ static void refresh_scm (CLibSource *source)
 
   symlist = scm_call_0 (source->list_fn);
 
-  if (SCM_NCONSP (symlist) && (symlist != SCM_EOL)) {
+  if (!scm_is_pair (symlist) && (symlist != SCM_EOL)) {
     const char *msg1 = _("Failed to scan library");
     const char *msg2 = _("Scheme function returned non-list");
     u_log_message ("%s [%s]: %s\n", msg1, source->name, msg2);

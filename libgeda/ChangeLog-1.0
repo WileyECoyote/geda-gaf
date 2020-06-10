@@ -1,3 +1,9 @@
+2020-06-10 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/struct/s_clib.c: Replace deprecated SCM_NCONSP with
+      !scm_is_pair, see commit to  master branch 2019-10-03,
+      e01a763f0c3b9e7fccd41a21e40e7d65791c18f0.
+
 2020-06-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_pin.c: Reformat documentation blocks, update
