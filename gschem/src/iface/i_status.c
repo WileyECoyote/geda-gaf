@@ -566,7 +566,6 @@ static bool i_status_idle_update_sensitivities(GschemToplevel *w_current)
 
     x_menu_sensitivity(w_current, "_Page/Down _Schematic",   state);
     x_menu_sensitivity(w_current, "_Page/Down S_ymbol",      state);
-    x_menu_sensitivity(w_current, "_Page/D_ocumentation...", state);
 
     x_menu_sensitivity(w_current, "_Edit/_Slot...",          state);
 

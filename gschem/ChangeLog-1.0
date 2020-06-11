@@ -1,3 +1,8 @@
+2020-06-11 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/iface/i_status.c: Remove setting sensitivity on non-existence
+      Page/Documentation menu item.
+
 2020-06-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * etc/system-gschemrc.scm: Remove hotkey <Shift>HO for hierarchy
@@ -15,7 +20,7 @@
         make clean
         make
       in order to detect SCM typing errors.
-=
+
 2020-06-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/ar.po: Update Arabic translations.
