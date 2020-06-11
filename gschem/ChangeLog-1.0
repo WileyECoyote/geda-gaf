@@ -1,5 +1,9 @@
 2020-06-11 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/guile/g_attrib.c: Don't use `==' and `!=' on SCM values; see
+      commit to master branch 2019-10-03 by Roland Lutz <rlutz@hedmen.org>,
+      502f962ab50e769f4485132d3043e7ff0f10d255.
+
     * src/iface/i_status.c: Remove setting sensitivity on non-existence
       Page/Documentation menu item.
 
