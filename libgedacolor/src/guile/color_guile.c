@@ -255,7 +255,7 @@ SCM geda_color_guile_display_map (SCM scm_map)
  */
 SCM geda_color_guile_outline_map (SCM scm_map)
 {
-  if (scm_map == SCM_UNDEFINED) {
+  if (scm_is_eq (scm_map, SCM_UNDEFINED)) {
     return geda_color_guile_map_to_scm (outline_colors);
   }
 
