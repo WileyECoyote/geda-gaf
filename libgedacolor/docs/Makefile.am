@@ -51,6 +51,7 @@ endif
 dist_man_MANS = libgedacolor.1 libgedacolor.3
 
 .1.in.1:
+	$(AM_V_GEN)  \
 	@printf "" ; \
 	d=`$(GUILE) -c '(setlocale LC_ALL "C") (display (strftime "%B %-d, %Y" \
 	    (car (strptime "%Y%m%d" (cadr (program-arguments))))))' $(DATE_VERSION)` ; \
