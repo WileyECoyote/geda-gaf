@@ -4,6 +4,8 @@
       commit to master branch 2019-10-03 by Roland Lutz <rlutz@hedmen.org>,
       502f962ab50e769f4485132d3043e7ff0f10d255.
 
+    * src/guile/g_rc.c: Same as g_attrib.c above.
+
     * src/iface/i_status.c: Remove setting sensitivity on non-existence
       Page/Documentation menu item.
 

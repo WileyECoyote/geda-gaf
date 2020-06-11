@@ -185,7 +185,7 @@ SCM g_rc_gschem_version(SCM scm_version)
     sourcefile  = NULL;
     rc_filename = g_rc_parse_rc_filename ();
 
-    if (rc_filename == SCM_BOOL_F) {
+    if (scm_is_false (rc_filename)) {
       rc_filename = scm_from_utf8_string ("unknown");
     }
 
