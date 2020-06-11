@@ -279,7 +279,7 @@ SCM geda_color_guile_outline_map (SCM scm_map)
  */
 SCM geda_color_guile_print_map (SCM scm_map)
 {
-  if (scm_map == SCM_UNDEFINED) {
+  if (scm_is_eq (scm_map, SCM_UNDEFINED)) {
     return geda_color_guile_map_to_scm (print_colors);
   }
 
@@ -314,4 +314,5 @@ void geda_color_guile_register_handlers (void)
     tmp++;
   }
 }
+
 /** @} endgroup Libgedacolor-RC-Handlers */
