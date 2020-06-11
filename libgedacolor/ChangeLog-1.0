@@ -1,3 +1,9 @@
+2020-06-11 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/guile/color_guile.c: Don't use `==' and `!=' on SCM values; see
+      commit to master branch 2019-10-03 by Roland Lutz <rlutz@hedmen.org>,
+      502f962ab50e769f4485132d3043e7ff0f10d255.
+
 2019-09-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x11/color_x11.c: Replace gdk_color_alloc with gdk_colormap_alloc_color.

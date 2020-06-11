@@ -226,7 +226,7 @@ SCM geda_color_guile_display_map (SCM scm_map)
 {
   const char *me = "display-color-map";
 
-  if (scm_map == SCM_UNDEFINED) {
+  if (scm_is_eq (scm_map, SCM_UNDEFINED)) {
     return geda_color_guile_map_to_scm (display_colors);
   }
 
