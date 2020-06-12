@@ -1,3 +1,7 @@
+2020-06-12 Wiley E. Hill <wileyhill@gmail.com>
+
+    * docs/gnetlist.1.in: Add gnetlist(5) to SEE ALSO section.
+
 2020-01-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/nl.po: Update Dutch translations.
