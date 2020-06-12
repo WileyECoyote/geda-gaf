@@ -2,6 +2,8 @@
 
     * docs/gnetlist.1.in: Add gnetlist(5) to SEE ALSO section.
 
+    * docs/gnetlist.5.in: Fix spelling and add examples.
+
 2020-01-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/nl.po: Update Dutch translations.

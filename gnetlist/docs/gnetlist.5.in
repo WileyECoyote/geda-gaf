@@ -125,6 +125,14 @@ have not been explicitly named by the user.
 (This is not currently useful, since \fBgnetlist\fR does not netlist buses).
 The is default "unnamed_bus".
 
+.SH EXAMPLES
+.PP
+\fB(hierarchy-netname-order "prepend")\fR
+.PP
+\fB(hierarchy-netname-mangle "disabled")\fR
+.PP
+\fB(net-naming-priority "netname")\fR
+
 .SH ENVIRONMENT
 .TP 8
 .B GEDADATA
