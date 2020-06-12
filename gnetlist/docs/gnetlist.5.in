@@ -30,7 +30,7 @@ This manual attempts to explain all of keywords recognized by \fBgnetlist\fR.
 .PP
 Keywords and mode strings are case sensitive. Blank lines are ignored.
 Lines beginning with a semicolon (';') are comments, and are ignored.
-Note that it is possiable to include keywords for \fBlibgeda\fR in \fBgnetlistrc\fR
+Note that it is possible to include keywords for \fBlibgeda\fR in \fBgnetlistrc\fR
 files, this is not commonly done.
 
 .SH KEYWORDS
