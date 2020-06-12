@@ -90,7 +90,7 @@ g_scm_from_window (GschemToplevel *w_current)
 {
   if(w_current != NULL) {
 
-    if (w_current->smob == SCM_UNDEFINED) {
+    if (scm_is_eq (w_current->smob, SCM_UNDEFINED)) {
       SCM_NEWSMOB (w_current->smob, window_smob_tag, w_current);
     }
 
