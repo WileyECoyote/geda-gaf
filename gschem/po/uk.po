@@ -696,35 +696,44 @@ msgstr "Недійсне значення, розмір оснащення не 
 msgid "Invalid type assignment, check snap-size entry in rc file\n"
 msgstr "Недійсне призначення типу, перевірте запис snap-розміру у файлі rc\n"
 
+# Nediysne znachennya, rozmir shyny-rippera ne mozhe buty nulʹovym, perevirte vkhidnyy fayl rc
 #: gschem/src/guile/g_rc.c:1438
 #, c-format
 msgid "Invalid value, bus-ripper-size cannot be zero, check entry rc file\n"
-msgstr ""
+msgstr "Недійсне значення, розмір шини-ріппера не може бути нульовим, перевірте вхідний файл rc\n"
 
+# Nediysne znachennya, rozmir shyny-rippera ne mozhe buty nulʹovym, perevirte vkhidnyy fayl rc
 #: gschem/src/guile/g_rc.c:1443
 #, c-format
 msgid "Invalid type assignment, check bus-ripper-size entry in rc file\n"
-msgstr ""
+msgstr "Недійсне значення, розмір шини-ріппера не може бути нульовим, "
+"перевірте вхідний файл rc\n"
 
+# Nediysne znachennya, rozmir shyny-rippera ne mozhe buty nulʹovym, perevirte vkhidnyy fayl rc
 #: gschem/src/guile/g_rc.c:2034
 #, c-format
 msgid ""
 "Can not scroll 0 steps, invalid scrollpan-steps, check entry in rc file\n"
-msgstr ""
+msgstr "Недійсне значення, розмір шини-ріппера не може бути нульовим, "
+"перевірте вхідний файл rc\n"
 
+# Nediysne znachennya, rozmir shyny-rippera ne mozhe buty nulʹovym, perevirte vkhidnyy fayl rc
 #: gschem/src/guile/g_rc.c:2039
 #, c-format
 msgid "Invalid type assignment, check scrollpan-steps entry in rc file\n"
-msgstr ""
+msgstr "Недійсне значення, розмір шини-ріппера не може бути нульовим, "
+"перевірте вхідний файл rc\n"
 
+# Invalid zoom factor; Nediysnyy koefitsiyent zbilʹshennya
 #: gschem/src/guile/g_rc.c:2086
 msgid "Invalid zoom factor"
-msgstr ""
+msgstr "Недійсний коефіцієнт збільшення"
 
+# Object ~A is not directly included in a page
 #: gschem/src/guile/g_select.c:93 gschem/src/guile/g_select.c:130
 #: gschem/src/guile/g_select.c:166
 msgid "Object ~A is not directly included in a page."
-msgstr ""
+msgstr "Nesne ~A doğrudan bir sayfaya dahil edilmez"
 
 #: gschem/src/guile/g_util.c:70
 msgid "Could not launch URI"
