@@ -14,6 +14,8 @@
 
     * po/sv.po: Update Swedish translations.
 
+    * po/tr.po: Update Turkish translations.
+
 2020-06-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/guile/g_attrib.c: Don't use `==' and `!=' on SCM values; see
