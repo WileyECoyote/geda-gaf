@@ -560,35 +560,42 @@ msgstr "قيمة غير صالحة ، لا يمكن أن يكون حجم الأ�
 msgid "Invalid type assignment, check snap-size entry in rc file\n"
 msgstr "تعيين نوع غير صالح ، تحقق من إدخال الحجم المفاجئ في ملف RC\n"
 
+# qimat ghyr salihat , la ymkn 'an yakun hajm naqil alkisarat sfrana , tuhaqiq min milafi RC lil'iidkhal
 #: gschem/src/guile/g_rc.c:1438
 #, c-format
 msgid "Invalid value, bus-ripper-size cannot be zero, check entry rc file\n"
-msgstr ""
+msgstr "قيمة غير صالحة ، لا يمكن أن يكون حجم ناقل الكسارة صفرًا ، تحقق من ملف RC للإدخال\n"
 
+# taeyin nawe ghayr salih , tuhaqiq min 'iidkhal hajm naqil alkhariq fi milafi RC
 #: gschem/src/guile/g_rc.c:1443
 #, c-format
 msgid "Invalid type assignment, check bus-ripper-size entry in rc file\n"
-msgstr ""
+msgstr "تعيين نوع غير صالح ، تحقق من إدخال حجم ناقل الخارق في ملف RC\n"
 
+# la yumkin altamrir 0 khatawat , khatawat altamrir ghyr salihat , waltahaquq min al'iidkhal fi milafi RC
 #: gschem/src/guile/g_rc.c:2034
 #, c-format
 msgid ""
 "Can not scroll 0 steps, invalid scrollpan-steps, check entry in rc file\n"
-msgstr ""
+msgstr "لا يمكن التمرير 0 خطوات ، خطوات التمرير غير صالحة ، والتحقق من الإدخال في ملف RC\n"
 
+# taeyin nawe ghayr salih , tuhaqiq min 'iidkhal khatawat altamrir fi milafi RC
 #: gschem/src/guile/g_rc.c:2039
 #, c-format
 msgid "Invalid type assignment, check scrollpan-steps entry in rc file\n"
-msgstr ""
+msgstr "تعيين نوع غير صالح ، تحقق من إدخال خطوات التمرير في ملف RC\n"
 
+# Invalid zoom factor; eamil altakbir ghayr salih
 #: gschem/src/guile/g_rc.c:2086
 msgid "Invalid zoom factor"
 msgstr "عامل التكبير غير صالح"
 
+# Object ~A is not directly included in a page
+# alkayin ~ A ghyr mdmmn mbashrtan fi alsafha
 #: gschem/src/guile/g_select.c:93 gschem/src/guile/g_select.c:130
 #: gschem/src/guile/g_select.c:166
 msgid "Object ~A is not directly included in a page."
-msgstr ""
+msgstr "الكائن ~A غير مضمّن مباشرةً في الصفحة."
 
 #: gschem/src/guile/g_util.c:70
 msgid "Could not launch URI"
