@@ -8,6 +8,8 @@
 
     * po/da.po: Update Danish translations.
 
+    * po/fi.po: Update Finnish translations.
+
 2020-06-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/guile/g_attrib.c: Don't use `==' and `!=' on SCM values; see
