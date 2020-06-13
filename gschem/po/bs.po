@@ -626,32 +626,36 @@ msgstr "Nevažeća dodjela tipa, provjerite unos veličine kopče u rc datoteci\
 #: gschem/src/guile/g_rc.c:1438
 #, c-format
 msgid "Invalid value, bus-ripper-size cannot be zero, check entry rc file\n"
-msgstr ""
+msgstr "Nevažeća vrijednost, veličina sabirnice sabirnice ne može biti jednaka "
+"nuli, provjerite ulaznu rc datoteku\n"
 
 #: gschem/src/guile/g_rc.c:1443
 #, c-format
 msgid "Invalid type assignment, check bus-ripper-size entry in rc file\n"
-msgstr ""
+msgstr "Nevažeća vrijednost, veličina sabirnice sabirnice ne može biti "
+"jednaka nuli, provjerite ulaznu rc datoteku\n"
 
 #: gschem/src/guile/g_rc.c:2034
 #, c-format
 msgid ""
 "Can not scroll 0 steps, invalid scrollpan-steps, check entry in rc file\n"
-msgstr ""
+msgstr "Ne može se pomicati 0 koraka, nevaljani koraci skrolova, provjerite "
+"unos u rc datoteku\n"
 
 #: gschem/src/guile/g_rc.c:2039
 #, c-format
 msgid "Invalid type assignment, check scrollpan-steps entry in rc file\n"
-msgstr ""
+msgstr "Nevažeća dodjela tipa, provjerite unos koraka za pomicanje u rc datoteku\n"
 
 #: gschem/src/guile/g_rc.c:2086
 msgid "Invalid zoom factor"
-msgstr ""
+msgstr "Nevažeći faktor zumiranja"
 
+# Object ~A is not directly included in a page
 #: gschem/src/guile/g_select.c:93 gschem/src/guile/g_select.c:130
 #: gschem/src/guile/g_select.c:166
 msgid "Object ~A is not directly included in a page."
-msgstr ""
+msgstr "Objekt ~A nije direktno uključen u stranicu."
 
 #: gschem/src/guile/g_util.c:70
 msgid "Could not launch URI"

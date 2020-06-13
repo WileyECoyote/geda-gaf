@@ -2,6 +2,8 @@
 
     * po/ar.po: Update Arabic translations.
 
+    * po/bs.po: Update Bosnian translations
+
 2020-06-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/guile/g_attrib.c: Don't use `==' and `!=' on SCM values; see
