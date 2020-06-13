@@ -647,25 +647,25 @@ msgstr "Неверное назначение типа, проверьте за�
 #: gschem/src/guile/g_rc.c:1438
 #, c-format
 msgid "Invalid value, bus-ripper-size cannot be zero, check entry rc file\n"
-msgstr ""
+msgstr "Geçersiz değer, bus-ripper boyutu sıfır olamaz, giriş rc dosyasını kontrol edin\n"
 
 #: gschem/src/guile/g_rc.c:1443
 #, c-format
 msgid "Invalid type assignment, check bus-ripper-size entry in rc file\n"
-msgstr ""
+msgstr "Geçersiz değer, bus-ripper boyutu sıfır olamaz, giriş rc dosyasını kontrol edin\n"
 
 #: gschem/src/guile/g_rc.c:2034
 #, c-format
 msgid ""
 "Can not scroll 0 steps, invalid scrollpan-steps, check entry in rc file\n"
-msgstr ""
+msgstr "Geçersiz değer, bus-ripper boyutu sıfır olamaz, giriş rc dosyasını kontrol edin\n"
 
 #: gschem/src/guile/g_rc.c:2039
 #, c-format
 msgid "Invalid type assignment, check scrollpan-steps entry in rc file\n"
-msgstr ""
+msgstr "Geçersiz değer, bus-ripper boyutu sıfır olamaz, giriş rc dosyasını kontrol edin\n"
 
-# Invalid zoom factor
+# Invalid zoom factor; Nevernyy koeffitsiyent uvelicheniya
 #: gschem/src/guile/g_rc.c:2086
 msgid "Invalid zoom factor"
 msgstr "Неверный коэффициент масштабирования"
