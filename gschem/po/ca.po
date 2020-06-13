@@ -646,32 +646,35 @@ msgstr "Assignació de tipus no vàlida, comproveu l’entrada de mida instantà
 #: gschem/src/guile/g_rc.c:1438
 #, c-format
 msgid "Invalid value, bus-ripper-size cannot be zero, check entry rc file\n"
-msgstr ""
+msgstr "Ugyldig værdi, bus-ripper-størrelse kan ikke være nul, kontroller indtastning rc-fil\n"
 
 #: gschem/src/guile/g_rc.c:1443
 #, c-format
 msgid "Invalid type assignment, check bus-ripper-size entry in rc file\n"
-msgstr ""
+msgstr "Ugyldig værdi, bus-ripper-størrelse kan ikke være nul, kontroller "
+"indtastning rc-fil\n"
 
 #: gschem/src/guile/g_rc.c:2034
 #, c-format
 msgid ""
 "Can not scroll 0 steps, invalid scrollpan-steps, check entry in rc file\n"
-msgstr ""
+msgstr "Ugyldig værdi, bus-ripper-størrelse kan ikke være nul, kontroller "
+"indtastning rc-fil\n"
 
 #: gschem/src/guile/g_rc.c:2039
 #, c-format
 msgid "Invalid type assignment, check scrollpan-steps entry in rc file\n"
-msgstr ""
+msgstr "Ugyldig værdi, bus-ripper-størrelse kan ikke være nul, kontroller indtastning rc-fil\n"
 
 #: gschem/src/guile/g_rc.c:2086
 msgid "Invalid zoom factor"
-msgstr ""
+msgstr "El factor de zoom no és vàlid"
 
+# Object ~A is not directly included in a page
 #: gschem/src/guile/g_select.c:93 gschem/src/guile/g_select.c:130
 #: gschem/src/guile/g_select.c:166
 msgid "Object ~A is not directly included in a page."
-msgstr ""
+msgstr "L’objecte ~A no s’inclou directament en una pàgina."
 
 #: gschem/src/guile/g_util.c:70
 msgid "Could not launch URI"
