@@ -4,6 +4,9 @@
       color.
 
     * opto/OPT3101-1.sym: Add new symbol; ToF Proximity and Distance Sensor.
+
+    * ti/micro/MSP430FR2433-1.sym: Add new symbol; Mixed-Signal Microcontroller.
+
     * transistor/npn-bjt/npn-ebc-?.sym: Update pinseq attributes:
 
             * transistor/npn-bjt/npn-ebc-1.sym
