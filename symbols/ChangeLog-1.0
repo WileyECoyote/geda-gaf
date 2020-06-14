@@ -2,6 +2,8 @@
 
     * linear/led_drivers/HT1632C-1.sym: Make the pin label text text
       color.
+
+    * opto/OPT3101-1.sym: Add new symbol; ToF Proximity and Distance Sensor.
     * transistor/npn-bjt/npn-ebc-?.sym: Update pinseq attributes:
 
             * transistor/npn-bjt/npn-ebc-1.sym
