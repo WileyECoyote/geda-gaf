@@ -1,3 +1,8 @@
+    * transistor/npn-smt/2N3904_npn_40V_1A_SOT-23-1.sym: Update
+      dist-license=GPLv2:
+
+            * transistor/npn-smt/2N3904_npn_40V_1A_SOT-23-1.sym
+
 2020-06-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * linear/switchreg/LM3489-1.sym: Update pinseq attributes:
