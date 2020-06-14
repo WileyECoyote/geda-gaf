@@ -1,4 +1,7 @@
-    * transistor/npn-smt/2N3904_npn_40V_1A_SOT-23-1.sym: Update
+2020-06-14 Wiley E. Hill <wileyhill@gmail.com>
+
+    * linear/led_drivers/HT1632C-1.sym: Make the pin label text text
+      color.
     * transistor/npn-bjt/npn-ebc-?.sym: Update pinseq attributes:
 
             * transistor/npn-bjt/npn-ebc-1.sym
