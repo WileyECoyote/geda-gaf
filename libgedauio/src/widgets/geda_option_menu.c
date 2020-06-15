@@ -578,6 +578,7 @@ geda_option_menu_paint (GtkWidget *widget, GdkRectangle *area)
   GtkAllocation      *allocation;
   GtkStyle           *style;
   GtkStateType        state;
+  GdkWindow          *window;
   int border_width;
   int tab_x;
 
@@ -599,10 +600,11 @@ geda_option_menu_paint (GtkWidget *widget, GdkRectangle *area)
     button_area.height -= 2 * (props.focus_width + props.focus_pad);
   }
 
-  state = gtk_widget_get_state (widget);
-  style = geda_get_widget_style (widget);
+  state  = gtk_widget_get_state (widget);
+  style  = geda_get_widget_style (widget);
+  window = geda_get_widget_window (widget);
 
-  gtk_paint_box (style, widget->window, state, GTK_SHADOW_OUT,
+  gtk_paint_box (style, window, state, GTK_SHADOW_OUT,
                  area, widget, "optionmenu",
                  button_area.x, button_area.y,
                  button_area.width, button_area.height);
