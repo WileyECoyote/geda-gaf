@@ -954,6 +954,7 @@ geda_option_menu_position (GedaMenu  *menu,
   GtkWidget      *active;
   GtkWidget      *widget;
   GList          *children;
+  GtkAllocation  *allocation;
   GtkRequisition  requisition;
 
   int screen_width;
@@ -977,8 +978,9 @@ geda_option_menu_position (GedaMenu  *menu,
   gtk_window_set_type_hint (GTK_WINDOW (GEDA_MENU (option_menu->menu)->toplevel),
                             GDK_WINDOW_TYPE_HINT_COMBO);
 
-  menu_xpos += widget->allocation.x;
-  menu_ypos += widget->allocation.y + widget->allocation.height / 2 - 2;
+  allocation = geda_get_widget_allocation(widget);
+
+  menu_xpos += allocation->x;
 
   if (active != NULL) {
 
