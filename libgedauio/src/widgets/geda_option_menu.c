@@ -657,7 +657,7 @@ geda_option_menu_paint (GtkWidget *widget, GdkRectangle *area)
       button_area.height += (props.focus_width + props.focus_pad) << 1;
     }
 
-    gtk_paint_focus (style, widget->window, state,
+    gtk_paint_focus (style, window, state,
                      area, widget, "button",
                      button_area.x,
                      button_area.y,
