@@ -981,6 +981,7 @@ geda_option_menu_position (GedaMenu  *menu,
   allocation = geda_get_widget_allocation(widget);
 
   menu_xpos += allocation->x;
+  menu_ypos += allocation->y + allocation->height / 2 - 2;
 
   if (active != NULL) {
 
