@@ -829,15 +829,17 @@ geda_option_menu_update_contents (GedaOptionMenu *option_menu)
 
     if (option_menu->menu_item) {
 
-      GtkWidget *child;
-      GtkWidget *widget;
+      GtkWidget     *child;
+      GtkWidget     *widget;
+      GtkAllocation *allocation;
 
       GtkRequisition child_requisition;
 
       g_object_ref (option_menu->menu_item);
 
-      child  = geda_get_child_widget(option_menu->menu_item);
-      widget = (GtkWidget*)option_menu;
+      child      = geda_get_child_widget(option_menu->menu_item);
+      widget     = (GtkWidget*)option_menu;
+      allocation = geda_get_widget_allocation(widget);
 
       if (child) {
 
