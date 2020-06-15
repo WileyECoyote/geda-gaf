@@ -1008,7 +1008,7 @@ geda_option_menu_position (GedaMenu  *menu,
   }
 
   if (gtk_widget_get_direction (widget) == GTK_TEXT_DIR_RTL) {
-    menu_xpos = menu_xpos + widget->allocation.width - menu_width;
+    menu_xpos = menu_xpos + allocation->width - menu_width;
   }
 
   /* Clamp the position on screen */
