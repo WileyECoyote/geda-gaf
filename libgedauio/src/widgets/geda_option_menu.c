@@ -619,7 +619,7 @@ geda_option_menu_paint (GtkWidget *widget, GdkRectangle *area)
             style->xthickness;
   }
 
-  gtk_paint_tab (style, widget->window, state, GTK_SHADOW_OUT,
+  gtk_paint_tab (style, window, state, GTK_SHADOW_OUT,
                  area, widget, "optionmenutab",
                  tab_x,
                  button_area.y + (button_area.height - props.indicator_size.height) / 2,
