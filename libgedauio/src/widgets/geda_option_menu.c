@@ -856,7 +856,7 @@ geda_option_menu_update_contents (GedaOptionMenu *option_menu)
                         G_CALLBACK (geda_option_menu_item_destroy_cb), option_menu);
 
       gtk_widget_size_request (child, &child_requisition);
-      gtk_widget_size_allocate (widget, &widget->allocation);
+      gtk_widget_size_allocate (widget, allocation);
 
       if (gtk_widget_is_drawable(widget)) {
         gtk_widget_queue_draw (widget);
