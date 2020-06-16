@@ -1160,7 +1160,7 @@ void geda_option_menu_set_menu (GedaOptionMenu *option_menu, GtkWidget *menu)
 
     option_menu->menu = menu;
     geda_menu_attach_to_widget (GEDA_MENU (menu),
-                                GTK_WIDGET (option_menu),
+                                (GtkWidget*)option_menu,
                                 geda_option_menu_detacher);
 
     geda_option_menu_calc_size (option_menu);
