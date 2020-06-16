@@ -130,8 +130,7 @@ geda_separator_expose (GtkWidget *widget, GdkEventExpose *event)
                      widget->allocation.height);
     }
     else {
-      gtk_paint_vline (style,
-                       widget->window, state,
+      gtk_paint_vline (style, window, state,
                        &event->area, widget, "vseparator",
                        widget->allocation.y,
                        widget->allocation.y + widget->allocation.height - 1,
