@@ -1173,7 +1173,7 @@ void geda_option_menu_set_menu (GedaOptionMenu *option_menu, GtkWidget *menu)
                               G_CALLBACK (geda_option_menu_calc_size),
                               option_menu);
 
-    if (GTK_WIDGET (option_menu)->parent) {
+    if (geda_get_widget_parent(option_menu)) {
       gtk_widget_queue_resize (GTK_WIDGET (option_menu));
     }
 
