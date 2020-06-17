@@ -330,7 +330,7 @@ void gdk_font_unref (GdkFont *font);
 /*! \def geda_get_widget_requisition Get Pointer to requisition  Gtk >= 3 */
 #if defined (gtk_widget_get_preferred_size)
 #define geda_get_widget_requisition(w) \
-  ({ GtkRequisition r; gtk_widget_get_preferred_size (GTK_WIDGET(w), NULL, &r); &r; })
+  ({ GtkRequisition r; gtk_widget_get_preferred_size ((GtkWidget*)w, NULL, &r); &r; })
 #else
 /* Handle Gtk == 2 and GSEAL_ENABLE is defined */
 #define geda_get_widget_requisition(w) \

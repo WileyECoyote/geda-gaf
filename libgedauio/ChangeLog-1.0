@@ -6,6 +6,7 @@
           * geda_widget_get_allocation
           * geda_widget_in_destruction
           * geda_get_widget_parent
+          * geda_get_widget_requisition
 
     * src/widgets/geda_option_menu.c: Utilize macro:
 
