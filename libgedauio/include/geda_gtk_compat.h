@@ -334,7 +334,7 @@ void gdk_font_unref (GdkFont *font);
 #else
 /* Handle Gtk == 2 and GSEAL_ENABLE is defined */
 #define geda_get_widget_requisition(w) \
-  ({ GtkRequisition r; gtk_widget_get_requisition (GTK_WIDGET(w), &r); &r; })
+  ({ GtkRequisition r; gtk_widget_get_requisition ((GtkWidget*)w, &r); &r; })
 #endif
 
 #if (GTK_MAJOR_VERSION < 3)
