@@ -79,9 +79,9 @@ static bool
 geda_separator_expose (GtkWidget *widget, GdkEventExpose *event)
 {
   GedaSeparator *seperator = (GedaSeparator*)widget;
+  GdkWindow     *window;
+  GtkStyle      *style;
   GtkStateType   state;
-  GtkStyle       style;
-  GdkWindow      window;
   bool wide_separators;
   int  separator_width;
   int  separator_height;
