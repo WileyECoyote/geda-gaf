@@ -3,8 +3,9 @@
     * include/geda_gtk_compat.h: Replace dynamic cast with static cast
       to GtkWidget pointer for Gtk>2:
 
-          * gtk_widget_get_allocation
-          * gtk_widget_in_destruction
+          * geda_widget_get_allocation
+          * geda_widget_in_destruction
+          * geda_get_widget_parent
 
     * src/widgets/geda_option_menu.c: Utilize macro:
 
