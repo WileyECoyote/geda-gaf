@@ -316,7 +316,7 @@ void gdk_font_unref (GdkFont *font);
 
 /*! \def geda_get_widget_allocation Get Pointer to Allocation  Gtk >= 3 */
 #define geda_get_widget_allocation(w) \
-  ({ GtkAllocation a; gtk_widget_get_allocation (GTK_WIDGET(w), &a); &a; })
+  ({ GtkAllocation a; gtk_widget_get_allocation ((GtkWidget*)w, &a); &a; })
 
 #if defined (gtk_widget_in_destruction)
 #define geda_get_widget_in_destruction(w) gtk_widget_in_destruction(GTK_WIDGET(w))
