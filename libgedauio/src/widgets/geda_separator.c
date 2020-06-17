@@ -36,6 +36,7 @@
 #include <geda/geda.h>
 #include <geda/geda_standard.h>
 
+#include "../../include/geda_gtk_compat.h"
 #include "../../include/geda_separator.h"
 
 /**
