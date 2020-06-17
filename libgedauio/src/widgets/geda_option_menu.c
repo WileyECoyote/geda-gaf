@@ -1174,7 +1174,7 @@ void geda_option_menu_set_menu (GedaOptionMenu *option_menu, GtkWidget *menu)
                               option_menu);
 
     if (geda_get_widget_parent(option_menu)) {
-      gtk_widget_queue_resize (GTK_WIDGET (option_menu));
+      gtk_widget_queue_resize ((GtkWidget*)option_menu);
     }
 
     geda_option_menu_update_contents (option_menu);
