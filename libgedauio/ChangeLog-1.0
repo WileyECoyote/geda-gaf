@@ -4,6 +4,7 @@
       to GtkWidget pointer for Gtk>2:
 
           * gtk_widget_get_allocation
+          * gtk_widget_in_destruction
 
     * src/widgets/geda_option_menu.c: Utilize macro:
 

@@ -319,7 +319,7 @@ void gdk_font_unref (GdkFont *font);
   ({ GtkAllocation a; gtk_widget_get_allocation ((GtkWidget*)w, &a); &a; })
 
 #if defined (gtk_widget_in_destruction)
-#define geda_get_widget_in_destruction(w) gtk_widget_in_destruction(GTK_WIDGET(w))
+#define geda_get_widget_in_destruction(w) gtk_widget_in_destruction((GtkWidget*)w)
 #else
 #define geda_get_widget_in_destruction(w) FALSE
 #endif
