@@ -110,7 +110,8 @@ edascm_hook_proxy_finalize (GObject *object)
   EdascmHookProxy *proxy = EDASCM_HOOK_PROXY (object);
 
   edascm_hook_proxy_disconnect (proxy);
-  if (proxy->priv->closure != SCM_UNDEFINED) {
+
+  if (!scm_is_eq (proxy->priv->closure, SCM_UNDEFINED)) {
     scm_gc_unprotect_object (proxy->priv->closure);
   }
 
