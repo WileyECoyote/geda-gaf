@@ -113,7 +113,7 @@ value_collect_scm (GValue *value,
 {
   SCM val = SCM_PACK (collect_values[0].v_long);
 
-  if (val != SCM_UNDEFINED) {
+  if (!scm_is_eq (val, SCM_UNDEFINED)) {
     /* never honour G_VALUE_NOCOPY_CONTENTS for ref-counted types */
     scm_gc_protect_object (val);
     value->data[0].v_long = SCM_UNPACK (val);
