@@ -149,7 +149,7 @@ value_lcopy_scm (const GValue *value,
     return geda_sprintf ("value location for `%s' passed as NULL",
                               G_VALUE_TYPE_NAME (value));
 
-  if (val == SCM_UNDEFINED) {
+  if (scm_is_eq (val, SCM_UNDEFINED)) {
     /* No value */
     *long_p = SCM_UNPACK (SCM_UNDEFINED);
   } else if (collect_flags & G_VALUE_NOCOPY_CONTENTS) {
