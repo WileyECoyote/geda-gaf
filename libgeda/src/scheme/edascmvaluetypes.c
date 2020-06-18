@@ -252,7 +252,7 @@ edascm_value_set_scm (GValue *value, SCM v_scm)
     value->data[0].v_long = SCM_UNPACK (SCM_UNDEFINED);
   }
 
-  if (old != SCM_UNDEFINED)
+  if (!scm_is_eq (old, SCM_UNDEFINED))
     scm_gc_unprotect_object (old);
 }
 
