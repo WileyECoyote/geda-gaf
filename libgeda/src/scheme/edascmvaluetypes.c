@@ -54,7 +54,7 @@ value_init_scm (GValue *value) {
 static void
 value_free_scm (GValue *value) {
   SCM val = SCM_PACK (value->data[0].v_long);
-  if (val != SCM_UNDEFINED)
+  if (!scm_is_eq (val, SCM_UNDEFINED))
     scm_gc_unprotect_object (val);
 }
 

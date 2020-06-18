@@ -4,6 +4,8 @@
       commit to master branch 2019-10-03 by Roland Lutz <rlutz@hedmen.org>,
       502f962ab50e769f4485132d3043e7ff0f10d255.
 
+    * src/scheme/edascmvaluetypes.c: Same as edascmhookproxy.c above.
+
 2020-06-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/Makefile.am: Pass CPPFLAGS to guile-snarf, see commit to
