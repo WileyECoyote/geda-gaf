@@ -68,7 +68,7 @@ edascm_hook_proxy_set_property (GObject *object, guint property_id,
 
   case PROP_HOOK:
     hook = edascm_value_get_scm (value);
-    if (hook == SCM_UNDEFINED) {
+    if (scm_is_eq (hook, SCM_UNDEFINED)) {
       edascm_hook_proxy_disconnect (proxy);
     } else {
       edascm_hook_proxy_connect (proxy, hook);
