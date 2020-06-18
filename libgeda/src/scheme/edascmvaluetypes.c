@@ -72,7 +72,7 @@ value_free_scm (GValue *value) {
 static void
 value_copy_scm (const GValue *src, GValue *dest) {
   SCM val = SCM_PACK (src->data[0].v_long);
-  if (val != SCM_UNDEFINED) {
+  if (!scm_is_eq (val, SCM_UNDEFINED)) {
     scm_gc_protect_object (val);
   }
   dest->data[0].v_long = SCM_UNPACK (val);
