@@ -240,7 +240,7 @@ edascm_hook_proxy_connect (EdascmHookProxy *proxy, SCM hook)
   g_return_if_fail (SCM_HOOKP (hook));
   g_return_if_fail (scm_is_true (scm_procedure_p (proxy->priv->closure)));
 
-  if (proxy->priv->hook != SCM_UNDEFINED)
+  if (!scm_is_eq (proxy->priv->hook, SCM_UNDEFINED))
     edascm_hook_proxy_disconnect (proxy);
 
   proxy->priv->hook = hook;
