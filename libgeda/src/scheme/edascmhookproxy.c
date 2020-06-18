@@ -256,7 +256,7 @@ edascm_hook_proxy_disconnect (EdascmHookProxy *proxy)
   g_return_if_fail (EDASCM_IS_HOOK_PROXY (proxy));
   g_return_if_fail (scm_is_true (scm_procedure_p (proxy->priv->closure)));
 
-  if (proxy->priv->hook == SCM_UNDEFINED) return;
+  if (scm_is_eq (proxy->priv->hook, SCM_UNDEFINED)) return;
 
   /* \bug What if scm_remove_hook_x() fails? */
   scm_remove_hook_x (proxy->priv->hook, proxy->priv->closure);
