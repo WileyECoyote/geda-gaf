@@ -3,6 +3,10 @@
     * src/widgets/geda_menu_bar.c: Rename viewable_menu_bars ->
       viewable_bars.
 
+    * src/widgets/geda_separator.c: Utilize macro:
+
+          * geda_get_widget_allocation
+
 2020-06-17 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_gtk_compat.h: Replace dynamic cast with static cast

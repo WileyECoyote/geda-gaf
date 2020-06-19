@@ -79,6 +79,7 @@ static bool
 geda_separator_expose (GtkWidget *widget, GdkEventExpose *event)
 {
   GedaSeparator *seperator = (GedaSeparator*)widget;
+  GtkAllocation *allocation;
   GdkWindow     *window;
   GtkStyle      *style;
   GtkStateType   state;
@@ -95,16 +96,17 @@ geda_separator_expose (GtkWidget *widget, GdkEventExpose *event)
                         "separator-height", &separator_height,
                         NULL);
 
-  state  = gtk_widget_get_state (widget);
-  style  = geda_get_widget_style (widget);
-  window = geda_get_widget_window (widget);
+  state      = gtk_widget_get_state (widget);
+  style      = geda_get_widget_style (widget);
+  window     = geda_get_widget_window (widget);
+  allocation = geda_get_widget_allocation (widget);
 
   if (seperator->orientation == 0) { /* Horizontal */
 
     if (wide_separators) {
         gtk_paint_box (style, window, state, GTK_SHADOW_ETCHED_OUT,
                        &event->area, widget, "hseparator",
-                       widget->allocation.x,
+                       allocation->x,
                        widget->allocation.y +
                       (widget->allocation.height - separator_height) / 2,
                        widget->allocation.width,
