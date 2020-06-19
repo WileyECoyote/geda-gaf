@@ -245,7 +245,7 @@ edascm_value_set_scm (GValue *value, SCM v_scm)
 
   old = SCM_PACK (value->data[0].v_long);
 
-  if (v_scm != SCM_UNDEFINED) {
+  if (!scm_is_eq (v_scm, SCM_UNDEFINED)) {
     value->data[0].v_long = SCM_UNPACK (v_scm);
     scm_gc_protect_object (v_scm);
   }
