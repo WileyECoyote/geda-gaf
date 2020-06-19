@@ -716,9 +716,7 @@ bool o_move_real_start(GschemToplevel *w_current, int w_x, int w_y)
   /* Make sure stretch_list == NULL */
   if (w_current->stretch_list != NULL) {
     g_critical ("%s: w_current->stretch_list == NULL\n", __func__);
-    //if (w_current->inside_action) {
     i_callback_cancel (w_current, 0, NULL);
-    //}
     return FALSE;
   }
 
