@@ -1,3 +1,8 @@
+2020-06-19 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_menu_bar.c: Rename viewable_menu_bars ->
+      viewable_bars.
+
 2020-06-17 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_gtk_compat.h: Replace dynamic cast with static cast
@@ -12,6 +17,8 @@
     * src/widgets/geda_option_menu.c: Utilize macro:
 
           * geda_get_widget_parent
+
+    * src/widgets/geda_separator.c: Include geda_gtk_compat.h header.
 
 2020-06-16 Wiley E. Hill <wileyhill@gmail.com>
 

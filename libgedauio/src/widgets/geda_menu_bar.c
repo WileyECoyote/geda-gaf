@@ -1821,7 +1821,7 @@ void geda_menu_bar_set_child_pack_direction (GedaMenuBar  *menubar,
 GList *geda_menu_bar_get_viewable_menu_bars (GtkWindow *window)
 {
   GList *menu_bars;
-  GList *viewable_menu_bars = NULL;
+  GList *viewable_bars = NULL;
 
   for (menu_bars = get_menu_bars(window); menu_bars; menu_bars = menu_bars->next)
   {
@@ -1838,11 +1838,11 @@ GList *geda_menu_bar_get_viewable_menu_bars (GtkWindow *window)
     }
 
     if (viewable) {
-      viewable_menu_bars = g_list_prepend (viewable_menu_bars, menu_bars->data);
+      viewable_bars = g_list_prepend (viewable_bars, menu_bars->data);
     }
   }
 
-  return g_list_reverse (viewable_menu_bars);
+  return g_list_reverse (viewable_bars);
 }
 
 /*! \internal helper for show/hide mnemonics */
