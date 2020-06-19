@@ -1830,8 +1830,9 @@ GList *geda_menu_bar_get_viewable_menu_bars (GtkWindow *window)
 
     while (widget) {
 
-      if (!gtk_widget_get_mapped (widget))
+      if (!gtk_widget_get_mapped (widget)) {
         viewable = FALSE;
+      }
 
       widget = gtk_widget_get_parent (widget);
     }
