@@ -70,7 +70,8 @@ edascm_hook_proxy_set_property (GObject *object, guint property_id,
     hook = edascm_value_get_scm (value);
     if (scm_is_eq (hook, SCM_UNDEFINED)) {
       edascm_hook_proxy_disconnect (proxy);
-    } else {
+    }
+    else {
       edascm_hook_proxy_connect (proxy, hook);
     }
     break;
@@ -318,7 +319,8 @@ cclosure_marshal_VOID__SCM (GClosure     *closure,
   if (G_CCLOSURE_SWAP_DATA (closure)) {
     data1 = closure->data;
     data2 = g_value_peek_pointer (param_values + 0);
-  } else {
+  }
+  else {
     data1 = g_value_peek_pointer (param_values + 0);
     data2 = closure->data;
   }
