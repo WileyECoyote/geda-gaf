@@ -676,38 +676,45 @@ msgstr "El factor de zoom no és vàlid"
 msgid "Object ~A is not directly included in a page."
 msgstr "L’objecte ~A no s’inclou directament en una pàgina."
 
+# Could not launch URI
 #: gschem/src/guile/g_util.c:70
 msgid "Could not launch URI"
-msgstr ""
+msgstr "No s'ha pogut llançar URI"
 
+# Found invalid gschem window smob ~S
 #: gschem/src/guile/g_window.c:146
 msgid "Found invalid gschem window smob ~S"
-msgstr ""
+msgstr "S'ha trobat un smob ~S de la finestra gschem vàlida"
 
+# current value of
 #: gschem/src/iface/i_command.c:137 gschem/src/iface/i_command.c:5354
 msgid "current value of"
-msgstr ""
+msgstr "valor actual de"
 
+# is
 #: gschem/src/iface/i_command.c:137 gschem/src/iface/i_command.c:5355
 msgid "is"
-msgstr ""
+msgstr "és"
 
+# Processing Action
 #: gschem/src/iface/i_command.c:523
 msgid "Processing Action"
-msgstr ""
+msgstr "Processament de l'ordre"
 
 # Object List
 #: gschem/src/iface/i_command.c:642
 msgid "Select object first"
 msgstr "Seleccioneu primer l'objecte"
 
+# Cannot
 #: gschem/src/iface/i_command.c:653
 msgid "Cannot"
-msgstr ""
+msgstr "No pot"
 
+# while command in progress
 #: gschem/src/iface/i_command.c:653
 msgid "while inside an action!\n"
-msgstr ""
+msgstr "mentre el comandament està en curs!\n"
 
 #: gschem/src/iface/i_command.c:920 gschem/src/iface/i_command.c:2969
 msgid "New page created"
