@@ -601,18 +601,21 @@ msgstr "الكائن ~A غير مضمّن مباشرةً في الصفحة."
 msgid "Could not launch URI"
 msgstr "تعذّر استحضار"
 
+# Found invalid gschem window smob ~S
+# tama aleuthur ealaa nafidhat gschem ghyr salihat smob ~S
 #: gschem/src/guile/g_window.c:146
 msgid "Found invalid gschem window smob ~S"
-msgstr ""
+msgstr "تم العثور على نافذة gschem غير صالحة smob ~S"
 
 # current value of
 #: gschem/src/iface/i_command.c:137 gschem/src/iface/i_command.c:5354
 msgid "current value of"
 msgstr "القيمة الحالية لل"
 
+# is; yakun
 #: gschem/src/iface/i_command.c:137 gschem/src/iface/i_command.c:5355
 msgid "is"
-msgstr ""
+msgstr "يكون"
 
 # processing Command
 #: gschem/src/iface/i_command.c:523
@@ -624,13 +627,15 @@ msgstr "القيادة المعالجة"
 msgid "Select object first"
 msgstr "حدد الكائن أولاً"
 
+# Cannot
 #: gschem/src/iface/i_command.c:653
 msgid "Cannot"
-msgstr ""
+msgstr "لا تستطيع"
 
+# while command in progress; 'athna' tanfidh al'amr
 #: gschem/src/iface/i_command.c:653
 msgid "while inside an action!\n"
-msgstr ""
+msgstr "أثناء تنفيذ الأمر!\n"
 
 #: gschem/src/iface/i_command.c:920 gschem/src/iface/i_command.c:2969
 msgid "New page created"
