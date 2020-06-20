@@ -613,60 +613,65 @@ msgstr "പക്ഷേ നിങ്ങൾക്ക് ഒരു പതിപ്
 msgid "Please be sure that you have the latest rc file"
 msgstr "നിങ്ങൾക്ക് ഏറ്റവും പുതിയ rc ഫയൽ ഉണ്ടെന്ന് ഉറപ്പാക്കുക"
 
+# file; phayal
 #: gschem/src/guile/g_rc.c:205 gschem/src/x/x_image.c:537
 msgid "file"
-msgstr ""
+msgstr "ഫയൽ"
 
 #: gschem/src/guile/g_rc.c:733
 #, c-format
 msgid "Invalid value, zoom-gain cannot be zero, check entry in rc file\n"
-msgstr ""
+msgstr "അസാധുവായ മൂല്യം, സൂം-നേട്ടം പൂജ്യമാകരുത്, ആർ‌സി ഫയലിലെ എൻ‌ട്രി പരിശോധിക്കുക\n"
 
+# Invalid type assignment, check zoom-gain entry in rc file
 #: gschem/src/guile/g_rc.c:738
 #, c-format
 msgid "Invalid type assignment, check zoom-gain entry in rc file\n"
-msgstr ""
+msgstr "തരം അസൈൻ‌മെന്റ് അസാധുവാണ്, ആർ‌സി ഫയലിലെ സൂം-ഗെയിൻ എൻ‌ട്രി പരിശോധിക്കുക\n"
 
+# Continuing with default value; sthira mūlyavumāyi tuṭarunnu
 #: gschem/src/guile/g_rc.c:739 gschem/src/guile/g_rc.c:1298
 #: gschem/src/guile/g_rc.c:1444 gschem/src/guile/g_rc.c:2040
 msgid "Continuing with default value"
-msgstr ""
+msgstr "സ്ഥിര മൂല്യവുമായി തുടരുന്നു"
 
 #: gschem/src/guile/g_rc.c:819
 #, c-format
 msgid "Invalid type assignment, check logging entry in rc file\n"
-msgstr ""
+msgstr "ടൈപ്പ് അസൈൻ‌മെന്റ് അസാധുവാണ്, ആർ‌സി ഫയലിലെ ലോഗിംഗ് എൻ‌ട്രി പരിശോധിക്കുക\n"
 
 #: gschem/src/guile/g_rc.c:1292
 #, c-format
 msgid "Invalid value, snap-size cannot be zero, check entry rc file\n"
-msgstr ""
+msgstr "അസാധുവായ മൂല്യം, സ്നാപ്പ് വലുപ്പം പൂജ്യമാകരുത്, എൻ‌ട്രി ആർ‌സി ഫയൽ പരിശോധിക്കുക\n"
 
 #: gschem/src/guile/g_rc.c:1297
 #, c-format
 msgid "Invalid type assignment, check snap-size entry in rc file\n"
-msgstr ""
+msgstr "തരം അസൈൻ‌മെന്റ് അസാധുവാണ്, ആർ‌സി ഫയലിൽ‌ സ്‌നാപ്പ്-സൈസ് എൻ‌ട്രി പരിശോധിക്കുക\n"
 
 #: gschem/src/guile/g_rc.c:1438
 #, c-format
 msgid "Invalid value, bus-ripper-size cannot be zero, check entry rc file\n"
-msgstr ""
+msgstr "അസാധുവായ മൂല്യം, ബസ്-റിപ്പർ വലുപ്പം പൂജ്യമായിരിക്കരുത്, എൻ‌ട്രി ആർ‌സി ഫയൽ പരിശോധിക്കുക\n"
 
 #: gschem/src/guile/g_rc.c:1443
 #, c-format
 msgid "Invalid type assignment, check bus-ripper-size entry in rc file\n"
-msgstr ""
+msgstr "തരം അസൈൻ‌മെന്റ് അസാധുവാണ്, ആർ‌സി ഫയലിലെ ബസ്-റിപ്പർ-സൈസ് എൻ‌ട്രി പരിശോധിക്കുക\n"
 
+# Can not scroll 0 steps, invalid scrollpan-steps, check entry in rc file
 #: gschem/src/guile/g_rc.c:2034
 #, c-format
 msgid ""
 "Can not scroll 0 steps, invalid scrollpan-steps, check entry in rc file\n"
-msgstr ""
+msgstr "0 ഘട്ടങ്ങൾ സ്ക്രോൾ ചെയ്യാൻ കഴിയില്ല, അസാധുവായ സ്ക്രോൾപാൻ-ഘട്ടങ്ങൾ, ആർ‌സി ഫയലിലെ എൻ‌ട്രി പരിശോധിക്കുക\n"
 
+# Invalid type assignment, check scrollpan-steps entry in rc file
 #: gschem/src/guile/g_rc.c:2039
 #, c-format
 msgid "Invalid type assignment, check scrollpan-steps entry in rc file\n"
-msgstr ""
+msgstr "ടൈപ്പ് അസൈൻ‌മെന്റ് അസാധുവാണ്, ആർ‌സി ഫയലിലെ സ്ക്രോൾ‌പാൻ‌-സ്റ്റെപ്പ് എൻ‌ട്രി പരിശോധിക്കുക\n"
 
 #: gschem/src/guile/g_rc.c:2086
 msgid "Invalid zoom factor"
