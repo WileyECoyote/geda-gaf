@@ -644,38 +644,45 @@ msgstr "Geçersiz zoom faktörü"
 msgid "Object ~A is not directly included in a page."
 msgstr "Nesne ~A doğrudan bir sayfaya dahil edilmez"
 
+# Could not launch URI
 #: gschem/src/guile/g_util.c:70
 msgid "Could not launch URI"
-msgstr ""
+msgstr "URI başlatılamadı"
 
+# Found invalid gschem window smob ~S
 #: gschem/src/guile/g_window.c:146
 msgid "Found invalid gschem window smob ~S"
-msgstr ""
+msgstr "Geçersiz gschem penceresi smob bulundu ~S"
 
+# current value of
 #: gschem/src/iface/i_command.c:137 gschem/src/iface/i_command.c:5354
 msgid "current value of"
-msgstr ""
+msgstr "şu anki değeri"
 
+# is
 #: gschem/src/iface/i_command.c:137 gschem/src/iface/i_command.c:5355
 msgid "is"
-msgstr ""
+msgstr "bir"
 
+# Processing Action
 #: gschem/src/iface/i_command.c:523
 msgid "Processing Action"
-msgstr ""
+msgstr "İşleme komutu"
 
 # Select object first
 #: gschem/src/iface/i_command.c:642
 msgid "Select object first"
 msgstr "Önce nesneyi seç"
 
+# Cannot
 #: gschem/src/iface/i_command.c:653
 msgid "Cannot"
-msgstr ""
+msgstr "Olumsuz"
 
+# while command in progress
 #: gschem/src/iface/i_command.c:653
 msgid "while inside an action!\n"
-msgstr ""
+msgstr "Canwhile komutu devam ediyor!\n"
 
 # New page created
 #: gschem/src/iface/i_command.c:920 gschem/src/iface/i_command.c:2969
