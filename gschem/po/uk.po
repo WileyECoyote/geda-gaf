@@ -735,38 +735,45 @@ msgstr "Недійсний коефіцієнт збільшення"
 msgid "Object ~A is not directly included in a page."
 msgstr "Nesne ~A doğrudan bir sayfaya dahil edilmez"
 
+# Could not launch URI
 #: gschem/src/guile/g_util.c:70
 msgid "Could not launch URI"
-msgstr ""
+msgstr "Не вдалося запустити URI"
 
+# Found invalid gschem window smob ~S
 #: gschem/src/guile/g_window.c:146
 msgid "Found invalid gschem window smob ~S"
-msgstr ""
+msgstr "Знайдено недійсне sms вікно gschem ~S"
 
+# current value of; potochne znachennya
 #: gschem/src/iface/i_command.c:137 gschem/src/iface/i_command.c:5354
 msgid "current value of"
-msgstr ""
+msgstr "поточне значення"
 
+# is; ye
 #: gschem/src/iface/i_command.c:137 gschem/src/iface/i_command.c:5355
 msgid "is"
-msgstr ""
+msgstr "є"
 
+# Processing Action
 #: gschem/src/iface/i_command.c:523
 msgid "Processing Action"
-msgstr ""
+msgstr "Команда обробки"
 
 # Select object first; Vyberitʹ spochatku ob'yekt
 #: gschem/src/iface/i_command.c:642
 msgid "Select object first"
 msgstr "Виберіть спочатку об'єкт"
 
+# Cannot; Ne mozhu
 #: gschem/src/iface/i_command.c:653
 msgid "Cannot"
-msgstr ""
+msgstr "Не можу"
 
+# while command in progress; poky komanduvannya vykonuyetʹsya
 #: gschem/src/iface/i_command.c:653
 msgid "while inside an action!\n"
-msgstr ""
+msgstr "поки командування виконується!\n"
 
 #: gschem/src/iface/i_command.c:920 gschem/src/iface/i_command.c:2969
 msgid "New page created"
