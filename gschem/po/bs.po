@@ -657,38 +657,45 @@ msgstr "Nevažeći faktor zumiranja"
 msgid "Object ~A is not directly included in a page."
 msgstr "Objekt ~A nije direktno uključen u stranicu."
 
+# Could not launch URI
 #: gschem/src/guile/g_util.c:70
 msgid "Could not launch URI"
-msgstr ""
+msgstr "URI nije moguće pokrenuti"
 
+# Found invalid gschem window smob ~S
 #: gschem/src/guile/g_window.c:146
 msgid "Found invalid gschem window smob ~S"
-msgstr ""
+msgstr "Pronađeno nevažeći gschem prozor smob ~S"
 
+# current value of
 #: gschem/src/iface/i_command.c:137 gschem/src/iface/i_command.c:5354
 msgid "current value of"
-msgstr ""
+msgstr "trenutna vrijednost"
 
+# is
 #: gschem/src/iface/i_command.c:137 gschem/src/iface/i_command.c:5355
 msgid "is"
-msgstr ""
+msgstr "je"
 
+# Processing command
 #: gschem/src/iface/i_command.c:523
 msgid "Processing Action"
-msgstr ""
+msgstr "Naredba za obradu"
 
 # Select object first
 #: gschem/src/iface/i_command.c:642
 msgid "Select object first"
 msgstr "Prvo odaberite objekt"
 
+# Cannot
 #: gschem/src/iface/i_command.c:653
 msgid "Cannot"
-msgstr ""
+msgstr "Ne mogu"
 
+# while command in progress
 #: gschem/src/iface/i_command.c:653
 msgid "while inside an action!\n"
-msgstr ""
+msgstr "dok je komanda u toku!\n"
 
 #: gschem/src/iface/i_command.c:920 gschem/src/iface/i_command.c:2969
 msgid "New page created"
