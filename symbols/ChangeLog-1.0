@@ -10,6 +10,11 @@
             * transistor/npn-bjt/npn-ebc-5.sym
             * transistor/npn-bjt/npn-ebc-6.sym
 
+    * transistor/npn-smt/2N3904_npn_40V_1A_SOT-23-?.sym: Update
+      dist-license=GPLv2:
+
+            * transistor/npn-smt/2N3904_npn_40V_1A_SOT-23-4.sym
+
 2020-06-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * linear/led_drivers/HT1632C-1.sym: Make the pin label text text
