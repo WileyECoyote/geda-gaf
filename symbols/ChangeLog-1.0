@@ -4,6 +4,10 @@
 
     * ti/CC2650-VQFN48-2.sym: Add dash 2 symbol; multistandard wireless MCU.
 
+    * transistor/npn-bjt/npn-ebc-?.sym: Update pinseq attributes:
+
+            * transistor/npn-bjt/npn-ebc-4.sym
+
 2020-06-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * linear/led_drivers/HT1632C-1.sym: Make the pin label text text
