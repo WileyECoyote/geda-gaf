@@ -1,3 +1,7 @@
+2020-06-21 Wiley E. Hill <wileyhill@gmail.com>
+
+    * ti/CC2650-VQFN48-1.sym: Add new symbol; multistandard wireless MCU.
+
 2020-06-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * linear/led_drivers/HT1632C-1.sym: Make the pin label text text
