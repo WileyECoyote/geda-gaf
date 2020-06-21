@@ -1,5 +1,7 @@
 2020-06-21 Wiley E. Hill <wileyhill@gmail.com>
 
+    * ti/CC2650-VQFN32-1.sym: Add new symbol; multistandard wireless MCU.
+
     * ti/CC2650-VQFN48-1.sym: Add new symbol; multistandard wireless MCU.
 
     * ti/CC2650-VQFN48-2.sym: Add dash 2 symbol; multistandard wireless MCU.
