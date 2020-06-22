@@ -38,15 +38,15 @@
 
 /* ------------------ Callbacks for Mouse Button Options  ------------------ */
 
-/*! \brief Action clicked on Middle Mouse Options Popup Callback
+/*!
+ * \brief Action clicked on Middle Mouse Options Popup Callback
+ * \par Function Description
+ *  Called in response to "set-middle-action" being emitted from the
+ *  status bar widget. Sets middle mouse button preference variable
+ *  to MOUSE_MIDDLE_ACTION and calls for update.
  *
- *  \par Function Description
- *   Called in response to "set-middle-action" being emitted from the
- *   status bar widget. Sets middle mouse button preference variable
- *   to MOUSE_MIDDLE_ACTION and calls for update.
- *
- *  \param [in] status_bar Pointer to #GschemStatusBar widget, not used
- *  \param [in] data       Pointer to GschemToplevel structure
+ * \param [in] status_bar Pointer to #GschemStatusBar widget, not used
+ * \param [in] data       Pointer to GschemToplevel structure
  */
 static
 void x_status_bar_set_middle_action(GtkWidget *status_bar, void *data)
@@ -62,15 +62,15 @@ void x_status_bar_set_middle_action(GtkWidget *status_bar, void *data)
   }
 }
 
-/*! \brief Pan clicked on Middle Mouse Options Popup Callback
+/*!
+ * \brief Pan clicked on Middle Mouse Options Popup Callback
+ * \par Function Description
+ *  Called in response to "set-middle-pan" being emitted from the
+ *  status bar widget. Sets middle mouse button preference variable
+ *  to MOUSE_MIDDLE_PAN and calls for update.
  *
- *  \par Function Description
- *   Called in response to "set-middle-pan" being emitted from the
- *   status bar widget. Sets middle mouse button preference variable
- *   to MOUSE_MIDDLE_PAN and calls for update.
- *
- *  \param [in] status_bar Pointer to #GschemStatusBar widget, not used
- *  \param [in] data       Pointer to GschemToplevel structure
+ * \param [in] status_bar Pointer to #GschemStatusBar widget, not used
+ * \param [in] data       Pointer to GschemToplevel structure
  */
 static void
 x_status_bar_set_middle_pan(GtkWidget *status_bar, void *data)
@@ -86,15 +86,15 @@ x_status_bar_set_middle_pan(GtkWidget *status_bar, void *data)
   }
 }
 
-/*! \brief Popup clicked on Middle Mouse Options Popup Callback
+/*!
+ * \brief Popup clicked on Middle Mouse Options Popup Callback
+ * \par Function Description
+ *  Called in response to "set-middle-popup" being emitted from the
+ *  status bar widget. Sets middle mouse button preference variable
+ *  to MOUSE_MIDDLE_POPUP and calls for update.
  *
- *  \par Function Description
- *   Called in response to "set-middle-popup" being emitted from the
- *   status bar widget. Sets middle mouse button preference variable
- *   to MOUSE_MIDDLE_POPUP and calls for update.
- *
- *  \param [in] status_bar Pointer to #GschemStatusBar widget, not used
- *  \param [in] data       Pointer to GschemToplevel structure
+ * \param [in] status_bar Pointer to #GschemStatusBar widget, not used
+ * \param [in] data       Pointer to GschemToplevel structure
  */
 static void
 x_status_bar_set_middle_popup(GtkWidget *status_bar, void *data)
@@ -110,15 +110,15 @@ x_status_bar_set_middle_popup(GtkWidget *status_bar, void *data)
   }
 }
 
-/*! \brief Repeat clicked on Middle Mouse Options Popup Callback
+/*!
+ * \brief Repeat clicked on Middle Mouse Options Popup Callback
+ * \par Function Description
+ *  Called in response to "set-middle-repeat" being emitted from the
+ *  status bar widget. Sets middle mouse button preference variable
+ *  to MOUSE_MIDDLE_REPEAT and calls for update.
  *
- *  \par Function Description
- *   Called in response to "set-middle-repeat" being emitted from the
- *   status bar widget. Sets middle mouse button preference variable
- *   to MOUSE_MIDDLE_REPEAT and calls for update.
- *
- *  \param [in] status_bar Pointer to #GschemStatusBar widget, not used
- *  \param [in] data       Pointer to GschemToplevel structure
+ * \param [in] status_bar Pointer to #GschemStatusBar widget, not used
+ * \param [in] data       Pointer to GschemToplevel structure
  */
 static void x_status_bar_set_middle_repeat(GtkWidget *status_bar, void *data)
 {
@@ -135,15 +135,15 @@ static void x_status_bar_set_middle_repeat(GtkWidget *status_bar, void *data)
 
 #ifdef HAVE_LIBSTROKE
 
-/*! \brief Stroke clicked on Middle Mouse Options Popup Callback
+/*!
+ * \brief Stroke clicked on Middle Mouse Options Popup Callback
+ * \par Function Description
+ *  Called in response to "set-middle-stroke" being emitted from the
+ *  status bar widget. Sets middle mouse button preference variable
+ *  to MOUSE_MIDDLE_STROKE and calls for update.
  *
- *  \par Function Description
- *   Called in response to "set-middle-stroke" being emitted from the
- *   status bar widget. Sets middle mouse button preference variable
- *   to MOUSE_MIDDLE_STROKE and calls for update.
- *
- *  \param [in] status_bar Pointer to #GschemStatusBar widget, not used
- *  \param [in] data       Pointer to GschemToplevel structure
+ * \param [in] status_bar Pointer to #GschemStatusBar widget, not used
+ * \param [in] data       Pointer to GschemToplevel structure
  */
 static void x_status_bar_set_middle_stroke(GtkWidget *status_bar,
                                            void      *data)
@@ -160,15 +160,15 @@ static void x_status_bar_set_middle_stroke(GtkWidget *status_bar,
 }
 #endif
 
-/*! \brief Popup (Menu) clicked on Third Mouse Options Popup Callback
+/*!
+ * \brief Popup (Menu) clicked on Third Mouse Options Popup Callback
+ * \par Function Description
+ *  Called in response to "set-third-popup" being emitted from the
+ *  status bar widget. Sets third mouse button preference variable
+ *  to POPUP_ENABLED and calls for update.
  *
- *  \par Function Description
- *   Called in response to "set-third-popup" being emitted from the
- *   status bar widget. Sets third mouse button preference variable
- *   to POPUP_ENABLED and calls for update.
- *
- *  \param [in] status_bar Pointer to #GschemStatusBar widget, not used
- *  \param [in] data       Pointer to GschemToplevel structure
+ * \param [in] status_bar Pointer to #GschemStatusBar widget, not used
+ * \param [in] data       Pointer to GschemToplevel structure
  */
 static void x_status_bar_set_third_popup(GtkWidget *status_bar, void *data)
 {
@@ -183,15 +183,15 @@ static void x_status_bar_set_third_popup(GtkWidget *status_bar, void *data)
   }
 }
 
-/*! \brief Pan clicked on Third Mouse Options Popup Callback
+/*!
+ * \brief Pan clicked on Third Mouse Options Popup Callback
+ * \par Function Description
+ *  Called in response to "set-third-pan" being emitted from the
+ *  status bar widget. Sets third mouse button preference variable
+ *  to MOUSEPAN_ENABLED and calls for update.
  *
- *  \par Function Description
- *   Called in response to "set-third-pan" being emitted from the
- *   status bar widget. Sets third mouse button preference variable
- *   to MOUSEPAN_ENABLED and calls for update.
- *
- *  \param [in] status_bar Pointer to #GschemStatusBar widget, not used
- *  \param [in] data       Pointer to GschemToplevel structure
+ * \param [in] status_bar Pointer to #GschemStatusBar widget, not used
+ * \param [in] data       Pointer to GschemToplevel structure
  */
 static void x_status_bar_set_third_pan(GtkWidget *status_bar, void *data)
 {
@@ -208,14 +208,15 @@ static void x_status_bar_set_third_pan(GtkWidget *status_bar, void *data)
 
 /* ---------------- End Callbacks for Mouse Button Options  ---------------- */
 
-/*! \public
- *  \brief Update the grid and snap settings for the gschem status bar
- *  \par Function Description
+/*!
+ * \public
+ * \brief Update the grid and snap settings for the gschem status bar
+ * \par Function Description
  *  This functions compares the active settings to the current status
  *  settings and updates the status settings if the status settings
  *  are different from the active settings.
  *
- *  \param [in] w_current GschemToplevel structure
+ * \param [in] w_current GschemToplevel structure
  */
 void x_status_bar_update_grid_label (GschemToplevel *w_current)
 {
@@ -243,16 +244,16 @@ void x_status_bar_update_grid_label (GschemToplevel *w_current)
   }
 }
 
-/*! \brief Update Middle Mouse Button Settings for the Gschem Status Bar
- *
- *  \par Function Description
+/*!
+ * \brief Update Middle Mouse Button Settings for the Gschem Status Bar
+ * \par Function Description
  *  This function sets the string used to describe the action of the middle
  *  middle mouse button and updates the label on the status bar if the middle
  *  mouse assignment has changed. The function maintained a static integer
  *  to retain the previous setting.
  *
- *  \param [in] w_current GschemToplevel structure
- *  \param [in] repeat    pointer to label (what will be repeated)
+ * \param [in] w_current GschemToplevel structure
+ * \param [in] repeat    pointer to label (what will be repeated)
  */
 void x_status_bar_update_middle_mouse(GschemToplevel *w_current,
                                       const char     *repeat)
@@ -321,12 +322,13 @@ void x_status_bar_update_middle_mouse(GschemToplevel *w_current,
   }
 }
 
-/*! \brief Update the Third Button settings for the gschem status bar
- *  \par Function Description
+/*!
+ * \brief Update the Third Button settings for the gschem status bar
+ * \par Function Description
  *  This functions reloads the string for the third-mouse button
  *  label on the status-bar based on the current setting.
  *
- *  \param [in] w_current GschemToplevel structure
+ * \param [in] w_current GschemToplevel structure
  */
 void x_status_bar_update_third_mouse (GschemToplevel *w_current)
 {
@@ -347,15 +349,16 @@ void x_status_bar_update_third_mouse (GschemToplevel *w_current)
   }
 }
 
-/*! \public
- *  \brief Create GschemStatusBar
- *  \par Function Description
+/*!
+ * \public
+ * \brief Create GschemStatusBar
+ * \par Function Description
  *  This functions creates a new instance of the a GschemStatusBar
  *  widget and connects in callback signal handlers.
  *
- *  \param [in] w_current GschemToplevel structure
+ * \param [in] w_current GschemToplevel structure
  *
- *  \returns The newly created status bar widget
+ * \returns The newly created status bar widget
  */
 GtkWidget *x_status_bar_create(GschemToplevel *w_current)
 {
