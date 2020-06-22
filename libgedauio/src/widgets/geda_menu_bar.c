@@ -1340,11 +1340,13 @@ static void add_to_window (GtkWindow *window, GedaMenuBar *menubar)
     if (menubar->priv->accel) {
       g_free (menubar->priv->accel);
     }
+
     menubar->priv->accel = accel;
 
     if (menubar->priv->accel_group) {
       g_object_unref (menubar->priv->accel_group);
     }
+
     menubar->priv->accel_group = accel_group;
   }
 
@@ -1478,6 +1480,7 @@ static bool geda_menu_bar_key_press (GtkWidget *widget, GdkEventKey *event)
             if (geda_menu_item_is_selectable(menu_item)) {
               geda_menu_item_activate_item(menu_item);
             }
+
             handled = TRUE;
             break;
           }
@@ -1545,6 +1548,7 @@ geda_menu_bar_window_key_press_handler (GtkWidget   *widget,
 
       retval = TRUE;
     }
+
     g_list_free (menubars);
   }
 
@@ -1554,11 +1558,10 @@ geda_menu_bar_window_key_press_handler (GtkWidget   *widget,
 static void
 geda_menu_bar_hierarchy_changed (GtkWidget *widget, GtkWidget *old_toplevel)
 {
-  GtkWidget   *toplevel;
   GedaMenuBar *menubar;
+  GtkWidget   *toplevel;
 
-  menubar = GEDA_MENU_BAR (widget);
-
+  menubar  = GEDA_MENU_BAR (widget);
   toplevel = gtk_widget_get_toplevel (widget);
 
   if (old_toplevel) {
