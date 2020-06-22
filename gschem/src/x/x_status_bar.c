@@ -393,6 +393,10 @@ GtkWidget *x_status_bar_create(GschemToplevel *w_current)
       middle_mouse_text = _(RC_STR_MID_MOUSEPAN);
       break;
 
+    case (MOUSE_MIDDLE_POPUP):
+      middle_mouse_text = _(RC_STR_MID_MOUSEPOP);
+      break;
+
     default:
       middle_mouse_text = _("none");
   }
