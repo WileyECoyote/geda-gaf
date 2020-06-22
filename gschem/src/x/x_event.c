@@ -277,7 +277,8 @@ int x_event_button_pressed(GtkWidget      *widget,
             i_status_set_state(w_current, SELECT);
           }
           else { /* Only Copy and Move are supported */
-            if (w_current->ALTKEY) {
+            /* Use CTRL Key to avoid conflict with ALT select locked items */
+            if (w_current->CONTROLKEY) {
               o_copy_start(w_current, w_x, w_y);
             }
             else {
