@@ -107,7 +107,7 @@ geda_separator_expose (GtkWidget *widget, GdkEventExpose *event)
         gtk_paint_box (style, window, state, GTK_SHADOW_ETCHED_OUT,
                        &event->area, widget, "hseparator",
                        allocation->x,
-                       widget->allocation.y +
+                       allocation->y +
                       (widget->allocation.height - separator_height) / 2,
                        widget->allocation.width,
                        separator_height);
