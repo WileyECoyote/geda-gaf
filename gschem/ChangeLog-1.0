@@ -1,5 +1,8 @@
 2020-06-22 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/base/gschem_status_bar.c: Fix incorrect reference to pointer in
+      gschem_status_bar_set_middle_button_text.
+
     * src/x/x_status_bar.c: Reformat Doxygen documentation.
 
 2020-06-20 Wiley E. Hill <wileyhill@gmail.com>

@@ -1485,7 +1485,7 @@ void gschem_status_bar_set_left_button_text (GtkWidget *widget, const char *text
 void gschem_status_bar_set_middle_button_text (GtkWidget *widget, const char *text)
 {
 #if defined (G_DISABLE_ASSERT)
-  geda_label_widget_set_text ((GSCHEM_STATUS_BAR(widget))->right_label, text);
+  geda_label_widget_set_text ((GSCHEM_STATUS_BAR(widget))->middle_label, text);
 #else
   if (widget == NULL) {
     BUG_MSG("widget is NULL");
