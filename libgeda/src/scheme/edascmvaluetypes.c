@@ -54,8 +54,9 @@ value_init_scm (GValue *value) {
 static void
 value_free_scm (GValue *value) {
   SCM val = SCM_PACK (value->data[0].v_long);
-  if (!scm_is_eq (val, SCM_UNDEFINED))
+  if (!scm_is_eq (val, SCM_UNDEFINED)) {
     scm_gc_unprotect_object (val);
+  }
 }
 
 /*   "dest_value is a GValue with zero-filled data section and
@@ -253,8 +254,9 @@ edascm_value_set_scm (GValue *value, SCM v_scm)
     value->data[0].v_long = SCM_UNPACK (SCM_UNDEFINED);
   }
 
-  if (!scm_is_eq (old, SCM_UNDEFINED))
+  if (!scm_is_eq (old, SCM_UNDEFINED)) {
     scm_gc_unprotect_object (old);
+  }
 }
 
 /*!
