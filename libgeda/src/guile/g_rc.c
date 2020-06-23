@@ -102,7 +102,8 @@ SCM g_rc_component_library(SCM path, SCM name)
   SCM_ASSERT (scm_is_string (path), path, SCM_ARG1, "component-library");
 
   scm_dynwind_begin (0);
-  if (name != SCM_UNDEFINED) {
+
+  if (!scm_is_eq (name, SCM_UNDEFINED)) {
     namestr = scm_to_utf8_string (name);
     scm_dynwind_free(namestr);
   }
