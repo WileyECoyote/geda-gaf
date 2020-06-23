@@ -330,6 +330,7 @@ SCM g_rc_component_library_command (SCM listcmd, SCM getcmd,
   /*! \bug this may be a security risk! */
   tmp_str = scm_to_utf8_string (getcmd);
   gcmdstr = geda_utility_expand_env_variable (tmp_str);
+
   scm_dynwind_unwind_handler (g_free, gcmdstr, SCM_F_WIND_EXPLICITLY);
   free (tmp_str); /* this should stay as free (allocated from guile) */
 
@@ -761,6 +762,7 @@ SCM g_rc_bus_style(SCM mode)
     }
     default_bus_style = val;
   }
+
   return SCM_BOOL_T;
 }
 
@@ -805,6 +807,7 @@ SCM g_rc_line_style(SCM mode)
     }
     default_line_style = val;
   }
+
   return SCM_BOOL_T;
 }
 
@@ -849,6 +852,7 @@ SCM g_rc_net_style(SCM mode)
     }
     default_net_style = val;
   }
+
   return SCM_BOOL_T;
 }
 
@@ -895,6 +899,7 @@ SCM g_rc_pin_style(SCM mode)
     }
     default_pin_style = val;
   }
+
   return SCM_BOOL_T;
 }
 
@@ -904,7 +909,6 @@ SCM g_rc_pin_style(SCM mode)
  *  C function to construct lisp algorithms to dynamically process
  *  configuration data for the thick-bus-width RC entry.
  */
-
 SCM g_rc_thick_bus_width (SCM width)
 {
   int val;
