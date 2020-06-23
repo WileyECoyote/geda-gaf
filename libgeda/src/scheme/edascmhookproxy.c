@@ -246,6 +246,7 @@ edascm_hook_proxy_connect (EdascmHookProxy *proxy, SCM hook)
   }
 
   proxy->priv->hook = hook;
+
   scm_gc_protect_object (hook);
   /* \bug What if scm_add_hook_x() fails? */
   scm_add_hook_x (hook, proxy->priv->closure, SCM_UNDEFINED);
@@ -325,6 +326,7 @@ cclosure_marshal_VOID__SCM (GClosure     *closure,
     data1 = g_value_peek_pointer (param_values + 0);
     data2 = closure->data;
   }
+
   callback = (MarshalFunc_VOID__SCM) (marshal_data ? marshal_data : cc->callback);
 
   callback (data1, edascm_value_get_scm (param_values + 1), data2);
