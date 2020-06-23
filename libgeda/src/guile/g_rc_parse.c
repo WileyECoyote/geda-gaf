@@ -252,7 +252,7 @@ bool g_rc_parse_file (const char *rcfile, EdaConfig *cfg, GError **err)
 
   /* If the fluid for storing the relevant configuration context for
    * RC file reading hasn't been created yet, create it. */
-  if (scheme_rc_config_fluid == SCM_UNDEFINED)
+  if (scm_is_eq (scheme_rc_config_fluid, SCM_UNDEFINED))
     scheme_rc_config_fluid = scm_permanent_object (scm_make_fluid ());
 
   /* Normalise filename */
