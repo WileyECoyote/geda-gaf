@@ -19,8 +19,8 @@ of color codes used in gEDA data files to actual colors used for output
 devices based on user configuration preferences.
 .B libgEDAColor
 provides functions for parsing gEDA scheme color-map data and API functions
-for applications to access color information. This manual page explains user
-aspects of using
+for applications to access color information. This manual page explains the
+user aspects of using
 .B libgEDAColor
 , specifically, modifying color map files. For information on
 .B libgEDAColor
