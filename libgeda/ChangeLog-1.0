@@ -1,3 +1,7 @@
+2020-06-23 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/guile/g_rc.c: Reformat Doxygen documentation.
+
 2020-06-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/scheme/edascmhookproxy.c: Do not use "==" and "!=" on SCM values; see

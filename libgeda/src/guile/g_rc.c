@@ -38,8 +38,9 @@
  *  Contains functions to parse initialization (RC) files.
  */
 
-/*! \brief This function processes the component-group SCM list.
- *  \par Function Description
+/*!
+ * \brief This function processes the component-group SCM list.
+ * \par Function Description
  *  This function reads the string list from the component-groups
  *  configuration parameter and converts the list into a GList.
  *  The GList is stored in the global default_component_groups variable.
@@ -85,12 +86,14 @@ SCM g_rc_component_groups(SCM stringlist)
   return SCM_BOOL_T;
 }
 
-/*! \brief
- *  \par Function Description
+/*!
+ * \brief
+ * \par Function Description
  *
- *  \param [in] path
- *  \param [in] name Optional descriptive name for library directory.
- *  \returns SCM_BOOL_T on success, SCM_BOOL_F otherwise.
+ * \param [in] path
+ * \param [in] name Optional descriptive name for library directory.
+ *
+ * \returns SCM_BOOL_T on success, SCM_BOOL_F otherwise.
  */
 SCM g_rc_component_library(SCM path, SCM name)
 {
@@ -287,16 +290,18 @@ SCM g_rc_component_library(SCM path, SCM name)
   return result;
 }
 
-/*! \brief Guile callback for adding library commands.
- *  \par Function Description
+/*!
+ * \brief Guile callback for adding library commands.
+ * \par Function Description
  *  Callback function for the "component-library-command" Guile
  *  function, which can be used in the rc files to add a command to
  *  the component library.
  *
- *  \param [in] listcmd command to get a list of symbols
- *  \param [in] getcmd  command to get a symbol from the library
- *  \param [in] name    Optional descriptive name for component source.
- *  \returns SCM_BOOL_T on success, SCM_BOOL_F otherwise.
+ * \param [in] listcmd command to get a list of symbols
+ * \param [in] getcmd  command to get a symbol from the library
+ * \param [in] name    Optional descriptive name for component source.
+ *
+ * \returns SCM_BOOL_T on success, SCM_BOOL_F otherwise.
  */
 SCM g_rc_component_library_command (SCM listcmd, SCM getcmd,
                                     SCM name)
@@ -341,21 +346,22 @@ SCM g_rc_component_library_command (SCM listcmd, SCM getcmd,
   return SCM_BOOL_F;
 }
 
-/*! \brief Guile callback for adding library functions.
- *  \par Function Description
+/*!
+ * \brief Guile callback for adding library functions.
+ * \par Function Description
  *  Callback function for the "component-library-funcs" Guile
  *  function, which can be used in the rc files to add a set of Guile
  *  procedures for listing and generating symbols.
  *
- *  \param [in] listfunc A Scheme procedure which takes no arguments
- *                       and returns a Scheme list of component names.
- *  \param [in] getfunc A Scheme procedure which takes a component
- *                      name as an argument and returns a symbol
- *                      encoded in a string in gEDA format, or the \b
- *                      \#f if the component name is unknown.
- *  \param [in] name    A descriptive name for this component source.
+ * \param [in] listfunc A Scheme procedure which takes no arguments
+ *                      and returns a Scheme list of component names.
+ * \param [in] getfunc A Scheme procedure which takes a component
+ *                     name as an argument and returns a symbol
+ *                     encoded in a string in gEDA format, or the \b
+ *                     \#f if the component name is unknown.
+ * \param [in] name    A descriptive name for this component source.
  *
- *  \returns SCM_BOOL_T on success, SCM_BOOL_F otherwise.
+ * \returns SCM_BOOL_T on success, SCM_BOOL_F otherwise.
  */
 SCM g_rc_component_library_funcs (SCM listfunc, SCM getfunc, SCM name)
 {
@@ -401,8 +407,8 @@ SCM g_rc_component_library_funcs (SCM listfunc, SCM getfunc, SCM name)
  *
  *  3. (component-library-search "c:/Projects/geda/symbols" "Simulation/homebrew")
  *
- *  \param [in] path  The directory to be searched for symbols
- *  \param [in] name  Optional descriptive name for the component source.
+ * \param [in] path  The directory to be searched for symbols
+ * \param [in] name  Optional descriptive name for the component source.
  */
 SCM g_rc_component_search_directory (SCM path, SCM name)
 {
@@ -540,15 +546,16 @@ SCM g_rc_component_search_directory (SCM path, SCM name)
   return result;
 }
 
-/*! \brief Handles the source-library SCM keyword.
- *  \par Function Description
+/*!
+ * \brief Handles the source-library SCM keyword.
+ * \par Function Description
  *   Sets a hokey path to search for schematics.
  *
- *  \param [in] path String to use as path to Source Library.
+ * \param [in] path String to use as path to Source Library.
  *
- *  \returns SCM_BOOL_T on success, SCM_BOOL_F if path is invalid.
+ * \returns SCM_BOOL_T on success, SCM_BOOL_F if path is invalid.
  *
- *  \sa geda_struct_slib_add_entry
+ * \sa geda_struct_slib_add_entry
  */
 SCM g_rc_source_library(SCM path)
 {
@@ -589,15 +596,16 @@ SCM g_rc_source_library(SCM path)
   return SCM_BOOL_T;
 }
 
-/*! \brief Handles the source-library-search SCM keyword.
- *  \par Function Description
- *   Sets a hokey path to search for schematics.
+/*!
+ * \brief Handles the source-library-search SCM keyword.
+ * \par Function Description
+ *  Sets a hokey path to search for schematics.
  *
- *  \param [in] path String to use as path to search.
+ * \param [in] path String to use as path to search.
  *
- *  \returns SCM_BOOL_T on success, SCM_BOOL_F if path is invalid.
+ * \returns SCM_BOOL_T on success, SCM_BOOL_F if path is invalid.
  *
- *  \sa geda_struct_slib_add_entry
+ * \sa geda_struct_slib_add_entry
  */
 SCM g_rc_source_library_search(SCM path)
 {
@@ -673,14 +681,15 @@ SCM g_rc_source_library_search(SCM path)
   return SCM_BOOL_T;
 }
 
-/*! \brief Handles the reset-component-library SCM keyword.
- *  \par Function Description
+/*!
+ * \brief Handles the reset-component-library SCM keyword.
+ * \par Function Description
  *  When reset-component-library is process, all known component
  *  library paths are erased.
  *
- *  \returns SCM_BOOL_T always.
+ * \returns SCM_BOOL_T always.
  *
- *  \sa geda_struct_clib_init
+ * \sa geda_struct_clib_init
  */
 SCM g_rc_reset_component_library(void)
 {
@@ -689,14 +698,15 @@ SCM g_rc_reset_component_library(void)
   return SCM_BOOL_T;
 }
 
-/*! \brief Handles the reset-source-library SCM keyword.
- *  \par Function Description
+/*!
+ * \brief Handles the reset-source-library SCM keyword.
+ * \par Function Description
  *  When reset-source-library is process, resources used for library paths
  *  are released and all known component library paths erased.
  *
- *  \returns SCM_BOOL_T always.
+ * \returns SCM_BOOL_T always.
  *
- *  \sa geda_struct_init
+ * \sa geda_struct_init
  */
 SCM g_rc_reset_source_library(void)
 {
@@ -710,12 +720,12 @@ SCM g_rc_reset_source_library(void)
 }
 
 /* Net Styles*/
-/*! \brief This function processes the bus-style RC entry.
- *  \par Function Description
- *       C function to construct lisp algorithms to dynamically process
- *       configuration data for the bus-style RC entry. This function
- *       accepts either string or integer type arguments.
- *
+/*!
+ * \brief This function processes the bus-style RC entry.
+ * \par Function Description
+ *  C function to construct lisp algorithms to dynamically process
+ *  configuration data for the bus-style RC entry. This function
+ *  accepts either string or integer type arguments.
  */
 SCM g_rc_bus_style(SCM mode)
 {
@@ -754,12 +764,12 @@ SCM g_rc_bus_style(SCM mode)
   return SCM_BOOL_T;
 }
 
-/*! \brief This function processes the line-style RC entry.
- *  \par Function Description
- *       C function to construct lisp algorithms to dynamically process
- *       configuration data for the line-style RC entry.  This function
- *       accepts either string or integer type arguments.
- *
+/*!
+ * \brief This function processes the line-style RC entry.
+ * \par Function Description
+ *  C function to construct lisp algorithms to dynamically process
+ *  configuration data for the line-style RC entry.  This function
+ *  accepts either string or integer type arguments.
  */
 SCM g_rc_line_style(SCM mode)
 {
@@ -798,12 +808,12 @@ SCM g_rc_line_style(SCM mode)
   return SCM_BOOL_T;
 }
 
-/*! \brief This function processes the net-style RC entry.
- *  \par Function Description
- *       C function to construct lisp algorithms to dynamically process
- *       configuration data for the net-style RC entry. This function
- *       accepts either string or integer type arguments.
- *
+/*!
+ * \brief This function processes the net-style RC entry.
+ * \par Function Description
+ *  C function to construct lisp algorithms to dynamically process
+ *  configuration data for the net-style RC entry. This function
+ *  accepts either string or integer type arguments.
  */
 SCM g_rc_net_style(SCM mode)
 {
@@ -842,11 +852,12 @@ SCM g_rc_net_style(SCM mode)
   return SCM_BOOL_T;
 }
 
-/*! \brief This function processes the pin-style RC entry.
- *  \par Function Description
- *       C function to construct lisp algorithms to dynamically process
- *       configuration data for the pin-style RC entry. This functions
- *       accepts either string or integer type arguments.
+/*!
+ * \brief This function processes the pin-style RC entry.
+ * \par Function Description
+ *  C function to construct lisp algorithms to dynamically process
+ *  configuration data for the pin-style RC entry. This functions
+ *  accepts either string or integer type arguments.
  *
  *  \returns SCM_BOOL_T always.
  */
@@ -887,10 +898,11 @@ SCM g_rc_pin_style(SCM mode)
   return SCM_BOOL_T;
 }
 
-/*! \brief This function processes the thick-bus-width RC entry.
- *  \par Function Description
- *       C function to construct lisp algorithms to dynamically process
- *       configuration data for the thick-bus-width RC entry.
+/*!
+ * \brief This function processes the thick-bus-width RC entry.
+ * \par Function Description
+ *  C function to construct lisp algorithms to dynamically process
+ *  configuration data for the thick-bus-width RC entry.
  */
 
 SCM g_rc_thick_bus_width (SCM width)
@@ -916,10 +928,11 @@ SCM g_rc_thick_bus_width (SCM width)
   return SCM_BOOL_T;
 }
 
-/*! \brief This function processes the thick-line-width RC entry.
- *  \par Function Description
- *       C function to construct lisp algorithms to dynamically process
- *       configuration data for the thick-line-width RC entry.
+/*!
+ * \brief This function processes the thick-line-width RC entry.
+ * \par Function Description
+ *  C function to construct lisp algorithms to dynamically process
+ *  configuration data for the thick-line-width RC entry.
  */
 SCM g_rc_thick_line_width (SCM width)
 {
@@ -944,10 +957,11 @@ SCM g_rc_thick_line_width (SCM width)
   return SCM_BOOL_T;
 }
 
-/*! \brief This function processes the thick-net-width RC entry.
- *  \par Function Description
- *       C function to construct lisp algorithms to dynamically process
- *       configuration data for the thick-net-width RC entry.
+/*!
+ * \brief This function processes the thick-net-width RC entry.
+ * \par Function Description
+ *  C function to construct lisp algorithms to dynamically process
+ *  configuration data for the thick-net-width RC entry.
  */
 SCM g_rc_thick_net_width (SCM width)
 {
@@ -972,10 +986,11 @@ SCM g_rc_thick_net_width (SCM width)
   return SCM_BOOL_T;
 }
 
-/*! \brief This function processes the thick-pin-width RC entry.
- *  \par Function Description
- *       C function to construct lisp algorithms to dynamically process
- *       configuration data for the thick-pin-width RC entry.
+/*!
+ * \brief This function processes the thick-pin-width RC entry.
+ * \par Function Description
+ *  C function to construct lisp algorithms to dynamically process
+ *  configuration data for the thick-pin-width RC entry.
  */
 SCM g_rc_thick_pin_width (SCM width)
 {
@@ -1000,10 +1015,11 @@ SCM g_rc_thick_pin_width (SCM width)
   return SCM_BOOL_T;
 }
 
-/*! \brief This function processes the thin-bus-width RC entry.
- *  \par Function Description
- *       C function to construct lisp algorithms to dynamically process
- *       configuration data for the thin-bus-width RC entry.
+/*!
+ * \brief This function processes the thin-bus-width RC entry.
+ * \par Function Description
+ *  C function to construct lisp algorithms to dynamically process
+ *  configuration data for the thin-bus-width RC entry.
  */
 SCM g_rc_thin_bus_width (SCM width)
 {
@@ -1028,10 +1044,11 @@ SCM g_rc_thin_bus_width (SCM width)
   return SCM_BOOL_T;
 }
 
-/*! \brief This function processes the thin-line-width RC entry.
- *  \par Function Description
- *       C function to construct lisp algorithms to dynamically process
- *       configuration data for the thin-line-width RC entry.
+/*!
+ * \brief This function processes the thin-line-width RC entry.
+ * \par Function Description
+ *  C function to construct lisp algorithms to dynamically process
+ *  configuration data for the thin-line-width RC entry.
  */
 SCM g_rc_thin_line_width (SCM width)
 {
@@ -1056,10 +1073,11 @@ SCM g_rc_thin_line_width (SCM width)
   return SCM_BOOL_T;
 }
 
-/*! \brief This function processes the thin-net-width RC entry.
- *  \par Function Description
- *       C function to construct lisp algorithms to dynamically process
- *       configuration data for the thin-net-width RC entry.
+/*!
+ * \brief This function processes the thin-net-width RC entry.
+ * \par Function Description
+ *  C function to construct lisp algorithms to dynamically process
+ *  configuration data for the thin-net-width RC entry.
  */
 SCM g_rc_thin_net_width (SCM width)
 {
@@ -1084,10 +1102,11 @@ SCM g_rc_thin_net_width (SCM width)
   return SCM_BOOL_T;
 }
 
-/*! \brief This function processes the thin-pin-width RC entry.
- *  \par Function Description
- *       C function to construct lisp algorithms to dynamically process
- *       configuration data for the thin-pin-width RC entry.
+/*!
+ * \brief This function processes the thin-pin-width RC entry.
+ * \par Function Description
+ *  C function to construct lisp algorithms to dynamically process
+ *  configuration data for the thin-pin-width RC entry.
  */
 SCM g_rc_thin_pin_width (SCM width)
 {
@@ -1113,15 +1132,16 @@ SCM g_rc_thin_pin_width (SCM width)
 }
 /* End Style Related RC varibles */
 
-/*! \brief Handles the always-promote-attributes SCM keyword.
- *  \par Function Description
+/*!
+ * \brief Handles the always-promote-attributes SCM keyword.
+ * \par Function Description
  *  This function create a list of attribute string that are alway to be
  *  promoted when symbols file are loaded. A pointer to the list is stored
  *  to default_always_promote_attributes.
  *
- *  \param [in] attrlist Can be a space separated list of string or a SCM list
+ * \param [in] attrlist Can be a space separated list of string or a SCM list
  *
- *  \returns SCM_BOOL_T always.
+ * \returns SCM_BOOL_T always.
  */
 SCM g_rc_always_promote_attributes(SCM attrlist)
 {
@@ -1184,12 +1204,12 @@ SCM g_rc_always_promote_attributes(SCM attrlist)
  *  based on the string argument. When an argument is not given, this
  *  function returns the current value of default_attribute_promotion.
  *
- *  \param [in] mode string "enabled" or "disabled"
+ * \param [in] mode string "enabled" or "disabled"
  *
- *  \returns The current value of default_attribute_promotion if no
- *           mode argument,if an argument is given then returns
- *           SCM_BOOL_T on success or SCM_BOOL_F if mode was not
- *           otherwise valid.
+ * \returns The current value of default_attribute_promotion if no
+ *          mode argument,if an argument is given then returns
+ *          SCM_BOOL_T on success or SCM_BOOL_F if mode was not
+ *          otherwise valid.
  */
 SCM g_rc_attribute_promotion(SCM mode)
 {
@@ -1206,14 +1226,15 @@ SCM g_rc_attribute_promotion(SCM mode)
                     default_attribute_promotion, mode_table);
 }
 
-/*! \brief Handles the keep-invisible SCM keyword.
- *  \par Function Description
+/*!
+ * \brief Handles the keep-invisible SCM keyword.
+ * \par Function Description
  *  Uses MACRO to call g_rc_parse_mode to sets boolean configuration
  *  variable based on string argument.
  *
- *  \param [in] mode string "enabled" or "disabled"
+ * \param [in] mode string "enabled" or "disabled"
  *
- *  \returns SCM_BOOL_T on success, SCM_BOOL_F if mode is not a valid value.
+ * \returns SCM_BOOL_T on success, SCM_BOOL_F if mode is not a valid value.
  */
 SCM g_rc_keep_invisible(SCM mode)
 {
@@ -1229,16 +1250,17 @@ SCM g_rc_keep_invisible(SCM mode)
   RETURN_G_RC_MODE("keep-invisible", default_keep_invisible, mode_table);
 }
 
-/*! \brief Handles the bitmap-directory SCM keyword.
- *  \par Function Description
+/*!
+ * \brief Handles the bitmap-directory SCM keyword.
+ * \par Function Description
  *  The value of the bitmap-directory keyword specifies where to search
  *  for bitmage images.
  *
- *  \param [in] path
+ * \param [in] path
  *
- *  \returns SCM_BOOL_T on success, SCM_BOOL_F if path is invalid.
+ * \returns SCM_BOOL_T on success, SCM_BOOL_F if path is invalid.
  *
- *  \sa geda_file_get_bitmap_filespec
+ * \sa geda_file_get_bitmap_filespec
  */
 SCM g_rc_bitmap_directory(SCM path)
 {
@@ -1277,16 +1299,17 @@ SCM g_rc_bitmap_directory(SCM path)
   return SCM_BOOL_T;
 }
 
-/*! \brief Handles the log-directory SCM keyword.
- *  \par Function Description
- *  The value of the log-directory keyword specifies where to write log
- *  files.
+/*!
+ * \brief Handles the log-directory SCM keyword.
+ * \par Function Description
+ *  The value of the log-directory keyword specifies where to
+ *  write log files.
  *
- *  \param [in] path
+ * \param [in] path
  *
- *  \returns SCM_BOOL_T on success, SCM_BOOL_F if path is invalid.
+ * \returns SCM_BOOL_T on success, SCM_BOOL_F if path is invalid.
  *
- *  \sa geda_utility_log_init
+ * \sa geda_utility_log_init
  */
 SCM g_rc_log_directory(SCM path)
 {
@@ -1325,14 +1348,15 @@ SCM g_rc_log_directory(SCM path)
   return SCM_BOOL_T;
 }
 
-/*! \brief Add a directory to the Guile load path.
- *  \par Function Description
+/*!
+ * \brief Add a directory to the Guile load path.
+ * \par Function Description
  *  Prepends \a s_path to the Guile system '%load-path', after
  *  expanding environment variables.
  *
- *  \param [in] s_path  Path to be added.
+ * \param [in] s_path  Path to be added.
  *
- *  \returns SCM_BOOL_T.
+ * \returns SCM_BOOL_T.
  */
 SCM g_rc_scheme_directory(SCM s_path)
 {
@@ -1366,15 +1390,16 @@ SCM g_rc_scheme_directory(SCM s_path)
   return SCM_BOOL_T;
 }
 
-/*! \brief Handles the check-symbol-version SCM keyword.
- *  \par Function Description
+/*!
+ * \brief Handles the check-symbol-version SCM keyword.
+ * \par Function Description
  *  Uses MACRO to call g_rc_parse_mode to sets boolean configuration
  *  variable based on string argument that controls whether  symbol version
  *  checking is enabled or disabled.
  *
- *  \param [in] mode string "enabled" or "disabled"
+ * \param [in] mode string "enabled" or "disabled"
  *
- *  \returns SCM_BOOL_T on success, SCM_BOOL_F if mode is not a valid value.
+ * \returns SCM_BOOL_T on success, SCM_BOOL_F if mode is not a valid value.
  */
 SCM g_rc_check_symbol_version(SCM mode)
 {
@@ -1387,16 +1412,17 @@ SCM g_rc_check_symbol_version(SCM mode)
                     default_check_symbol_version, mode_table);
 }
 
-/*! \brief Handles the log-time SCM keyword
- *  \par Function Description
+/*!
+ * \brief Handles the log-time SCM keyword
+ * \par Function Description
  *  The log-time keyword specifies whether to prefix the current
  *  time of day to log entries when writing to log files.
  *
- *  \param [in] mode string "enabled" or "disabled"
+ * \param [in] mode string "enabled" or "disabled"
  *
- *  \returns SCM_BOOL_T on success, SCM_BOOL_F if mode is not a valid value.
+ * \returns SCM_BOOL_T on success, SCM_BOOL_F if mode is not a valid value.
  *
- *  \sa geda_utility_log_init
+ * \sa geda_utility_log_init
  */
 SCM g_rc_log_time(SCM mode)
 {
@@ -1420,15 +1446,16 @@ SCM g_rc_log_time(SCM mode)
   return ret_val;
 }
 
-/*! \brief Enable the creation of backup files when saving
- *  \par Function Description
+/*!
+ * \brief Enable the creation of backup files when saving
+ * \par Function Description
  *  Uses MACRO to call g_rc_parse_mode to sets boolean configuration
- *  variable based on string argument. If enabled then a backup file, of
- *  the form 'example.sch~', is created when saving a file.
+ *  variable based on string argument. If enabled then a backup file,
+ *  of the form 'example.sch~', is created when saving a file.
  *
- *  \param [in] mode string "enabled" or "disabled"
+ * \param [in] mode string "enabled" or "disabled"
  *
- *  \returns SCM_BOOL_T on success, SCM_BOOL_F if mode is not a valid value.
+ * \returns SCM_BOOL_T on success, SCM_BOOL_F if mode is not a valid value.
  */
 SCM g_rc_make_backup_files(SCM mode)
 {
@@ -1441,16 +1468,17 @@ SCM g_rc_make_backup_files(SCM mode)
                     default_make_backup_files, mode_table);
 }
 
-/*! \brief Handles the postsript-prolog SCM keyword.
- *  \par Function Description
+/*!
+ * \brief Handles the postsript-prolog SCM keyword.
+ * \par Function Description
  *  The value of the postscript-prolog keyword specifies the file name
  *  of the postscript prolog  file.
  *
- *  \param [in] scmsymname prolog file name.
+ * \param [in] scmsymname prolog file name.
  *
- *  \returns SCM_BOOL_T always.
+ * \returns SCM_BOOL_T always.
  *
- *  \sa f_print_header
+ * \sa f_print_header
  */
 SCM g_rc_postscript_prolog(SCM scmsymname)
 {
@@ -1471,16 +1499,17 @@ SCM g_rc_postscript_prolog(SCM scmsymname)
   return SCM_BOOL_T;
 }
 
-/*! \brief Handles the promote-invisible SCM keyword.
- *  \par Function Description
+/*!
+ * \brief Handles the promote-invisible SCM keyword.
+ * \par Function Description
  *  Uses MACRO to call g_rc_parse_mode to sets boolean configuration
  *  variable based on string argument. If enabled, then invisible floating
  *  attributes are promoted (attached to the outside of the component) if
  *  the text string is invisible.
  *
- *  \param [in] mode string "enabled" or "disabled"
+ * \param [in] mode string "enabled" or "disabled"
  *
- *  \returns SCM_BOOL_T on success, SCM_BOOL_F if mode is not a valid value.
+ * \returns SCM_BOOL_T on success, SCM_BOOL_F if mode is not a valid value.
  */
 SCM g_rc_promote_invisible(SCM mode)
 {
@@ -1497,13 +1526,14 @@ SCM g_rc_promote_invisible(SCM mode)
                     default_promote_invisible, mode_table);
 }
 
-/*! \brief Handles the untitled-name SCM keyword.
- *  \par Function Description
+/*!
+ * \brief Handles the untitled-name SCM keyword.
+ * \par Function Description
  *  Specify the default untitled basename.
  *
- *  \param [in] name
+ * \param [in] name
  *
- *  \returns SCM_BOOL_T always.
+ * \returns SCM_BOOL_T always.
  */
 SCM g_rc_untitled_name(SCM name)
 {
@@ -1524,15 +1554,16 @@ SCM g_rc_untitled_name(SCM name)
   return SCM_BOOL_T;
 }
 
-/*! \brief Handles the show-full-path SCM keyword.
- *  \par Function Description
+/*!
+ * \brief Handles the show-full-path SCM keyword.
+ * \par Function Description
  *  Uses MACRO to call g_rc_parse_mode to sets boolean configuration
  *  variable based on string argument. Application should check this
  *  setting and display the full path in the file name when enabled.
  *
- *  \param [in] mode string "enabled" or "disabled"
+ * \param [in] mode string "enabled" or "disabled"
  *
- *  \returns SCM_BOOL_T on success, SCM_BOOL_F if mode is not a valid value.
+ * \returns SCM_BOOL_T on success, SCM_BOOL_F if mode is not a valid value.
  */
 SCM g_rc_show_full_path(SCM mode)
 {
