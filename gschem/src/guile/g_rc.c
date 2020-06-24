@@ -227,12 +227,10 @@ SCM g_rc_display_color_map (SCM scm_map)
   return SCM_BOOL_T;
 }
 
-/*! \brief Process display-outline-color-map RC entry.
- *  \par Function Description
- *   C function to dynamically convert lisp variable while
- *   processing configuration data for the display-outline-color-map
- *   RC entry.
- *
+/*!
+ * \brief Process display-outline-color-map RC entry.
+ * \par Function Description
+ *  This keyword is handled by libgedacolor and is defunct in gschem.
  */
 SCM g_rc_display_outline_color_map (SCM scm_map)
 {
