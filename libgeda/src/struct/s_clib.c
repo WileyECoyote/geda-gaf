@@ -804,7 +804,7 @@ static void refresh_scm (CLibSource *source)
     return;
   }
 
-  while (symlist != SCM_EOL) {
+  while (!scm_is_null (symlist)) {
 
     SCM symname = SCM_CAR (symlist);
 
