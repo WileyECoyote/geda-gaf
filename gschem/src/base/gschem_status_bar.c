@@ -1507,7 +1507,6 @@ void gschem_status_bar_set_middle_button_text (GtkWidget *widget, const char *te
 #endif
 }
 
-
 /*!
  * \brief Set the right button text displayed on the status bar
  * \par Function Description
