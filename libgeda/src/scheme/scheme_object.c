@@ -1441,7 +1441,7 @@ EDA_SCM_DEFINE (object_set_stroke_x, "%set-object-stroke!", 4, 2, 0,
                     scm_list_1 (cap_s));
   }
 
-  if      (dash_s == solid_sym)   { line_options.line_type = TYPE_SOLID;   }
+  if      (scm_is_eq (dash_s, solid_sym))   { line_options.line_type = TYPE_SOLID;   }
   else if (dash_s == dotted_sym)  { line_options.line_type = TYPE_DOTTED;  }
   else if (dash_s == dashed_sym)  { line_options.line_type = TYPE_DASHED;  }
   else if (dash_s == center_sym)  { line_options.line_type = TYPE_CENTER;  }
