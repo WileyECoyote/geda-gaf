@@ -56,7 +56,7 @@ initialize or even be running Guile.
 .B Libgedacolor
 does not initiate the loading of "rc" files. Instead, application can request
 that a initialization file be processed. Alternatively, application rc files
-can reference the color map files. Example of rc entries in applications
+can reference the color map files. Examples of rc entries in applications
 might look like:
 .IP
 (primitive-load (build-path geda-rc-path "display-colormap-darkbg"))
