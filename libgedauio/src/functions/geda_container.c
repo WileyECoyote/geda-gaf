@@ -467,8 +467,8 @@ geda_container_focus_sort_tab (GtkContainer     *container,
  *
  * \param[in] container  Pointer to a GtkContainer
  * \param[in] children   List of descendents of \a container
- * \param[in] direction: focus direction
- * \param[in] old_focus: widget to use for the starting position, or %NULL
+ * \param[in] direction  focus direction
+ * \param[in] old_focus  widget to use for the starting position, or %NULL
  *                       to determine this automatically.
  *
  * \return A copy of \a children, sorted in correct focusing order, with
