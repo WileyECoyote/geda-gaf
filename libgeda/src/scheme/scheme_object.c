@@ -1432,7 +1432,7 @@ EDA_SCM_DEFINE (object_set_stroke_x, "%set-object-stroke!", 4, 2, 0,
 
   line_options.line_width = scm_to_int (width_s);
 
-  if      (cap_s == none_sym)   { line_options.line_end = END_NONE;   }
+  if      (scm_is_eq (cap_s, none_sym))   { line_options.line_end = END_NONE;   }
   else if (cap_s == square_sym) { line_options.line_end = END_SQUARE; }
   else if (cap_s == round_sym)  { line_options.line_end = END_ROUND;  }
   else {
