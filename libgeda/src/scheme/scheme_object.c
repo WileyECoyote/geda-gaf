@@ -1434,7 +1434,7 @@ EDA_SCM_DEFINE (object_set_stroke_x, "%set-object-stroke!", 4, 2, 0,
 
   if      (scm_is_eq (cap_s, none_sym))   { line_options.line_end = END_NONE;   }
   else if (scm_is_eq (cap_s, square_sym)) { line_options.line_end = END_SQUARE; }
-  else if (cap_s == round_sym)  { line_options.line_end = END_ROUND;  }
+  else if (scm_is_eq (cap_s, round_sym))  { line_options.line_end = END_ROUND;  }
   else {
     scm_misc_error (scheme_object_set_stroke_x,
                     _("Invalid stroke cap style ~A."),
