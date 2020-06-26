@@ -1445,7 +1445,7 @@ EDA_SCM_DEFINE (object_set_stroke_x, "%set-object-stroke!", 4, 2, 0,
   else if (scm_is_eq (dash_s, dotted_sym))  { line_options.line_type = TYPE_DOTTED;  }
   else if (scm_is_eq (dash_s, dashed_sym))  { line_options.line_type = TYPE_DASHED;  }
   else if (scm_is_eq (dash_s, center_sym))  { line_options.line_type = TYPE_CENTER;  }
-  else if (dash_s == phantom_sym) { line_options.line_type = TYPE_PHANTOM; }
+  else if (scm_is_eq (dash_s, phantom_sym)) { line_options.line_type = TYPE_PHANTOM; }
   else {
     scm_misc_error (scheme_object_set_stroke_x,
                     _("Invalid stroke dash style ~A."),
