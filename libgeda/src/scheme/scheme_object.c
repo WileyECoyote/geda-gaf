@@ -1422,6 +1422,7 @@ EDA_SCM_DEFINE (object_set_stroke_x, "%set-object-stroke!", 4, 2, 0,
 
   GedaObject *obj = edascm_to_object (obj_s);
   LINE_OPTIONS line_options;
+  unsigned int cap;
 
   SCM_ASSERT (scm_is_integer (width_s), width_s,
               SCM_ARG2, scheme_object_set_stroke_x);
@@ -1432,14 +1433,17 @@ EDA_SCM_DEFINE (object_set_stroke_x, "%set-object-stroke!", 4, 2, 0,
 
   line_options.line_width = scm_to_int (width_s);
 
-  if      (scm_is_eq (cap_s, none_sym))   { line_options.line_end = END_NONE;   }
-  else if (scm_is_eq (cap_s, square_sym)) { line_options.line_end = END_SQUARE; }
-  else if (scm_is_eq (cap_s, round_sym))  { line_options.line_end = END_ROUND;  }
+  if      (scm_is_eq (cap_s, none_sym))   { cap = END_NONE;   }
+  else if (scm_is_eq (cap_s, square_sym)) { cap = END_SQUARE; }
+  else if (scm_is_eq (cap_s, round_sym))  { cap = END_ROUND;  }
   else {
     scm_misc_error (scheme_object_set_stroke_x,
                     _("Invalid stroke cap style ~A."),
                     scm_list_1 (cap_s));
+    cap = END_NONE;
   }
+
+  line_options.line_end = cap;
 
   if      (scm_is_eq (dash_s, solid_sym))   { line_options.line_type = TYPE_SOLID;   }
   else if (scm_is_eq (dash_s, dotted_sym))  { line_options.line_type = TYPE_DOTTED;  }

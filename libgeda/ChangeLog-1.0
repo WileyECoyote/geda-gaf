@@ -1,3 +1,9 @@
+2020-06-26 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/scheme/scheme_object.c: Add ancillary integer and revise
+      object_set_stroke_x to set line_options even when scm values
+      are invalid.
+
 2020-06-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/guile/g_rc.c: Reformat Doxygen documentation.
