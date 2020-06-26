@@ -81,7 +81,7 @@ The argument list to each of these functions is a list of key value pairs in
 the form ("key" "color"). "key" must be a string name of a recognized component
 or artifact. Provided color map files contain a complete list of all recognized
 keys, but all keys need not be present. The color can be a hex string representation
-of or #f to disable color for the corresponding key entry.
+of the color or #f to disable color for the corresponding key entry.
 .LP
 .SH DOCUMENTATION
 .PP
