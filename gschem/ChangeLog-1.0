@@ -10,6 +10,8 @@
 
     * po/fi.po: Update Finnish translations.
 
+    * po/ml.po: Updated Malayalam translations.
+
 2020-06-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/base/gschem_status_bar.c: Fix incorrect reference to pointer in

@@ -673,34 +673,43 @@ msgstr "0 ഘട്ടങ്ങൾ സ്ക്രോൾ ചെയ്യാൻ �
 msgid "Invalid type assignment, check scrollpan-steps entry in rc file\n"
 msgstr "ടൈപ്പ് അസൈൻ‌മെന്റ് അസാധുവാണ്, ആർ‌സി ഫയലിലെ സ്ക്രോൾ‌പാൻ‌-സ്റ്റെപ്പ് എൻ‌ട്രി പരിശോധിക്കുക\n"
 
+# Invalid zoom factor; asādhuvāya sūṁ ghaṭakaṁ
 #: gschem/src/guile/g_rc.c:2086
 msgid "Invalid zoom factor"
-msgstr ""
+msgstr "അസാധുവായ സൂം ഘടകം"
 
+# Object ~A is not directly included in a page
+# objakṟṟ ~ A nēriṭṭ oru pējil uḷppeṭuttiyiṭṭilla
 #: gschem/src/guile/g_select.c:93 gschem/src/guile/g_select.c:130
 #: gschem/src/guile/g_select.c:166
 msgid "Object ~A is not directly included in a page."
-msgstr ""
+msgstr "ഒബ്ജക്റ്റ് ~A നേരിട്ട് ഒരു പേജിൽ ഉൾപ്പെടുത്തിയിട്ടില്ല."
 
+# Could not launch URI; URI samārambhikkānāyilla
 #: gschem/src/guile/g_util.c:70
 msgid "Could not launch URI"
-msgstr ""
+msgstr "URI സമാരംഭിക്കാനായില്ല"
 
+# Found invalid gschem window smob ~S
+# അസാധുവായ gschem വിൻഡോ സ്മോബ് കണ്ടെത്തി
 #: gschem/src/guile/g_window.c:146
 msgid "Found invalid gschem window smob ~S"
-msgstr ""
+msgstr "അസാധുവായ gschem വിൻഡോ സ്മോബ് കണ്ടെത്തി ~S"
 
+# current value of; nṟe nilavile mūlyaṁ
 #: gschem/src/iface/i_command.c:137 gschem/src/iface/i_command.c:5354
 msgid "current value of"
-msgstr ""
+msgstr "ന്റെ നിലവിലെ മൂല്യം"
 
+# is; āṇ
 #: gschem/src/iface/i_command.c:137 gschem/src/iface/i_command.c:5355
 msgid "is"
-msgstr ""
+msgstr "ആണ്"
 
+# Processing Command; prēāsas'siṅg kamānḍ
 #: gschem/src/iface/i_command.c:523
 msgid "Processing Action"
-msgstr ""
+msgstr "പ്രോസസ്സിംഗ് കമാൻഡ്"
 
 # Select object first
 #: gschem/src/iface/i_command.c:642
