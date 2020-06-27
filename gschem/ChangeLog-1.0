@@ -14,6 +14,8 @@
 
     * po/sv.po: Update Swedish translations.
 
+    * po/tr.po: Update Turkish translations.
+
 2020-06-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/base/gschem_status_bar.c: Fix incorrect reference to pointer in
