@@ -6,6 +6,8 @@
 
     * po/ca.po: Update Catalan translations.
 
+    * po/da.po: Update Danish translations.
+
 2020-06-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/base/gschem_status_bar.c: Fix incorrect reference to pointer in

@@ -697,33 +697,40 @@ msgstr "Kan ikke"
 msgid "while inside an action!\n"
 msgstr "mens kommando er i gang!\n"
 
+# New page created
 #: gschem/src/iface/i_command.c:920 gschem/src/iface/i_command.c:2969
 msgid "New page created"
-msgstr ""
+msgstr "Ny side oprettet"
 
+# New Window created
 #: gschem/src/iface/i_command.c:960
 msgid "New Window created"
-msgstr ""
+msgstr "Nyt vindue oprettet"
 
+# Failed to Save All
 #: gschem/src/iface/i_command.c:1162
 msgid "Failed to Save All"
-msgstr ""
+msgstr "Kunne ikke gemme alle"
 
+# Saved All
 #: gschem/src/iface/i_command.c:1165 gschem/src/iface/i_command.c:1182
 msgid "Saved All"
-msgstr ""
+msgstr "Gemt alle"
 
+# Error encountered, Save Failed
 #: gschem/src/iface/i_command.c:1179
 msgid "Error encountered, Save Failed"
-msgstr ""
+msgstr "SaveError stødt på, Save Failed"
 
+# Write image
 #: gschem/src/iface/i_command.c:1249 gschem/src/x/x_image.c:545
 msgid "Write Image"
-msgstr ""
+msgstr "Skriv billede"
 
+# Write PDF
 #: gschem/src/iface/i_command.c:1271
 msgid "Write PDF"
-msgstr ""
+msgstr "Skriv PDF"
 
 #: gschem/src/iface/i_command.c:1367
 msgid "Canceled close all\n"
