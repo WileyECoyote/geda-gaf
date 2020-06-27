@@ -1,3 +1,7 @@
+2020-06-27 Wiley E. Hill <wileyhill@gmail.com>
+
+    * po/ar.po: Update Arabic translations.
+
 2020-06-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/base/gschem_status_bar.c: Fix incorrect reference to pointer in
