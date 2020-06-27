@@ -705,35 +705,40 @@ msgstr "Ei voi"
 msgid "while inside an action!\n"
 msgstr "kun komento on käynnissä!\n"
 
+# New page created
 #: gschem/src/iface/i_command.c:920 gschem/src/iface/i_command.c:2969
 msgid "New page created"
-msgstr ""
+msgstr "Uusi sivu luotu"
 
 # New Window created
 #: gschem/src/iface/i_command.c:960
 msgid "New Window created"
 msgstr "Uusi ikkuna luotu"
 
+# Failed to Save All
 #: gschem/src/iface/i_command.c:1162
 msgid "Failed to Save All"
-msgstr ""
+msgstr "Uusi ikkuna luotu"
 
+# Saved All
 #: gschem/src/iface/i_command.c:1165 gschem/src/iface/i_command.c:1182
 msgid "Saved All"
-msgstr ""
+msgstr "Tallennettu kaikki"
 
+# Error encountered, Save Failed
 #: gschem/src/iface/i_command.c:1179
 msgid "Error encountered, Save Failed"
-msgstr ""
+msgstr "Tapahtui virhe, Tallennus epäonnistui"
 
 # write image
 #: gschem/src/iface/i_command.c:1249 gschem/src/x/x_image.c:545
 msgid "Write Image"
 msgstr "write kuva"
 
+# Write PDF
 #: gschem/src/iface/i_command.c:1271
 msgid "Write PDF"
-msgstr ""
+msgstr "Kirjoita PDF"
 
 #: gschem/src/iface/i_command.c:1367
 msgid "Canceled close all\n"
