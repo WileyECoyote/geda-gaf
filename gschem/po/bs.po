@@ -706,26 +706,30 @@ msgstr "Nova strana kreirana"
 msgid "New Window created"
 msgstr "Novi prozor stvorio"
 
+# Failed to Save All
 #: gschem/src/iface/i_command.c:1162
 msgid "Failed to Save All"
-msgstr ""
+msgstr "Spremanje svih nije uspjelo"
 
+# Saved All
 #: gschem/src/iface/i_command.c:1165 gschem/src/iface/i_command.c:1182
 msgid "Saved All"
-msgstr ""
+msgstr "Sve je spremljeno"
 
+# Error encountered, Save Failed
 #: gschem/src/iface/i_command.c:1179
 msgid "Error encountered, Save Failed"
-msgstr ""
+msgstr "Došlo je do greške, spremanje nije uspjelo"
 
 # Write image
 #: gschem/src/iface/i_command.c:1249 gschem/src/x/x_image.c:545
 msgid "Write Image"
 msgstr "Piši sliku"
 
+# Write PDF
 #: gschem/src/iface/i_command.c:1271
 msgid "Write PDF"
-msgstr ""
+msgstr "Napišite PDF"
 
 #: gschem/src/iface/i_command.c:1367
 msgid "Canceled close all\n"
