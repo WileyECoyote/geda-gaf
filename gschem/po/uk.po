@@ -775,33 +775,40 @@ msgstr "Не можу"
 msgid "while inside an action!\n"
 msgstr "поки командування виконується!\n"
 
+# New page created; Nova storinka stvorena
 #: gschem/src/iface/i_command.c:920 gschem/src/iface/i_command.c:2969
 msgid "New page created"
-msgstr ""
+msgstr "Нова сторінка створена"
 
+# New Window created; Stvoreno nove vikno
 #: gschem/src/iface/i_command.c:960
 msgid "New Window created"
-msgstr ""
+msgstr "Створено нове вікно"
 
+# Failed to Save All; Ne vdalosya zberehty vsikh
 #: gschem/src/iface/i_command.c:1162
 msgid "Failed to Save All"
-msgstr ""
+msgstr "Не вдалося зберегти всіх"
 
+# Saved All; Zberezheno vsikh
 #: gschem/src/iface/i_command.c:1165 gschem/src/iface/i_command.c:1182
 msgid "Saved All"
-msgstr ""
+msgstr "Збережено всіх"
 
+# Error encountered, Save Failed; Vynykla pomylka, zberehty pomylku
 #: gschem/src/iface/i_command.c:1179
 msgid "Error encountered, Save Failed"
-msgstr ""
+msgstr "Виникла помилка, зберегти помилку"
 
+# Write image; Napysaty zobrazhennya
 #: gschem/src/iface/i_command.c:1249 gschem/src/x/x_image.c:545
 msgid "Write Image"
-msgstr ""
+msgstr "Написати зображення"
 
+# Write PDF; Pyshitʹ PDF
 #: gschem/src/iface/i_command.c:1271
 msgid "Write PDF"
-msgstr ""
+msgstr "Пишіть PDF"
 
 #: gschem/src/iface/i_command.c:1367
 msgid "Canceled close all\n"
