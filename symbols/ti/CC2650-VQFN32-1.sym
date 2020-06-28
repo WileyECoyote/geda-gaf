@@ -21,6 +21,17 @@ pinlabel=RF_N
 T 450 3875 5 8 0 1 0 2 1
 pintype=io
 }
+P 100 3500 400 3500 1 0 0
+{
+T 300 3550 5 8 1 1 0 6 1
+pinnumber=3
+T 300 3450 5 8 0 1 0 8 1
+pinseq=3
+T 450 3500 9 10 1 1 0 0 1
+pinlabel=RX_TX
+T 550 3475 5 8 0 1 0 2 1
+pintype=pas
+}
 P 100 3100 400 3100 1 0 0
 {
 T 300 3150 5 8 1 1 0 6 1
@@ -84,7 +95,7 @@ pinnumber=9
 T 1450 200 5 8 0 1 0 6 1
 pinseq=9
 T 1500 450 9 10 1 1 90 0 1
-pinlabel=VIO_3
+pinlabel=DIO_3
 T 1525 450 5 8 0 1 90 2 1
 pintype=pwr
 }
@@ -352,6 +363,17 @@ pinlabel=VDDR_RF
 T 1525 5350 5 8 0 1 90 8 1
 pintype=pwr
 }
+P 100 1000 400 1000 1 0 0
+{
+T 300 1050 5 8 1 1 0 6 1
+pinnumber=33
+T 300 850 5 8 0 1 0 6 1
+pinseq=33
+T 450 1000 9 10 1 1 0 0 1
+pinlabel=GND
+T 450 975 5 8 0 1 0 2 1
+pintype=pwr
+}
 T 5400 5500 8 10 1 1 0 6 1
 refdes=U?
 T 2800 3000 9 10 1 1 0 3 1
@@ -374,25 +396,3 @@ T 5200 6500 5 10 0 0 0 0 1
 dist-license=GPLv2
 T 5200 6300 5 10 0 0 0 0 1
 use-license=unlimited
-P 100 1000 400 1000 1 0 0
-{
-T 300 1050 5 8 1 1 0 6 1
-pinnumber=33
-T 300 850 5 8 0 1 0 6 1
-pinseq=33
-T 450 1000 9 10 1 1 0 0 1
-pinlabel=GND
-T 450 975 5 8 0 1 0 2 1
-pintype=pwr
-}
-P 100 3500 400 3500 1 0 0
-{
-T 300 3550 5 8 1 1 0 6 1
-pinnumber=3
-T 300 3450 5 8 0 1 0 8 1
-pinseq=3
-T 450 3500 9 10 1 1 0 0 1
-pinlabel=RX_TX
-T 550 3475 5 8 0 1 0 2 1
-pintype=pas
-}
