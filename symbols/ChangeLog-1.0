@@ -1,5 +1,7 @@
 2020-06-28 Wiley E. Hill <wileyhill@gmail.com>
 
+    * ti/BeagleBoard-Exp.sym: Update documentation attribute.
+
     * ti/CC2650-VQFN32-1.sym: Update pin label and sequence.
 
     * ti/CC2650-VQFN32-3.sym: Add new symbol; multistandard wireless MCU.

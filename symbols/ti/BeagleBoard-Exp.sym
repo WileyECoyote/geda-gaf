@@ -7,7 +7,7 @@ device=BeagleBoard
 T 2500 7500 5 10 0 0 0 0 1
 author=rbarlow
 T 2500 6500 5 10 0 0 0 0 1
-documentation=
+documentation=http://beagleboard.org/Support/bone101
 T 2500 7300 5 10 0 1 0 0 1
 description=BeagleBoard expansion header
 T 2500 7100 5 10 0 0 0 0 1
