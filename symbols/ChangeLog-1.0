@@ -2,6 +2,8 @@
 
     * ti/CC2650-VQFN32-1.sym: Update pin label and sequence.
 
+    * ti/CC2650-VQFN32-3.sym: Add new symbol; multistandard wireless MCU.
+
 2020-06-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * ti/CC2650-VQFN32-1.sym: Add new symbol; multistandard wireless MCU.
