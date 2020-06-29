@@ -1422,7 +1422,7 @@ EDA_SCM_DEFINE (object_set_stroke_x, "%set-object-stroke!", 4, 2, 0,
 
   GedaObject *obj = edascm_to_object (obj_s);
   LINE_OPTIONS line_options;
-  unsigned int cap;
+  unsigned int cap, type;
 
   SCM_ASSERT (scm_is_integer (width_s), width_s,
               SCM_ARG2, scheme_object_set_stroke_x);
@@ -1445,16 +1445,19 @@ EDA_SCM_DEFINE (object_set_stroke_x, "%set-object-stroke!", 4, 2, 0,
 
   line_options.line_end = cap;
 
-  if      (scm_is_eq (dash_s, solid_sym))   { line_options.line_type = TYPE_SOLID;   }
-  else if (scm_is_eq (dash_s, dotted_sym))  { line_options.line_type = TYPE_DOTTED;  }
-  else if (scm_is_eq (dash_s, dashed_sym))  { line_options.line_type = TYPE_DASHED;  }
-  else if (scm_is_eq (dash_s, center_sym))  { line_options.line_type = TYPE_CENTER;  }
-  else if (scm_is_eq (dash_s, phantom_sym)) { line_options.line_type = TYPE_PHANTOM; }
+  if      (scm_is_eq (dash_s, solid_sym))   { type = TYPE_SOLID;   }
+  else if (scm_is_eq (dash_s, dotted_sym))  { type = TYPE_DOTTED;  }
+  else if (scm_is_eq (dash_s, dashed_sym))  { type = TYPE_DASHED;  }
+  else if (scm_is_eq (dash_s, center_sym))  { type = TYPE_CENTER;  }
+  else if (scm_is_eq (dash_s, phantom_sym)) { type = TYPE_PHANTOM; }
   else {
     scm_misc_error (scheme_object_set_stroke_x,
                     _("Invalid stroke dash style ~A."),
                     scm_list_1 (dash_s));
+    type = TYPE_SOLID;
   }
+
+  line_options.line_type = type;
 
   switch (line_options.line_type) {
   case TYPE_DASHED:
