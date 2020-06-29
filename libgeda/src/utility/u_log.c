@@ -142,8 +142,8 @@ static void u_log_handler (const char    *log_domain,
  * \brief Terminates the logging of messages.
  * \par Function Description
  *  This function de-registers the handler for redirection to the log
- *  file and then close the log file. Subsequent messages are lost after
- *  the close.
+ *  file and then closes the log file. Subsequent messages are lost
+ *  after the closure.
  */
 void geda_utility_log_close (void)
 {
