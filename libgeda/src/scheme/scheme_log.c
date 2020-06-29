@@ -60,8 +60,8 @@ static GLogLevelFlags decode_level (SCM level_s)
 /*!
  * \brief Open Log file Scheme API provider
  * \par Function Description
- *  Initializes libgeda logging to a file. Silently ignore request to
- *  re-initialize. Log messages are not saved to a log file unless
+ *  Initializes libgeda logging to a file. Silently ignores request
+ *  to re-initialize. Log messages are not saved to a log file unless
  *  log-open has been called prior to writing the maseage to the log.
  *
  * \note Scheme API: Implements the \%log-open! procedure in the (geda
