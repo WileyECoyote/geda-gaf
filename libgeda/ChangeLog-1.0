@@ -1,3 +1,9 @@
+2020-06-29 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/scheme/scheme_log.c: Update documentation for function:
+
+          * log_close_x
+
 2020-06-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/scheme/scheme_object.c: Add ancillary integer and revise

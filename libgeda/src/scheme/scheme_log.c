@@ -89,10 +89,14 @@ EDA_SCM_DEFINE (log_open_x, "%log-open", 0, 1, 0,
   return SCM_UNSPECIFIED;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Close Log file Scheme API provider
+ * \par Function Description
+ *  Provides Scheme API to close the log file opened using
+ *  "%log-open". Subsequent log message will not be recorded
+ *  in the log file.
  *
+ * \sa log_open_x geda_utility_log_close
  */
 EDA_SCM_DEFINE (log_close_x, "%log-close", 0, 0, 0,
                (),
