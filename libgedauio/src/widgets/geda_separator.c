@@ -126,7 +126,7 @@ geda_separator_expose (GtkWidget *widget, GdkEventExpose *event)
     if (wide_separators) {
       gtk_paint_box (style, window, state, GTK_SHADOW_ETCHED_OUT,
                      &event->area, widget, "vseparator",
-                     widget->allocation.x +
+                     allocation->x +
                     (widget->allocation.width - separator_width) / 2,
                      widget->allocation.y,
                      separator_width,
