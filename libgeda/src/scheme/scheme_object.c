@@ -434,7 +434,8 @@ EDA_SCM_DEFINE (object_stroke, "%object-stroke", 1, 0, 0,
 EDA_SCM_DEFINE (object_fill, "%object-fill", 1, 0, 0,
                (SCM obj_s), "Get the fill properties of an object.")
 {
-  SCM_ASSERT ((edascm_is_object_type (obj_s, OBJ_BOX)    ||
+  SCM_ASSERT ((edascm_is_object_type (obj_s, OBJ_ARC)    ||
+               edascm_is_object_type (obj_s, OBJ_BOX)    ||
                edascm_is_object_type (obj_s, OBJ_CIRCLE) ||
                edascm_is_object_type (obj_s, OBJ_PATH)),
                obj_s, SCM_ARG1, scheme_object_fill);

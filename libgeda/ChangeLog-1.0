@@ -1,3 +1,8 @@
+2020-06-30 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/scheme/scheme_object.c: Revise object_fill to allow retrieving
+      fill options from arc objects.
+
 2020-06-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/scheme/scheme_log.c: Update documentation for function:
