@@ -495,7 +495,8 @@ EDA_SCM_DEFINE (object_set_fill_x, "%set-object-fill!", 2, 5, 0,
                 SCM space2_s, SCM angle2_s),
                "Set the fill properties of an object.")
 {
-  SCM_ASSERT ((edascm_is_object_type (obj_s, OBJ_BOX)    ||
+  SCM_ASSERT ((edascm_is_object_type (obj_s, OBJ_ARC)    ||
+               edascm_is_object_type (obj_s, OBJ_BOX)    ||
                edascm_is_object_type (obj_s, OBJ_CIRCLE) ||
                edascm_is_object_type (obj_s, OBJ_PATH)),
                obj_s, SCM_ARG1, scheme_object_set_fill_x);

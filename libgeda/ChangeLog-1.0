@@ -1,7 +1,8 @@
 2020-06-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/scheme/scheme_object.c: Revise object_fill to allow retrieving
-      fill options from arc objects.
+      fill options from arc objects. Revise object_set_fill_x to allow
+      setting fill options for arc objects.
 
 2020-06-29 Wiley E. Hill <wileyhill@gmail.com>
 
