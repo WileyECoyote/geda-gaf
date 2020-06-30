@@ -568,7 +568,6 @@ EDA_SCM_DEFINE (object_set_fill_x, "%set-object-fill!", 2, 5, 0,
     SCM_ASSERT (scm_is_integer (angle1_s), angle1_s,
                 SCM_ARG5, scheme_object_set_fill_x);
     fill_options.fill_angle1 = scm_to_int (angle1_s);
-    /* This case intentionally falls through */
     break;
 
   case FILLING_HOLLOW:
