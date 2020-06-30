@@ -116,7 +116,7 @@ EDA_SCM_DEFINE (log_close_x, "%log-close", 0, 0, 0,
  *  should be one of the symbols "error", "critical", "message", "info"
  *  "warning" or "debug".
  *
- * \note Scheme API: Implements the \%log! procedure in the (geda core
+ * \note Scheme API: Implements the %log! procedure in the (geda core
  *       log) module.
  *
  * param domain_s  The log domain, as a string, or SCM_BOOL_F.
