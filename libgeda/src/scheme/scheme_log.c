@@ -34,7 +34,6 @@ SCM_SYMBOL(message_sym,  "message");
 SCM_SYMBOL(info_sym,     "info");
 SCM_SYMBOL(debug_sym,    "debug");
 
-
 /*!
  * \brief Convert a Scheme symbol to log level flags.
  * \par Function Description

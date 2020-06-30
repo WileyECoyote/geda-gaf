@@ -580,6 +580,7 @@ EDA_SCM_DEFINE (object_set_fill_x, "%set-object-fill!", 2, 5, 0,
   geda_object_notify_emit_pre_change (obj);
 
   geda_set_object_fill_options (obj, &fill_options);
+
   geda_object_notify_emit_change (obj);
 
   geda_struct_object_set_page_changed (obj);
