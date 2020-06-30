@@ -478,8 +478,8 @@ EDA_SCM_DEFINE (object_fill, "%object-fill", 1, 0, 0,
 /*!
  * \brief Set the fill properties of an object.
  * \par Function Description
- *  Updates the fill settings of the object \a obj_s.  If \a obj_s is
- *  not a box, circle, or path, throws a Scheme error.  The optional
+ *  Updates the fill settings of the object \a obj_s. If \a obj_s is
+ *  not a box, circle, or path, throws a Scheme error. The optional
  *  parameters \a width_s, \a angle1_s, \a space1_s, \a angle2_s and
  *  space2_s
  *
