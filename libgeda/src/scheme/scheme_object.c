@@ -413,16 +413,16 @@ EDA_SCM_DEFINE (object_stroke, "%object-stroke", 1, 0, 0,
 /*!
  * \brief Get the fill properties of an object.
  * \par Function Description
- *  Returns the fill settings of the object \a obj_s.  If \a obj_s is
- *  not a box, circle, or path, throws a Scheme error.  The return
+ *  Returns the fill settings of the object \a obj_s. If \a obj_s is
+ *  not a box, circle, or path, throws a Scheme error. The return
  *  value is a list of parameters:
  *
  * -# fill style (a symbol: hollow, solid, mesh or hatch)
  * -# up to five fill parameters, depending on fill style:
- *   -# none for hollow or solid fills
- *   -# line width, line angle, and line spacing for hatch fills.
- *   -# line width, first angle and spacing, and second angle and
- *      spacing for mesh fills.
+ * -# none for hollow or solid fills
+ * -# line width, line angle, and line spacing for hatch fills.
+ * -# line width, first angle and spacing, and second angle and
+ *    spacing for mesh fills.
  *
  * \note Scheme API: Implements the %object-fill procedure in the
  *       (geda core object) module.
