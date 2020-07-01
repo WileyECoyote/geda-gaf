@@ -94,6 +94,7 @@ EDA_SCM_DEFINE (os_sys_config_dirs, "%sys-config-dirs", 0, 0, 0, (),
 {
   const char *path = geda_sys_config_path();
   SCM dir = scm_from_locale_string (path);
+
   return scm_list_1 (dir);
 }
 
@@ -114,6 +115,7 @@ EDA_SCM_DEFINE (os_sys_data_dirs, "%sys-data-dirs", 0, 0, 0, (),
    * it's in the current locale's encoding. */
   const char *path = geda_sys_data_path();
   SCM dir = scm_from_locale_string (path);
+
   return scm_list_1 (dir);
 }
 
@@ -132,6 +134,7 @@ EDA_SCM_DEFINE (os_user_config_dir, "%user-config-dir", 0, 0, 0, (),
 {
   const char *path = geda_user_config_path();
   SCM dir = scm_from_locale_string (path);
+
   return scm_list_1 (dir);
 }
 
@@ -152,6 +155,7 @@ EDA_SCM_DEFINE (os_user_data_dir, "%user-data-dir", 0, 0, 0, (),
 {
   const char *path = geda_user_config_path();
   SCM dir = scm_from_locale_string (path);
+
   return scm_list_1 (dir);
 }
 
@@ -186,5 +190,4 @@ edascm_init_os (void)
 {
   /* Define the (geda core os) module */
   scm_c_define_module ("geda core os", init_module_geda_core_os, NULL);
-
 }
