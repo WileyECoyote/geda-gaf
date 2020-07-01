@@ -27,7 +27,6 @@
 #include "../../../version.h"
 
 #include "../../include/libgeda_priv.h"
-#include "../../include/libgedaguile_priv.h"
 
 /*!
  * \brief Returns Libgeda EDA version list.

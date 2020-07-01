@@ -6,6 +6,9 @@
           * src/scheme/edascmvaluetypes.c
           * src/scheme/scheme_log.c
 
+    * src/scheme/scheme_version.c: Remove unnecessary inclusion of
+      libgedaguile_priv.h.
+
 2020-06-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/scheme/scheme_object.c: Revise object_fill to allow retrieving
