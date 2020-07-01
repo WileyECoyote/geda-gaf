@@ -3,6 +3,7 @@
     * src/scheme: Update Free Software Foundation address in header:
 
           * src/scheme/edascmhookproxy.c
+          * src/scheme/edascmvaluetypes.c
 
 2020-06-30 Wiley E. Hill <wileyhill@gmail.com>
 
