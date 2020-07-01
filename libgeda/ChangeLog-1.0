@@ -4,6 +4,7 @@
 
           * src/scheme/edascmhookproxy.c
           * src/scheme/edascmvaluetypes.c
+          * src/scheme/scheme_log.c
 
 2020-06-30 Wiley E. Hill <wileyhill@gmail.com>
 
