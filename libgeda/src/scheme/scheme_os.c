@@ -132,8 +132,9 @@ EDA_SCM_DEFINE (os_sys_data_dirs, "%sys-data-dirs", 0, 0, 0, (),
 EDA_SCM_DEFINE (os_user_config_dir, "%user-config-dir", 0, 0, 0, (),
                "Return a list of search directories for user configuration.")
 {
-  const char *path = geda_user_config_path();
-  SCM dir = scm_from_locale_string (path);
+  SCM dir;
+
+  dir = scm_from_locale_string (geda_user_config_path());
 
   return scm_list_1 (dir);
 }
