@@ -1,3 +1,9 @@
+2020-07-01 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/scheme: Update Free Software Foundation address in header:
+
+          * src/scheme/edascmhookproxy.c
+
 2020-06-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/scheme/scheme_object.c: Revise object_fill to allow retrieving
