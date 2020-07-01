@@ -31,9 +31,9 @@
 /*!
  * \brief Returns Libgeda EDA version list.
  * \par Function Description
- * Returns the list consisting of Scheme strings representing
- * PREPEND_VERSION_STRING, PACKAGE_DOTTED_VERSION, and
- * PACKAGE_GIT_COMMIT macro strings.
+ *  Returns the list consisting of Scheme strings representing
+ *  PREPEND_VERSION_STRING, PACKAGE_DOTTED_VERSION, and
+ *  PACKAGE_GIT_COMMIT macro strings.
  */
 SCM_DEFINE (libgeda_version, "%libgeda-version", 0, 0, 0,
             (),
