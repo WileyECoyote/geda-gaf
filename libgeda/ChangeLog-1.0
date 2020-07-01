@@ -6,6 +6,9 @@
           * src/scheme/edascmvaluetypes.c
           * src/scheme/scheme_log.c
 
+    * src/scheme/scheme_os.c: Eliminate ancillary pointer to path in
+      procedure os_user_data_dir.
+
     * src/scheme/scheme_version.c: Remove unnecessary inclusion of
       libgedaguile_priv.h.
 
