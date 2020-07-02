@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2020-03-21 22:07-0500\n"
+"POT-Creation-Date: 2020-07-02 11:09-0500\n"
 "PO-Revision-Date: 2012-01-31 12:07+0000\n"
 "Last-Translator: Wiley Edward Hill <wileyhill@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -503,7 +503,7 @@ msgstr ""
 msgid "Error loading configuration, file name is undefined\n"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:1115 libgeda/src/guile/g_rc_parse.c:295
+#: libgeda/src/geda/geda_config.c:1115 libgeda/src/guile/g_rc_parse.c:296
 msgid "accessing file"
 msgstr ""
 
@@ -844,136 +844,136 @@ msgstr ""
 msgid "restore"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:124
+#: libgeda/src/guile/g_rc.c:128
 msgid "Check library path"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:459
+#: libgeda/src/guile/g_rc.c:467
 msgid "Check library search path"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:567
+#: libgeda/src/guile/g_rc.c:576
 msgid "Invalid path passed to source-library"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:618 libgeda/src/guile/g_rc.c:628
+#: libgeda/src/guile/g_rc.c:628 libgeda/src/guile/g_rc.c:638
 msgid "Invalid path passed to source-library-search"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:741
+#: libgeda/src/guile/g_rc.c:753
 #, c-format
 msgid "Bad value [%d], check bus-style setting in configuration file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:742 libgeda/src/guile/g_rc.c:748
-#: libgeda/src/guile/g_rc.c:786 libgeda/src/guile/g_rc.c:792
-#: libgeda/src/guile/g_rc.c:830 libgeda/src/guile/g_rc.c:836
-#: libgeda/src/guile/g_rc.c:875 libgeda/src/guile/g_rc.c:881
-#: libgeda/src/guile/g_rc.c:909 libgeda/src/guile/g_rc.c:937
-#: libgeda/src/guile/g_rc.c:965 libgeda/src/guile/g_rc.c:993
-#: libgeda/src/guile/g_rc.c:1021 libgeda/src/guile/g_rc.c:1049
-#: libgeda/src/guile/g_rc.c:1077 libgeda/src/guile/g_rc.c:1105
+#: libgeda/src/guile/g_rc.c:754 libgeda/src/guile/g_rc.c:760
+#: libgeda/src/guile/g_rc.c:799 libgeda/src/guile/g_rc.c:805
+#: libgeda/src/guile/g_rc.c:844 libgeda/src/guile/g_rc.c:850
+#: libgeda/src/guile/g_rc.c:891 libgeda/src/guile/g_rc.c:897
+#: libgeda/src/guile/g_rc.c:926 libgeda/src/guile/g_rc.c:955
+#: libgeda/src/guile/g_rc.c:984 libgeda/src/guile/g_rc.c:1013
+#: libgeda/src/guile/g_rc.c:1042 libgeda/src/guile/g_rc.c:1071
+#: libgeda/src/guile/g_rc.c:1100 libgeda/src/guile/g_rc.c:1129
 #, c-format
 msgid "Continuing with default value=[%d]\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:747
+#: libgeda/src/guile/g_rc.c:759
 #, c-format
 msgid ""
 "Invalid type assignment, check bus-style setting in configuration file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:785
+#: libgeda/src/guile/g_rc.c:798
 #, c-format
 msgid "Bad value [%d], check line-style setting in configuration file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:791
+#: libgeda/src/guile/g_rc.c:804
 #, c-format
 msgid ""
 "Invalid type assignment, check line-style setting in configuration file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:829
+#: libgeda/src/guile/g_rc.c:843
 #, c-format
 msgid "Bad value [%d], check net-style setting in configuration file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:835
+#: libgeda/src/guile/g_rc.c:849
 #, c-format
 msgid ""
 "Invalid type assignment, check net-style setting in configuration file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:874
+#: libgeda/src/guile/g_rc.c:890
 #, c-format
 msgid "Bad value [%d], check pin-style setting in configuration file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:880
+#: libgeda/src/guile/g_rc.c:896
 #, c-format
 msgid ""
 "Invalid type assignment, check pin-style setting in configuration file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:908
+#: libgeda/src/guile/g_rc.c:925
 #, c-format
 msgid ""
 "Invalid type assignment, check thick-bus-width setting in configuration "
 "file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:936
+#: libgeda/src/guile/g_rc.c:954
 #, c-format
 msgid ""
 "Invalid type assignment, check thick-line-width setting in configuration "
 "file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:964
+#: libgeda/src/guile/g_rc.c:983
 #, c-format
 msgid ""
 "Invalid type assignment, check thick-net-width setting in configuration "
 "file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:992
+#: libgeda/src/guile/g_rc.c:1012
 #, c-format
 msgid ""
 "Invalid type assignment, check thick-pin-width setting in configuration "
 "file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:1020
+#: libgeda/src/guile/g_rc.c:1041
 #, c-format
 msgid ""
 "Invalid type assignment, check thin-bus-width setting in configuration file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:1048
+#: libgeda/src/guile/g_rc.c:1070
 #, c-format
 msgid ""
 "Invalid type assignment, check thin-line-width setting in configuration "
 "file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:1076
+#: libgeda/src/guile/g_rc.c:1099
 #, c-format
 msgid ""
 "Invalid type assignment, check thin-net-width setting in configuration file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:1104
+#: libgeda/src/guile/g_rc.c:1128
 #, c-format
 msgid ""
 "Invalid type assignment, check thin-pin-width setting in configuration file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:1165
+#: libgeda/src/guile/g_rc.c:1190
 msgid "list element is not a string"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:1265 libgeda/src/guile/g_rc.c:1305
+#: libgeda/src/guile/g_rc.c:1292 libgeda/src/guile/g_rc.c:1333
 msgid "invalid path"
 msgstr ""
 
@@ -989,27 +989,27 @@ msgstr ""
 msgid "Failed to load configuration from"
 msgstr ""
 
-#: libgeda/src/guile/g_rc_parse.c:280
+#: libgeda/src/guile/g_rc_parse.c:281
 msgid "Loaded RC file"
 msgstr ""
 
-#: libgeda/src/guile/g_rc_parse.c:284
+#: libgeda/src/guile/g_rc_parse.c:285
 msgid "Error encountered processing RC file"
 msgstr ""
 
-#: libgeda/src/guile/g_rc_parse.c:301
+#: libgeda/src/guile/g_rc_parse.c:302
 msgid "Error accessing configuration"
 msgstr ""
 
-#: libgeda/src/guile/g_rc_parse.c:450
+#: libgeda/src/guile/g_rc_parse.c:451
 msgid "ERROR"
 msgstr ""
 
-#: libgeda/src/guile/g_rc_parse.c:456
+#: libgeda/src/guile/g_rc_parse.c:457
 msgid "An unknown error occurred while parsing configuration files."
 msgstr ""
 
-#: libgeda/src/guile/g_rc_parse.c:475
+#: libgeda/src/guile/g_rc_parse.c:476
 msgid "The log may contain more information."
 msgstr ""
 
@@ -1513,11 +1513,11 @@ msgstr ""
 msgid "Setting alignment to LOWER_LEFT\n"
 msgstr ""
 
-#: libgeda/src/scheme/edascmhookproxy.c:143
+#: libgeda/src/scheme/edascmhookproxy.c:146
 msgid "Scheme hook"
 msgstr ""
 
-#: libgeda/src/scheme/edascmhookproxy.c:144
+#: libgeda/src/scheme/edascmhookproxy.c:147
 msgid "The Scheme-level hook to proxy"
 msgstr ""
 
@@ -1580,95 +1580,95 @@ msgstr ""
 msgid "Object ~A has invalid stroke dash style ~A"
 msgstr ""
 
-#: libgeda/src/scheme/scheme_object.c:462
+#: libgeda/src/scheme/scheme_object.c:463
 msgid "Object ~A has invalid fill style ~A"
 msgstr ""
 
-#: libgeda/src/scheme/scheme_object.c:518
+#: libgeda/src/scheme/scheme_object.c:520
 msgid "Invalid fill style ~A."
 msgstr ""
 
-#: libgeda/src/scheme/scheme_object.c:526
+#: libgeda/src/scheme/scheme_object.c:528
 msgid "Missing second space parameter for fill style ~A."
 msgstr ""
 
-#: libgeda/src/scheme/scheme_object.c:535
+#: libgeda/src/scheme/scheme_object.c:537
 msgid "Missing second angle parameter for fill style ~A."
 msgstr ""
 
-#: libgeda/src/scheme/scheme_object.c:546
+#: libgeda/src/scheme/scheme_object.c:548
 msgid "Missing stroke width parameter for fill style ~A."
 msgstr ""
 
-#: libgeda/src/scheme/scheme_object.c:555
+#: libgeda/src/scheme/scheme_object.c:557
 msgid "Missing space parameter for fill style ~A."
 msgstr ""
 
-#: libgeda/src/scheme/scheme_object.c:564
+#: libgeda/src/scheme/scheme_object.c:566
 msgid "Missing angle parameter for fill style ~A."
 msgstr ""
 
-#: libgeda/src/scheme/scheme_object.c:867
+#: libgeda/src/scheme/scheme_object.c:869
 msgid "Object ~A has invalid pin type."
 msgstr ""
 
-#: libgeda/src/scheme/scheme_object.c:1175
+#: libgeda/src/scheme/scheme_object.c:1177
 msgid "Invalid text alignment ~A."
 msgstr ""
 
-#: libgeda/src/scheme/scheme_object.c:1191
+#: libgeda/src/scheme/scheme_object.c:1193
 msgid "Invalid text angle ~A. Must be 0, 90, 180, or 270 degrees"
 msgstr ""
 
-#: libgeda/src/scheme/scheme_object.c:1219
+#: libgeda/src/scheme/scheme_object.c:1221
 msgid "Invalid text name/value visibility ~A."
 msgstr ""
 
-#: libgeda/src/scheme/scheme_object.c:1293
+#: libgeda/src/scheme/scheme_object.c:1295
 msgid "Text object ~A has invalid text alignment ~A"
 msgstr ""
 
-#: libgeda/src/scheme/scheme_object.c:1302
+#: libgeda/src/scheme/scheme_object.c:1304
 msgid "Text object ~A has invalid visibility ~A"
 msgstr ""
 
-#: libgeda/src/scheme/scheme_object.c:1312
+#: libgeda/src/scheme/scheme_object.c:1314
 msgid "Text object ~A has invalid text attribute visibility ~A"
 msgstr ""
 
-#: libgeda/src/scheme/scheme_object.c:1353
+#: libgeda/src/scheme/scheme_object.c:1355
 msgid "Object ~A is not included in a page."
 msgstr ""
 
-#: libgeda/src/scheme/scheme_object.c:1440
+#: libgeda/src/scheme/scheme_object.c:1443
 msgid "Invalid stroke cap style ~A."
 msgstr ""
 
-#: libgeda/src/scheme/scheme_object.c:1451
+#: libgeda/src/scheme/scheme_object.c:1457
 msgid "Invalid stroke dash style ~A."
 msgstr ""
 
-#: libgeda/src/scheme/scheme_object.c:1461
+#: libgeda/src/scheme/scheme_object.c:1470
 msgid "Missing dash length parameter for dash style ~A."
 msgstr ""
 
-#: libgeda/src/scheme/scheme_object.c:1472
+#: libgeda/src/scheme/scheme_object.c:1481
 msgid "Missing dot/dash space parameter for dash style ~A."
 msgstr ""
 
-#: libgeda/src/scheme/scheme_object.c:1527
+#: libgeda/src/scheme/scheme_object.c:1536
 msgid "Object ~A has bad type '~A'"
 msgstr ""
 
-#: libgeda/src/scheme/scheme_object.c:1653
+#: libgeda/src/scheme/scheme_object.c:1662
 msgid "Path object ~A has invalid element type ~A at index ~A"
 msgstr ""
 
-#: libgeda/src/scheme/scheme_object.c:1782
+#: libgeda/src/scheme/scheme_object.c:1791
 msgid "Invalid path element type ~A."
 msgstr ""
 
-#: libgeda/src/scheme/scheme_object.c:1940
+#: libgeda/src/scheme/scheme_object.c:1949
 msgid "Invalid picture angle ~A. Must be 0, 90, 180, or 270 degrees"
 msgstr ""
 

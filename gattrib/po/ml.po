@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2020-03-28 15:59-0500\n"
+"POT-Creation-Date: 2020-07-02 11:09-0500\n"
 "PO-Revision-Date: 2010-02-06 22:10+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -180,15 +180,15 @@ msgstr "ഒരു പിൻ നമ്പറില്ലാത്ത കണ്ട
 msgid "Creating master pin attribute list"
 msgstr "മാസ്റ്റർ പിൻ ആട്രിബ്യൂട്ട് ലിസ്റ്റ് സൃഷ്ടിക്കുന്നു"
 
-#: gattrib/src/s_string_list.c:151
+#: gattrib/src/s_string_list.c:152
 msgid "attempted to add to a NULL list.\n"
 msgstr ""
 
-#: gattrib/src/s_string_list.c:218
+#: gattrib/src/s_string_list.c:219
 msgid "attempted to remove item from an empty list\n"
 msgstr ""
 
-#: gattrib/src/s_string_list.c:284
+#: gattrib/src/s_string_list.c:285
 msgid "could not delete item"
 msgstr ""
 

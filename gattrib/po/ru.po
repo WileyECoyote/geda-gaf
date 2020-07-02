@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda gattrib\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2020-03-28 15:59-0500\n"
+"POT-Creation-Date: 2020-07-02 11:09-0500\n"
 "PO-Revision-Date: 2014-03-08 20:49+0400\n"
 "Last-Translator: Vladimir Zhbanov <vzhbanov@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -188,16 +188,16 @@ msgstr "найденный штырь компонента без номера �
 msgid "Creating master pin attribute list"
 msgstr "Создание списка атрибутов мастер-штифта"
 
-#: gattrib/src/s_string_list.c:151
+#: gattrib/src/s_string_list.c:152
 msgid "attempted to add to a NULL list.\n"
 msgstr "попытка добавления к списку со значением NULL.\n"
 
-#: gattrib/src/s_string_list.c:218
+#: gattrib/src/s_string_list.c:219
 msgid "attempted to remove item from an empty list\n"
 msgstr "попытка удаления элемента из пустого списка\n"
 
 # could not delete item
-#: gattrib/src/s_string_list.c:284
+#: gattrib/src/s_string_list.c:285
 msgid "could not delete item"
 msgstr "не удалось удалить элемент"
 

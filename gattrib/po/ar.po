@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2020-03-28 15:59-0500\n"
+"POT-Creation-Date: 2020-07-02 11:09-0500\n"
 "PO-Revision-Date: 2010-02-08 18:58+0000\n"
 "Last-Translator: عبدالله شلي (Abdellah Chelli) <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -205,16 +205,16 @@ msgstr ""
 msgid "Creating master pin attribute list"
 msgstr ""
 
-#: gattrib/src/s_string_list.c:151
+#: gattrib/src/s_string_list.c:152
 msgid "attempted to add to a NULL list.\n"
 msgstr "حاولت الإضافة إلى قائمة نول.\n"
 
-#: gattrib/src/s_string_list.c:218
+#: gattrib/src/s_string_list.c:219
 msgid "attempted to remove item from an empty list\n"
 msgstr "حاولت إزالة عنصر من قائمة فارغة\n"
 
 # could not delete item
-#: gattrib/src/s_string_list.c:284
+#: gattrib/src/s_string_list.c:285
 msgid "could not delete item"
 msgstr "تعذر حذف العنصر"
 

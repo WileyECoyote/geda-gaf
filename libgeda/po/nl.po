@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2020-03-21 22:07-0500\n"
+"POT-Creation-Date: 2020-07-02 11:09-0500\n"
 "PO-Revision-Date: 2014-08-31 23:03+0100\n"
 "Last-Translator: Bert Timmerman <bert.timmerman@xs4all.nl>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -527,7 +527,7 @@ msgstr "Ongedefinieerde configuratie bestandsnaam"
 msgid "Error loading configuration, file name is undefined\n"
 msgstr "Fout bij laden van configuratie; bestandsnaam is ongedefinieerd\n"
 
-#: libgeda/src/geda/geda_config.c:1115 libgeda/src/guile/g_rc_parse.c:295
+#: libgeda/src/geda/geda_config.c:1115 libgeda/src/guile/g_rc_parse.c:296
 msgid "accessing file"
 msgstr ""
 
@@ -878,43 +878,43 @@ msgstr "fout bij afhandelen"
 msgid "restore"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:124
+#: libgeda/src/guile/g_rc.c:128
 msgid "Check library path"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:459
+#: libgeda/src/guile/g_rc.c:467
 msgid "Check library search path"
 msgstr ""
 
 # Invalid path transferred to source library
-#: libgeda/src/guile/g_rc.c:567
+#: libgeda/src/guile/g_rc.c:576
 msgid "Invalid path passed to source-library"
 msgstr "Ongeldig pad overgedragen aan source-library"
 
 # Invalid Path transferred to source library search
-#: libgeda/src/guile/g_rc.c:618 libgeda/src/guile/g_rc.c:628
+#: libgeda/src/guile/g_rc.c:628 libgeda/src/guile/g_rc.c:638
 msgid "Invalid path passed to source-library-search"
 msgstr ""
 "Ongeldig pad overgedragen aan source-library-search (source-library-search)"
 
-#: libgeda/src/guile/g_rc.c:741
+#: libgeda/src/guile/g_rc.c:753
 #, c-format
 msgid "Bad value [%d], check bus-style setting in configuration file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:742 libgeda/src/guile/g_rc.c:748
-#: libgeda/src/guile/g_rc.c:786 libgeda/src/guile/g_rc.c:792
-#: libgeda/src/guile/g_rc.c:830 libgeda/src/guile/g_rc.c:836
-#: libgeda/src/guile/g_rc.c:875 libgeda/src/guile/g_rc.c:881
-#: libgeda/src/guile/g_rc.c:909 libgeda/src/guile/g_rc.c:937
-#: libgeda/src/guile/g_rc.c:965 libgeda/src/guile/g_rc.c:993
-#: libgeda/src/guile/g_rc.c:1021 libgeda/src/guile/g_rc.c:1049
-#: libgeda/src/guile/g_rc.c:1077 libgeda/src/guile/g_rc.c:1105
+#: libgeda/src/guile/g_rc.c:754 libgeda/src/guile/g_rc.c:760
+#: libgeda/src/guile/g_rc.c:799 libgeda/src/guile/g_rc.c:805
+#: libgeda/src/guile/g_rc.c:844 libgeda/src/guile/g_rc.c:850
+#: libgeda/src/guile/g_rc.c:891 libgeda/src/guile/g_rc.c:897
+#: libgeda/src/guile/g_rc.c:926 libgeda/src/guile/g_rc.c:955
+#: libgeda/src/guile/g_rc.c:984 libgeda/src/guile/g_rc.c:1013
+#: libgeda/src/guile/g_rc.c:1042 libgeda/src/guile/g_rc.c:1071
+#: libgeda/src/guile/g_rc.c:1100 libgeda/src/guile/g_rc.c:1129
 #, c-format
 msgid "Continuing with default value=[%d]\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:747
+#: libgeda/src/guile/g_rc.c:759
 #, c-format
 msgid ""
 "Invalid type assignment, check bus-style setting in configuration file\n"
@@ -922,12 +922,12 @@ msgstr ""
 "Ongeldige typetoewijzing, controleer busstijlinstelling in "
 "configuratiebestand\n"
 
-#: libgeda/src/guile/g_rc.c:785
+#: libgeda/src/guile/g_rc.c:798
 #, c-format
 msgid "Bad value [%d], check line-style setting in configuration file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:791
+#: libgeda/src/guile/g_rc.c:804
 #, c-format
 msgid ""
 "Invalid type assignment, check line-style setting in configuration file\n"
@@ -935,12 +935,12 @@ msgstr ""
 "Ongeldige typetoekenning, controleer de instelling van de lijnstijl in het "
 "configuratiebestand\n"
 
-#: libgeda/src/guile/g_rc.c:829
+#: libgeda/src/guile/g_rc.c:843
 #, c-format
 msgid "Bad value [%d], check net-style setting in configuration file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:835
+#: libgeda/src/guile/g_rc.c:849
 #, c-format
 msgid ""
 "Invalid type assignment, check net-style setting in configuration file\n"
@@ -948,12 +948,12 @@ msgstr ""
 "Ongeldige typetoekenning, controleer de instelling van de net-style in het "
 "configuratiebestand\n"
 
-#: libgeda/src/guile/g_rc.c:874
+#: libgeda/src/guile/g_rc.c:890
 #, c-format
 msgid "Bad value [%d], check pin-style setting in configuration file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:880
+#: libgeda/src/guile/g_rc.c:896
 #, c-format
 msgid ""
 "Invalid type assignment, check pin-style setting in configuration file\n"
@@ -961,7 +961,7 @@ msgstr ""
 "Ongeldige typetoekenning, controleer pin-style instelling in "
 "configuratiebestand\n"
 
-#: libgeda/src/guile/g_rc.c:908
+#: libgeda/src/guile/g_rc.c:925
 #, c-format
 msgid ""
 "Invalid type assignment, check thick-bus-width setting in configuration "
@@ -970,7 +970,7 @@ msgstr ""
 "Ongeldige typetoekenning, controleer de instelling van dikke-busbreedte in "
 "het configuratiebestand\n"
 
-#: libgeda/src/guile/g_rc.c:936
+#: libgeda/src/guile/g_rc.c:954
 #, c-format
 msgid ""
 "Invalid type assignment, check thick-line-width setting in configuration "
@@ -979,7 +979,7 @@ msgstr ""
 "Ongeldige typetoekenning, controleer de instelling van de dikke-lijn-breedte "
 "in het configuratiebestand\n"
 
-#: libgeda/src/guile/g_rc.c:964
+#: libgeda/src/guile/g_rc.c:983
 #, c-format
 msgid ""
 "Invalid type assignment, check thick-net-width setting in configuration "
@@ -988,7 +988,7 @@ msgstr ""
 "Ongeldige typetoekenning, controleer de instelling voor dik netto-breedte in "
 "het configuratiebestand\n"
 
-#: libgeda/src/guile/g_rc.c:992
+#: libgeda/src/guile/g_rc.c:1012
 #, c-format
 msgid ""
 "Invalid type assignment, check thick-pin-width setting in configuration "
@@ -997,7 +997,7 @@ msgstr ""
 "Ongeldige typetoekenning, controleer de instelling van de dikke punaise in "
 "het configuratiebestand\n"
 
-#: libgeda/src/guile/g_rc.c:1020
+#: libgeda/src/guile/g_rc.c:1041
 #, c-format
 msgid ""
 "Invalid type assignment, check thin-bus-width setting in configuration file\n"
@@ -1005,7 +1005,7 @@ msgstr ""
 "Ongeldige typetoekenning, controleer de thin-bus-breedte-instelling in het "
 "configuratiebestand\n"
 
-#: libgeda/src/guile/g_rc.c:1048
+#: libgeda/src/guile/g_rc.c:1070
 #, c-format
 msgid ""
 "Invalid type assignment, check thin-line-width setting in configuration "
@@ -1014,7 +1014,7 @@ msgstr ""
 "Ongeldige typetoekenning, controleer de instelling van de dunne lijn in het "
 "configuratiebestand\n"
 
-#: libgeda/src/guile/g_rc.c:1076
+#: libgeda/src/guile/g_rc.c:1099
 #, c-format
 msgid ""
 "Invalid type assignment, check thin-net-width setting in configuration file\n"
@@ -1022,7 +1022,7 @@ msgstr ""
 "Ongeldige typetoekenning, controleer de instelling voor een dunne netbreedte "
 "in het configuratiebestand\n"
 
-#: libgeda/src/guile/g_rc.c:1104
+#: libgeda/src/guile/g_rc.c:1128
 #, c-format
 msgid ""
 "Invalid type assignment, check thin-pin-width setting in configuration file\n"
@@ -1030,12 +1030,12 @@ msgstr ""
 "Ongeldige typetoekenning, controleer de instelling van de dunne punaise in "
 "het configuratiebestand\n"
 
-#: libgeda/src/guile/g_rc.c:1165
+#: libgeda/src/guile/g_rc.c:1190
 msgid "list element is not a string"
 msgstr "lijst element is geen string"
 
 # invalid path
-#: libgeda/src/guile/g_rc.c:1265 libgeda/src/guile/g_rc.c:1305
+#: libgeda/src/guile/g_rc.c:1292 libgeda/src/guile/g_rc.c:1333
 msgid "invalid path"
 msgstr "ongeldig pad"
 
@@ -1055,30 +1055,30 @@ msgid "Failed to load configuration from"
 msgstr "Mislukt om de configuratie uit te laden"
 
 # RC file loaded
-#: libgeda/src/guile/g_rc_parse.c:280
+#: libgeda/src/guile/g_rc_parse.c:281
 msgid "Loaded RC file"
 msgstr "RC bestand geladen"
 
 # Error encountered processing RC file
-#: libgeda/src/guile/g_rc_parse.c:284
+#: libgeda/src/guile/g_rc_parse.c:285
 msgid "Error encountered processing RC file"
 msgstr "Fout bij het verwerken van het RC-bestand"
 
 # Error accessing configuration
-#: libgeda/src/guile/g_rc_parse.c:301
+#: libgeda/src/guile/g_rc_parse.c:302
 msgid "Error accessing configuration"
 msgstr "Fout bij het openen van de configuratie"
 
-#: libgeda/src/guile/g_rc_parse.c:450
+#: libgeda/src/guile/g_rc_parse.c:451
 msgid "ERROR"
 msgstr "FOUT"
 
-#: libgeda/src/guile/g_rc_parse.c:456
+#: libgeda/src/guile/g_rc_parse.c:457
 msgid "An unknown error occurred while parsing configuration files."
 msgstr ""
 "Een onbekende fout trad op tijdens het doorlopen van configuratie bestanden."
 
-#: libgeda/src/guile/g_rc_parse.c:475
+#: libgeda/src/guile/g_rc_parse.c:476
 msgid "The log may contain more information."
 msgstr "FOUT: De log kan meer informatie bevatten."
 
@@ -1610,11 +1610,11 @@ msgstr "Gevonden een niet-ondersteunde tekstuitlijning"
 msgid "Setting alignment to LOWER_LEFT\n"
 msgstr "Uitlijning op LINKS_ONDER ingesteld\n"
 
-#: libgeda/src/scheme/edascmhookproxy.c:143
+#: libgeda/src/scheme/edascmhookproxy.c:146
 msgid "Scheme hook"
 msgstr "Scheme haak"
 
-#: libgeda/src/scheme/edascmhookproxy.c:144
+#: libgeda/src/scheme/edascmhookproxy.c:147
 msgid "The Scheme-level hook to proxy"
 msgstr "De Scheme-level haak naar proxy"
 
@@ -1680,95 +1680,95 @@ msgstr "Object ~A heeft een ongeldige slag cap stijl ~A"
 msgid "Object ~A has invalid stroke dash style ~A"
 msgstr "Object ~A heeft een ongeldige slag streep stijl ~A"
 
-#: libgeda/src/scheme/scheme_object.c:462
+#: libgeda/src/scheme/scheme_object.c:463
 msgid "Object ~A has invalid fill style ~A"
 msgstr "Object ~A heeft een ongeldige opvul stijl ~A"
 
-#: libgeda/src/scheme/scheme_object.c:518
+#: libgeda/src/scheme/scheme_object.c:520
 msgid "Invalid fill style ~A."
 msgstr "Ongeldige opvul stijl ~A."
 
-#: libgeda/src/scheme/scheme_object.c:526
+#: libgeda/src/scheme/scheme_object.c:528
 msgid "Missing second space parameter for fill style ~A."
 msgstr "Ontbrekende tweede ruimte parameter voor opvul stijl ~A."
 
-#: libgeda/src/scheme/scheme_object.c:535
+#: libgeda/src/scheme/scheme_object.c:537
 msgid "Missing second angle parameter for fill style ~A."
 msgstr "Ontbrekende tweede hoek parameter voor opvul stijl ~A."
 
-#: libgeda/src/scheme/scheme_object.c:546
+#: libgeda/src/scheme/scheme_object.c:548
 msgid "Missing stroke width parameter for fill style ~A."
 msgstr "Ontbrekende slag breedte parameter voor opvul stijl ~A."
 
-#: libgeda/src/scheme/scheme_object.c:555
+#: libgeda/src/scheme/scheme_object.c:557
 msgid "Missing space parameter for fill style ~A."
 msgstr "Ontbrekende ruimte parameter voor opvul stijl ~A."
 
-#: libgeda/src/scheme/scheme_object.c:564
+#: libgeda/src/scheme/scheme_object.c:566
 msgid "Missing angle parameter for fill style ~A."
 msgstr "Ontbrekende hoek parameter voor opvul stijl ~A."
 
-#: libgeda/src/scheme/scheme_object.c:867
+#: libgeda/src/scheme/scheme_object.c:869
 msgid "Object ~A has invalid pin type."
 msgstr "Object ~A heeft een ongeldig pen type."
 
-#: libgeda/src/scheme/scheme_object.c:1175
+#: libgeda/src/scheme/scheme_object.c:1177
 msgid "Invalid text alignment ~A."
 msgstr "Ongeldige tekst uitlijning ~A."
 
-#: libgeda/src/scheme/scheme_object.c:1191
+#: libgeda/src/scheme/scheme_object.c:1193
 msgid "Invalid text angle ~A. Must be 0, 90, 180, or 270 degrees"
 msgstr "Ongeldige tekst hoek ~A. moet 0, 90, 180, of 270 graden zijn"
 
-#: libgeda/src/scheme/scheme_object.c:1219
+#: libgeda/src/scheme/scheme_object.c:1221
 msgid "Invalid text name/value visibility ~A."
 msgstr "Ongeldige tekst naam/waarde zichtbaarheid ~A."
 
-#: libgeda/src/scheme/scheme_object.c:1293
+#: libgeda/src/scheme/scheme_object.c:1295
 msgid "Text object ~A has invalid text alignment ~A"
 msgstr "Tekst object ~A heeft een ongeldige tekst uitlijning ~A"
 
-#: libgeda/src/scheme/scheme_object.c:1302
+#: libgeda/src/scheme/scheme_object.c:1304
 msgid "Text object ~A has invalid visibility ~A"
 msgstr "Tekst object ~A heeft een ongeldige zichtbaarheid ~A"
 
-#: libgeda/src/scheme/scheme_object.c:1312
+#: libgeda/src/scheme/scheme_object.c:1314
 msgid "Text object ~A has invalid text attribute visibility ~A"
 msgstr "Tekst object ~A heeft een ongeldige tekst attribuut zichtbaarheid ~A"
 
-#: libgeda/src/scheme/scheme_object.c:1353
+#: libgeda/src/scheme/scheme_object.c:1355
 msgid "Object ~A is not included in a page."
 msgstr "Object ~A is niet opgenomen in een pagina."
 
-#: libgeda/src/scheme/scheme_object.c:1440
+#: libgeda/src/scheme/scheme_object.c:1443
 msgid "Invalid stroke cap style ~A."
 msgstr "Ongeldige slag cap stijl ~A."
 
-#: libgeda/src/scheme/scheme_object.c:1451
+#: libgeda/src/scheme/scheme_object.c:1457
 msgid "Invalid stroke dash style ~A."
 msgstr "Ongeldige slag streep stijl ~A."
 
-#: libgeda/src/scheme/scheme_object.c:1461
+#: libgeda/src/scheme/scheme_object.c:1470
 msgid "Missing dash length parameter for dash style ~A."
 msgstr "Ontbrekende streeplengte parameter voor streep sijl ~A."
 
-#: libgeda/src/scheme/scheme_object.c:1472
+#: libgeda/src/scheme/scheme_object.c:1481
 msgid "Missing dot/dash space parameter for dash style ~A."
 msgstr "Ontbrekende punt/streep ruimte parameter voor streep stijl ~A."
 
-#: libgeda/src/scheme/scheme_object.c:1527
+#: libgeda/src/scheme/scheme_object.c:1536
 msgid "Object ~A has bad type '~A'"
 msgstr "Object ~A heeft een slecht type '~A'"
 
-#: libgeda/src/scheme/scheme_object.c:1653
+#: libgeda/src/scheme/scheme_object.c:1662
 msgid "Path object ~A has invalid element type ~A at index ~A"
 msgstr "Pad object ~A heeft een ongeldige element type ~A bij index ~A"
 
-#: libgeda/src/scheme/scheme_object.c:1782
+#: libgeda/src/scheme/scheme_object.c:1791
 msgid "Invalid path element type ~A."
 msgstr "Ongeldig pad element type ~A."
 
-#: libgeda/src/scheme/scheme_object.c:1940
+#: libgeda/src/scheme/scheme_object.c:1949
 msgid "Invalid picture angle ~A. Must be 0, 90, 180, or 270 degrees"
 msgstr "Ongeldige afbeelding hoek ~A. Moet 0, 90, 180, of 270 graden zijn"
 
