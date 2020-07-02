@@ -42,7 +42,6 @@ static SCM scheme_toplevel_fluid = SCM_UNDEFINED;
  *
  * \note This is a part of the public C interface to the Scheme API.
  */
-
 void edascm_dynwind_toplevel (GedaToplevel *toplevel)
 {
   g_return_if_fail(GEDA_IS_TOPLEVEL(toplevel));
@@ -76,7 +75,9 @@ EDA_SCM_DEFINE (current_toplevel, "%current-toplevel", 0, 0, 0, (),
 GedaToplevel *edascm_c_current_toplevel (void)
 {
   SCM s_toplevel = current_toplevel ();
+
   EDASCM_ASSERT_SMOB_VALID(s_toplevel);
+
   return (GedaToplevel*) SCM_SMOB_DATA (s_toplevel);
 }
 
@@ -104,6 +105,7 @@ edascm_c_with_toplevel (GedaToplevel *toplevel, SCM (*func)(void *),
                         void *user_data)
 {
   SCM s_toplevel = edascm_from_toplevel (toplevel);
+
   return scm_c_with_fluid (scheme_toplevel_fluid, s_toplevel, func, user_data);
 }
 
