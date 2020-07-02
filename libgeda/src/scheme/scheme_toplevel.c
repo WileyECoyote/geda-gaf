@@ -43,8 +43,7 @@ static SCM scheme_toplevel_fluid = SCM_UNDEFINED;
  * \note This is a part of the public C interface to the Scheme API.
  */
 
-void
-edascm_dynwind_toplevel (GedaToplevel *toplevel)
+void edascm_dynwind_toplevel (GedaToplevel *toplevel)
 {
   g_return_if_fail(GEDA_IS_TOPLEVEL(toplevel));
   SCM s_toplevel = edascm_from_toplevel (toplevel);
@@ -74,8 +73,7 @@ EDA_SCM_DEFINE (current_toplevel, "%current-toplevel", 0, 0, 0, (),
  *       this essentially makes the toplevel a global varible as was
  *       done in the old version of geda-gaf.
  */
-GedaToplevel *
-edascm_c_current_toplevel (void)
+GedaToplevel *edascm_c_current_toplevel (void)
 {
   SCM s_toplevel = current_toplevel ();
   EDASCM_ASSERT_SMOB_VALID(s_toplevel);
@@ -115,8 +113,7 @@ edascm_c_with_toplevel (GedaToplevel *toplevel, SCM (*func)(void *),
  * Defines procedures in the (geda core toplevel) module. The module
  * can be accessed using (use-modules (geda core toplevel)).
  */
-static void
-init_module_geda_core_toplevel (void *nothing)
+static void init_module_geda_core_toplevel (void *nothing)
 {
   /* Register the functions */
   #include "scheme_toplevel.x"
@@ -132,8 +129,7 @@ init_module_geda_core_toplevel (void *nothing)
  * and creates the #GedaToplevel fluid. Should only be called by
  * edascm_init().
  */
-void
-edascm_init_toplevel (void)
+void edascm_init_toplevel (void)
 {
   scheme_toplevel_fluid = scm_permanent_object (scm_make_fluid ());
 
