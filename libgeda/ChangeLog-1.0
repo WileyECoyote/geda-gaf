@@ -1,3 +1,10 @@
+2020-07-02 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/scheme/scheme_os.c: Eliminate ancillary pointer to path in
+      procedures:
+
+          * os_sys_config_dirs
+
 2020-07-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/scheme: Update Free Software Foundation address in header:

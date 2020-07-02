@@ -92,8 +92,9 @@ EDA_SCM_DEFINE (os_platform, "%platform", 0, 0, 0,
 EDA_SCM_DEFINE (os_sys_config_dirs, "%sys-config-dirs", 0, 0, 0, (),
                "Return a list of search directories for system configuration.")
 {
-  const char *path = geda_sys_config_path();
-  SCM dir = scm_from_locale_string (path);
+  SCM dir;
+
+  dir = scm_from_locale_string (geda_sys_config_path());
 
   return scm_list_1 (dir);
 }
