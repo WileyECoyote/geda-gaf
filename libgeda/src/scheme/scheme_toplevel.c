@@ -30,8 +30,6 @@
 
 static SCM scheme_toplevel_fluid = SCM_UNDEFINED;
 
-/* libgedaguile.h */
-
 /*!
  * \brief Set the #GedaToplevel fluid in the current dynamic context.
  * \ingroup guile_c_iface
