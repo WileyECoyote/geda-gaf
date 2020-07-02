@@ -58,8 +58,8 @@ EDA_SCM_DEFINE (get_line_width, "%get-line-width", 1, 0, 0,
 /*!
  * \brief Create the (geda core deprecated) Scheme module.
  * \par Function Description
- * Defines procedures in the (geda core deprecated) module. The module can
- * be accessed using (use-modules (geda core deprecated)).
+ * Defines procedures in the (geda core deprecated) module. The module
+ * can be accessed using (use-modules (geda core deprecated)).
  */
 static void
 init_module_geda_core_deprecated (void *nothing)
@@ -74,8 +74,8 @@ init_module_geda_core_deprecated (void *nothing)
 /*!
  * \brief Initialize the basic gEDA page manipulation procedures.
  * \par Function Description
- * Registers some Scheme procedures for working with #Page
- * smobs. Should only be called by edascm_init().
+ * Registers some Scheme procedures for working with #Page smobs.
+ * Should only be called by edascm_init().
  */
 void
 edascm_init_deprecated (void)
