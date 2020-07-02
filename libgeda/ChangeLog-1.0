@@ -4,6 +4,7 @@
       procedures:
 
           * os_sys_config_dirs
+          * os_sys_data_dirs
 
 2020-07-01 Wiley E. Hill <wileyhill@gmail.com>
 
@@ -16,7 +17,7 @@
     * src/scheme/scheme_os.c: Eliminate ancillary pointer to path in
       procedures:
 
-          * os_sys_data_dirs
+          * os_user_config_dir
           * os_user_data_dir
 
     * src/scheme/scheme_version.c: Remove unnecessary inclusion of

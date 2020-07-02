@@ -114,8 +114,9 @@ EDA_SCM_DEFINE (os_sys_data_dirs, "%sys-data-dirs", 0, 0, 0, (),
 {
   /* geda_sys_data_path() returns a raw environment string, so assume
    * it's in the current locale's encoding. */
-  const char *path = geda_sys_data_path();
-  SCM dir = scm_from_locale_string (path);
+  SCM dir;
+
+  dir = scm_from_locale_string (geda_sys_data_path());
 
   return scm_list_1 (dir);
 }
