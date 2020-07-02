@@ -6,6 +6,8 @@
           * os_sys_config_dirs
           * os_sys_data_dirs
 
+    * src/struct/s_weakref.c: Update Free Software Foundation address.
+
 2020-07-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/scheme: Update Free Software Foundation address in header:
