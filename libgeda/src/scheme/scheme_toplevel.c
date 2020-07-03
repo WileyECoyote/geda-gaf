@@ -63,8 +63,7 @@ EDA_SCM_DEFINE (current_toplevel, "%current-toplevel", 0, 0, 0, (),
  * \brief Get the value of the #GedaToplevel fluid.
  * \ingroup guile_c_iface
  * \par Function Description
- * Return the value of the #GedaToplevel fluid in the current dynamic
- * context.
+ *  Returns the #GedaToplevel fluid in the current dynamic context.
  *
  * \note This is a part of the public C interface to the Scheme API,
  *       this essentially makes the toplevel a global varible as was
