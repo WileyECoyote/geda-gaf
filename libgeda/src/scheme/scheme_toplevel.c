@@ -50,8 +50,8 @@ void edascm_dynwind_toplevel (GedaToplevel *toplevel)
 /*!
  * \brief Get the value of the #GedaToplevel fluid.
  * \par Function Description
- * Return the value of the #GedaToplevel fluid in the current dynamic
- * context.
+ *  Return the value of the #GedaToplevel fluid in the current dynamic
+ *  context.
  */
 EDA_SCM_DEFINE (current_toplevel, "%current-toplevel", 0, 0, 0, (),
                "Get the GedaToplevel for the current dynamic context.")
@@ -110,8 +110,8 @@ edascm_c_with_toplevel (GedaToplevel *toplevel, SCM (*func)(void *),
 /*!
  * \brief Create the (geda core toplevel) Scheme module
  * \par Function Description
- * Defines procedures in the (geda core toplevel) module. The module
- * can be accessed using (use-modules (geda core toplevel)).
+ *  Defines procedures in the (geda core toplevel) module. The module
+ *  can be accessed using (use-modules (geda core toplevel)).
  */
 static void init_module_geda_core_toplevel (void *nothing)
 {
@@ -125,9 +125,9 @@ static void init_module_geda_core_toplevel (void *nothing)
 /*!
  * \brief Initialize the GedaToplevel manipulation procedures.
  * \par Function Description
- * Registers some Scheme procedures for working with #GedaToplevel smobs
- * and creates the #GedaToplevel fluid. Should only be called by
- * edascm_init().
+ *  Registers some Scheme procedures for working with #GedaToplevel smobs
+ *  and creates the #GedaToplevel fluid. Should only be called by
+ *  edascm_init().
  */
 void edascm_init_toplevel (void)
 {
