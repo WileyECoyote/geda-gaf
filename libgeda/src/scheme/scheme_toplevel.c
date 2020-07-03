@@ -20,7 +20,7 @@
 
 /*!
  * \file scheme_toplevel.c
- * \brief Scheme API procedures for working with the GedaToplevel.
+ * \brief Scheme API procedures for working with a GedaToplevel.
  */
 
 #include "../../../config.h"
