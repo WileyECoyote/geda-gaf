@@ -136,7 +136,7 @@ geda_separator_expose (GtkWidget *widget, GdkEventExpose *event)
       gtk_paint_vline (style, window, state,
                        &event->area, widget, "vseparator",
                        allocation->y,
-                       widget->allocation.y + widget->allocation.height - 1,
+                       allocation->y + allocation->height - 1,
                        widget->allocation.x +
                       (widget->allocation.width - style->xthickness) / 2);
     }
