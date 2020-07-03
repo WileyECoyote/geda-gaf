@@ -137,7 +137,7 @@ geda_separator_expose (GtkWidget *widget, GdkEventExpose *event)
                        &event->area, widget, "vseparator",
                        allocation->y,
                        allocation->y + allocation->height - 1,
-                       widget->allocation.x +
+                       allocation->x +
                       (widget->allocation.width - style->xthickness) / 2);
     }
   }
