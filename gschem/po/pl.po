@@ -118,41 +118,41 @@ msgstr "etykieta tekst"
 
 #: gschem/src/base/gschem_macro_widget.c:233
 msgid "Text to be displayed for the Macro label"
-msgstr ""
+msgstr "Tekst do wyświetlenia dla etykiety Makra"
 
 #: gschem/src/base/gschem_macro_widget.c:234
 msgid "Macro:"
-msgstr ""
+msgstr "Makro:"
 
 #: gschem/src/base/gschem_macro_widget.c:240
 #: gschem/src/base/gschem_macro_widget.c:241
 msgid "Macro String"
-msgstr ""
+msgstr "Ciąg Makro"
 
 #: gschem/src/base/gschem_macro_widget.c:352
 msgid "Evaluate"
-msgstr ""
+msgstr "Oceniać"
 
 #: gschem/src/base/gschem_main_window.c:242
 msgid "Retrieving main window position.\n"
-msgstr ""
+msgstr "Odzyskiwanie pozycji głównego okna.\n"
 
 #: gschem/src/base/gschem_main_window.c:298
 msgid "Retrieving main window geometry.\n"
-msgstr ""
+msgstr "Pobieranie geometrii głównego okna.\n"
 
 #: gschem/src/base/gschem_main_window.c:421
 msgid "Auto-Restore"
-msgstr ""
+msgstr "Automatycznie przywróć"
 
 #: gschem/src/base/gschem_main_window.c:422
 msgid "Automatically restore the main window geometry"
-msgstr ""
+msgstr "Automatycznie przywróć geometrię głównego okna"
 
 #: gschem/src/base/gschem_page_view.c:250
 #: gschem/src/base/gschem_page_view.c:251
 msgid "Horizontal adjustment"
-msgstr ""
+msgstr "Regulacja pozioma"
 
 #: gschem/src/base/gschem_page_view.c:258
 #: gschem/src/base/gschem_page_view.c:259
@@ -167,7 +167,7 @@ msgstr "Strona Geometria"
 #: gschem/src/base/gschem_page_view.c:273
 #: gschem/src/base/gschem_page_view.c:274
 msgid "Vertical adjustment"
-msgstr ""
+msgstr "Regulacja pionowa"
 
 #: gschem/src/base/gschem_parsecmd.c:86
 #, c-format
