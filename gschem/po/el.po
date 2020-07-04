@@ -324,65 +324,77 @@ msgstr ""
 msgid "Grid Mode"
 msgstr "Λειτουργία τόξου"
 
+# Orízei ti leitourgía plégmatos gia emfánisi sti grammí katástasis
 #: gschem/src/base/gschem_status_bar.c:595
 msgid "Sets the Grid Mode to display on the status bar"
-msgstr ""
+msgstr "Ορίζει τη λειτουργία πλέγματος για εμφάνιση στη γραμμή κατάστασης"
 
+# Grid Size; Mégethos plégmatos
 #: gschem/src/base/gschem_status_bar.c:604
 msgid "Grid Size"
-msgstr ""
+msgstr "Μέγεθος πλέγματος"
 
+# Sets the Grid Size to display on the status bar
+# Orízei to mégethos plégmatos gia emfánisi sti grammí katástasis
 #: gschem/src/base/gschem_status_bar.c:605
 msgid "Sets the Grid Size to display on the status bar"
-msgstr ""
+msgstr "Ορίζει το μέγεθος πλέγματος για εμφάνιση στη γραμμή κατάστασης"
 
 #: gschem/src/base/gschem_status_bar.c:614
 msgid "height"
 msgstr "Πλάτος x Ύψος"
 
+# Sets the height of the status bar; Orízei to ýpsos tis grammís katástasis
 #: gschem/src/base/gschem_status_bar.c:615
 msgid "Sets the height of the status bar"
-msgstr ""
+msgstr "Ορίζει το ύψος της γραμμής κατάστασης"
 
 #: gschem/src/base/gschem_status_bar.c:624
 msgid "Left Button Text"
 msgstr "Αριστερά προς δεξιά"
 
+# Oríste ti symvoloseirá gia to keímeno aristeroú koumpioú
 #: gschem/src/base/gschem_status_bar.c:625
 msgid "Set the string for the Left Button Text"
-msgstr ""
+msgstr "Ορίστε τη συμβολοσειρά για το κείμενο αριστερού κουμπιού"
 
 #: gschem/src/base/gschem_status_bar.c:631
 msgid "Middle Button Text"
 msgstr "Μέση αριστερά"
 
+# Oríste ti symvoloseirá gia to keímeno tou Mesaíou koumpioú
 #: gschem/src/base/gschem_status_bar.c:632
 msgid "Set the string for the Middle Button Text"
-msgstr ""
+msgstr "Ορίστε τη συμβολοσειρά για το κείμενο του Μεσαίου κουμπιού"
 
 #: gschem/src/base/gschem_status_bar.c:638
 msgid "Right Button Text"
 msgstr "Δεξιά προς αριστερά"
 
+# Oríste ti symvoloseirá gia to keímeno dexioú koumpioú
 #: gschem/src/base/gschem_status_bar.c:639
 msgid "Set the string for the Right Button Text"
-msgstr ""
+msgstr "Ορίστε τη συμβολοσειρά για το κείμενο δεξιού κουμπιού"
 
 #: gschem/src/base/gschem_status_bar.c:645
 msgid "Snap Mode"
 msgstr "Λειτουργία ακροδεκτών"
 
+# Sets the Snap Mode to display on the status bar
+# Orízei ti leitourgía Snap gia emfánisi sti grammí katástasis
 #: gschem/src/base/gschem_status_bar.c:646
 msgid "Sets the Snap Mode to display on the status bar"
-msgstr ""
+msgstr "Ορίζει τη λειτουργία ακροδεκτών για εμφάνιση στη γραμμή κατάστασης"
 
+# Snap Size
 #: gschem/src/base/gschem_status_bar.c:655 gschem/src/x/x_dialog.c:639
 msgid "Snap Size"
-msgstr ""
+msgstr "ακροδεκτών μέγεθος"
 
+# Sets the Snap Size to display on the status bar
 #: gschem/src/base/gschem_status_bar.c:656
 msgid "Sets the Snap Size to display on the status bar"
-msgstr ""
+msgstr "Ορίζει το μέγεθος Snap για εμφάνιση στη γραμμή κατάστασης"
 
 #: gschem/src/base/gschem_status_bar.c:665
 msgid "Status Text"
