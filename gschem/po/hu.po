@@ -512,58 +512,58 @@ msgstr "Kérjük, ellenőrizze, hogy a legújabb rc fájl"
 
 #: gschem/src/guile/g_rc.c:205 gschem/src/x/x_image.c:537
 msgid "file"
-msgstr ""
+msgstr "fájl"
 
 #: gschem/src/guile/g_rc.c:731
 #, c-format
 msgid "Invalid value, zoom-gain cannot be zero, check entry in rc file\n"
-msgstr ""
+msgstr "Érvénytelen érték, a zoom-erősítés nem lehet nulla, ellenőrizze a bevitelt az rc fájlban\n"
 
 #: gschem/src/guile/g_rc.c:736
 #, c-format
 msgid "Invalid type assignment, check zoom-gain entry in rc file\n"
-msgstr ""
+msgstr "Érvénytelen típusú hozzárendelés. Ellenőrizze a zoom-gain bejegyzést az rc fájlban\n"
 
 #: gschem/src/guile/g_rc.c:737 gschem/src/guile/g_rc.c:1296
 #: gschem/src/guile/g_rc.c:1442 gschem/src/guile/g_rc.c:2038
 msgid "Continuing with default value"
-msgstr ""
+msgstr "Folytatva az alapértelmezett értéket"
 
 #: gschem/src/guile/g_rc.c:817
 #, c-format
 msgid "Invalid type assignment, check logging entry in rc file\n"
-msgstr ""
+msgstr "Érvénytelen típusú hozzárendelés, ellenőrizze az rc fájl naplózási bejegyzését\n"
 
 #: gschem/src/guile/g_rc.c:1290
 #, c-format
 msgid "Invalid value, snap-size cannot be zero, check entry rc file\n"
-msgstr ""
+msgstr "Érvénytelen érték, az átfogó méret nem lehet nulla, ellenőrizze az rc fájlt\n"
 
 #: gschem/src/guile/g_rc.c:1295
 #, c-format
 msgid "Invalid type assignment, check snap-size entry in rc file\n"
-msgstr ""
+msgstr "Érvénytelen típus-hozzárendelés. Ellenőrizze a beépített méret bevitelét az rc fájlban\n"
 
 #: gschem/src/guile/g_rc.c:1436
 #, c-format
 msgid "Invalid value, bus-ripper-size cannot be zero, check entry rc file\n"
-msgstr ""
+msgstr "Érvénytelen érték, a busz-ripper méret nem lehet nulla. Ellenőrizze az rc fájlt\n"
 
 #: gschem/src/guile/g_rc.c:1441
 #, c-format
 msgid "Invalid type assignment, check bus-ripper-size entry in rc file\n"
-msgstr ""
+msgstr "Érvénytelen típusú hozzárendelés, ellenőrizze a busz-ripper méret bevitelét az rc fájlban\n"
 
 #: gschem/src/guile/g_rc.c:2032
 #, c-format
 msgid ""
 "Can not scroll 0 steps, invalid scrollpan-steps, check entry in rc file\n"
-msgstr ""
+msgstr "Nem lehet görgetni 0 lépést, érvénytelen görgetési lépéseket, ellenőrizni kell az rc fájlban szereplő bejegyzést\n"
 
 #: gschem/src/guile/g_rc.c:2037
 #, c-format
 msgid "Invalid type assignment, check scrollpan-steps entry in rc file\n"
-msgstr ""
+msgstr "Érvénytelen típusú hozzárendelés. Ellenőrizze a görgetési lépés lépéseit az rc fájlban\n"
 
 #: gschem/src/guile/g_rc.c:2084
 msgid "Invalid zoom factor"
