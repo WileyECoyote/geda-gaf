@@ -718,13 +718,15 @@ msgstr "Обработка действий"
 msgid "Select object first"
 msgstr "Сначала выберите объект"
 
+# Cannot; Ne mozhet
 #: gschem/src/iface/i_command.c:653
 msgid "Cannot"
-msgstr ""
+msgstr "Не может"
 
+# while inside an action; v to vremya kak v deystvii
 #: gschem/src/iface/i_command.c:653
 msgid "while inside an action!\n"
-msgstr ""
+msgstr "в то время как в действии!\n"
 
 # Created a new page
 #: gschem/src/iface/i_command.c:920 gschem/src/iface/i_command.c:2969
@@ -744,38 +746,46 @@ msgstr "Не удалось сохранить все файлы"
 msgid "Saved All"
 msgstr "Все файлы сохранены"
 
+# Error encountered, Save Failed; Obnaruzhena oshibka, sokhranit' ne udalos'
 #: gschem/src/iface/i_command.c:1179
 msgid "Error encountered, Save Failed"
-msgstr ""
+msgstr "Обнаружена ошибка, сохранить не удалось"
 
 # Write Image
 #: gschem/src/iface/i_command.c:1249 gschem/src/x/x_image.c:545
 msgid "Write Image"
 msgstr "Написат изображени"
 
+# Write PDF; Napisat' PDF
 #: gschem/src/iface/i_command.c:1271
 msgid "Write PDF"
-msgstr ""
+msgstr "Написать PDF"
 
+# Canceled close all; Otmeneno zakryt' vse
 #: gschem/src/iface/i_command.c:1367
 msgid "Canceled close all\n"
-msgstr ""
+msgstr "Отменено закрыть все\n"
 
+# Closing all documents; Zakrytiye vsekh dokumentov
 #: gschem/src/iface/i_command.c:1376 gschem/src/iface/i_sessions.c:193
 msgid "Closing all documents\n"
-msgstr ""
+msgstr "Закрытие всех документов\n"
 
+# starting shut-down; nachalo vyklyucheniya
 #: gschem/src/iface/i_command.c:1399
 msgid "starting shut-down"
-msgstr ""
+msgstr "начало выключения"
 
+# Symbol is not embedded, export anyway?
+# Simvol ne vstroyen, vse ravno eksportirovat'?
 #: gschem/src/iface/i_command.c:1413
 msgid "Symbol is not embedded, export anyway?"
-msgstr ""
+msgstr "Символ не встроен, все равно экспортировать?"
 
+# Kartinka ne vstroyena, vse ravno eksportirovat'?
 #: gschem/src/iface/i_command.c:1437
 msgid "Picture is not embedded, export anyway?"
-msgstr ""
+msgstr "Картинка не встроена, все равно экспортировать?"
 
 # Здесь на самом деле не действие, а состояние. Поэтому не "Очистить буфер", а
 # "Буфер пуст".
