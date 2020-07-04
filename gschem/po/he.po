@@ -608,32 +608,32 @@ msgstr "ערך לא חוקי, גודל הצמד לא יכול להיות אפס,
 #: gschem/src/guile/g_rc.c:1295
 #, c-format
 msgid "Invalid type assignment, check snap-size entry in rc file\n"
-msgstr ""
+msgstr "הקצאת סוג לא חוקית, בדוק את הערך בגודל הצמד בקובץ rc\n"
 
 #: gschem/src/guile/g_rc.c:1436
 #, c-format
 msgid "Invalid value, bus-ripper-size cannot be zero, check entry rc file\n"
-msgstr ""
+msgstr "ערך לא חוקי, גודל המרטש לא יכול להיות אפס, בדוק את קובץ ה- rc\n"
 
 #: gschem/src/guile/g_rc.c:1441
 #, c-format
 msgid "Invalid type assignment, check bus-ripper-size entry in rc file\n"
-msgstr ""
+msgstr "הקצאת סוג לא חוקית, בדוק את הערך בגודל ripper-bus בקובץ rc\n"
 
 #: gschem/src/guile/g_rc.c:2032
 #, c-format
 msgid ""
 "Can not scroll 0 steps, invalid scrollpan-steps, check entry in rc file\n"
-msgstr ""
+msgstr "לא ניתן לגלול 0 צעדים, שלבי גלילה לא חוקיים, לבדוק את הכניסה בקובץ rc\n"
 
 #: gschem/src/guile/g_rc.c:2037
 #, c-format
 msgid "Invalid type assignment, check scrollpan-steps entry in rc file\n"
-msgstr ""
+msgstr "הקצאת סוג לא חוקית, בדוק את ערך השלבים הגלילה בקובץ rc\n"
 
 #: gschem/src/guile/g_rc.c:2084
 msgid "Invalid zoom factor"
-msgstr ""
+msgstr "גורם זום לא חוקי"
 
 #: gschem/src/guile/g_select.c:93 gschem/src/guile/g_select.c:130
 #: gschem/src/guile/g_select.c:166
