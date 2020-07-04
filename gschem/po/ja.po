@@ -104,50 +104,61 @@ msgstr "失敗しました:"
 msgid "Parent Window"
 msgstr "現在のウィンドウ"
 
+# Parent window for this dialog; Kono daiarogu no oya u~indō
 #: gschem/src/base/gschem_dialog.c:598
 msgid "Parent window for this dialog"
-msgstr ""
+msgstr "このダイアログの親ウィンドウ"
 
+# Title; Daimei
 #: gschem/src/base/gschem_dialog.c:618
 msgid "Title"
-msgstr ""
+msgstr "題名"
 
+# Dialog window title; Daiarogū~indō no taitoru
 #: gschem/src/base/gschem_dialog.c:619
 msgid "Dialog window title"
-msgstr ""
+msgstr "ダイアログウィンドウのタイトル"
 
+# Label Text; Raberu tekisuto
 #: gschem/src/base/gschem_macro_widget.c:232
 msgid "Label Text"
-msgstr ""
+msgstr "ラベルテキスト"
 
+# Text to be displayed for the Macro label; Makuroraberu ni hyōji sa reru tekisuto
 #: gschem/src/base/gschem_macro_widget.c:233
 msgid "Text to be displayed for the Macro label"
-msgstr ""
+msgstr "マクロラベルに表示されるテキスト"
 
+# Macro; Ōkī
 #: gschem/src/base/gschem_macro_widget.c:234
 msgid "Macro:"
-msgstr ""
+msgstr "大きい:"
 
+# Macro String; Makuro mojiretsu
 #: gschem/src/base/gschem_macro_widget.c:240
 #: gschem/src/base/gschem_macro_widget.c:241
 msgid "Macro String"
-msgstr ""
+msgstr "マクロ文字列"
 
+# Evaluate; Hyōka suru
 #: gschem/src/base/gschem_macro_widget.c:352
 msgid "Evaluate"
-msgstr ""
+msgstr "評価する"
 
+# Retrieving main window position; Mein u~indō no ichi o shutoku shite imasu
 #: gschem/src/base/gschem_main_window.c:242
 msgid "Retrieving main window position.\n"
-msgstr ""
+msgstr "メインウィンドウの位置を取得しています.\n"
 
+# Retrieving main window geometry; Mein'u~indoujiometori no shutoku
 #: gschem/src/base/gschem_main_window.c:298
 msgid "Retrieving main window geometry.\n"
-msgstr ""
+msgstr "メインウィンドウジオメトリの取得.\n"
 
+# Automatic-Restore; Jidō fukugen
 #: gschem/src/base/gschem_main_window.c:421
 msgid "Auto-Restore"
-msgstr ""
+msgstr "自動復元"
 
 # Automatically restore the main window geometry
 #: gschem/src/base/gschem_main_window.c:422
