@@ -798,43 +798,50 @@ msgstr "ശൂന്യ ബഫർ"
 msgid "Offset Mode"
 msgstr "പ്രവര്‍ത്തന രീതി ഓഫ്സെറ്റ്"
 
+# Specify offset distance; ōph‌seṟṟ dūraṁ vyaktamākkuka
 #: gschem/src/iface/i_command.c:1850
 msgid "Specify offset distance:"
-msgstr ""
+msgstr "ഓഫ്‌സെറ്റ് ദൂരം വ്യക്തമാക്കുക:"
 
 #: gschem/src/iface/i_command.c:2446
 msgid "Zoom Magnification"
 msgstr "വലുതാക്കി കാണിക്കുന്ന പെട്ടി"
 
+# Specify new zoom; putiya sūṁ vyaktamākkuka
 #: gschem/src/iface/i_command.c:2446
 msgid "Specify new zoom:"
-msgstr ""
+msgstr "പുതിയ സൂം വ്യക്തമാക്കുക:"
 
+# Check path; pātt pariśēādhikkuka
 #: gschem/src/iface/i_command.c:2488 gschem/src/iface/i_command.c:4836
 #: gschem/src/iface/i_command.c:4866 gschem/src/iface/i_command.c:4887
 #: gschem/src/iface/i_command.c:4907
 msgid "Check path:"
-msgstr ""
+msgstr "പാത്ത് പരിശോധിക്കുക:"
 
 #: gschem/src/iface/i_command.c:2499
 msgid "error"
 msgstr "പിശക്"
 
+# No component selected; ghaṭakaṅṅaḷeānnuṁ tiraññeṭuttiṭṭilla
 #: gschem/src/iface/i_command.c:2510
 msgid "No component selected\n"
-msgstr ""
+msgstr "ഘടകങ്ങളൊന്നും തിരഞ്ഞെടുത്തിട്ടില്ല\n"
 
+# Confirm revert ALL documents; ellā pramāṇaṅṅaḷuṁ paḻayapaṭiyākkunnat sthirīkarikkuka
 #: gschem/src/iface/i_command.c:3055
 msgid "Confirm revert ALL documents"
-msgstr ""
+msgstr "എല്ലാ പ്രമാണങ്ങളും പഴയപടിയാക്കുന്നത് സ്ഥിരീകരിക്കുക"
 
+# Searching for source; uṟaviṭattināyi tirayunnu
 #: gschem/src/iface/i_command.c:3237
 msgid "Searching for source"
-msgstr ""
+msgstr "ഉറവിടത്തിനായി തിരയുന്നു"
 
+# Failed to descend into; itilēkk iṟaṅṅunnat parājayappeṭṭu
 #: gschem/src/iface/i_command.c:3272
 msgid "Failed to descend into"
-msgstr ""
+msgstr "ഇതിലേക്ക് ഇറങ്ങുന്നത് പരാജയപ്പെട്ടു"
 
 #: gschem/src/iface/i_command.c:3281
 msgid "Hierarchy Error"
