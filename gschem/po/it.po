@@ -357,15 +357,16 @@ msgstr "Modalità Arco"
 
 #: gschem/src/base/gschem_status_bar.c:595
 msgid "Sets the Grid Mode to display on the status bar"
-msgstr ""
+msgstr "Imposta la modalità griglia da visualizzare sulla barra di stato"
 
+# Grid Size
 #: gschem/src/base/gschem_status_bar.c:604
 msgid "Grid Size"
-msgstr ""
+msgstr "Dimensione griglia"
 
 #: gschem/src/base/gschem_status_bar.c:605
 msgid "Sets the Grid Size to display on the status bar"
-msgstr ""
+msgstr "Imposta le dimensioni della griglia da visualizzare sulla barra di stato"
 
 #: gschem/src/base/gschem_status_bar.c:614
 msgid "height"
@@ -373,7 +374,7 @@ msgstr "Larghezza x Altezza"
 
 #: gschem/src/base/gschem_status_bar.c:615
 msgid "Sets the height of the status bar"
-msgstr ""
+msgstr "Imposta l'altezza della barra di stato"
 
 #: gschem/src/base/gschem_status_bar.c:624
 msgid "Left Button Text"
@@ -381,15 +382,15 @@ msgstr "Da sinistra a destra"
 
 #: gschem/src/base/gschem_status_bar.c:625
 msgid "Set the string for the Left Button Text"
-msgstr ""
+msgstr "Imposta la stringa per il testo del pulsante sinistro"
 
 #: gschem/src/base/gschem_status_bar.c:631
 msgid "Middle Button Text"
-msgstr ""
+msgstr "Testo pulsante centrale"
 
 #: gschem/src/base/gschem_status_bar.c:632
 msgid "Set the string for the Middle Button Text"
-msgstr ""
+msgstr "Imposta la stringa per il testo del pulsante centrale"
 
 #: gschem/src/base/gschem_status_bar.c:638
 msgid "Right Button Text"
@@ -397,7 +398,7 @@ msgstr "Da destra a sinistra"
 
 #: gschem/src/base/gschem_status_bar.c:639
 msgid "Set the string for the Right Button Text"
-msgstr ""
+msgstr "Imposta la stringa per il pulsante destro del testo"
 
 #: gschem/src/base/gschem_status_bar.c:645
 msgid "Snap Mode"
