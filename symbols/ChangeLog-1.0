@@ -1,3 +1,10 @@
+2020-07-05 Wiley E. Hill <wileyhill@gmail.com>
+
+    * transistor/npn-smt/2N3904_npn_40V_1A_SOT-223-?.sym: Update
+      dist-license=GPLv2:
+
+            * transistor/npn-smt/2N3904_npn_40V_1A_SOT-223-1.sym
+            *
 2020-06-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * ti/BeagleBoard-Exp.sym: Update documentation attribute.
