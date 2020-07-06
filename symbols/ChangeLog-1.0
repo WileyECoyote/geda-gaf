@@ -1,5 +1,10 @@
 2020-07-05 Wiley E. Hill <wileyhill@gmail.com>
 
+    * linear/switchreg/LM2574-3-?-?.sym: Update dist-license=GPLv2:
+
+            * linear/switchreg/LM2574-3-8-1.sym
+
+
     * transistor/npn-smt/2N3904_npn_40V_1A_SOT-223-?.sym: Update
       dist-license=GPLv2:
 
