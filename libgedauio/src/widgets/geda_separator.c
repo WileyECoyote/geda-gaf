@@ -462,7 +462,7 @@ bool is_a_geda_separator (GedaSeparator *separator)
  *
  * \param [in] orientation the separator's orientation
  *
- * Return value: a new #GedaSeparator.
+ * \return a new #GedaSeparator.
  */
 GtkWidget *geda_separator_new (int orientation)
 {
