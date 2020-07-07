@@ -1588,8 +1588,9 @@ static bool geda_menu_motion_notify (GtkWidget *widget, GdkEventMotion *event)
 
       GedaMenuPriv *priv = GEDA_MENU (widget)->priv;
 
-      if (priv->ignore_button_release)
+      if (priv->ignore_button_release) {
         priv->ignore_button_release = FALSE;
+      }
 
       geda_menu_handle_scrolling (GEDA_MENU (widget), event->x_root,
                                                       event->y_root,
