@@ -148,7 +148,9 @@ geda_separator_expose (GtkWidget *widget, GdkEventExpose *event)
 static void
 geda_separator_size_request (GtkWidget *widget, GtkRequisition *requisition)
 {
-  GedaSeparator *separator = GEDA_SEPARATOR (widget);
+  GedaSeparator *separator = (GedaSeparator*)widget;
+  GtkStyle      *style;
+
   bool wide_separators;
   int  separator_width;
   int  separator_height;
@@ -162,13 +164,15 @@ geda_separator_size_request (GtkWidget *widget, GtkRequisition *requisition)
   requisition->width  = 1;
   requisition->height = 1;
 
+  style = geda_get_widget_style (widget);
+
   if (separator->orientation == 0) {
 
     if (wide_separators) {
       requisition->height = separator_height;
     }
     else {
-      requisition->height = widget->style->ythickness;
+      requisition->height = style->ythickness;
     }
   }
   else {
