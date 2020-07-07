@@ -487,6 +487,8 @@ geda_container_focus_sort (GtkContainer     *container,
   GList *visible_children = NULL;
   GList *iter;
 
+  g_return_val_if_fail (GTK_IS_CONTAINER (container), NULL);
+
   iter = g_list_last(children);
 
   while (iter) {
