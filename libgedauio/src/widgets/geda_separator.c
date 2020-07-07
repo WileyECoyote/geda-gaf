@@ -164,17 +164,21 @@ geda_separator_size_request (GtkWidget *widget, GtkRequisition *requisition)
 
   if (separator->orientation == 0) {
 
-    if (wide_separators)
+    if (wide_separators) {
       requisition->height = separator_height;
-    else
+    }
+    else {
       requisition->height = widget->style->ythickness;
+    }
   }
   else {
 
-    if (wide_separators)
+    if (wide_separators) {
       requisition->width = separator_width;
-    else
+    }
+    else {
       requisition->width = widget->style->xthickness;
+    }
   }
 }
 
