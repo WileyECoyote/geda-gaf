@@ -3,6 +3,7 @@
     * src/widgets/geda_menu_item.c: Add internal source documentation:
 
           * geda_menu_item_forall
+          * geda_menu_item_set_property
 
 2020-07-03 Wiley E. Hill <wileyhill@gmail.com>
 

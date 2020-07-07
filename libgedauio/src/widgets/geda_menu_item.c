@@ -452,6 +452,7 @@ static void geda_menu_item_finalize (GObject *object)
   ((GObjectClass*)geda_menu_item_parent_class)->finalize (object);
 }
 
+/*! \internal gobject_class->set_property */
 static void geda_menu_item_set_property (GObject      *object,
                                          unsigned int  prop_id,
                                          const GValue *value,
