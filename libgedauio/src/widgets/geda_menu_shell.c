@@ -1077,13 +1077,12 @@ static int geda_menu_shell_enter_notify (GtkWidget *widget, GdkEventCrossing *ev
 
         submenu = geda_menu_item_get_submenu_widget(GEDA_MENU_ITEM (menu_item));
 
-        /* If any mouse button is down, and there is a submenu
-         * that is not yet visible, activate it. It's sufficient
-         * to check for any button's mask (not only the one
-         * matching menu_shell->button), because there is no
-         * situation a mouse button could be pressed while
-         * entering a menu item where we wouldn't want to show
-         * its submenu.
+        /* If any mouse button is down, and there is a submenu that is
+         * not yet visible, activate it. It is sufficient to check for
+         * any button's mask (not only the one matching menu_shell->button),
+         * because there is no situation a mouse button could be pressed
+         * while entering a menu item where we would not want to show its
+         * submenu.
          */
         if ((event->state & (GDK_BUTTON1_MASK | GDK_BUTTON2_MASK | GDK_BUTTON3_MASK)) &&
              submenu != NULL)
