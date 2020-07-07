@@ -3935,8 +3935,7 @@ void geda_menu_item_set_related_action (GedaMenuItem *menu_item, GtkAction *acti
  *  Sets whether the \a menu_item should reserve space for the submenu
  *  indicator, regardless if it actually has a submenu or not.
  *
- *  There should be little need for applications to call
- *  this functions.
+ *  There should be little need for applications to call this functions.
  *
  * \param [in] menu_item Pointer to a GedaMenuItem
  * \param [in] reserve   a the new value
@@ -3952,6 +3951,7 @@ void geda_menu_item_set_reserve_indicator (GedaMenuItem *menu_item, bool reserve
   if (priv->reserve_indicator != reserve) {
 
     priv->reserve_indicator = reserve;
+
     gtk_widget_queue_resize ((GtkWidget*)menu_item);
   }
 }
