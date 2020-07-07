@@ -1,3 +1,8 @@
+2020-07-07 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_menu_item.c: Reorganize module; move _get_property
+      before _set_property.
+
 2020-07-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu_item.c: Add internal source documentation:

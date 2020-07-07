@@ -452,6 +452,63 @@ static void geda_menu_item_finalize (GObject *object)
   ((GObjectClass*)geda_menu_item_parent_class)->finalize (object);
 }
 
+/*! \internal gobject_class->get_property */
+static void geda_menu_item_get_property (GObject     *object,
+                                         unsigned int prop_id,
+                                         GValue      *value,
+                                         GParamSpec  *pspec)
+{
+  GedaMenuItem *menu_item = (GedaMenuItem*)object;
+  GedaMenuItemPrivate *priv = menu_item->priv;
+
+  switch (prop_id) {
+    case PROP_RIGHT_JUSTIFIED:
+      g_value_set_boolean (value, priv->right_justify);
+      break;
+
+    case PROP_SUBMENU:
+      g_value_set_object (value, geda_menu_item_get_submenu_widget (menu_item));
+      break;
+
+    case PROP_ACCEL_PATH:
+      g_value_set_string (value, geda_menu_item_get_accel_path (menu_item));
+      break;
+
+    case PROP_LABEL:
+      g_value_set_string (value, geda_menu_item_get_label (menu_item));
+      break;
+
+    case PROP_MNEMONIC:
+      g_value_set_int (value, geda_menu_item_get_mnemonic (menu_item));
+      break;
+
+    case PROP_USE_UNDERLINE:
+      g_value_set_boolean (value, geda_menu_item_get_use_underline (menu_item));
+      break;
+
+    case PROP_ACTIVATABLE_RELATED_ACTION:
+      g_value_set_object (value, priv->action);
+      break;
+
+    case PROP_ACTIVATABLE_USE_ACTION_APPEARANCE:
+      g_value_set_boolean (value, priv->use_action_appearance);
+      break;
+    case PROP_ACTION_NAME:
+#if (GTK_MAJOR_VERSION == 3)
+      g_value_set_string (value, gtk_action_helper_get_action_name (priv->action_helper));
+      break;
+
+    case PROP_ACTION_TARGET:
+      g_value_set_variant (value, gtk_action_helper_get_action_target_value (priv->action_helper));
+#endif
+      break;
+
+    default:
+      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+      break;
+  }
+}
+
 /*! \internal gobject_class->set_property */
 static void geda_menu_item_set_property (GObject      *object,
                                          unsigned int  prop_id,
@@ -501,63 +558,6 @@ static void geda_menu_item_set_property (GObject      *object,
 
     case PROP_ACTION_TARGET:
       geda_menu_item_set_action_target_value ((GtkActionable*)menu_item, g_value_get_variant (value));
-#endif
-      break;
-
-    default:
-      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
-      break;
-  }
-}
-
-/*! \internal gobject_class->get_property */
-static void geda_menu_item_get_property (GObject     *object,
-                                         unsigned int prop_id,
-                                         GValue      *value,
-                                         GParamSpec  *pspec)
-{
-  GedaMenuItem *menu_item = (GedaMenuItem*)object;
-  GedaMenuItemPrivate *priv = menu_item->priv;
-
-  switch (prop_id) {
-    case PROP_RIGHT_JUSTIFIED:
-      g_value_set_boolean (value, priv->right_justify);
-      break;
-
-    case PROP_SUBMENU:
-      g_value_set_object (value, geda_menu_item_get_submenu_widget (menu_item));
-      break;
-
-    case PROP_ACCEL_PATH:
-      g_value_set_string (value, geda_menu_item_get_accel_path (menu_item));
-      break;
-
-    case PROP_LABEL:
-      g_value_set_string (value, geda_menu_item_get_label (menu_item));
-      break;
-
-    case PROP_MNEMONIC:
-      g_value_set_int (value, geda_menu_item_get_mnemonic (menu_item));
-      break;
-
-    case PROP_USE_UNDERLINE:
-      g_value_set_boolean (value, geda_menu_item_get_use_underline (menu_item));
-      break;
-
-    case PROP_ACTIVATABLE_RELATED_ACTION:
-      g_value_set_object (value, priv->action);
-      break;
-
-    case PROP_ACTIVATABLE_USE_ACTION_APPEARANCE:
-      g_value_set_boolean (value, priv->use_action_appearance);
-      break;
-    case PROP_ACTION_NAME:
-#if (GTK_MAJOR_VERSION == 3)
-      g_value_set_string (value, gtk_action_helper_get_action_name (priv->action_helper));
-      break;
-
-    case PROP_ACTION_TARGET:
-      g_value_set_variant (value, gtk_action_helper_get_action_target_value (priv->action_helper));
 #endif
       break;
 
@@ -792,8 +792,8 @@ static void geda_menu_item_class_init (void *class, void *class_data)
 
   gobject_class->dispose           = geda_menu_item_dispose;
   gobject_class->finalize          = geda_menu_item_finalize;
-  gobject_class->set_property      = geda_menu_item_set_property;
   gobject_class->get_property      = geda_menu_item_get_property;
+  gobject_class->set_property      = geda_menu_item_set_property;
 
 #if GTK_MAJOR_VERSION < 3
 
