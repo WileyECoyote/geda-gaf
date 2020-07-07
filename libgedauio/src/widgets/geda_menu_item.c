@@ -3984,7 +3984,7 @@ bool geda_menu_item_get_reserve_indicator (GedaMenuItem *menu_item)
  * \returns %TRUE if \a menu_item always reserves space for the
  *          submenu indicator
  */
-bool geda_menu_item_get_show_submenu_indicator (GedaMenuItem  *menu_item)
+bool geda_menu_item_get_show_submenu_indicator (GedaMenuItem *menu_item)
 {
   g_return_val_if_fail (GEDA_IS_MENU_ITEM(menu_item), FALSE);
 
