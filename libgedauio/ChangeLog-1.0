@@ -1,3 +1,9 @@
+2020-07-06 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_menu_item.c: Add internal source documentation:
+
+          * geda_menu_item_forall
+
 2020-07-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_radio_menu_item.c: Update Free Software Foundation

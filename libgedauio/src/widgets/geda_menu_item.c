@@ -3663,6 +3663,7 @@ unsigned short geda_menu_item_get_accel_width (GedaMenuItem  *menu_item)
   return menu_item->priv->accelerator_width;
 }
 
+/*! \internal container_class->forall*/
 static void geda_menu_item_forall (GtkContainer *container,
                                    bool          include_internals,
                                    GtkCallback   callback,
