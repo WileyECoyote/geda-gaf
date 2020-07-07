@@ -3710,8 +3710,8 @@ static void geda_menu_item_ensure_label (GedaMenuItem *menu_item)
  *       using the mouse.
  *
  * \internal Callers:
- * geda_menu_shell_activate_mnemonic (mnemonic pressed in menu)
- * geda_menu_bar_key_press           (mnemonic pressed on a menu bar)
+ *  geda_menu_shell_activate_mnemonic (mnemonic pressed in menu)
+ *  geda_menu_bar_key_press           (mnemonic pressed on a menu bar)
  */
 bool geda_menu_item_is_selectable (GedaMenuItem  *menu_item)
 {
@@ -3841,8 +3841,8 @@ GtkWidget *geda_menu_item_get_label_widget (GedaMenuItem *menu_item)
 /*!
  * \brief Set whether menu item should use underline
  * \par Function Description
- * If true, an underline in the text indicates the next character
- * should be used for the mnemonic accelerator key.
+ *  If true, an underline in the text indicates the next character
+ *  should be used for the mnemonic accelerator key.
  *
  * \param [in] menu_item Pointer to a GedaMenuItem
  * \param [in] setting   %TRUE if underlines in the text indicate mnemonics
@@ -3868,8 +3868,8 @@ void geda_menu_item_set_use_underline (GedaMenuItem *menu_item, bool setting)
 /*!
  * \brief Get if menu item should use underline
  * \par Function Description
- * Checks if an underline in the text indicates the next character
- * should be used for the mnemonic accelerator key.
+ *  Checks if an underline in the text indicates the next character
+ *  should be used for the mnemonic accelerator key.
  *
  * \param [in] menu_item Pointer to a GedaMenuItem
  *
