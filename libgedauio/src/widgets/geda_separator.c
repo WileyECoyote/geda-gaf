@@ -234,8 +234,7 @@ geda_separator_get_preferred_height (GtkWidget *widget,
   geda_separator_get_preferred_size (widget, 1 /* VERTICAL*/ , minimum, natural);
 }
 
-static bool
-geda_separator_draw (GtkWidget *widget, cairo_t *cr)
+static bool geda_separator_draw (GtkWidget *widget, cairo_t *cr)
 {
   GedaSeparator *separator = GEDA_SEPARATOR (widget);
 
@@ -292,8 +291,7 @@ geda_separator_draw (GtkWidget *widget, cairo_t *cr)
  * \par Function Description
  *  The object should not be referenced after this function executes.
  */
-static void
-geda_separator_finalize (GObject *object)
+static void geda_separator_finalize (GObject *object)
 {
   if (g_hash_table_remove (separator_hash, object)) {
     if (!g_hash_table_size (separator_hash)) {
@@ -305,11 +303,10 @@ geda_separator_finalize (GObject *object)
   G_OBJECT_CLASS (geda_separator_parent_class)->finalize (object);
 }
 
-static void
-geda_separator_get_property (GObject     *object,
-                             unsigned int prop_id,
-                             GValue      *value,
-                             GParamSpec  *pspec)
+static void geda_separator_get_property (GObject     *object,
+                                         unsigned int prop_id,
+                                         GValue      *value,
+                                         GParamSpec  *pspec)
 {
   GedaSeparator *separator = GEDA_SEPARATOR (object);
   switch (prop_id) {
@@ -323,11 +320,10 @@ geda_separator_get_property (GObject     *object,
   }
 }
 
-static void
-geda_separator_set_property (GObject      *object,
-                             unsigned int  prop_id,
-                             const GValue *value,
-                             GParamSpec   *pspec)
+static void geda_separator_set_property (GObject      *object,
+                                         unsigned int  prop_id,
+                                         const GValue *value,
+                                         GParamSpec   *pspec)
 {
   GedaSeparator *separator = GEDA_SEPARATOR (object);
   switch (prop_id) {
@@ -343,8 +339,7 @@ geda_separator_set_property (GObject      *object,
 }
 
 
-static void
-geda_separator_class_init(void *class, void *class_data)
+static void geda_separator_class_init(void *class, void *class_data)
 {
   /*  (GedaSeparatorClass *class) */
   GObjectClass   *object_class = G_OBJECT_CLASS (class);
@@ -384,8 +379,7 @@ geda_separator_class_init(void *class, void *class_data)
   g_object_class_install_property (object_class, PROP_ORIENTATION, params);
 }
 
-static void
-geda_separator_instance_init(GTypeInstance *instance, void *g_class)
+static void geda_separator_instance_init(GTypeInstance *instance, void *g_class)
 {
   GedaSeparator *separator = (GedaSeparator*)instance;
   GtkWidget     *widget    = GTK_WIDGET (instance);
@@ -453,8 +447,7 @@ GedaType geda_separator_get_type (void)
  *
  * \return TRUE if \a separator is a valid GedaSeparator
  */
-bool
-is_a_geda_separator (GedaSeparator *separator)
+bool is_a_geda_separator (GedaSeparator *separator)
 {
   if ((separator != NULL) && (separator_hash != NULL)) {
     return g_hash_table_lookup(separator_hash, separator) ? TRUE : FALSE;
