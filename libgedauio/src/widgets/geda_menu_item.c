@@ -3442,7 +3442,7 @@ void geda_menu_item_set_mnemonic (GedaMenuItem *menu_item, char mnemonic)
  * It is recommended to use with gtk_widget_set_hexpand() and
  * gtk_widget_set_halign().
  *
- * \param [in] menu_item       a GedaMenuItem
+ * \param [in] menu_item       Pointer to a GedaMenuItem
  * \param [in] right_justified if %TRUE the menu item will appear at
  *                             the far right if added to a menu bar
  */
@@ -3460,7 +3460,7 @@ void geda_menu_item_set_right_justified (GedaMenuItem *menu_item,
  * Gets whether the menu item appears justified at the right
  * side of the menu bar.
  *
- * \param [in] menu_item  a GedaMenuItem
+ * \param [in] menu_item  Pointer to a GedaMenuItem
  *
  * \returns %TRUE if the menu item will appear at the
  *          far right if added to a menu bar.
@@ -3581,7 +3581,7 @@ void geda_menu_item_refresh_accel_path (GedaMenuItem  *menu_item,
  *        if you pass a static string, you can save some memory by
  *        interning it first with g_intern_static_string().
  *
- * \param [in] menu_item  a GedaMenuItem
+ * \param [in] menu_item  Pointer to a GedaMenuItem
  * \param [in] accel_path accelerator path, corresponding to this menu
  *                        item's functionality,or %NULL to unset the
  *                        current path
@@ -3629,7 +3629,7 @@ void geda_menu_item_set_accel_path (GedaMenuItem *menu_item,
  *  Retrieve the accelerator path that was previously set on \a menu_item.
  *  See geda_menu_item_set_accel_path() for details.
  *
- * \param [in] menu_item a GedaMenuItem
+ * \param [in] menu_item Pointer to a GedaMenuItem
  *
  * \returns Accelerator path corresponding to this menu
  *          item's functionality, or %NULL if not set
@@ -3756,7 +3756,7 @@ bool geda_menu_item_is_widget_selectable (GtkWidget *widget)
  * \par Function Description
  *  Returns the toggle size associated with \a menu_item in pixels.
  *
- * \param [in] menu_item a GedaMenuItem
+ * \param [in] menu_item Pointer to a GedaMenuItem
  *
  * \returns The toggle size of the \a menu_item
  */
@@ -3772,7 +3772,7 @@ unsigned short geda_menu_item_get_toggle_size (GedaMenuItem  *menu_item)
  * \par Function Description
  *  Gets the \a menu_item from-menubar member.
  *
- * \param [in] menu_item a GedaMenuItem
+ * \param [in] menu_item Pointer to a GedaMenuItem
  *
  * \retval TRUE if the parent of \a menu_item is MenuBar.
  */
@@ -3788,7 +3788,7 @@ bool geda_menu_item_get_from_menubar (GedaMenuItem *menu_item)
  * \par Function Description
  *  Sets \a text on the \a menu_item label
  *
- * \param [in] menu_item a GedaMenuItem
+ * \param [in] menu_item Pointer to a GedaMenuItem
  * \param [in] text      text to be used in the label
  */
 void geda_menu_item_set_label (GedaMenuItem *menu_item, const char *text)
@@ -3803,7 +3803,7 @@ void geda_menu_item_set_label (GedaMenuItem *menu_item, const char *text)
  * \par Function Description
  *  Gets text on the \a menu_item label
  *
- * \param [in] menu_item a GedaMenuItem
+ * \param [in] menu_item Pointer to a GedaMenuItem
  *
  * \returns The text in the \a menu_item label. This is the internal
  *          string used by the label, and must not be modified.
@@ -3820,7 +3820,7 @@ const char *geda_menu_item_get_label (GedaMenuItem *menu_item)
  * \par Function Description
  *  Gets \a menu_item GedaLabel widget.
  *
- * \param [in] menu_item a GedaMenuItem
+ * \param [in] menu_item Pointer to a GedaMenuItem
  *
  * \returns GedaLabel object.
  */
@@ -3844,7 +3844,7 @@ GtkWidget *geda_menu_item_get_label_widget (GedaMenuItem *menu_item)
  * If true, an underline in the text indicates the next character
  * should be used for the mnemonic accelerator key.
  *
- * \param [in] menu_item a GedaMenuItem
+ * \param [in] menu_item Pointer to a GedaMenuItem
  * \param [in] setting   %TRUE if underlines in the text indicate mnemonics
  */
 void geda_menu_item_set_use_underline (GedaMenuItem *menu_item, bool setting)
@@ -3871,7 +3871,7 @@ void geda_menu_item_set_use_underline (GedaMenuItem *menu_item, bool setting)
  * Checks if an underline in the text indicates the next character
  * should be used for the mnemonic accelerator key.
  *
- * \param [in] menu_item a GedaMenuItem
+ * \param [in] menu_item Pointer to a GedaMenuItem
  *
  * \returns %TRUE if an embedded underline in the label
  *          indicates the mnemonic accelerator key.
@@ -3898,7 +3898,7 @@ bool geda_menu_item_get_use_underline (GedaMenuItem *menu_item)
  * \par Function Description
  *  Sets menu_item "related-action" property.
  *
- * \param [in] menu_item a GedaMenuItem
+ * \param [in] menu_item Pointer to a GedaMenuItem
  * \param [in] action    The action related to the menu item
  */
 void geda_menu_item_set_related_action (GedaMenuItem *menu_item, GtkAction *action)
@@ -3938,7 +3938,7 @@ void geda_menu_item_set_related_action (GedaMenuItem *menu_item, GtkAction *acti
  *  There should be little need for applications to call
  *  this functions.
  *
- * \param [in] menu_item a GedaMenuItem
+ * \param [in] menu_item Pointer to a GedaMenuItem
  * \param [in] reserve   a the new value
  */
 void geda_menu_item_set_reserve_indicator (GedaMenuItem *menu_item, bool reserve)
@@ -3962,7 +3962,7 @@ void geda_menu_item_set_reserve_indicator (GedaMenuItem *menu_item, bool reserve
  *  Returns whether the \a menu_item reserves space for the
  *  submenu indicator, regardless if it has a submenu or not.
  *
- * \param [in] menu_item a GedaMenuItem
+ * \param [in] menu_item Pointer to a GedaMenuItem
  *
  * \returns %TRUE if \a menu_item always reserves space for the
  *          submenu indicator
@@ -3979,7 +3979,7 @@ bool geda_menu_item_get_reserve_indicator (GedaMenuItem *menu_item)
  * \par Function Description
  *  Returns whether the \a menu_item submenu indicator should displayed or not.
  *
- * \param [in] menu_item a GedaMenuItem
+ * \param [in] menu_item Pointer to a GedaMenuItem
  *
  * \returns %TRUE if \a menu_item always reserves space for the
  *          submenu indicator
@@ -3996,7 +3996,7 @@ bool geda_menu_item_get_show_submenu_indicator (GedaMenuItem  *menu_item)
  * \par Function Description
  *  Sets whether the \a menu_item submenu indicator should displayed or not.
  *
- * \param [in] menu_item a GedaMenuItem
+ * \param [in] menu_item Pointer to a GedaMenuItem
  * \param [in] show      Boolean value, if True the indicated will be shown
  */
 void geda_menu_item_set_show_submenu_indicator (GedaMenuItem  *menu_item, bool show)
