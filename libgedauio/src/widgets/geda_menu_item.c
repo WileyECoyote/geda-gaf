@@ -510,6 +510,7 @@ static void geda_menu_item_set_property (GObject      *object,
   }
 }
 
+/*! \internal gobject_class->get_property */
 static void geda_menu_item_get_property (GObject     *object,
                                          unsigned int prop_id,
                                          GValue      *value,
