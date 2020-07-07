@@ -3231,6 +3231,7 @@ static void get_offsets (GedaMenu *menu, int *horizontal_offset, int *vertical_o
 
   context = gtk_widget_get_style_context ((GtkWidget*)menu);
   state   = gtk_widget_get_state_flags ((GtkWidget*)menu);
+
   gtk_style_context_get_padding (context, state, &padding);
 
   *vertical_offset   -= padding.top;
