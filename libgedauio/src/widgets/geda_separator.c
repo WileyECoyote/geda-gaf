@@ -181,7 +181,7 @@ geda_separator_size_request (GtkWidget *widget, GtkRequisition *requisition)
       requisition->width = separator_width;
     }
     else {
-      requisition->width = widget->style->xthickness;
+      requisition->width = style->xthickness;
     }
   }
 }
