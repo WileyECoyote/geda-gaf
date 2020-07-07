@@ -1638,6 +1638,7 @@ static bool geda_menu_motion_notify (GtkWidget *widget, GdkEventMotion *event)
        * a chance to do some bookkeeping about the menuitem.
        */
       geda_menu_shell_select_item (menu_shell, menu_item);
+
       return FALSE;
   }
 
@@ -1813,9 +1814,8 @@ static void geda_menu_scroll_item_visible (GedaMenuShell *menu_shell,
                           "vertical-padding", &vertical_padding, NULL);
 
     double_arrows = get_double_arrows (menu);
-
-    border_width = geda_get_container_border_width (menu);
-    ythickness   = geda_get_widget_style (menu)->ythickness;
+    border_width  = geda_get_container_border_width (menu);
+    ythickness    = geda_get_widget_style (menu)->ythickness;
 
     height -= (border_width + ythickness + vertical_padding) << 1;
 
