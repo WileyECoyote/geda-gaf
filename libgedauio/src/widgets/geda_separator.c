@@ -452,6 +452,7 @@ bool is_a_geda_separator (GedaSeparator *separator)
   if ((separator != NULL) && (separator_hash != NULL)) {
     return g_hash_table_lookup(separator_hash, separator) ? TRUE : FALSE;
   }
+
   return FALSE;
 }
 

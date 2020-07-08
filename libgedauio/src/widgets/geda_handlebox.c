@@ -2102,6 +2102,7 @@ GtkToolbar *geda_handle_box_get_toolbar (GedaHandleBox *handlebox)
   else {
     BUG_MSG ("Operative is not a GedaHandleBox");
   }
+
   return NULL;
 }
 
