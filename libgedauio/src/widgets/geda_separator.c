@@ -384,7 +384,7 @@ static void geda_separator_instance_init(GTypeInstance *instance, void *g_class)
   GedaSeparator *separator = (GedaSeparator*)instance;
   GtkWidget     *widget    = GTK_WIDGET (instance);
 
-  gtk_widget_set_has_window (GTK_WIDGET (instance), FALSE);
+  gtk_widget_set_has_window ((GtkWidget*)instance, FALSE);
 
   separator->orientation = 0;
 
