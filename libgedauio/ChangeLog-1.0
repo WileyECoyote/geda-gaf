@@ -4,7 +4,10 @@
       with static cast.
 
     * src/widgets/geda_separator.c: Replace GTK_WIDGET dynamic cast with
-      static cast. Utilize macro geda_get_widget_requisition.
+      static cast. Utilize macros:
+
+          * geda_get_widget_requisition
+          * geda_get_widget_style
 
 2020-07-07 Wiley E. Hill <wileyhill@gmail.com>
 
