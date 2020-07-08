@@ -382,7 +382,7 @@ static void geda_separator_class_init(void *class, void *class_data)
 static void geda_separator_instance_init(GTypeInstance *instance, void *g_class)
 {
   GedaSeparator *separator = (GedaSeparator*)instance;
-  GtkWidget     *widget    = GTK_WIDGET (instance);
+  GtkWidget      *widget    = (GtkWidget*)instance;
 
   gtk_widget_set_has_window ((GtkWidget*)instance, FALSE);
 
