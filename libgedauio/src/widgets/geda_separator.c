@@ -383,13 +383,16 @@ static void geda_separator_instance_init(GTypeInstance *instance, void *g_class)
 {
   GedaSeparator *separator = (GedaSeparator*)instance;
   GtkWidget      *widget    = (GtkWidget*)instance;
+  GtkRequisition *requisition;
 
   gtk_widget_set_has_window ((GtkWidget*)instance, FALSE);
 
   separator->orientation = 0;
 
-  widget->requisition.width  = 1;
-  widget->requisition.height = widget->style->ythickness;
+  requisition = geda_get_widget_requisition(widget);
+
+  requisition.width  = 1;
+  requisition.height = widget->style->ythickness;
 
   if (!separator_hash) {
     separator_hash = g_hash_table_new (g_direct_hash, NULL);
