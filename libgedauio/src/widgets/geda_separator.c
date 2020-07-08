@@ -480,6 +480,10 @@ GtkWidget *geda_separator_new (int orientation)
                        NULL);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ */
 GtkWidget *geda_hseparator_new (void)
 {
   return g_object_new (GEDA_TYPE_SEPARATOR,
@@ -487,6 +491,10 @@ GtkWidget *geda_hseparator_new (void)
                        NULL);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ */
 GtkWidget *geda_vseparator_new (void)
 {
   return g_object_new (GEDA_TYPE_SEPARATOR,

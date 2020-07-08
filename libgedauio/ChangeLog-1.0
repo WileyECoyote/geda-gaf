@@ -4,7 +4,7 @@
       with static cast.
 
     * src/widgets/geda_separator.c: Replace GTK_WIDGET dynamic cast with
-      static cast. Utilize macros:
+      static cast. Add todo documentation templates. Utilize macros:
 
           * geda_get_widget_requisition
           * geda_get_widget_style
@@ -956,7 +956,7 @@
 
 2019-12-30 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/widgets/geda_image_menu_item.c: add todo documentation template.
+    * src/widgets/geda_image_menu_item.c: Add todo documentation template.
 
     * src/widgets/geda_radio_menu_item.c: Update Doxygen group description.
 
