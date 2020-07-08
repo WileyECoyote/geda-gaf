@@ -1,3 +1,11 @@
+2020-07-08 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_combobox.c: Replace GTK_LIST_STORE dynamic cast
+      with static cast.
+
+    * src/widgets/geda_separator.c: Replace GTK_WIDGET dynamic cast with
+      static cast.
+
 2020-07-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/functions/geda_container.c: Validate pointer is a GtkContainer
