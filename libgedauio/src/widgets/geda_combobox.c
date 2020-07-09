@@ -6142,7 +6142,7 @@ void geda_combo_box_remove_index (GedaComboBox *combo_box, int position)
     while (next) {
 
       if (index == position) {
-        gtk_list_store_remove (GTK_LIST_STORE (model), &iter);
+        gtk_list_store_remove ((GtkListStore*)model, &iter);
         break;
       }
 
