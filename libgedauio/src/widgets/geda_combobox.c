@@ -6178,7 +6178,7 @@ void geda_combo_box_prepend_text (GedaComboBox *combo_box, const char *text)
 
     g_return_if_fail (g_utf8_validate(text, -1, NULL));
 
-    store = GTK_LIST_STORE (combo_box->priv->model);
+    store = (GtkListStore*)combo_box->priv->model;
 
     gtk_list_store_prepend (store, &iter);
     gtk_list_store_set (store, &iter, 0, text, -1);
