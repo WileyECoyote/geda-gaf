@@ -396,8 +396,8 @@ static void geda_separator_instance_init(GTypeInstance *instance, void *g_class)
 
   separator->orientation = 0;
 
-  requisition.width  = 1;
-  requisition.height = style->ythickness;
+  requisition->width  = 1;
+  requisition->height = style->ythickness;
 
   if (!separator_hash) {
     separator_hash = g_hash_table_new (g_direct_hash, NULL);
