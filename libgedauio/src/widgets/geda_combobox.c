@@ -6137,8 +6137,7 @@ void geda_combo_box_remove_index (GedaComboBox *combo_box, int position)
     int next  = 0;
 
     model = combo_box->priv->model;
-
-    next = gtk_tree_model_get_iter_first (model, &iter);
+    next  = gtk_tree_model_get_iter_first (model, &iter);
 
     while (next) {
 
