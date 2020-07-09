@@ -6124,8 +6124,7 @@ void geda_combo_box_insert_text (GedaComboBox *combo_box,
  *  \brief
  *  \par Function Description
  */
-void
-geda_combo_box_remove_index (GedaComboBox *combo_box, int position)
+void geda_combo_box_remove_index (GedaComboBox *combo_box, int position)
 {
   g_return_if_fail (GEDA_IS_COMBO_BOX (combo_box));
   g_return_if_fail (GTK_IS_LIST_STORE (combo_box->priv->model));
