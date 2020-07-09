@@ -1,7 +1,9 @@
 2020-07-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_separator.c: Eliminate ancillary GtkWidget in
-      function geda_separator_instance_init.
+      geda_separator_instance_init. Add function documentation for:
+
+          * geda_separator_class_init
 
 2020-07-08 Wiley E. Hill <wileyhill@gmail.com>
 

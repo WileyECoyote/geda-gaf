@@ -338,7 +338,16 @@ static void geda_separator_set_property (GObject      *object,
   }
 }
 
-
+/*!
+ * \brief GedaSeparator Type Class Initializer
+ * \par Function Description
+ *  Type class initializer called to initialize the class instance.
+ *  Overrides parents virtual class methods as needed and registers
+ *  GObject properties.
+ *
+ * \param [in]  class       GedaSeparator class being initializing
+ * \param [in]  class_data  Associated GedaSeparator structure
+ */
 static void geda_separator_class_init(void *class, void *class_data)
 {
   /*  (GedaSeparatorClass *class) */
