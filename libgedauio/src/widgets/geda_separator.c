@@ -388,6 +388,15 @@ static void geda_separator_class_init(void *class, void *class_data)
   g_object_class_install_property (object_class, PROP_ORIENTATION, params);
 }
 
+/*!
+ * \brief Type instance initializer for GedaSeparator
+ * \par Function Description
+ *  Type instance initializer for GedaSeparator, initializes a new empty
+ *  GedaSeparator object.
+ *
+ * \param [in] instance The GedaSeparator structure being initialized,
+ * \param [in] g_class  The GedaSeparator class we are initializing.
+ */
 static void geda_separator_instance_init(GTypeInstance *instance, void *g_class)
 {
   GedaSeparator  *separator;

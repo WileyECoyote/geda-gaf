@@ -4,6 +4,7 @@
       geda_separator_instance_init. Add function documentation for:
 
           * geda_separator_class_init
+          * geda_separator_instance_init
 
 2020-07-08 Wiley E. Hill <wileyhill@gmail.com>
 
