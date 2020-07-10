@@ -2093,7 +2093,8 @@ EDA_SCM_DEFINE (object_translate_x, "%translate-object!", 3, 0, 0,
  *  multiple of 90 degrees.
  *
  * \note Scheme API: Implements the %rotate-object! procedure of the
- *       (geda core object) module.
+ *       (geda core object) module. Unit-test for this procedure can
+ *       be found in t0110-object-transform.scm.
  *
  *  param obj_s    GedaObject smob for object to translate.
  *  param x_s      x-coordinate of centre of rotation.
