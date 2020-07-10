@@ -185,8 +185,10 @@ int edascm_is_object_type (SCM smob, int type)
  *  Returns a copy of the GedaObject contained in smob \a obj_s as a new
  *  smob.
  *
- * \note Scheme API: Implements the %copy-object procedure in the
- *       (geda core object) module.
+ * \note Scheme API: Implements the %copy-object procedure in the (geda
+ *       core object) module. Unit tests for copy-object are performed
+ *       for each object type within the object type unit test, i.e.
+ *       copying a box object is checked in t0101-object-box.scm.
  *
  *  param [in] obj_s an GedaObject smob.
  *
