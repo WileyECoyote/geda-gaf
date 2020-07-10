@@ -527,7 +527,7 @@ bool geda_complex_object_get_nearest_point (const GedaObject *object, int x, int
                  obj->type == OBJ_ARC    ||
                  obj->type == OBJ_BOX    ||
                  obj->type == OBJ_CIRCLE ||
-                 obj->type == OBJ_PIN ;
+                 obj->type == OBJ_PIN;
 
       if (do_check) {
 
