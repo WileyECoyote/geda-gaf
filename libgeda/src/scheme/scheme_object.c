@@ -1373,7 +1373,8 @@ EDA_SCM_DEFINE (object_connections, "%object-connections", 1, 0, 0,
  *  \a obj_s is not part of a component, returns SCM_BOOL_F.
  *
  * \note Scheme API: Implements the object-component procedure of the
- *       (geda core object) module.
+ *       (geda core object) module. Unit-test for this procedure can
+ *        be found in t0105-object-complex.scm
  *
  *  param obj_s GedaObject smob for object to get component of.
  *
