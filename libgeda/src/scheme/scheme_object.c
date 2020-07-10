@@ -2052,7 +2052,8 @@ EDA_SCM_DEFINE (object_set_picture_data_x, "%set-picture-data/vector!", 3, 0, 0,
  *  y-axis.
  *
  * \note Scheme API: Implements the %translate-object! procedure of the
- *       (geda core object) module.
+ *       (geda core object) module. . Unit-test for this procedure can
+ *       be found in t0110-object-transform.scm.
  *
  *  param obj_s  GedaObject smob for object to translate.
  *  param dx_s   Integer distance to translate along x-axis.
