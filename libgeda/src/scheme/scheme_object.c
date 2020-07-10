@@ -1372,7 +1372,7 @@ EDA_SCM_DEFINE (object_connections, "%object-connections", 1, 0, 0,
  *  Returns the complex object that contains the object \a obj_s.  If
  *  \a obj_s is not part of a component, returns SCM_BOOL_F.
  *
- * \note Scheme API: Implements the %object-complex procedure of the
+ * \note Scheme API: Implements the object-component procedure of the
  *       (geda core object) module.
  *
  *  param obj_s GedaObject smob for object to get component of.
@@ -2055,7 +2055,7 @@ EDA_SCM_DEFINE (object_set_picture_data_x, "%set-picture-data/vector!", 3, 0, 0,
  *  y-axis.
  *
  * \note Scheme API: Implements the %translate-object! procedure of the
- *       (geda core object) module. . Unit-test for this procedure can
+ *       (geda core object) module. Unit-test for this procedure can
  *       be found in t0110-object-transform.scm.
  *
  *  param obj_s  GedaObject smob for object to translate.
