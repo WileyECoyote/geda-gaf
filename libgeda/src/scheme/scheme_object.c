@@ -1465,7 +1465,7 @@ EDA_SCM_DEFINE (object_set_stroke_x, "%set-object-stroke!", 4, 2, 0,
   case TYPE_DASHED:
   case TYPE_CENTER:
   case TYPE_PHANTOM:
-    if (length_s == SCM_UNDEFINED) {
+    if (scm_is_eq (length_s, SCM_UNDEFINED)) {
       scm_misc_error (scheme_object_set_stroke_x,
                       _("Missing dash length parameter for dash style ~A."),
                       scm_list_1 (length_s));
