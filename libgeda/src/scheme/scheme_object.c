@@ -216,7 +216,8 @@ EDA_SCM_DEFINE (object_copy, "%copy-object", 1, 0, 0,
  *  Mirrors \a obj_s in the line x = \a x_s.
  *
  * \note Scheme API: Implements the %mirror-object! procedure of the
- *      (geda core object) module.
+ *      (geda core object) module. Unit-test for this procedure can
+ *       be found in t0110-object-transform.scm.
  *
  *  param obj_s    GedaObject smob for object to translate.
  *  param x_s      x-coordinate of centre of rotation.

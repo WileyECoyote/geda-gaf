@@ -1,3 +1,8 @@
+2020-07-10 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/scheme/scheme_object.c: Update documentation with references
+      to the location of unit-tests.
+
 2020-07-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/scheme/scheme_os.c: Eliminate ancillary pointer to path in
