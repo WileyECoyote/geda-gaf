@@ -732,30 +732,33 @@ msgstr "Resim Yaz"
 msgid "Write PDF"
 msgstr "PDF yaz"
 
+# Canceled close all
 #: gschem/src/iface/i_command.c:1367
 msgid "Canceled close all\n"
-msgstr ""
+msgstr "İptal edildi hepsini kapat\n"
 
 # Closing all documents
 #: gschem/src/iface/i_command.c:1376 gschem/src/iface/i_sessions.c:193
 msgid "Closing all documents\n"
 msgstr "Tüm dokümanları kapatma\n"
 
+# starting shut-down
 #: gschem/src/iface/i_command.c:1399
 msgid "starting shut-down"
-msgstr ""
+msgstr "kapanmaya başlama"
 
 #: gschem/src/iface/i_command.c:1413
 msgid "Symbol is not embedded, export anyway?"
-msgstr ""
+msgstr "Sembol gömülü değil, yine de dışa aktarma?"
 
 #: gschem/src/iface/i_command.c:1437
 msgid "Picture is not embedded, export anyway?"
-msgstr ""
+msgstr "Resim gömülü değil, yine de dışa aktarılsın mı?"
 
+# Empty buffer
 #: gschem/src/iface/i_command.c:1584
 msgid "Empty buffer"
-msgstr ""
+msgstr "Boş arabellek"
 
 # Offset Mode
 #: gschem/src/iface/i_command.c:1849
