@@ -819,33 +819,40 @@ msgstr "Написати зображення"
 msgid "Write PDF"
 msgstr "Пишіть PDF"
 
+# Canceled close all; Skasovano zakryty vsikh
 #: gschem/src/iface/i_command.c:1367
 msgid "Canceled close all\n"
-msgstr ""
+msgstr "Скасовано закрити всіх\n"
 
+# Closing all documents
 #: gschem/src/iface/i_command.c:1376 gschem/src/iface/i_sessions.c:193
 msgid "Closing all documents\n"
-msgstr ""
+msgstr "Закриття всіх документі\n"
 
+# starting shut-down; startove vymknennya
 #: gschem/src/iface/i_command.c:1399
 msgid "starting shut-down"
-msgstr ""
+msgstr "стартове вимкнення"
 
+# Symvol ne vbudovanyy, vse-taky eksportuvaty?
 #: gschem/src/iface/i_command.c:1413
 msgid "Symbol is not embedded, export anyway?"
-msgstr ""
+msgstr "Символ не вбудований, все-таки експортувати?"
 
+# Malyunok ne vbudovanyy, vse-taky eksportuvaty?
 #: gschem/src/iface/i_command.c:1437
 msgid "Picture is not embedded, export anyway?"
-msgstr ""
+msgstr "Малюнок не вбудований, все-таки експортувати?"
 
+# Empty buffer; Porozhniy bufer
 #: gschem/src/iface/i_command.c:1584
 msgid "Empty buffer"
-msgstr ""
+msgstr "Порожній буфер"
 
+# Offset Mode; Rezhym zmishchennya
 #: gschem/src/iface/i_command.c:1849
 msgid "Offset Mode"
-msgstr ""
+msgstr "Режим зміщення"
 
 #: gschem/src/iface/i_command.c:1850
 msgid "Specify offset distance:"
