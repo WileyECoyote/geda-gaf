@@ -400,9 +400,10 @@ msgstr "Ορίζει το μέγεθος Snap για εμφάνιση στη γ�
 msgid "Status Text"
 msgstr "Κατάσταση"
 
+# Oríste ti symvoloseirá gia to keímeno sto Status Ba
 #: gschem/src/base/gschem_status_bar.c:666
 msgid "Set the string for the text on the Status Bar"
-msgstr ""
+msgstr "Ορίστε τη συμβολοσειρά για το κείμενο στο Status Ba"
 
 #: gschem/src/base/gschem_status_bar.c:672
 #: gschem/src/base/gschem_status_bar.c:673
@@ -413,33 +414,40 @@ msgstr "Κατάσταση"
 msgid "Status Bar Height"
 msgstr "Κατάσταση"
 
+# Oríste í lávete to ýpsos tis grammís katástasis
 #: gschem/src/base/gschem_status_bar.c:687
 msgid "Set or get the height of the status bar"
-msgstr ""
+msgstr "Ορίστε ή λάβετε το ύψος της γραμμής κατάστασης"
 
+# Syntonismós othónis, kánte dexí klik gia epilogés morfís
 #: gschem/src/base/gschem_status_bar.c:1193
 msgid "Coordinate display, right click for format options"
-msgstr ""
+msgstr "Συντονισμός οθόνης, κάντε δεξί κλικ για επιλογές μορφής"
 
+# Antistoíchisi koumpioú aristeroú deíkti
 #: gschem/src/base/gschem_status_bar.c:1194
 msgid "Left pointer button assignment"
-msgstr ""
+msgstr "Αντιστοίχιση κουμπιού αριστερού δείκτη"
 
+# Antistoíchisi koumpioú mesaíou deíkti, kánte dexí klik gia epilogés
 #: gschem/src/base/gschem_status_bar.c:1195
 msgid "Middle pointer button assignment, right click for options"
-msgstr ""
+msgstr "Αντιστοίχιση κουμπιού μεσαίου δείκτη, κάντε δεξί κλικ για επιλογές"
 
+# Ekchórisi koumpioú dexioú deíkti, dexí klik gia epilogés
 #: gschem/src/base/gschem_status_bar.c:1196
 msgid "Right pointer button assignment, right click for options"
-msgstr ""
+msgstr "Εκχώρηση κουμπιού δεξιού δείκτη, δεξί κλικ για επιλογές"
 
+# Ypodeiknýei tin tréchousa thráfsi, tis monádes plégmatos í tin katástasi
 #: gschem/src/base/gschem_status_bar.c:1197
 msgid "Indicates the current snap, grid units or state"
-msgstr ""
+msgstr "Υποδεικνύει την τρέχουσα θραύση, τις μονάδες πλέγματος ή την κατάσταση"
 
+# Ypodeiknýei tin tréchousa katástasi entolón
 #: gschem/src/base/gschem_status_bar.c:1198
 msgid "Indicates the current command state"
-msgstr ""
+msgstr "Υποδεικνύει την τρέχουσα κατάσταση εντολών"
 
 #: gschem/src/base/gschem_status_bar.c:1199
 msgid "Gschem status bar"
