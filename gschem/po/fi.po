@@ -745,33 +745,37 @@ msgstr "write kuva"
 msgid "Write PDF"
 msgstr "Kirjoita PDF"
 
+# Canceled close all
 #: gschem/src/iface/i_command.c:1367
 msgid "Canceled close all\n"
-msgstr ""
+msgstr "Peruutettu sulje kaikki\n"
 
 #: gschem/src/iface/i_command.c:1376 gschem/src/iface/i_sessions.c:193
 msgid "Closing all documents\n"
-msgstr ""
+msgstr "Kaikkien asiakirjojen sulkeminen\n"
 
+# starting shut-down
 #: gschem/src/iface/i_command.c:1399
 msgid "starting shut-down"
-msgstr ""
+msgstr "alkaa sammuttaa"
 
 #: gschem/src/iface/i_command.c:1413
 msgid "Symbol is not embedded, export anyway?"
-msgstr ""
+msgstr "Symbolia ei ole upotettu, viedäkö se kuitenkin?"
 
 #: gschem/src/iface/i_command.c:1437
 msgid "Picture is not embedded, export anyway?"
-msgstr ""
+msgstr "Kuva ei ole upotettu, viedäkö se kuitenkin?"
 
+# Empty buffer
 #: gschem/src/iface/i_command.c:1584
 msgid "Empty buffer"
-msgstr ""
+msgstr "Tyhjä puskuri"
 
+# Offset Mode
 #: gschem/src/iface/i_command.c:1849
 msgid "Offset Mode"
-msgstr "Valintatila"
+msgstr "Offset-tila"
 
 #: gschem/src/iface/i_command.c:1850
 msgid "Specify offset distance:"
