@@ -738,26 +738,29 @@ msgstr "Piši sliku"
 msgid "Write PDF"
 msgstr "Napišite PDF"
 
+# Canceled close all
 #: gschem/src/iface/i_command.c:1367
 msgid "Canceled close all\n"
-msgstr ""
+msgstr "Otkazano zatvori sve\n"
 
 #: gschem/src/iface/i_command.c:1376 gschem/src/iface/i_sessions.c:193
 msgid "Closing all documents\n"
-msgstr ""
+msgstr "Zatvaranje svih dokumenata\n"
 
+# starting shut-down
 #: gschem/src/iface/i_command.c:1399
 msgid "starting shut-down"
-msgstr ""
+msgstr "pokretanje isključenja"
 
 #: gschem/src/iface/i_command.c:1413
 msgid "Symbol is not embedded, export anyway?"
-msgstr ""
+msgstr "Simbol nije ugrađen, svejedno izvoziti?"
 
 #: gschem/src/iface/i_command.c:1437
 msgid "Picture is not embedded, export anyway?"
-msgstr ""
+msgstr "Slika nije umetnuta, izvozite svejedno?"
 
+# Empty buffer
 #: gschem/src/iface/i_command.c:1584
 msgid "Empty buffer"
 msgstr "Isprazni bafer"
@@ -765,7 +768,7 @@ msgstr "Isprazni bafer"
 # offset mode
 #: gschem/src/iface/i_command.c:1849
 msgid "Offset Mode"
-msgstr "istup režim"
+msgstr "offset mod"
 
 #: gschem/src/iface/i_command.c:1850
 msgid "Specify offset distance:"
