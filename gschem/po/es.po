@@ -708,7 +708,7 @@ msgstr "Modo Conexión"
 
 #: gschem/src/iface/i_command.c:1850
 msgid "Specify offset distance:"
-msgstr ""
+msgstr "Especificar distancia de desplazamiento:"
 
 #: gschem/src/iface/i_command.c:2446
 msgid "Zoom Magnification"
@@ -716,13 +716,13 @@ msgstr "/Aumentar ampliación"
 
 #: gschem/src/iface/i_command.c:2446
 msgid "Specify new zoom:"
-msgstr ""
+msgstr "Especificar nuevo zoom:"
 
 #: gschem/src/iface/i_command.c:2488 gschem/src/iface/i_command.c:4836
 #: gschem/src/iface/i_command.c:4866 gschem/src/iface/i_command.c:4887
 #: gschem/src/iface/i_command.c:4907
 msgid "Check path:"
-msgstr ""
+msgstr "Comprobar ruta:"
 
 # error
 #: gschem/src/iface/i_command.c:2499
@@ -763,7 +763,7 @@ msgstr "El símbolo no es un archivo físico. No se puede cargar el símbolo.\n"
 
 #: gschem/src/iface/i_command.c:3416
 msgid "Cannot find any schematics above the current one!\n"
-msgstr "¡No se ha podido encontrar ningún esquema jerárquico superior!\n"
+msgstr "No se ha podido encontrar ningún esquema jerárquico superior!\n"
 
 #: gschem/src/iface/i_command.c:3546
 msgid "Object is attached to something\n"
@@ -810,7 +810,7 @@ msgstr "Seleccionada rejilla de malla\n"
 
 #: gschem/src/iface/i_command.c:4664
 msgid "Snap OFF (CAUTION!)\n"
-msgstr "¡PRECAUCIÓN!: Ajuste a la rejilla DESACTIVADO\n"
+msgstr "PRECAUCIÓN!: Ajuste a la rejilla DESACTIVADO\n"
 
 #: gschem/src/iface/i_command.c:4670
 msgid "Snap ON\n"
@@ -861,16 +861,16 @@ msgstr "Modo de realimentación seleccionado: CONTENEDOR\n"
 
 #: gschem/src/iface/i_command.c:4784
 msgid "Auto-Pan is now"
-msgstr ""
+msgstr "Automático-Pan es ahora"
 
 #: gschem/src/iface/i_command.c:5007
 #, c-format
 msgid "(read only) width=%d, height=%d\n"
-msgstr ""
+msgstr "(solo lectura) ancho =%d, altura =%d\n"
 
 #: gschem/src/iface/i_sessions.c:184
 msgid "Canceled Close all\n"
-msgstr ""
+msgstr "Cancelado cerrar todo\n"
 
 # Could not open the session file
 #: gschem/src/iface/i_sessions.c:263
