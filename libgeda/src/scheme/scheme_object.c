@@ -1339,7 +1339,8 @@ EDA_SCM_DEFINE (object_text_info, "%text-info", 1, 0, 0,
  *  list.
  *
  * \note Scheme API: Implements the %object-connections procedure of
- *       the (geda core object) module.
+ *       the (geda core object) module. Unit-test for this procedure
+ *       can be found in t0108-object-connections.scm.
  *
  *  param obj_s GedaObject smob for object to get connections for.
  *
