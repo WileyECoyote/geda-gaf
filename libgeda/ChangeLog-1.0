@@ -5,6 +5,8 @@
       way between pin 1 and 33. #2-bit machines found pin 1 as nearest
       and 64 bit machine came up with pin 33.
 
+    * tests/test_line_object.c: Fix check_line_object_scale test id`s.
+
     * tests/test_math.c: Add check for geda_math_random_number.
 
     * tests/test_picture_object.c: Change len in check_accessors to type

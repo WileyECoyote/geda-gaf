@@ -1246,25 +1246,25 @@ check_line_object_scale(GedaObject *object, int x1, int y1, int x2, int y2)
   sy2 = geda_line_object_get_y2(object);
 
   if (sx1 - x1 * 10) {
-    fprintf(stderr, "FAILED: (O112391X1) geda_object_list_scale: ");
+    fprintf(stderr, "FAILED: (O113901X1) geda_object_list_scale: ");
     fprintf(stderr, "(%d, %d),(%d, %d)\n", sx1, sy1, sx2, sy2);
     result++;
   }
 
   if (sx2 - x2 * 10) {
-    fprintf(stderr, "FAILED: (O112391X2) geda_object_list_scale: ");
+    fprintf(stderr, "FAILED: (O113901X2) geda_object_list_scale: ");
     fprintf(stderr, "(%d, %d),(%d, %d)\n", sx1, sy1, sx2, sy2);
     result++;
   }
 
   if (sy1 - y1 * 10) {
-    fprintf(stderr, "FAILED: (O112391Y1) geda_object_list_scale: ");
+    fprintf(stderr, "FAILED: (O113901Y1) geda_object_list_scale: ");
     fprintf(stderr, "(%d, %d),(%d, %d)\n", sx1, sy1, sx2, sy2);
     result++;
   }
 
   if (sy2 - y2 * 10) {
-    fprintf(stderr, "FAILED: (O112391Y2) geda_object_list_scale: ");
+    fprintf(stderr, "FAILED: (O113901Y2) geda_object_list_scale: ");
     fprintf(stderr, "(%d, %d),(%d, %d)\n", sx1, sy1, sx2, sy2);
     result++;
   }
