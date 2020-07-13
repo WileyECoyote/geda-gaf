@@ -957,6 +957,60 @@ check_object_list_scale (GedaToplevel *toplevel)
   return result;
 }
 
+int check_object_list_set_color (GedaToplevel *toplevel)
+{
+  int result = 0;
+  int count;
+
+  int x1 = 100;
+  int y1 = 100;
+  int x2 = 200;
+  int y2 = 200;
+
+  GedaObject *object1 = geda_arc_object_new (1, x1, y1, 100, 0, 90);
+  GedaObject *object2 = geda_box_object_new(2, x2, y2, x1, y1);
+  GedaObject *object3 = geda_bus_object_new(3, x1, y1, x2, y2, 0);
+  GedaObject *object4 = geda_circle_object_new(4, x1, y1, 100);
+  GedaObject *object5 = geda_line_object_new(6, x1, y1, x2, y2);
+  GedaObject *object6 = geda_net_object_new (7, x1, y1, x2, y2);
+  GedaObject *object7 = geda_path_object_new(8, &path_string[0]);
+  GedaObject *object8 = geda_pin_object_new(10, x1, y1, x2, y2, 0, 0);
+  GedaObject *object9 = geda_text_object_new(11, x1, y1, 0, 0, 10, 1, 0, "tests");
+
+  GList *list;
+
+  list = g_list_append(NULL, object1);
+  list = g_list_append(list, object2);
+  list = g_list_append(list, object3);
+  list = g_list_append(list, object4);
+  list = g_list_append(list, object5);
+  list = g_list_append(list, object6);
+  list = g_list_append(list, object7);
+  list = g_list_append(list, object8);
+  list = g_list_append(list, object9);
+
+  for (count = 0; count < 10; count++) {
+
+    int color = geda_math_random_number (0, MAX_COLORS);
+
+    /* === Function 06: geda_object_list_set_color  === */
+    geda_object_list_set_color (list, color);
+
+    /* === object1->arc === */
+
+    int c = geda_object_get_color (object1);
+
+    if (c != color) {
+      fprintf(stderr, "FAILED: (O120701) geda_object_list_set_color (%d)\n", c);
+      result++;
+    }
+
+    /* === object2->box === */
+  }
+
+  return result;
+}
+
 GedaToplevel *setup_new_toplevel(void)
 {
   GedaToplevel *toplevel;
@@ -1035,6 +1089,14 @@ main (int argc, char *argv[])
   }
   else {
     fprintf(stderr, "Caught signal checking geda_object_list_scale\n\n");
+    return 1;
+  }
+
+  if (setjmp(point) == 0) {
+    result += check_object_list_set_color(toplevel);
+  }
+  else {
+    fprintf(stderr, "Caught signal checking geda_object_list_set_color\n\n");
     return 1;
   }
 
