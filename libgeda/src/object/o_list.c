@@ -370,8 +370,9 @@ void geda_object_list_set_color (const GList *list, int color)
 {
   const GList *iter;
 
-  for (iter = list; iter != NULL; iter = g_list_next (iter))
+  for (iter = list; iter != NULL; iter = g_list_next (iter)) {
     geda_set_object_color (iter->data, color);
+  }
 }
 
 /*!
