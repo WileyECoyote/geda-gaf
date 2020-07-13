@@ -1,3 +1,9 @@
+2020-07-12 Wiley E. Hill <wileyhill@gmail.com>
+
+    * linear/switchreg/*.sym: Update dist-license=GPLv2:
+
+            * linear/switchreg/IZ1215SA-1.sym
+
 2020-07-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * linear/switchreg/LM2574-3-?-?.sym: Update dist-license=GPLv2:
