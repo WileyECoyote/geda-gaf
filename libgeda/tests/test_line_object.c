@@ -1277,6 +1277,53 @@ check_line_object_scale(GedaObject *object, int x1, int y1, int x2, int y2)
   return result;
 }
 
+int
+check_line_object_translate(GedaObject *object, int x1, int y1, int x2, int y2)
+{
+  int sx1, sy1, sx2, sy2;
+  int result = 0;
+
+  /* === Function 42: geda_line_object_translate  === */
+
+  geda_line_object_translate(object, 100, 0);
+
+  sx1 = geda_line_object_get_x1(object);
+  sy1 = geda_line_object_get_y1(object);
+  sx2 = geda_line_object_get_x2(object);
+  sy2 = geda_line_object_get_y2(object);
+
+  if (sx1 - x1 - 100) {
+    fprintf(stderr, "FAILED: (O114201X1) geda_line_object_translate: ");
+    fprintf(stderr, "(%d, %d),(%d, %d)\n", sx1, sy1, sx2, sy2);
+    result++;
+  }
+
+  if (sx2 - x2 - 100) {
+    fprintf(stderr, "FAILED: (O114201X2) geda_line_object_translate: ");
+    fprintf(stderr, "(%d, %d),(%d, %d)\n", sx1, sy1, sx2, sy2);
+    result++;
+  }
+
+  if (sy1 - y1) {
+    fprintf(stderr, "FAILED: (O114201Y1) geda_object_list_scale: ");
+    fprintf(stderr, "(%d, %d),(%d, %d)\n", sx1, sy1, sx2, sy2);
+    result++;
+  }
+
+  if (sy2 - y2) {
+    fprintf(stderr, "FAILED: (O114201Y2) geda_object_list_scale: ");
+    fprintf(stderr, "(%d, %d),(%d, %d)\n", sx1, sy1, sx2, sy2);
+    result++;
+  }
+
+  object->line->x[0] = x1;
+  object->line->y[0] = y1;
+  object->line->x[1] = x2;
+  object->line->y[1] = y2;
+
+  return result;
+}
+
 int check_methods (void)
 {
   int index;
@@ -1313,6 +1360,7 @@ int check_methods (void)
     fail += check_line_object_scale(object, x1, y1, x2, y2);
 
     /* === Function 42: geda_line_object_translate  === */
+    fail += check_line_object_translate(object, x1, y1, x2, y2);
 
     if (fail) {
 
