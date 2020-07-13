@@ -171,6 +171,6 @@ description=Bucking Voltage Regulator
 T 300 3700 5 10 0 0 0 0 1
 numslots=0
 T 300 3900 5 10 0 0 0 0 1
-dist-license=GPL3
+dist-license=GPLv2
 T 300 4100 5 10 0 0 0 0 1
 use-license=unlimited
