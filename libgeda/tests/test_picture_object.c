@@ -264,7 +264,7 @@ int check_accessors (void)
   /* === Function 06: geda_picture_object_get_data  === */
 
   const char *data;
-  unsigned int len;
+  size_t len;
 
   data = geda_picture_object_get_data(object0, &len);
 
