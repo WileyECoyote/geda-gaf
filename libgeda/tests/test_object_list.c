@@ -62,7 +62,7 @@
  *      O1203    geda_object_list_find_floating
  *      O1204    geda_object_list_mirror
  *      O1205    geda_object_list_rotate
- *       O1206   geda_object_list_scale
+ *      O1206    geda_object_list_scale
  *       O1207   geda_object_list_set_color
  *       O1208   geda_object_list_translate
  */
