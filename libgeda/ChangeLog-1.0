@@ -1,3 +1,10 @@
+2020-07-13 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/test_complex_object.c: Change the -X Axis check for function
+      geda_complex_object_get_nearest_point to 5599 because 5600 was mid
+      way between pin 1 and 33. #2-bit machines found pin 1 as nearest
+      and 64 bit machine came up with pin 33.
+
 2020-07-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/scheme/scheme_object.c: Update documentation with references

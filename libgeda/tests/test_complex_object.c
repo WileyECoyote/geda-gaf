@@ -540,7 +540,7 @@ int check_get_nearest_point(GedaObject *object)
   }
 
   /* -X Axis */
-  x = 100; y = 5600;
+  x = 100; y = 5599;
 
   answer = geda_complex_object_get_nearest_point(object, x, y, &nx, &ny);
 
