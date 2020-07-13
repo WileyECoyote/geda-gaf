@@ -152,6 +152,27 @@ int check_math_papersize_to_world ()
   return result;
 }
 
+int check_math_random_number ()
+{
+  int result = 0;
+  int lower, random, upper;
+
+  /* === Function 04: geda_math_random_number === */
+
+  lower = 0;
+  upper = 10;
+
+  random = geda_math_random_number (lower, upper);
+
+  if (random < 0 || random > 10) {
+    fprintf(stderr, "FAILED: (M0103401) random=(%d)\n", random);
+    result++;
+  }
+
+  return result;
+}
+
+
 int main (int argc, char *argv[])
 {
   int result = 0;
@@ -184,6 +205,14 @@ int main (int argc, char *argv[])
   }
   else {
     fprintf(stderr, "Caught signal checking papersize_to_world in %s\n\n", MUT);
+    return 1;
+  }
+
+  if (setjmp(point) == 0) {
+    result += check_math_random_number();
+  }
+  else {
+    fprintf(stderr, "Caught signal checking random_number in %s\n\n", MUT);
     return 1;
   }
 
