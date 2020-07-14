@@ -119,11 +119,13 @@ static void
 geda_tearoff_menu_item_size_request (GtkWidget      *widget,
                                      GtkRequisition *requisition)
 {
-  unsigned int border_width;
+  GtkStyle     *style;
+  unsigned int  border_width;
 
   border_width = geda_get_container_border_width (widget);
+  style        = geda_get_widget_style (widget);
 
-  requisition->width  = (border_width + widget->style->xthickness + BORDER_SPACING) * 2;
+  requisition->width  = (border_width + style->xthickness + BORDER_SPACING) * 2;
   requisition->height = (border_width + widget->style->ythickness) * 2;
 
   if (GEDA_IS_MENU (widget->parent) && GEDA_MENU (widget->parent)->torn_off)
