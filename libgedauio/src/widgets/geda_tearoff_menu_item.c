@@ -134,7 +134,7 @@ geda_tearoff_menu_item_size_request (GtkWidget      *widget,
   }
   else
   {
-    requisition->height += widget->style->ythickness + 4;
+    requisition->height += style->ythickness + 4;
   }
 }
 
