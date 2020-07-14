@@ -126,7 +126,7 @@ geda_tearoff_menu_item_size_request (GtkWidget      *widget,
   style        = geda_get_widget_style (widget);
 
   requisition->width  = (border_width + style->xthickness + BORDER_SPACING) * 2;
-  requisition->height = (border_width + widget->style->ythickness) * 2;
+  requisition->height = (border_width + style->ythickness) * 2;
 
   if (GEDA_IS_MENU (widget->parent) && GEDA_MENU (widget->parent)->torn_off)
   {
