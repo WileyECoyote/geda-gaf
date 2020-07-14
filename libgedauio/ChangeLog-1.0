@@ -2,7 +2,8 @@
 
     * src/widgets/geda_tearoff_menu_item.c: Utilize macros:
 
-          * geda_get_widget_parent
+          * geda_get_widget_allocation
+          * eda_get_widget_parent
           * geda_get_widget_style
 
 2020-07-09 Wiley E. Hill <wileyhill@gmail.com>
