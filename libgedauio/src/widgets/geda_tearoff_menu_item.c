@@ -162,7 +162,7 @@ geda_tearoff_menu_item_paint (GtkWidget *widget, GdkRectangle *area)
     allocation = geda_get_widget_allocation (widget);
 
     x = allocation->x + container->border_width;
-    y = widget->allocation.y + container->border_width;
+    y = allocation->y + container->border_width;
     width = widget->allocation.width - container->border_width * 2;
     height = widget->allocation.height - container->border_width * 2;
     right_max = x + width;
