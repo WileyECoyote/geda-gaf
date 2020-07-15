@@ -133,7 +133,7 @@ geda_tearoff_menu_item_size_request (GtkWidget      *widget,
   if (GEDA_IS_MENU (parent) && GEDA_MENU (parent)->torn_off) {
     requisition->height += ARROW_SIZE;
   }
-  else {
+  else   {
     requisition->height += style->ythickness + 4;
   }
 }
