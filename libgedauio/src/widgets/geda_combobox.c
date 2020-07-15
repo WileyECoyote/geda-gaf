@@ -2948,13 +2948,14 @@ static void geda_combo_box_list_position (GedaComboBox *combo_box,
    * itself. see bug #340204 */
   GtkWidget *widget = GTK_WIDGET (combo_box);
 
-  *x = *y = 0;
-
   allocation = geda_get_widget_allocation (widget);
 
   if (!gtk_widget_get_has_window (widget)) {
     *x += allocation->x;
     *y += allocation->y;
+  }
+  else {
+    *x = *y = 0;
   }
 
   window = geda_get_widget_window (widget);

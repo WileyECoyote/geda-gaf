@@ -4,6 +4,9 @@
       not initialize hide_if_empty and visible and assign values in else
       clause instead.
 
+    * src/widgets/geda_combobox.c: Revise geda_combo_box_list_position to
+      not initialize x and y and assign values in else clause instead.
+
 2020-07-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_tearoff_menu_item.c: Utilize macros:
