@@ -1371,7 +1371,7 @@ int geda_bulb_group_get_active_index (GSList *group_list) {
     }
   }
 
-  /* new buttons are *prepended* to the list, so buttons added first
+  /* New buttons are prepended to the list, so buttons added first
    * in the last positions in the list and using glist reverse
    * confuses gtk */
   return ((length - 1) - active);
@@ -1399,7 +1399,7 @@ void geda_bulb_group_set_active_index (GSList *group_list, int which_bulb)
   pos    = (unsigned int)(long)which_bulb;
   length = g_slist_length (group_list);
 
-  /* new buttons are *prepended* to the list, so buttons added as
+  /* New buttons are prepended to the list, so buttons added as
    * first have last position in the list and using glist reverse
    * confuses gtk, so do this instead ... */
   index = (length - 1) - pos;
@@ -1444,7 +1444,7 @@ void geda_bulb_group_quietly_set_active (GSList *group_list, int which_bulb)
   pos    = (unsigned int)(long)which_bulb;
   length = g_slist_length (group_list);
 
-  /* new buttons are *prepended* to the list, so buttons added as
+  /* New buttons are prepended to the list, so buttons added as
    * first have last position in the list and using glist reverse
    * confuses gtk, so do this instead ... */
   target = (length - 1) - pos;
