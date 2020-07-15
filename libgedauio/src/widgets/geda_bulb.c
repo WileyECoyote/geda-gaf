@@ -1207,7 +1207,6 @@ GSList *geda_bulb_get_group (GtkWidget *bulb)
  */
 void geda_bulb_set_group (GtkWidget *widget, GSList *group)
 {
-
   GtkWidget *old_group_singleton = NULL;
   GtkWidget *new_group_singleton = NULL;
   GedaBulb  *bulb;
