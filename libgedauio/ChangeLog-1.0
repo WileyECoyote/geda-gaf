@@ -1,3 +1,9 @@
+2020-07-15 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_action.c: Revise geda_action_sync_menu_visible to
+      not initialize hide_if_empty and visible and assign values in else
+      clause instead.
+
 2020-07-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_tearoff_menu_item.c: Utilize macros:

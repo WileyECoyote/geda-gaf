@@ -604,8 +604,9 @@ void
 geda_action_sync_menu_visible(GedaAction *action, GtkWidget *proxy, bool empty)
 {
   GtkAction *object;
-  bool visible       = TRUE;
-  bool hide_if_empty = TRUE;
+
+  bool hide_if_empty;
+  bool visible;
 
   g_return_if_fail (GTK_IS_WIDGET(proxy));
 
@@ -620,6 +621,10 @@ geda_action_sync_menu_visible(GedaAction *action, GtkWidget *proxy, bool empty)
   if (object) {
     g_object_get(object, "hide-if-empty", &hide_if_empty,
                          "visible", &visible, NULL);
+  }
+  else {
+    hide_if_empty = TRUE;
+    visible       = TRUE;
   }
 
   if (visible && !(empty && hide_if_empty)) {
