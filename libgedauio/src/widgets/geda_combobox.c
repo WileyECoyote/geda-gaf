@@ -2995,7 +2995,7 @@ static void geda_combo_box_list_position (GedaComboBox *combo_box,
   }
 
   if (*y + allocation->height + *height <= monitor.y + monitor.height) {
-      *y += allocation->height;
+    *y += allocation->height;
   }
   else if (*y - *height >= monitor.y) {
     *y -= *height;
