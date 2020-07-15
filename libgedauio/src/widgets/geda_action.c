@@ -478,6 +478,7 @@ geda_action_new (const char *name,
                                              "stock-id", icon_id,
                                              NULL);
   }
+
   return action;
 }
 
@@ -582,6 +583,7 @@ void geda_action_set_icon_name (GedaAction *action, const char *icon_name)
 void geda_action_disconnect_accelerator (GedaAction *action)
 {
   g_return_if_fail (GTK_IS_ACTION(action));
+
   gtk_action_disconnect_accelerator((GtkAction*)action);
 }
 
