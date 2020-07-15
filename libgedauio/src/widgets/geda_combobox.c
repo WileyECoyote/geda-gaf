@@ -3409,14 +3409,10 @@ static void geda_combo_box_unset_model (GedaComboBox *combo_box)
 
   if (priv->model) {
 
-    g_signal_handler_disconnect (priv->model,
-                                 priv->inserted_id);
-    g_signal_handler_disconnect (priv->model,
-                                 priv->deleted_id);
-    g_signal_handler_disconnect (priv->model,
-                                 priv->reordered_id);
-    g_signal_handler_disconnect (priv->model,
-                                 priv->changed_id);
+    g_signal_handler_disconnect (priv->model, priv->inserted_id);
+    g_signal_handler_disconnect (priv->model, priv->deleted_id);
+    g_signal_handler_disconnect (priv->model, priv->reordered_id);
+    g_signal_handler_disconnect (priv->model, priv->changed_id);
 
     g_object_unref (priv->model);
 
