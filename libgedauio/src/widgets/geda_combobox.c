@@ -2942,11 +2942,12 @@ static void geda_combo_box_list_position (GedaComboBox *combo_box,
   GdkRectangle      monitor;
   GdkScreen        *screen;
   GdkWindow        *window;
+  GtkWidget        *widget;
   int               monitor_num;
 
   /* under windows, the drop down list is as wide as the combo box
    * itself. see bug #340204 */
-  GtkWidget *widget = GTK_WIDGET (combo_box);
+  widget = GTK_WIDGET (combo_box);
 
   allocation = geda_get_widget_allocation (widget);
 
