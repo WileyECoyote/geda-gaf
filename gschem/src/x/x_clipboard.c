@@ -127,10 +127,11 @@ static void clip_clear (GtkClipboard *cb, void * user_data_or_owner)
  */
 void x_clipboard_init (GschemToplevel *w_current)
 {
-  g_signal_connect (gtk_clipboard_get (GDK_SELECTION_CLIPBOARD),
-                    "owner-change",
-                    G_CALLBACK (clip_handle_owner_change),
-                    w_current);
+  w_current->clipboard_signal_id =
+    g_signal_connect (gtk_clipboard_get (GDK_SELECTION_CLIPBOARD),
+                      "owner-change",
+                      G_CALLBACK (clip_handle_owner_change),
+                      w_current);
 
   set_got_answer(TRUE);
 }
@@ -147,7 +148,9 @@ void x_clipboard_finish (GschemToplevel *w_current)
 
   cb = gtk_clipboard_get (GDK_SELECTION_CLIPBOARD);
 
-  g_signal_handlers_disconnect_by_func (cb, clip_handle_owner_change, w_current);
+  if (w_current->clipboard_signal_id) {
+    g_signal_handler_disconnect (cb, w_current->clipboard_signal_id);
+  }
 
   gtk_clipboard_store (cb);
 }

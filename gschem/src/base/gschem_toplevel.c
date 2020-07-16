@@ -149,6 +149,7 @@ static void gschem_toplevel_instance_init( GTypeInstance *instance, void *class)
   /* Buffer Related */
   w_current->buffer_number             = 0;
   w_current->clipboard_buffer          = NULL;
+  w_current->clipboard_signal_id       = 0;
 
   /* Drag&Drop */
   w_current->drag_event                = NULL;

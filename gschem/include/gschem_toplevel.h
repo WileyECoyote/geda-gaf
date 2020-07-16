@@ -189,6 +189,7 @@ struct _GschemToplevel {
   /* Buffer Related */
   int    buffer_number;                 /* current paste buffer in use */
   GList *clipboard_buffer;              /* buffer for system clipboard integration */
+  unsigned int clipboard_signal_id;     /* g_singal ID of clipboard handler */
 
   /* Drag&Drop */
   GdkEvent *drag_event;                 /* copy of motion event for Drag&Drop */
