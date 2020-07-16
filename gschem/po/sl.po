@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2020-07-02 11:09-0500\n"
+"POT-Creation-Date: 2020-07-16 14:07-0500\n"
 "PO-Revision-Date: 2012-01-27 14:18+0000\n"
 "Last-Translator: Wiley Edward Hill <wileyhill@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -29,23 +29,23 @@ msgstr "Opozorilo: <%s> ne razširi\n"
 msgid "Command-line error: disabling auto load last\n"
 msgstr "Napaka v ukazni vrstici: onemogočiti samodejno obremenitev zadnje\n"
 
-#: gschem/src/base/gschem.c:219
+#: gschem/src/base/gschem.c:221
 msgid "Assuming schematic file suffix for"
 msgstr "Ob predpostavki, shematično datoteko končnice za"
 
-#: gschem/src/base/gschem.c:233
+#: gschem/src/base/gschem.c:237
 msgid "Assuming symbol file suffix for"
 msgstr "Ob predpostavki, da pripona simbol datoteka za"
 
-#: gschem/src/base/gschem.c:266
+#: gschem/src/base/gschem.c:271
 msgid "An error was encountered loading requested session"
 msgstr "Prišlo je do napake nakladanje zahtevala sejo"
 
-#: gschem/src/base/gschem.c:296
+#: gschem/src/base/gschem.c:301
 msgid "Auto Load"
 msgstr "samodejno naložite"
 
-#: gschem/src/base/gschem.c:354
+#: gschem/src/base/gschem.c:359
 msgid ""
 "The GEDADATA environment variable must be set!\n"
 "\n"
@@ -58,37 +58,37 @@ msgstr ""
 "GEDADATA\n"
 "spremenljivka okolja opozarja na pravem mestu.\n"
 
-#: gschem/src/base/gschem.c:388
+#: gschem/src/base/gschem.c:393
 msgid "Unable to locate scheme initialization file"
 msgstr "Ne najdem shema inicializacijo datoteko"
 
-#: gschem/src/base/gschem.c:395
+#: gschem/src/base/gschem.c:400
 msgid "Read scheme initialization file"
 msgstr "Preberite shemo inicializacijo datoteke"
 
-#: gschem/src/base/gschem.c:398
+#: gschem/src/base/gschem.c:403
 msgid "Failed to read scheme initialization file"
 msgstr "Ni mogoče prebrati shema inicializacijo datoteke"
 
 # version
-#: gschem/src/base/gschem.c:422
+#: gschem/src/base/gschem.c:427
 msgid "version"
 msgstr "verzija"
 
-#: gschem/src/base/gschem.c:427
+#: gschem/src/base/gschem.c:432
 msgid "Logging system is disabled\n"
 msgstr "Beleženje je onemogočena\n"
 
-#: gschem/src/base/gschem.c:460
+#: gschem/src/base/gschem.c:465
 #, c-format
 msgid "ERROR: Failed to load or evaluate startup script.\n"
 msgstr "NAPAKA: Ni mogoče naložiti ali oceniti zagonski skript.\n"
 
-#: gschem/src/base/gschem.c:555
+#: gschem/src/base/gschem.c:560
 msgid "Exiting normal\n"
 msgstr "Izhod normalno\n"
 
-#: gschem/src/base/gschem.c:558
+#: gschem/src/base/gschem.c:563
 msgid "FAILED:"
 msgstr "NEUSPEŠNO:"
 
@@ -722,7 +722,7 @@ msgid "Write PDF"
 msgstr "Napišite PDF"
 
 # Canceled close all
-#: gschem/src/iface/i_command.c:1367
+#: gschem/src/iface/i_command.c:1367 gschem/src/iface/i_sessions.c:184
 msgid "Canceled close all\n"
 msgstr "Prekliči vse\n"
 
@@ -917,10 +917,6 @@ msgstr ""
 #: gschem/src/iface/i_command.c:5007
 #, c-format
 msgid "(read only) width=%d, height=%d\n"
-msgstr ""
-
-#: gschem/src/iface/i_sessions.c:184
-msgid "Canceled Close all\n"
 msgstr ""
 
 #: gschem/src/iface/i_sessions.c:263
@@ -1585,15 +1581,15 @@ msgstr ""
 msgid "Options"
 msgstr "Opcije"
 
-#: gschem/src/x/x_clipboard.c:330
+#: gschem/src/x/x_clipboard.c:333
 msgid "Invalid schematic on clipboard"
 msgstr ""
 
-#: gschem/src/x/x_clipboard.c:331
+#: gschem/src/x/x_clipboard.c:334
 msgid "An error occurred while inserting clipboard data"
 msgstr ""
 
-#: gschem/src/x/x_clipboard.c:332
+#: gschem/src/x/x_clipboard.c:335
 msgid "Clipboard Insertion Failed"
 msgstr ""
 

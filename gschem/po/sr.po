@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2020-07-02 11:09-0500\n"
+"POT-Creation-Date: 2020-07-16 14:07-0500\n"
 "PO-Revision-Date: 2012-01-27 14:18+0000\n"
 "Last-Translator:  Wiley Edward Hill <wileyhill@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -30,28 +30,28 @@ msgid "Command-line error: disabling auto load last\n"
 msgstr ""
 "ulazni parametar greška: onemogućavanje automatsko uvlačenje poslednji\n"
 
-#: gschem/src/base/gschem.c:219
+#: gschem/src/base/gschem.c:221
 msgid "Assuming schematic file suffix for"
 msgstr "Pod pretpostavkom da šematski fajl sufiks za"
 
-#: gschem/src/base/gschem.c:233
+#: gschem/src/base/gschem.c:237
 msgid "Assuming symbol file suffix for"
 msgstr "Pod pretpostavkom simbol fajl sufiks za"
 
 # There was an error loading the requested session
-#: gschem/src/base/gschem.c:266
+#: gschem/src/base/gschem.c:271
 msgid "An error was encountered loading requested session"
 msgstr "Дошло је до грешке учитавања тражену сесије"
 
 # automatically load
-#: gschem/src/base/gschem.c:296
+#: gschem/src/base/gschem.c:301
 msgid "Auto Load"
 msgstr "automatski лоад"
 
 # the GEDADATA environment variable must be set
 # gschem can not find some files with data,
 # Please ensure the GEDADATA environment variable points to the correct location
-#: gschem/src/base/gschem.c:354
+#: gschem/src/base/gschem.c:359
 msgid ""
 "The GEDADATA environment variable must be set!\n"
 "\n"
@@ -63,42 +63,42 @@ msgstr ""
 "гсцхем не може да пронађе неке датотеке са подацима. Уверите се да ГЕДАДАТА\n"
 "променљиве окружења указује на одговарајућој локацији.\n"
 
-#: gschem/src/base/gschem.c:388
+#: gschem/src/base/gschem.c:393
 msgid "Unable to locate scheme initialization file"
 msgstr "U nemogućnosti da pronađe šema initialization file"
 
 # Read scheme initialization file
-#: gschem/src/base/gschem.c:395
+#: gschem/src/base/gschem.c:400
 msgid "Read scheme initialization file"
 msgstr "Реад шема датотеци са почетним"
 
 # Failed to process files with default
-#: gschem/src/base/gschem.c:398
+#: gschem/src/base/gschem.c:403
 msgid "Failed to read scheme initialization file"
 msgstr "Nije uspela da obradi datoteke sa početnim"
 
 # version
-#: gschem/src/base/gschem.c:422
+#: gschem/src/base/gschem.c:427
 msgid "version"
 msgstr "верзија"
 
 # Sistem evidencije je onemogućen
-#: gschem/src/base/gschem.c:427
+#: gschem/src/base/gschem.c:432
 msgid "Logging system is disabled\n"
 msgstr "Систем евиденције је онемогућен\n"
 
 # GREŠKA: Nije bilo moguće učitati ili procijeniti početnu skriptu
-#: gschem/src/base/gschem.c:460
+#: gschem/src/base/gschem.c:465
 #, c-format
 msgid "ERROR: Failed to load or evaluate startup script.\n"
 msgstr "ГРЕШКА: Није било могуће учитати или процијенити почетну скрипту.\n"
 
 # Normalno prestanak
-#: gschem/src/base/gschem.c:555
+#: gschem/src/base/gschem.c:560
 msgid "Exiting normal\n"
 msgstr "Излазак из нормалног\n"
 
-#: gschem/src/base/gschem.c:558
+#: gschem/src/base/gschem.c:563
 msgid "FAILED:"
 msgstr "НИЈЕ УСПЕО:"
 
@@ -741,7 +741,7 @@ msgid "Write PDF"
 msgstr "Напиши пдф"
 
 # Canceled close all
-#: gschem/src/iface/i_command.c:1367
+#: gschem/src/iface/i_command.c:1367 gschem/src/iface/i_sessions.c:184
 msgid "Canceled close all\n"
 msgstr "Отказан затворите све\n"
 
@@ -957,11 +957,6 @@ msgstr "Сада је Ауто-Пан"
 #, c-format
 msgid "(read only) width=%d, height=%d\n"
 msgstr "(Само за читање) ширина=%d, висина=%d\n"
-
-# Canceled Close all
-#: gschem/src/iface/i_sessions.c:184
-msgid "Canceled Close all\n"
-msgstr "Отказано Затвори све\n"
 
 # Could not open the session file
 #: gschem/src/iface/i_sessions.c:263
@@ -1703,15 +1698,15 @@ msgstr ""
 msgid "Options"
 msgstr ""
 
-#: gschem/src/x/x_clipboard.c:330
+#: gschem/src/x/x_clipboard.c:333
 msgid "Invalid schematic on clipboard"
 msgstr ""
 
-#: gschem/src/x/x_clipboard.c:331
+#: gschem/src/x/x_clipboard.c:334
 msgid "An error occurred while inserting clipboard data"
 msgstr ""
 
-#: gschem/src/x/x_clipboard.c:332
+#: gschem/src/x/x_clipboard.c:335
 msgid "Clipboard Insertion Failed"
 msgstr ""
 
@@ -6428,3 +6423,7 @@ msgstr "~S није валидна комбинација тастера."
 #, scheme-format
 msgid "~S is not a prefix key sequence."
 msgstr "~S није секвенца префикса."
+
+# Canceled Close all
+#~ msgid "Canceled Close all\n"
+#~ msgstr "Отказано Затвори све\n"

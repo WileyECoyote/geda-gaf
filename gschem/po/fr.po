@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fr_FR\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2020-07-02 11:09-0500\n"
+"POT-Creation-Date: 2020-07-16 14:07-0500\n"
 "PO-Revision-Date: 2016-12-28 19:57-0600\n"
 "Last-Translator: Wiley Edward Hill <wileyhill@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -35,23 +35,23 @@ msgstr ""
 "Erreur de ligne de commande: désactivation du chargement automatique en "
 "dernier\n"
 
-#: gschem/src/base/gschem.c:219
+#: gschem/src/base/gschem.c:221
 msgid "Assuming schematic file suffix for"
 msgstr "En supposant que le suffixe de fichier schématique pour"
 
-#: gschem/src/base/gschem.c:233
+#: gschem/src/base/gschem.c:237
 msgid "Assuming symbol file suffix for"
 msgstr "En supposant que le suffixe du fichier de symboles pour"
 
-#: gschem/src/base/gschem.c:266
+#: gschem/src/base/gschem.c:271
 msgid "An error was encountered loading requested session"
 msgstr "Une erreur s'est produite lors du chargement de la session demandée"
 
-#: gschem/src/base/gschem.c:296
+#: gschem/src/base/gschem.c:301
 msgid "Auto Load"
 msgstr "Chargement automatique"
 
-#: gschem/src/base/gschem.c:354
+#: gschem/src/base/gschem.c:359
 msgid ""
 "The GEDADATA environment variable must be set!\n"
 "\n"
@@ -59,37 +59,37 @@ msgid ""
 "environment variable points to the correct location.\n"
 msgstr "Vous devez positionner la variable d'environnement GEDADATA!\n"
 
-#: gschem/src/base/gschem.c:388
+#: gschem/src/base/gschem.c:393
 msgid "Unable to locate scheme initialization file"
 msgstr "Impossible de localiser le fichier d'initialisation du schéma"
 
-#: gschem/src/base/gschem.c:395
+#: gschem/src/base/gschem.c:400
 msgid "Read scheme initialization file"
 msgstr "Lire le fichier d'initialisation du schéma"
 
-#: gschem/src/base/gschem.c:398
+#: gschem/src/base/gschem.c:403
 msgid "Failed to read scheme initialization file"
 msgstr "Échec de la lecture du fichier d'initialisation du schéma"
 
-#: gschem/src/base/gschem.c:422
+#: gschem/src/base/gschem.c:427
 msgid "version"
 msgstr "Enregistrer toutes les pages"
 
-#: gschem/src/base/gschem.c:427
+#: gschem/src/base/gschem.c:432
 msgid "Logging system is disabled\n"
 msgstr ""
 
-#: gschem/src/base/gschem.c:460
+#: gschem/src/base/gschem.c:465
 #, c-format
 msgid "ERROR: Failed to load or evaluate startup script.\n"
 msgstr "ERREUR: Impossible de charger ou d'évaluer le script de démarrage\n"
 
-#: gschem/src/base/gschem.c:555
+#: gschem/src/base/gschem.c:560
 msgid "Exiting normal\n"
 msgstr "Sortie normale\n"
 
 # FAILED
-#: gschem/src/base/gschem.c:558
+#: gschem/src/base/gschem.c:563
 msgid "FAILED:"
 msgstr "ÉCHOUÉ:"
 
@@ -662,7 +662,7 @@ msgid "Write PDF"
 msgstr "Écrire PDF"
 
 # Canceled close all
-#: gschem/src/iface/i_command.c:1367
+#: gschem/src/iface/i_command.c:1367 gschem/src/iface/i_sessions.c:184
 msgid "Canceled close all\n"
 msgstr "Annulé fermer tout\n"
 
@@ -853,10 +853,6 @@ msgstr "Le panoramique automatique est maintenant"
 #: gschem/src/iface/i_command.c:5007
 #, c-format
 msgid "(read only) width=%d, height=%d\n"
-msgstr ""
-
-#: gschem/src/iface/i_sessions.c:184
-msgid "Canceled Close all\n"
 msgstr ""
 
 #: gschem/src/iface/i_sessions.c:263
@@ -1526,16 +1522,16 @@ msgstr ""
 msgid "Options"
 msgstr "Options"
 
-#: gschem/src/x/x_clipboard.c:330
+#: gschem/src/x/x_clipboard.c:333
 msgid "Invalid schematic on clipboard"
 msgstr ""
 
-#: gschem/src/x/x_clipboard.c:331
+#: gschem/src/x/x_clipboard.c:334
 msgid "An error occurred while inserting clipboard data"
 msgstr ""
 "Une erreur s'est produite lors de l'insertion des données du Presse-papiers"
 
-#: gschem/src/x/x_clipboard.c:332
+#: gschem/src/x/x_clipboard.c:335
 msgid "Clipboard Insertion Failed"
 msgstr "Échec de l'insertion du contenu copié"
 

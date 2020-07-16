@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2020-07-02 11:09-0500\n"
+"POT-Creation-Date: 2020-07-16 14:07-0500\n"
 "PO-Revision-Date: 2012-01-27 14:23+0000\n"
 "Last-Translator:  Wiley E. Hill <wileyhill@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -28,23 +28,23 @@ msgstr "Figyelem: <%s> nem bővült\n"
 msgid "Command-line error: disabling auto load last\n"
 msgstr "Parancssori hiba: az automatikus betöltés letiltása utoljára\n"
 
-#: gschem/src/base/gschem.c:219
+#: gschem/src/base/gschem.c:221
 msgid "Assuming schematic file suffix for"
 msgstr "Feltételezve, hogy a"
 
-#: gschem/src/base/gschem.c:233
+#: gschem/src/base/gschem.c:237
 msgid "Assuming symbol file suffix for"
 msgstr "Feltételezve, hogy a"
 
-#: gschem/src/base/gschem.c:266
+#: gschem/src/base/gschem.c:271
 msgid "An error was encountered loading requested session"
 msgstr "Hiba betöltése kért munkamenet"
 
-#: gschem/src/base/gschem.c:296
+#: gschem/src/base/gschem.c:301
 msgid "Auto Load"
 msgstr "Automatikus betöltése"
 
-#: gschem/src/base/gschem.c:354
+#: gschem/src/base/gschem.c:359
 msgid ""
 "The GEDADATA environment variable must be set!\n"
 "\n"
@@ -56,36 +56,36 @@ msgstr ""
 "A gschem nem talál egyes adatfájlokat. Kérjük, ellenőrizze a GEDADATA-t\n"
 "a környezeti változó a megfelelő helyre mutat.\n"
 
-#: gschem/src/base/gschem.c:388
+#: gschem/src/base/gschem.c:393
 msgid "Unable to locate scheme initialization file"
 msgstr "Nem található a rendszerben inicializáló fájlt"
 
-#: gschem/src/base/gschem.c:395
+#: gschem/src/base/gschem.c:400
 msgid "Read scheme initialization file"
 msgstr "Olvassa rendszer inicializáló fájl"
 
-#: gschem/src/base/gschem.c:398
+#: gschem/src/base/gschem.c:403
 msgid "Failed to read scheme initialization file"
 msgstr "Nem sikerült beolvasni a rendszer inicializáló fájlt"
 
-#: gschem/src/base/gschem.c:422
+#: gschem/src/base/gschem.c:427
 msgid "version"
 msgstr "Mind mentése"
 
-#: gschem/src/base/gschem.c:427
+#: gschem/src/base/gschem.c:432
 msgid "Logging system is disabled\n"
 msgstr "A naplózási rendszer le van tiltva\n"
 
-#: gschem/src/base/gschem.c:460
+#: gschem/src/base/gschem.c:465
 #, c-format
 msgid "ERROR: Failed to load or evaluate startup script.\n"
 msgstr "HIBA: Nem sikerült betölteni vagy értékelni az indító szkriptet.\n"
 
-#: gschem/src/base/gschem.c:555
+#: gschem/src/base/gschem.c:560
 msgid "Exiting normal\n"
 msgstr "Kilép a normálból\n"
 
-#: gschem/src/base/gschem.c:558
+#: gschem/src/base/gschem.c:563
 msgid "FAILED:"
 msgstr "NEM SIKERÜLT:"
 
@@ -517,12 +517,16 @@ msgstr "fájl"
 #: gschem/src/guile/g_rc.c:731
 #, c-format
 msgid "Invalid value, zoom-gain cannot be zero, check entry in rc file\n"
-msgstr "Érvénytelen érték, a zoom-erősítés nem lehet nulla, ellenőrizze a bevitelt az rc fájlban\n"
+msgstr ""
+"Érvénytelen érték, a zoom-erősítés nem lehet nulla, ellenőrizze a bevitelt "
+"az rc fájlban\n"
 
 #: gschem/src/guile/g_rc.c:736
 #, c-format
 msgid "Invalid type assignment, check zoom-gain entry in rc file\n"
-msgstr "Érvénytelen típusú hozzárendelés. Ellenőrizze a zoom-gain bejegyzést az rc fájlban\n"
+msgstr ""
+"Érvénytelen típusú hozzárendelés. Ellenőrizze a zoom-gain bejegyzést az rc "
+"fájlban\n"
 
 #: gschem/src/guile/g_rc.c:737 gschem/src/guile/g_rc.c:1296
 #: gschem/src/guile/g_rc.c:1442 gschem/src/guile/g_rc.c:2038
@@ -532,38 +536,51 @@ msgstr "Folytatva az alapértelmezett értéket"
 #: gschem/src/guile/g_rc.c:817
 #, c-format
 msgid "Invalid type assignment, check logging entry in rc file\n"
-msgstr "Érvénytelen típusú hozzárendelés, ellenőrizze az rc fájl naplózási bejegyzését\n"
+msgstr ""
+"Érvénytelen típusú hozzárendelés, ellenőrizze az rc fájl naplózási "
+"bejegyzését\n"
 
 #: gschem/src/guile/g_rc.c:1290
 #, c-format
 msgid "Invalid value, snap-size cannot be zero, check entry rc file\n"
-msgstr "Érvénytelen érték, az átfogó méret nem lehet nulla, ellenőrizze az rc fájlt\n"
+msgstr ""
+"Érvénytelen érték, az átfogó méret nem lehet nulla, ellenőrizze az rc fájlt\n"
 
 #: gschem/src/guile/g_rc.c:1295
 #, c-format
 msgid "Invalid type assignment, check snap-size entry in rc file\n"
-msgstr "Érvénytelen típus-hozzárendelés. Ellenőrizze a beépített méret bevitelét az rc fájlban\n"
+msgstr ""
+"Érvénytelen típus-hozzárendelés. Ellenőrizze a beépített méret bevitelét az "
+"rc fájlban\n"
 
 #: gschem/src/guile/g_rc.c:1436
 #, c-format
 msgid "Invalid value, bus-ripper-size cannot be zero, check entry rc file\n"
-msgstr "Érvénytelen érték, a busz-ripper méret nem lehet nulla. Ellenőrizze az rc fájlt\n"
+msgstr ""
+"Érvénytelen érték, a busz-ripper méret nem lehet nulla. Ellenőrizze az rc "
+"fájlt\n"
 
 #: gschem/src/guile/g_rc.c:1441
 #, c-format
 msgid "Invalid type assignment, check bus-ripper-size entry in rc file\n"
-msgstr "Érvénytelen típusú hozzárendelés, ellenőrizze a busz-ripper méret bevitelét az rc fájlban\n"
+msgstr ""
+"Érvénytelen típusú hozzárendelés, ellenőrizze a busz-ripper méret bevitelét "
+"az rc fájlban\n"
 
 #: gschem/src/guile/g_rc.c:2032
 #, c-format
 msgid ""
 "Can not scroll 0 steps, invalid scrollpan-steps, check entry in rc file\n"
-msgstr "Nem lehet görgetni 0 lépést, érvénytelen görgetési lépéseket, ellenőrizni kell az rc fájlban szereplő bejegyzést\n"
+msgstr ""
+"Nem lehet görgetni 0 lépést, érvénytelen görgetési lépéseket, ellenőrizni "
+"kell az rc fájlban szereplő bejegyzést\n"
 
 #: gschem/src/guile/g_rc.c:2037
 #, c-format
 msgid "Invalid type assignment, check scrollpan-steps entry in rc file\n"
-msgstr "Érvénytelen típusú hozzárendelés. Ellenőrizze a görgetési lépés lépéseit az rc fájlban\n"
+msgstr ""
+"Érvénytelen típusú hozzárendelés. Ellenőrizze a görgetési lépés lépéseit az "
+"rc fájlban\n"
 
 #: gschem/src/guile/g_rc.c:2084
 msgid "Invalid zoom factor"
@@ -640,7 +657,7 @@ msgstr "Képfájl írása"
 msgid "Write PDF"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:1367
+#: gschem/src/iface/i_command.c:1367 gschem/src/iface/i_sessions.c:184
 msgid "Canceled close all\n"
 msgstr ""
 
@@ -823,10 +840,6 @@ msgstr ""
 #: gschem/src/iface/i_command.c:5007
 #, c-format
 msgid "(read only) width=%d, height=%d\n"
-msgstr ""
-
-#: gschem/src/iface/i_sessions.c:184
-msgid "Canceled Close all\n"
 msgstr ""
 
 #: gschem/src/iface/i_sessions.c:263
@@ -1492,15 +1505,15 @@ msgstr ""
 msgid "Options"
 msgstr "Opciók"
 
-#: gschem/src/x/x_clipboard.c:330
+#: gschem/src/x/x_clipboard.c:333
 msgid "Invalid schematic on clipboard"
 msgstr "Érvénytelen sematikus vágólapra"
 
-#: gschem/src/x/x_clipboard.c:331
+#: gschem/src/x/x_clipboard.c:334
 msgid "An error occurred while inserting clipboard data"
 msgstr "Hiba történt beillesztése vágólap adataihoz"
 
-#: gschem/src/x/x_clipboard.c:332
+#: gschem/src/x/x_clipboard.c:335
 msgid "Clipboard Insertion Failed"
 msgstr ""
 

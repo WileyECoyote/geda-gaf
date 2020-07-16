@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda-gschem\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2020-07-02 11:09-0500\n"
+"POT-Creation-Date: 2020-07-16 14:07-0500\n"
 "PO-Revision-Date: 2010-02-14 01:03+0000\n"
 "Last-Translator: Bernd Jendrissek <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -29,23 +29,23 @@ msgstr "Waarskuwing: <%s> nie uit te brei\n"
 msgid "Command-line error: disabling auto load last\n"
 msgstr "Opdrag-lyn fout: aanskakel motor vrag laaste\n"
 
-#: gschem/src/base/gschem.c:219
+#: gschem/src/base/gschem.c:221
 msgid "Assuming schematic file suffix for"
 msgstr "Veronderstelling skematiese lêer agtervoegsel vir"
 
-#: gschem/src/base/gschem.c:233
+#: gschem/src/base/gschem.c:237
 msgid "Assuming symbol file suffix for"
 msgstr "Veronderstelling simbool lêer agtervoegsel vir"
 
-#: gschem/src/base/gschem.c:266
+#: gschem/src/base/gschem.c:271
 msgid "An error was encountered loading requested session"
 msgstr "'N Fout het voorgekom laai versoek sessie"
 
-#: gschem/src/base/gschem.c:296
+#: gschem/src/base/gschem.c:301
 msgid "Auto Load"
 msgstr "outomaties laai"
 
-#: gschem/src/base/gschem.c:354
+#: gschem/src/base/gschem.c:359
 msgid ""
 "The GEDADATA environment variable must be set!\n"
 "\n"
@@ -58,39 +58,39 @@ msgstr ""
 "omgewing veranderlike verwys na die regte plek.\n"
 
 # Unable to locate scheme initialization file
-#: gschem/src/base/gschem.c:388
+#: gschem/src/base/gschem.c:393
 msgid "Unable to locate scheme initialization file"
 msgstr "Kan nie skema inisialisering lêer op te spoor"
 
 # Read scheme initialization file
-#: gschem/src/base/gschem.c:395
+#: gschem/src/base/gschem.c:400
 msgid "Read scheme initialization file"
 msgstr "Lees skema inisialisering lêer"
 
 # unable to read scheme initialization file
-#: gschem/src/base/gschem.c:398
+#: gschem/src/base/gschem.c:403
 msgid "Failed to read scheme initialization file"
 msgstr "nie in staat is om skema inisialisering lêer lees"
 
-#: gschem/src/base/gschem.c:422
+#: gschem/src/base/gschem.c:427
 msgid "version"
 msgstr "weergawe"
 
-#: gschem/src/base/gschem.c:427
+#: gschem/src/base/gschem.c:432
 msgid "Logging system is disabled\n"
 msgstr "Meld stelsel is afgeskakel\n"
 
-#: gschem/src/base/gschem.c:460
+#: gschem/src/base/gschem.c:465
 #, c-format
 msgid "ERROR: Failed to load or evaluate startup script.\n"
 msgstr "Fout: kon nie laai of te evalueer opstart script.\n"
 
-#: gschem/src/base/gschem.c:555
+#: gschem/src/base/gschem.c:560
 msgid "Exiting normal\n"
 msgstr "normale beëindiging\n"
 
 # FAILED
-#: gschem/src/base/gschem.c:558
+#: gschem/src/base/gschem.c:563
 msgid "FAILED:"
 msgstr "misluk:"
 
@@ -670,7 +670,7 @@ msgstr "Skryf afbeelding"
 msgid "Write PDF"
 msgstr "Skryf PDF"
 
-#: gschem/src/iface/i_command.c:1367
+#: gschem/src/iface/i_command.c:1367 gschem/src/iface/i_sessions.c:184
 msgid "Canceled close all\n"
 msgstr "Gekanselleer naby alle\n"
 
@@ -852,11 +852,6 @@ msgstr "Outomatiese pan is nou"
 #, c-format
 msgid "(read only) width=%d, height=%d\n"
 msgstr "(Lees net) width =%d, hoogte =%d\n"
-
-# Close all has been Canceled
-#: gschem/src/iface/i_sessions.c:184
-msgid "Canceled Close all\n"
-msgstr "Sluit al gekanselleer\n"
 
 #: gschem/src/iface/i_sessions.c:263
 msgid "Could not open the session file"
@@ -1527,15 +1522,15 @@ msgstr ""
 msgid "Options"
 msgstr "Opsies"
 
-#: gschem/src/x/x_clipboard.c:330
+#: gschem/src/x/x_clipboard.c:333
 msgid "Invalid schematic on clipboard"
 msgstr ""
 
-#: gschem/src/x/x_clipboard.c:331
+#: gschem/src/x/x_clipboard.c:334
 msgid "An error occurred while inserting clipboard data"
 msgstr "'N fout tydens die inbring van knipbord data"
 
-#: gschem/src/x/x_clipboard.c:332
+#: gschem/src/x/x_clipboard.c:335
 msgid "Clipboard Insertion Failed"
 msgstr ""
 
@@ -6181,3 +6176,7 @@ msgstr ""
 #, scheme-format
 msgid "~S is not a prefix key sequence."
 msgstr ""
+
+# Close all has been Canceled
+#~ msgid "Canceled Close all\n"
+#~ msgstr "Sluit al gekanselleer\n"

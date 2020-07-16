@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2020-07-02 11:09-0500\n"
+"POT-Creation-Date: 2020-07-16 14:07-0500\n"
 "PO-Revision-Date: 2012-01-27 14:18+0000\n"
 "Last-Translator: Wiley Edward Hill <wileyhill@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -31,26 +31,26 @@ msgstr ""
 "viimeiseksi\n"
 
 # Assuming schematic file suffix for
-#: gschem/src/base/gschem.c:219
+#: gschem/src/base/gschem.c:221
 msgid "Assuming schematic file suffix for"
 msgstr "Olettaen kaavamaisen tiedostoaineiston jäljillä"
 
 # Assuming symbol file suffix for
-#: gschem/src/base/gschem.c:233
+#: gschem/src/base/gschem.c:237
 msgid "Assuming symbol file suffix for"
 msgstr "Olettaen kaavamaisen tiedostoaineiston jäljillä"
 
 # An error was encountered loading requested session
-#: gschem/src/base/gschem.c:266
+#: gschem/src/base/gschem.c:271
 msgid "An error was encountered loading requested session"
 msgstr "Ongelmana oli ladata pyydetty istunto"
 
 # Auto Load
-#: gschem/src/base/gschem.c:296
+#: gschem/src/base/gschem.c:301
 msgid "Auto Load"
 msgstr "Automaattinen lataus"
 
-#: gschem/src/base/gschem.c:354
+#: gschem/src/base/gschem.c:359
 msgid ""
 "The GEDADATA environment variable must be set!\n"
 "\n"
@@ -63,41 +63,41 @@ msgstr ""
 "ympäristömuuttuja osoittaa oikean sijainnin.\n"
 
 # Unable to locate scheme initialization file
-#: gschem/src/base/gschem.c:388
+#: gschem/src/base/gschem.c:393
 msgid "Unable to locate scheme initialization file"
 msgstr "Järjestelmän alustustiedostoa ei löytynyt"
 
 # Read scheme initialization file
-#: gschem/src/base/gschem.c:395
+#: gschem/src/base/gschem.c:400
 msgid "Read scheme initialization file"
 msgstr "Lue järjestelmän alustustiedosto"
 
 # Failed to read scheme initialization file
-#: gschem/src/base/gschem.c:398
+#: gschem/src/base/gschem.c:403
 msgid "Failed to read scheme initialization file"
 msgstr "Lue järjestelmän alustustiedosto"
 
-#: gschem/src/base/gschem.c:422
+#: gschem/src/base/gschem.c:427
 msgid "version"
 msgstr "Tallenna _kaikki"
 
 # Logging system is disabled
-#: gschem/src/base/gschem.c:427
+#: gschem/src/base/gschem.c:432
 msgid "Logging system is disabled\n"
 msgstr "Kirjausjärjestelmä on poistettu käytöstä\n"
 
-#: gschem/src/base/gschem.c:460
+#: gschem/src/base/gschem.c:465
 #, c-format
 msgid "ERROR: Failed to load or evaluate startup script.\n"
 msgstr ""
 "VIRHE: käynnistyskomentosarjan lataaminen tai arvioiminen epäonnistui.\n"
 
-#: gschem/src/base/gschem.c:555
+#: gschem/src/base/gschem.c:560
 msgid "Exiting normal\n"
 msgstr "Poistu normaalista\n"
 
 # FAILED:
-#: gschem/src/base/gschem.c:558
+#: gschem/src/base/gschem.c:563
 msgid "FAILED:"
 msgstr "epäonnistui:"
 
@@ -746,7 +746,7 @@ msgid "Write PDF"
 msgstr "Kirjoita PDF"
 
 # Canceled close all
-#: gschem/src/iface/i_command.c:1367
+#: gschem/src/iface/i_command.c:1367 gschem/src/iface/i_sessions.c:184
 msgid "Canceled close all\n"
 msgstr "Peruutettu sulje kaikki\n"
 
@@ -926,10 +926,6 @@ msgstr ""
 #: gschem/src/iface/i_command.c:5007
 #, c-format
 msgid "(read only) width=%d, height=%d\n"
-msgstr ""
-
-#: gschem/src/iface/i_sessions.c:184
-msgid "Canceled Close all\n"
 msgstr ""
 
 #: gschem/src/iface/i_sessions.c:263
@@ -1585,15 +1581,15 @@ msgstr ""
 msgid "Options"
 msgstr "_Lähennä"
 
-#: gschem/src/x/x_clipboard.c:330
+#: gschem/src/x/x_clipboard.c:333
 msgid "Invalid schematic on clipboard"
 msgstr ""
 
-#: gschem/src/x/x_clipboard.c:331
+#: gschem/src/x/x_clipboard.c:334
 msgid "An error occurred while inserting clipboard data"
 msgstr ""
 
-#: gschem/src/x/x_clipboard.c:332
+#: gschem/src/x/x_clipboard.c:335
 msgid "Clipboard Insertion Failed"
 msgstr ""
 

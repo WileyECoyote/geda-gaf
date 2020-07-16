@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2020-07-02 11:09-0500\n"
+"POT-Creation-Date: 2020-07-16 14:07-0500\n"
 "PO-Revision-Date: 2015-07-29 00:24-0600\n"
 "Last-Translator: Wiley Edward Hill <wileyhill@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -29,24 +29,24 @@ msgstr "Promean: <%s> min pongrik\n"
 msgid "Command-line error: disabling auto load last\n"
 msgstr "kamhosa banteat peaky banhchea: bet kar phtok rothayont chongokraoy\n"
 
-#: gschem/src/base/gschem.c:219
+#: gschem/src/base/gschem.c:221
 msgid "Assuming schematic file suffix for"
 msgstr "sa nm t tha eksar koumnour bampruonh samreab bachchy"
 
-#: gschem/src/base/gschem.c:233
+#: gschem/src/base/gschem.c:237
 msgid "Assuming symbol file suffix for"
 msgstr "sa nm t tha eksar del chea nimittaroub samreab bachchy"
 
-#: gschem/src/base/gschem.c:266
+#: gschem/src/base/gschem.c:271
 msgid "An error was encountered loading requested session"
 msgstr ""
 "ban chuobabrateah kamhosa muoy knong kar phtok ban snae rsom samyobrachoum "
 
-#: gschem/src/base/gschem.c:296
+#: gschem/src/base/gschem.c:301
 msgid "Auto Load"
 msgstr "phtok daoy svyobravotte"
 
-#: gschem/src/base/gschem.c:354
+#: gschem/src/base/gschem.c:359
 msgid ""
 "The GEDADATA environment variable must be set!\n"
 "\n"
@@ -59,37 +59,37 @@ msgstr ""
 "GEDADATA  nih\n"
 "pintou ather bristhean tow titeang troemotrauv.\n"
 
-#: gschem/src/base/gschem.c:388
+#: gschem/src/base/gschem.c:393
 msgid "Unable to locate scheme initialization file"
 msgstr "min ach kamnt titeang eksar chabphdaem"
 
-#: gschem/src/base/gschem.c:395
+#: gschem/src/base/gschem.c:400
 msgid "Read scheme initialization file"
 msgstr "saum an eksar chabphdaem chamrouh"
 
-#: gschem/src/base/gschem.c:398
+#: gschem/src/base/gschem.c:403
 msgid "Failed to read scheme initialization file"
 msgstr "saum an eksar chabphdaem chamrouh"
 
-#: gschem/src/base/gschem.c:422
+#: gschem/src/base/gschem.c:427
 msgid "version"
 msgstr "Kamne:"
 
-#: gschem/src/base/gschem.c:427
+#: gschem/src/base/gschem.c:432
 msgid "Logging system is disabled\n"
 msgstr "samy del ban chabphtaem chea brapn\n"
 
-#: gschem/src/base/gschem.c:460
+#: gschem/src/base/gschem.c:465
 #, c-format
 msgid "ERROR: Failed to load or evaluate startup script.\n"
 msgstr ""
 "kamhosa: ban breachy knong kar phtok ryy veayotamlei skrib pel chabphdaem.\n"
 
-#: gschem/src/base/gschem.c:555
+#: gschem/src/base/gschem.c:560
 msgid "Exiting normal\n"
 msgstr "kammovithi chenh thommotea\n"
 
-#: gschem/src/base/gschem.c:558
+#: gschem/src/base/gschem.c:563
 msgid "FAILED:"
 msgstr "breachy:"
 
@@ -681,7 +681,7 @@ msgid "Write PDF"
 msgstr "sarser chea PDF"
 
 # Canceled close all
-#: gschem/src/iface/i_command.c:1367
+#: gschem/src/iface/i_command.c:1367 gschem/src/iface/i_sessions.c:184
 msgid "Canceled close all\n"
 msgstr "loubchaol yeang chitasnetth teangoasa\n"
 
@@ -868,10 +868,6 @@ msgstr "daoy svyobravotte ban ku ilauv"
 #, c-format
 msgid "(read only) width=%d, height=%d\n"
 msgstr "(ban te an) ttung=%d, kamposa=%d\n"
-
-#: gschem/src/iface/i_sessions.c:184
-msgid "Canceled Close all\n"
-msgstr "loubchaol kar bet teangoasa\n"
 
 #: gschem/src/iface/i_sessions.c:263
 msgid "Could not open the session file"
@@ -1551,17 +1547,17 @@ msgstr "Visaealpheap"
 msgid "Options"
 msgstr "Chomreus"
 
-#: gschem/src/x/x_clipboard.c:330
+#: gschem/src/x/x_clipboard.c:333
 msgid "Invalid schematic on clipboard"
 msgstr "<b>tinnony min troemotrauv now leu kdarotambietakhtasa</b>"
 
 # An error occurred while inserting clipboard data
-#: gschem/src/x/x_clipboard.c:331
+#: gschem/src/x/x_clipboard.c:334
 msgid "An error occurred while inserting clipboard data"
 msgstr ""
 "kamhosa muoy ban kaetlaeng khn pel banhchoul tinnony kdarotambietakhtasa"
 
-#: gschem/src/x/x_clipboard.c:332
+#: gschem/src/x/x_clipboard.c:335
 msgid "Clipboard Insertion Failed"
 msgstr "ben th kta r tambiet khtasa breachy"
 
@@ -6363,3 +6359,6 @@ msgstr ""
 #, scheme-format
 msgid "~S is not a prefix key sequence."
 msgstr ""
+
+#~ msgid "Canceled Close all\n"
+#~ msgstr "loubchaol kar bet teangoasa\n"

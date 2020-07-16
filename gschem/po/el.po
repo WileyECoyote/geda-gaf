@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2020-07-02 11:09-0500\n"
+"POT-Creation-Date: 2020-07-16 14:07-0500\n"
 "PO-Revision-Date: 2012-09-01 20:41+0000\n"
 "Last-Translator: Panos Bouklis <panos@echidna-band.com>\n"
 "Language-Team: Greek <el@li.org>\n"
@@ -28,23 +28,23 @@ msgstr "Προειδοποίηση: <%s> δεν επεκτάθηκε\n"
 msgid "Command-line error: disabling auto load last\n"
 msgstr "Σφάλμα γραμμής εντολών: Απενεργοποίηση τελευταίου αυτόματου φορτίου\n"
 
-#: gschem/src/base/gschem.c:219
+#: gschem/src/base/gschem.c:221
 msgid "Assuming schematic file suffix for"
 msgstr "Υποθέτοντας το σχηματικό επίθημα αρχείου για"
 
-#: gschem/src/base/gschem.c:233
+#: gschem/src/base/gschem.c:237
 msgid "Assuming symbol file suffix for"
 msgstr "Υποθέτοντας την κατάληξη αρχείου συμβόλων για"
 
-#: gschem/src/base/gschem.c:266
+#: gschem/src/base/gschem.c:271
 msgid "An error was encountered loading requested session"
 msgstr "Παρουσιάστηκε σφάλμα κατά τη φόρτωση ζήτησε συνεδρία"
 
-#: gschem/src/base/gschem.c:296
+#: gschem/src/base/gschem.c:301
 msgid "Auto Load"
 msgstr "Αυτόματη φόρτιση"
 
-#: gschem/src/base/gschem.c:354
+#: gschem/src/base/gschem.c:359
 msgid ""
 "The GEDADATA environment variable must be set!\n"
 "\n"
@@ -57,37 +57,37 @@ msgstr ""
 "ρυθμίσετε τη \n"
 "μεταβλητή περιβάλλοντος GEDADATA ώστε να δείχνει στη σωστή τοποθεσία.\n"
 
-#: gschem/src/base/gschem.c:388
+#: gschem/src/base/gschem.c:393
 msgid "Unable to locate scheme initialization file"
 msgstr "Δεν είναι δυνατό να εντοπιστεί το αρχείο αρχικοποίησης του συστήματος"
 
-#: gschem/src/base/gschem.c:395
+#: gschem/src/base/gschem.c:400
 msgid "Read scheme initialization file"
 msgstr "Διαβάστε το αρχείο αρχικοποίησης σχήματος"
 
-#: gschem/src/base/gschem.c:398
+#: gschem/src/base/gschem.c:403
 msgid "Failed to read scheme initialization file"
 msgstr "Αδυναμία αντικατάστασης εικόνων: %s"
 
-#: gschem/src/base/gschem.c:422
+#: gschem/src/base/gschem.c:427
 msgid "version"
 msgstr "Αποθήκευση όλων"
 
-#: gschem/src/base/gschem.c:427
+#: gschem/src/base/gschem.c:432
 msgid "Logging system is disabled\n"
 msgstr "Το σύστημα καταγραφής είναι απενεργοποιημένο\n"
 
-#: gschem/src/base/gschem.c:460
+#: gschem/src/base/gschem.c:465
 #, c-format
 msgid "ERROR: Failed to load or evaluate startup script.\n"
 msgstr ""
 "ΣΦΑΛΜΑ: Απέτυχε η φόρτωση ή την αξιολόγηση δέσμη ενεργειών εκκίνησης.\n"
 
-#: gschem/src/base/gschem.c:555
+#: gschem/src/base/gschem.c:560
 msgid "Exiting normal\n"
 msgstr "Έξοδος κανονικού\n"
 
-#: gschem/src/base/gschem.c:558
+#: gschem/src/base/gschem.c:563
 msgid "FAILED:"
 msgstr "ΑΠΕΤΥΧΕ:"
 
@@ -660,7 +660,7 @@ msgstr "Γράψτε Εικόνα"
 msgid "Write PDF"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:1367
+#: gschem/src/iface/i_command.c:1367 gschem/src/iface/i_sessions.c:184
 msgid "Canceled close all\n"
 msgstr ""
 
@@ -840,10 +840,6 @@ msgstr ""
 #: gschem/src/iface/i_command.c:5007
 #, c-format
 msgid "(read only) width=%d, height=%d\n"
-msgstr ""
-
-#: gschem/src/iface/i_sessions.c:184
-msgid "Canceled Close all\n"
 msgstr ""
 
 #: gschem/src/iface/i_sessions.c:263
@@ -1509,15 +1505,15 @@ msgstr ""
 msgid "Options"
 msgstr "Επιλογές"
 
-#: gschem/src/x/x_clipboard.c:330
+#: gschem/src/x/x_clipboard.c:333
 msgid "Invalid schematic on clipboard"
 msgstr ""
 
-#: gschem/src/x/x_clipboard.c:331
+#: gschem/src/x/x_clipboard.c:334
 msgid "An error occurred while inserting clipboard data"
 msgstr "Συνέβη ένα σφάλμα κατά τη διάρκεια εισαγωγής τω δεδομένων προχείρου"
 
-#: gschem/src/x/x_clipboard.c:332
+#: gschem/src/x/x_clipboard.c:335
 msgid "Clipboard Insertion Failed"
 msgstr "Η εισαγωγή από το πρόχειρο απέτυχε"
 

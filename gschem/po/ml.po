@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2020-07-02 11:09-0500\n"
+"POT-Creation-Date: 2020-07-16 14:07-0500\n"
 "PO-Revision-Date: 2012-01-27 14:23+0000\n"
 "Last-Translator:  Wiley E. Hill <wileyhill@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -31,25 +31,25 @@ msgid "Command-line error: disabling auto load last\n"
 msgstr "കമാൻഡ്-ലൈൻ പിശക്: ഓട്ടോ-ലോഡ്-സമീപകാല പ്രവർത്തനരഹിതമാക്കുകയാണ്\n"
 
 # Assuming 'sch' file suffix for
-#: gschem/src/base/gschem.c:219
+#: gschem/src/base/gschem.c:221
 msgid "Assuming schematic file suffix for"
 msgstr "വേണ്ടി 'sch' ഫയൽ പ്രത്യയം കണക്കിലെടുത്താൽ"
 
 # Assuming 'sym' file suffix for
-#: gschem/src/base/gschem.c:233
+#: gschem/src/base/gschem.c:237
 msgid "Assuming symbol file suffix for"
 msgstr "വേണ്ടി 'sym' ഫയൽ പ്രത്യയം കണക്കിലെടുത്താൽ"
 
 # An error was encountered loading requested session
-#: gschem/src/base/gschem.c:266
+#: gschem/src/base/gschem.c:271
 msgid "An error was encountered loading requested session"
 msgstr "ഒരു പിശക് അഭ്യർത്ഥിച്ച സെഷൻ ലോഡുചെയ്യുന്നതിൽ നേരിട്ടു"
 
-#: gschem/src/base/gschem.c:296
+#: gschem/src/base/gschem.c:301
 msgid "Auto Load"
 msgstr "ഓട്ടോ സമീപകാല ലോഡ്"
 
-#: gschem/src/base/gschem.c:354
+#: gschem/src/base/gschem.c:359
 msgid ""
 "The GEDADATA environment variable must be set!\n"
 "\n"
@@ -62,44 +62,44 @@ msgstr ""
 "ശരിയായ ലൊക്കേഷനിലേക്ക് പരിസര വേരിയബിൾ പോയിന്റ്.\n"
 
 # Unable to locate initialization file
-#: gschem/src/base/gschem.c:388
+#: gschem/src/base/gschem.c:393
 msgid "Unable to locate scheme initialization file"
 msgstr "ഇനിഷ്യലൈസേഷൻ ഫയൽ scheme കണ്ടെത്താൻ കഴിയുന്നില്ല"
 
 # Read initialization file
-#: gschem/src/base/gschem.c:395
+#: gschem/src/base/gschem.c:400
 msgid "Read scheme initialization file"
 msgstr "പ്രാരംഭവില scheme ഫയൽ വായിക്കുക"
 
 # Failed to read initialization file
-#: gschem/src/base/gschem.c:398
+#: gschem/src/base/gschem.c:403
 msgid "Failed to read scheme initialization file"
 msgstr "ഇനിഷ്യലൈസേഷൻ scheme ഫയൽ വായിക്കാൻ പരാജയപ്പെട്ടു"
 
 # Edition
-#: gschem/src/base/gschem.c:422
+#: gschem/src/base/gschem.c:427
 msgid "version"
 msgstr "പതിപ്പ്"
 
 # Logging system is disabled
-#: gschem/src/base/gschem.c:427
+#: gschem/src/base/gschem.c:432
 msgid "Logging system is disabled\n"
 msgstr "ലോഗിംഗ് സിസ്റ്റം പ്രവർത്തനരഹിതമാക്കിയിരിക്കുന്നു\n"
 
 # Error: Failed to load or evaluate startup script.
-#: gschem/src/base/gschem.c:460
+#: gschem/src/base/gschem.c:465
 #, c-format
 msgid "ERROR: Failed to load or evaluate startup script.\n"
 msgstr ""
 "പിശക്: സ്റ്റാർട്ടപ്പ് സ്ക്രിപ്റ്റ് ലോഡുചെയ്യുന്നതിനോ മൂല്യനിർണ്ണയമാക്കുന്നതിനോ പരാജയപ്പെട്ടു.\n"
 
 # Exiting normal; sādhāraṇa puṟattukaṭakkunnu
-#: gschem/src/base/gschem.c:555
+#: gschem/src/base/gschem.c:560
 msgid "Exiting normal\n"
 msgstr "സാധാരണ പുറത്തുകടക്കുന്നു\n"
 
 # FAILED
-#: gschem/src/base/gschem.c:558
+#: gschem/src/base/gschem.c:563
 msgid "FAILED:"
 msgstr "പരാജയപ്പെട്ടു:"
 
@@ -765,7 +765,7 @@ msgid "Write PDF"
 msgstr "പീഡിയെഫ് എഴുതുക"
 
 # Canceled closing all
-#: gschem/src/iface/i_command.c:1367
+#: gschem/src/iface/i_command.c:1367 gschem/src/iface/i_sessions.c:184
 msgid "Canceled close all\n"
 msgstr "എല്ലാ റദ്ദാക്കി അടയ്ക്കൽ\n"
 
@@ -954,10 +954,6 @@ msgstr ""
 #: gschem/src/iface/i_command.c:5007
 #, c-format
 msgid "(read only) width=%d, height=%d\n"
-msgstr ""
-
-#: gschem/src/iface/i_sessions.c:184
-msgid "Canceled Close all\n"
 msgstr ""
 
 #: gschem/src/iface/i_sessions.c:263
@@ -1628,15 +1624,15 @@ msgstr ""
 msgid "Options"
 msgstr "പ്രവര്‍ത്തന രീതി നിര്‍ണയിക്കുക"
 
-#: gschem/src/x/x_clipboard.c:330
+#: gschem/src/x/x_clipboard.c:333
 msgid "Invalid schematic on clipboard"
 msgstr ""
 
-#: gschem/src/x/x_clipboard.c:331
+#: gschem/src/x/x_clipboard.c:334
 msgid "An error occurred while inserting clipboard data"
 msgstr ""
 
-#: gschem/src/x/x_clipboard.c:332
+#: gschem/src/x/x_clipboard.c:335
 msgid "Clipboard Insertion Failed"
 msgstr ""
 
