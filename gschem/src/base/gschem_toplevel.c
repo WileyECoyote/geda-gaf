@@ -290,7 +290,7 @@ static void gschem_toplevel_instance_init( GTypeInstance *instance, void *class)
 
   w_current->page_history              = gschem_page_history_new();
 
-  w_current->last_image_path                 = NULL;
+  w_current->last_image_path           = NULL;
 
   w_current->smob                      = SCM_UNDEFINED;
 }
