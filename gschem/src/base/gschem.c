@@ -187,7 +187,7 @@ load_documents(GschemToplevel *w_current, int argv_index, int argc, char *argv[]
 
       char *filename;
 
-      /* Check for non-expanded wild-card, if not match then no expansion */
+      /* Check for non-expanded wild-card, if no match then no expansion */
       if (strstr(argv[i], "*") != NULL) {
         geda_log(_("Warning: <%s> did not expand\n"), argv[i]);
         geda_log_v (_("Command-line error: disabling auto load last\n"));
