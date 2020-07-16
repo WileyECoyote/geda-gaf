@@ -181,7 +181,7 @@ static bool i_session_close_all (GschemToplevel *w_current)
 
     close_all = x_confirm_close_window (w_current);
     if (!close_all) {       /* user canceled the close */
-      geda_log_v(_("Canceled Close all\n"));
+      geda_log_v(_("Canceled close all\n"));
     }
   }
   else {
