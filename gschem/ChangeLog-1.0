@@ -1,7 +1,9 @@
 2020-07-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/base/gschem.c: Revise to load_documents to just pass MAX_PATH
-      to memset instead of using sizeof.
+      to memset instead of using sizeof and release the filename before
+      reassigning the pointer.
+
 
 2020-07-10 Wiley E. Hill <wileyhill@gmail.com>
 

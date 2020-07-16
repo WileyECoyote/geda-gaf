@@ -212,6 +212,8 @@ load_documents(GschemToplevel *w_current, int argv_index, int argc, char *argv[]
 
           if (access(strcat(tmpfilename, SCHEMATIC_FILE_DOT_SUFFIX), F_OK ) != -1 ) {
 
+            GEDA_FREE (filename);
+
             filename = tmpfilename;
 
             if (verbose_mode) {
@@ -225,6 +227,8 @@ load_documents(GschemToplevel *w_current, int argv_index, int argc, char *argv[]
             strcpy(tmpfilename, filename);
 
             if (access(strcat(tmpfilename, SYMBOL_FILE_DOT_SUFFIX), F_OK ) != -1 ) {
+
+              GEDA_FREE (filename);
 
               filename = tmpfilename;
 
