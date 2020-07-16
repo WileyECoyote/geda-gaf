@@ -156,7 +156,7 @@ load_documents(GschemToplevel *w_current, int argv_index, int argc, char *argv[]
     char *fname;
     Page *page;
 
-    fname = get_file_name(argv_index);
+    fname = get_file_name (argv_index);
 
     /* Check is user passed the filename after the titleblock,
      * the directory would be the cwd from get_file_name which
@@ -224,7 +224,7 @@ load_documents(GschemToplevel *w_current, int argv_index, int argc, char *argv[]
             /* Check if file name is valid if ".sym" is added */
             strcpy(tmpfilename, filename);
 
-            if ( access( strcat(tmpfilename, SYMBOL_FILE_DOT_SUFFIX), F_OK ) != -1 ) {
+            if (access(strcat(tmpfilename, SYMBOL_FILE_DOT_SUFFIX), F_OK ) != -1 ) {
 
               filename = tmpfilename;
 
