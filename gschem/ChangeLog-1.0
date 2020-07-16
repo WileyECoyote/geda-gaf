@@ -1,21 +1,18 @@
+2020-07-16 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/base/gschem.c: Revise to load_documents to just pass MAX_PATH
+      to memset instead of using sizeof.
+
 2020-07-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/bs.po: Update Bosnian translations
-
     * po/ca.po: Update Catalan translations.
-
     * po/da.po: Update Danish translations.
-
     * po/el.po: Update Greek translations
-
     * po/es.po: Update Spanish translations.
-
     * po/fi.po: Update Finnish translations.
-
     * po/sv.po: Update Swedish translations.
-
     * po/tr.po: Update Turkish translations.
-
     * po/uk.po: Update Ukrainian translations.
 
 2020-07-04 Wiley E. Hill <wileyhill@gmail.com>

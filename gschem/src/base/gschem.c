@@ -205,7 +205,7 @@ load_documents(GschemToplevel *w_current, int argv_index, int argc, char *argv[]
 
         if (!ext) {
 
-          memset(tmpfilename, 0, sizeof(tmpfilename));
+          memset(tmpfilename, 0, MAX_PATH);
 
           /* Check if file name is valid if ".sch" is added */
           strcpy(tmpfilename, filename);
