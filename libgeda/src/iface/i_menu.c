@@ -24,6 +24,11 @@
 
 #include <libgeda_priv.h>
 
+/** \defgroup interface-menu-proc Interface Procedures for Menus
+ * @{
+ * \brief Interface Related Procedures for Menus
+ */
+
 /*! \brief */
 struct st_menu {
   char *menu_name;
@@ -305,3 +310,5 @@ char *geda_iface_menu_return_tooltip(const char *action_name)
 
   return tooltip;
 }
+
+/** @} endgroup interface-menu-proc */
