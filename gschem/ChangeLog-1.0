@@ -1,5 +1,8 @@
 2020-07-17 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/base/gschem.c: Dynamically allocate tmpfilename and resuce the
+      scope.
+
     * src/iface/i_command.c: Revise i_command_get_action_icon to return
       a dynamically allocated string because the string returned from
       geda_iface_menu_return_icon must be dynamic.

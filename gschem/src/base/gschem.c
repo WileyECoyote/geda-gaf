@@ -128,9 +128,9 @@ void gschem_quit(void)
 static void
 load_documents(GschemToplevel *w_current, int argv_index, int argc, char *argv[])
 {
-  int   page_loaded   = FALSE;
-  char *cwd           = NULL;
-  char  tmpfilename[MAX_PATH];
+  int   page_loaded = FALSE;
+  char *cwd         = NULL;
+
 
   char *get_file_name(int index) {
 
@@ -200,12 +200,14 @@ load_documents(GschemToplevel *w_current, int argv_index, int argc, char *argv[]
       /* if filename is not valid, check if user left off extension */
       if (access(filename, F_OK ) == -1) {
 
+        char *tmpfilename;
+
         /* See if user left off our file suffixes */
         const char *ext = geda_file_get_filename_ext(filename);
 
         if (!ext) {
 
-          memset(tmpfilename, 0, MAX_PATH);
+          tmpfilename = geda_calloc(strlen(filename) + 5);
 
           /* Check if file name is valid if ".sch" is added */
           strcpy(tmpfilename, filename);
@@ -252,10 +254,7 @@ load_documents(GschemToplevel *w_current, int argv_index, int argc, char *argv[]
         ++page_loaded;
       }
 
-      /* Free the pointer if we did not redirected */
-      if ( filename != tmpfilename ) {
-        GEDA_FREE (filename);
-      }
+      GEDA_FREE (filename);
     }
   }
 
