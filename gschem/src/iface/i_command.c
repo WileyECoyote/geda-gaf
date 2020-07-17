@@ -363,20 +363,21 @@ void i_command_get_action_list(GList** list)
  *  set to the index of the last found icon_id in command_struc
  *  in anticipation of subsequent calls.
  */
-const char *i_command_get_action_icon (const char *command)
+char *i_command_get_action_icon (const char *command)
 {
-  const char *icon_id = NULL;
-  static int  icache  = 1;
+  char *icon_id = NULL;
+
+  static int icache = 1;
 
   /* Hack for buffer */
   if (strstr(command, "buffer-copy") != 0) {
-    icon_id = command_struc[cmd_do_copy_clip].icon_id;
+    icon_id = geda_strdup(command_struc[cmd_do_copy_clip].icon_id);
   }
   else if (strstr(command, "buffer-cut") != 0) {
-    icon_id = command_struc[cmd_do_cut_clip].icon_id;
+    icon_id = geda_strdup(command_struc[cmd_do_cut_clip].icon_id);
   }
   else if (strstr(command, "buffer-paste") != 0) {
-    icon_id = command_struc[cmd_do_paste_clip].icon_id;
+    icon_id = geda_strdup(command_struc[cmd_do_paste_clip].icon_id);
   }
   else {
 
@@ -386,7 +387,7 @@ const char *i_command_get_action_icon (const char *command)
 
       if (geda_strequal(command_struc[index].name, command)) {
         if (command_struc[index].icon_id) {
-          icon_id = command_struc[index].icon_id;
+          icon_id = geda_strdup(command_struc[index].icon_id);
           icache = index;
           break;
         }
@@ -398,7 +399,7 @@ const char *i_command_get_action_icon (const char *command)
       for (index = 1; index < icache; index++) {
         if (geda_strequal(command_struc[index].name, command)) {
           if (command_struc[index].icon_id) {
-            icon_id = command_struc[index].icon_id;
+            icon_id = geda_strdup(command_struc[index].icon_id);
             icache = index;
             break;
           }

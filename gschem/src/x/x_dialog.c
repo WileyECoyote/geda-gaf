@@ -3489,7 +3489,7 @@ void x_dialog_hotkeys (GschemToplevel *w_current)
       do {
 
         GtkTreeIter iter2;
-        const char *icon_id;
+        char *icon_id;
         char *action;
         char *binding;
         char *keys;
@@ -3519,6 +3519,7 @@ void x_dialog_hotkeys (GschemToplevel *w_current)
                                              2, keys,
                                              3, binding,
                                              -1);
+          free (icon_id);
         }
         else {
           gtk_list_store_insert_with_values (store, &iter2, -1,

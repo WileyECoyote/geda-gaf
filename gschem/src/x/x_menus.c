@@ -839,7 +839,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
         else {
                 char *action_name;
                 char *action_keys;
-          const char *menu_icon_name;
+                char *menu_icon_name;
           const char *menu_item_name;
                 bool  is_a_toggle;
 
@@ -895,14 +895,17 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
                                       action_keys);    /* Accelerator string */
           }
 
+          free (action_name);
+
+          if (menu_icon_name && !menu_item_stock) {
+            free (menu_icon_name);
+          }
+
           /* Cast is for GedaToggleAction items */
           menu_item = geda_action_create_menu_item ((GedaAction*)action);
-
-          free(action_name);
-
-          handler = g_signal_connect (action, "activate",
-                                      G_CALLBACK(x_menu_execute),
-                                      w_current);
+          handler   = g_signal_connect (action, "activate",
+                                        G_CALLBACK(x_menu_execute),
+                                        w_current);
 
           if (is_a_toggle) {
             toggler_data->handler = handler;     /* Save handler ID of toggle items */

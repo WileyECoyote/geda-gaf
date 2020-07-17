@@ -179,7 +179,7 @@ GtkWidget *x_icons_get_action_icon (const char *action, int size)
 {
   GtkWidget  *image;
 
-  const char *icon_id = i_command_get_action_icon (action);
+  char *icon_id = i_command_get_action_icon (action);
 
   if (icon_id) {
 
@@ -199,6 +199,8 @@ GtkWidget *x_icons_get_action_icon (const char *action, int size)
         image = gtk_image_new_from_icon_name (icon_id, size);
       }
     }
+
+    free (icon_id);
   }
   else {
     image = NULL;
