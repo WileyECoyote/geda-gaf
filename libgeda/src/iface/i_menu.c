@@ -179,6 +179,11 @@ int geda_iface_menu_return_num(void)
   return(menu_index);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 char *geda_iface_menu_return_icon(const char *action_name)
 {
   char *icon = NULL;

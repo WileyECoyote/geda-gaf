@@ -2,7 +2,7 @@
 
     * src/iface/i_menu.c: Revise geda_iface_menu_return_icon to release
       the action when the icon is founded. Add Doxygen group interface-
-      menu-proc.
+      menu-proc, add todo documentation templates.
 
 2020-07-13 Wiley E. Hill <wileyhill@gmail.com>
 
