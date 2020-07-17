@@ -247,6 +247,11 @@ char *geda_iface_menu_return_icon(const char *action_name)
   return icon;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 char *geda_iface_menu_return_tooltip(const char *action_name)
 {
   char *tooltip = NULL;
