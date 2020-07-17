@@ -2113,4 +2113,4 @@ bool geda_picture_object_unembed (GedaObject *object)
   return result;
 }
 
-/** @} endgroup geda-picture-proc */
+/** @} endgroup geda-picture-object-proc */
