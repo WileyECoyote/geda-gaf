@@ -220,10 +220,11 @@ char *geda_iface_menu_return_icon(const char *action_name)
               icon = scm_to_utf8_string (scm_item_stock);
             }
 
+            free (action);
             break;
           }
 
-          free(action);
+          free (action);
         }
       }
 

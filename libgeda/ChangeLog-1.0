@@ -1,3 +1,8 @@
+2020-07-17 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/iface/i_menu.c: Revise geda_iface_menu_return_icon to release
+      the action when the icon is founded.
+
 2020-07-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/test_complex_object.c: Change the -X Axis check for function
