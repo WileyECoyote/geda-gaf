@@ -4,6 +4,9 @@
       the action when the icon is founded. Add Doxygen group interface-
       menu-proc, add todo documentation templates.
 
+    * tests/test_file.c: Reduce the scope of static constants expected_0101
+      and expected_0102 in test_get.
+
 2020-07-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/test_complex_object.c: Change the -X Axis check for function

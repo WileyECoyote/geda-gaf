@@ -382,8 +382,6 @@ int test_get (void)
 
   /* === Function 01:  geda_file_get_autosave_filename === */
 
-  const char *expected_0101 = "." DIR_SEPARATOR_S "#" LINK2SOMEWHERE "#";
-
   /* LINK2SOMEWHERE is SYM_FILE without  the data/ prefix */
   string = geda_get_autosave_name(LINK2SOMEWHERE);
 
@@ -392,14 +390,16 @@ int test_get (void)
     result++;
   }
   else {
+
+    const char *expected_0101 = "." DIR_SEPARATOR_S "#" LINK2SOMEWHERE "#";
+
     if (strcmp(string, expected_0101)) {
       fprintf(stderr, "FAILED: (F020101B) geda_file_get_autosave_filename <%s>\n", string);
       result++;
     }
+
     free (string);
   }
-
-  const char *expected_0102 = "nowhere" DIR_SEPARATOR_S "tests" DIR_SEPARATOR_S "data" DIR_SEPARATOR_S "#no_file.sch#";
 
   string = geda_get_autosave_name(LINK2NOWHERE);
 
@@ -408,10 +408,14 @@ int test_get (void)
     result++;
   }
   else {
+
+    const char *expected_0102 = "nowhere" DIR_SEPARATOR_S "tests" DIR_SEPARATOR_S "data" DIR_SEPARATOR_S "#no_file.sch#";
+
     if (strcmp(string, expected_0102)) {
       fprintf(stderr, "FAILED: (F020102B) geda_file_get_autosave_filename <%s>\n", string);
       result++;
     }
+
     free (string);
   }
 
