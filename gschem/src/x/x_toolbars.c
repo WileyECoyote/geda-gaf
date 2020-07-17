@@ -559,10 +559,12 @@ x_toolbars_save_state(GschemToplevel *w_current)
 
   filename = g_build_filename(geda_user_config_path (), TOOLBAR_CONFIG_STORE, NULL);
 
-  if (!g_file_test (filename, G_FILE_TEST_EXISTS))
+  if (!g_file_test (filename, G_FILE_TEST_EXISTS)) {
     setup_new_keyfile (filename);
-  else
+  }
+  else {
     key_file = geda_keyfile_new();
+  }
 
   if (key_file) {
 
