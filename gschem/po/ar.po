@@ -677,25 +677,30 @@ msgstr "أكتب صورة"
 msgid "Write PDF"
 msgstr "اكتب PDF"
 
+# Canceled close all; 'ulghiat 'iighlaq alkuli
 #: gschem/src/iface/i_command.c:1367 gschem/src/iface/i_sessions.c:184
 msgid "Canceled close all\n"
-msgstr ""
+msgstr "ألغيت إغلاق الكل\n"
 
 #: gschem/src/iface/i_command.c:1376 gschem/src/iface/i_sessions.c:193
 msgid "Closing all documents\n"
 msgstr "إغلاق كافة المستندات\n"
 
+# starting shut-down; bad' al'iighlaq
 #: gschem/src/iface/i_command.c:1399
 msgid "starting shut-down"
-msgstr ""
+msgstr "بدء الإغلاق"
 
+# Symbol is not embedded, export anyway
 #: gschem/src/iface/i_command.c:1413
 msgid "Symbol is not embedded, export anyway?"
-msgstr ""
+msgstr "الرمز غير مضمن ، هل تريد التصدير على أي حال?"
 
+# Picture is not embedded, export anyway
+# alsuwrat laysat mudminatan , tasdir ealaa 'ayi hal
 #: gschem/src/iface/i_command.c:1437
 msgid "Picture is not embedded, export anyway?"
-msgstr ""
+msgstr "الصورة ليست مضمنة ، تصدير على أي حال"
 
 #: gschem/src/iface/i_command.c:1584
 msgid "Empty buffer"
@@ -705,23 +710,27 @@ msgstr "أفرغ المخزن"
 msgid "Offset Mode"
 msgstr "وضع الشبكة"
 
+# Specify offset distance; tahdid masafat al'iizaha
 #: gschem/src/iface/i_command.c:1850
 msgid "Specify offset distance:"
-msgstr ""
+msgstr "تحديد مسافة الإزاحة:"
 
+# Zoom Magnification => set Zoom
 #: gschem/src/iface/i_command.c:2446
 msgid "Zoom Magnification"
-msgstr "/قرّب"
+msgstr "تكبير / تصغير"
 
+# Specify new zoom; hadad takbir / tasghir jadid
 #: gschem/src/iface/i_command.c:2446
 msgid "Specify new zoom:"
-msgstr ""
+msgstr "حدد تكبير / تصغير جديد:"
 
+# Check path; tuhaqiq min almasar
 #: gschem/src/iface/i_command.c:2488 gschem/src/iface/i_command.c:4836
 #: gschem/src/iface/i_command.c:4866 gschem/src/iface/i_command.c:4887
 #: gschem/src/iface/i_command.c:4907
 msgid "Check path:"
-msgstr ""
+msgstr "تحقق من المسار:"
 
 # error
 #: gschem/src/iface/i_command.c:2499
