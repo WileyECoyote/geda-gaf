@@ -770,25 +770,27 @@ msgstr "Isprazni bafer"
 msgid "Offset Mode"
 msgstr "offset mod"
 
+# Specify offset distance
 #: gschem/src/iface/i_command.c:1850
 msgid "Specify offset distance:"
-msgstr ""
+msgstr "Navedite pomak udaljenosti:"
 
-# set Zoom
+# set Zoom => adjust Magnification
 #: gschem/src/iface/i_command.c:2446
 msgid "Zoom Magnification"
-msgstr "set Uvećanje"
+msgstr "podesite Uvećanje"
 
 # enter new zoom
 #: gschem/src/iface/i_command.c:2446
 msgid "Specify new zoom:"
 msgstr "ulazak na nova zoom:"
 
+# Check path
 #: gschem/src/iface/i_command.c:2488 gschem/src/iface/i_command.c:4836
 #: gschem/src/iface/i_command.c:4866 gschem/src/iface/i_command.c:4887
 #: gschem/src/iface/i_command.c:4907
 msgid "Check path:"
-msgstr ""
+msgstr "Provjerite stazu:"
 
 # error
 #: gschem/src/iface/i_command.c:2499
