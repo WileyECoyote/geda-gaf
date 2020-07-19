@@ -6,6 +6,8 @@
             * linear/switchreg/LM2574-14-ADJ-1.sym
             * linear/switchreg/LM2574-14-ADJ-2.sym
 
+    * linear/telephone/MT8840-1.sym: Add new symbol; Data Over Voice Modem
+
 2020-07-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * linear/switchreg/*.sym: Update dist-license=GPLv2:
