@@ -12,6 +12,8 @@
 
     * po/fi.po: Update Finnish translations.
 
+    * po/ru.po: Update Russian translations.
+
 2020-07-17 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/base/gschem.c: Dynamically allocate tmpfilename and resuce the

@@ -798,25 +798,29 @@ msgstr "Буфер пуст"
 msgid "Offset Mode"
 msgstr "смещение режима"
 
+# Specify offset distance; Ukazhite rasstoyaniye smeshcheniya
 #: gschem/src/iface/i_command.c:1850
 msgid "Specify offset distance:"
-msgstr ""
+msgstr "Укажите расстояние смещения:"
 
+# Zoom Magnification
 #: gschem/src/iface/i_command.c:2446
 msgid "Zoom Magnification"
-msgstr ""
+msgstr "Увеличение"
 
+# Specify new zoom
 #: gschem/src/iface/i_command.c:2446
 msgid "Specify new zoom:"
-msgstr ""
+msgstr "Укажите новый зум:"
 
+# Check path; Prover'te put'
 #: gschem/src/iface/i_command.c:2488 gschem/src/iface/i_command.c:4836
 #: gschem/src/iface/i_command.c:4866 gschem/src/iface/i_command.c:4887
 #: gschem/src/iface/i_command.c:4907
 msgid "Check path:"
-msgstr ""
+msgstr "Проверьте путь:"
 
-# error
+# error; oshibka
 #: gschem/src/iface/i_command.c:2499
 msgid "error"
 msgstr "ошибка"
@@ -826,9 +830,10 @@ msgstr "ошибка"
 msgid "No component selected\n"
 msgstr "Не выбран компонент\n"
 
+# Confirm revert ALL documents; Podtverdite vozvrat VSEKH dokumentov
 #: gschem/src/iface/i_command.c:3055
 msgid "Confirm revert ALL documents"
-msgstr ""
+msgstr "Подтвердите возврат ВСЕХ документов"
 
 # search for the data source
 #: gschem/src/iface/i_command.c:3237
