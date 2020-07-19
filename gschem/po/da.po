@@ -773,35 +773,41 @@ msgstr "Tom buffer"
 msgid "Offset Mode"
 msgstr "Offsettilstand"
 
+# Specify offset distance
 #: gschem/src/iface/i_command.c:1850
 msgid "Specify offset distance:"
-msgstr ""
+msgstr "Angiv forskydningsafstand:"
 
+# Zoom Magnification
 #: gschem/src/iface/i_command.c:2446
 msgid "Zoom Magnification"
-msgstr ""
+msgstr "Zoomforstørrelse"
 
+# Specify new zoom
 #: gschem/src/iface/i_command.c:2446
 msgid "Specify new zoom:"
-msgstr ""
+msgstr "Specificer ny zoom:"
 
+# Check path
 #: gschem/src/iface/i_command.c:2488 gschem/src/iface/i_command.c:4836
 #: gschem/src/iface/i_command.c:4866 gschem/src/iface/i_command.c:4887
 #: gschem/src/iface/i_command.c:4907
 msgid "Check path:"
-msgstr ""
+msgstr "Kontroller stien:"
 
+# error
 #: gschem/src/iface/i_command.c:2499
 msgid "error"
-msgstr ""
+msgstr "fejl"
 
 #: gschem/src/iface/i_command.c:2510
 msgid "No component selected\n"
-msgstr ""
+msgstr "Ingen komponent valgt\n"
 
+# Confirm revert ALL documents
 #: gschem/src/iface/i_command.c:3055
 msgid "Confirm revert ALL documents"
-msgstr ""
+msgstr "Bekræft vende ALLE dokumenter tilbage"
 
 #: gschem/src/iface/i_command.c:3237
 msgid "Searching for source"
