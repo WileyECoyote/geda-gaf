@@ -317,7 +317,7 @@ msgstr "Auswählen"
 
 #: gschem/src/base/gschem_preview.c:538
 msgid "List of objects to be previewed"
-msgstr ""
+msgstr "Liste der Objekte, für die eine Vorschau angezeigt werden soll"
 
 #: gschem/src/base/gschem_preview.c:545
 msgid "Active"
@@ -325,15 +325,15 @@ msgstr "Aktion"
 
 #: gschem/src/base/gschem_preview.c:546
 msgid "Whether the preview widget is enabled or disabled"
-msgstr ""
+msgstr "Gibt an, ob das Vorschau-Widget aktiviert oder deaktiviert ist"
 
 #: gschem/src/base/gschem_preview.c:553
 msgid "Large size"
-msgstr ""
+msgstr "Große Größe"
 
 #: gschem/src/base/gschem_preview.c:554
 msgid "Whether the preview widget should be large or small"
-msgstr ""
+msgstr "Ob das Vorschau-Widget groß oder klein sein soll"
 
 #: gschem/src/base/gschem_status_bar.c:584
 msgid "Coordinates Mode"
@@ -341,7 +341,8 @@ msgstr "Bauteilmodus"
 
 #: gschem/src/base/gschem_status_bar.c:585
 msgid "Sets the Format Mode used to display coordinates on the status bar"
-msgstr ""
+msgstr "Legt den Formatierungsmodus fest, der zum Anzeigen von Koordinaten "
+"in der Statusleiste verwendet wird"
 
 #: gschem/src/base/gschem_status_bar.c:594
 msgid "Grid Mode"
@@ -349,7 +350,7 @@ msgstr "Bogenmodus"
 
 #: gschem/src/base/gschem_status_bar.c:595
 msgid "Sets the Grid Mode to display on the status bar"
-msgstr ""
+msgstr "Legt fest, dass der Rastermodus in der Statusleiste angezeigt wird"
 
 #: gschem/src/base/gschem_status_bar.c:604
 msgid "Grid Size"
@@ -357,7 +358,7 @@ msgstr "Rasterpunkt"
 
 #: gschem/src/base/gschem_status_bar.c:605
 msgid "Sets the Grid Size to display on the status bar"
-msgstr ""
+msgstr "Legt die Rastergröße fest, die in der Statusleiste angezeigt werden soll"
 
 #: gschem/src/base/gschem_status_bar.c:614
 msgid "height"
@@ -365,7 +366,7 @@ msgstr "Breite × Höhe"
 
 #: gschem/src/base/gschem_status_bar.c:615
 msgid "Sets the height of the status bar"
-msgstr ""
+msgstr "Legt die Höhe der Statusleiste fest"
 
 #: gschem/src/base/gschem_status_bar.c:624
 msgid "Left Button Text"
@@ -373,7 +374,7 @@ msgstr "Von links nach rechts"
 
 #: gschem/src/base/gschem_status_bar.c:625
 msgid "Set the string for the Left Button Text"
-msgstr ""
+msgstr "Legen Sie die Zeichenfolge für den Text der linken Schaltfläche fest"
 
 #: gschem/src/base/gschem_status_bar.c:631
 msgid "Middle Button Text"
@@ -381,7 +382,7 @@ msgstr "Mitte Links"
 
 #: gschem/src/base/gschem_status_bar.c:632
 msgid "Set the string for the Middle Button Text"
-msgstr ""
+msgstr "Legen Sie die Zeichenfolge für den Text der mittleren Schaltfläche fest"
 
 #: gschem/src/base/gschem_status_bar.c:638
 msgid "Right Button Text"
@@ -389,7 +390,7 @@ msgstr "Von rechts nach links"
 
 #: gschem/src/base/gschem_status_bar.c:639
 msgid "Set the string for the Right Button Text"
-msgstr ""
+msgstr "Legen Sie die Zeichenfolge für den Text der rechten Schaltfläche fest"
 
 #: gschem/src/base/gschem_status_bar.c:645
 msgid "Snap Mode"
@@ -397,7 +398,7 @@ msgstr "Ausschnittmodus"
 
 #: gschem/src/base/gschem_status_bar.c:646
 msgid "Sets the Snap Mode to display on the status bar"
-msgstr ""
+msgstr "Legt fest, dass der Fangmodus in der Statusleiste angezeigt wird"
 
 #: gschem/src/base/gschem_status_bar.c:655 gschem/src/x/x_dialog.c:639
 msgid "Snap Size"
