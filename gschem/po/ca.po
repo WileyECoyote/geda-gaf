@@ -795,35 +795,41 @@ msgstr "Buffer buit"
 msgid "Offset Mode"
 msgstr "Mode Offset"
 
+# Specify offset distance
 #: gschem/src/iface/i_command.c:1850
 msgid "Specify offset distance:"
-msgstr ""
+msgstr "Especifiqueu la distància de desplaçament:"
 
+# Zoom Magnification
 #: gschem/src/iface/i_command.c:2446
 msgid "Zoom Magnification"
-msgstr ""
+msgstr "Ampliació del zoom"
 
+# Specify new zoom
 #: gschem/src/iface/i_command.c:2446
 msgid "Specify new zoom:"
-msgstr ""
+msgstr "Especifiqueu nou zoom:"
 
+# Check path
 #: gschem/src/iface/i_command.c:2488 gschem/src/iface/i_command.c:4836
 #: gschem/src/iface/i_command.c:4866 gschem/src/iface/i_command.c:4887
 #: gschem/src/iface/i_command.c:4907
 msgid "Check path:"
-msgstr ""
+msgstr "Comproveu el camí:"
 
+# error
 #: gschem/src/iface/i_command.c:2499
 msgid "error"
-msgstr ""
+msgstr "error"
 
 #: gschem/src/iface/i_command.c:2510
 msgid "No component selected\n"
-msgstr ""
+msgstr "No s’ha seleccionat cap component\n"
 
+# Confirm revert ALL documents
 #: gschem/src/iface/i_command.c:3055
 msgid "Confirm revert ALL documents"
-msgstr ""
+msgstr "Confirmeu la recuperació de TOTS els documents"
 
 #: gschem/src/iface/i_command.c:3237
 msgid "Searching for source"
