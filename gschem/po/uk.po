@@ -854,35 +854,42 @@ msgstr "Порожній буфер"
 msgid "Offset Mode"
 msgstr "Режим зміщення"
 
+# Specify offset distance; Vkazhitʹ vidstanʹ zmishchennya
 #: gschem/src/iface/i_command.c:1850
 msgid "Specify offset distance:"
-msgstr ""
+msgstr "Вкажіть відстань зміщення:"
 
+# Zoom Magnification; Zbilʹshennya masshtabu
 #: gschem/src/iface/i_command.c:2446
 msgid "Zoom Magnification"
-msgstr ""
+msgstr "Збільшення масштабу"
 
+# Specify new zoom; Vkazhitʹ novyy zum
 #: gschem/src/iface/i_command.c:2446
 msgid "Specify new zoom:"
-msgstr ""
+msgstr "Вкажіть новий зум:"
 
+# Check path; Perevirte shlyakh
 #: gschem/src/iface/i_command.c:2488 gschem/src/iface/i_command.c:4836
 #: gschem/src/iface/i_command.c:4866 gschem/src/iface/i_command.c:4887
 #: gschem/src/iface/i_command.c:4907
 msgid "Check path:"
-msgstr ""
+msgstr "Перевірте шлях:"
 
+# error; pomylka
 #: gschem/src/iface/i_command.c:2499
 msgid "error"
-msgstr ""
+msgstr "помилка"
 
+# No component selected; Ne vybrano komponent
 #: gschem/src/iface/i_command.c:2510
 msgid "No component selected\n"
-msgstr ""
+msgstr "Не вибрано компонент\n"
 
+# Confirm revert ALL documents; Pidtverdyty povernennya VSIKH dokumentiv
 #: gschem/src/iface/i_command.c:3055
 msgid "Confirm revert ALL documents"
-msgstr ""
+msgstr "Підтвердити повернення ВСІХ документів"
 
 #: gschem/src/iface/i_command.c:3237
 msgid "Searching for source"
