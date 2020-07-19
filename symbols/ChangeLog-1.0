@@ -10,6 +10,8 @@
 
     * linear/telephone/MT8843-1.sym: Add new symbol; Caller ID Circuit.
 
+    * linear/telephone/MT8880C-1.sym: Add new symbol; DTMF Transceiver.
+
 2020-07-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * linear/switchreg/*.sym: Update dist-license=GPLv2:
