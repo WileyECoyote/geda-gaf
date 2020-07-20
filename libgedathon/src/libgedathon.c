@@ -2312,6 +2312,7 @@ PyObject *PyGeda_copy_object( PyObject *py_object, int dx, int dy )
     }
 
     py_capsule = GedaCapsule_New(new_object);
+
     g_list_free(dest_list);
   }
 
@@ -2353,6 +2354,7 @@ int PyGeda_remove_object( PyObject *py_object )
     }
     status = 0;
   }
+
   return status;
 }
 
@@ -2376,10 +2378,12 @@ int PyGeda_remove_objects( PyObject *pyobjects )
   int status = 0;
 
   count = (int) PyList_GET_SIZE(pyobjects);
+
   for (i = 1; count < i; i++) {
     PyObject *geda_object = PyList_GET_ITEM(pyobjects, i);
     status += PyGeda_remove_object(geda_object);
   }
+
   return status;
 }
 
