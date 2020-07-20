@@ -2433,11 +2433,9 @@ int PyGeda_delete_object( PyObject *py_object )
   }
 
   if (GEDA_IS_OBJECT(object)) {
-#if DEBUG
-    fprintf(stderr, "PyGeda_delete_object: name=%s\n", object->name);
-#endif
     geda_struct_object_release(object);
   }
+
   return status;
 }
 
