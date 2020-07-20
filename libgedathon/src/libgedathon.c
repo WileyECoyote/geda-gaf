@@ -2232,13 +2232,13 @@ int PyGeda_add_objects( PyObject *PyPage, PyObject *py_object_A, PyObject *py_ob
  */
 PyObject *PyGeda_copy_object( PyObject *py_object, int dx, int dy )
 {
-  PyObject    *py_capsule  = NULL;
-  PyGedaObject  *geda_object = (PyGedaObject*)py_object;
-  int          pid         = geda_object->pid;
-  int          sid;
-  GedaObject  *src_object;
-  GedaObject  *new_object  = NULL;
-  Page        *page;
+  PyObject     *py_capsule  = NULL;
+  PyGedaObject *geda_object = (PyGedaObject*)py_object;
+  int           pid         = geda_object->pid;
+  int           sid;
+  GedaObject   *src_object;
+  GedaObject   *new_object  = NULL;
+  Page         *page;
 
   GList  *dest_list = NULL;
   GList  *iter;
