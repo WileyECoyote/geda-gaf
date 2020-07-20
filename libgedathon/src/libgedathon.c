@@ -1761,6 +1761,7 @@ PyGeda_save_page( int pid )
   else {
     status++;
   }
+
   return status;
 }
 
@@ -1838,7 +1839,9 @@ int PyGeda_save_all_pages( PyObject *py_page_list )
     }
     NEXT(iter);
   }
+
   g_list_free(pages);
+
   return status;
 }
 
@@ -1856,9 +1859,11 @@ int PyGeda_save_all_pages( PyObject *py_page_list )
 int PyGeda_GedaCapsule_Type(PyObject *py_object)
 {
   int answer = 0;
+
   if (py_object != NULL) {
     answer = PyObject_TypeCheck(py_object, GedaCapsuleClass());
   }
+
   return answer;
 }
 
@@ -2203,6 +2208,7 @@ int PyGeda_add_objects( PyObject *PyPage, PyObject *py_object_A, PyObject *py_ob
 
     status += PyGeda_add_object(PyPage, py_object_A, geda_object);
   }
+
   return status;
 }
 
