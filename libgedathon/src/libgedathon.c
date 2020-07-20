@@ -2232,7 +2232,7 @@ int PyGeda_add_objects( PyObject *PyPage, PyObject *py_object_A, PyObject *py_ob
  *
  * \note 2. This is the only copy function in the Python_API_Library. The Pyobject
  *          types are derived from PyGedaObject, whose copy method utilizes the main
- *          geda.copy_object method which this calls this API function.
+ *          geda.copy_object method which calls this API function.
  *
  * \return [out] GedaCapsule containing a reference to the new object.
  */
