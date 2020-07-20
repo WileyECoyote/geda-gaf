@@ -1745,13 +1745,15 @@ int PyGeda_rename_page (int pid, const char *filename)
 int
 PyGeda_save_page( int pid )
 {
-  GError *err    = NULL;
   Page   *page   = NULL;
   int     status = 0;
 
   page = geda_toplevel_get_page_by_id(toplevel, pid);
 
   if (page && (GEDA_IS_PAGE(page))) {
+
+    GError *err = NULL;
+
     if (!geda_save_file (toplevel, page, page->filename, &err)) {
       fprintf(stderr, "%s\n", err->message);
       g_clear_error (&err);

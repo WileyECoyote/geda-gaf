@@ -1,7 +1,8 @@
 2020-07-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/libgedathon.c: Revise documentation format; remove [out] status
-      from return tags. Remove debug output in PyGeda_delete_object.
+      from return tags. Remove debug output in PyGeda_delete_object and
+      reduce the scope of GError in PyGeda_save_page.
 
 2019-08-16 Wiley E. Hill <wileyhill@gmail.com>
 
