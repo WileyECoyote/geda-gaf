@@ -2053,7 +2053,7 @@ PyObject *PyGeda_get_objects( int pid, int sid )
  *                         is being added to page given by parameter 1.
  * \param [in] py_object_B The PyGedaObject to be added
  *
- * \return [out] status True if successful, otherwise False.
+ * \return True if successful, otherwise False.
  */
 int PyGeda_add_object( PyObject *PyPage, PyObject *py_object_A, PyObject *py_object_B )
 {
@@ -2192,7 +2192,7 @@ int PyGeda_add_object( PyObject *PyPage, PyObject *py_object_A, PyObject *py_obj
  *                          are being added to page given by parameter 1.
  * \param [in] py_object_B  PyList, the list of PyGedaObjects to be added
  *
- * \return [out] status True if successful, otherwise False.
+ * \return True if successful, otherwise False.
  */
 int PyGeda_add_objects( PyObject *PyPage, PyObject *py_object_A, PyObject *py_object_B )
 {
@@ -2234,7 +2234,7 @@ int PyGeda_add_objects( PyObject *PyPage, PyObject *py_object_A, PyObject *py_ob
  *          types are derived from PyGedaObject, whose copy method utilizes the main
  *          geda.copy_object method which calls this API function.
  *
- * \return [out] GedaCapsule containing a reference to the new object.
+ * \return A GedaCapsule containing a reference to the new object.
  */
 PyObject *PyGeda_copy_object( PyObject *py_object, int dx, int dy )
 {
@@ -2329,8 +2329,8 @@ PyObject *PyGeda_copy_object( PyObject *py_object, int dx, int dy )
  *
  * \param [in] py_object    The Geda PyObject to be removed
  *
- * \return [out] status True if successful otherwise False, False
- *               would only be returned if an object did not exist.
+ * \return True if successful otherwise False, False would only
+ *         be returned if an object did not exist.
  */
 int PyGeda_remove_object( PyObject *py_object )
 {
@@ -2366,9 +2366,8 @@ int PyGeda_remove_object( PyObject *py_object )
  *
  * \param [in] pyobjects PyList Of Geda objects to be removed
  *
- * \return [out] status True if success otherwise False, False
- *               would only be returned if the page conatining
- *               the object did not exist.
+ * \return True if success otherwise False, False would only be
+ *         returned if the page conatining the object did not exist.
  */
 int PyGeda_remove_objects( PyObject *pyobjects )
 {
@@ -2392,9 +2391,8 @@ int PyGeda_remove_objects( PyObject *pyobjects )
  *
  * \param [in] py_object    The Geda PyObject to be deleted
  *
- * \return [out] status True if success otherwise False, False
- *               would only be returned if the page conatining
- *               the object did not exist.
+ * \return True if success otherwise False, False would only be
+ *         returned if the page conatining the object did not exist.
  */
 int PyGeda_delete_object( PyObject *py_object )
 {
@@ -2448,9 +2446,8 @@ int PyGeda_delete_object( PyObject *py_object )
  *
  * \param [in] objects PyObject of type PyList containing PyPyGedaObjects
  *
- * \return [out] status True if success otherwise False, False
- *               would only be returned if an object in the list
- *               did not exist.
+ * \return True if success otherwise False, False would only be returned
+ *         if an object in the list did not exist.
  */
 int PyGeda_delete_objects( PyObject *objects )
 {
@@ -2475,9 +2472,8 @@ int PyGeda_delete_objects( PyObject *objects )
  *
  * \param [in] py_object    The Geda PyObject to be updated
  *
- * \return [out] status True if success otherwise False, False
- *               would only be returned if the page containing
- *               the object did not exist.
+ * \return True if success otherwise False, False would only be returned
+ *         if the page containing the object did not exist.
  */
 int PyGeda_sync_object( PyObject *py_object )
 {

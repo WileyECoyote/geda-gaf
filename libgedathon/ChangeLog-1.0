@@ -1,11 +1,13 @@
+2020-07-20 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/libgedathon.c: Revise documentation format; remove [out] status
+      from return tags.
+
 2019-08-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/pt.po: Update Portuguese translations.
-
     * po/pt_BR.po: Update Brazilian Portuguese translations.
-
     * po/tr.po: Update Turkish translations.
-
     * po/uk.po: Update Ukrainian translations.
 
 2019-08-10 Wiley E. Hill <wileyhill@gmail.com>
@@ -48,13 +50,9 @@
 2019-07-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/ar.po: Fix format specifiers and update Arabic translations;
-
     * po/fa.po: Fix format specifiers in Persian translation.
-
     * po/ja.po: Update Japanese translations.
-
     * po/kh.po: Update Khmer translations.
-
     * po/ml.po: Updated Malayalam translations
 
 2019-07-05 Wiley E. Hill <wileyhill@gmail.com>
