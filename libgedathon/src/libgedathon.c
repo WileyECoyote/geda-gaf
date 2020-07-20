@@ -1019,7 +1019,7 @@ void initialize( API_FunctionTable *user_table)
     "footprint", "device", "value", "model-name", NULL};
 
     for ( i = 0; promote_list[i]; i++) {
-     apa_list = g_list_prepend(apa_list, geda_utility_string_strdup(promote_list[i]));
+     apa_list = g_list_prepend(apa_list, geda_strdup(promote_list[i]));
     }
   }
 
