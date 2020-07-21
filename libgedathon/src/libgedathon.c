@@ -1745,8 +1745,8 @@ int PyGeda_rename_page (int pid, const char *filename)
 int
 PyGeda_save_page( int pid )
 {
-  Page   *page   = NULL;
-  int     status = 0;
+  Page *page;
+  int   status = 0;
 
   page = geda_toplevel_get_page_by_id(toplevel, pid);
 
