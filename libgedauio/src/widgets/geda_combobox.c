@@ -3534,7 +3534,9 @@ static void geda_combo_box_menu_setup (GedaComboBox *combo_box, bool add_childre
 
   /* Create our funky menu */
   menu = geda_menu_new ();
+
   gtk_widget_set_name (menu, "combobox-popup-menu");
+
   geda_menu_set_reserve_toggle_size (GEDA_MENU (menu), FALSE);
 
   g_signal_connect (menu, "key-press-event",
@@ -3549,6 +3551,7 @@ static void geda_combo_box_menu_setup (GedaComboBox *combo_box, bool add_childre
 
   /* The column is needed in tree_column_row_is_sensitive() */
   priv->column = gtk_tree_view_column_new ();
+
   g_object_ref_sink (priv->column);
   geda_combo_box_sync_cells (combo_box, (GtkCellLayout*)priv->column);
 
