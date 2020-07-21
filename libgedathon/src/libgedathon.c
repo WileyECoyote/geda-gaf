@@ -1740,7 +1740,7 @@ int PyGeda_rename_page (int pid, const char *filename)
  *
  * \param [in] pid  Integer, the page id of the page to be saved
  *
- * \return [out] FALSE if no errors occurred, otherwise True.
+ * \return True on success, otherwise FALSE.
  */
 int
 PyGeda_save_page( int pid )
