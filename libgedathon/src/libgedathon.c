@@ -2219,8 +2219,8 @@ int PyGeda_add_objects( PyObject *PyPage, PyObject *py_object_A, PyObject *py_ob
  * \ingroup Python_API_Library
  * \par Function Description
  *  This function copies an existing object. The Object does not have to be on
- *  a Page. The object argument must be a PyGedaObject, such as PyGedaComplexObject_type,
- *  not a GedaCapsule object.
+ *  a Page. The object argument must be a PyGedaObject, such as PyGedaComplexObject
+ *  type, not a GedaCapsule object.
  *
  * \param [in] py_object PyObject, the PyGedaObject to be copied
  *
