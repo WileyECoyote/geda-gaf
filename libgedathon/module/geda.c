@@ -1554,9 +1554,9 @@ METHOD(add_objects)
  *  [in] x  Integer X offset relative to the source object's location
  *  [in] y  Integer X offset relative to the source object's location
  *
- * \note 1. The target offset arguments are mutually optional, either both must be
- *          provided or neither. If offsets arguments are not provide the copy will
- *          coincide with the original.
+ * \note 1. The target offset arguments are mutually optional, either both must
+ *          be provided or neither. If offsets arguments are not provided the
+ *          copy will coincide with the original.
  *
  * \return [out] PyObject if successful otherwise False. The returned PyGedaObject
  *               is the real instance of the copied object, even if the argument
