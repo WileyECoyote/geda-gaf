@@ -1543,9 +1543,9 @@ METHOD(add_objects)
  * \brief Copy an Object
  * \par Method Description
  *  This function provides a method to Copy an existing object. The Object
- *  does not have to be on a Page. The object argument can be and actual
- *  PyGedaObject, such as PyGedaComplexObject_type, or the object can be a GedaCapsule
- *  object, such as those return by get_objects.
+ *  does not have to be on a Page. The object argument can be an actual
+ *  PyGedaObject, such as PyGedaComplexObject_type, or the object can be
+ *  a GedaCapsule object, such as those return by get_objects.
  *
  *  [in] PyObject The Geda object to be copied
  *
