@@ -1552,7 +1552,7 @@ METHOD(add_objects)
  *  Optional arguments:
  *
  *  [in] x  Integer X offset relative to the source object's location
- *  [ib] y  Integer X offset relative to the source object's location
+ *  [in] y  Integer X offset relative to the source object's location
  *
  * \note 1. The target offset arguments are mutually optional, either both must be
  *          provided or neither. If offsets arguments are not provide the copy will
