@@ -66,6 +66,11 @@
 
 #include <libgeda_priv.h>
 
+/** \defgroup text-object-proc GedaText Object Procedures
+ * @{
+ * \brief Procedures for Operations with #GedaText Objects
+ */
+
 /*!
  * \brief Scale factor between legacy gschem font units and postscript points.
  * \par Description
@@ -1288,3 +1293,5 @@ void geda_text_object_update_disp_string (GedaObject *object)
     text->disp_string = geda_strdup (text->string);
   }
 }
+
+/** @} endgroup text-object-proc */
