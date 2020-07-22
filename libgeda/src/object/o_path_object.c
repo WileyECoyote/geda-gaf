@@ -1247,8 +1247,8 @@ geda_path_object_print(GedaToplevel *toplevel, FILE *fp,
    *  #geda_path_object_print_center() and #geda_path_object_print_phantom().
    *
    *  The needed parameters for each of these type is extracted from the
-   *  <B>\a o_current</B> object. Depending on the type, unused parameters are
-   *  set to -1.
+   *  <B>\a o_current</B> object. Depending on the type, unused parameters
+   *  are set to -1.
    *
    *  In the eventuality of a length and/or space null, the line is printed
    *  solid to avoid and endless loop produced by other functions in such a
@@ -1317,8 +1317,8 @@ geda_path_object_print(GedaToplevel *toplevel, FILE *fp,
   /*! \note
    *  If the filling type of the path is not <B>HOLLOW</B>, the appropriate
    *  function is chosen among #geda_path_object_print_filled(), #geda_path_object_print_mesh()
-   *  and #geda_path_object_print_hatch(). The corresponding parameters are extracted
-   *  from the <B>\a o_current</B> object and corrected afterward.
+   *  and #geda_path_object_print_hatch(). The corresponding parameters are
+   *  extracted from the <B>\a o_current</B> object and corrected afterward.
    *
    *  The case where <B>pitch1</B> and <B>pitch2</B> are null or negative is
    *  avoided as it leads to an endless loop in most of the called functions.
