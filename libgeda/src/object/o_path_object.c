@@ -1383,8 +1383,10 @@ geda_path_object_print(GedaToplevel *toplevel, FILE *fp,
 }
 
 /*!
- * \brief Calculates the distance between the given point and the closest
- *        point on the given path segment.
+ * \brief Determine the Shortest Distence to a Path Object
+ * \par Function Description
+ *  Calculates the distance between the given point and the closest
+ *  point on the given path segment.
  *
  * \param [in] object       The path GedaObject
  * \param [in] x            The x coordinate of the given point

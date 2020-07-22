@@ -1,6 +1,7 @@
 2020-07-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_path_object.c: Rename Doxygen with the geda prefix.
+      Revise geda_path_object_shortest_distance documentation.
 
     * src/object/o_picture_object.c: Rename Doxygen with the geda prefix
       and update geda_picture_object_scale function documentation.
