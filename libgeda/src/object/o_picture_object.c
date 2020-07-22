@@ -34,7 +34,7 @@
 #include <libgeda_priv.h>
 #include <warning_xpm.h>
 
-/** \defgroup geda-picture-object-proc GedaPicture Object Procedures
+/** \defgroup picture-object-proc GedaPicture Object Procedures
  * @{
  * \brief Procedures for Operations with #GedaPicture Objects
  */
@@ -2113,4 +2113,4 @@ bool geda_picture_object_unembed (GedaObject *object)
   return result;
 }
 
-/** @} endgroup geda-picture-object-proc */
+/** @} endgroup picture-object-proc */
