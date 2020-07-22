@@ -1,4 +1,4 @@
-libgEDAColor(1)                 0.4.0-20180521                 libgEDAColor(1)
+libgEDAColor(1)                 0.4.0-20190401                 libgEDAColor(1)
 
 
 
@@ -11,9 +11,9 @@ DESCRIPTION
        ors  used  for  output devices based on user configuration preferences.
        libgEDAColor provides functions for parsing gEDA scheme color-map  data
        and  API  functions  for applications to access color information. This
-       manual page explains user aspects of using libgEDAColor , specifically,
-       modifying  color  map  files.  For  information on libgEDAColor API see
-       libgedacolor(3)
+       manual page explains the user aspects of using libgEDAColor ,  specifi-
+       cally,  modifying  color map files. For information on libgEDAColor API
+       see libgedacolor(3)
 
 CONFIGURATION
        Predefined color map files are installed with the geda-gaf  suite.  The
@@ -35,11 +35,11 @@ CONFIGURATION
 
        The  particular  dialect of Scheme used by Libgedacolor is GNU's Guile.
        While it is required for Guile to be installed on the host  system  for
-       Libgedacolor  to  to  process  these file, it is not a requirement that
-       gEDA applications initialize or even be  running  Guile.   Libgedacolor
-       does  not  initiate  the  loading  "rc" files. Instead, application can
+       Libgedacolor  to process these files, it is not a requirement that gEDA
+       applications initialize or even be running  Guile.   Libgedacolor  does
+       not  initiate  the  loading  of  "rc"  files.  Instead, application can
        request that a initialization file be processed. Alternatively,  appli-
-       cation  rc  files  can  reference  the  color  map files. Example of rc
+       cation  rc  files  can  reference  the  color map files. Examples of rc
        entries in applications might look like:
 
               (primitive-load  (build-path   geda-rc-path   "display-colormap-
@@ -64,8 +64,8 @@ FILE FORMAT
        pairs in the form ("key" "color"). "key" must be a  string  name  of  a
        recognized  component  or  artifact. Provided color map files contain a
        complete list of all recognized keys, but all keys need not be present.
-       The  color can be a hex string representation of or #f to disable color
-       for the corresponding key entry.
+       The color can be a hex string representation of the color or #f to dis-
+       able color for the corresponding key entry.
 
 DOCUMENTATION
        The gEDA-gaf suite utilizes Doxygen for  generating  source  documenta-
@@ -73,10 +73,10 @@ DOCUMENTATION
        enabled via the configuration option --with-doxygen. When enabled,  the
        documentation  is  then  built  in the source tree using "make doxygen"
        from the top of the source. To only generate source  documentation  for
-       libgEDAColor use "make doxygen" from within the top libgEDAColor direc-
-       tory. Note that the configure script can also set the configuration  to
-       allows generating the source documentation out of the source tree using
-       the  --with-doxygen-out  option.  For  example  using   --with-doxygen-
+       libgEDAColor use "make doxygen" from within the libgEDAColor directory.
+       Note that the configure script can also set the configuration to allows
+       generating  the  source  documentation out of the source tree using the
+       --with-doxygen-out   option.   For   example   using    --with-doxygen-
        out=/tmp/geda-gaf  will  cause the resulting documentation to be gener-
        ated in the "/tmp/geda-gaf" directory. The  target  directory  will  be
        created  if  it does not already exist. It is not necessary to use both
@@ -89,7 +89,7 @@ AUTHORS
        See the "AUTHORS" file included with this library.
 
 COPYRIGHT
-       Copyright (C) 2018 gEDA Contributors. License GPLv2+: GNU GPL
+       Copyright (C) 2019 gEDA Contributors. License GPLv2+: GNU GPL
        version 2 or later. Please see the "COPYING" file included with this
        program for full details.
 

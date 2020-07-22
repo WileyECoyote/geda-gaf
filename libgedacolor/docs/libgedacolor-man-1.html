@@ -52,7 +52,7 @@ colors used for output devices based on user configuration
 preferences. <b>libgEDAColor</b> provides functions for
 parsing gEDA scheme color-map data and API functions for
 applications to access color information. This manual page
-explains user aspects of using <b>libgEDAColor</b> ,
+explains the user aspects of using <b>libgEDAColor</b> ,
 specifically, modifying color map files. For information on
 <b>libgEDAColor</b> API see <b>libgedacolor</b>(3)</p>
 
@@ -89,14 +89,14 @@ are:</p>
 <p style="margin-left:11%; margin-top: 1em">The particular
 dialect of Scheme used by <b>Libgedacolor</b> is GNU&rsquo;s
 Guile. While it is required for Guile to be installed on the
-host system for <b>Libgedacolor</b> to to process these
-file, it is not a requirement that gEDA applications
-initialize or even be running Guile. <b>Libgedacolor</b>
-does not initiate the loading &quot;rc&quot; files. Instead,
-application can request that a initialization file be
-processed. Alternatively, application rc files can reference
-the color map files. Example of rc entries in applications
-might look like:</p>
+host system for <b>Libgedacolor</b> to process these files,
+it is not a requirement that gEDA applications initialize or
+even be running Guile. <b>Libgedacolor</b> does not initiate
+the loading of &quot;rc&quot; files. Instead, application
+can request that a initialization file be processed.
+Alternatively, application rc files can reference the color
+map files. Examples of rc entries in applications might look
+like:</p>
 
 
 <p style="margin-left:22%; margin-top: 1em">(primitive-load
@@ -136,7 +136,8 @@ in the form (&quot;key&quot; &quot;color&quot;).
 component or artifact. Provided color map files contain a
 complete list of all recognized keys, but all keys need not
 be present. The color can be a hex string representation of
-or #f to disable color for the corresponding key entry.</p>
+the color or #f to disable color for the corresponding key
+entry.</p>
 
 <h2>DOCUMENTATION
 <a name="DOCUMENTATION"></a>
@@ -151,9 +152,9 @@ enabled, the documentation is then built in the source tree
 using &quot;make doxygen&quot; from the top of the source.
 To only generate source documentation for
 <b>libgEDAColor</b> use &quot;make doxygen&quot; from within
-the top libgEDAColor directory. Note that the configure
-script can also set the configuration to allows generating
-the source documentation out of the source tree using the
+the libgEDAColor directory. Note that the configure script
+can also set the configuration to allows generating the
+source documentation out of the source tree using the
 --with-doxygen-out option. For example using
 --with-doxygen-out=/tmp/geda-gaf will cause the resulting
 documentation to be generated in the
@@ -179,7 +180,7 @@ for details.</p>
 
 
 <p style="margin-left:11%; margin-top: 1em">Copyright
-&copy; 2018 gEDA Contributors. License GPLv2+: GNU GPL <br>
+&copy; 2019 gEDA Contributors. License GPLv2+: GNU GPL <br>
 version 2 or later. Please see the &quot;COPYING&quot; file
 included with this <br>
 program for full details.</p>
