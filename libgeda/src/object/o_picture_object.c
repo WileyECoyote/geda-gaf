@@ -1805,10 +1805,11 @@ char *geda_picture_object_save(GedaObject *object)
   return(out);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Scale a Picture Object
+ * \par Function Description
+ *  Adjust the size of an image by scaling the width and height
+ *  of the GedaPicture relative to the center of the image.
  */
 void geda_picture_object_scale (GedaObject *object, int x_scale, int y_scale)
 {
