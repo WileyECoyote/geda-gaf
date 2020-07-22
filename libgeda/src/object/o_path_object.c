@@ -28,7 +28,7 @@
 
 #include <geda_debug.h>
 
-/** \defgroup geda-path-object-proc GedaPath Object Procedures
+/** \defgroup path-object-proc GedaPath Object Procedures
  * @{
  * \brief Procedures for Operations with #GedaPath Objects
  */
@@ -1413,4 +1413,4 @@ double geda_path_object_shortest_distance (ConstObject *object, int x, int y, in
   return (G_MAXDOUBLE);
 }
 
-/** @} endgroup geda-path-object-proc */
+/** @} endgroup path-object-proc */

@@ -1,3 +1,7 @@
+2020-07-22 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_path_object.c: Rename Doxygen with the geda prefix.
+
 2020-07-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_text_object.c: Add Doxygen group text-object-proc.
