@@ -570,6 +570,8 @@ bool geda_line_object_get_slope (GedaObject *object, double *slope)
 
 /*!
  * \brief Get the First X coordinate of a Line object
+ * \par Function Description
+ *  Retrieves the value of the first X coordinate.
  *
  * \param [in] object  Pointer to a Line GedaObject
  *
@@ -588,6 +590,8 @@ int geda_line_object_get_x1 (const GedaObject *object)
 
 /*!
  * \brief Get the Second X coordinate of a Line object
+ * \par Function Description
+ *  Retrieves the value of the second X coordinate.
  *
  * \param [in] object  Pointer to a Line GedaObject
  *
@@ -606,6 +610,8 @@ int geda_line_object_get_x2 (const GedaObject *object)
 
 /*!
  * \brief Get the First Y coordinate of a Line object
+ * \par Function Description
+ *  Retrieves the value of the first Y coordinate.
  *
  * \param [in] object  Pointer to a Line GedaObject
  *
@@ -624,6 +630,8 @@ int geda_line_object_get_y1 (const GedaObject *object)
 
 /*!
  * \brief Get the Second Y coordinate of a Line object
+ * \par Function Description
+ *  Retrieves the value of the second Y coordinate.
  *
  * \param [in] object  Pointer to a Line GedaObject
  *

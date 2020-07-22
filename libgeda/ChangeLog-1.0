@@ -2,6 +2,9 @@
 
     * src/object/o_object.c: Rename Doxygen with the geda prefix.
 
+    * src/object/o_line_object.c: Add missing "Function Description" for
+      consistency with other documentationn.
+
     * src/object/o_path_object.c: Rename Doxygen with the geda prefix.
       Revise geda_path_object_shortest_distance documentation.
 
