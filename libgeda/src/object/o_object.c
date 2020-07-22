@@ -53,7 +53,7 @@
 
 #include <geda_diagnostics.h>
 
-/** \defgroup geda-object-proc GedaObject Procedures
+/** \defgroup object-proc GedaObject Procedures
  * @{
  * \brief Procedures for Operations with #GedaObject Objects
  */
@@ -761,4 +761,4 @@ void geda_object_update (GedaObject *object)
 
 }
 
-/** @} endgroup geda-object-proc */
+/** @} endgroup object-proc */
