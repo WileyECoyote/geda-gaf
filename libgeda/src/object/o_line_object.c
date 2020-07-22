@@ -51,7 +51,6 @@ geda_line_object_error(const char *func, const void *object)
 
 /*!
  * \brief Create a copy of a line.
- *
  * \par Function Description
  *  This function creates a copy of the \a GedaLine object pointed by
  *  <B>\a o_current</B> describing a line. The coordinates of the ends
