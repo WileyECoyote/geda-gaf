@@ -1,3 +1,9 @@
+2020-07-23 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_tearoff_menu_item.c: Utilize macro:
+
+          * geda_get_container_border_width
+
 2020-07-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_action.c: Revise geda_action_sync_menu_visible to

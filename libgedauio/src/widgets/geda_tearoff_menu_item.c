@@ -154,15 +154,18 @@ geda_tearoff_menu_item_paint (GtkWidget *widget, GdkRectangle *area)
     int x, y;
     int right_max;
 
-    menu_item  = (GedaMenuItem*)widget;
     container  = (GtkContainer*)widget;
-    direction  = gtk_widget_get_direction (widget);
-    allocation = geda_get_widget_allocation (widget);
+    unsigned int  border_width;
 
-    x = allocation->x + container->border_width;
+    menu_item    = (GedaMenuItem*)widget;
+    direction    = gtk_widget_get_direction (widget);
+    allocation   = geda_get_widget_allocation (widget);
+    border_width = geda_get_container_border_width (widget);
+
     y = allocation->y + container->border_width;
     width = allocation->width - container->border_width * 2;
     height = allocation->height - container->border_width * 2;
+    x = allocation->x + border_width;
     right_max = x + width;
 
     if (widget->state == GTK_STATE_PRELIGHT) {
