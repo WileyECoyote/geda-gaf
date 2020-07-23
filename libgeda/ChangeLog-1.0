@@ -4,12 +4,15 @@
       the text is not visible in Inkscape, this is due to BUG in Inkscape,
       and scour the file to reduce bloat.
 
+    * src/object/o_complex_object.c: Add missing "Function Description" for
+      consistency with other documentation.
+
 2020-07-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_object.c: Rename Doxygen with the geda prefix.
 
     * src/object/o_line_object.c: Add missing "Function Description" for
-      consistency with other documentationn.
+      consistency with other documentation.
 
     * src/object/o_path_object.c: Rename Doxygen with the geda prefix.
       Revise geda_path_object_shortest_distance documentation.

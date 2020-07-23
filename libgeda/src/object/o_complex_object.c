@@ -1247,7 +1247,8 @@ GedaObject *geda_complex_object_read (GedaToplevel *toplevel,
 
 /*!
  * \brief Reset the refdes number back to a question mark
- * \par This function finds the refdes attribute inside this
+ * \par Function Description
+ *  This function finds the refdes attribute inside this
  *  object and resets the refdes number back to a question mark.
  *
  * \param [in] object      The complex containing text objects
