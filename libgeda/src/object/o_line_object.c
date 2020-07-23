@@ -23,7 +23,7 @@
  *  \brief Functions for the line object
  */
 
-/** \defgroup geda-line-object-proc GedaLine Object Procedures
+/** \defgroup line-object-proc GedaLine Object Procedures
  * @{
  * \brief Procedures for Operations with #GedaLine Objects
  */
@@ -584,7 +584,9 @@ int geda_line_object_get_x1 (const GedaObject *object)
   if (GEDA_IS_LINE(object)) {
     return object->line->x[0];
   }
+
   geda_line_object_error(__func__, object);
+
   return -0;
 }
 
@@ -604,7 +606,9 @@ int geda_line_object_get_x2 (const GedaObject *object)
   if (GEDA_IS_LINE(object)) {
     return object->line->x[1];
   }
+
   geda_line_object_error(__func__, object);
+
   return -0;
 }
 
@@ -624,7 +628,9 @@ int geda_line_object_get_y1 (const GedaObject *object)
   if (GEDA_IS_LINE(object)) {
     return object->line->y[0];
   }
+
   geda_line_object_error(__func__, object);
+
   return -0;
 }
 
@@ -645,7 +651,9 @@ geda_line_object_get_y2 (const GedaObject *object)
   if (GEDA_IS_LINE(object)) {
     return object->line->y[1];
   }
+
   geda_line_object_error(__func__, object);
+
   return -0;
 }
 
@@ -677,6 +685,7 @@ bool geda_line_object_is_endpoint (GedaObject *object, GedaPoint *point)
     geda_line_object_error(__func__, object);
     anwser = FALSE;
   }
+
   return anwser;
 }
 
@@ -1972,4 +1981,4 @@ void geda_line_object_translate( GedaObject *object, int dx, int dy)
   object->bounds_valid = FALSE;
 }
 
-/** @} endgroup geda-line-object-proc */
+/** @} endgroup line-object-proc */
