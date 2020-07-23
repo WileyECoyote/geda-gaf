@@ -144,7 +144,6 @@ geda_tearoff_menu_item_paint (GtkWidget *widget, GdkRectangle *area)
   if (gtk_widget_is_drawable (widget)) {
 
     GtkAllocation   *allocation;
-    GtkContainer    *container;
     GedaMenuItem    *menu_item;
     GtkShadowType    shadow_type;
     GtkArrowType     arrow_type;
@@ -154,7 +153,6 @@ geda_tearoff_menu_item_paint (GtkWidget *widget, GdkRectangle *area)
     int x, y;
     int right_max;
 
-    container  = (GtkContainer*)widget;
     unsigned int  border_width;
 
     menu_item    = (GedaMenuItem*)widget;

@@ -1,6 +1,7 @@
 2020-07-23 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/widgets/geda_tearoff_menu_item.c: Utilize macro:
+    * src/widgets/geda_tearoff_menu_item.c: Eliminate GtkContainer in
+      geda_tearoff_menu_item_paint by using utilizing macro:
 
           * geda_get_container_border_width
 
