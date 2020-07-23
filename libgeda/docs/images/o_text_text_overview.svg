@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
+
 <svg
    xmlns:dc="http://purl.org/dc/elements/1.1/"
    xmlns:cc="http://creativecommons.org/ns#"
@@ -12,7 +13,7 @@
    height="200"
    id="svg2"
    sodipodi:version="0.32"
-   inkscape:version="0.46"
+   inkscape:version="0.48.5 r10040"
    sodipodi:docname="o_text_text_overview.svg"
    inkscape:output_extension="org.inkscape.output.svg.inkscape"
    version="1.0">
@@ -68,20 +69,21 @@
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
      inkscape:zoom="2.0223254"
-     inkscape:cx="192.50133"
-     inkscape:cy="64.742376"
+     inkscape:cx="200.26733"
+     inkscape:cy="41.619894"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="true"
-     inkscape:window-width="1197"
+     inkscape:window-width="1721"
      inkscape:window-height="879"
-     inkscape:window-x="1280"
+     inkscape:window-x="187"
      inkscape:window-y="96"
      showborder="true"
      inkscape:showpageshadow="false"
      inkscape:snap-global="false"
      showguides="true"
-     inkscape:guide-bbox="true">
+     inkscape:guide-bbox="true"
+     inkscape:window-maximized="0">
     <inkscape:grid
        type="xygrid"
        id="grid11127"
@@ -119,7 +121,7 @@
        y="106.60504" />
     <text
        xml:space="preserve"
-       style="font-size:13.15679455px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+       style="font-size:13.15679455px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Courier New;-inkscape-font-specification:Courier New"
        x="200.19473"
        y="11.958162"
        id="text3175"
@@ -130,7 +132,7 @@
          y="11.958162">gEDA file format</tspan></text>
     <text
        xml:space="preserve"
-       style="font-size:15.46203995px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+       style="font-size:15.46203995px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Courier New;-inkscape-font-specification:Courier New"
        x="201.45422"
        y="48.469925"
        id="text3199"><tspan
@@ -223,11 +225,12 @@
        y="105.44359" />
     <g
        id="g6075"
-       transform="translate(153.00629,-8.6958243)">
+       transform="matrix(1.0168493,0,0,1,145.98826,-8.6958243)">
       <path
-         d="M 355.98558,120.98975 L 401.42391,120.98975"
-         style="fill:none;stroke:#000000;stroke-width:1.34049296;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-         id="path2553" />
+         d="m 355.98558,120.98975 45.43833,0"
+         style="fill:none;stroke:#000000;stroke-width:1.34049296;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1;stroke-dasharray:none"
+         id="path2553"
+         inkscape:connector-curvature="0" />
       <g
          id="g2555"
          transform="matrix(0,2.144329,2.144329,0,-92.200628,-614.00474)">
@@ -235,19 +238,19 @@
            transform="matrix(0,1,1,0,349.014,182.263)"
            id="text2557">
           <tspan
-             style="font-size:6.25133991px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Helvetica;-inkscape-font-specification:Helvetica"
+             style="font-size:6.25133991px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Ubuntu;-inkscape-font-specification:Ubuntu"
              x="0 3.8195686 7.2953138 10.420983 12.158856 13.896729 18.410196 19.797995 21.535866 25.011612 26.749483 30.225229 33.350899 36.826645 38.90834 42.384087 45.859829"
              y="0"
              sodipodi:role="line"
              id="tspan2559">Text with overbar</tspan>
           <tspan
-             style="font-size:6.25133991px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Helvetica;-inkscape-font-specification:Helvetica"
+             style="font-size:6.25133991px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:Courier New"
              x="0 1.7378725 3.475745 5.2136173 17.378725 20.854469 24.330215 27.80596 29.543833 31.281706 34.75745 38.233196 41.708939 43.096737 46.572483 48.310356 51.786102"
              y="11.7023"
              sodipodi:role="line"
              id="tspan2561">... and tabulator</tspan>
           <tspan
-             style="font-size:6.25133991px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Helvetica;-inkscape-font-specification:Helvetica"
+             style="font-size:6.25133991px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:Courier New"
              x="0 3.475745 5.2136173 6.9514899 9.033186 10.420983 13.896729 17.372475 19.110346 22.586092 26.061836 29.187506 32.66325 34.051048 37.526794"
              y="25.2054"
              sodipodi:role="line"
@@ -1430,34 +1433,34 @@
        d="M 193.50503,55.886924 C 179.46487,63.399086 153.89909,78.316086 144.47445,98.874425"
        style="fill:none;fill-opacity:0.75;fill-rule:evenodd;stroke:#000000;stroke-width:1.28850329;stroke-linecap:butt;stroke-linejoin:miter;marker-end:url(#Arrow1Mend);stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
     <text
-       transform="matrix(0.9999977,2.1264992e-3,-2.1264992e-3,0.9999977,0,0)"
+       transform="matrix(0.99759287,0.00213163,-0.00212137,1.0024084,0,0)"
        id="text6087"
-       y="67.559654"
-       x="32.480427"
-       style="font-size:13.15679169px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+       y="55.144699"
+       x="-5.1353517"
+       style="font-size:13.12515163px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Courier New;-inkscape-font-specification:Courier New"
        xml:space="preserve"><tspan
-         y="67.559654"
-         x="32.480427"
+         y="55.144699"
+         x="-5.1353517"
          id="tspan6089"
          sodipodi:role="line">graphical representation</tspan><tspan
-         y="84.005646"
-         x="32.480427"
+         y="71.55114"
+         x="-5.1353517"
          sodipodi:role="line"
          id="tspan6097">of the text elements</tspan></text>
     <text
        xml:space="preserve"
-       style="font-size:13.15679264px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
-       x="477.93393"
-       y="66.612389"
+       style="font-size:13.15679169px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Courier New;-inkscape-font-specification:Courier New"
+       x="466.52829"
+       y="51.307716"
        id="text6091"
-       transform="matrix(0.9999977,2.1264991e-3,-2.1264991e-3,0.9999977,0,0)"><tspan
+       transform="matrix(0.99999774,0.0021265,-0.0021265,0.99999774,0,0)"><tspan
          sodipodi:role="line"
          id="tspan6093"
-         x="477.93393"
-         y="66.612389">postscript output</tspan><tspan
+         x="466.52829"
+         y="51.307716">postscript output</tspan><tspan
          sodipodi:role="line"
-         x="477.93393"
-         y="83.05838"
+         x="466.52829"
+         y="67.753708"
          id="tspan6095">of the text</tspan></text>
   </g>
 </svg>
