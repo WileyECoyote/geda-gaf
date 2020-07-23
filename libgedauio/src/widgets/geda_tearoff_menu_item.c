@@ -162,10 +162,10 @@ geda_tearoff_menu_item_paint (GtkWidget *widget, GdkRectangle *area)
     allocation   = geda_get_widget_allocation (widget);
     border_width = geda_get_container_border_width (widget);
 
-    y = allocation->y + container->border_width;
     width = allocation->width - container->border_width * 2;
     height = allocation->height - container->border_width * 2;
     x = allocation->x + border_width;
+    y = allocation->y + border_width;
     right_max = x + width;
 
     if (widget->state == GTK_STATE_PRELIGHT) {
