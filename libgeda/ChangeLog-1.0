@@ -1,3 +1,10 @@
+2020-07-24 Wiley E. Hill <wileyhill@gmail.com>
+
+    * docs/images: Update "font-family" because the text is not visible in
+      Inkscape, this is due to BUG in Inkscape:
+
+          * docs/images/o_attrib_overview.svg
+
 2020-07-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * docs/images/o_text_text_overview.svg: Update "font-family" because
