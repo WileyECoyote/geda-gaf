@@ -1,7 +1,8 @@
 2020-07-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * docs/images: Update "font-family" because the text is not visible in
-      Inkscape, this is due to BUG in Inkscape:
+      Inkscape, this is due to BUG in Inkscape and scour the file to reduce
+      bloat:
 
           * docs/images/o_attrib_overview.svg
           * docs/images/o_object_relations.svg
