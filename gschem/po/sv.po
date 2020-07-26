@@ -827,45 +827,49 @@ msgstr "Ingen komponent vald\n"
 msgid "Confirm revert ALL documents"
 msgstr "Bekräfta återställ ALLA dokument"
 
+# Searching for source
 #: gschem/src/iface/i_command.c:3237
 msgid "Searching for source"
-msgstr ""
+msgstr "Söker efter källa"
 
+# Failed to descend into
 #: gschem/src/iface/i_command.c:3272
 msgid "Failed to descend into"
-msgstr ""
+msgstr "Det gick inte att gå ner i"
 
+# Hierarchy Error
 #: gschem/src/iface/i_command.c:3281
 msgid "Hierarchy Error"
-msgstr ""
+msgstr "Hierarkifel"
 
+# Searching for symbol
 #: gschem/src/iface/i_command.c:3358
 msgid "Searching for symbol"
-msgstr ""
+msgstr "Söker efter symbol"
 
 #: gschem/src/iface/i_command.c:3368
 msgid "Symbol is not a real file. Symbol cannot be loaded.\n"
-msgstr ""
+msgstr "Symbolen är inte en riktig fil. Symbolen kan inte laddas.\n"
 
 #: gschem/src/iface/i_command.c:3416
 msgid "Cannot find any schematics above the current one!\n"
-msgstr ""
+msgstr "Det går inte att hitta scheman över det nuvarande!\n"
 
 #: gschem/src/iface/i_command.c:3546
 msgid "Object is attached to something\n"
-msgstr ""
+msgstr "Objektet är kopplat till något\n"
 
 #: gschem/src/iface/i_command.c:3949
 msgid "Attribute is already attached\n"
-msgstr ""
+msgstr "Attributet är redan bifogat\n"
 
 #: gschem/src/iface/i_command.c:4363
 msgid "WARNING: Do not translate with snap off!\n"
-msgstr ""
+msgstr "VARNING: Översätt inte med avstängning\n"
 
 #: gschem/src/iface/i_command.c:4364
 msgid "WARNING: Turning snap on and continuing with translate.\n"
-msgstr ""
+msgstr "VARNING: Slå på knappen och fortsätt med översättningen.\n"
 
 #: gschem/src/iface/i_command.c:4370
 msgid "WARNING: Snap grid size is not equal to 100!\n"
