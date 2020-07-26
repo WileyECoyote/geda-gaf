@@ -553,58 +553,58 @@ msgstr "Wees alstublieft zeker dat U het laatste rc bestand"
 
 #: gschem/src/guile/g_rc.c:205 gschem/src/x/x_image.c:537
 msgid "file"
-msgstr ""
+msgstr "bestand"
 
 #: gschem/src/guile/g_rc.c:731
 #, c-format
 msgid "Invalid value, zoom-gain cannot be zero, check entry in rc file\n"
-msgstr ""
+msgstr "Ongeldige waarde, zoomversterking kan niet nul zijn, controleer invoer in rc-bestand\n"
 
 #: gschem/src/guile/g_rc.c:736
 #, c-format
 msgid "Invalid type assignment, check zoom-gain entry in rc file\n"
-msgstr ""
+msgstr "Ongeldige typetoewijzing, controleer zoom-gain-invoer in rc-bestand\n"
 
 #: gschem/src/guile/g_rc.c:737 gschem/src/guile/g_rc.c:1296
 #: gschem/src/guile/g_rc.c:1442 gschem/src/guile/g_rc.c:2038
 msgid "Continuing with default value"
-msgstr ""
+msgstr "Voortzetting van de standaardwaarde"
 
 #: gschem/src/guile/g_rc.c:817
 #, c-format
 msgid "Invalid type assignment, check logging entry in rc file\n"
-msgstr ""
+msgstr "Ongeldige typetoewijzing, controleer logboekinvoer in rc-bestand\n"
 
 #: gschem/src/guile/g_rc.c:1290
 #, c-format
 msgid "Invalid value, snap-size cannot be zero, check entry rc file\n"
-msgstr ""
+msgstr "Ongeldige waarde, snap-size kan niet nul zijn, controleer entry rc-bestand\n"
 
 #: gschem/src/guile/g_rc.c:1295
 #, c-format
 msgid "Invalid type assignment, check snap-size entry in rc file\n"
-msgstr ""
+msgstr "Ongeldige typetoewijzing, controleer de snap-formaatinvoer in het rc-bestand\n"
 
 #: gschem/src/guile/g_rc.c:1436
 #, c-format
 msgid "Invalid value, bus-ripper-size cannot be zero, check entry rc file\n"
-msgstr ""
+msgstr "Ongeldige waarde, bus-ripper-grootte kan niet nul zijn, controleer invoer rc-bestand\n"
 
 #: gschem/src/guile/g_rc.c:1441
 #, c-format
 msgid "Invalid type assignment, check bus-ripper-size entry in rc file\n"
-msgstr ""
+msgstr "Invalid type assignment, check bus-ripper-size entry in rc file\n"
 
 #: gschem/src/guile/g_rc.c:2032
 #, c-format
 msgid ""
 "Can not scroll 0 steps, invalid scrollpan-steps, check entry in rc file\n"
-msgstr ""
+msgstr "Kan 0 stappen niet scrollen, ongeldige scrollpan-stappen, controleer invoer in rc-bestand\n"
 
 #: gschem/src/guile/g_rc.c:2037
 #, c-format
 msgid "Invalid type assignment, check scrollpan-steps entry in rc file\n"
-msgstr ""
+msgstr "Ongeldige typetoewijzing, controleer het item met de stappen in de scrollpan in het rc-bestand\n"
 
 # Invalid magnification factor
 #: gschem/src/guile/g_rc.c:2084
