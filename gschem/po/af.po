@@ -670,9 +670,10 @@ msgstr "Skryf afbeelding"
 msgid "Write PDF"
 msgstr "Skryf PDF"
 
+# Canceled close all => Close all was Canceled
 #: gschem/src/iface/i_command.c:1367 gschem/src/iface/i_sessions.c:184
 msgid "Canceled close all\n"
-msgstr "Gekanselleer naby alle\n"
+msgstr "Sluit alles is gekanselleer\n"
 
 #: gschem/src/iface/i_command.c:1376 gschem/src/iface/i_sessions.c:193
 msgid "Closing all documents\n"
@@ -1416,27 +1417,27 @@ msgstr "Stel die string vir die teks op die statusbalk"
 
 #: gschem/src/x/x_autonumber.c:124
 msgid "Remove numbers:"
-msgstr ""
+msgstr "Verwyder getalle:"
 
 #: gschem/src/x/x_autonumber.c:124
 msgid "Remove existing reference numbers"
-msgstr ""
+msgstr "Verwyder bestaande verwysingsnommers"
 
 #: gschem/src/x/x_autonumber.c:125
 msgid "Automatic slotting:"
-msgstr ""
+msgstr "Outomatiese spleet:"
 
 #: gschem/src/x/x_autonumber.c:125
 msgid "Automatic slotting"
-msgstr ""
+msgstr "Outomatiese spleet"
 
 #: gschem/src/x/x_autonumber.c:126
 msgid "Overwrite existing numbers:"
-msgstr ""
+msgstr "Oorskryf bestaande getalle:"
 
 #: gschem/src/x/x_autonumber.c:126
 msgid "Overwrite existing numbers"
-msgstr ""
+msgstr "Oorskryf bestaande getalle"
 
 # slotted object without slot attribute may cause problems when autonumbering slots
 #: gschem/src/x/x_autonumber.c:612
@@ -1456,7 +1457,7 @@ msgstr ""
 
 #: gschem/src/x/x_autonumber.c:936
 msgid "No search string given in autonumber text.\n"
-msgstr ""
+msgstr "Geen soekstring word in outonommer-teks gegee nie.\n"
 
 #: gschem/src/x/x_autonumber.c:1172
 msgid "Diagonal"
@@ -1488,19 +1489,19 @@ msgstr "Filter:"
 
 #: gschem/src/x/x_autonumber.c:1679
 msgid "_History"
-msgstr ""
+msgstr "geskiedenis"
 
 #: gschem/src/x/x_autonumber.c:1687
 msgid "_Unset"
-msgstr ""
+msgstr "ontstel"
 
 #: gschem/src/x/x_autonumber.c:1692
 msgid "_Wild"
-msgstr ""
+msgstr "wilde"
 
 #: gschem/src/x/x_autonumber.c:1715
 msgid "Selected objects"
-msgstr ""
+msgstr "geselekteerde voorwerpe"
 
 #: gschem/src/x/x_autonumber.c:1716
 msgid "Current page"
