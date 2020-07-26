@@ -171,7 +171,7 @@ pinnumber=16
 T 1598 2070 5 8 0 1 0 0 1
 pinseq=16
 T 1450 2200 9 8 1 1 0 6 1
-pinlabel=D3
+pinlabel=D2
 T 1450 2150 5 8 0 1 0 8 1
 pintype=io
 }
