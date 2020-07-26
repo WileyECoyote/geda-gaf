@@ -77,7 +77,7 @@ msgstr "Enregistrer toutes les pages"
 
 #: gschem/src/base/gschem.c:432
 msgid "Logging system is disabled\n"
-msgstr ""
+msgstr "Le système de journalisation est désactivé\n"
 
 #: gschem/src/base/gschem.c:465
 #, c-format
@@ -278,15 +278,15 @@ msgstr "ERREUR"
 
 #: gschem/src/base/gschem_parsecmd.c:295
 msgid "option requires an argument"
-msgstr ""
+msgstr "l'option nécessite un argument"
 
 #: gschem/src/base/gschem_parsecmd.c:301
 msgid "Unknown option"
-msgstr "Inconnu"
+msgstr "Option inconnue"
 
 #: gschem/src/base/gschem_parsecmd.c:307
 msgid "Unknown option character"
-msgstr ""
+msgstr "Caractère d'option inconnu"
 
 #: gschem/src/base/gschem_parsecmd.c:313
 msgid "help for more information"
@@ -294,7 +294,7 @@ msgstr "help pour plus d'informations"
 
 #: gschem/src/base/gschem_parsecmd.c:315
 msgid "Run"
-msgstr ""
+msgstr "Exécuter"
 
 #: gschem/src/base/gschem_preview.c:295
 msgid "Preview Buffer"
@@ -306,7 +306,7 @@ msgstr "Nom de fichier"
 
 #: gschem/src/base/gschem_preview.c:530
 msgid "name of file to be previewed"
-msgstr ""
+msgstr "nom du fichier à prévisualiser"
 
 #: gschem/src/base/gschem_preview.c:537
 msgid "Object List"
@@ -314,7 +314,7 @@ msgstr "Sélectionner"
 
 #: gschem/src/base/gschem_preview.c:538
 msgid "List of objects to be previewed"
-msgstr ""
+msgstr "Liste des objets à prévisualiser"
 
 #: gschem/src/base/gschem_preview.c:545
 msgid "Active"
@@ -322,15 +322,15 @@ msgstr "Action"
 
 #: gschem/src/base/gschem_preview.c:546
 msgid "Whether the preview widget is enabled or disabled"
-msgstr ""
+msgstr "Si le widget d'aperçu est activé ou désactivé"
 
 #: gschem/src/base/gschem_preview.c:553
 msgid "Large size"
-msgstr ""
+msgstr "Grande taille"
 
 #: gschem/src/base/gschem_preview.c:554
 msgid "Whether the preview widget should be large or small"
-msgstr ""
+msgstr "Si le widget d'aperçu doit être grand ou petit"
 
 #: gschem/src/base/gschem_status_bar.c:584
 msgid "Coordinates Mode"
@@ -338,7 +338,7 @@ msgstr "Mode Composant"
 
 #: gschem/src/base/gschem_status_bar.c:585
 msgid "Sets the Format Mode used to display coordinates on the status bar"
-msgstr ""
+msgstr "Définit le mode de format utilisé pour afficher les coordonnées sur la barre d'état"
 
 #: gschem/src/base/gschem_status_bar.c:594
 msgid "Grid Mode"
