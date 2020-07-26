@@ -169,7 +169,7 @@ description=Inverting Switching Regulator
 T 400 3600 5 10 0 0 0 0 1
 numslots=0
 T 400 3800 5 10 0 0 0 0 1
-dist-license=GPL3
+dist-license=GPLv2
 T 400 4000 5 10 0 0 0 0 1
 use-license=unlimited
 T 1100 2000 8 10 1 1 0 3 1
