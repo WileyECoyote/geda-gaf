@@ -14,6 +14,10 @@
     * linear/telephone/MT8920B-1.sym: Add new symbol; ST-BUS Parallel access
       Circuit.
 
+    * packages/DIP??-300-1.sym: Set pintype attributes invisble:
+
+            * packages/DIP16-300-1.sym
+
 2020-07-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * linear/switchreg/*.sym: Update dist-license=GPLv2:
@@ -22,7 +26,7 @@
             * linear/switchreg/LM2574-14-ADJ-1.sym
             * linear/switchreg/LM2574-14-ADJ-2.sym
 
-    * linear/telephone/MT8840-1.sym: Add new symbol; Data Over Voice Modem
+    * linear/telephone/MT8840-1.sym: Add new symbol; Data Over Voice Modem.
 
     * linear/telephone/MT8843-1.sym: Add new symbol; Caller ID Circuit.
 
