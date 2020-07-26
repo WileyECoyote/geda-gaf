@@ -831,45 +831,49 @@ msgstr "No s’ha seleccionat cap component\n"
 msgid "Confirm revert ALL documents"
 msgstr "Confirmeu la recuperació de TOTS els documents"
 
+# Searching for source
 #: gschem/src/iface/i_command.c:3237
 msgid "Searching for source"
-msgstr ""
+msgstr "Buscant la font"
 
+# Failed to descend into
 #: gschem/src/iface/i_command.c:3272
 msgid "Failed to descend into"
-msgstr ""
+msgstr "No ha pogut descendir"
 
+# Hierarchy Error
 #: gschem/src/iface/i_command.c:3281
 msgid "Hierarchy Error"
-msgstr ""
+msgstr "Error de jerarquia"
 
+# Searching for symbol
 #: gschem/src/iface/i_command.c:3358
 msgid "Searching for symbol"
-msgstr ""
+msgstr "Buscant símbol"
 
 #: gschem/src/iface/i_command.c:3368
 msgid "Symbol is not a real file. Symbol cannot be loaded.\n"
-msgstr ""
+msgstr "El símbol no és un fitxer real. El símbol no es pot carregar.\n"
 
 #: gschem/src/iface/i_command.c:3416
 msgid "Cannot find any schematics above the current one!\n"
-msgstr ""
+msgstr "No es poden trobar cap esquema per sobre de l’actual!\n"
 
 #: gschem/src/iface/i_command.c:3546
 msgid "Object is attached to something\n"
-msgstr ""
+msgstr "L’objecte està unit a alguna cosa\n"
 
 #: gschem/src/iface/i_command.c:3949
 msgid "Attribute is already attached\n"
-msgstr ""
+msgstr "L’atribut ja està adjunt\n"
 
 #: gschem/src/iface/i_command.c:4363
 msgid "WARNING: Do not translate with snap off!\n"
-msgstr ""
+msgstr "ADVERTIMENT: no es tradueixi amb l'aplicació instantània!\n"
 
 #: gschem/src/iface/i_command.c:4364
 msgid "WARNING: Turning snap on and continuing with translate.\n"
-msgstr ""
+msgstr "ADVERTIMENT: activa la configuració i continua amb la traducció.\n"
 
 #: gschem/src/iface/i_command.c:4370
 msgid "WARNING: Snap grid size is not equal to 100!\n"
