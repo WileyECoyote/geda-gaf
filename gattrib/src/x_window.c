@@ -690,7 +690,7 @@ void x_window_inherited_toggle(GtkToggleAction *action, GtkWindow *main_window) 
 /*!
  * \brief Toggle Edit-bar On Off
  * \par Function Description
- *      This function toggles the visibility of the Edit Entry bar
+ *  This function toggles the visibility of the Edit Entry bar
  */
 void x_window_editbar_toggle(GtkToggleAction *action, GtkWindow *main_window)
 {
@@ -709,7 +709,7 @@ void x_window_editbar_toggle(GtkToggleAction *action, GtkWindow *main_window)
 /*!
  * \brief Toggle Auto-Resize Option On Off
  * \par Function Description
- *      This function toggles the GTKSheet Autoresize flag, which would normally
+ *  This function toggles the GTKSheet Autoresize flag, which would normally
  *  be turned off because some of the entries for documentation can be lengthly.
  */
 void x_window_autoresize_toggle(GtkToggleAction *action, GtkWindow *main_window)
@@ -723,8 +723,8 @@ void x_window_autoresize_toggle(GtkToggleAction *action, GtkWindow *main_window)
 /*!
  * \brief Toggle Auto-Scroll Option On Off
  * \par Function Description
- *      This function toggles the GTKSheet Auto-Scroll flag, The flag is normally
- * turned on.
+ *  This function toggles the GTKSheet Auto-Scroll flag, The flag is normally
+ *  turned on.
  */
 void x_window_autoscroll_toggle(GtkToggleAction *action, GtkWindow *main_window)
 {
