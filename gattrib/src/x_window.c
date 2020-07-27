@@ -692,7 +692,6 @@ void x_window_inherited_toggle(GtkToggleAction *action, GtkWindow *main_window) 
  * \par Function Description
  *      This function toggles the visibility of the Edit Entry bar
  */
-/* View->Statusbar */
 void x_window_editbar_toggle(GtkToggleAction *action, GtkWindow *main_window)
 {
   bool show = gtk_toggle_action_get_active(action);
