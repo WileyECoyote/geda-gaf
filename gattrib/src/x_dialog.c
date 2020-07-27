@@ -102,7 +102,7 @@ bool x_dialog_generic_confirm_dialog (const char *msg, int type)
  * This function displays a dialog box to prompt for the name of the
  * attribute column to insert and then inserts the column.
  */
-char *x_dialog_new_attrib()
+char *x_dialog_new_attrib(void)
 {
   GtkDialog *dialog;
   GtkWidget *container;
@@ -360,7 +360,7 @@ bool x_dialog_column_visibility (GList *list)
  *  offers users an opertunity to close the project without saving
  *  because the schematic was read with a missing symbol.
  */
-void x_dialog_missing_sym()
+void x_dialog_missing_sym(void)
 {
   GtkDialog  *dialog;
   const char *string = _("One or more components have been found with missing symbol files!\n\nThis probably happened because gattrib could not find your component libraries, perhaps because your gafrc or gattribrc files are misconfigured.\n\nChoose \"Quit\" to leave gattrib and fix the problem, or\n\"Forward\" to continue working with gattrib.\n");
@@ -399,7 +399,7 @@ void x_dialog_missing_sym()
  *  Displays a dialog notifing users that the content has changes and
  *  provides an opportunity to save the file.
  */
-int x_dialog_file_not_saved()
+int x_dialog_file_not_saved(void)
 {
   GtkDialog  *dialog;
   const char *tmp;
@@ -452,7 +452,7 @@ int x_dialog_file_not_saved()
  *  This is the "Unsaved data -- are you sure you want to quit?" dialog
  *  box which is thrown up before the user quits.
  */
-void x_dialog_unsaved_data()
+void x_dialog_unsaved_data(void)
 {
   switch (x_dialog_file_not_saved()) {
     case GEDA_RESPONSE_NO:
@@ -480,7 +480,7 @@ void x_dialog_unsaved_data()
  *  This function informs the user that he has chosen an unimplemented
  *  feature. The dialog presents only an "OK" button to leave.
  */
-void x_dialog_unimplemented_feature()
+void x_dialog_unimplemented_feature(void)
 {
   GtkWidget  *dialog;
   const char *string = _("Sorry -- you have chosen a feature which has not been\nimplemented yet.\n\nGattrib is an open-source program which\nI work on as a hobby. It is still a work in progress.\nIf you wish to contribute (perhaps by implementing this\nfeature), please do so! Please send patches to gattrib\nto Stuart Brorson: sdb@cloud9.net.\n\nOtherwise, just hang tight -- I'll implement this feature soon!\n");
@@ -531,7 +531,7 @@ void x_dialog_fatal_error(char *string, int return_code)
  * \par Function Description
  *  This function displays the about dialog.
  */
-void x_dialog_about_dialog()
+void x_dialog_about_dialog(void)
 {
   GtkWidget *dialog;
   const char *string = _("gEDA : GPL Electronic Design Automation\n\nThis is gattrib -- gEDA's attribute editor\n\nGattrib version: %s%s.%s\n\nGattrib is written by: Stuart Brorson (sdb@cloud9.net)\nwith generous helpings of code from gschem, gnetlist, \nand gtkextra, as well as support from the gEDA community.");
@@ -556,7 +556,7 @@ void x_dialog_about_dialog()
  *  This asks for the filename for the CSV export file and then
  *  does the exporting.
  */
-void x_dialog_export_file()
+void x_dialog_export_file(void)
 {
   char *cwd;
   char *filename;
