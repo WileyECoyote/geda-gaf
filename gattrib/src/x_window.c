@@ -696,10 +696,14 @@ void x_window_inherited_toggle(GtkToggleAction *action, GtkWindow *main_window) 
 void x_window_editbar_toggle(GtkToggleAction *action, GtkWindow *main_window)
 {
   bool show = gtk_toggle_action_get_active(action);
-  if(show)
+
+  if(show) {
     gtk_widget_show(edit_box);
-  else
+  }
+  else {
     gtk_widget_hide(edit_box);
+  }
+
   //config_file_set_bool(PREFS_STATUSBAR_VISIBLE, show);
 }
 
