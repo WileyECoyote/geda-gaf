@@ -63,10 +63,9 @@ typedef struct st_column_visible ColumnVisible;
  *  \brief Sheet data structure
  *  \par
  * st_sheet_data defines PageDataSet, and holds master lists holding
- * sorted lists of comp/netlist names.  Also holds pointers to the
+ * sorted lists of comp/netlist names. Also holds pointers to the
  * heads of the attribute-holding component and net structures.
  */
-/* -------------------------------------------------------------------- */
 struct st_sheet_data {
   STRING_LIST *master_comp_list_head;         /*!< Sorted list of all component refdeses used in design */
   STRING_LIST *master_comp_attrib_list_head;  /*!< Sorted list of all component attribs used in design */
@@ -93,18 +92,16 @@ struct st_sheet_data {
   int CHANGED;                                /*!< for "file not saved" warning upon exit */
 };
 
-
 /* -------------------------------------------------------------------- */
 /*! \struct st_table
  *  \brief Table cell struct
  *  \par
  * st_table defined what is held in a spreadsheet cell for both comp
  * and net spreadsheets. Holds pointer to individual comp/net name,
- * and pointer to attrib list. Ideally, the name pointer points to the
- * refdes/netname string held in the GedaToplevel data structure, so
- * that when PageDataSet is manipulated, so is GedaToplevel.
+ * and pointer to attrib list. Ideally, the name pointer points to
+ * the refdes/netname string held in the GedaToplevel data structure,
+ * so that when PageDataSet is manipulated, so is GedaToplevel.
  */
-/* -------------------------------------------------------------------- */
 struct st_table {
   int   row;                    /*!< location on spreadsheet */
   int   col;                    /*!< location on spreadsheet */
@@ -126,7 +123,6 @@ struct st_table {
  * used for several different jobs, including serving as base class
  * for master lists.
  */
-/* -------------------------------------------------------------------- */
 struct st_string_list {
   char *data;        /*!< points to zero-terminated string */
   int pos;           /*!< position on spreadsheet */
@@ -144,7 +140,6 @@ struct st_string_list {
  * special struct for pins.  Later processing will for a STRING_LIST
  * of refdes:pinnumber pairs for insertion in the spreadsheet.
  */
-/* -------------------------------------------------------------------- */
 struct st_pin_list {
   char *refdes;        /*!< holds refdes string */
   int   pinnumber;
