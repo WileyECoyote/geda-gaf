@@ -688,7 +688,7 @@ void x_window_inherited_toggle(GtkToggleAction *action, GtkWindow *main_window) 
 }
 
 /*!
- * \brief Toggle Edit-bar On Off
+ * \brief Toggle Edit-bar Visibility
  * \par Function Description
  *  This function toggles the visibility of the Edit Entry bar
  */
@@ -736,7 +736,7 @@ void x_window_autoscroll_toggle(GtkToggleAction *action, GtkWindow *main_window)
 }
 
 /*!
- * \brief Toggle Sheet Grid Option On Off
+ * \brief Toggle Sheet Grid Visibility
  * \par Function Description
  *  This function toggles visibility of the grid lines in the GTKSheets
  *  The flag is normally turned on.

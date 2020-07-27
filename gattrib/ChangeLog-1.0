@@ -1,10 +1,12 @@
-2020-07-02 Wiley E. Hill <wileyhill@gmail.com>
+2020-07-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x_dialog.c: Explicitly declare functions without arguments void.
 
+    * src/x_window.c: Update/revise documentation content and formatting.
+
 2020-04-14 Wiley E. Hill <wileyhill@gmail.com>
 
-    * gattrib/src/Makefile.am: Add "copy-dt-needed-entries" flag to LDFLAGS
+    * src/Makefile.am: Add "copy-dt-needed-entries" flag to LDFLAGS
       to resolve bizzar linker error where the linker fails to resolve the
       symbol "cairo_destroy" in a shared object, X11.so, when linking the
       dynamic convenience library to the static application binary. This
