@@ -29,7 +29,7 @@
 static inline void
 print_quote_if_comma(FILE *fp, char *text)
 {
-  /* if there's a comma anywhere in the field, wrap the field in " */
+  /* if there is a comma anywhere in the field, wrap the field in " */
   if (strstr(text, ",")) {
     fprintf(fp, "\"%s\"", text);
   }
@@ -58,9 +58,9 @@ void f_export_components(const char *filename)
   char *text;
   FILE *fp;
 
-  /* -----  Check that we have a component ----- */
   cur_page = gtk_notebook_get_current_page(GTK_NOTEBOOK(notebook));
 
+  /* ----- Check that the current sheet is the Components sheet ----- */
   if (cur_page != 0) {
     /* We only export the component table */
     /* XXXXX  Maybe throw up error message in window instead? */
