@@ -2988,6 +2988,7 @@ static void geda_combo_box_list_position (GedaComboBox *combo_box,
 
   screen      = gtk_widget_get_screen (GTK_WIDGET (combo_box));
   monitor_num = gdk_screen_get_monitor_at_window (screen, window);
+
   gdk_screen_get_monitor_geometry (screen, monitor_num, &monitor);
 
   if (*x < monitor.x) {
@@ -3187,7 +3188,7 @@ static bool popup_grab_on_window (GdkWindow    *window,
  * \par Function Description
  *  Pops up the menu or dropdown list of \a combo_box.
  *
- *  \param [in] combo_box a #GedaComboBox
+ * \param [in] combo_box a #GedaComboBox
  */
 void geda_combo_box_popup (GedaComboBox *combo_box)
 {
@@ -3492,8 +3493,7 @@ static void geda_combo_box_menu_setup (GedaComboBox *combo_box, bool add_childre
   GtkWidget *child;
   GtkWidget *menu;
 
-  child = geda_get_child_widget(combo_box);
-
+  child        = geda_get_child_widget(combo_box);
   priv->button =  gtk_toggle_button_new ();
 
   gtk_button_set_focus_on_click ((GtkButton*)priv->button,
@@ -3597,15 +3597,19 @@ static GtkWidget *_cell_view_menu_item_new (GedaComboBox  *combo_box,
   GtkRequisition req;
 
   cell_view = gtk_cell_view_new ();
-  item = geda_menu_item_new ();
+  item      = geda_menu_item_new ();
+
   geda_container_add (item, cell_view);
 
   gtk_cell_view_set_model ((GtkCellView*)cell_view, model);
+
   path = gtk_tree_model_get_path (model, iter);
+
   gtk_cell_view_set_displayed_row ((GtkCellView*)cell_view, path);
   gtk_tree_path_free (path);
 
   geda_combo_box_sync_cells (combo_box, (GtkCellLayout*)cell_view);
+
   gtk_widget_size_request (cell_view, &req);
   gtk_widget_show (cell_view);
 
@@ -3646,6 +3650,7 @@ static void geda_combo_box_menu_fill_level (GedaComboBox *combo_box,
 
       item = gtk_separator_menu_item_new ();
       path = gtk_tree_model_get_path (model, &iter);
+
       g_object_set_data_full ((GObject*)item, "gtk-combo-box-item-path",
                               gtk_tree_row_reference_new (model, path),
                              (GDestroyNotify)gtk_tree_row_reference_free);
@@ -3658,6 +3663,7 @@ static void geda_combo_box_menu_fill_level (GedaComboBox *combo_box,
       if (gtk_tree_model_iter_has_child (model, &iter)) {
 
         submenu = geda_menu_new ();
+
         geda_menu_set_reserve_toggle_size (GEDA_MENU (submenu), FALSE);
         gtk_widget_show (submenu);
         geda_menu_item_set_submenu_widget (GEDA_MENU_ITEM (item), submenu);
@@ -3665,8 +3671,9 @@ static void geda_combo_box_menu_fill_level (GedaComboBox *combo_box,
         /* Ugly - since menus can only activate leafs, we have to
          * duplicate the item inside the submenu.
          */
-        subitem = _cell_view_menu_item_new (combo_box, model, &iter);
+        subitem   = _cell_view_menu_item_new (combo_box, model, &iter);
         separator = gtk_separator_menu_item_new ();
+
         gtk_widget_show (subitem);
         gtk_widget_show (separator);
         g_signal_connect (subitem, "activate",
@@ -3677,15 +3684,18 @@ static void geda_combo_box_menu_fill_level (GedaComboBox *combo_box,
 
         geda_combo_box_menu_fill_level (combo_box, submenu, &iter);
       }
+
       g_signal_connect (item, "activate",
                         G_CALLBACK (geda_combo_box_menu_item_activate),
                         combo_box);
     }
 
     geda_menu_append (menu, item);
+
     if (priv->wrap_width && menu == priv->popup_widget) {
       geda_combo_box_relayout_item (combo_box, item, &iter, last);
     }
+
     gtk_widget_show (item);
 
     last = item;
