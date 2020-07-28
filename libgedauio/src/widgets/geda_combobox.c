@@ -980,12 +980,15 @@ static bool tree_first_func (GtkTreeModel *model,
 {
   SearchData *search_data = (SearchData*)data;
 
-  if (!tree_column_row_is_sensitive (search_data->combo, iter))
+  if (!tree_column_row_is_sensitive (search_data->combo, iter)) {
     return FALSE;
+  }
 
   if (search_data->visible &&
-     !path_visible ((GtkTreeView*)search_data->combo->priv->tree_view, path))
+      !path_visible ((GtkTreeView*)search_data->combo->priv->tree_view, path))
+  {
     return FALSE;
+  }
 
   search_data->set  = TRUE;
   search_data->iter = *iter;
