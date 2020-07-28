@@ -1,3 +1,9 @@
+2020-07-28 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_combobox.c: Revert initializing x and y values in
+      geda_combo_box_list_position; c28230db5c8ca468349a10d7feaaf87862f49373.
+      Appears compiler optimization results in erratic behavior.
+
 2020-07-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_tearoff_menu_item.c: Eliminate GtkContainer in
@@ -213,7 +219,7 @@
       gtk_widget_hide in geda_combo_box_popdown; if the popup window is
       hidden then the entire menu is hidden. Remove calling geda_combo_box_
       popup in geda_combo_box_list_button_pressed because setting the toggle
-      button active will trigger an event (thats calls geda_combo_box_popup).
+      button active will trigger an event (that calls geda_combo_box_popup).
       Revise geda_combo_box_list_button_released to eliminate early returns.
 
 2020-04-28 Wiley E. Hill <wileyhill@gmail.com>
