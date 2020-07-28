@@ -2965,14 +2965,14 @@ static void geda_combo_box_list_position (GedaComboBox *combo_box,
 
   gdk_window_get_root_coords (window, *x, *y, x, y);
 
- *width = allocation->width;
-
   hpolicy = vpolicy = GTK_POLICY_NEVER;
 
   gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (priv->scrolled_window),
                                   hpolicy, vpolicy);
 
   gtk_widget_size_request (priv->scrolled_window, &popup_req);
+
+ *width = allocation->width;
 
   if (popup_req.width > *width) {
 
