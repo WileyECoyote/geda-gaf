@@ -2953,8 +2953,7 @@ static void geda_combo_box_list_position (GedaComboBox *combo_box,
 
   /* under windows, the drop down list is as wide as the combo box
    * itself. see bug #340204 */
-  widget = GTK_WIDGET (combo_box);
-
+  widget     = GTK_WIDGET (combo_box);
   allocation = geda_get_widget_allocation (widget);
 
   if (!gtk_widget_get_has_window (widget)) {
