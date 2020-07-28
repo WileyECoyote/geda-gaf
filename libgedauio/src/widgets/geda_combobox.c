@@ -757,7 +757,7 @@ static bool geda_combo_box_mnemonic_activate (GtkWidget *widget, bool group_cycl
 
   if (combo_box->priv->has_entry) {
 
-    GtkWidget* child;
+    GtkWidget *child;
 
     child = geda_get_child_widget (combo_box);
 
