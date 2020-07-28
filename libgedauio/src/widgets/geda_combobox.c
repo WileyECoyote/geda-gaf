@@ -961,9 +961,9 @@ static bool tree_last (GedaComboBox  *combo,
 {
   SearchData search_data;
 
-  search_data.combo = combo;
+  search_data.combo   = combo;
   search_data.visible = visible;
-  search_data.set = FALSE;
+  search_data.set     = FALSE;
 
   gtk_tree_model_foreach (model, tree_last_func, &search_data);
 
