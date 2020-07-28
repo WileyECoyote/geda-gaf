@@ -1823,6 +1823,7 @@ static GObject *geda_combo_box_buildable_get_internal_child (GtkBuildable *build
   else {
     object = parent_buildable_iface->get_internal_child (buildable, builder, childname);
   }
+
   return object;
 }
 
@@ -4746,6 +4747,7 @@ static bool geda_combo_box_list_button_pressed (GtkWidget      *widget,
     priv->popup_in_progress = TRUE;
     ret_val = TRUE;
   }
+
   return ret_val;
 }
 
