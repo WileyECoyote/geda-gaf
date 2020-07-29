@@ -83,7 +83,8 @@
  * ------------------------------------------------------------------
  * WEH | 04/23/19 | Rename macro PACK_BOX->PACK_START.
  * ------------------------------------------------------------------
- * WEH | 07/29/20 | Add Macro LOAD_GEDA_COMBO_STR.
+ * WEH | 07/29/20 | Add Macro LOAD_GEDA_COMBO_STR, revise LOAD_COMBO_STR
+ *                | to use inline code instead of calling load_combo_str.
  * ------------------------------------------------------------------
 */
 
@@ -572,7 +573,11 @@ typedef struct
 
 #define GTK_LOAD_COMBO(name, text) gtk_combo_box_append_text (GTK_COMBO_BOX (name##Combo), _(text));
 #define LOAD_STD_COMBO(name, text) gtk_combo_box_append_text (GTK_COMBO_BOX (name##Combo), text);
-#define LOAD_COMBO_STR(name, strings)load_combo_str(GTK_COMBO_BOX (name##Combo), strings);
+
+#define LOAD_COMBO_STR(name, strings) { \
+  int i=0; \
+  while (list[i]) { gtk_combo_box_append_text (GTK_COMBO_BOX (name##Combo), _(strings[i++]));} }
+
 #define LOAD_COMBO_GL(name, glist)gtk_combo_set_popdown_strings (GTK_COMBO (name##Combo), glist);
 
 /* Radio Widget Controls */
