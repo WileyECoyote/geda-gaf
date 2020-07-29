@@ -3828,9 +3828,8 @@ static void geda_combo_box_relayout_item (GedaComboBox *combo_box,
   }
 
   /* set attach props */
-  geda_menu_attach (GEDA_MENU (menu), item,
-                   current_col, current_col + cols,
-                   current_row, current_row + rows);
+  geda_menu_attach (GEDA_MENU (menu), item, current_col, current_col + cols,
+                                            current_row, current_row + rows);
 }
 
 static void geda_combo_box_relayout (GedaComboBox *combo_box)
