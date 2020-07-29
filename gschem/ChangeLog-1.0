@@ -3,6 +3,7 @@
     * src/x/x_settings_dialog.c: Remove function unused load_combo_str.
       Utilize gEDA text combo box instead of awkward Gtk combo for:
 
+        * MiddleButton
         * PointerCursor
         * ThirdButtonCombo
 

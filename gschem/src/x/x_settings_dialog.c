@@ -2204,7 +2204,7 @@ bool load_settings_dialog (GschemToplevel *w_current)
   SetCombo ( ConsoleWindowType, console_window_type);
   SetGedaCombo (ThirdButton,    w_current->third_button);
   SetGedaCombo (PointerCursor,  w_current->drawing_pointer);
-  SetCombo ( MiddleButton,      w_current->middle_button);
+  SetGedaCombo (MiddleButton,   w_current->middle_button);
 
 #ifdef DEBUG
   LOAD_GEDA_TEXT_COMBO( TitleBlock, DefaultTitleBlockList );
@@ -2506,13 +2506,13 @@ GtkWidget *create_settings_dialog (GschemToplevel *w_current)
          gtk_widget_set_size_request (PointerCursorCombo, 150, 31);
        HSECTION (PointerOptions_vbox, PointerRow5)    /* Row 4 */
          GTK_SWITCH(PointerRow5_hbox, PointerHScroll, 8, FALSE);
-         GTK_NEW_COMBO (PointerRow5_hbox, MiddleButton,   150, 13);
+         GEDA_NEW_TEXT_COMBO (PointerRow5_hbox, MiddleButton, 150, 13);
          gtk_widget_set_size_request (MiddleButtonCombo,  150, 31);
-         GTK_LOAD_COMBO (MiddleButton, RC_STR_MID_STROKE)
-         GTK_LOAD_COMBO (MiddleButton, RC_STR_MID_REPEAT)
-         GTK_LOAD_COMBO (MiddleButton, RC_STR_MID_ACTION)
-         GTK_LOAD_COMBO (MiddleButton, RC_STR_MID_MOUSEPAN)
-         GTK_LOAD_COMBO (MiddleButton, RC_STR_MID_MOUSEPOP)
+         LOAD_GEDA_TEXT_COMBO (MiddleButton, RC_STR_MID_STROKE);
+         LOAD_GEDA_TEXT_COMBO (MiddleButton, RC_STR_MID_REPEAT);
+         LOAD_GEDA_TEXT_COMBO (MiddleButton, RC_STR_MID_ACTION);
+         LOAD_GEDA_TEXT_COMBO (MiddleButton, RC_STR_MID_MOUSEPAN);
+         LOAD_GEDA_TEXT_COMBO (MiddleButton, RC_STR_MID_MOUSEPOP);
        HSECTION (PointerOptions_vbox, PointerRow6)    /* Row 4 */
          GTK_SWITCH(PointerRow6_hbox, WarpCursor, 30, FALSE);
          GEDA_NEW_TEXT_COMBO (PointerRow6_hbox, ThirdButton,  150, 1);
@@ -2814,7 +2814,7 @@ void GatherSettings(GschemToplevel *w_current) {
     w_current->undo_control = FALSE;
   }
 
-  w_current->middle_button  = gtk_combo_box_get_active (GTK_COMBO_BOX (MiddleButtonCombo));
+  w_current->middle_button  = geda_combo_box_text_widget_get_active (MiddleButtonCombo);
   w_current->third_button   = geda_combo_box_text_widget_get_active (ThirdButtonCombo);
   tmp_int                   = geda_combo_box_text_widget_get_active (PointerCursorCombo);
 
