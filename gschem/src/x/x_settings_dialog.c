@@ -2203,7 +2203,7 @@ bool load_settings_dialog (GschemToplevel *w_current)
   SetCombo ( DotGridMode,       w_current->dots_grid_mode);
   SetCombo ( ConsoleWindowType, console_window_type);
   SetGedaCombo (ThirdButton,    w_current->third_button);
-  SetCombo ( PointerCursor,     w_current->drawing_pointer);
+  SetGedaCombo (PointerCursor,  w_current->drawing_pointer);
   SetCombo ( MiddleButton,      w_current->middle_button);
 
 #ifdef DEBUG
@@ -2501,8 +2501,8 @@ GtkWidget *create_settings_dialog (GschemToplevel *w_current)
          GTK_NUMERIC_SPIN (PointerRow3_hbox, ScrollPanSteps, 11, 8, 0, 80);
        HSECTION (PointerOptions_vbox, PointerRow4)    /* Row 4 */
          GTK_SWITCH(PointerRow4_hbox, ClassicWheel, 40, TRUE);
-         GTK_NEW_COMBO (PointerRow4_hbox, PointerCursor,  150, 13);
-           LOAD_COMBO_STR( PointerCursor, CursorStrings );
+         GEDA_NEW_TEXT_COMBO (PointerRow4_hbox, PointerCursor, 150, 13);
+           LOAD_GEDA_COMBO_STR( PointerCursor, CursorStrings );
          gtk_widget_set_size_request (PointerCursorCombo, 150, 31);
        HSECTION (PointerOptions_vbox, PointerRow5)    /* Row 4 */
          GTK_SWITCH(PointerRow5_hbox, PointerHScroll, 8, FALSE);
@@ -2815,8 +2815,8 @@ void GatherSettings(GschemToplevel *w_current) {
   }
 
   w_current->middle_button  = gtk_combo_box_get_active (GTK_COMBO_BOX (MiddleButtonCombo));
-  tmp_int                   = gtk_combo_box_get_active (GTK_COMBO_BOX (PointerCursorCombo));
   w_current->third_button   = geda_combo_box_text_widget_get_active (ThirdButtonCombo);
+  tmp_int                   = geda_combo_box_text_widget_get_active (PointerCursorCombo);
 
   if (tmp_int != w_current->drawing_pointer) {
     int pointer_id = DrawingCursorsInt[tmp_int];   /* get the cursor id from our table */
