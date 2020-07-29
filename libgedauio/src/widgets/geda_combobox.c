@@ -3782,8 +3782,8 @@ static void geda_combo_box_relayout_item (GedaComboBox *combo_box,
     return;
   }
 
-  if (priv->col_column == -1 && priv->row_column == -1 && last)
-  {
+  if (priv->col_column == -1 && priv->row_column == -1 && last) {
+
     gtk_container_child_get ((GtkContainer*)menu,
                              last,
                              "right-attach", &current_col,
