@@ -2202,7 +2202,7 @@ bool load_settings_dialog (GschemToplevel *w_current)
 
   SetCombo ( DotGridMode,       w_current->dots_grid_mode);
   SetCombo ( ConsoleWindowType, console_window_type);
-  SetCombo ( ThirdButton,       w_current->third_button);
+  SetGedaCombo (ThirdButton,    w_current->third_button);
   SetCombo ( PointerCursor,     w_current->drawing_pointer);
   SetCombo ( MiddleButton,      w_current->middle_button);
 
@@ -2515,10 +2515,10 @@ GtkWidget *create_settings_dialog (GschemToplevel *w_current)
          GTK_LOAD_COMBO (MiddleButton, RC_STR_MID_MOUSEPOP)
        HSECTION (PointerOptions_vbox, PointerRow6)    /* Row 4 */
          GTK_SWITCH(PointerRow6_hbox, WarpCursor, 30, FALSE);
-         GTK_NEW_COMBO (PointerRow6_hbox, ThirdButton,  150, 1);
+         GEDA_NEW_TEXT_COMBO (PointerRow6_hbox, ThirdButton,  150, 1);
          gtk_widget_set_size_request (ThirdButtonCombo, 150, 31);
-         GTK_LOAD_COMBO (ThirdButton, RC_STR_3RD_POPUP)
-         GTK_LOAD_COMBO (ThirdButton, RC_STR_3RD_PAN)
+         LOAD_GEDA_TEXT_COMBO (ThirdButton, _(RC_STR_3RD_POPUP));
+         LOAD_GEDA_TEXT_COMBO (ThirdButton, _(RC_STR_3RD_PAN));
      HXYP_SEPARATOR (PointerPrefTab_vbox, End, 10);
 
    GTK_END_TAB(PointerPref);
@@ -2815,8 +2815,8 @@ void GatherSettings(GschemToplevel *w_current) {
   }
 
   w_current->middle_button  = gtk_combo_box_get_active (GTK_COMBO_BOX (MiddleButtonCombo));
-  w_current->third_button   = gtk_combo_box_get_active (GTK_COMBO_BOX (ThirdButtonCombo));
   tmp_int                   = gtk_combo_box_get_active (GTK_COMBO_BOX (PointerCursorCombo));
+  w_current->third_button   = geda_combo_box_text_widget_get_active (ThirdButtonCombo);
 
   if (tmp_int != w_current->drawing_pointer) {
     int pointer_id = DrawingCursorsInt[tmp_int];   /* get the cursor id from our table */
