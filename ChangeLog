@@ -1,7 +1,8 @@
 2020-07-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda/geda_dialog_controls.h: Add new macro LOAD_GEDA_COMBO_STR.
-      Revise LOAD_COMBO_STR to use inline code instead of calling load_combo_str.
+      Revise LOAD_GEDA_TEXT_COMBO to utilize gettext. Revise LOAD_COMBO_STR
+      to use inline code instead of calling load_combo_str.
 
 2019-11-07 Wiley E. Hill <wileyhill@gmail.com>
 

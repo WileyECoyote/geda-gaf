@@ -85,6 +85,7 @@
  * ------------------------------------------------------------------
  * WEH | 07/29/20 | Add Macro LOAD_GEDA_COMBO_STR, revise LOAD_COMBO_STR
  *                | to use inline code instead of calling load_combo_str.
+ *                | Revise LOAD_GEDA_TEXT_COMBO to utilize gettext.
  * ------------------------------------------------------------------
 */
 
@@ -565,7 +566,7 @@ typedef struct
         HOOKUP_GEDA_OBJECT(name, Combo)
 
 #define LOAD_GEDA_TEXT_COMBO(name, text) \
-        geda_combo_box_text_append (GEDA_COMBO_BOX_TEXT (name##Combo), text);
+        geda_combo_box_text_append (GEDA_COMBO_BOX_TEXT (name##Combo), _(text));
 
 #define LOAD_GEDA_COMBO_STR(name, strings) { \
   int i=0; \
