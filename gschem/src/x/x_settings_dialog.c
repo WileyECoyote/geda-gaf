@@ -209,19 +209,6 @@ int gtk_radio_group_get_active(GSList *RadioGroupList) {
   return ((length - 1) - active);
 }
 
-/*! \brief function load_combo_str
- *  \par Function Description
- *  Loads GTK Combobox with strings from char array.
- *
- *  \param[in]  combo  ptr to ComboBox to load, is not checked.
- *  \param[in]  list   ptr to array of strings
-*/
-inline void load_combo_str( GtkComboBox *combo, const char *list[])
-{
-  int i=0;
-  while (list[i]) { gtk_combo_box_append_text (combo, _(list[i++]));}
-}
-
 /* --------------------------- Global Variables ---------------------------- */
 
 /** \defgroup Preferences-Dialog-Globals Global Variables

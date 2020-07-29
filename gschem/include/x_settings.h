@@ -334,7 +334,6 @@ bool gtk_tree_model_iter_previous (GtkTreeModel *tree_model, GtkTreeIter *iter);
 int  gtk_radio_group_get_active(GSList *RadioGroupList);
 
 void initialize_tree_View(GtkTreeView *list, int list_item, int nColumns, int DataType);
-void load_combo_str( GtkComboBox *combo, const char *list[]);
 void load_tree_view_gl( GtkTreeView *TreeView, GList *list);
 void load_tree_view_str( GtkTreeView *TreeView, const char *list[]);
 
