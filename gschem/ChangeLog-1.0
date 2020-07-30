@@ -1,3 +1,7 @@
+2020-07-30 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_settings_dialog.c: Make color_button_popup_destroy static.
+
 2020-07-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_settings_dialog.c: Remove function unused load_combo_str.

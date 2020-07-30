@@ -1258,7 +1258,7 @@ color_button_popup_menu_callback (GedaMenuItem *item, void * data)
   gtk_widget_destroy(popup_menu);
 }
 
-bool color_button_popup_destroy(GtkWidget *widget, void *data)
+static bool color_button_popup_destroy(GtkWidget *widget, void *data)
 {
   if (GEDA_IS_MENU(popup_menu)) {
     g_object_unref(popup_menu);
@@ -1572,7 +1572,6 @@ void setup_font_name_combo(GschemToplevel *w_current, char *cur_font) {
     fonts = NULL;
 
 #endif
-
 
     if (fonts) {
 
