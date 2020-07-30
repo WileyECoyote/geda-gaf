@@ -1,7 +1,7 @@
 2020-07-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda/geda_dialog_controls.h: Revise LOAD_GEDA_COMBO_STR to
-      utilize LOAD_GEDA_TEXT_COMBO.
+      utilize LOAD_GEDA_TEXT_COMBO and LOAD_COMBO_STR to utilize GTK_LOAD_COMBO.
 
 2020-07-29 Wiley E. Hill <wileyhill@gmail.com>
 

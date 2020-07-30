@@ -577,7 +577,7 @@ typedef struct
 
 #define LOAD_COMBO_STR(name, strings) { \
   int i=0; \
-  while (list[i]) { gtk_combo_box_append_text (GTK_COMBO_BOX (name##Combo), _(strings[i++]));} }
+  while (list[i]) { GTK_LOAD_COMBO (name, strings[i++]);} }
 
 #define LOAD_COMBO_GL(name, glist)gtk_combo_set_popdown_strings (GTK_COMBO (name##Combo), glist);
 
