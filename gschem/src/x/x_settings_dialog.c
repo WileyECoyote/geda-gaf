@@ -2200,7 +2200,7 @@ bool load_settings_dialog (GschemToplevel *w_current)
   SetCombo ( ColorMapScheme, rc_options.color_scheme_index);
 
   SetGedaCombo (DotGridMode,       w_current->dots_grid_mode);
-  SetCombo ( ConsoleWindowType, console_window_type);
+  SetGedaCombo (ConsoleWindowType, console_window_type);
   SetGedaCombo (ThirdButton,    w_current->third_button);
   SetGedaCombo (PointerCursor,  w_current->drawing_pointer);
   SetGedaCombo (MiddleButton,   w_current->middle_button);
@@ -2427,9 +2427,9 @@ GtkWidget *create_settings_dialog (GschemToplevel *w_current)
        VSECTION (LoggingOptions_hbox, LogOptions);   /* Grp 3 Row 1 */
          GTK_SWITCH(LogOptions_vbox, EnableLog, 5, TRUE);
          GTK_SWITCH(LogOptions_vbox, InitConsoleWindow, 0, FALSE);
-         GTK_NEW_COMBO (LogOptions_vbox, ConsoleWindowType, 170, 5);
-           GTK_LOAD_COMBO (ConsoleWindowType, RC_STR_CONWIN_DECORATED)
-           GTK_LOAD_COMBO (ConsoleWindowType, RC_STR_CONWIN_TRANSIENT)
+         GEDA_NEW_TEXT_COMBO (LogOptions_vbox, ConsoleWindowType, 170, 5);
+           LOAD_GEDA_TEXT_COMBO (ConsoleWindowType, RC_STR_CONWIN_DECORATED)
+           LOAD_GEDA_TEXT_COMBO (ConsoleWindowType, RC_STR_CONWIN_TRANSIENT)
          GTK_V_BULB_TRIAD (LoggingOptions_hbox, LogDestiny, 10, Window, TTY, Both, Window);
      HXYP_SEPARATOR (GeneralPrefTab_vbox, Grp4, 10);
      CSECTION_OPTIONS(GeneralPrefTab_vbox, Undo, 63, 5, H); /* was GT Grp 4 Undo Related */
@@ -2800,7 +2800,7 @@ void GatherSettings(GschemToplevel *w_current) {
 /* Combo Boxes (10) */
 
   w_current->dots_grid_mode = geda_combo_box_text_widget_get_active (DotGridModeCombo);
-  tmp_int                   = gtk_combo_box_get_active (GTK_COMBO_BOX (ConsoleWindowTypeCombo));
+  tmp_int                   = geda_combo_box_text_widget_get_active (ConsoleWindowTypeCombo);
 
   if (tmp_int != console_window_type) {
     console_window_type = tmp_int;

@@ -4,6 +4,7 @@
       Utilize gEDA text combo box instead of awkward Gtk combo for:
 
         * DotGridModeCombo
+        * ConsoleWindowTypeCombo
 
 2020-07-29 Wiley E. Hill <wileyhill@gmail.com>
 
