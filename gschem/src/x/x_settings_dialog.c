@@ -2814,7 +2814,7 @@ void GatherSettings(GschemToplevel *w_current) {
   }
 
   w_current->middle_button  = GetGedaCombo (MiddleButton);
-  w_current->third_button   = geda_combo_box_text_widget_get_active (ThirdButtonCombo);
+  w_current->third_button   = GetGedaCombo (ThirdButton);
   tmp_int                   = geda_combo_box_text_widget_get_active (PointerCursorCombo);
 
   if (tmp_int != w_current->drawing_pointer) {
