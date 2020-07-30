@@ -570,7 +570,7 @@ typedef struct
 
 #define LOAD_GEDA_COMBO_STR(name, strings) { \
   int i=0; \
-  while (strings[i]) { geda_combo_box_text_append ((GedaComboBoxText*)name##Combo, _(strings[i++]));} }
+  while (strings[i]) { LOAD_GEDA_TEXT_COMBO (name, strings[i++]);} }
 
 #define GTK_LOAD_COMBO(name, text) gtk_combo_box_append_text (GTK_COMBO_BOX (name##Combo), _(text));
 #define LOAD_STD_COMBO(name, text) gtk_combo_box_append_text (GTK_COMBO_BOX (name##Combo), text);
