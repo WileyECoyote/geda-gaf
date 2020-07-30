@@ -1,7 +1,8 @@
 2020-07-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_settings_dialog.c: Make color_button_popup_destroy static.
-      Utilize gEDA text combo box instead of awkward Gtk combo for:
+      Utilize GetGedaCombo macro. Utilize gEDA text combo box instead of
+      awkward Gtk combo for:
 
         * DotGridModeCombo
         * ConsoleWindowTypeCombo

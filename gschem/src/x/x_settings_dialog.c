@@ -2813,7 +2813,7 @@ void GatherSettings(GschemToplevel *w_current) {
     w_current->undo_control = FALSE;
   }
 
-  w_current->middle_button  = geda_combo_box_text_widget_get_active (MiddleButtonCombo);
+  w_current->middle_button  = GetGedaCombo (MiddleButton);
   w_current->third_button   = geda_combo_box_text_widget_get_active (ThirdButtonCombo);
   tmp_int                   = geda_combo_box_text_widget_get_active (PointerCursorCombo);
 
