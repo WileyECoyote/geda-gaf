@@ -498,7 +498,7 @@ on_notebook_switch_page (GtkNotebook *notebook, GtkNotebookPage *page,
   case PointerPref:
     break;
   case WindowPref:
-    if (gtk_combo_box_get_active (GTK_COMBO_BOX (DotGridModeCombo)) == DOTS_GRID_VARIABLE_MODE)
+    if (GetGedaCombo (DotGridMode) == DOTS_GRID_VARIABLE_MODE)
        gtk_widget_set_sensitive (DotGridThresholdSpin, FALSE);
     else
        gtk_widget_set_sensitive (DotGridThresholdSpin, TRUE);
@@ -1412,7 +1412,7 @@ void combo_responder(GtkWidget *widget, void * data)
   case TitleBlock:              /* GEDA_COMBO_BOX_TEXT */
     break;
   case DotGridMode:
-    if (gtk_combo_box_get_active (GTK_COMBO_BOX (DotGridModeCombo)) == DOTS_GRID_VARIABLE_MODE)
+    if (GetGedaCombo (DotGridMode) == DOTS_GRID_VARIABLE_MODE)
        gtk_widget_set_sensitive (DotGridThresholdSpin, FALSE);
     else
        gtk_widget_set_sensitive (DotGridThresholdSpin, TRUE);
@@ -2199,7 +2199,7 @@ bool load_settings_dialog (GschemToplevel *w_current)
   }
   SetCombo ( ColorMapScheme, rc_options.color_scheme_index);
 
-  SetCombo ( DotGridMode,       w_current->dots_grid_mode);
+  SetGedaCombo (DotGridMode,       w_current->dots_grid_mode);
   SetCombo ( ConsoleWindowType, console_window_type);
   SetGedaCombo (ThirdButton,    w_current->third_button);
   SetGedaCombo (PointerCursor,  w_current->drawing_pointer);
@@ -2533,9 +2533,9 @@ GtkWidget *create_settings_dialog (GschemToplevel *w_current)
        HPSECTION(WindowPrefTab_vbox, GridOptions, DIALOG_V_SPACING) /* WT Row 2 */
          GTK_V_BULB_TRIAD( GridOptions_hbox, GridMode, 0, None, Dots, Mesh, Mesh);
          VPSECTION(GridOptions_hbox, GridDotOptions, 50); /* WT Row 2 Grp 2 Dot Grid Options */
-           GTK_NEW_COMBO (GridDotOptions_vbox, DotGridMode, 160, DIALOG_V_SPACING);
-           GTK_LOAD_COMBO (DotGridMode, RC_STR_DOTS_MODE_VARIABLE);
-           GTK_LOAD_COMBO (DotGridMode, RC_STR_DOTS_MODE_FIXED);
+           GEDA_NEW_TEXT_COMBO (GridDotOptions_vbox, DotGridMode, 160, DIALOG_V_SPACING);
+           LOAD_GEDA_TEXT_COMBO (DotGridMode, RC_STR_DOTS_MODE_VARIABLE);
+           LOAD_GEDA_TEXT_COMBO (DotGridMode, RC_STR_DOTS_MODE_FIXED);
            GTK_NUMERIC_SPIN (GridDotOptions_vbox, DotGridThreshold, DIALOG_V_SPACING, DEFAULT_GRID_DOT_SIZE, MIN_GRID_DOT_SIZE, MAX_GRID_DOT_THRESHOLD);
      HD_SEPARATOR (WindowPrefTab_vbox, Grp3);
        HSECTION(WindowPrefTab_vbox, MeshGridSizeOptions) /* WT Row 3 */
@@ -2799,7 +2799,7 @@ void GatherSettings(GschemToplevel *w_current) {
 
 /* Combo Boxes (10) */
 
-  w_current->dots_grid_mode = gtk_combo_box_get_active (GTK_COMBO_BOX (DotGridModeCombo));
+  w_current->dots_grid_mode = geda_combo_box_text_widget_get_active (DotGridModeCombo);
   tmp_int                   = gtk_combo_box_get_active (GTK_COMBO_BOX (ConsoleWindowTypeCombo));
 
   if (tmp_int != console_window_type) {

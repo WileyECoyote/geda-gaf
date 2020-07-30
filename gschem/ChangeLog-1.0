@@ -1,14 +1,17 @@
 2020-07-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_settings_dialog.c: Make color_button_popup_destroy static.
+      Utilize gEDA text combo box instead of awkward Gtk combo for:
+
+        * DotGridModeCombo
 
 2020-07-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_settings_dialog.c: Remove function unused load_combo_str.
       Utilize gEDA text combo box instead of awkward Gtk combo for:
 
-        * MiddleButton
-        * PointerCursor
+        * MiddleButtonCombo
+        * PointerCursorCombo
         * ThirdButtonCombo
 
 2020-07-25 Wiley E. Hill <wileyhill@gmail.com>
