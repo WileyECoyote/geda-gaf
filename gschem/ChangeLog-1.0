@@ -5,6 +5,7 @@
 
         * DotGridModeCombo
         * ConsoleWindowTypeCombo
+        * UndoTypeCombo
 
 2020-07-29 Wiley E. Hill <wileyhill@gmail.com>
 

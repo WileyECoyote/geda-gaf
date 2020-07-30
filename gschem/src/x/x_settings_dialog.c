@@ -2215,7 +2215,7 @@ bool load_settings_dialog (GschemToplevel *w_current)
   GEDA_FREE (tmpstr);
 #endif
 
-  SetCombo ( UndoType, w_current->undo_type );
+  SetGedaCombo (UndoType, w_current->undo_type);
 
   /* Note: This should be set before calling setup_font_name_combo */
   rc_options.render_adaptor = w_current->render_adaptor;
@@ -2439,10 +2439,10 @@ GtkWidget *create_settings_dialog (GschemToplevel *w_current)
          VXP_SEPERATOR(UndoOptions_hbox, UndoToggleOptions, 60);
          VSECTION (UndoOptions_hbox, UndoExtraOptions);
            GTK_NUMERIC_SPIN (UndoExtraOptions_vbox, UndoBufferSize, 0, 10, 1, 99);
-           GTK_NEW_COMBO (UndoExtraOptions_vbox, UndoType, 150, 5);
-             GTK_LOAD_COMBO (UndoType, RC_STR_UNDO_NONE)
-             GTK_LOAD_COMBO (UndoType, RC_STR_UNDO_DISK)
-             GTK_LOAD_COMBO (UndoType, RC_STR_UNDO_MEMORY)
+           GEDA_NEW_TEXT_COMBO (UndoExtraOptions_vbox, UndoType, 150, 5);
+             LOAD_GEDA_TEXT_COMBO (UndoType, RC_STR_UNDO_NONE)
+             LOAD_GEDA_TEXT_COMBO (UndoType, RC_STR_UNDO_DISK)
+             LOAD_GEDA_TEXT_COMBO (UndoType, RC_STR_UNDO_MEMORY)
      HXYP_SEPARATOR (GeneralPrefTab_vbox, End, 10);
    GTK_END_TAB(GeneralPref);
 
@@ -2807,7 +2807,7 @@ void GatherSettings(GschemToplevel *w_current) {
     x_console_update_decorated(w_current);
   }
 
-  w_current->undo_type      = gtk_combo_box_get_active (GTK_COMBO_BOX (UndoTypeCombo));
+  w_current->undo_type      = geda_combo_box_text_widget_get_active (UndoTypeCombo);
 
   if (w_current->undo_type == UNDO_NONE) {
     w_current->undo_control = FALSE;
