@@ -2201,9 +2201,9 @@ bool load_settings_dialog (GschemToplevel *w_current)
 
   SetGedaCombo (DotGridMode,       w_current->dots_grid_mode);
   SetGedaCombo (ConsoleWindowType, console_window_type);
-  SetGedaCombo (ThirdButton,    w_current->third_button);
-  SetGedaCombo (PointerCursor,  w_current->drawing_pointer);
-  SetGedaCombo (MiddleButton,   w_current->middle_button);
+  SetGedaCombo (ThirdButton,       w_current->third_button);
+  SetGedaCombo (PointerCursor,     w_current->drawing_pointer);
+  SetGedaCombo (MiddleButton,      w_current->middle_button);
 
 #ifdef DEBUG
   LOAD_GEDA_TEXT_COMBO( TitleBlock, DefaultTitleBlockList );
