@@ -200,11 +200,11 @@ geda_tearoff_menu_item_paint (GtkWidget *widget, GdkRectangle *area)
       if (toggle_size > ARROW_SIZE) {
 
         if (direction == GTK_TEXT_DIR_LTR) {
-          arrow_x = x + (toggle_size - ARROW_SIZE)/2;
+          arrow_x = x + (toggle_size - ARROW_SIZE) / 2;
           arrow_type = GTK_ARROW_LEFT;
         }
         else {
-          arrow_x = x + width - toggle_size + (toggle_size - ARROW_SIZE)/2;
+          arrow_x = x + width - toggle_size + (toggle_size - ARROW_SIZE) / 2;
           arrow_type = GTK_ARROW_RIGHT;
         }
         x += toggle_size + BORDER_SPACING;
