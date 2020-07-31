@@ -26,7 +26,7 @@
  *  Gobject signals.
  */
 
-/** \defgroup geda-list-object-proc GedaList Object Procedures
+/** \defgroup list-object-proc GedaList Object Procedures
  * @{
  * \brief Procedures for Operations with #GedaList Objects
  */
@@ -410,4 +410,4 @@ void geda_object_list_translate(const GList *list, int dx, int dy)
   }
 }
 
-/** @} endgroup geda-list-object-proc */
+/** @} endgroup list-object-proc */

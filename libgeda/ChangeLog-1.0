@@ -1,3 +1,8 @@
+2020-07-31 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_list.c: Rename Doxygen group without geda prefix;
+      list-object-proc.
+
 2020-07-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * docs/images: Update "font-family" because the text is not visible in
