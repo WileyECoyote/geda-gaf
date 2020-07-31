@@ -1,3 +1,9 @@
+2020-07-31 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_tearoff_menu_item.c: Utilize macro:
+
+          * geda_get_widget_state
+
 2020-07-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_combobox.c: Revert initializing x and y values in

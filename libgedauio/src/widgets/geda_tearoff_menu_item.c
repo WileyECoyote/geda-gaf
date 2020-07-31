@@ -147,6 +147,7 @@ geda_tearoff_menu_item_paint (GtkWidget *widget, GdkRectangle *area)
     GedaMenuItem    *menu_item;
     GtkShadowType    shadow_type;
     GtkArrowType     arrow_type;
+    GtkStateType     state_type;
     GtkTextDirection direction;
 
     int width, height;
@@ -159,6 +160,7 @@ geda_tearoff_menu_item_paint (GtkWidget *widget, GdkRectangle *area)
     direction    = gtk_widget_get_direction (widget);
     allocation   = geda_get_widget_allocation (widget);
     border_width = geda_get_container_border_width (widget);
+    state_type   = geda_get_widget_state (widget);
 
     x = allocation->x + border_width;
     y = allocation->y + border_width;
@@ -166,7 +168,7 @@ geda_tearoff_menu_item_paint (GtkWidget *widget, GdkRectangle *area)
     height = allocation->height - border_width * 2;
     right_max = x + width;
 
-    if (widget->state == GTK_STATE_PRELIGHT) {
+    if (state_type == GTK_STATE_PRELIGHT) {
 
       int  selected_shadow_type;
 
