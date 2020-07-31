@@ -993,8 +993,8 @@ static bool o_break_net(GschemToplevel *w_current, GedaObject *object)
 
       /* Redraw the original object after modifications */
       object->dont_redraw = FALSE;
-      geda_struct_tile_update_object (object);
-      geda_struct_conn_update_object (object);
+
+      geda_object_update (object);
       o_invalidate_object (w_current, object);
 
       new_obj->line->x[end1] = point2.x;
