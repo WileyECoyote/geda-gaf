@@ -192,7 +192,7 @@ geda_tearoff_menu_item_paint (GtkWidget *widget, GdkRectangle *area)
 
       toggle_size = geda_menu_item_get_toggle_size(menu_item);
 
-      if (widget->state == GTK_STATE_PRELIGHT)
+      if (state_type == GTK_STATE_PRELIGHT)
         shadow_type = GTK_SHADOW_IN;
       else
         shadow_type = GTK_SHADOW_OUT;
