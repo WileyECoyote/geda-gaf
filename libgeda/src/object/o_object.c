@@ -758,7 +758,6 @@ void geda_object_update (GedaObject *object)
 {
   geda_struct_tile_update_object (object);
   geda_struct_conn_update_object (object);
-
 }
 
 /** @} endgroup object-proc */
