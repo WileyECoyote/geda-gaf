@@ -2815,7 +2815,7 @@ void GatherSettings(GschemToplevel *w_current) {
 
   w_current->middle_button  = GetGedaCombo (MiddleButton);
   w_current->third_button   = GetGedaCombo (ThirdButton);
-  tmp_int                   = geda_combo_box_text_widget_get_active (PointerCursorCombo);
+  tmp_int                   = GetGedaCombo (PointerCursor);
 
   if (tmp_int != w_current->drawing_pointer) {
     int pointer_id = DrawingCursorsInt[tmp_int];   /* get the cursor id from our table */
