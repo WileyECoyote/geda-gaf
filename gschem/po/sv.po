@@ -871,47 +871,56 @@ msgstr "VARNING: Översätt inte med avstängning\n"
 msgid "WARNING: Turning snap on and continuing with translate.\n"
 msgstr "VARNING: Slå på knappen och fortsätt med översättningen.\n"
 
+# WARNING: Snap grid size is not equal to 100
 #: gschem/src/iface/i_command.c:4370
 msgid "WARNING: Snap grid size is not equal to 100!\n"
-msgstr ""
+msgstr "VARNING: Storleken på snäppnätet är inte lika med 100\n"
 
 #: gschem/src/iface/i_command.c:4371
 msgid ""
 "WARNING: If you are translating a symbol to the origin, the snap grid size "
 "should be set to 100\n"
-msgstr ""
+msgstr "VARNING: Om du översätter en symbol till ursprunget, bör "
+"snap-rutstorleken ställas in på 100\n"
 
+# Grid OFF
 #: gschem/src/iface/i_command.c:4583
 msgid "Grid OFF\n"
-msgstr ""
+msgstr "Rutnät AV\n"
 
+# Dot grid activated
 #: gschem/src/iface/i_command.c:4584
 msgid "Dot grid activated\n"
-msgstr ""
+msgstr "Punktnät aktiverat\n"
 
+# Mesh grid activated
 #: gschem/src/iface/i_command.c:4585
 msgid "Mesh grid activated\n"
-msgstr ""
+msgstr "Mesh rutnät aktiverat\n"
 
 #: gschem/src/iface/i_command.c:4664
 msgid "Snap OFF (CAUTION!)\n"
-msgstr ""
+msgstr "Justering AV (VARNING!)\n"
 
+# Snap ON => Alignment ON
 #: gschem/src/iface/i_command.c:4670
 msgid "Snap ON\n"
-msgstr ""
+msgstr "Justering PÅ\n"
 
+# Snap back to the grid (CAUTION!)
 #: gschem/src/iface/i_command.c:4675
 msgid "Snap back to the grid (CAUTION!)\n"
-msgstr ""
+msgstr "Snäpp tillbaka till nätet (FÖRSIKTIGT!)\n"
 
+# Rubber band mode is OFF
 #: gschem/src/iface/i_command.c:4700
 msgid "Rubber band mode is OFF\n"
-msgstr ""
+msgstr "Gummibandsläget är AV\n"
 
+# Rubber band mode is ON
 #: gschem/src/iface/i_command.c:4704
 msgid "Rubber band mode is ON\n"
-msgstr ""
+msgstr "Gummibandsläget är PÅ\n"
 
 #: gschem/src/iface/i_command.c:4715
 msgid "Magnetic net mode is ON\n"
