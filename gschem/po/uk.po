@@ -941,47 +941,60 @@ msgstr "ПОПЕРЕДЖЕННЯ: Не перекладайте з оснаще�
 msgid "WARNING: Turning snap on and continuing with translate.\n"
 msgstr "УВАГА: Увімкнення оснащення та продовження перекладу.\n"
 
+# WARNING: Snap grid size is not equal to 100
+# POPEREDZHENNYA: Rozmir osnashchennya sitky ne dorivnyuye 100
 #: gschem/src/iface/i_command.c:4370
 msgid "WARNING: Snap grid size is not equal to 100!\n"
-msgstr ""
+msgstr "ПОПЕРЕДЖЕННЯ: Розмір оснащення сітки не дорівнює 100\n"
 
+# POPEREDZHENNYA: Yakshcho vy perekladayete symvol na pochatok,
+# rozmir osnashchennya dlya sitky povynen buty vstanovlenyy na 100
 #: gschem/src/iface/i_command.c:4371
 msgid ""
 "WARNING: If you are translating a symbol to the origin, the snap grid size "
 "should be set to 100\n"
-msgstr ""
+msgstr "ПОПЕРЕДЖЕННЯ: Якщо ви перекладаєте символ на початок, розмір оснащення "
+"для сітки повинен бути встановлений на 100\n"
 
+# Grid OFF; Sitka vymknena
 #: gschem/src/iface/i_command.c:4583
 msgid "Grid OFF\n"
-msgstr ""
+msgstr "Сітка вимкнена\n"
 
+# Dot grid activated; Tochka sitky aktyvovana
 #: gschem/src/iface/i_command.c:4584
 msgid "Dot grid activated\n"
-msgstr ""
+msgstr "Точка сітки активована\n"
 
+# Mesh grid activated; Sitchasta sitka aktyvovana
 #: gschem/src/iface/i_command.c:4585
 msgid "Mesh grid activated\n"
-msgstr ""
+msgstr "Сітчаста сітка активована\n"
 
+# Vyrivnyuvannya vymkneno (OBEREZHNO!)
 #: gschem/src/iface/i_command.c:4664
 msgid "Snap OFF (CAUTION!)\n"
-msgstr ""
+msgstr "Вирівнювання вимкнено (ОБЕРЕЖНО!)\n"
 
+# Snap ON => Alignment ON; Vyrivnyuvannya VKL
 #: gschem/src/iface/i_command.c:4670
 msgid "Snap ON\n"
-msgstr ""
+msgstr "Вирівнювання ВКЛ\n"
 
+# Snap back to the grid (CAUTION!); Povernitʹsya do sitky (OBEREZHNO!)
 #: gschem/src/iface/i_command.c:4675
 msgid "Snap back to the grid (CAUTION!)\n"
-msgstr ""
+msgstr "Поверніться до сітки (ОБЕРЕЖНО!)\n"
 
+# Rubber band mode is OFF; Rezhym humky vymkneno
 #: gschem/src/iface/i_command.c:4700
 msgid "Rubber band mode is OFF\n"
-msgstr ""
+msgstr "Режим гумки вимкнено\n"
 
+# Rubber band mode is ON; Rezhym humy vvimkneno
 #: gschem/src/iface/i_command.c:4704
 msgid "Rubber band mode is ON\n"
-msgstr ""
+msgstr "Режим гуми ввімкнено\n"
 
 #: gschem/src/iface/i_command.c:4715
 msgid "Magnetic net mode is ON\n"
