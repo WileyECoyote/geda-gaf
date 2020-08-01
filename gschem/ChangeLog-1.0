@@ -4,6 +4,8 @@
 
     * po/da.po: Update Danish translations.
 
+    * po/fi.po: Update Finnish translations.
+
 2020-07-31 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_break.c: Replace geda_struct_tile_update_object and

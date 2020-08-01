@@ -855,47 +855,56 @@ msgstr "VAROITUS: Älä käännä käännettynä!\n"
 msgid "WARNING: Turning snap on and continuing with translate.\n"
 msgstr "VAROITUS: Ota napsautus käyttöön ja jatka kääntämistä.\n"
 
+# WARNING: Snap grid size is not equal to 100
 #: gschem/src/iface/i_command.c:4370
 msgid "WARNING: Snap grid size is not equal to 100!\n"
-msgstr ""
+msgstr "VAROITUS: Nappiristikon koko ei ole yhtä suuri kuin 100\n"
 
 #: gschem/src/iface/i_command.c:4371
 msgid ""
 "WARNING: If you are translating a symbol to the origin, the snap grid size "
 "should be set to 100\n"
-msgstr ""
+msgstr "VAROITUS: Jos käännät symbolia alkuperäiseen, napsautusruudun koon "
+"tulee olla 100\n"
 
+# Grid OFF
 #: gschem/src/iface/i_command.c:4583
 msgid "Grid OFF\n"
-msgstr ""
+msgstr "Ruudukko pois päältä\n"
 
+# Dot grid activated
 #: gschem/src/iface/i_command.c:4584
 msgid "Dot grid activated\n"
-msgstr ""
+msgstr "Pisteverkko aktivoitu\n"
 
+# Mesh grid activated
 #: gschem/src/iface/i_command.c:4585
 msgid "Mesh grid activated\n"
-msgstr ""
+msgstr "Mesh-verkko on aktivoitu\n"
 
 #: gschem/src/iface/i_command.c:4664
 msgid "Snap OFF (CAUTION!)\n"
-msgstr ""
+msgstr "Kohdistus POIS (VARO!)\n"
 
+# Snap ON => Alignment ON
 #: gschem/src/iface/i_command.c:4670
 msgid "Snap ON\n"
-msgstr ""
+msgstr "Kohdistus päällä\n"
 
+# Snap back to the grid (CAUTION!)
 #: gschem/src/iface/i_command.c:4675
 msgid "Snap back to the grid (CAUTION!)\n"
-msgstr ""
+msgstr "Napsauta takaisin ruudukkoon (VARO!)\n"
 
+# Rubber band mode is OFF
 #: gschem/src/iface/i_command.c:4700
 msgid "Rubber band mode is OFF\n"
-msgstr ""
+msgstr "Kuminauhatila on POIS\n"
 
+# Rubber band mode is ON
 #: gschem/src/iface/i_command.c:4704
 msgid "Rubber band mode is ON\n"
-msgstr ""
+msgstr "Kuminauhatila on päällä\n"
 
 #: gschem/src/iface/i_command.c:4715
 msgid "Magnetic net mode is ON\n"
