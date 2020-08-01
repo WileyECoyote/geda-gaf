@@ -8,6 +8,8 @@
 
     * po/nl.po: Update Dutch translations.
 
+    * po/pl.po: Update Polish translations.
+
 2020-07-31 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_break.c: Replace geda_struct_tile_update_object and

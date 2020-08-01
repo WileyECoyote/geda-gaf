@@ -432,17 +432,19 @@ msgid "Right pointer button assignment, right click for options"
 msgstr ""
 "Prawy przycisk przypisanie przycisku, kliknij prawym przyciskiem myszy opcje"
 
+# Indicates the current snap, grid units or state
 #: gschem/src/base/gschem_status_bar.c:1197
 msgid "Indicates the current snap, grid units or state"
-msgstr ""
+msgstr "Wskazuje bieżący skok, jednostki siatki lub stan"
 
+# Indicates the current command state
 #: gschem/src/base/gschem_status_bar.c:1198
 msgid "Indicates the current command state"
-msgstr ""
+msgstr "Wskazuje aktualny stan polecenia"
 
 #: gschem/src/base/gschem_status_bar.c:1199
 msgid "Gschem status bar"
-msgstr ""
+msgstr "Pasek stanu Gschem"
 
 # Grid
 #: gschem/src/base/gschem_status_bar.c:1877
@@ -477,50 +479,57 @@ msgstr "Nieprawidłowe ustawienie widoczności tekstu: ~A."
 msgid "Processing"
 msgstr "Przetwarzanie"
 
+# Skipping
 #: gschem/src/guile/g_rc.c:87 gschem/src/guile/g_rc.c:99
 msgid "Skipping"
-msgstr ""
+msgstr "Skaczący"
 
+# entry in rc file
 #: gschem/src/guile/g_rc.c:119
 msgid "entry in rc file"
-msgstr ""
+msgstr "wpis w pliku rc"
 
 # Bad Value
 #: gschem/src/guile/g_rc.c:123
 msgid "Bad Value"
 msgstr "zła jakość"
 
+# check
 #: gschem/src/guile/g_rc.c:124 gschem/src/guile/g_rc.c:2086
 msgid "check"
-msgstr ""
+msgstr "czek"
 
+# or Scheme, continuing with
 #: gschem/src/guile/g_rc.c:125
 msgid "or Scheme, continuing with"
-msgstr ""
+msgstr "lub Scheme, kontynuując"
 
+# maximum value
 #: gschem/src/guile/g_rc.c:133
 msgid "maximum value"
-msgstr ""
+msgstr "maksymalna wartość"
 
 #: gschem/src/guile/g_rc.c:137
 msgid "minimum value"
-msgstr ""
+msgstr "minimalna wartość"
 
 #: gschem/src/guile/g_rc.c:141
 msgid "default value"
-msgstr ""
+msgstr "domyślna wartość"
 
+# Invalid type assignment, check
 #: gschem/src/guile/g_rc.c:155
 msgid "Invalid type assignment, check"
-msgstr ""
+msgstr "Nieprawidłowe przypisanie typu, sprawdź"
 
 #: gschem/src/guile/g_rc.c:196
 msgid "This is gEDA/gschem version"
 msgstr "To jest gEDA/gschem, wersja"
 
+# but you have a version
 #: gschem/src/guile/g_rc.c:197
 msgid "but you have a version"
-msgstr ""
+msgstr "ale masz wersję"
 
 #: gschem/src/guile/g_rc.c:198
 msgid "Please be sure that you have the latest rc file"
