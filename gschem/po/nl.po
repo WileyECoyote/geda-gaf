@@ -632,7 +632,7 @@ msgstr "Huidige waarde van"
 
 #: gschem/src/iface/i_command.c:137 gschem/src/iface/i_command.c:5355
 msgid "is"
-msgstr ""
+msgstr "is"
 
 # Processing Action
 #: gschem/src/iface/i_command.c:523
@@ -646,11 +646,11 @@ msgstr "Selecteer eerst het object"
 
 #: gschem/src/iface/i_command.c:653
 msgid "Cannot"
-msgstr ""
+msgstr "Kan niet"
 
 #: gschem/src/iface/i_command.c:653
 msgid "while inside an action!\n"
-msgstr ""
+msgstr "terwijl in een actie\n"
 
 # New Page Created
 #: gschem/src/iface/i_command.c:920 gschem/src/iface/i_command.c:2969
@@ -672,7 +672,7 @@ msgstr "Alles Opgeslagen"
 
 #: gschem/src/iface/i_command.c:1179
 msgid "Error encountered, Save Failed"
-msgstr ""
+msgstr "Fout opgetreden, opslaan mislukt"
 
 # Write Image
 #: gschem/src/iface/i_command.c:1249 gschem/src/x/x_image.c:545
@@ -681,27 +681,27 @@ msgstr "Schrijf afbeelding"
 
 #: gschem/src/iface/i_command.c:1271
 msgid "Write PDF"
-msgstr ""
+msgstr "Schrijf PDF"
 
 #: gschem/src/iface/i_command.c:1367 gschem/src/iface/i_sessions.c:184
 msgid "Canceled close all\n"
-msgstr ""
+msgstr "Geannuleerd alles sluiten\n"
 
 #: gschem/src/iface/i_command.c:1376 gschem/src/iface/i_sessions.c:193
 msgid "Closing all documents\n"
-msgstr ""
+msgstr "Alle documenten sluiten\n"
 
 #: gschem/src/iface/i_command.c:1399
 msgid "starting shut-down"
-msgstr ""
+msgstr "beginnen met afsluiten"
 
 #: gschem/src/iface/i_command.c:1413
 msgid "Symbol is not embedded, export anyway?"
-msgstr ""
+msgstr "Symbool is niet ingesloten, toch exporteren?"
 
 #: gschem/src/iface/i_command.c:1437
 msgid "Picture is not embedded, export anyway?"
-msgstr ""
+msgstr "Afbeelding is niet ingesloten, toch exporteren?"
 
 #: gschem/src/iface/i_command.c:1584
 msgid "Empty buffer"
