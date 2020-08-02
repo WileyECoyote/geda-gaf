@@ -3,6 +3,7 @@
     * linear/switchreg/*.sym: Update dist-license=GPLv2:
 
             * linear/switchreg/LM2574-15-14-1.sym
+            * linear/switchreg/LM2574-15-08-1.sym
 
 2020-07-26 Wiley E. Hill <wileyhill@gmail.com>
 
