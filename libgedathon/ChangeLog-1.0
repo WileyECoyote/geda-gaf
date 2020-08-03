@@ -1,3 +1,7 @@
+2020-08-03 Wiley E. Hill <wileyhill@gmail.com>
+
+    * module/geda.c: Revise get_object documentation; fix grammar.
+
 2020-07-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/libgedathon.c: Remove unnecessary initialization of Page to NULL
