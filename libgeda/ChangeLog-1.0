@@ -1,3 +1,8 @@
+2020-08-03 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_complex_object.c: Rename Doxygen group without geda prefix;
+      complex-object-proc.
+
 2020-07-31 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_list.c: Rename Doxygen group without geda prefix;

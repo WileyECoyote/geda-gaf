@@ -24,7 +24,7 @@
  *  GedaComplex objects are collections of primary objects.
  */
 
-/** \defgroup geda-complex-object-proc GedaComplex Object Procedures
+/** \defgroup complex-object-proc GedaComplex Object Procedures
  * @{
  * \brief Procedures for Operations with #GedaComplex Objects
  */
@@ -1463,4 +1463,4 @@ void geda_complex_object_translate(GedaObject *object, int dx, int dy)
   }
 }
 
-/** @} endgroup geda-complex-object-proc */
+/** @} endgroup complex-object-proc */
