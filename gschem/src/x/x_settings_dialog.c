@@ -2226,7 +2226,7 @@ bool load_settings_dialog (GschemToplevel *w_current)
 
   setup_ripper_symbol_combo(w_current->bus_ripper_symname);
 
-  SetCombo( Renderer, w_current->render_adaptor );
+  SetCombo ( Renderer, w_current->render_adaptor );
   SetCombo ( AntiAlias, w_current->anti_aliasing );
 
   tmpstr = eda_config_get_string (cfg, group, "default-filename", NULL);
