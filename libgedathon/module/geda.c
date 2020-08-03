@@ -1360,20 +1360,22 @@ METHOD(get_object)
 /*!
  * \brief Get a List Objects from an Object
  * \par Method Description
- *    This function provides a method to get a list of existing objects from another
- *  object. The source object can be a Page or another object. Returned capsule items
- *  can be extracted and converted to PyGedaObject using the get_object method.
+ *  This function provides a method to get a list of existing objects from
+ *  another object. The source object can be a Page or another object.
+ *  Returned capsule items can be extracted and converted to PyGedaObject
+ *  using the get_object method.
  *
- *    Encapsulation of objects is performed for efficiency and memory management.
- *  If real PyGedaObjects had to be created with a statement like the one used in
- *  example 1, the time required for Python to manage the memory for large schematics,
- *  would approach "hard-disk" access times. And when the list was later dereferenced,
- *  similar delays would occur while Python was performing garbage collection.
+ *  Encapsulation of objects is performed for efficiency and memory management.
+ *  If real PyGedaObjects had to be created with a statement like the one used
+ *  in example 1, the time required for Python to manage the memory for large
+ *  schematics, would approach "hard-disk" access times. And when the list was
+ *  later dereferenced, similar delays would occur while Python was performing
+ *  garbage collection.
  *
  *  [in] PyObject source  The object from which to obtain the sub-objects
  *
- * \return [out] PyList list of GedaCapsule Objects or Py_None if the source object
- *                      did not contain any objects.
+ * \return [out] PyList list of GedaCapsule Objects or Py_None if the source
+ *                      object did not contain any objects.
  *
  *  example:
  * \code
