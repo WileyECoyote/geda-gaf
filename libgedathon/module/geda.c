@@ -1737,6 +1737,8 @@ METHOD(remove_objects)
  * \return [out] status True if success otherwise False, False
  *               would only be returned if an object did not exist.
  *
+ * TODO: Should also accept type GedaCapsuleObjects
+ *
  *  example:
  * \code
  *          geda.delete_object(tmpObject)
