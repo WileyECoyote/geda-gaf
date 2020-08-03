@@ -1,6 +1,7 @@
 2020-08-03 Wiley E. Hill <wileyhill@gmail.com>
 
-    * module/geda.c: Revise get_object documentation; fix grammar.
+    * module/geda.c: Revise get_object documentation; fix grammar. Add
+      phony param tags.
 
 2020-07-21 Wiley E. Hill <wileyhill@gmail.com>
 

@@ -1816,7 +1816,7 @@ METHOD(delete_objects)
  *  objects. This allows the python objects to be modified before
  *  the object is committed to a page.
  *
- *  [in] PyObject of type PyPyGedaObject, checked by orginal receptor
+ *  param [in] PyObject of type PyPyGedaObject, checked by orginal receptor
  *
  * \return [out] status True if the object was updated or was not dirty,
  *               Otherwise False.
@@ -1856,15 +1856,15 @@ METHOD(sync_object)
  *  This function provides a method to create new Arc. An Arc is a
  *  graphical figure. Arcs have line-type properties.
  *
- *  [in] x           Integer center X location
- *  [in] y           Integer center Y location
- *  [in] radius      Integer radius of the arc sector
- *  [in] start_angle Integer start angle of the sector
- *  [in] arc_sweep   Integer ending angle of the sector
+ *  param [in] x           Integer center X location
+ *  param [in] y           Integer center Y location
+ *  param [in] radius      Integer radius of the arc sector
+ *  param [in] start_angle Integer start angle of the sector
+ *  param [in] arc_sweep   Integer ending angle of the sector
  *
  *  Optional argument:
  *
- *  [in] color PyObject a color object (not implemented yet)
+ *  param [in] color PyObject a color object (not implemented yet)
  *
  * \return [out] PyObject Or NULL if an error occurs.
  *
@@ -1910,14 +1910,14 @@ METHOD(new_arc)
  *  graphical figure. Boxes have line-type properties and can be filled
  *  with a fill pattern or not.
  *
- *  [in] lower_x  Integer lower X corner
- *  [in] lower_y  Integer lower Y corner
- *  [in] upper_x  Integer upper X corner
- *  [in] upper_y  Integer upper Y corner
+ *  param [in] lower_x  Integer lower X corner
+ *  param [in] lower_y  Integer lower Y corner
+ *  param [in] upper_x  Integer upper X corner
+ *  param [in] upper_y  Integer upper Y corner
  *
  *  Optional argument:
  *
- *  [in] color PyObject a color object (not fully implemented yet)
+ *  param [in] color PyObject a color object (not fully implemented yet)
  *
  * \return [out] PyObject Or NULL if an error occurs.
  *
@@ -1963,15 +1963,15 @@ METHOD(new_box)
  *  basically represent an electrical path, like wires.A bus is simular to
  *  a Net object but represent mutible wires, not just one.
  *
- *  [in] x1  Integer from X location
- *  [in] y1  Integer from Y location
- *  [in] x2  Integer to X location
- *  [in] y2  Integer to Y location
+ *  param [in] x1  Integer from X location
+ *  param [in] y1  Integer from Y location
+ *  param [in] x2  Integer to X location
+ *  param [in] y2  Integer to Y location
  *
  *  Optional arguments:
  *
- *  [in] name string bus_name attribute
- *  [in] color PyObject a color object (not fully implemented yet)
+ *  param [in] name string bus_name attribute
+ *  param [in] color PyObject a color object (not fully implemented yet)
  *
  * \return [out] PyObject Or NULL if an error occurs.
  *
@@ -2016,13 +2016,13 @@ METHOD(new_bus)
  *  are graphical drawing objects. Circle have line-type properties and
  *  can be filled with fill patterns or not.
  *
- *  [in] x       Integer center X location
- *  [in] y       Integer center Y location
- *  [in] radius  Integer to X location
+ *  param [in] x       Integer center X location
+ *  param [in] y       Integer center Y location
+ *  param [in] radius  Integer to X location
  *
  *  optional:
  *
- *  [in] color  PyObject a color object (not implemented yet)
+ *  param [in] color  PyObject a color object (not implemented yet)
  *
  * \return [out] PyObject Or NULL if an error occurs.
  *
@@ -2067,15 +2067,15 @@ METHOD(new_circle)
  *  This function provides a method to create new Complex object. A Complex
  *  is a symbol to known to the Library that normally represents a component.
  *
- *  [in] basename string  The base file name of the symbol without the extension
- *  [in] x        Integer X insertion location
- *  [in] y        Integer Y insertion location
+ *  param [in] basename string  The base file name of the symbol without the extension
+ *  param [in] x        Integer X insertion location
+ *  param [in] y        Integer Y insertion location
  *
  *  Optional arguments:
  *
- *  [in] angle    integer orientation property
- *  [in] mirror   integer property whether to mirror the symbol
- *  [in] embedded integer property whether to embed the symbol data
+ *  param [in] angle    integer orientation property
+ *  param [in] mirror   integer property whether to mirror the symbol
+ *  param [in] embedded integer property whether to embed the symbol data
  *
  * \return [out] PyObject Or NULL if an error occurs.
  *
@@ -2141,14 +2141,14 @@ METHOD(new_complex)
  *  or internal connections but these lines are never associated with
  *  nodes within a schematic.
  *
- *  [in] x1  Integer from X location
- *  [in] y1  Integer from Y location
- *  [in] x2  Integer to X location
- *  [in] y2  Integer to Y location
+ *  param [in] x1  Integer from X location
+ *  param [in] y1  Integer from Y location
+ *  param [in] x2  Integer to X location
+ *  param [in] y2  Integer to Y location
  *
  *  Optional argument:
  *
- *  [in] color PyObject a color object (not fully implemented yet)
+ *  param [in] color PyObject a color object (not fully implemented yet)
  *
  * \return [out] PyObject Or NULL if an error occurs.
  *
@@ -2195,15 +2195,15 @@ METHOD(new_line)
  *  object are need to describe the electrical connection between pins and
  *  other nets.
  *
- *  [in] x1  Integer from X location
- *  [in] y1  Integer from Y location
- *  [in] x2  Integer to X location
- *  [in] y2  Integer to Y location
+ *  param [in] x1  Integer from X location
+ *  param [in] y1  Integer from Y location
+ *  param [in] x2  Integer to X location
+ *  param [in] y2  Integer to Y location
  *
  *  Optional arguments:
  *
- *  [in] name  string net_name attribute
- *  [in] color A PyGedaColorObject or Integer color code
+ *  param [in] name  string net_name attribute
+ *  param [in] color A PyGedaColorObject or Integer color code
  *
  * \return [out] PyObject Or NULL if an error occurs.
  *
@@ -2925,7 +2925,7 @@ METHOD(get_network)
  *  This function provides a method to obtain X-Y coordinates data
  *  of connection junctions.
  *
- *  [in] PyObject object is a PyGedaObject or GedaCapsuleObject
+ *  param [in] PyObject object is a PyGedaObject or GedaCapsuleObject
  *
  * \return [out] PyList of Points; integer X-Y pairs or an empty
  *               list if no junctions were found.
