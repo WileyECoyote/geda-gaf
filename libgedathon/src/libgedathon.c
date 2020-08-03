@@ -1598,8 +1598,8 @@ PyObject *PyGeda_open_page( const char *filename )
  * \brief Close a Page
  * \ingroup Python_API_Library
  * \par Function Description
- *  This function calls the libgeda function geda_struct_page_delete to remove the
- *  page referenced by the ID argument from memory.
+ *  This function calls the libgeda function geda_struct_page_delete to remove
+ *  the page referenced by the ID argument from memory.
  *
  * \param [in] pid  Integer, the page id of the page to close
  *
@@ -1938,7 +1938,7 @@ PyObject *PyGeda_get_bounds( int pid, int sid )
  * \brief Get an Object from GedaCapsuleObject
  * \ingroup Python_API_Library
  * \par Function Description
- *  This function returns the data to create a PyPyGedaObjects from an object
+ *  This function returns the data to create a PyPyGedaObject from an object
  *  pointer to by the contents of the given GedaCapsule.
  *
  * \param [in] py_capsule   The PyObject container object
