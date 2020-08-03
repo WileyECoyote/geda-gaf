@@ -1772,7 +1772,7 @@ METHOD(delete_object)
  * \par Method Description
  *  This function provides a method to delete a list objects
  *
- *  [in] PyObject of type PyList container with PyPyGedaObjects
+ *  [in] PyObject of type PyList container with PyGedaObjects
  *
  * \return [out] status True if success otherwise False, False
  *               would only be returned if an object in the list
