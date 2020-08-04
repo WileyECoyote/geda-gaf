@@ -3,6 +3,9 @@
     * module/geda.c: Revise delete_objects to accept a list with either
       PyGedaObjects or GedaCapsuleObjects.
 
+    * src/libgedathon.c: Declare get_floating_object and retrieve_floating_object
+      static.
+
 2020-08-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * module/geda.c: Revise get_object documentation; fix grammar. Add

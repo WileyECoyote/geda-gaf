@@ -111,7 +111,7 @@ static void destroy_all_floating_objects (void)
   floating_objects = NULL;
 }
 
-GedaObject *get_floating_object (int sid)
+static GedaObject *get_floating_object (int sid)
 {
   GList *iter = g_list_first(floating_objects);
 
@@ -127,7 +127,7 @@ GedaObject *get_floating_object (int sid)
   return NULL;
 }
 
-GedaObject *retrieve_floating_object (int sid)
+static GedaObject *retrieve_floating_object (int sid)
 {
   GList *iter = g_list_first(floating_objects);
 
@@ -197,8 +197,7 @@ PyGeda_append_2_pylist(PyObject *pylist, GedaObject *object) {
  *
  * \return [out] PyObject  Pointer to new PyList
  */
-static PyObject*
-PyGeda_glist_2_pylist(GList *object_list)
+static PyObject *PyGeda_glist_2_pylist(GList *object_list)
 {
   GList    *ptr;
   PyObject *objects;
