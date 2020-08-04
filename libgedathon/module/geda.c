@@ -1784,8 +1784,6 @@ METHOD(delete_object)
  * \code
  *          geda.delete_objects(Old_Objects)
  * \endcode
- *
- * TODO: See get_junctions for a friendly method of accepting arguments
  */
 METHOD(delete_objects)
 {
