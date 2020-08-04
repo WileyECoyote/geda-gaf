@@ -225,7 +225,7 @@ static PyObject *PyGeda_glist_2_pylist(GList *object_list)
 }
 
 /*!
- * \brief Get a data object to create a Python Geda PyGedaArcObject
+ * \brief Get a data object to create a Python PyGedaArcObject
  * \ingroup Python_API_Library_Internal
  * \par Function Description
  *  This function creates a PyObject with the parameters used to
@@ -268,7 +268,7 @@ get_arc_object_data(GedaObject *object)
 }
 
 /*!
- * \brief Get a data object to create a Python Geda PyGedaBoxObject
+ * \brief Get a data object to create a Python PyGedaBoxObject
  * \ingroup Python_API_Library_Internal
  * \par Function Description
  *  This function creates a PyObject with the parameters used to
@@ -320,7 +320,7 @@ get_box_object_data(GedaObject *object)
 }
 
 /*!
- * \brief Get a data object to create a Python Geda PyGedaBusObject
+ * \brief Get a data object to create a Python PyGedaBusObject
  * \ingroup Python_API_Library_Internal
  * \par Function Description
  *  This function creates a PyObject with the parameters used to
@@ -366,7 +366,7 @@ get_bus_object_data(GedaObject *object)
 }
 
 /*!
- * \brief Get a data object to create a Python Geda PyGedaCircleObject
+ * \brief Get a data object to create a Python PyGedaCircleObject
  * \ingroup Python_API_Library_Internal
  * \par Function Description
  *  This function creates a PyObject with the parameters used to
@@ -417,7 +417,7 @@ get_circle_object_data(GedaObject *object)
 }
 
 /*!
- * \brief Get a data object to create a Python Geda PyGedaComplexObject
+ * \brief Get a data object to create a Python PyGedaComplexObject
  * \ingroup Python_API_Library_Internal
  * \par Function Description
  *  This function creates a PyObject with the parameters used to
@@ -484,7 +484,7 @@ get_complex_object_data(GedaObject *object)
 }
 
 /*!
- * \brief Get a data object to create a Python Geda PyGedaLineObject
+ * \brief Get a data object to create a Python PyGedaLineObject
  * \ingroup Python_API_Library_Internal
  * \par Function Description
  *  This function creates a PyObject with the parameters used to
@@ -526,7 +526,7 @@ get_line_object_data(GedaObject *object)
 }
 
 /*!
- * \brief Get a data object to create a Python Geda PyGedaNetObject
+ * \brief Get a data object to create a Python PyGedaNetObject
  * \ingroup Python_API_Library_Internal
  * \par Function Description
  *  This function creates a PyObject with the parameters used to
@@ -574,7 +574,7 @@ get_net_object_data(GedaObject *object)
 }
 
 /*!
- * \brief Get a data object to create a Python Geda PyGedaPathObject
+ * \brief Get a data object to create a Python PyGedaPathObject
  * \ingroup Python_API_Library_Internal
  * \par Function Description
  *  This function creates a PyObject with the parameters used to
@@ -643,7 +643,7 @@ get_path_object_data(GedaObject *object)
 }
 
 /*!
- * \brief Get a data object to create a Python Geda PyGedaPictureObject
+ * \brief Get a data object to create a Python PyGedaPictureObject
  * \ingroup Python_API_Library_Internal
  * \par Function Description
  *  This function creates a PyObject with the parameters used to
@@ -693,7 +693,7 @@ get_picture_object_data(GedaObject *object)
 }
 
 /*!
- * \brief Get a data object to create a Python Geda PyGedaPinObject
+ * \brief Get a data object to create a Python PyGedaPinObject
  * \ingroup Python_API_Library_Internal
  * \par Function Description
  *  This function creates a PyObject with the parameters used to
@@ -767,7 +767,7 @@ get_pin_object_data(GedaObject *object)
 }
 
 /*!
- * \brief Get a data object to create a Python Geda PyGedaTextObject
+ * \brief Get a data object to create a Python PyGedaTextObject
  * \ingroup Python_API_Library_Internal
  * \par Function Description
  *  This function creates a PyObject with the parameters used to

@@ -4,7 +4,7 @@
       PyGedaObjects or GedaCapsuleObjects.
 
     * src/libgedathon.c: Declare get_floating_object and retrieve_floating_object
-      static.
+      static. Remove "Geda" from Python Geda PyGeda???Object function documentation.
 
 2020-08-03 Wiley E. Hill <wileyhill@gmail.com>
 
