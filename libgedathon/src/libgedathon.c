@@ -2400,7 +2400,7 @@ int PyGeda_remove_objects( PyObject *pyobjects )
  * \par Function Description
  *  This function deletes the given Object
  *
- * \param [in] py_object    The Geda PyObject to be deleted
+ * \param [in] py_object    The PyGedaObject to be deleted
  *
  * \return True if success otherwise False, False would only be
  *         returned if the page conatining the object did not exist.
