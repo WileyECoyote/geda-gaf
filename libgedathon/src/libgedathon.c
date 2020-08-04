@@ -2403,7 +2403,7 @@ int PyGeda_remove_objects( PyObject *pyobjects )
  * \param [in] py_object    The PyGedaObject to be deleted
  *
  * \return True if success otherwise False, False would only be
- *         returned if the page conatining the object did not exist.
+ *         returned if the page containing the object did not exist.
  */
 int PyGeda_delete_object( PyObject *py_object )
 {
