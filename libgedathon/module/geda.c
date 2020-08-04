@@ -1774,7 +1774,7 @@ METHOD(delete_object)
  * \par Method Description
  *  This function provides a method to delete a list objects
  *
- *  [in] PyObject of type PyList container with PyGedaObjects
+ *  [in] PyObject of type PyList container with PyGedaObjects or GedaCapsuleObjects
  *
  * \return [out] status True if success otherwise False, False
  *               would only be returned if an object in the list
@@ -1790,17 +1790,46 @@ METHOD(delete_object)
 METHOD(delete_objects)
 {
   TYPE_INT_P1(delete_objects);
-  PyObject *objects;
-  int       status;
+  PyObject *py_input_list;
+  PyObject *py_delete_list;
 
-  if(!PyArg_ParseTuple(args, "O!:geda.delete_objects, Bad Argument", &PyList_Type, &objects))
+  int i, count, status;
+
+  if(!PyArg_ParseTuple(args, "O!:geda.delete_objects, Bad Argument", &PyList_Type, &py_input_list))
   {
     const char *syntax = "syntax: delete_objects(PyList of PyGedaObjects)";
 
     PyErr_SetString(PyExc_TypeError, syntax);
+
     return NULL;
   }
-  status = library.func(objects);
+
+  py_delete_list = PyList_New(0);
+
+  count = PyList_GET_SIZE(py_input_list);
+
+  for (i = 0; i < count; i++) {
+
+    /* Retrieve object from input list */
+    PyObject *py_object = PyList_GET_ITEM(py_input_list, i);
+
+    if (PyObject_TypeCheck(py_object, PyGedaObjectClass())) { /* PyGedaObject was in list */
+      PyList_Append(py_delete_list, py_object);
+    }
+    else if (do_GedaCapsule_Type(self, py_input_list)) {      /* Capsule was in list */
+
+      PyObject *py_tmp;
+
+      py_tmp = Py_BuildValue("(O)", py_object);
+      py_object = do_get_object(self, py_tmp);
+
+      if (py_object) {
+        PyList_Append(py_delete_list, py_object);
+      }
+    }
+  }
+
+  status = library.func(py_delete_list);
 
   ON_METHOD_EXIT(delete_objects);
 

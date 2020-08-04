@@ -1,3 +1,8 @@
+2020-08-04 Wiley E. Hill <wileyhill@gmail.com>
+
+    * module/geda.c: Revise delete_objects to accept a list with either
+      PyGedaObjects or GedaCapsuleObjects.
+
 2020-08-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * module/geda.c: Revise get_object documentation; fix grammar. Add
