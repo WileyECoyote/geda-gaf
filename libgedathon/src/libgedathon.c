@@ -124,6 +124,7 @@ static GedaObject *get_floating_object (int sid)
     }
     NEXT(iter);
   }
+
   return NULL;
 }
 
@@ -141,6 +142,7 @@ static GedaObject *retrieve_floating_object (int sid)
     }
     NEXT(iter);
   }
+
   return NULL;
 }
 
@@ -178,6 +180,7 @@ PyGeda_append_2_pylist(PyObject *pylist, GedaObject *object) {
   else {
     list = NULL;
   }
+
   return list;
 }
 
@@ -1272,6 +1275,7 @@ PyObject *PyGeda_get_pages( void )
     }
     NEXT(iter);
   }
+
   return pages;
 }
 
@@ -1297,6 +1301,7 @@ PyObject *PyGeda_get_active_page( void )
   else {
     page_info = NULL;
   }
+
   return page_info;
 }
 
@@ -1340,6 +1345,7 @@ int PyGeda_is_page_modified (int pid)
   if (page) {
     status = geda_page_get_changed(page);
   }
+
   return status;
 }
 
@@ -2459,10 +2465,12 @@ int PyGeda_delete_objects( PyObject *objects )
   int status = 0;
 
   count = (int) PyList_GET_SIZE(objects);
+
   for (i = 1; count < i; i++) {
     PyObject *geda_object = PyList_GET_ITEM(objects, i);
     status += PyGeda_delete_object(geda_object);
   }
+
   return status;
 }
 
