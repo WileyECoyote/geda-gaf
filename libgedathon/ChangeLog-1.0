@@ -5,6 +5,8 @@
 
     * module/objects/geda_py_text.c: Update function documentation.
 
+    * src/geda_capsule.c: Add Doxygen group Python_API_Encapsulation.
+
     * src/libgedathon.c: Declare get_floating_object and retrieve_floating_object
       static. Remove "Geda" from Python Geda PyGeda???Object function documentation.
 

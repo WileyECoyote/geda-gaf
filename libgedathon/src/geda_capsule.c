@@ -37,6 +37,11 @@
 
 #include "../include/gettext.h"
 
+
+/** \defgroup Python_API_Encapsulation Python API Encapsulation Functions
+ *  @{
+ */
+
 /*!
  * \brief Retrieve Pointer to contents of a GedaCapsule
  * \par Function Description
@@ -187,3 +192,5 @@ PyMODINIT_FUNC initGedaCapsule(void)
   Py_INCREF(&GedaCapsuleType);
   PyModule_AddObject(capsule_module, "GedaCapsule", (PyObject*)&GedaCapsuleType);
 }
+
+/** @} END Group Python_API_Encapsulation */
