@@ -502,9 +502,7 @@ GtkWidget *geda_separator_new (int orientation)
  */
 GtkWidget *geda_hseparator_new (void)
 {
-  return g_object_new (GEDA_TYPE_SEPARATOR,
-                       "orientation", 0,
-                       NULL);
+  return g_object_new (GEDA_TYPE_SEPARATOR, "orientation", 0, NULL);
 }
 
 /*! \todo Finish function documentation!!!
