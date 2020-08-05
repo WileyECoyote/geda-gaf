@@ -244,6 +244,7 @@ geda_tearoff_menu_item_paint (GtkWidget *widget, GdkRectangle *area)
         x1 = right_max - x;
         x2 = MAX (right_max - x - TEAR_LENGTH, 0);
       }
+
       /* What is this? */
       gtk_paint_hline (style, widget->window, GTK_STATE_NORMAL,
                        NULL, widget, "tearoffmenuitem",
@@ -319,6 +320,7 @@ static bool geda_tearoff_menu_item_draw (GtkWidget *widget, cairo_t *cr)
         arrow_x = x + width - menu_item->toggle_size + (menu_item->toggle_size - ARROW_SIZE)/2;
         angle = G_PI / 2;
       }
+
       x += menu_item->toggle_size + BORDER_SPACING;
     }
     else {
@@ -333,6 +335,7 @@ static bool geda_tearoff_menu_item_draw (GtkWidget *widget, cairo_t *cr)
         arrow_x = x + width - 2 * ARROW_SIZE + ARROW_SIZE / 2;
         angle   = G_PI / 2;
       }
+
       x += 2 * ARROW_SIZE;
     }
 
