@@ -224,7 +224,7 @@ geda_tearoff_menu_item_paint (GtkWidget *widget, GdkRectangle *area)
         x += ARROW_SIZE << 1 ; /* Multiply by 2 */
       }
 
-      gtk_paint_arrow (widget->style, widget->window,
+      gtk_paint_arrow (style, widget->window,
                        state_type, shadow_type,
                        NULL, widget, "tearoffmenuitem",
                        arrow_type, FALSE,
