@@ -30,5 +30,3 @@
 void initPage(PyObject *module);
 
 PyTypeObject *PyGedaPageClass(void);
-
-
