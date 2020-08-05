@@ -181,8 +181,9 @@ geda_tearoff_menu_item_paint (GtkWidget *widget, GdkRectangle *area)
                      area, widget, "menuitem",
                      x, y, width, height);
     }
-    else
+    else {
       gdk_window_clear_area (widget->window, area->x, area->y, area->width, area->height);
+    }
 
     if (GEDA_IS_MENU (widget->parent) && ((GedaMenu*)widget->parent)->torn_off)
     {
