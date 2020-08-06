@@ -248,7 +248,7 @@ geda_tearoff_menu_item_paint (GtkWidget *widget, GdkRectangle *area)
       }
 
       /* What is this? */
-      gtk_paint_hline (style, widget->window, GTK_STATE_NORMAL,
+      gtk_paint_hline (style, window, GTK_STATE_NORMAL,
                        NULL, widget, "tearoffmenuitem",
                        x1, x2, y + (height - style->ythickness) / 2);
 
