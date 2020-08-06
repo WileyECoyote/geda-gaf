@@ -2281,11 +2281,11 @@ static void geda_menu_size_allocate (GtkWidget *widget, GtkAllocation *allocatio
 /*! \internal widget_class->size_request */
 static void geda_menu_size_request (GtkWidget *widget, GtkRequisition *requisition)
 {
-  GtkStyle      *style;
   GedaMenu      *menu;
   GedaMenuShell *menu_shell;
   GList         *children;
   GedaMenuPriv  *priv;
+  GtkStyle      *style;
   GtkRequisition child_requisition;
   unsigned int   max_toggle_size;
   unsigned int   max_accel_width;
@@ -2340,18 +2340,19 @@ static void geda_menu_size_request (GtkWidget *widget, GtkRequisition *requisiti
     gtk_widget_size_request (child, &child_requisition);
 
     geda_menu_item_toggle_size_request (GEDA_MENU_ITEM (child), &toggle_size);
-    max_toggle_size = MAX (max_toggle_size, toggle_size);
-    accelerator_width = geda_menu_item_get_accel_width(GEDA_MENU_ITEM (child));
-    max_accel_width = MAX (max_accel_width, accelerator_width);
+
+    max_toggle_size    = MAX (max_toggle_size, toggle_size);
+    accelerator_width  = geda_menu_item_get_accel_width (GEDA_MENU_ITEM (child));
+    max_accel_width    = MAX (max_accel_width, accelerator_width);
 
     part               = child_requisition.width / (r - l);
     requisition->width = MAX (requisition->width, part);
 
-    part             = MAX (child_requisition.height, toggle_size) / (b - t);
-    priv->heights[t] = MAX (priv->heights[t], part);
+    part               = MAX (child_requisition.height, toggle_size) / (b - t);
+    priv->heights[t]   = MAX (priv->heights[t], part);
   }
 
-    style = geda_get_widget_style(widget);
+    style = geda_get_widget_style (widget);
 
   /* If the menu does not include any images or check items then
    * reserve the space so that all menus are consistent. We only
