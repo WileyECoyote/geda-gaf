@@ -216,7 +216,7 @@ geda_tearoff_menu_item_paint (GtkWidget *widget, GdkRectangle *area)
       else {
 
         if (direction == GTK_TEXT_DIR_LTR) {
-          arrow_x = ARROW_SIZE / 2;
+          arrow_x = ARROW_SIZE >> 1;            /* Divide by 2 */
           arrow_type = GTK_ARROW_LEFT;
         }
         else {
