@@ -338,7 +338,7 @@ static bool geda_tearoff_menu_item_draw (GtkWidget *widget, cairo_t *cr)
         angle   = G_PI / 2;
       }
 
-      x += 2 * ARROW_SIZE;
+      x += ARROW_SIZE << 1 ; /* Multiply by 2 */
     }
 
     gtk_render_arrow (context, cr, angle,
