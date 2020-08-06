@@ -364,7 +364,8 @@ static bool geda_tearoff_menu_item_draw (GtkWidget *widget, cairo_t *cr)
     gtk_render_line (context, cr,
                      x1, y + (height - padding.bottom) / 2,
                      x2, y + (height - padding.bottom) / 2);
-    x += 2 * TEAR_LENGTH;
+
+    x += TEAR_LENGTH << 1 ; /* Multiply by 2 */
   }
 
   gtk_style_context_restore (context);
