@@ -329,7 +329,7 @@ static bool geda_tearoff_menu_item_draw (GtkWidget *widget, cairo_t *cr)
 
       if (direction == GTK_TEXT_DIR_LTR) {
 
-        arrow_x = ARROW_SIZE / 2;
+        arrow_x = ARROW_SIZE >> 1;       /* Divide by 2 */
         angle   = (3 * G_PI) / 2;
       }
       else {
