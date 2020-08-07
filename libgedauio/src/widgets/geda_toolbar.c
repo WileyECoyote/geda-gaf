@@ -134,7 +134,9 @@ geda_toolbar_finalize (GObject *object)
 static void
 geda_toolbar_box_realize (GtkWidget *widget)
 {
+  /* Chain up to parent class */
   ((GtkWidgetClass*)geda_toolbar_parent_class)->realize (widget);
+
   gdk_window_set_type_hint (widget->window, GDK_WINDOW_TYPE_HINT_TOOLBAR);
 }
 
