@@ -977,7 +977,7 @@ static GtkWidget *build_menu(GedaHandleBox *handlebox)
   ActiveToolBar.toolbar   = geda_handle_box_get_toolbar(ActiveToolBar.handlebox);
 
   is_floating = !geda_handle_box_get_child_detached (ActiveToolBar.handlebox);
-  orientation =  gtk_toolbar_get_orientation(ActiveToolBar.toolbar);
+  orientation =  geda_toolbar_get_orientation(ActiveToolBar.toolbar);
   style       =  gtk_toolbar_get_style(ActiveToolBar.toolbar);
   tooltips    =  gtk_tooltips_new ();
   menu        =  geda_menu_new();
