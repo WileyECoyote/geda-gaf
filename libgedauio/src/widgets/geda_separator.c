@@ -496,9 +496,12 @@ GtkWidget *geda_separator_new (int orientation)
                        NULL);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Create New Horizontal GedaSeparator
+ * \par Function Description
+ *  Creates a new #GedaSeparator with horizontal orientation.
+ *
+ * \return a new #GedaSeparator with horizontal orientation
  */
 GtkWidget *geda_hseparator_new (void)
 {
