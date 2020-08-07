@@ -3,6 +3,7 @@
     * src/widgets/geda_separator.c: Update function documentation:
 
           * geda_hseparator_new
+          * geda_vseparator_new
 
 2020-07-31 Wiley E. Hill <wileyhill@gmail.com>
 
