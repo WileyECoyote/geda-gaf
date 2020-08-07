@@ -483,7 +483,7 @@ bool is_a_geda_separator (GedaSeparator *separator)
 /*!
  * \brief Create New GedaSeparator
  * \par Function Description
- * Creates a new #GedaSeparator with the given orientation.
+ *  Creates a new #GedaSeparator with the given orientation.
  *
  * \param [in] orientation the separator's orientation
  *

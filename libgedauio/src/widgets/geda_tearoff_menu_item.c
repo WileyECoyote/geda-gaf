@@ -514,8 +514,9 @@ geda_tearoff_menu_finalize (GObject *object)
   G_OBJECT_CLASS (geda_tearoff_menu_item_parent_class)->finalize (object);
 }
 
-/*! \brief GedaTearoffMenuItem Class Initializer
- *  \par Function Description
+/*!
+ * \brief GedaTearoffMenuItem Class Initializer
+ * \par Function Description
  *  Function is called to initialize the class instance.
  *
  * \param [in] klass      A GedaTearoffMenuItemClass Object
