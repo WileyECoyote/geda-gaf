@@ -36,6 +36,8 @@
 
 #endif
 
+#include <geda_toolbar.h>
+
 #define GEDA_TYPE_HANDLE_BOX            (geda_handle_box_get_type ())
 #define GEDA_HANDLE_BOX(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), GEDA_TYPE_HANDLE_BOX, GedaHandleBox))
 #define GEDA_HANDLE_BOX_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass),  GEDA_TYPE_HANDLE_BOX, GedaHandleBoxClass))
@@ -98,7 +100,7 @@ void            geda_handle_box_set_shrink_on_detach (GedaHandleBox *handlebox, 
 bool            geda_handle_box_get_shrink_on_detach (GedaHandleBox *handlebox);
 void            geda_handle_box_set_snap_edge        (GedaHandleBox *handlebox, GtkPositionType edge);
 GtkPositionType geda_handle_box_get_snap_edge        (GedaHandleBox *handlebox);
-GtkToolbar     *geda_handle_box_get_toolbar          (GedaHandleBox *handlebox);
+GedaToolbar    *geda_handle_box_get_toolbar          (GedaHandleBox *handlebox);
 void            geda_handle_box_set_toolbar          (GedaHandleBox *handlebox, GtkWidget *toolbar);
 
 void            geda_handle_widget_set_handle_position  (GtkWidget *widget, GtkPositionType  position);

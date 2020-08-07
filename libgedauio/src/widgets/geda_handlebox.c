@@ -2094,10 +2094,10 @@ GtkPositionType geda_handle_box_get_snap_edge (GedaHandleBox *handlebox)
  *
  * \returns pointer to toolbar widget or NULL if handlebox is not a GedaHandleBox.
  */
-GtkToolbar *geda_handle_box_get_toolbar (GedaHandleBox *handlebox)
+GedaToolbar *geda_handle_box_get_toolbar (GedaHandleBox *handlebox)
 {
   if (GEDA_IS_HANDLE_BOX (handlebox)) {
-    return (GtkToolbar*)gtk_bin_get_child((GtkBin*)handlebox);
+    return (GedaToolbar*)gtk_bin_get_child((GtkBin*)handlebox);
   }
   else {
     BUG_MSG ("Operative is not a GedaHandleBox");

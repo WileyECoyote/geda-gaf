@@ -1,5 +1,8 @@
 2020-08-07 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/widgets/geda_handlebox.c: Revise geda_handle_box_get_toolbar to
+      return type GedaToolbar instead of GtkToolbar.
+
     * src/widgets/geda_separator.c: Update function documentation:
 
           * geda_hseparator_new
