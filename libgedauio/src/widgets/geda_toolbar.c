@@ -377,6 +377,15 @@ GtkWidget *geda_toolbar_new (int orientation)
                        NULL);
 }
 
+int geda_toolbar_get_orientation (GedaToolbar *toolbar)
+{
+  if (GEDA_IS_TOOLBAR(toolbar)) {
+    return toolbar->orientation;
+  }
+
+  return -1;
+}
+
 /*!
  * \brief Get the GedaToolbar Style of property
  * \par Function Description

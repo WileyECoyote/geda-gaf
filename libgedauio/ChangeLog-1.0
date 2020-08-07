@@ -5,6 +5,10 @@
           * geda_hseparator_new
           * geda_vseparator_new
 
+    * src/widgets/geda_toolbar.c: Add function:
+
+          * geda_toolbar_get_orientation
+
 2020-07-31 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_tearoff_menu_item.c: Utilize macro:
