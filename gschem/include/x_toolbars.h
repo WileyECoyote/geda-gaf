@@ -68,8 +68,8 @@ typedef enum { tb_Add,    tb_Attribute, tb_Edit,   tb_Grid_Snap,  tb_Page,
 } ID_GSCHEM_Toolbar;
 
 typedef struct {
-  GedaHandleBox   *handlebox;
-  GtkToolbar      *toolbar;
+  GedaHandleBox *handlebox;
+  GedaToolbar   *toolbar;
 } ToolBarInfo;
 
 typedef struct {

@@ -1,21 +1,18 @@
+2020-08-07 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/x_toolbars.h: Change ToolBarInfo member toolbar to type
+      GedaToolbar.
+
 2020-08-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/ca.po: Update Catalan translations.
-
     * po/da.po: Update Danish translations.
-
     * po/fi.po: Update Finnish translations.
-
     * po/nl.po: Update Dutch translations.
-
     * po/pl.po: Update Polish translations.
-
     * po/ru.po: Update Russian translations.
-
     * po/sv.po: Update Swedish translations.
-
     * po/tr.po: Update Turkish translations.
-
     * po/uk.po: Update Ukrainian translations.
 
 2020-07-31 Wiley E. Hill <wileyhill@gmail.com>
