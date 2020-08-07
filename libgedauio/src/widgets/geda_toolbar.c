@@ -386,6 +386,19 @@ int geda_toolbar_get_orientation (GedaToolbar *toolbar)
   return -1;
 }
 
+void geda_toolbar_set_orientation (GedaToolbar *toolbar, int orientation)
+{
+  if (GEDA_IS_TOOLBAR(toolbar)) {
+    if (orientation != toolbar->orientation) {
+
+      toolbar->orientation = orientation;
+
+      gtk_toolbar_set_orientation ((GtkToolbar*)toolbar,
+                                   (GtkOrientation) orientation);
+    }
+  }
+}
+
 /*!
  * \brief Get the GedaToolbar Style of property
  * \par Function Description

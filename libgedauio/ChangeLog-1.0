@@ -5,9 +5,10 @@
           * geda_hseparator_new
           * geda_vseparator_new
 
-    * src/widgets/geda_toolbar.c: Add function:
+    * src/widgets/geda_toolbar.c: Add functions:
 
           * geda_toolbar_get_orientation
+          * geda_toolbar_set_orientation
 
 2020-07-31 Wiley E. Hill <wileyhill@gmail.com>
 
