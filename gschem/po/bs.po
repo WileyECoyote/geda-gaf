@@ -811,9 +811,10 @@ msgstr "Potvrdi reload Svi dokumenti"
 msgid "Searching for source"
 msgstr "Tražim izvor"
 
+# Failed to descend into
 #: gschem/src/iface/i_command.c:3272
 msgid "Failed to descend into"
-msgstr ""
+msgstr "Nije uspio spustiti u"
 
 # hierarchy error
 #: gschem/src/iface/i_command.c:3281
@@ -832,31 +833,34 @@ msgstr "Simbol nije iz datoteke. Simbol se ne može učitati.\n"
 msgid "Cannot find any schematics above the current one!\n"
 msgstr "Ne možete pronaći bilo kakve šeme iznad trenutne jedan!\n"
 
+# Object is attached to something
 #: gschem/src/iface/i_command.c:3546
 msgid "Object is attached to something\n"
-msgstr ""
+msgstr "Objekt je vezan za nešto\n"
 
 #: gschem/src/iface/i_command.c:3949
 msgid "Attribute is already attached\n"
 msgstr "Atribut je već u prilogu\n"
 
+# WARNING: Do not translate with snap off
 #: gschem/src/iface/i_command.c:4363
 msgid "WARNING: Do not translate with snap off!\n"
-msgstr ""
+msgstr "UPOZORENJE: Nemojte prelaziti sa odvajanjem!\n"
 
 #: gschem/src/iface/i_command.c:4364
 msgid "WARNING: Turning snap on and continuing with translate.\n"
-msgstr ""
+msgstr "UPOZORENJE: Uključivanje veze i nastavak prevođenja.\n"
 
 #: gschem/src/iface/i_command.c:4370
 msgid "WARNING: Snap grid size is not equal to 100!\n"
-msgstr ""
+msgstr "UPOZORENJE: Veličina snap rešetke nije jednaka 100!\n"
 
 #: gschem/src/iface/i_command.c:4371
 msgid ""
 "WARNING: If you are translating a symbol to the origin, the snap grid size "
 "should be set to 100\n"
-msgstr ""
+msgstr "UPOZORENJE: Ako simbol prevodite na izvor, veličina rešetke za "
+"podešavanje trebala bi biti postavljena na 100\n"
 
 #: gschem/src/iface/i_command.c:4583
 msgid "Grid OFF\n"
