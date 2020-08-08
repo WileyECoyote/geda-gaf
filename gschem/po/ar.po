@@ -772,13 +772,15 @@ msgstr "عنصر رمز ليس ملف حقيقي ولا يمكن تحميلها.
 msgid "Cannot find any schematics above the current one!\n"
 msgstr "يتعذر إيجاد أي مخطط فوق الحالي!\n"
 
+# Object is attached to something; alkayin mrtbt bishay' ma
 #: gschem/src/iface/i_command.c:3546
 msgid "Object is attached to something\n"
-msgstr ""
+msgstr "الكائن مرتبط بشيء ما\n"
 
+# Attribute is already attached; alsimat murfaqat balfel
 #: gschem/src/iface/i_command.c:3949
 msgid "Attribute is already attached\n"
-msgstr ""
+msgstr "السمة مرفقة بالفعل\n"
 
 #: gschem/src/iface/i_command.c:4363
 msgid "WARNING: Do not translate with snap off!\n"
