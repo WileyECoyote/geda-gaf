@@ -818,47 +818,54 @@ msgstr "در جستجوی منبع"
 msgid "Failed to descend into"
 msgstr "فرود در نشد"
 
+# Hierarchy Error
 #: gschem/src/iface/i_command.c:3281
 msgid "Hierarchy Error"
-msgstr ""
+msgstr "خطای سلسله مراتبی"
 
+# Searching for symbol
 #: gschem/src/iface/i_command.c:3358
 msgid "Searching for symbol"
-msgstr ""
+msgstr "در جستجوی نماد"
 
+# Symbol is not a real file. Symbol cannot be loaded
 #: gschem/src/iface/i_command.c:3368
 msgid "Symbol is not a real file. Symbol cannot be loaded.\n"
-msgstr ""
+msgstr "Symbol یک پرونده واقعی نیست. نماد بارگیری نمی شود.\n"
 
+# Cannot find any schematics above the current one
 #: gschem/src/iface/i_command.c:3416
 msgid "Cannot find any schematics above the current one!\n"
-msgstr ""
+msgstr "هیچ طرحواره ای بالاتر از مورد فعلی پیدا نمی شود!\n"
 
+# Object is attached to something
 #: gschem/src/iface/i_command.c:3546
 msgid "Object is attached to something\n"
-msgstr ""
+msgstr "جسم به چیزی وصل شده است\n"
 
+# Attribute is already attached
 #: gschem/src/iface/i_command.c:3949
 msgid "Attribute is already attached\n"
-msgstr ""
+msgstr "ویژگی قبلاً پیوست شده است\n"
 
+# WARNING: Do not translate with snap off
 #: gschem/src/iface/i_command.c:4363
 msgid "WARNING: Do not translate with snap off!\n"
-msgstr ""
+msgstr "!\n"
 
 #: gschem/src/iface/i_command.c:4364
 msgid "WARNING: Turning snap on and continuing with translate.\n"
-msgstr ""
+msgstr "اخطار: فعال کردن ضربه محکم و ناگهانی و ادامه ترجمه.\n"
 
 #: gschem/src/iface/i_command.c:4370
 msgid "WARNING: Snap grid size is not equal to 100!\n"
-msgstr ""
+msgstr "هشدار: اندازه شبکه ضربه محکم و ناگهانی برابر با 100 نیست!\n"
 
 #: gschem/src/iface/i_command.c:4371
 msgid ""
 "WARNING: If you are translating a symbol to the origin, the snap grid size "
 "should be set to 100\n"
-msgstr ""
+msgstr "اخطار: اگر در حال ترجمه یك سمبل از مبدأ هستید ، اندازه ی شبکه اسنپ باید به 100 تنظیم شود\n"
 
 #: gschem/src/iface/i_command.c:4583
 msgid "Grid OFF\n"
