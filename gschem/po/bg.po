@@ -827,13 +827,15 @@ msgstr "Търсене на източник"
 msgid "Failed to descend into"
 msgstr "Не успя да слезе в"
 
+# Hierarchy Error; Ĭerarkhichna greshka
 #: gschem/src/iface/i_command.c:3281
 msgid "Hierarchy Error"
-msgstr ""
+msgstr "Йерархична грешка"
 
+# Searching for symbol; Tŭrsene na simvol
 #: gschem/src/iface/i_command.c:3358
 msgid "Searching for symbol"
-msgstr ""
+msgstr "Търсене на символ"
 
 #: gschem/src/iface/i_command.c:3368
 msgid "Symbol is not a real file. Symbol cannot be loaded.\n"
@@ -845,31 +847,39 @@ msgstr ""
 "Не можете да намерите всякаква електрическа схема над текущата една "
 "страница!\n"
 
+# Object is attached to something; Obektŭt e prikachen kŭm neshto
 #: gschem/src/iface/i_command.c:3546
 msgid "Object is attached to something\n"
-msgstr ""
+msgstr "Обектът е прикачен към нещо\n"
 
+# Attribute is already attached; Atributŭt veche e prikachen
 #: gschem/src/iface/i_command.c:3949
 msgid "Attribute is already attached\n"
-msgstr ""
+msgstr "Атрибутът вече е прикачен\n"
 
+# WARNING: Do not translate with snap off
 #: gschem/src/iface/i_command.c:4363
 msgid "WARNING: Do not translate with snap off!\n"
-msgstr ""
+msgstr "ВНИМАНИЕ: Не превеждайте с изключване!\n"
 
+# VNIMANIE: Vklyuchvane na shtrakvane i prodŭlzhavane na prevoda
 #: gschem/src/iface/i_command.c:4364
 msgid "WARNING: Turning snap on and continuing with translate.\n"
-msgstr ""
+msgstr "ВНИМАНИЕ: Включване на щракване и продължаване на превода.\n"
 
+# PREDUPREZHDENIE: Razmerŭt na shtrakashtata mrezha ne e raven na 100
 #: gschem/src/iface/i_command.c:4370
 msgid "WARNING: Snap grid size is not equal to 100!\n"
-msgstr ""
+msgstr "ПРЕДУПРЕЖДЕНИЕ: Размерът на щракащата мрежа не е равен на 100!\n"
 
+# VNIMANIE: Ako prevezhdate simvol kŭm proizkhoda, razmerŭt na reshetkata
+#za shtrakvane tryabva da bŭde zadaden na 100
 #: gschem/src/iface/i_command.c:4371
 msgid ""
 "WARNING: If you are translating a symbol to the origin, the snap grid size "
 "should be set to 100\n"
-msgstr ""
+msgstr "ВНИМАНИЕ: Ако превеждате символ към произхода, размерът на решетката "
+"за щракване трябва да бъде зададен на 100\n"
 
 #: gschem/src/iface/i_command.c:4583
 msgid "Grid OFF\n"
