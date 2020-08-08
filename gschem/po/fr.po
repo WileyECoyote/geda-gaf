@@ -346,7 +346,7 @@ msgstr "Mode Arc de cercle"
 
 #: gschem/src/base/gschem_status_bar.c:595
 msgid "Sets the Grid Mode to display on the status bar"
-msgstr ""
+msgstr "Définit le mode grille à afficher sur la barre d'état"
 
 #: gschem/src/base/gschem_status_bar.c:604
 msgid "Grid Size"
@@ -354,7 +354,7 @@ msgstr "Point de grille"
 
 #: gschem/src/base/gschem_status_bar.c:605
 msgid "Sets the Grid Size to display on the status bar"
-msgstr ""
+msgstr "Définit la taille de la grille à afficher dans la barre d'état"
 
 #: gschem/src/base/gschem_status_bar.c:614
 msgid "height"
@@ -362,7 +362,7 @@ msgstr "Largeur x Hauteur"
 
 #: gschem/src/base/gschem_status_bar.c:615
 msgid "Sets the height of the status bar"
-msgstr ""
+msgstr "Définit la hauteur de la barre d'état"
 
 #: gschem/src/base/gschem_status_bar.c:624
 msgid "Left Button Text"
@@ -370,7 +370,7 @@ msgstr "de gauche à droite"
 
 #: gschem/src/base/gschem_status_bar.c:625
 msgid "Set the string for the Left Button Text"
-msgstr ""
+msgstr "Définir la chaîne du texte du bouton gauche"
 
 #: gschem/src/base/gschem_status_bar.c:631
 msgid "Middle Button Text"
@@ -378,7 +378,7 @@ msgstr "Au milieu à gauche"
 
 #: gschem/src/base/gschem_status_bar.c:632
 msgid "Set the string for the Middle Button Text"
-msgstr ""
+msgstr "Définir la chaîne du texte du bouton central"
 
 #: gschem/src/base/gschem_status_bar.c:638
 msgid "Right Button Text"
@@ -386,7 +386,7 @@ msgstr "de droite à gauche"
 
 #: gschem/src/base/gschem_status_bar.c:639
 msgid "Set the string for the Right Button Text"
-msgstr ""
+msgstr "Définir la chaîne pour le texte du bouton droit"
 
 #: gschem/src/base/gschem_status_bar.c:645
 msgid "Snap Mode"
@@ -394,7 +394,7 @@ msgstr "Mode Panoramique"
 
 #: gschem/src/base/gschem_status_bar.c:646
 msgid "Sets the Snap Mode to display on the status bar"
-msgstr ""
+msgstr "Définit le mode d'accrochage à afficher sur la barre d'état"
 
 #: gschem/src/base/gschem_status_bar.c:655 gschem/src/x/x_dialog.c:639
 msgid "Snap Size"
@@ -402,7 +402,7 @@ msgstr "Grille de snap"
 
 #: gschem/src/base/gschem_status_bar.c:656
 msgid "Sets the Snap Size to display on the status bar"
-msgstr ""
+msgstr "Définit la taille d'accrochage à afficher dans la barre d'état"
 
 #: gschem/src/base/gschem_status_bar.c:665
 msgid "Status Text"
@@ -410,7 +410,7 @@ msgstr "Messages"
 
 #: gschem/src/base/gschem_status_bar.c:666
 msgid "Set the string for the text on the Status Bar"
-msgstr ""
+msgstr "Définissez la chaîne du texte dans la barre d'état"
 
 #: gschem/src/base/gschem_status_bar.c:672
 #: gschem/src/base/gschem_status_bar.c:673
@@ -423,7 +423,7 @@ msgstr "Messages"
 
 #: gschem/src/base/gschem_status_bar.c:687
 msgid "Set or get the height of the status bar"
-msgstr ""
+msgstr "Définir ou obtenir la hauteur de la barre d'état"
 
 #: gschem/src/base/gschem_status_bar.c:1193
 msgid "Coordinate display, right click for format options"
