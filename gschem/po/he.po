@@ -639,27 +639,27 @@ msgstr "גורם זום לא חוקי"
 #: gschem/src/guile/g_select.c:93 gschem/src/guile/g_select.c:130
 #: gschem/src/guile/g_select.c:166
 msgid "Object ~A is not directly included in a page."
-msgstr ""
+msgstr "האובייקט ~A אינו כלול ישירות בדף."
 
 #: gschem/src/guile/g_util.c:70
 msgid "Could not launch URI"
-msgstr ""
+msgstr "לא ניתן היה להפעיל את ה- URI"
 
 #: gschem/src/guile/g_window.c:146
 msgid "Found invalid gschem window smob ~S"
-msgstr ""
+msgstr "נמצא סמוך חלון gschem לא חוקי ~S"
 
 #: gschem/src/iface/i_command.c:137 gschem/src/iface/i_command.c:5354
 msgid "current value of"
-msgstr ""
+msgstr "ערך נוכחי של"
 
 #: gschem/src/iface/i_command.c:137 gschem/src/iface/i_command.c:5355
 msgid "is"
-msgstr ""
+msgstr "הוא"
 
 #: gschem/src/iface/i_command.c:523
 msgid "Processing Action"
-msgstr ""
+msgstr "מעבד פעולה"
 
 # Select object first
 #: gschem/src/iface/i_command.c:642
@@ -668,15 +668,15 @@ msgstr "בחר תחילה אובייקט"
 
 #: gschem/src/iface/i_command.c:653
 msgid "Cannot"
-msgstr ""
+msgstr "לא יכול"
 
 #: gschem/src/iface/i_command.c:653
 msgid "while inside an action!\n"
-msgstr ""
+msgstr "תוך כדי פעולה!\n"
 
 #: gschem/src/iface/i_command.c:920 gschem/src/iface/i_command.c:2969
 msgid "New page created"
-msgstr ""
+msgstr "נוצר דף חדש"
 
 # New Window created
 #: gschem/src/iface/i_command.c:960
@@ -685,7 +685,7 @@ msgstr "נוצר חלון חדש"
 
 #: gschem/src/iface/i_command.c:1162
 msgid "Failed to Save All"
-msgstr ""
+msgstr "שמירת הכל נכשלה"
 
 #: gschem/src/iface/i_command.c:1165 gschem/src/iface/i_command.c:1182
 msgid "Saved All"

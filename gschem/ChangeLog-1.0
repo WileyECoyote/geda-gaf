@@ -12,6 +12,8 @@
 
     * po/fr.po: Update French translations.
 
+    * po/he.po: Update Hebrew translations.
+
 2020-08-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/x_toolbars.h: Change ToolBarInfo member toolbar to type
@@ -108,10 +110,10 @@
 
 2020-07-10 Wiley E. Hill <wileyhill@gmail.com>
 
-    * po/bs.po: Update Bosnian translations
+    * po/bs.po: Update Bosnian translations.
     * po/ca.po: Update Catalan translations.
     * po/da.po: Update Danish translations.
-    * po/el.po: Update Greek translations
+    * po/el.po: Update Greek translations.
     * po/es.po: Update Spanish translations.
     * po/fi.po: Update Finnish translations.
     * po/sv.po: Update Swedish translations.
@@ -120,7 +122,7 @@
 
 2020-07-04 Wiley E. Hill <wileyhill@gmail.com>
 
-    * po/el.po: Update Greek translations
+    * po/el.po: Update Greek translations.
     * po/he.po: Update Hebrew translations.
     * po/hu.po: Update Hungarian translations.
     * po/it.po: Update Italian translations.
