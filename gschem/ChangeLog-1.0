@@ -14,6 +14,8 @@
 
     * po/he.po: Update Hebrew translations.
 
+    * po/hu.po: Update Hungarian translations.
+
 2020-08-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/x_toolbars.h: Change ToolBarInfo member toolbar to type

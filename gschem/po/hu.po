@@ -589,7 +589,7 @@ msgstr "Érvénytelen zoom tényező"
 #: gschem/src/guile/g_select.c:93 gschem/src/guile/g_select.c:130
 #: gschem/src/guile/g_select.c:166
 msgid "Object ~A is not directly included in a page."
-msgstr ""
+msgstr "Az ~A objektum nem szerepel közvetlenül az oldalon."
 
 #: gschem/src/guile/g_util.c:70
 msgid "Could not launch URI"
@@ -597,7 +597,7 @@ msgstr "Nem sikerült elindítani URI"
 
 #: gschem/src/guile/g_window.c:146
 msgid "Found invalid gschem window smob ~S"
-msgstr ""
+msgstr "Érvénytelen gschem window smob ~S"
 
 # the present value
 #: gschem/src/iface/i_command.c:137 gschem/src/iface/i_command.c:5354
@@ -647,7 +647,7 @@ msgstr "Minden oldal elmentve"
 
 #: gschem/src/iface/i_command.c:1179
 msgid "Error encountered, Save Failed"
-msgstr ""
+msgstr "Hiba történt, a mentés sikertelen"
 
 #: gschem/src/iface/i_command.c:1249 gschem/src/x/x_image.c:545
 msgid "Write Image"
@@ -655,11 +655,11 @@ msgstr "Képfájl írása"
 
 #: gschem/src/iface/i_command.c:1271
 msgid "Write PDF"
-msgstr ""
+msgstr "Írjon PDF-t"
 
 #: gschem/src/iface/i_command.c:1367 gschem/src/iface/i_sessions.c:184
 msgid "Canceled close all\n"
-msgstr ""
+msgstr "Visszavonva mindent bezár\n"
 
 #: gschem/src/iface/i_command.c:1376 gschem/src/iface/i_sessions.c:193
 msgid "Closing all documents\n"
@@ -667,15 +667,15 @@ msgstr "Zárja be az összes dokumentumot\n"
 
 #: gschem/src/iface/i_command.c:1399
 msgid "starting shut-down"
-msgstr ""
+msgstr "elindulás"
 
 #: gschem/src/iface/i_command.c:1413
 msgid "Symbol is not embedded, export anyway?"
-msgstr ""
+msgstr "A szimbólum nincs beágyazva, egyébként exportálni?"
 
 #: gschem/src/iface/i_command.c:1437
 msgid "Picture is not embedded, export anyway?"
-msgstr ""
+msgstr "A kép nincs beágyazva, egyébként exportálni?"
 
 #: gschem/src/iface/i_command.c:1584
 msgid "Empty buffer"
@@ -687,7 +687,7 @@ msgstr "Összeköttetés üzemmód"
 
 #: gschem/src/iface/i_command.c:1850
 msgid "Specify offset distance:"
-msgstr ""
+msgstr "Adja meg az eltolási távolságot:"
 
 #: gschem/src/iface/i_command.c:2446
 msgid "Zoom Magnification"
@@ -695,7 +695,7 @@ msgstr "/Nagyítás"
 
 #: gschem/src/iface/i_command.c:2446
 msgid "Specify new zoom:"
-msgstr ""
+msgstr "Adja meg az új zoomot:"
 
 #: gschem/src/iface/i_command.c:2488 gschem/src/iface/i_command.c:4836
 #: gschem/src/iface/i_command.c:4866 gschem/src/iface/i_command.c:4887
