@@ -407,7 +407,7 @@ msgstr "Commuta la modalità magnetica"
 
 #: gschem/src/base/gschem_status_bar.c:646
 msgid "Sets the Snap Mode to display on the status bar"
-msgstr ""
+msgstr "Imposta la modalità Snap da visualizzare sulla barra di stato"
 
 #: gschem/src/base/gschem_status_bar.c:655 gschem/src/x/x_dialog.c:639
 msgid "Snap Size"
@@ -415,7 +415,7 @@ msgstr "Dimensione Snap"
 
 #: gschem/src/base/gschem_status_bar.c:656
 msgid "Sets the Snap Size to display on the status bar"
-msgstr ""
+msgstr "Imposta la dimensione dello snap da visualizzare sulla barra di stato"
 
 #: gschem/src/base/gschem_status_bar.c:665
 msgid "Status Text"
@@ -423,7 +423,7 @@ msgstr "Stato"
 
 #: gschem/src/base/gschem_status_bar.c:666
 msgid "Set the string for the text on the Status Bar"
-msgstr ""
+msgstr "Imposta la stringa per il testo sulla barra di stato"
 
 #: gschem/src/base/gschem_status_bar.c:672
 #: gschem/src/base/gschem_status_bar.c:673
@@ -436,31 +436,34 @@ msgstr "Stato"
 
 #: gschem/src/base/gschem_status_bar.c:687
 msgid "Set or get the height of the status bar"
-msgstr ""
+msgstr "Imposta o ottieni l'altezza della barra di stato"
 
 #: gschem/src/base/gschem_status_bar.c:1193
 msgid "Coordinate display, right click for format options"
-msgstr ""
+msgstr "Visualizzazione delle coordinate, fare clic con il tasto destro per "
+"le opzioni di formato"
 
 #: gschem/src/base/gschem_status_bar.c:1194
 msgid "Left pointer button assignment"
-msgstr ""
+msgstr "Assegnazione del pulsante del puntatore sinistro"
 
 #: gschem/src/base/gschem_status_bar.c:1195
 msgid "Middle pointer button assignment, right click for options"
-msgstr ""
+msgstr "Assegnazione del pulsante del puntatore centrale, fare clic con il "
+"tasto destro per visualizzare le opzioni"
 
 #: gschem/src/base/gschem_status_bar.c:1196
 msgid "Right pointer button assignment, right click for options"
-msgstr ""
+msgstr "Assegnazione del pulsante del puntatore destro, clic destro per le "
+"opzioni"
 
 #: gschem/src/base/gschem_status_bar.c:1197
 msgid "Indicates the current snap, grid units or state"
-msgstr ""
+msgstr "Indica lo snap, le unità della griglia o lo stato correnti"
 
 #: gschem/src/base/gschem_status_bar.c:1198
 msgid "Indicates the current command state"
-msgstr ""
+msgstr "Indica lo stato del comando corrente"
 
 #: gschem/src/base/gschem_status_bar.c:1199
 msgid "Gschem status bar"
