@@ -449,18 +449,20 @@ msgstr "Υποδεικνύει την τρέχουσα θραύση, τις μο
 msgid "Indicates the current command state"
 msgstr "Υποδεικνύει την τρέχουσα κατάσταση εντολών"
 
+# Gschem status bar; Grammí katástasis Gschem
 #: gschem/src/base/gschem_status_bar.c:1199
 msgid "Gschem status bar"
-msgstr ""
+msgstr "Γραμμή κατάστασης Gschem"
 
 #: gschem/src/base/gschem_status_bar.c:1877
 msgid "Grid"
 msgstr "πλέγμα"
 
+# OFF; MAKRIA APO
 #: gschem/src/base/gschem_status_bar.c:1883
 #: gschem/src/base/gschem_status_bar.c:1904
 msgid "OFF"
-msgstr ""
+msgstr "ΜΑΚΡΙΑ ΑΠΟ"
 
 #: gschem/src/base/gschem_status_bar.c:1896 gschem/src/object/o_picture.c:615
 #: gschem/src/object/o_picture.c:619
@@ -483,37 +485,44 @@ msgstr "Μη έγκυρο όνομα/τιμή ορατότητας ~A."
 msgid "Processing"
 msgstr "Κλείσιμο"
 
+# Skipping; Paráleipsi
 #: gschem/src/guile/g_rc.c:87 gschem/src/guile/g_rc.c:99
 msgid "Skipping"
-msgstr ""
+msgstr "Παράλειψη"
 
+# entry in rc file; katachórisi se archeío rc
 #: gschem/src/guile/g_rc.c:119
 msgid "entry in rc file"
-msgstr ""
+msgstr "καταχώριση σε αρχείο rc"
 
 #: gschem/src/guile/g_rc.c:123
 msgid "Bad Value"
 msgstr "Τιμή"
 
+# check; élenchos
 #: gschem/src/guile/g_rc.c:124 gschem/src/guile/g_rc.c:2086
 msgid "check"
-msgstr ""
+msgstr "έλεγχος"
 
+# or Scheme, continuing with; í Schédio, synechízontas me
 #: gschem/src/guile/g_rc.c:125
 msgid "or Scheme, continuing with"
-msgstr ""
+msgstr "ή Σχέδιο, συνεχίζοντας με"
 
+# maximum value; mégisti axía
 #: gschem/src/guile/g_rc.c:133
 msgid "maximum value"
-msgstr ""
+msgstr "μέγιστη αξία"
 
+# minimum value; eláchisti timí
 #: gschem/src/guile/g_rc.c:137
 msgid "minimum value"
-msgstr ""
+msgstr "ελάχιστη τιμή"
 
+# default value; Proepilegméni timí
 #: gschem/src/guile/g_rc.c:141
 msgid "default value"
-msgstr ""
+msgstr "Προεπιλεγμένη τιμή"
 
 #: gschem/src/guile/g_rc.c:155
 msgid "Invalid type assignment, check"
@@ -523,9 +532,10 @@ msgstr "Μη έγκυρη ανάθεση τύπου, ερευνώ"
 msgid "This is gEDA/gschem version"
 msgstr "gEDA/gschem έκδοση"
 
+# but you have a version; allá échete mia ékdosi
 #: gschem/src/guile/g_rc.c:197
 msgid "but you have a version"
-msgstr ""
+msgstr "αλλά έχετε μια έκδοση"
 
 #: gschem/src/guile/g_rc.c:198
 msgid "Please be sure that you have the latest rc file"
