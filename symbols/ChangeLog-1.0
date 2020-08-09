@@ -3,6 +3,8 @@
     * linear/telephone/MT8941BE-1.sym: Add new symbol; T1/CEPT Digital
       Trunk PLL.
 
+    * linear/telephone/MT8952B-1.sym: Add new symbol; HDLC Protocol Controller.
+
     * packages/SO??N-1.sym: Resequence attributes:
 
             * packages/SO20N-1.sym
