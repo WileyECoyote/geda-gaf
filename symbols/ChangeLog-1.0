@@ -1,5 +1,8 @@
 2020-08-09 Wiley E. Hill <wileyhill@gmail.com>
 
+    * analogdevices/AD1403-1.sym: Add new symbol; Precision 2.5 Volt Reference,
+      +/-25 mVolts.
+
     * linear/telephone/MT8941BE-1.sym: Add new symbol; T1/CEPT Digital
       Trunk PLL.
 
