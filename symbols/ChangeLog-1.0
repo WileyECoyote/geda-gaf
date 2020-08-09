@@ -14,6 +14,9 @@
     * linear/telephone/MT8964A-1.sym: Add new symbol; Integrated PCM Filter
       Codec, μ-Law, CCITT Code.
 
+    * linear/telephone/MT8965A-1.sym: Add new symbol; Integrated PCM Filter
+      Codec, A-Law, CCITT Code.
+
     * packages/SO??N-1.sym: Resequence attributes:
 
             * packages/SO20N-1.sym
