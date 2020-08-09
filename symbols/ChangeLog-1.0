@@ -1,3 +1,9 @@
+2020-08-09 Wiley E. Hill <wileyhill@gmail.com>
+
+    * packages/SO??N-1.sym: Resequence attributes:
+
+            * packages/SO20N-1.sym
+
 2020-08-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * linear/switchreg/*.sym: Update dist-license=GPLv2:
