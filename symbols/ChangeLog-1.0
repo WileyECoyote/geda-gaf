@@ -5,6 +5,9 @@
 
     * linear/telephone/MT8952B-1.sym: Add new symbol; HDLC Protocol Controller.
 
+    * linear/telephone/MT8960A-1.sym: Add new symbol; Integrated PCM Filter
+      Codec, μ-Law, Alternative Code.
+
     * packages/SO??N-1.sym: Resequence attributes:
 
             * packages/SO20N-1.sym
