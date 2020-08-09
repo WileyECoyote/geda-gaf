@@ -1,5 +1,8 @@
 2020-08-09 Wiley E. Hill <wileyhill@gmail.com>
 
+    * linear/telephone/MT8941BE-1.sym: Add new symbol; T1/CEPT Digital
+      Trunk PLL.
+
     * packages/SO??N-1.sym: Resequence attributes:
 
             * packages/SO20N-1.sym
