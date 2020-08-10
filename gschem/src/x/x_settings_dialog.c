@@ -2200,7 +2200,7 @@ bool load_settings_dialog (GschemToplevel *w_current)
       }
     }
   }
-  SetCombo ( ColorMapScheme, rc_options.color_scheme_index);
+  SetGedaCombo (ColorMapScheme, rc_options.color_scheme_index);
 
   SetGedaCombo (DotGridMode,       w_current->dots_grid_mode);
   SetGedaCombo (ConsoleWindowType, console_window_type);
@@ -2579,11 +2579,11 @@ GtkWidget *create_settings_dialog (GschemToplevel *w_current)
        GTK_SWITCH(RenderOptionsRow3_hbox, InvertImages, 8, TRUE);
        GTK_SWITCH(RenderOptionsRow3_hbox, FriendlyOutlineMap, 76, TRUE);
      HSECTION (RenderPrefTab_vbox, RenderOptionsRow4)     /* Grp 2 Row 4 */
-       GTK_NEW_COMBO (RenderOptionsRow4_hbox, ColorMapScheme, 150, 60);
-           GTK_LOAD_COMBO (ColorMapScheme, "dark");
-           GTK_LOAD_COMBO (ColorMapScheme, "light");
-           GTK_LOAD_COMBO (ColorMapScheme, "BW");
-           GTK_LOAD_COMBO (ColorMapScheme, "custom");
+       GEDA_NEW_TEXT_COMBO (RenderOptionsRow4_hbox, ColorMapScheme, 150, 60);
+           LOAD_GEDA_TEXT_COMBO (ColorMapScheme, "dark");
+           LOAD_GEDA_TEXT_COMBO (ColorMapScheme, "light");
+           LOAD_GEDA_TEXT_COMBO (ColorMapScheme, "BW");
+           LOAD_GEDA_TEXT_COMBO (ColorMapScheme, "custom");
   GTK_END_TAB(RenderPref);
   } /***  END Text TAB Contents ***/
 
@@ -2826,7 +2826,7 @@ void GatherSettings(GschemToplevel *w_current) {
     i_window_set_cursor(w_current, pointer_id);
   }
 
-  tmp_int = gtk_combo_box_get_active (GTK_COMBO_BOX (ColorMapSchemeCombo));
+  tmp_int = GetGedaCombo (ColorMapScheme);
   if (tmp_int != rc_options.color_scheme_index) { /* if user changed this settings */
     rc_options.color_scheme_index = tmp_int;
     switch ( tmp_int ) {
