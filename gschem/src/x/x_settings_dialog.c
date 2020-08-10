@@ -1798,12 +1798,12 @@ void setup_ripper_symbol_combo(char *cur_name) {
     if (geda_strequal(rc_options.ripper_symbol_fname, SECOND_BUS_RIPPER_SYMNAME))
       rc_options.ripper_symbol_index = 1;
     else {
-      LOAD_STD_COMBO(RipperSymbol, rc_options.ripper_symbol_fname);
+      LOAD_GEDA_TEXT_COMBO(RipperSymbol, rc_options.ripper_symbol_fname);
       rc_options.ripper_symbol_index = 2;
     }
   }
 
-  gtk_combo_box_set_active((GtkComboBox *)RipperSymbolCombo, rc_options.ripper_symbol_index);
+  SetGedaCombo(RipperSymbol, rc_options.ripper_symbol_index);
 
 }
 
@@ -2614,10 +2614,10 @@ GtkWidget *create_settings_dialog (GschemToplevel *w_current)
      HD_SEPARATOR (StylesPrefTab_vbox, Grp3);      /* Ripper Options */
        HSECTION(StylesPrefTab_vbox, StylesRow3);     /* ST Grp 2 Lines and Pins */
          GTK_SWITCH(StylesRow3_hbox, RipperType, 30, FALSE);
-         GTK_NEW_COMBO (StylesRow3_hbox, RipperSymbol, 0, 0);
+         GEDA_NEW_TEXT_COMBO (StylesRow3_hbox, RipperSymbol, 0, 0);
          gtk_widget_set_size_request (RipperSymbolCombo, 180, 31);
-         GTK_LOAD_COMBO (RipperSymbol, DEFAULT_BUS_RIPPER_SYMNAME)
-         GTK_LOAD_COMBO (RipperSymbol, SECOND_BUS_RIPPER_SYMNAME)
+         LOAD_GEDA_TEXT_COMBO (RipperSymbol, DEFAULT_BUS_RIPPER_SYMNAME)
+         LOAD_GEDA_TEXT_COMBO (RipperSymbol, SECOND_BUS_RIPPER_SYMNAME)
        HSECTION(StylesPrefTab_vbox, StylesRow4);     /* ST Grp 2 Lines and Pins */
          GTK_SWITCH(StylesRow4_hbox, RipperRotation, 19, FALSE);
          GTK_NUMERIC_SPIN (StylesRow4_hbox, RipperSize, 31, 200, 0, 500);
@@ -2803,7 +2803,6 @@ void GatherSettings(GschemToplevel *w_current) {
 /* Combo Boxes (10) */
 
   w_current->dots_grid_mode = geda_combo_box_text_widget_get_active (DotGridModeCombo);
-  tmp_int                   = geda_combo_box_text_widget_get_active (ConsoleWindowTypeCombo);
 
   if (tmp_int != console_window_type) {
     console_window_type = tmp_int;
@@ -2853,11 +2852,11 @@ void GatherSettings(GschemToplevel *w_current) {
 
   g_free(tmpstr);
 
-  tmp_int = gtk_combo_box_get_active (GTK_COMBO_BOX (RipperSymbolCombo));
+  tmp_int = GetGedaCombo (RipperSymbol);
   if (tmp_int != rc_options.ripper_symbol_index) {
     GEDA_FREE(w_current->bus_ripper_symname);
     w_current->bus_ripper_symname =
-    geda_utility_string_strdup(gtk_combo_box_get_active_text(GTK_COMBO_BOX (RipperSymbolCombo)));
+    geda_strdup(geda_combo_widget_get_active_text(RipperSymbolCombo));
     strcpy(rc_options.ripper_symbol_fname, w_current->bus_ripper_symname); /* save the filename */
   }
 
