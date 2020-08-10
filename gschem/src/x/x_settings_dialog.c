@@ -2229,7 +2229,7 @@ bool load_settings_dialog (GschemToplevel *w_current)
 
   setup_ripper_symbol_combo(w_current->bus_ripper_symname);
 
-  SetCombo ( Renderer, w_current->render_adaptor );
+  SetGedaCombo (Renderer, w_current->render_adaptor );
   SetGedaCombo (AntiAlias, w_current->anti_aliasing );
 
   tmpstr = eda_config_get_string (cfg, group, "default-filename", NULL);
@@ -2559,11 +2559,11 @@ GtkWidget *create_settings_dialog (GschemToplevel *w_current)
   { /*-------------------- Start Render TAB Contents --------------------*/
    GTK_START_TAB (RenderPref);
      HSECTION(RenderPrefTab_vbox, RenderOptionsRow1); /* ST Grp 1 */
-       GTK_NEW_COMBO (RenderOptionsRow1_hbox, Renderer, 10, 6);
+       GEDA_NEW_TEXT_COMBO (RenderOptionsRow1_hbox, Renderer, 10, 6);
            gtk_widget_set_size_request (RendererCombo, 120, 31);
-           GTK_LOAD_COMBO (Renderer, RC_RENDERER_OPTION_CAIRO);
-           GTK_LOAD_COMBO (Renderer, RC_RENDERER_OPTION_X11);
-       GTK_NEW_COMBO (RenderOptionsRow1_hbox, AntiAlias, 10, 74);
+           LOAD_GEDA_TEXT_COMBO (Renderer, RC_RENDERER_OPTION_CAIRO);
+           LOAD_GEDA_TEXT_COMBO (Renderer, RC_RENDERER_OPTION_X11);
+       GEDA_NEW_TEXT_COMBO (RenderOptionsRow1_hbox, AntiAlias, 10, 74);
            gtk_widget_set_size_request (AntiAliasCombo, 160, 31);
            LOAD_GEDA_TEXT_COMBO (AntiAlias, RC_STR_ANTIALIAS_DEFAULT);
            LOAD_GEDA_TEXT_COMBO (AntiAlias, RC_STR_ANTIALIAS_NONE);
@@ -2861,7 +2861,7 @@ void GatherSettings(GschemToplevel *w_current) {
     strcpy(rc_options.ripper_symbol_fname, w_current->bus_ripper_symname); /* save the filename */
   }
 
-  w_current->render_adaptor   = gtk_combo_box_get_active (GTK_COMBO_BOX (RendererCombo));
+  w_current->render_adaptor   = GetGedaCombo (Renderer);
   w_current->anti_aliasing    = GetGedaCombo (AntiAlias);
 
   tmpstr = geda_combo_widget_get_active_text (FontNameCombo);
