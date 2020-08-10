@@ -436,10 +436,13 @@ static void enable_attribute_list_controls( bool state ){
  */
 static void enable_color_map_controls( bool state ){
   gtk_widget_set_sensitive (FriendlyOutlineMapSwitch, state);
-  if (!state) gtk_widget_set_sensitive (ColorMapSchemeCombo, FALSE);
-  else
-    if (GET_SWITCH_STATE (FriendlyOutlineMapSwitch))
-      gtk_widget_set_sensitive (ColorMapSchemeCombo, TRUE);
+
+  if (!state) {
+    gtk_widget_set_sensitive (ColorMapSchemeCombo, FALSE);
+  }
+  else if (GET_SWITCH_STATE (FriendlyOutlineMapSwitch)) {
+    gtk_widget_set_sensitive (ColorMapSchemeCombo, TRUE);
+  }
 }
 
 /** @brief enable_color_map_scheme in X_Settings_Dialog_Support_Functions */
