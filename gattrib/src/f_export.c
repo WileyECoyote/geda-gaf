@@ -26,8 +26,7 @@
 
 #include "../include/gattrib.h"
 
-static inline void
-print_quote_if_comma(FILE *fp, char *text)
+static inline void print_quote_if_comma(FILE *fp, char *text)
 {
   /* if there is a comma anywhere in the field, wrap the field in " */
   if (strstr(text, ",")) {
