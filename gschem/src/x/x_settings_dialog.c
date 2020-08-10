@@ -2802,7 +2802,7 @@ void GatherSettings(GschemToplevel *w_current) {
 
 /* Combo Boxes (10) */
 
-  w_current->dots_grid_mode = geda_combo_box_text_widget_get_active (DotGridModeCombo);
+  w_current->dots_grid_mode = GetGedaCombo (DotGridMode);
 
   if (tmp_int != console_window_type) {
     console_window_type = tmp_int;
