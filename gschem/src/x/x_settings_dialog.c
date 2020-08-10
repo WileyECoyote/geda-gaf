@@ -2230,7 +2230,7 @@ bool load_settings_dialog (GschemToplevel *w_current)
   setup_ripper_symbol_combo(w_current->bus_ripper_symname);
 
   SetCombo ( Renderer, w_current->render_adaptor );
-  SetCombo ( AntiAlias, w_current->anti_aliasing );
+  SetGedaCombo (AntiAlias, w_current->anti_aliasing );
 
   tmpstr = eda_config_get_string (cfg, group, "default-filename", NULL);
   SetEntryText( UntitledNameEntry, tmpstr );
@@ -2565,13 +2565,13 @@ GtkWidget *create_settings_dialog (GschemToplevel *w_current)
            GTK_LOAD_COMBO (Renderer, RC_RENDERER_OPTION_X11);
        GTK_NEW_COMBO (RenderOptionsRow1_hbox, AntiAlias, 10, 74);
            gtk_widget_set_size_request (AntiAliasCombo, 160, 31);
-           GTK_LOAD_COMBO (AntiAlias, RC_STR_ANTIALIAS_DEFAULT);
-           GTK_LOAD_COMBO (AntiAlias, RC_STR_ANTIALIAS_NONE);
-           GTK_LOAD_COMBO (AntiAlias, RC_STR_ANTIALIAS_GRAY);
-           GTK_LOAD_COMBO (AntiAlias, RC_STR_ANTIALIAS_SUBPIXEL);
-           GTK_LOAD_COMBO (AntiAlias, RC_STR_ANTIALIAS_FAST);
-           GTK_LOAD_COMBO (AntiAlias, RC_STR_ANTIALIAS_GOOD);
-           GTK_LOAD_COMBO (AntiAlias, RC_STR_ANTIALIAS_BEST);
+           LOAD_GEDA_TEXT_COMBO (AntiAlias, RC_STR_ANTIALIAS_DEFAULT);
+           LOAD_GEDA_TEXT_COMBO (AntiAlias, RC_STR_ANTIALIAS_NONE);
+           LOAD_GEDA_TEXT_COMBO (AntiAlias, RC_STR_ANTIALIAS_GRAY);
+           LOAD_GEDA_TEXT_COMBO (AntiAlias, RC_STR_ANTIALIAS_SUBPIXEL);
+           LOAD_GEDA_TEXT_COMBO (AntiAlias, RC_STR_ANTIALIAS_FAST);
+           LOAD_GEDA_TEXT_COMBO (AntiAlias, RC_STR_ANTIALIAS_GOOD);
+           LOAD_GEDA_TEXT_COMBO (AntiAlias, RC_STR_ANTIALIAS_BEST);
      HSECTION (RenderPrefTab_vbox, RenderOptionsRow2)     /* Grp 2 Row 2 */
        GTK_SWITCH(RenderOptionsRow2_hbox, EnableColorImaging, 7, FALSE);
        GTK_SWITCH(RenderOptionsRow2_hbox, FriendlyColorMap, 87, TRUE);
@@ -2862,7 +2862,7 @@ void GatherSettings(GschemToplevel *w_current) {
   }
 
   w_current->render_adaptor   = gtk_combo_box_get_active (GTK_COMBO_BOX (RendererCombo));
-  w_current->anti_aliasing    = gtk_combo_box_get_active (GTK_COMBO_BOX (AntiAliasCombo));
+  w_current->anti_aliasing    = GetGedaCombo (AntiAlias);
 
   tmpstr = geda_combo_widget_get_active_text (FontNameCombo);
 

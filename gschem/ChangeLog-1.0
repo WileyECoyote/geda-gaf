@@ -1,21 +1,20 @@
+2020-08-10 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_settings_dialog.c: Utilize gEDA text combo box instead of
+      awkward Gtk combo for:
+
+        * AntiAliasCombo
+
 2020-08-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/ar.po: Update Arabic translations.
-
     * po/bg.po: Update Bulgarian translations.
-
     * po/bs.po: Update Bosnian translations.
-
     * po/el.po: Update Greek translations.
-
     * po/fa.po: Update Persian translations.
-
     * po/fr.po: Update French translations.
-
     * po/he.po: Update Hebrew translations.
-
     * po/hu.po: Update Hungarian translations.
-
     * po/it.po: Update Italian translations.
 
 2020-08-07 Wiley E. Hill <wileyhill@gmail.com>
