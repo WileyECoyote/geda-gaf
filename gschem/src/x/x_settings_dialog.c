@@ -2613,7 +2613,7 @@ GtkWidget *create_settings_dialog (GschemToplevel *w_current)
          GTK_NUMERIC_SPIN (PinWidths_vbox, ThickPinWidth, DIALOG_V_SPACING +5, DEFAULT_THICK_PIN_WIDTH, 0, 500);
      HD_SEPARATOR (StylesPrefTab_vbox, Grp3);      /* Ripper Options */
        HSECTION(StylesPrefTab_vbox, StylesRow3);     /* ST Grp 2 Lines and Pins */
-         GTK_SWITCH(StylesRow3_hbox, RipperType, 30, FALSE);
+         GTK_SWITCH(StylesRow3_hbox, RipperType, 33, FALSE);
          GEDA_NEW_TEXT_COMBO (StylesRow3_hbox, RipperSymbol, 0, 0);
          gtk_widget_set_size_request (RipperSymbolCombo, 180, 31);
          LOAD_GEDA_TEXT_COMBO (RipperSymbol, DEFAULT_BUS_RIPPER_SYMNAME)

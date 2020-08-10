@@ -1,7 +1,8 @@
 2020-08-10 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/x/x_settings_dialog.c: Utilize gEDA text combo box instead of
-      awkward Gtk combo for:
+    * src/x/x_settings_dialog.c: Increase RipperTypeSwitch spacing so as
+      to horizontally align with RipperRotationSwitch below. Utilize gEDA
+      text combo box instead of awkward Gtk combo for:
 
         * AntiAliasCombo
         * ColorMapSchemeCombo
