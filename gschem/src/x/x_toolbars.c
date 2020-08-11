@@ -62,7 +62,7 @@
  *  the lists, which are used when setting sensitivities states
  */
 
-#define ANY_OBJECT_LIST    bar_widgets->any_object    /* List of widgets on toolbars to set if some object is selected */
+#define ANY_OBJECT_LIST    bar_widgets->any_object       /*!< List of widgets on toolbars to set if some object is selected */
 #define CAN_PASTE_LIST     bar_widgets->can_paste
 #define CAN_UNDO_LIST      bar_widgets->can_undo
 #define CAN_REDO_LIST      bar_widgets->can_redo
