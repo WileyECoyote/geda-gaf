@@ -86,6 +86,9 @@
  * WEH | 06/19/19 | Substituted geda_combo_widget_get_active_text for
  *                | geda_combo_box_get_active_text.
  * ------------------------------------------------------------------
+ * WEH | 08/06/20 | Utilize GetGedaCombo macro, increase RipperTypeSwitch
+ *                | spacing, increase width of RipperSymbolCombo.
+ * ------------------------------------------------------------------
  */
 
 /*!
@@ -2615,7 +2618,7 @@ GtkWidget *create_settings_dialog (GschemToplevel *w_current)
        HSECTION(StylesPrefTab_vbox, StylesRow3);     /* ST Grp 2 Lines and Pins */
          GTK_SWITCH(StylesRow3_hbox, RipperType, 33, FALSE);
          GEDA_NEW_TEXT_COMBO (StylesRow3_hbox, RipperSymbol, 0, 0);
-         gtk_widget_set_size_request (RipperSymbolCombo, 180, 31);
+         gtk_widget_set_size_request (RipperSymbolCombo, 215, 31);
          LOAD_GEDA_TEXT_COMBO (RipperSymbol, DEFAULT_BUS_RIPPER_SYMNAME)
          LOAD_GEDA_TEXT_COMBO (RipperSymbol, SECOND_BUS_RIPPER_SYMNAME)
        HSECTION(StylesPrefTab_vbox, StylesRow4);     /* ST Grp 2 Lines and Pins */
