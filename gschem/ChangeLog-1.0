@@ -2,6 +2,9 @@
 
     * src/x/x_settings_dialog.c: Increase width of RipperSymbolCombo.
 
+    * src/x/x_toolbars.c: Replace gtk_toolbar_set_style with geda_toolbar_
+      set_style.
+
 2020-08-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_settings_dialog.c: Increase RipperTypeSwitch spacing so as

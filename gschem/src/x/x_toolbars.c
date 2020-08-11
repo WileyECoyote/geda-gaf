@@ -931,7 +931,7 @@ static int popup_activated(GtkWidget *widget, IDS_HB_Popup_items* selection)
         break;
 
       case ShowIcons:
-        gtk_toolbar_set_style (GTK_TOOLBAR (ActiveToolBar.toolbar), TOOLBAR_SHOW_ICONS);
+        geda_toolbar_set_style (ActiveToolBar.toolbar, TOOLBAR_SHOW_ICONS);
         break;
 
       case ShowText:
