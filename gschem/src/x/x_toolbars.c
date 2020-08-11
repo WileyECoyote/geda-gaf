@@ -70,7 +70,7 @@
 #define CAN_HATCH_LIST     bar_widgets->can_hatch
 #define CAN_ELINE_LIST     bar_widgets->can_edit_line
 #define HAVE_COMPLEX_LIST  bar_widgets->complex_selected
-#define HAVE_PAGES_LIST    bar_widgets->mutil_pages
+#define HAVE_PAGES_LIST    bar_widgets->multi_pages
 #define HAVE_PIN_LIST      bar_widgets->pin_selected
 #define TEXT_OBJECT_LIST   bar_widgets->text_selected
 

@@ -84,7 +84,7 @@ typedef struct {
   GSList *can_hatch;
   GSList *can_edit_line;
   GSList *complex_selected;
-  GSList *mutil_pages;
+  GSList *multi_pages;
   GSList *pin_selected;
   GSList *text_selected;
 

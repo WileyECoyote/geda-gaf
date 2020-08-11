@@ -556,7 +556,7 @@ static bool i_status_idle_update_sensitivities(GschemToplevel *w_current)
   bool can_hatch;
   bool can_edit_line;
   bool complex_selected;
-  bool mutil_pages;
+  bool multi_pages;
   bool text_selected;
   bool pic_selected;
   bool pin_selected;
@@ -679,14 +679,14 @@ static bool i_status_idle_update_sensitivities(GschemToplevel *w_current)
   if (w_current->toplevel->page_current == NULL) {
     any_object           = FALSE;
     is_editing_symbol    = FALSE;
-    mutil_pages          = FALSE;
+    multi_pages          = FALSE;
     set_all_need_object_false();
   }
   else {
 
     any_object           = o_select_is_selection (w_current);
     is_editing_symbol    = geda_struct_page_is_symbol_file(Current_Page);
-    mutil_pages          = g_list_length(geda_toplevel_get_pages(toplevel)) > 1 ? TRUE : FALSE;
+    multi_pages          = g_list_length(geda_toplevel_get_pages(toplevel)) > 1 ? TRUE : FALSE;
 
     if (any_object) {
 
@@ -704,7 +704,7 @@ static bool i_status_idle_update_sensitivities(GschemToplevel *w_current)
     }
   }
 
-  if ( mutil_pages ) {
+  if ( multi_pages ) {
     x_menu_sensitivity(w_current, "_Page/_Up", TRUE);
     x_menu_sensitivity(w_current, "_Page/_Down", TRUE);
     x_menu_sensitivity(w_current, "_Page/_Next", TRUE);
@@ -869,7 +869,7 @@ static bool i_status_idle_update_sensitivities(GschemToplevel *w_current)
   x_toolbars_set_sensitivities (w_current, CAN_HATCH,      can_hatch);
   x_toolbars_set_sensitivities (w_current, CAN_ELINE,      can_edit_line);
   x_toolbars_set_sensitivities (w_current, COMPLEX_OBJECT, complex_selected);
-  x_toolbars_set_sensitivities (w_current, HAVE_PAGES,     mutil_pages);
+  x_toolbars_set_sensitivities (w_current, HAVE_PAGES,     multi_pages);
   x_toolbars_set_sensitivities (w_current, HAVE_PIN,       pin_selected);
   x_toolbars_set_sensitivities (w_current, HAVE_TEXT,      text_selected);
 
