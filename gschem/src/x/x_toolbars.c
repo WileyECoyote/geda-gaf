@@ -1894,8 +1894,8 @@ x_toolbar_display_both(GtkWidget *widget, GschemToplevel *w_current)
   ToolBarWidgets *bar_widgets;
   bar_widgets = g_slist_nth_data (ui_list, w_current->ui_index);
 
-  lambda (GtkToolbar* toolbar){
-    gtk_toolbar_set_style (toolbar, TOOLBAR_SHOW_BOTH);
+  lambda (GedaToolbar* toolbar){
+    geda_toolbar_set_style (toolbar, TOOLBAR_SHOW_BOTH);
     return FALSE;
   }
   mapcar(TheToolBars)
