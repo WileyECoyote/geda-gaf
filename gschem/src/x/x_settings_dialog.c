@@ -2813,7 +2813,7 @@ void GatherSettings(GschemToplevel *w_current) {
     x_console_update_decorated(w_current);
   }
 
-  w_current->undo_type      = geda_combo_box_text_widget_get_active (UndoTypeCombo);
+  w_current->undo_type      = GetGedaCombo (UndoType);
 
   if (w_current->undo_type == UNDO_NONE) {
     w_current->undo_control = FALSE;
