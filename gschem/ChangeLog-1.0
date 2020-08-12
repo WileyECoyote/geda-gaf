@@ -2,8 +2,8 @@
 
     * src/x/x_settings_dialog.c: Increase width of RipperSymbolCombo.
 
-    * src/x/x_toolbars.c: Replace gtk_toolbar_set_style with geda_toolbar_
-      set_style.
+    * src/x/x_toolbars.c: Convert plain text comment to Doxygen documentation.
+      Replace gtk_toolbar_set_style with geda_toolbar_set_style.
 
 2020-08-10 Wiley E. Hill <wileyhill@gmail.com>
 
