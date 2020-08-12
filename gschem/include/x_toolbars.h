@@ -62,6 +62,10 @@
    GEDA_TOOLBAR_BUTTON_ATK(bar##_Toolbar, name##_button, TB_TOOLTIP (name), TB_ACTION(name)) \
    gtk_widget_show(name##_button);
 
+/*! These enumerations are attached to each toolbar object with the "BarId"
+ *  string, these are used to save and restore toolbar states and reference
+ *  menu strings, see IDS_Menu_Toolbar_Toggles in x_menu.c.
+ */
 typedef enum { tb_Add,    tb_Attribute, tb_Edit,   tb_Grid_Snap,  tb_Page,
                tb_Select, tb_Standard,  tb_Symbol, tb_Zoom
 
