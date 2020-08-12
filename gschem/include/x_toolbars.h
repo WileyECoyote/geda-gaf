@@ -188,8 +188,8 @@ typedef struct {
 #define TBTS_EDIT_COPY          "Copy selection"
 #define TBTS_EDIT_MCOPY         "Make multiple copies of selection"
 #define TBTS_EDIT_MOVE          "Move objects"
-#define TBTS_EDIT_ROTATE_LEFT   "Rotate objects left"
 #define TBTS_EDIT_MIRROR        "Mirror objects"
+#define TBTS_EDIT_ROTATE_LEFT   "Rotate objects left"
 
 #define TBTS_EDIT_ATTRIB        "Edit Attribute properties"
 #define TBTS_EDIT_COLOR         "Change Colors"
