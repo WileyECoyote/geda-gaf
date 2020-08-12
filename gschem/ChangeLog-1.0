@@ -1,5 +1,7 @@
 2020-08-12 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/x_menus.h: Fix lower case in OPT_PageBAR_MENU_PATH.
+
     * src/x/x_toolbars.c: Reverse the order of etb_mirror and etb_rotate to
       match the order they appear on the toolbar.
 

@@ -1146,7 +1146,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
       /* Normally the ui manager would do this for us but we don't have one so...*/
       GEDA_OBJECT_SET_DATA(MENU_BAR, stdbar_toggle,   OPT_STDBAR_MENU_PATH);
       GEDA_OBJECT_SET_DATA(MENU_BAR, selbar_toggle,   OPT_SELBAR_MENU_PATH);
-      GEDA_OBJECT_SET_DATA(MENU_BAR, pagebar_toggle,  OPT_PageBAR_MENU_PATH);
+      GEDA_OBJECT_SET_DATA(MENU_BAR, pagebar_toggle,  OPT_PAGEBAR_MENU_PATH);
       GEDA_OBJECT_SET_DATA(MENU_BAR, addbar_toggle,   OPT_ADDBAR_MENU_PATH);
       GEDA_OBJECT_SET_DATA(MENU_BAR, zoombar_toggle,  OPT_ZOOMBAR_MENU_PATH);
       GEDA_OBJECT_SET_DATA(MENU_BAR, symbar_toggle,   OPT_SYMBAR_MENU_PATH);
