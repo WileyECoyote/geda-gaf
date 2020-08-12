@@ -1560,6 +1560,22 @@ void x_window_symbol_toolbar_toggle(GtkWidget *widget, GschemToplevel *w_current
     gtk_widget_show(w_current->symbol_handlebox);
   else
     gtk_widget_hide(w_current->symbol_handlebox);
+
+/*!
+ * \brief View toggle Modify toolbar
+ * \par Function Description
+ * This function toggles the visibility of the Modify toobar.
+ * Note the function actually toggle visibility of the handlebox
+ * containing the toolbar.
+ */
+void x_window_modify_toolbar_toggle(GtkWidget *widget, GschemToplevel *w_current)
+{
+  if (geda_check_menu_item_get_active(GEDA_CHECK_MENU_ITEM(widget))) {
+    gtk_widget_show(w_current->modify_handlebox);
+  }
+  else {
+    gtk_widget_hide(w_current->modify_handlebox);
+  }
 }
 
 /*!

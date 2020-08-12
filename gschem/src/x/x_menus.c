@@ -1130,9 +1130,11 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
       GtkWidget *addbar_toggle   = geda_check_menu_item_new_with_mnemonic (IDS_MENU_TB_ADD);
       GtkWidget *zoombar_toggle  = geda_check_menu_item_new_with_mnemonic (IDS_MENU_TB_ZOOM);
       GtkWidget *symbar_toggle   = geda_check_menu_item_new_with_mnemonic (IDS_MENU_TB_SYMBOL);
+      GtkWidget *modbar_toggle   = geda_check_menu_item_new_with_mnemonic (IDS_MENU_TB_MODIFY);
       GtkWidget *editbar_toggle  = geda_check_menu_item_new_with_mnemonic (IDS_MENU_TB_EDIT);
       GtkWidget *attribar_toggle = geda_check_menu_item_new_with_mnemonic (IDS_MENU_TB_ATTRIB);
       GtkWidget *gridbar_toggle  = geda_check_menu_item_new_with_mnemonic (IDS_MENU_TB_GRID_SNAP);
+
 
       geda_check_menu_item_set_active((GedaCheckMenuItem*)stdbar_toggle,   TRUE);
       geda_check_menu_item_set_active((GedaCheckMenuItem*)selbar_toggle,   TRUE);
@@ -1140,6 +1142,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
       geda_check_menu_item_set_active((GedaCheckMenuItem*)addbar_toggle,   TRUE);
       geda_check_menu_item_set_active((GedaCheckMenuItem*)zoombar_toggle,  TRUE);
       geda_check_menu_item_set_active((GedaCheckMenuItem*)symbar_toggle,   TRUE);
+      geda_check_menu_item_set_active((GedaCheckMenuItem*)modbar_toggle,   TRUE);
       geda_check_menu_item_set_active((GedaCheckMenuItem*)editbar_toggle,  TRUE);
       geda_check_menu_item_set_active((GedaCheckMenuItem*)attribar_toggle, TRUE);
       geda_check_menu_item_set_active((GedaCheckMenuItem*)gridbar_toggle,  TRUE);
@@ -1151,6 +1154,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
       GEDA_OBJECT_SET_DATA(MENU_BAR, addbar_toggle,   OPT_ADDBAR_MENU_PATH);
       GEDA_OBJECT_SET_DATA(MENU_BAR, zoombar_toggle,  OPT_ZOOMBAR_MENU_PATH);
       GEDA_OBJECT_SET_DATA(MENU_BAR, symbar_toggle,   OPT_SYMBAR_MENU_PATH);
+      GEDA_OBJECT_SET_DATA(MENU_BAR, modbar_toggle,   OPT_MODBAR_MENU_PATH);
       GEDA_OBJECT_SET_DATA(MENU_BAR, editbar_toggle,  OPT_EDITBAR_MENU_PATH);
       GEDA_OBJECT_SET_DATA(MENU_BAR, attribar_toggle, OPT_ATTRBAR_MENU_PATH);
       GEDA_OBJECT_SET_DATA(MENU_BAR, gridbar_toggle,  OPT_GRIDBAR_MENU_PATH);
@@ -1161,6 +1165,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
       geda_container_add(toggle_menu, addbar_toggle);
       geda_container_add(toggle_menu, zoombar_toggle);
       geda_container_add(toggle_menu, symbar_toggle);
+      geda_container_add(toggle_menu, modbar_toggle);
       geda_container_add(toggle_menu, editbar_toggle);
       geda_container_add(toggle_menu, attribar_toggle);
       geda_container_add(toggle_menu, gridbar_toggle);
@@ -1171,6 +1176,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
       gtk_widget_set_tooltip_text(addbar_toggle,  _("Toggle visibility of the Add toolbar"));
       gtk_widget_set_tooltip_text(zoombar_toggle,  _("Toggle visibility of the Zoom toolbar"));
       gtk_widget_set_tooltip_text(symbar_toggle,   _("Toggle visibility of the Symbol toolbar"));
+      gtk_widget_set_tooltip_text(modbar_toggle,   _("Toggle visibility of the Modify toolbar"));
       gtk_widget_set_tooltip_text(editbar_toggle,  _("Toggle visibility of the Edit toolbar"));
       gtk_widget_set_tooltip_text(attribar_toggle,  _("Toggle visibility of the Attributes toolbar"));
       gtk_widget_set_tooltip_text(gridbar_toggle,   _("Toggle visibility of the Grid/Snap toolbar"));
@@ -1181,6 +1187,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
       gtk_widget_set_has_tooltip (addbar_toggle, show_menu_tips);
       gtk_widget_set_has_tooltip (zoombar_toggle, show_menu_tips);
       gtk_widget_set_has_tooltip (symbar_toggle, show_menu_tips);
+      gtk_widget_set_has_tooltip (modbar_toggle, show_menu_tips);
       gtk_widget_set_has_tooltip (editbar_toggle, show_menu_tips);
       gtk_widget_set_has_tooltip (attribar_toggle, show_menu_tips);
       gtk_widget_set_has_tooltip (gridbar_toggle, show_menu_tips);
@@ -1275,6 +1282,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
       GTK_CALLBACK_TOGGLED (addbar_toggle,   x_window_add_toolbar_toggle,       w_current);
       GTK_CALLBACK_TOGGLED (zoombar_toggle,  x_window_zoom_toolbar_toggle,      w_current);
       GTK_CALLBACK_TOGGLED (symbar_toggle,   x_window_symbol_toolbar_toggle,    w_current);
+      GTK_CALLBACK_TOGGLED (modbar_toggle,   x_window_modify_toolbar_toggle,    w_current);
       GTK_CALLBACK_TOGGLED (editbar_toggle,  x_window_edit_toolbar_toggle,      w_current);
       GTK_CALLBACK_TOGGLED (attribar_toggle, x_window_attribute_toolbar_toggle, w_current);
       GTK_CALLBACK_TOGGLED (gridbar_toggle,  x_window_gridsnap_toolbar_toggle,  w_current);
