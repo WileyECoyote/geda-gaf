@@ -72,6 +72,7 @@ struct _GschemToplevel {
   GtkWidget *attribute_handlebox;
   GtkWidget *edit_handlebox;
   GtkWidget *grid_snap_handlebox;
+  GtkWidget *modify_handlebox;
   GtkWidget *page_handlebox;
   GtkWidget *select_handlebox;
   GtkWidget *standard_handlebox;

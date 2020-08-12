@@ -171,6 +171,7 @@ const char *IDS_Menu_Toolbar_Toggles[] = {
             IDS_MENU_TB_ATTRIB,
             IDS_MENU_TB_EDIT,
             IDS_MENU_TB_GRID_SNAP,
+            IDS_MENU_TB_MODIFY,
             IDS_MENU_TB_PAGE,
             IDS_MENU_TB_SELECT,
             IDS_MENU_TB_STANDARD,

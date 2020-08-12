@@ -116,6 +116,7 @@ typedef enum  { etb_new, etb_open, etb_save, etb_save_as, etb_close,
                 etb_edit_copy, etb_multi_copy, etb_move, etb_mirror, etb_rotate,
                 etb_edit_butes, etb_edit_color, etb_edit_text, etb_edit_slot,
                 etb_edit_pin, etb_edit_line, etb_edit_fill, etb_edit_arc,
+                etb_edit_array,
                 etb_attach, etb_detach, etb_show_value, etb_show_name,
                 etb_show_both, etb_visibilty, etb_show_hidden, etb_show_inherited,
                 etb_find_text, etb_hide_text, etb_show_specific, etb_auto_number,
@@ -126,7 +127,8 @@ typedef enum  { etb_new, etb_open, etb_save, etb_save_as, etb_close,
 
 /* Important: See IDS_Menu_Toolbar_Toggles in x_menu.c */
 const char* IDS_Toolbar_Names[] = {  /* ToolBar Name Strings */
-  "add-bar", "Attribute", "Edit", "GridSnap", "Page", "Select", "Standard", "Symbol", "Zoom",
+  "add-bar", "Attribute", "Edit", "GridSnap", "Modify", "Page", "Select",
+  "Standard", "Symbol", "Zoom",
   NULL
 };
 
@@ -233,6 +235,9 @@ static ToolbarStringData ToolbarStrings[] = {
   { ACTION(EDIT_LINE),          "Line",      TBTS_EDIT_LINE,          "Private",        TB_ICON_BITMAP, NULL},
   { ACTION(EDIT_FILL),          "Fill",      TBTS_EDIT_FILL,           GEDA_MAP(MESH),  TB_ICON_BITMAP, NULL},
   { ACTION(EDIT_ARC),           "Arcs",      TBTS_EDIT_ARC,           "geda-arc-edit",  TB_ICON_BITMAP, NULL},
+
+  /* Modify Toolbar */
+  { ACTION(EDIT_ARRAY),         "Array",     TBTS_EDIT_ARRAY,         "gschem-array",   TB_ICON_BITMAP, NULL},
 
   /* Attribute Toolbar */
   { ACTION(ATTRIB_ATTACH),      "Promote",   TBTS_ATTRIB_ATTACH,      "Private",                   TB_ICON_BITMAP, NULL},
@@ -1519,6 +1524,7 @@ void
 x_toolbars_init_left(GschemToplevel *w_current, GtkWidget *parent_container)
 {
   GtkWidget      *Edit_Toolbar;
+  GtkWidget      *Modify_Toolbar;
   GtkWidget      *Symbol_Toolbar;
   ToolBarWidgets *bar_widgets;
 
@@ -1559,6 +1565,32 @@ x_toolbars_init_left(GschemToplevel *w_current, GtkWidget *parent_container)
   x_toolbars_add_closer (w_current, w_current->symbol_handlebox, Symbol_Toolbar);
 
   TheToolBars = g_slist_append (TheToolBars, Symbol_Toolbar);
+
+  /* --------- Create and Populate the Modify Toolbar -------- */
+
+  w_current->modify_handlebox = x_toolbars_get_box_container(w_current);
+  GEDA_PACK_DOCKBOX (toolbox_DL, w_current->modify_handlebox, 0);
+
+  Modify_Toolbar = geda_toolbar_new (GTK_ORIENTATION_VERTICAL);
+
+  geda_set_container_border_width (Modify_Toolbar, 0);
+
+  if (w_current->handleboxes) {
+    geda_handle_widget_set_toolbar (w_current->modify_handlebox, Modify_Toolbar);
+    geda_handle_widget_set_handle_position (w_current->modify_handlebox, GTK_POS_TOP);
+  }
+
+  GSCHEM_TOOLBAR_BUTTON (Modify, etb_edit_array);
+
+  ANY_OBJECT_LIST = g_slist_append (ANY_OBJECT_LIST, TB_BUTTON ( etb_edit_array ));
+
+  gtk_widget_show (Modify_Toolbar);
+
+  SET_TOOLBAR_ID  (w_current->modify_handlebox, tb_Modify);
+  SET_TOOLBAR_WC  (w_current->modify_handlebox, w_current);
+  x_toolbars_add_closer (w_current, w_current->modify_handlebox, Modify_Toolbar);
+
+  TheToolBars = g_slist_append (TheToolBars, Modify_Toolbar);
 
   /* --------- Create and Populate the Edit Toolbar -------- */
 

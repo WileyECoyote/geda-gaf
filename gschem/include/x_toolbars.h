@@ -66,8 +66,8 @@
  *  string, these are used to save and restore toolbar states and reference
  *  menu strings, see IDS_Menu_Toolbar_Toggles in x_menu.c.
  */
-typedef enum { tb_Add,    tb_Attribute, tb_Edit,   tb_Grid_Snap,  tb_Page,
-               tb_Select, tb_Standard,  tb_Symbol, tb_Zoom
+typedef enum { tb_Add,  tb_Attribute, tb_Edit,     tb_Grid_Snap, tb_Modify,
+               tb_Page, tb_Select,    tb_Standard, tb_Symbol,    tb_Zoom
 
 } ID_GSCHEM_Toolbar;
 
@@ -204,6 +204,9 @@ typedef struct {
 #define TBTS_EDIT_LINE          "Edit line type"
 #define TBTS_EDIT_FILL          "Edit Hatch pattern"
 #define TBTS_EDIT_ARC           "Edit Arc parameters"
+
+  /* Modify Toolbar */
+#define TBTS_EDIT_ARRAY         "Create and array of objects"
 
   /* Attribute Toolbar */
 #define TBTS_ATTRIB_ATTACH      "Attach selected attribute"

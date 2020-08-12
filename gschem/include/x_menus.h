@@ -42,6 +42,7 @@
 #define IDS_MENU_TB_ATTRIB     "Attrib_ute"
 #define IDS_MENU_TB_EDIT       "_Edit"
 #define IDS_MENU_TB_GRID_SNAP  "_Grid Snap"
+#define IDS_MENU_TB_MODIFY     "_Modify"
 #define IDS_MENU_TB_PAGE       "_Page"
 #define IDS_MENU_TB_SELECT     "Se_lect"
 #define IDS_MENU_TB_STANDARD   "_Standard"
