@@ -1168,15 +1168,15 @@ x_toolbars_add_closer(GschemToplevel *w_current, GtkWidget *HandleBar, GtkWidget
     gtk_widget_show (x_image);
 
     /* Setup the signal handlers */
-    g_signal_connect (CloseButton,"pressed",
+    g_signal_connect (CloseButton, "pressed",
                       G_CALLBACK (On_Close_Handlebar),
                       w_current); /* not really needed since menu has embed ptr */
 
-    g_signal_connect (HandleBar,"child-attached",
+    g_signal_connect (HandleBar, "child-attached",
                       G_CALLBACK (On_Dock_ToolBar),
                       CloseButton);
 
-    g_signal_connect (HandleBar,"child-detached",
+    g_signal_connect (HandleBar, "child-detached",
                       G_CALLBACK (On_Float_ToolBar),
                       CloseButton);
 
