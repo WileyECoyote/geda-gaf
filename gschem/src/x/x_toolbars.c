@@ -1553,10 +1553,16 @@ x_toolbars_init_left(GschemToplevel *w_current, GtkWidget *parent_container)
   GSCHEM_TOOLBAR_BUTTON (Symbol, etb_unlock);
   GSCHEM_TOOLBAR_BUTTON (Symbol, etb_update);
 
+  gtk_toolbar_append_space (GTK_TOOLBAR(Symbol_Toolbar));
+
+  GSCHEM_TOOLBAR_BUTTON (Symbol, etb_edit_pin);
+
   ANY_OBJECT_LIST = g_slist_append (ANY_OBJECT_LIST, TB_BUTTON ( etb_edit_prop ));
   ANY_OBJECT_LIST = g_slist_append (ANY_OBJECT_LIST, TB_BUTTON ( etb_lock   ));
   ANY_OBJECT_LIST = g_slist_append (ANY_OBJECT_LIST, TB_BUTTON ( etb_unlock ));
   ANY_OBJECT_LIST = g_slist_append (ANY_OBJECT_LIST, TB_BUTTON ( etb_update ));
+
+  HAVE_PIN_LIST   = g_slist_append (HAVE_PIN_LIST,   TB_BUTTON ( etb_edit_pin  ));
 
   gtk_widget_show (Symbol_Toolbar);
 
@@ -1621,7 +1627,6 @@ x_toolbars_init_left(GschemToplevel *w_current, GtkWidget *parent_container)
 
   GSCHEM_TOOLBAR_BUTTON (Edit, etb_edit_text);
   GSCHEM_TOOLBAR_BUTTON (Edit, etb_edit_slot);
-  GSCHEM_TOOLBAR_BUTTON (Edit, etb_edit_pin);
   GSCHEM_TOOLBAR_BUTTON (Edit, etb_edit_line);
   GSCHEM_TOOLBAR_BUTTON (Edit, etb_edit_fill);
   GSCHEM_TOOLBAR_BUTTON (Edit, etb_edit_arc);
@@ -1638,7 +1643,6 @@ x_toolbars_init_left(GschemToplevel *w_current, GtkWidget *parent_container)
   TEXT_OBJECT_LIST  = g_slist_append (TEXT_OBJECT_LIST,  TB_BUTTON ( etb_edit_text ));
   HAVE_COMPLEX_LIST = g_slist_append (HAVE_COMPLEX_LIST, TB_BUTTON ( etb_edit_slot ));
 
-  HAVE_PIN_LIST     = g_slist_append (HAVE_PIN_LIST,   TB_BUTTON ( etb_edit_pin  ));
   CAN_ELINE_LIST    = g_slist_append (CAN_ELINE_LIST,  TB_BUTTON ( etb_edit_line ));
   CAN_HATCH_LIST    = g_slist_append (CAN_HATCH_LIST,  TB_BUTTON ( etb_edit_fill ));
   ANY_OBJECT_LIST   = g_slist_append (ANY_OBJECT_LIST, TB_BUTTON ( etb_edit_arc  ));

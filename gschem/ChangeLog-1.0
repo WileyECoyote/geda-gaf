@@ -1,3 +1,8 @@
+2020-08-13 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_toolbars.c: Rearrange buttons on tool bars; move the edit pin
+      button to the bottom of the Symbol_Toolbar.
+
 2020-08-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/gschem_toplevel.h: Add member modify_handlebox to toplevel.
