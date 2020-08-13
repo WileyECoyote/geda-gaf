@@ -1588,9 +1588,26 @@ x_toolbars_init_left(GschemToplevel *w_current, GtkWidget *parent_container)
     geda_handle_widget_set_handle_position (w_current->modify_handlebox, GTK_POS_TOP);
   }
 
-  GSCHEM_TOOLBAR_BUTTON (Modify, etb_edit_array);
+  GSCHEM_TOOLBAR_BUTTON (Modify, etb_edit_butes);
+  GSCHEM_TOOLBAR_BUTTON (Modify, etb_edit_text);
+  GSCHEM_TOOLBAR_BUTTON (Modify, etb_edit_color);
 
-  ANY_OBJECT_LIST = g_slist_append (ANY_OBJECT_LIST, TB_BUTTON ( etb_edit_array ));
+  gtk_toolbar_append_space (GTK_TOOLBAR(Modify_Toolbar));
+
+  GSCHEM_TOOLBAR_BUTTON (Modify, etb_edit_slot);
+  GSCHEM_TOOLBAR_BUTTON (Modify, etb_edit_line);
+  GSCHEM_TOOLBAR_BUTTON (Modify, etb_edit_fill);
+  GSCHEM_TOOLBAR_BUTTON (Modify, etb_edit_arc);
+
+  ANY_OBJECT_LIST   = g_slist_append (ANY_OBJECT_LIST, TB_BUTTON ( etb_edit_butes ));
+  ANY_OBJECT_LIST   = g_slist_append (ANY_OBJECT_LIST, TB_BUTTON ( etb_edit_color ));
+
+  TEXT_OBJECT_LIST  = g_slist_append (TEXT_OBJECT_LIST,  TB_BUTTON ( etb_edit_text ));
+  HAVE_COMPLEX_LIST = g_slist_append (HAVE_COMPLEX_LIST, TB_BUTTON ( etb_edit_slot ));
+
+  CAN_ELINE_LIST    = g_slist_append (CAN_ELINE_LIST,  TB_BUTTON ( etb_edit_line ));
+  CAN_HATCH_LIST    = g_slist_append (CAN_HATCH_LIST,  TB_BUTTON ( etb_edit_fill ));
+  ANY_OBJECT_LIST   = g_slist_append (ANY_OBJECT_LIST, TB_BUTTON ( etb_edit_arc  ));
 
   gtk_widget_show (Modify_Toolbar);
 
@@ -1619,35 +1636,16 @@ x_toolbars_init_left(GschemToplevel *w_current, GtkWidget *parent_container)
   GSCHEM_TOOLBAR_BUTTON (Edit, etb_move);
   GSCHEM_TOOLBAR_BUTTON (Edit, etb_mirror);
   GSCHEM_TOOLBAR_BUTTON (Edit, etb_rotate);
+  GSCHEM_TOOLBAR_BUTTON (Edit, etb_edit_array);
 
-  gtk_toolbar_append_space (GTK_TOOLBAR(Edit_Toolbar));
+  //gtk_toolbar_append_space (GTK_TOOLBAR(Edit_Toolbar));
 
-  GSCHEM_TOOLBAR_BUTTON (Edit, etb_edit_butes);
-  GSCHEM_TOOLBAR_BUTTON (Edit, etb_edit_color);
-
-  gtk_toolbar_append_space (GTK_TOOLBAR(Edit_Toolbar));
-
-  GSCHEM_TOOLBAR_BUTTON (Edit, etb_edit_text);
-  GSCHEM_TOOLBAR_BUTTON (Edit, etb_edit_slot);
-  GSCHEM_TOOLBAR_BUTTON (Edit, etb_edit_line);
-  GSCHEM_TOOLBAR_BUTTON (Edit, etb_edit_fill);
-  GSCHEM_TOOLBAR_BUTTON (Edit, etb_edit_arc);
-
-  ANY_OBJECT_LIST   = g_slist_append (ANY_OBJECT_LIST, TB_BUTTON ( etb_edit_copy  ));
-  ANY_OBJECT_LIST   = g_slist_append (ANY_OBJECT_LIST, TB_BUTTON ( etb_multi_copy ));
-  ANY_OBJECT_LIST   = g_slist_append (ANY_OBJECT_LIST, TB_BUTTON ( etb_move   ));
-  ANY_OBJECT_LIST   = g_slist_append (ANY_OBJECT_LIST, TB_BUTTON ( etb_mirror ));
-  ANY_OBJECT_LIST   = g_slist_append (ANY_OBJECT_LIST, TB_BUTTON ( etb_rotate ));
-
-  ANY_OBJECT_LIST   = g_slist_append (ANY_OBJECT_LIST, TB_BUTTON ( etb_edit_butes ));
-  ANY_OBJECT_LIST   = g_slist_append (ANY_OBJECT_LIST, TB_BUTTON ( etb_edit_color ));
-
-  TEXT_OBJECT_LIST  = g_slist_append (TEXT_OBJECT_LIST,  TB_BUTTON ( etb_edit_text ));
-  HAVE_COMPLEX_LIST = g_slist_append (HAVE_COMPLEX_LIST, TB_BUTTON ( etb_edit_slot ));
-
-  CAN_ELINE_LIST    = g_slist_append (CAN_ELINE_LIST,  TB_BUTTON ( etb_edit_line ));
-  CAN_HATCH_LIST    = g_slist_append (CAN_HATCH_LIST,  TB_BUTTON ( etb_edit_fill ));
-  ANY_OBJECT_LIST   = g_slist_append (ANY_OBJECT_LIST, TB_BUTTON ( etb_edit_arc  ));
+  ANY_OBJECT_LIST = g_slist_append (ANY_OBJECT_LIST, TB_BUTTON ( etb_edit_copy  ));
+  ANY_OBJECT_LIST = g_slist_append (ANY_OBJECT_LIST, TB_BUTTON ( etb_multi_copy ));
+  ANY_OBJECT_LIST = g_slist_append (ANY_OBJECT_LIST, TB_BUTTON ( etb_move   ));
+  ANY_OBJECT_LIST = g_slist_append (ANY_OBJECT_LIST, TB_BUTTON ( etb_mirror ));
+  ANY_OBJECT_LIST = g_slist_append (ANY_OBJECT_LIST, TB_BUTTON ( etb_rotate ));
+  ANY_OBJECT_LIST = g_slist_append (ANY_OBJECT_LIST, TB_BUTTON ( etb_edit_array ));
 
   gtk_widget_show (Edit_Toolbar);
 

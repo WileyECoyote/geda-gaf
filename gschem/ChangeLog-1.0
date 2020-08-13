@@ -1,9 +1,11 @@
 2020-08-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_toolbars.c: Rearrange buttons on tool bars; move the edit pin
-      button to the bottom of the Symbol_Toolbar. Save the modify_handlebox
-      state and hide the close button in x_toolbars_finalize. Remove unneeded
-      cast to GedaHandleBox in popup_activated.
+      button to the bottom of the Symbol_Toolbar, move edit attributes, edit
+      color, edit text edit slot, edit line, edit fill, and edit arc to the
+      Modify_Toolbar and edit array to the Edit_Toolbar. Save the state if
+      the modify handlebox and hide the close button in x_toolbars_finalize.
+      Remove unneeded cast to GedaHandleBox in popup_activated.
 
 2020-08-12 Wiley E. Hill <wileyhill@gmail.com>
 
