@@ -817,6 +817,7 @@ x_toolbars_finalize (GschemToplevel *w_current) {
     g_signal_emit_by_name(w_current->edit_handlebox,      "child-attached");
     g_signal_emit_by_name(w_current->grid_snap_handlebox, "child-attached");
     g_signal_emit_by_name(w_current->page_handlebox,      "child-attached");
+    g_signal_emit_by_name(w_current->modify_handlebox,    "child-attached");
     g_signal_emit_by_name(w_current->select_handlebox,    "child-attached");
     g_signal_emit_by_name(w_current->standard_handlebox,  "child-attached");
     g_signal_emit_by_name(w_current->symbol_handlebox,    "child-attached");
