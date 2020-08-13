@@ -922,7 +922,7 @@ static int popup_activated(GtkWidget *widget, IDS_HB_Popup_items* selection)
 
     switch ( WhichItem ) {
       case DockBar:
-        geda_handle_box_dock((GedaHandleBox*)ActiveToolBar.handlebox);
+        geda_handle_box_dock(ActiveToolBar.handlebox);
         break;
 
       case HideBar:
