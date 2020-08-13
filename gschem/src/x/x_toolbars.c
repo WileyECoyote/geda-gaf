@@ -74,7 +74,7 @@
 #define HAVE_PIN_LIST      bar_widgets->pin_selected
 #define TEXT_OBJECT_LIST   bar_widgets->text_selected
 
-#define TOOLBAR_RADIOS bar_widgets->toolbar_radio_list   /* Single list of toolbar radios */
+#define TOOLBAR_RADIOS bar_widgets->toolbar_radio_list    /*!< Single list of toolbar radios */
 
 /** \defgroup toolbars-module Toolbars Module
  *  @{\brief This group contains functions to the toolbars
