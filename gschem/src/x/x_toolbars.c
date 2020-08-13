@@ -540,6 +540,7 @@ x_toolbars_save_state(GschemToplevel *w_current)
     SaveBarProperties(w_current->attribute_handlebox);
     SaveBarProperties(w_current->edit_handlebox);
     SaveBarProperties(w_current->grid_snap_handlebox);
+    SaveBarProperties(w_current->modify_handlebox);
     SaveBarProperties(w_current->page_handlebox);
     SaveBarProperties(w_current->select_handlebox);
     SaveBarProperties(w_current->standard_handlebox);

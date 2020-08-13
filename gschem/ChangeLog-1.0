@@ -1,7 +1,8 @@
 2020-08-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_toolbars.c: Rearrange buttons on tool bars; move the edit pin
-      button to the bottom of the Symbol_Toolbar.
+      button to the bottom of the Symbol_Toolbar. Save the modify_handlebox
+      state.
 
 2020-08-12 Wiley E. Hill <wileyhill@gmail.com>
 
