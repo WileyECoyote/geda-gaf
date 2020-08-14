@@ -195,7 +195,9 @@ typedef struct {
 #define TBTS_EDIT_MIRROR        "Mirror objects"
 #define TBTS_EDIT_OFFSET        "Offset selected objects"
 #define TBTS_EDIT_ROTATE_LEFT   "Rotate objects left"
+#define TBTS_EDIT_ARRAY         "Create and array of objects"
 
+  /* Modify Toolbar */
 #define TBTS_EDIT_ATTRIB        "Edit Attribute properties"
 #define TBTS_EDIT_COLOR         "Change Colors"
 
@@ -205,9 +207,6 @@ typedef struct {
 #define TBTS_EDIT_LINE          "Edit line type"
 #define TBTS_EDIT_FILL          "Edit Hatch pattern"
 #define TBTS_EDIT_ARC           "Edit Arc parameters"
-
-  /* Modify Toolbar */
-#define TBTS_EDIT_ARRAY         "Create and array of objects"
 
   /* Attribute Toolbar */
 #define TBTS_ATTRIB_ATTACH      "Attach selected attribute"
