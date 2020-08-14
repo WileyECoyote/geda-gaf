@@ -113,8 +113,8 @@ typedef enum  { etb_new, etb_open, etb_save, etb_save_as, etb_close,
                 etb_view_redraw, etb_zoom_pan, etb_zoom_box, etb_zoom_select,
                 etb_zoom_extents, etb_zoom_in, etb_zoom_out, etb_zoom_all,
                 etb_edit_prop, etb_translate, etb_lock, etb_unlock, etb_update,
-                etb_edit_copy, etb_multi_copy, etb_move, etb_mirror, etb_rotate,
-                etb_edit_array,
+                etb_edit_copy, etb_multi_copy, etb_move, etb_mirror, etb_offset,
+                etb_rotate, etb_edit_array,
                 etb_edit_butes, etb_edit_color, etb_edit_text, etb_edit_slot,
                 etb_edit_pin, etb_edit_line, etb_edit_fill, etb_edit_arc,
                 etb_attach, etb_detach, etb_show_value, etb_show_name,
@@ -225,6 +225,7 @@ static ToolbarStringData ToolbarStrings[] = {
   { ACTION(EDIT_MCOPY),         "Multi",     TBTS_EDIT_MCOPY,         "Private",        TB_ICON_BITMAP, NULL},
   { ACTION(EDIT_MOVE),          "Move",      TBTS_EDIT_MOVE,          "geda-move",      TB_ICON_BITMAP, NULL},
   { ACTION(EDIT_MIRROR),        "Mirror",    TBTS_EDIT_MIRROR,        "Private",        TB_ICON_BITMAP, NULL},
+  { ACTION(EDIT_OFFSET),        "Offset",    TBTS_EDIT_OFFSET,        "geda-offset",    TB_ICON_BITMAP, NULL},
   { ACTION(EDIT_ROTATE_LEFT),   "Rotate",    TBTS_EDIT_ROTATE_LEFT,   "Private",        TB_ICON_BITMAP, NULL},
   { ACTION(EDIT_ARRAY),         "Array",     TBTS_EDIT_ARRAY,         "gschem-array",   TB_ICON_BITMAP, NULL},
 
@@ -1636,6 +1637,7 @@ x_toolbars_init_left(GschemToplevel *w_current, GtkWidget *parent_container)
   GSCHEM_TOOLBAR_BUTTON (Edit, etb_multi_copy);
   GSCHEM_TOOLBAR_BUTTON (Edit, etb_move);
   GSCHEM_TOOLBAR_BUTTON (Edit, etb_mirror);
+  GSCHEM_TOOLBAR_BUTTON (Edit, etb_offset);
   GSCHEM_TOOLBAR_BUTTON (Edit, etb_rotate);
   GSCHEM_TOOLBAR_BUTTON (Edit, etb_edit_array);
 
@@ -1645,6 +1647,7 @@ x_toolbars_init_left(GschemToplevel *w_current, GtkWidget *parent_container)
   ANY_OBJECT_LIST = g_slist_append (ANY_OBJECT_LIST, TB_BUTTON ( etb_multi_copy ));
   ANY_OBJECT_LIST = g_slist_append (ANY_OBJECT_LIST, TB_BUTTON ( etb_move   ));
   ANY_OBJECT_LIST = g_slist_append (ANY_OBJECT_LIST, TB_BUTTON ( etb_mirror ));
+  ANY_OBJECT_LIST = g_slist_append (ANY_OBJECT_LIST, TB_BUTTON ( etb_offset ));
   ANY_OBJECT_LIST = g_slist_append (ANY_OBJECT_LIST, TB_BUTTON ( etb_rotate ));
   ANY_OBJECT_LIST = g_slist_append (ANY_OBJECT_LIST, TB_BUTTON ( etb_edit_array ));
 
