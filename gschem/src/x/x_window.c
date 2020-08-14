@@ -1541,10 +1541,12 @@ void x_window_standard_toolbar_toggle(GtkWidget *widget, GschemToplevel *w_curre
  */
 void x_window_select_toolbar_toggle(GtkWidget *widget, GschemToplevel *w_current)
 {
-  if (geda_check_menu_item_get_active(GEDA_CHECK_MENU_ITEM(widget)))
+  if (geda_check_menu_item_get_active(GEDA_CHECK_MENU_ITEM(widget))) {
     gtk_widget_show(w_current->select_handlebox);
-  else
+  }
+  else {
     gtk_widget_hide(w_current->select_handlebox);
+  }
 }
 
 /*!
