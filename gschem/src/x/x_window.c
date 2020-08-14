@@ -1077,16 +1077,17 @@ Page *x_window_open_page(GschemToplevel *w_current, const char *filename)
   return page;
 }
 
-/*! \brief Closes a page.
- *  \par Function Description
+/*!
+ * \brief Closes a page.
+ * \par Function Description
  *  This function closes the page <B>page</B> of toplevel
  *  <B>toplevel</B>.
  *
  *  If necessary, the current page of <B>toplevel</B> is changed to
  *  the next valid page or to a new untitled page.
  *
- *  \param [in] w_current The toplevel environment.
- *  \param [in] page      The page to close.
+ * \param [in] w_current The toplevel environment.
+ * \param [in] page      The page to close.
  */
 void x_window_close_page (GschemToplevel *w_current, Page *page)
 {
@@ -1187,8 +1188,9 @@ void x_window_close_page (GschemToplevel *w_current, Page *page)
   }
 }
 
-/*! \brief Saves a page to a file.
- *  \par Function Description
+/*!
+ * \brief Saves a page to a file.
+ * \par Function Description
  *  This function saves the page <B>page</B> to a file named
  *  <B>filename</B>.
  *
@@ -1199,10 +1201,11 @@ void x_window_close_page (GschemToplevel *w_current, Page *page)
  *  <B>page</B> may not be the current page of <B>toplevel</B>. The
  *  current page of <B>toplevel</B> is not affected by this function.
  *
- *  \param [in] w_current The toplevel environment.
- *  \param [in] page      The page to save.
- *  \param [in] filename  The name of the file in which to save page.
- *  \returns 1 on success, 0 otherwise.
+ * \param [in] w_current The toplevel environment.
+ * \param [in] page      The page to save.
+ * \param [in] filename  The name of the file in which to save page.
+ *
+ * \returns 1 on success, 0 otherwise.
  */
 int x_window_save_page (GschemToplevel *w_current, Page *page, const char *filename)
 {
@@ -1262,8 +1265,9 @@ int x_window_save_page (GschemToplevel *w_current, Page *page, const char *filen
   return result;
 }
 
-/*! \brief Changes the current page.
- *  \par Function Description
+/*!
+ * \brief Changes the current page.
+ * \par Function Description
  *  This function displays the specified page <B>page</B> in the
  *  window attached to <B>toplevel</B>.
  *
@@ -1272,8 +1276,8 @@ int x_window_save_page (GschemToplevel *w_current, Page *page, const char *filen
  *
  *  <B>page</B> has to be in the list of Pages attached to <B>toplevel</B>.
  *
- *  \param [in] w_current The toplevel environment.
- *  \param [in] page      The page to become current page.
+ * \param [in] w_current The toplevel environment.
+ * \param [in] page      The page to become current page.
  */
 void x_window_set_current_page (GschemToplevel *w_current, Page *page)
 {
@@ -1317,16 +1321,17 @@ void x_window_set_scroll_visibility(GschemToplevel *w_current)
   }
 }
 
-/*! \brief Set the contraints for the current page.
- *  \par Function Description
+/*!
+ * \brief Set the contraints for the current page.
+ * \par Function Description
  *  This function will set the current page constraints.
  *
- *  \param [in]     w_current  The toplevel environment.
- *  \param [in,out] page       The Page object to set constraints on.
- *  \param [in]     xmin       The minimum x coordinate for the page.
- *  \param [in]     xmax       The maximum x coordinate for the page.
- *  \param [in]     ymin       The minimum y coordinate for the page.
- *  \param [in]     ymax       The maximum y coordinate for the page.
+ * \param [in]     w_current  The toplevel environment.
+ * \param [in,out] page       The Page object to set constraints on.
+ * \param [in]     xmin       The minimum x coordinate for the page.
+ * \param [in]     xmax       The maximum x coordinate for the page.
+ * \param [in]     ymin       The minimum y coordinate for the page.
+ * \param [in]     ymax       The maximum y coordinate for the page.
  */
 void x_window_setup_page(GschemToplevel *w_current, Page *page,
                          int xmin, int xmax, int ymin, int ymax)
@@ -1363,13 +1368,13 @@ void x_window_setup_page(GschemToplevel *w_current, Page *page,
   page->to_world_y_constant = (f_bottom - f_top) / f_height;
 }
 
-/*! \brief Set filename as gschem window title
- *
- *  \par Function Description
+/*!
+ * \brief Set filename as gschem window title
+ * \par Function Description
  *  Set filename as gschem window title using the Qt HID
  *  format style.
  *
- *  \param [in] w_current GschemToplevel structure
+ * \param [in] w_current GschemToplevel structure
  */
 void x_window_update_title(GschemToplevel *w_current)
 {
@@ -1475,9 +1480,9 @@ void x_window_attribute_toolbar_toggle(GtkWidget *widget, GschemToplevel *w_curr
 /*!
  * \brief View toggle Grid/Snap toolbar
  * \par Function Description
- * This function toggles the visibility of the Grid/Snap toobar.
- * Note: the function actually toggles visibility of the handlebox
- * containing the toolbar.
+ *  This function toggles the visibility of the Grid/Snap toobar.
+ *  Note: the function actually toggles visibility of the handlebox
+ *  containing the toolbar.
  */
 void x_window_gridsnap_toolbar_toggle(GtkWidget *widget, GschemToplevel *w_current)
 {
@@ -1490,9 +1495,9 @@ void x_window_gridsnap_toolbar_toggle(GtkWidget *widget, GschemToplevel *w_curre
 /*!
  * \brief View toggle Edit toolbar
  * \par Function Description
- * This function toggles the visibility of the Edit toobar.
- * Note the function actually toggle visibility of the handlebox
- * containing the toolbar.
+ *  This function toggles the visibility of the Edit toobar.
+ *  Note the function actually toggle visibility of the handlebox
+ *  containing the toolbar.
  */
 void x_window_edit_toolbar_toggle(GtkWidget *widget, GschemToplevel *w_current)
 {
@@ -1505,9 +1510,9 @@ void x_window_edit_toolbar_toggle(GtkWidget *widget, GschemToplevel *w_current)
 /*!
  * \brief View toggle Page toolbar
  * \par Function Description
- * This function toggles the visibility of the Page toobar.
- * Note the function actually toggle visibility of the handlebox
- * containing the toolbar.
+ *  This function toggles the visibility of the Page toobar.
+ *  Note the function actually toggle visibility of the handlebox
+ *  containing the toolbar.
  */
 void x_window_page_toolbar_toggle(GtkWidget *widget, GschemToplevel *w_current)
 {
@@ -1520,9 +1525,9 @@ void x_window_page_toolbar_toggle(GtkWidget *widget, GschemToplevel *w_current)
 /*!
  * \brief View toggle standard toolbar
  * \par Function Description
- * This function toggles the visibility of the Standard toobar.
- * Note the function actually toggle visibility of the handlebox
- * containing the toolbar.
+ *  This function toggles the visibility of the Standard toobar.
+ *  Note the function actually toggle visibility of the handlebox
+ *  containing the toolbar.
  */
 void x_window_standard_toolbar_toggle(GtkWidget *widget, GschemToplevel *w_current)
 {
@@ -1535,9 +1540,9 @@ void x_window_standard_toolbar_toggle(GtkWidget *widget, GschemToplevel *w_curre
 /*!
  * \brief View toggle selection toolbar
  * \par Function Description
- * This function toggles the visibility of the Select toobar.
- * Note the function actually toggle visibility of the handlebox
- * containing the toolbar.
+ *  This function toggles the visibility of the Select toobar.
+ *  Note the function actually toggle visibility of the handlebox
+ *  containing the toolbar.
  */
 void x_window_select_toolbar_toggle(GtkWidget *widget, GschemToplevel *w_current)
 {
@@ -1552,9 +1557,9 @@ void x_window_select_toolbar_toggle(GtkWidget *widget, GschemToplevel *w_current
 /*!
  * \brief View toggle Symbol toolbar
  * \par Function Description
- * This function toggles the visibility of the Symbol toobar.
- * Note the function actually toggle visibility of the handlebox
- * containing the toolbar.
+ *  This function toggles the visibility of the Symbol toobar.
+ *  Note the function actually toggle visibility of the handlebox
+ *  containing the toolbar.
  */
 void x_window_symbol_toolbar_toggle(GtkWidget *widget, GschemToplevel *w_current)
 {
@@ -1569,9 +1574,9 @@ void x_window_symbol_toolbar_toggle(GtkWidget *widget, GschemToplevel *w_current
 /*!
  * \brief View toggle Modify toolbar
  * \par Function Description
- * This function toggles the visibility of the Modify toobar.
- * Note the function actually toggle visibility of the handlebox
- * containing the toolbar.
+ *  This function toggles the visibility of the Modify toobar.
+ *  Note the function actually toggle visibility of the handlebox
+ *  containing the toolbar.
  */
 void x_window_modify_toolbar_toggle(GtkWidget *widget, GschemToplevel *w_current)
 {
@@ -1586,9 +1591,9 @@ void x_window_modify_toolbar_toggle(GtkWidget *widget, GschemToplevel *w_current
 /*!
  * \brief View toggle Zoom toolbar
  * \par Function Description
- * This function toggles the visibility of the Zoom toobar.
- * Note the function actually toggle visibility of the handlebox
- * containing the toolbar
+ *  This function toggles the visibility of the Zoom toobar.
+ *  Note the function actually toggle visibility of the handlebox
+ *  containing the toolbar
  */
 void x_window_zoom_toolbar_toggle(GtkWidget *widget, GschemToplevel *w_current)
 {
@@ -1603,9 +1608,9 @@ void x_window_zoom_toolbar_toggle(GtkWidget *widget, GschemToplevel *w_current)
 /*!
  * \brief View toggle Zoom toolbar
  * \par Function Description
- * This function toggles the visibility of the Zoom toobar.
- * Note the function actually toggle visibility of the handlebox
- * containing the toolbar
+ *  This function toggles the visibility of the Zoom toobar.
+ *  Note the function actually toggle visibility of the handlebox
+ *  containing the toolbar
  */
 void x_window_toolbar_tips_toggle(GtkWidget *widget, GschemToplevel *w_current)
 {
