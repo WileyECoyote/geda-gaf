@@ -1218,10 +1218,12 @@ x_toolbars_init_window(GschemToplevel *w_current)
   HAVE_PIN_LIST      = NULL;
   TEXT_OBJECT_LIST   = NULL;
 
-  if (w_current->ui_index > -1)
+  if (w_current->ui_index > -1) {
     ui_list = g_slist_insert (ui_list, bar_widgets, w_current->ui_index);
-  else
+  }
+  else {
     ui_list = g_slist_append (ui_list, bar_widgets);
+  }
 
   x_toolbars_load_icons(w_current);
 }
