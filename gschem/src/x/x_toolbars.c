@@ -925,7 +925,7 @@ static int popup_activated(GtkWidget *widget, IDS_HB_Popup_items* selection)
         break;
 
       case HideBar:
-        do_Hide_HandleBox((GedaHandleBox*)ActiveToolBar.handlebox);
+        do_Hide_HandleBox(ActiveToolBar.handlebox);
         break;
 
       case MakeHorizontal:
