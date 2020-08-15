@@ -864,7 +864,6 @@ msgstr "ВНИМАНИЕ: Не превеждайте с изключване!\n
 
 # VNIMANIE: Vklyuchvane na shtrakvane i prodŭlzhavane na prevoda
 #: gschem/src/iface/i_command.c:4365
-#, fuzzy
 msgid "WARNING: Turning snap on and continuing with translation.\n"
 msgstr "ВНИМАНИЕ: Включване на щракване и продължаване на превода.\n"
 
@@ -883,29 +882,34 @@ msgstr ""
 "ВНИМАНИЕ: Ако превеждате символ към произхода, размерът на решетката за "
 "щракване трябва да бъде зададен на 100\n"
 
+# Grid OFF
 #: gschem/src/iface/i_command.c:4584
 msgid "Grid OFF\n"
-msgstr ""
+msgstr "Решетка изключена\n"
 
+# Dot grid activated; Tochkova reshetka e aktivirana
 #: gschem/src/iface/i_command.c:4585
 msgid "Dot grid activated\n"
-msgstr ""
+msgstr "Точкова решетка е активирана\n"
 
+# Mesh grid activated; Mrezhovata mrezha e aktivirana
 #: gschem/src/iface/i_command.c:4586
 msgid "Mesh grid activated\n"
-msgstr ""
+msgstr "Мрежовата мрежа е активирана\n"
 
+# Snap OFF (CAUTION!)
 #: gschem/src/iface/i_command.c:4665
 msgid "Snap OFF (CAUTION!)\n"
-msgstr ""
+msgstr "Щракнете OFF (ВНИМАНИЕ!)\n"
 
+# Snap ON; Prekŭsnete se
 #: gschem/src/iface/i_command.c:4671
 msgid "Snap ON\n"
-msgstr ""
+msgstr "Прекъснете се\n"
 
 #: gschem/src/iface/i_command.c:4676
 msgid "Snap back to the grid (CAUTION!)\n"
-msgstr ""
+msgstr "Върнете се обратно към мрежата (ВНИМАНИЕ!)\n"
 
 #: gschem/src/iface/i_command.c:4701
 msgid "Rubber band mode is OFF\n"
@@ -4539,9 +4543,8 @@ msgid "_New"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2087
-#, fuzzy
 msgid "Create a new file"
-msgstr "Създаване провали"
+msgstr "ССъздайте нов файл"
 
 #: gschem/etc/system-gschemrc.scm:2088 gschem/etc/system-gschemrc.scm:2297
 msgid "_Open..."
