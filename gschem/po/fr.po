@@ -769,9 +769,8 @@ msgid "WARNING: Do not translate with snap off!\n"
 msgstr "ATTENTION : ne translatez pas quand le snap est désactivé !\n"
 
 #: gschem/src/iface/i_command.c:4365
-#, fuzzy
 msgid "WARNING: Turning snap on and continuing with translation.\n"
-msgstr "ATTENTION : activation du snap et poursuite de la translation.\n"
+msgstr "AVERTISSEMENT: activation de l'accrochage et poursuite de la traduction.\n"
 
 #: gschem/src/iface/i_command.c:4371
 msgid "WARNING: Snap grid size is not equal to 100!\n"
@@ -4499,9 +4498,8 @@ msgstr "_Nouveau"
 
 # Creating a new file
 #: gschem/etc/system-gschemrc.scm:2087
-#, fuzzy
 msgid "Create a new file"
-msgstr "Création d'un nouveau fichier"
+msgstr "Créer un nouveau fichier"
 
 #: gschem/etc/system-gschemrc.scm:2088 gschem/etc/system-gschemrc.scm:2297
 msgid "_Open..."
