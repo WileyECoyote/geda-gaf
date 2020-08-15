@@ -4543,11 +4543,10 @@ msgstr ""
 msgid "_New"
 msgstr ""
 
-# Create New Session
+# Create a new file
 #: gschem/etc/system-gschemrc.scm:2087
-#, fuzzy
 msgid "Create a new file"
-msgstr "צור מושב חדש"
+msgstr "צור קובץ חדש"
 
 #: gschem/etc/system-gschemrc.scm:2088 gschem/etc/system-gschemrc.scm:2297
 msgid "_Open..."
