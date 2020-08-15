@@ -14,6 +14,8 @@
 
     * po/he.po: Update Hebrew translations.
 
+    * po/hu.po: Update Hungarian translations.
+
 2020-08-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_toolbars.c: Reseqence enumerations; move etb_edit_array to the

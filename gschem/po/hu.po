@@ -4455,11 +4455,10 @@ msgstr ""
 msgid "_New"
 msgstr "_Új"
 
-# Creating new file
+# Create a new file
 #: gschem/etc/system-gschemrc.scm:2087
-#, fuzzy
 msgid "Create a new file"
-msgstr "teremt Új fájl"
+msgstr "Hozzon létre egy új fájlt"
 
 #: gschem/etc/system-gschemrc.scm:2088 gschem/etc/system-gschemrc.scm:2297
 msgid "_Open..."
