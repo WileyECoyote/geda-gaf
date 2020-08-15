@@ -775,11 +775,9 @@ msgid "WARNING: Do not translate with snap off!\n"
 msgstr "ATTENZIONE: Non effettuare la conversione in modalità snap off!\n"
 
 #: gschem/src/iface/i_command.c:4365
-#, fuzzy
 msgid "WARNING: Turning snap on and continuing with translation.\n"
 msgstr ""
-"ATTENZIONE: Sei in modalità snap off; passa prima in modalità snap on e poi "
-"continua con la conversione.\n"
+"ATTENZIONE: Attivazione dello snap e prosecuzione della traduzione.\n"
 
 #: gschem/src/iface/i_command.c:4371
 msgid "WARNING: Snap grid size is not equal to 100!\n"
@@ -4481,11 +4479,10 @@ msgstr "Crea e modifica schemi elettrici e simboli con gschem"
 msgid "_New"
 msgstr "_Nuovo"
 
-# Creating new file
+# Creating a new file
 #: gschem/etc/system-gschemrc.scm:2087
-#, fuzzy
 msgid "Create a new file"
-msgstr "Creazione nuovo file"
+msgstr "Crea un nuovo file"
 
 #: gschem/etc/system-gschemrc.scm:2088 gschem/etc/system-gschemrc.scm:2297
 msgid "_Open..."
