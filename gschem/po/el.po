@@ -537,64 +537,67 @@ msgstr "gEDA/gschem έκδοση"
 msgid "but you have a version"
 msgstr "αλλά έχετε μια έκδοση"
 
+# Vevaiotheíte óti échete to pio prósfato archeío rc
 #: gschem/src/guile/g_rc.c:198
 msgid "Please be sure that you have the latest rc file"
-msgstr ""
+msgstr "Βεβαιωθείτε ότι έχετε το πιο πρόσφατο αρχείο rc"
 
+# file; archeío
 #: gschem/src/guile/g_rc.c:205 gschem/src/x/x_image.c:537
 msgid "file"
-msgstr ""
+msgstr "αρχείο"
 
+# Mi énkyri timí, to zoom-gain den boreí na eínai midén, elénxte tin katachórisi sto archeío rc
 #: gschem/src/guile/g_rc.c:731
 #, c-format
 msgid "Invalid value, zoom-gain cannot be zero, check entry in rc file\n"
-msgstr ""
+msgstr "Μη έγκυρη τιμή, το zoom-gain δεν μπορεί να είναι μηδέν, ελέγξτε την καταχώριση στο αρχείο rc\n"
 
 #: gschem/src/guile/g_rc.c:736
 #, c-format
 msgid "Invalid type assignment, check zoom-gain entry in rc file\n"
-msgstr ""
+msgstr "Μη έγκυρη αντιστοίχιση τύπου, ελέγξτε την καταχώρηση zoom-gain στο αρχείο rc\n"
 
 #: gschem/src/guile/g_rc.c:737 gschem/src/guile/g_rc.c:1296
 #: gschem/src/guile/g_rc.c:1442 gschem/src/guile/g_rc.c:2038
 msgid "Continuing with default value"
-msgstr ""
+msgstr "Συνέχιση με προεπιλεγμένη τιμή"
 
 #: gschem/src/guile/g_rc.c:817
 #, c-format
 msgid "Invalid type assignment, check logging entry in rc file\n"
-msgstr ""
+msgstr "Μη έγκυρη αντιστοίχιση τύπου, ελέγξτε καταχώριση καταγραφής σε αρχείο rc\n"
 
 #: gschem/src/guile/g_rc.c:1290
 #, c-format
 msgid "Invalid value, snap-size cannot be zero, check entry rc file\n"
-msgstr ""
+msgstr "Μη έγκυρη τιμή, το snap-size δεν μπορεί να είναι μηδέν, ελέγξτε την καταχώριση του αρχείου rc\n"
 
 #: gschem/src/guile/g_rc.c:1295
 #, c-format
 msgid "Invalid type assignment, check snap-size entry in rc file\n"
-msgstr ""
+msgstr "Μη έγκυρη αντιστοίχιση τύπου, ελέγξτε την καταχώρηση snap-size στο αρχείο rc\n"
 
 #: gschem/src/guile/g_rc.c:1436
 #, c-format
 msgid "Invalid value, bus-ripper-size cannot be zero, check entry rc file\n"
-msgstr ""
+msgstr "Μη έγκυρη τιμή, το μέγεθος bus-ripper δεν μπορεί να είναι μηδέν, ελέγξτε την καταχώριση αρχείου rc\n"
 
 #: gschem/src/guile/g_rc.c:1441
 #, c-format
 msgid "Invalid type assignment, check bus-ripper-size entry in rc file\n"
-msgstr ""
+msgstr "Μη έγκυρη αντιστοίχιση τύπου, ελέγξτε την καταχώρηση μεγέθους bus-ripper σε αρχείο rc\n"
 
 #: gschem/src/guile/g_rc.c:2032
 #, c-format
-msgid ""
+msgid "\n"
 "Can not scroll 0 steps, invalid scrollpan-steps, check entry in rc file\n"
-msgstr ""
+msgstr "Δεν είναι δυνατή η κύλιση 0 βημάτων, μη έγκυρων βημάτων κύλισης, ελέγξτε την καταχώριση στο αρχείο rc"
 
 #: gschem/src/guile/g_rc.c:2037
 #, c-format
 msgid "Invalid type assignment, check scrollpan-steps entry in rc file\n"
-msgstr ""
+msgstr "Μη έγκυρη αντιστοίχιση τύπου, ελέγξτε την καταχώρηση των βημάτων κύλισης στο αρχείο rc\n"
 
 #: gschem/src/guile/g_rc.c:2084
 msgid "Invalid zoom factor"
@@ -611,7 +614,7 @@ msgstr "Δεν θα μπορούσε να ανοίξει την ιστοσελί
 
 #: gschem/src/guile/g_window.c:146
 msgid "Found invalid gschem window smob ~S"
-msgstr ""
+msgstr "Βρέθηκε μη έγκυρο sms παραθύρου gschem ~S"
 
 # current value of
 #: gschem/src/iface/i_command.c:137 gschem/src/iface/i_command.c:5355
@@ -4482,7 +4485,6 @@ msgstr "_Νέο"
 
 # Create a new file
 #: gschem/etc/system-gschemrc.scm:2087
-#, fuzzy
 msgid "Create a new file"
 msgstr "Δημιουργία νέου αρχείου"
 
