@@ -768,9 +768,8 @@ msgid "WARNING: Do not translate with snap off!\n"
 msgstr "WAARSKUWING: Moenie vertaal met snap af!\n"
 
 #: gschem/src/iface/i_command.c:4365
-#, fuzzy
 msgid "WARNING: Turning snap on and continuing with translation.\n"
-msgstr "WAARSKUWING: Draai snap op en voort te gaan met vertaal.\n"
+msgstr "WAARSKUWING: Skakel aan en gaan voort met vertaling.\n"
 
 #: gschem/src/iface/i_command.c:4371
 msgid "WARNING: Snap grid size is not equal to 100!\n"
@@ -4494,7 +4493,7 @@ msgstr "Maak onlangs verkry skematiese of simbool lêers"
 
 #: gschem/etc/system-gschemrc.scm:2093 gschem/etc/system-gschemrc.scm:2300
 msgid "_Save"
-msgstr "/Stoor"
+msgstr "Stoor"
 
 #: gschem/etc/system-gschemrc.scm:2094 gschem/etc/system-gschemrc.scm:2301
 msgid "Save _As..."
@@ -4672,7 +4671,7 @@ msgstr "Breek 'n lineêre voorwerp in aparte voorwerpe"
 
 #: gschem/etc/system-gschemrc.scm:2141
 msgid "E_xtend"
-msgstr "/Zoem Uitmate"
+msgstr "Zoem Uitmate"
 
 #: gschem/etc/system-gschemrc.scm:2144
 msgid "_Edit..."
@@ -4885,7 +4884,7 @@ msgstr "Ontsluit gekies voorwerpe"
 
 #: gschem/etc/system-gschemrc.scm:2216
 msgid "_Redraw"
-msgstr "/Redisplay"
+msgstr "_Redisplay"
 
 # Redraw the current window
 #: gschem/etc/system-gschemrc.scm:2216
@@ -4912,7 +4911,7 @@ msgstr "Kyk na vorige"
 
 #: gschem/etc/system-gschemrc.scm:2220
 msgid "Zoom _All"
-msgstr "/Zoem Uit"
+msgstr "Zoem Uit"
 
 #: gschem/etc/system-gschemrc.scm:2220
 msgid "Zoom to the limits of the drawing area"
@@ -4936,7 +4935,7 @@ msgstr "Zoem uit"
 
 #: gschem/etc/system-gschemrc.scm:2225
 msgid "Zoom _Mag"
-msgstr "/Zoem vergroting"
+msgstr "Zoem vergroting"
 
 #: gschem/etc/system-gschemrc.scm:2226
 msgid "Zoom _Selection"
@@ -5002,7 +5001,7 @@ msgstr "Stel die kleur kaart om Black and White"
 
 #: gschem/etc/system-gschemrc.scm:2246
 msgid "_Draw Order"
-msgstr "/Teken Bestel"
+msgstr "Teken Bestel"
 
 #: gschem/etc/system-gschemrc.scm:2246
 msgid "Change order objects are drawn"
@@ -5034,7 +5033,7 @@ msgstr "Skakel oor na die vorige bladsy"
 
 #: gschem/etc/system-gschemrc.scm:2252
 msgid "_Next"
-msgstr "/Volgende"
+msgstr "Volgende"
 
 #: gschem/etc/system-gschemrc.scm:2252
 msgid "Switch to the next page"
@@ -5098,11 +5097,11 @@ msgstr "Lopende bladsy"
 
 #: gschem/etc/system-gschemrc.scm:2265
 msgid "Down _Schematic"
-msgstr "/Stroombaandiagram Af"
+msgstr "Stroombaandiagram Af"
 
 #: gschem/etc/system-gschemrc.scm:2266
 msgid "Down S_ymbol"
-msgstr "/Simbool Af"
+msgstr "Simbool Af"
 
 #: gschem/etc/system-gschemrc.scm:2267
 msgid "_Hierarchy Up"
@@ -5566,7 +5565,7 @@ msgstr "Eienskappe"
 #: gschem/etc/system-gschemrc.scm:2413
 #: gschem/scheme/gschem/gschem-tools-menu.scm:293
 msgid "_Tools"
-msgstr ""
+msgstr "Gereedskap"
 
 # Page/Draw Order
 #: gschem/etc/system-gschemrc.scm:2416
@@ -5740,23 +5739,24 @@ msgstr "Kies"
 
 #: gschem/scheme/gschem/builtins.scm:233
 msgid "Zoom Extents"
-msgstr "/Zoem Uitmate"
+msgstr "Zoem Uitmate"
 
 #: gschem/scheme/gschem/builtins.scm:236
 msgid "Zoom In"
-msgstr "/Zoem In"
+msgstr "Zoem In"
 
 #: gschem/scheme/gschem/builtins.scm:239
 msgid "Zoom Out"
-msgstr "/Zoem Uit"
+msgstr "Zoem Uit"
 
 #: gschem/scheme/gschem/builtins.scm:242
 msgid "Zoom All"
-msgstr "/Zoem Uit"
+msgstr "Zoem alles"
 
+# Zoom to Mag => Zoom specify
 #: gschem/scheme/gschem/builtins.scm:245
 msgid "Zoom to Mag"
-msgstr "/Zoem Uit"
+msgstr "Zoem spesifiseer"
 
 #: gschem/scheme/gschem/builtins.scm:248
 msgid "Documentation"
