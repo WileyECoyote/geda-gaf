@@ -6,6 +6,7 @@
           * src/object/o_arc_object.c
           * src/object/o_box_object.c
           * src/object/o_bus_object.c
+          * src/object/o_circle_object.c
 
 2020-08-03 Wiley E. Hill <wileyhill@gmail.com>
 
