@@ -540,7 +540,7 @@ bool geda_arc_object_get_position (GedaObject *object, int *x, int *y)
   if (GEDA_IS_ARC(object)) {
     *x = object->arc->x;
     *y = object->arc->y;
-    return TRUE;
+    return (x || y) ? TRUE : FALSE;
   }
 
   geda_arc_object_error(__func__, object);
