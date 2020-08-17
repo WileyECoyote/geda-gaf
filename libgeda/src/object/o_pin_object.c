@@ -132,7 +132,7 @@ bool geda_pin_object_get_position (GedaObject *object, int *x, int *y)
   *x = object->line->x[object->pin->whichend];
   *y = object->line->y[object->pin->whichend];
 
-  return TRUE;
+  return (x || y) ? TRUE : FALSE;
 }
 
 /*!
