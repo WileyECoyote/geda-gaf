@@ -602,7 +602,7 @@ bool geda_complex_object_get_position (GedaObject *object, int *x, int *y)
   if (GEDA_IS_COMPLEX(object)) {
     *x = object->complex->x;
     *y = object->complex->y;
-    return TRUE;
+    return (x || y) ? TRUE : FALSE;
   }
 
   geda_complex_object_error(__func__, object);
