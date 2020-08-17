@@ -544,7 +544,7 @@ bool geda_box_object_get_position (GedaObject *object, int *x, int *y)
   if (GEDA_IS_BOX(object)) {
     *x = min(object->box->lower_x, object->box->upper_x);
     *y = min(object->box->lower_y, object->box->upper_y);
-    return TRUE;
+    return (x || y) ? TRUE : FALSE;
   }
 
   geda_box_object_error(__func__, object);
