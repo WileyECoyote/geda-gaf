@@ -270,7 +270,7 @@ bool geda_bus_object_get_position(GedaObject *object, int *x, int *y)
     *x = object->line->x[0];
     *y = object->line->y[0];
 
-    return TRUE;
+    return (x || y) ? TRUE : FALSE;
   }
   geda_bus_object_error(__func__, object);
   return FALSE;
