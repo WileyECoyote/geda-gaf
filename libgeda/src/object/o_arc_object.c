@@ -544,7 +544,8 @@ bool geda_arc_object_get_position (GedaObject *object, int *x, int *y)
   }
 
   geda_arc_object_error(__func__, object);
-  return 0;
+
+  return FALSE;
 }
 
 /*! O0218
