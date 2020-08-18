@@ -332,8 +332,10 @@ bool geda_path_object_get_position (GedaObject *object, int *x, int *y)
     if (object->path->num_sections == 0)
       return FALSE;
 
-    *x = object->path->sections[0].x3;
-    *y = object->path->sections[0].y3;
+    if (x) *x = object->path->sections[0].x3;
+
+    if (y) *y = object->path->sections[0].y3;
+
     return (x || y) ? TRUE : FALSE;
   }
 
