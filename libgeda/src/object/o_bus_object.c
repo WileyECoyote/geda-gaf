@@ -134,7 +134,6 @@ geda_bus_object_consolidate_lowlevel (GedaObject *object,
  */
 static int geda_bus_object_consolidate_segments (GedaObject *object)
 {
-
   return(0);
 }
 
@@ -194,7 +193,9 @@ GedaObject *geda_bus_object_copy(const GedaObject *o_current)
 
     return new_obj;
   }
+
   geda_bus_object_error(__func__, o_current);
+
   return NULL;
 }
 
@@ -234,6 +235,7 @@ int geda_bus_object_get_direction(const GedaObject *object)
   else {
     geda_object_error(__func__, object, GEDA_OBJECT_BUS);
   }
+
   return direction;
 }
 
@@ -249,7 +251,9 @@ int geda_bus_object_get_ripper_direction (const GedaObject *object)
   if (GEDA_IS_BUS(object)) {
     return object->bus->ripper_direction;
   }
+
   geda_bus_object_error(__func__, object);
+
   return 0;
 }
 
@@ -274,7 +278,9 @@ bool geda_bus_object_get_position(GedaObject *object, int *x, int *y)
 
     return (x || y) ? TRUE : FALSE;
   }
+
   geda_bus_object_error(__func__, object);
+
   return FALSE;
 }
 
@@ -293,7 +299,9 @@ int geda_bus_object_get_x1 (const GedaObject *object)
   if (GEDA_IS_BUS(object)) {
     return object->line->x[0];
   }
+
   geda_bus_object_error(__func__, object);
+
   return 0;
 }
 
