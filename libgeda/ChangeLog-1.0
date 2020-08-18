@@ -3,6 +3,7 @@
     * src/object/o_*_object.c: Return FALSE instead of zero:
 
           * src/object/o_arc_object.c
+          * src/object/o_box_object.c
 
 2020-08-17 Wiley E. Hill <wileyhill@gmail.com>
 
