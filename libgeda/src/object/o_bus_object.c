@@ -267,8 +267,10 @@ int geda_bus_object_get_ripper_direction (const GedaObject *object)
 bool geda_bus_object_get_position(GedaObject *object, int *x, int *y)
 {
   if (GEDA_IS_BUS(object)) {
-    *x = object->line->x[0];
-    *y = object->line->y[0];
+
+    if (x) *x = object->line->x[0];
+
+    if (y) *y = object->line->y[0];
 
     return (x || y) ? TRUE : FALSE;
   }

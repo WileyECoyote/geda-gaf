@@ -8,6 +8,11 @@
     * src/object/o_text_object.c: Revise geda_text_object_get_position to
       only return TRUE if at least one value was set.
 
+    * src/object/o_*_object.c: Check pointer was passed in _get_position
+      and only set value pointer:
+
+          * src/object/o_bus_object.c
+
 2020-08-17 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_*_object.c: Revise *_get_position function to only
