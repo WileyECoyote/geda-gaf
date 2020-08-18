@@ -235,8 +235,9 @@ bool geda_text_object_get_position (GedaObject *object, int *x, int *y)
     if (y)
       *y = object->text->y;
 
-    return TRUE;
+    return (x || y) ? TRUE : FALSE;
   }
+
   return FALSE;
 }
 

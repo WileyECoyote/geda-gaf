@@ -5,6 +5,9 @@
           * src/object/o_arc_object.c
           * src/object/o_box_object.c
 
+    * src/object/o_text_object.c: Revise geda_text_object_get_position to
+      only return TRUE if at least one value was set.
+
 2020-08-17 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_*_object.c: Revise *_get_position function to only
