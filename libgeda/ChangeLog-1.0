@@ -14,6 +14,7 @@
           * src/object/o_bus_object.c
           * src/object/o_circle_object.c
           * src/object/o_complex_object.c
+          * src/object/o_net_object.c
 
 2020-08-17 Wiley E. Hill <wileyhill@gmail.com>
 
