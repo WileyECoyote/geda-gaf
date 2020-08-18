@@ -502,8 +502,10 @@ bool
 geda_circle_object_get_position (GedaObject *object, int *x, int *y)
 {
   if (GEDA_IS_CIRCLE(object)) {
-    *x = object->circle->center_x;
-    *y = object->circle->center_y;
+
+    if (x) *x = object->circle->center_x;
+
+    if (y) *y = object->circle->center_y;
     return (x || y) ? TRUE : FALSE;
   }
   geda_circle_object_error(__func__, object);
