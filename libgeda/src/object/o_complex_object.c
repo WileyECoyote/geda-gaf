@@ -600,8 +600,11 @@ GList *geda_complex_object_get_pin_objs(GedaObject *object)
 bool geda_complex_object_get_position (GedaObject *object, int *x, int *y)
 {
   if (GEDA_IS_COMPLEX(object)) {
-    *x = object->complex->x;
-    *y = object->complex->y;
+
+    if (x) *x = object->complex->x;
+
+    if (y) *y = object->complex->y;
+
     return (x || y) ? TRUE : FALSE;
   }
 
