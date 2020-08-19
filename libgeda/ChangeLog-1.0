@@ -11,6 +11,7 @@
     * src/object/o_*_object.c: Reorganize module; alphabetize functions:
 
           * src/object/o_complex_object.c
+          * src/object/o_path_object.c
 
 2020-08-18 Wiley E. Hill <wileyhill@gmail.com>
 

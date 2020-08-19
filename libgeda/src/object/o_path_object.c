@@ -56,6 +56,48 @@ geda_path_object_error(const char *func, const void *object)
 }
 
 /*!
+ * \brief Create a copy of a path.
+ * \par Function Description
+ *  This function creates a verbatim copy of the
+ *  object pointed by <B>\a o_current</B> describing a path. The new object
+ *  is added at the end of the list following the <B>list_tail</B>
+ *  parameter.
+ *
+ * \param [in]  o_current  Line GedaObject to copy.
+ *
+ * \return A new pointer to the end of the object list.
+ */
+GedaObject *geda_path_object_copy (const GedaObject *o_current)
+{
+  if (GEDA_IS_PATH(o_current)) {
+
+    GedaObject *new_obj;
+    GedaPath   *old_path;
+    char       *path_string;
+
+    old_path    = (GedaPath*)o_current;
+    path_string = geda_struct_path_string_from_path (old_path);
+    new_obj     = geda_path_object_new (o_current->color, path_string);
+
+    GEDA_FREE (path_string);
+
+    /* Copy the path line-type and filling options */
+    geda_set_object_line_options (new_obj, &old_path->line_options);
+    geda_set_object_fill_options (new_obj, &old_path->fill_options);
+
+    /* calc the bounding box */
+    new_obj->bounds_valid = FALSE;
+
+    /* return the new tail of the object list */
+    return new_obj;
+  }
+
+  geda_path_object_error(__func__, o_current);
+
+  return NULL;
+}
+
+/*!
  * \brief Get Point on a GedaPath Nearest a Given Point
  * \par Function Description
  *  This function is intended to locate a point on a GedaPath object given
@@ -478,227 +520,6 @@ GedaObject *geda_path_object_new_take_path (int color, GedaPath *path_data)
   path->sections->y3     = path_data->sections->y3;
 
   return new_obj;
-}
-
-/*!
- * \brief Create a copy of a path.
- * \par Function Description
- *  This function creates a verbatim copy of the
- *  object pointed by <B>\a o_current</B> describing a path. The new object
- *  is added at the end of the list following the <B>list_tail</B>
- *  parameter.
- *
- * \param [in]  o_current  Line GedaObject to copy.
- *
- * \return A new pointer to the end of the object list.
- */
-GedaObject *geda_path_object_copy (const GedaObject *o_current)
-{
-  if (GEDA_IS_PATH(o_current)) {
-
-    GedaObject *new_obj;
-    GedaPath   *old_path;
-    char       *path_string;
-
-    old_path    = (GedaPath*)o_current;
-    path_string = geda_struct_path_string_from_path (old_path);
-    new_obj     = geda_path_object_new (o_current->color, path_string);
-
-    GEDA_FREE (path_string);
-
-    /* Copy the path line-type and filling options */
-    geda_set_object_line_options (new_obj, &old_path->line_options);
-    geda_set_object_fill_options (new_obj, &old_path->fill_options);
-
-    /* calc the bounding box */
-    new_obj->bounds_valid = FALSE;
-
-    /* return the new tail of the object list */
-    return new_obj;
-  }
-
-  geda_path_object_error(__func__, o_current);
-
-  return NULL;
-}
-
-/*!
- * \brief Create path GedaObject from character string.
- * \par Function Description
- *  This function creates a path GedaObject from the character string <B>*buf</B>
- *  and a number of lines following that describing the path, read from <B>*tb</B>.
- *  A path is internally described by its two ends. A new object is allocated,
- *  initialized and added to the list of objects. The path type is set according
- *  to the values of the fields on the path. The current path format to describe
- *  a line is a space separated list of characters and numbers in plain ASCII on
- *  a single path. The meaning of each item is described in the file format
- *  documentation.
- *
- *  Depending on <B>*version</B>, the correct file format is considered.
- *  Currently two file format revisions are supported :
- *
- * \li the file format used until 20010704 release.
- * \li the file format used for the releases after 20010704.
- *
- * \param [in]  first_line      Character string with path description.
- * \param [in]  tb              Text buffer containing the path string.
- * \param [in]  release_ver     libgeda release version number.
- * \param [in]  fileformat_ver  libgeda file format version number.
- *
- * \param [out] err           A GError obejct
- *
- * \return A pointer to the new path object, or NULL on error;
- */
-GedaObject *geda_path_object_read (const char *first_line,
-                                   TextBuffer  *tb,
-                                   unsigned int release_ver,
-                                   unsigned int fileformat_ver,
-                                   GError     **err)
-{
-  GedaObject *new_obj;
-  char       *string;
-  unsigned    allocated;
-
-  char type;
-  int color;
-  int line_width, line_space, line_length;
-  int line_end;
-  int line_type;
-  int fill_type, fill_width, angle1, pitch1, angle2, pitch2;
-  int num_lines = 0;
-  int i;
-
-  /* Allocate enough space */
-  if (sscanf (first_line, "%c %d %d %d %d %d %d %d %d %d %d %d %d %d\n",
-       &type, &color, &line_width, &line_end, &line_type,
-       &line_length, &line_space, &fill_type, &fill_width, &angle1,
-       &pitch1, &angle2, &pitch2, &num_lines) != 14) {
-    g_set_error(err, EDA_ERROR, EDA_ERROR_PARSE, _("Failed to parse path object"));
-    return NULL;
-  }
-
-  /* Checks if the required color is valid. */
-  if (color < 0 || color > MAX_COLORS) {
-    const char *msg = _("Found an invalid color");
-    if (geda_object_show_buffer_err(msg, first_line)) {
-      geda_log_w("%s: %d.\n", msg, color);
-    }
-    geda_log_w (_("Setting color to default color\n"));
-    color = DEFAULT_PATH_COLOR_INDEX;
-  }
-
-  allocated = 0;
-  string    = NULL;
-
-  for (i = 0; i < num_lines; i++) {
-
-    const char *line;
-
-    line = geda_struct_textbuffer_next_line (tb);
-
-    if (line == NULL) {
-      GEDA_FREE(string);
-      g_set_error(err, EDA_ERROR, EDA_ERROR_PARSE, _("Unexpected end-of-file after %d lines"), i);
-      return NULL;
-    }
-
-    size_t len = strlen(line);
-
-    if (!allocated) {
-      string = (char*)malloc(len + 1);
-      strncpy(string, line, len);
-      allocated = ++len;
-      string[allocated - 1] = '\0';
-    }
-    else {
-
-      char *buffer;
-
-      allocated = allocated + len;
-
-      buffer = (char*)realloc(string, allocated);
-
-      if (!buffer)
-        break;
-
-      string = buffer;
-      strncat(string, line, len);
-    }
-  }
-
-  string = geda_utility_string_remove_last_nl(string);
-
-  /* create a new path */
-  new_obj = geda_path_object_new (color, string);
-  GEDA_FREE (string);
-
-  /* set the line options */
-  new_obj->line_options->line_end    = line_end;
-  new_obj->line_options->line_type   = line_type;
-  new_obj->line_options->line_width  = line_width;
-  new_obj->line_options->line_length = line_length;
-  new_obj->line_options->line_space  = line_space;
-
-  /* set the fill options */
-  new_obj->fill_options->fill_type   = fill_type;
-  new_obj->fill_options->fill_width  = fill_width;
-  new_obj->fill_options->fill_angle1 = angle1;
-  new_obj->fill_options->fill_angle2 = angle2;
-  new_obj->fill_options->fill_pitch1 = pitch1;
-  new_obj->fill_options->fill_pitch2 = pitch2;
-
-  return new_obj;
-}
-
-/*!
- * \brief Create a character string representation of a path GedaObject.
- * \par Function Description
- *  The function formats a string in the buffer <B>*buff</B> to describe
- *  the path object <B>*object</B>.
- *
- * \param [in] object  path GedaObject to create string from.
- *
- * \return A pointer to the path GedaObject character string.
- *
- * \note Caller should GEDA_FREE returned character string.
- */
-char *geda_path_object_to_buffer (GedaObject *object)
-{
-  int line_width, line_space, line_length;
-  char *buf;
-  int num_lines;
-  LINE_END line_end;
-  LINE_TYPE  line_type;
-  OBJECT_FILLING fill_type;
-  int fill_width, angle1, pitch1, angle2, pitch2;
-  char *path_string;
-
-  /* description of the line type */
-  line_width  = object->line_options->line_width;
-  line_end    = object->line_options->line_end;
-  line_type   = object->line_options->line_type;
-  line_length = object->line_options->line_length;
-  line_space  = object->line_options->line_space;
-
-  /* filling parameters */
-  fill_type    = object->fill_options->fill_type;
-  fill_width   = object->fill_options->fill_width;
-  angle1       = object->fill_options->fill_angle1;
-  pitch1       = object->fill_options->fill_pitch1;
-  angle2       = object->fill_options->fill_angle2;
-  pitch2       = object->fill_options->fill_pitch2;
-
-  path_string = geda_struct_path_string_from_path (object->path);
-
-  num_lines = geda_object_get_num_text_lines (path_string);
-  buf = geda_sprintf ("%c %d %d %d %d %d %d %d %d %d %d %d %d %d\n%s",
-                      object->type, object->color, line_width, line_end,
-                      line_type, line_length, line_space, fill_type,
-                      fill_width, angle1, pitch1, angle2, pitch2,
-                      num_lines, path_string);
-  GEDA_FREE (path_string);
-
-  return buf;
 }
 
 /*!
@@ -1385,6 +1206,134 @@ geda_path_object_print(GedaToplevel *toplevel, FILE *fp,
 }
 
 /*!
+ * \brief Create path GedaObject from character string.
+ * \par Function Description
+ *  This function creates a path GedaObject from the character string <B>*buf</B>
+ *  and a number of lines following that describing the path, read from <B>*tb</B>.
+ *  A path is internally described by its two ends. A new object is allocated,
+ *  initialized and added to the list of objects. The path type is set according
+ *  to the values of the fields on the path. The current path format to describe
+ *  a line is a space separated list of characters and numbers in plain ASCII on
+ *  a single path. The meaning of each item is described in the file format
+ *  documentation.
+ *
+ *  Depending on <B>*version</B>, the correct file format is considered.
+ *  Currently two file format revisions are supported :
+ *
+ * \li the file format used until 20010704 release.
+ * \li the file format used for the releases after 20010704.
+ *
+ * \param [in]  first_line      Character string with path description.
+ * \param [in]  tb              Text buffer containing the path string.
+ * \param [in]  release_ver     libgeda release version number.
+ * \param [in]  fileformat_ver  libgeda file format version number.
+ *
+ * \param [out] err           A GError obejct
+ *
+ * \return A pointer to the new path object, or NULL on error;
+ */
+GedaObject *geda_path_object_read (const char *first_line,
+                                   TextBuffer  *tb,
+                                   unsigned int release_ver,
+                                   unsigned int fileformat_ver,
+                                   GError     **err)
+{
+  GedaObject *new_obj;
+  char       *string;
+  unsigned    allocated;
+
+  char type;
+  int color;
+  int line_width, line_space, line_length;
+  int line_end;
+  int line_type;
+  int fill_type, fill_width, angle1, pitch1, angle2, pitch2;
+  int num_lines = 0;
+  int i;
+
+  /* Allocate enough space */
+  if (sscanf (first_line, "%c %d %d %d %d %d %d %d %d %d %d %d %d %d\n",
+       &type, &color, &line_width, &line_end, &line_type,
+       &line_length, &line_space, &fill_type, &fill_width, &angle1,
+       &pitch1, &angle2, &pitch2, &num_lines) != 14) {
+    g_set_error(err, EDA_ERROR, EDA_ERROR_PARSE, _("Failed to parse path object"));
+    return NULL;
+  }
+
+  /* Checks if the required color is valid. */
+  if (color < 0 || color > MAX_COLORS) {
+    const char *msg = _("Found an invalid color");
+    if (geda_object_show_buffer_err(msg, first_line)) {
+      geda_log_w("%s: %d.\n", msg, color);
+    }
+    geda_log_w (_("Setting color to default color\n"));
+    color = DEFAULT_PATH_COLOR_INDEX;
+  }
+
+  allocated = 0;
+  string    = NULL;
+
+  for (i = 0; i < num_lines; i++) {
+
+    const char *line;
+
+    line = geda_struct_textbuffer_next_line (tb);
+
+    if (line == NULL) {
+      GEDA_FREE(string);
+      g_set_error(err, EDA_ERROR, EDA_ERROR_PARSE, _("Unexpected end-of-file after %d lines"), i);
+      return NULL;
+    }
+
+    size_t len = strlen(line);
+
+    if (!allocated) {
+      string = (char*)malloc(len + 1);
+      strncpy(string, line, len);
+      allocated = ++len;
+      string[allocated - 1] = '\0';
+    }
+    else {
+
+      char *buffer;
+
+      allocated = allocated + len;
+
+      buffer = (char*)realloc(string, allocated);
+
+      if (!buffer)
+        break;
+
+      string = buffer;
+      strncat(string, line, len);
+    }
+  }
+
+  string = geda_utility_string_remove_last_nl(string);
+
+  /* create a new path */
+  new_obj = geda_path_object_new (color, string);
+  GEDA_FREE (string);
+
+  /* set the line options */
+  new_obj->line_options->line_end    = line_end;
+  new_obj->line_options->line_type   = line_type;
+  new_obj->line_options->line_width  = line_width;
+  new_obj->line_options->line_length = line_length;
+  new_obj->line_options->line_space  = line_space;
+
+  /* set the fill options */
+  new_obj->fill_options->fill_type   = fill_type;
+  new_obj->fill_options->fill_width  = fill_width;
+  new_obj->fill_options->fill_angle1 = angle1;
+  new_obj->fill_options->fill_angle2 = angle2;
+  new_obj->fill_options->fill_pitch1 = pitch1;
+  new_obj->fill_options->fill_pitch2 = pitch2;
+
+  return new_obj;
+}
+
+/*!
  * \brief Determine the Shortest Distence to a Path Object
  * \par Function Description
  *  Calculates the distance between the given point and the closest
@@ -1415,6 +1364,57 @@ double geda_path_object_shortest_distance (ConstObject *object, int x, int y, in
   geda_path_object_error(__func__, object);
 
   return (G_MAXDOUBLE);
+}
+
+/*!
+ * \brief Create a character string representation of a path GedaObject.
+ * \par Function Description
+ *  The function formats a string in the buffer <B>*buff</B> to describe
+ *  the path object <B>*object</B>.
+ *
+ * \param [in] object  path GedaObject to create string from.
+ *
+ * \return A pointer to the path GedaObject character string.
+ *
+ * \note Caller should GEDA_FREE returned character string.
+ */
+char *geda_path_object_to_buffer (GedaObject *object)
+{
+  int line_width, line_space, line_length;
+  char *buf;
+  int num_lines;
+  LINE_END line_end;
+  LINE_TYPE  line_type;
+  OBJECT_FILLING fill_type;
+  int fill_width, angle1, pitch1, angle2, pitch2;
+  char *path_string;
+
+  /* description of the line type */
+  line_width  = object->line_options->line_width;
+  line_end    = object->line_options->line_end;
+  line_type   = object->line_options->line_type;
+  line_length = object->line_options->line_length;
+  line_space  = object->line_options->line_space;
+
+  /* filling parameters */
+  fill_type    = object->fill_options->fill_type;
+  fill_width   = object->fill_options->fill_width;
+  angle1       = object->fill_options->fill_angle1;
+  pitch1       = object->fill_options->fill_pitch1;
+  angle2       = object->fill_options->fill_angle2;
+  pitch2       = object->fill_options->fill_pitch2;
+
+  path_string = geda_struct_path_string_from_path (object->path);
+
+  num_lines = geda_object_get_num_text_lines (path_string);
+  buf = geda_sprintf ("%c %d %d %d %d %d %d %d %d %d %d %d %d %d\n%s",
+                      object->type, object->color, line_width, line_end,
+                      line_type, line_length, line_space, fill_type,
+                      fill_width, angle1, pitch1, angle2, pitch2,
+                      num_lines, path_string);
+  GEDA_FREE (path_string);
+
+  return buf;
 }
 
 /** @} endgroup path-object-proc */
