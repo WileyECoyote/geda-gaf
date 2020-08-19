@@ -73,16 +73,20 @@
  *      O0803     geda_complex_object_get_filename
  *      O0804     geda_complex_object_get_nearest_point
  *      O0805     geda_complex_object_get_pin_objs
- *      O0806    geda_complex_object_get_prim_objs
- *      O0807     geda_complex_object_find_pin_by_attribute
- *      O0808    geda_complex_object_is_embedded
- *      O0809     geda_complex_object_mirror
- *      O0810    geda_complex_object_new
- *      O0811    geda_complex_object_new_embedded
- *      O0812     geda_complex_object_promote_attribs
- *      O0813     geda_complex_object_reset_refdes
- *      O0814     geda_complex_object_rotate
- *      O0815     geda_complex_object_translate
+ *      O0806     geda_complex_object_get_position
+ *      O0807    geda_complex_object_get_prim_objs
+ *      O0808     geda_complex_object_get_promotable
+ *      O0809     geda_complex_object_find_pin_by_attribute
+ *      O0810    geda_complex_object_is_embedded
+ *      O0811     geda_complex_object_mirror
+ *      O0812    geda_complex_object_new
+ *      O0813    geda_complex_object_new_embedded
+ *      O0814     geda_complex_object_promote_attribs
+ *      O0815     geda_complex_object_read
+ *      O0816     geda_complex_object_reset_refdes
+ *      O0817     geda_complex_object_rotate
+ *      O0818     geda_complex_object_shortest_distance
+ *      O0819     geda_complex_object_translate
  */
 
 /* Adds data as a symbol source directory */
@@ -137,19 +141,19 @@ int check_construction (void)
     int x = geda_random_number ( 0, 115000);
     int y = geda_random_number ( 0,  75000);
 
-    /* === Function 10: geda_complex_object_new  === */
+    /* === Function 12: geda_complex_object_new  === */
 
     GedaObject *object0 = geda_complex_object_new(NULL, x, y, 0, 0,
                                                   sym, sym_name, 1);
 
     if (!GEDA_IS_OBJECT(object0)) {
-      fprintf(stderr, "FAILED: (O081001A) New GedaObject Failed\n");
+      fprintf(stderr, "FAILED: (O081201A) New GedaObject Failed\n");
       result++;
       break;   /* terminate loop if fail */
     }
 
     if (!GEDA_IS_COMPLEX(object0->complex)) {
-      fprintf(stderr, "FAILED: (O081001B) sub-pointer not a %s\n", TOBJECT);
+      fprintf(stderr, "FAILED: (O081201B) sub-pointer not a %s\n", TOBJECT);
       result++;
       break;   /* terminate loop if fail */
     }
@@ -159,39 +163,39 @@ int check_construction (void)
       int fail = 0;
 
       if (!complex->filename) {
-       fprintf(stderr, "FAILED: (O081002A-%d) complex->filename is NULL\n", count);
+       fprintf(stderr, "FAILED: (O081202A-%d) complex->filename is NULL\n", count);
        fail++;
       }
       else {
         if (strcmp(complex->filename, sym_name)) {
-          fprintf(stderr, "FAILED: (O081002B-%d) complex->filename <%s>\n", count, complex->filename);
+          fprintf(stderr, "FAILED: (O081202B-%d) complex->filename <%s>\n", count, complex->filename);
           fail++;
         }
       }
 
       if (complex->x != x) {
-       fprintf(stderr, "FAILED: (O081003-%d) complex->x <%d> != <%d>\n", count, complex->x, x);
+       fprintf(stderr, "FAILED: (O081203-%d) complex->x <%d> != <%d>\n", count, complex->x, x);
        fail++;
       }
 
       if (complex->y != y) {
-       fprintf(stderr, "FAILED: (O081004-%d) complex->y <%d> != <%d>\n", count, complex->y, y);
+       fprintf(stderr, "FAILED: (O081204-%d) complex->y <%d> != <%d>\n", count, complex->y, y);
        fail++;
       }
 
       if (complex->angle) {
-       fprintf(stderr, "FAILED: (O081005-%d) complex->angle <%d>\n", count, complex->angle);
+       fprintf(stderr, "FAILED: (O081205-%d) complex->angle <%d>\n", count, complex->angle);
        fail++;
       }
 
       if (complex->mirror) {
-       fprintf(stderr, "FAILED: (O081006-%d) complex->mirror <%d>\n", count, complex->mirror);
+       fprintf(stderr, "FAILED: (O081206-%d) complex->mirror <%d>\n", count, complex->mirror);
        fail++;
       }
 
       /* Base class member selectable is set by geda_complex_object_new */
       if (object0->selectable - 1) {
-       fprintf(stderr, "FAILED: (O081007-%d) complex->selectable <%d>\n", count, object0->selectable);
+       fprintf(stderr, "FAILED: (O081207-%d) complex->selectable <%d>\n", count, object0->selectable);
        fail++;
       }
 
@@ -210,15 +214,15 @@ int check_construction (void)
                                                 sym, "", 0);
 
   if (!GEDA_IS_OBJECT(object1)) {
-    fprintf(stderr, "FAILED: (O081008A) New GedaObject Failed\n");
+    fprintf(stderr, "FAILED: (O081208A) New GedaObject Failed\n");
     result++;
   }
   else if (!GEDA_IS_COMPLEX(object1->complex)) {
-    fprintf(stderr, "FAILED: (O081008B) sub-pointer not a %s\n", TOBJECT);
+    fprintf(stderr, "FAILED: (O081208B) sub-pointer not a %s\n", TOBJECT);
     result++;
   }
   else if (object1->type != OBJ_PLACEHOLDER) {
-    fprintf(stderr, "FAILED: (O081008C) type <%d> is not a placeholder\n", object1->type);
+    fprintf(stderr, "FAILED: (O081208C) type <%d> is not a placeholder\n", object1->type);
     result++;
   }
   else {
@@ -226,29 +230,29 @@ int check_construction (void)
     GedaComplex *placeholder = object1->complex;
 
     if (placeholder->x != 1000) {
-      fprintf(stderr, "FAILED: (O081009) placeholder->x <%d> != 1000\n", placeholder->x);
+      fprintf(stderr, "FAILED: (O081209) placeholder->x <%d> != 1000\n", placeholder->x);
       result++;
     }
 
     if (placeholder->y != 2000) {
-      fprintf(stderr, "FAILED: (O081010) placeholder->y <%d> != 2000\n", placeholder->y);
+      fprintf(stderr, "FAILED: (O081210) placeholder->y <%d> != 2000\n", placeholder->y);
       result++;
     }
 
     if (placeholder->angle != 90) {
-      fprintf(stderr, "FAILED: (O081011) placeholder->angle <%d>\n", placeholder->angle);
+      fprintf(stderr, "FAILED: (O081211) placeholder->angle <%d>\n", placeholder->angle);
       result++;
     }
 
     if (placeholder->mirror) {
-      fprintf(stderr, "FAILED: (O081012) placeholder->mirror <%d>\n", placeholder->mirror);
+      fprintf(stderr, "FAILED: (O081212) placeholder->mirror <%d>\n", placeholder->mirror);
       result++;
     }
 
     /* Place holder can be non-selectable */
 
     if (object1->selectable) {
-      fprintf(stderr, "FAILED: (O081013) placeholder->selectable <%d>\n", object1->selectable);
+      fprintf(stderr, "FAILED: (O081213) placeholder->selectable <%d>\n", object1->selectable);
       result++;
     }
   }
@@ -262,18 +266,18 @@ int check_construction (void)
     int x = geda_random_number ( 0, 115000);
     int y = geda_random_number ( 0,  75000);
 
-    /* === Function 11: geda_complex_object_new_embedded  === */
+    /* === Function 13: geda_complex_object_new_embedded  === */
 
     GedaObject *object2 = geda_complex_object_new_embedded(x, y, 180, 1,sym_name, 1);
 
     if (!GEDA_IS_OBJECT(object2)) {
-      fprintf(stderr, "FAILED: (O081101A) New GedaObject Failed\n");
+      fprintf(stderr, "FAILED: (O081301A) New GedaObject Failed\n");
       result++;
       break;   /* terminate loop if fail */
     }
 
     if (!GEDA_IS_COMPLEX(object2->complex)) {
-      fprintf(stderr, "FAILED: (O081101B) sub-pointer not a %s\n", TOBJECT);
+      fprintf(stderr, "FAILED: (O081301B) sub-pointer not a %s\n", TOBJECT);
       result++;
       break;   /* terminate loop if fail */
     }
@@ -283,39 +287,39 @@ int check_construction (void)
       int fail = 0;
 
       if (!complex->filename) {
-       fprintf(stderr, "FAILED: (O081102A-%d) complex->filename is NULL\n", count);
+       fprintf(stderr, "FAILED: (O081302A-%d) complex->filename is NULL\n", count);
        fail++;
       }
       else {
         if (strcmp(complex->filename, sym_name)) {
-          fprintf(stderr, "FAILED: (O081102B-%d) complex->filename <%s>\n", count, complex->filename);
+          fprintf(stderr, "FAILED: (O081302B-%d) complex->filename <%s>\n", count, complex->filename);
           fail++;
         }
       }
 
       if (complex->x != x) {
-       fprintf(stderr, "FAILED: (O081103-%d) complex->x <%d> != <%d>\n", count, complex->x, x);
+       fprintf(stderr, "FAILED: (O081303-%d) complex->x <%d> != <%d>\n", count, complex->x, x);
        fail++;
       }
 
       if (complex->y != y) {
-       fprintf(stderr, "FAILED: (O081104-%d) complex->y <%d> != <%d>\n", count, complex->y, y);
+       fprintf(stderr, "FAILED: (O081304-%d) complex->y <%d> != <%d>\n", count, complex->y, y);
        fail++;
       }
 
       if (complex->angle != 180) {
-       fprintf(stderr, "FAILED: (O081105-%d) complex->angle <%d>\n", count, complex->angle);
+       fprintf(stderr, "FAILED: (O081305-%d) complex->angle <%d>\n", count, complex->angle);
        fail++;
       }
 
       if (!complex->mirror) {
-       fprintf(stderr, "FAILED: (O081106-%d) complex->mirror <%d>\n", count, complex->mirror);
+       fprintf(stderr, "FAILED: (O081306-%d) complex->mirror <%d>\n", count, complex->mirror);
        fail++;
       }
 
       /* Base class member selectable is set by geda_complex_object_new */
       if (object2->selectable - 1) {
-       fprintf(stderr, "FAILED: (O081107-%d) complex->selectable <%d>\n", count, object2->selectable);
+       fprintf(stderr, "FAILED: (O081307-%d) complex->selectable <%d>\n", count, object2->selectable);
        fail++;
       }
 
@@ -339,9 +343,9 @@ int check_accessors (void)
 
   GedaToplevel *toplevel = geda_toplevel_new ();
 
-  /* === Function 08: geda_complex_object_is_embedded NULL === */
+  /* === Function 10: geda_complex_object_is_embedded NULL === */
   if (geda_complex_object_is_embedded (NULL)) {
-    fprintf(stderr, "FAILED: (O080800) object_is_embedded NULL\n");
+    fprintf(stderr, "FAILED: (O081000) object_is_embedded NULL\n");
     result++;
   }
 
@@ -358,13 +362,13 @@ int check_accessors (void)
                                                   sym, sym_name, 1);
 
     if (!GEDA_IS_OBJECT(object1)) {
-      fprintf(stderr, "FAILED: (O081001C) New GedaObject Failed\n");
+      fprintf(stderr, "FAILED: (O081201C) New GedaObject Failed\n");
       result++;
       break;   /* terminate loop if fail */
     }
 
     if (!GEDA_IS_COMPLEX(object1->complex)) {
-      fprintf(stderr, "FAILED: (O081001D) sub-pointer not a %s\n", TOBJECT);
+      fprintf(stderr, "FAILED: (O081201D) sub-pointer not a %s\n", TOBJECT);
       result++;
       break;   /* terminate loop if fail */
     }
@@ -409,14 +413,14 @@ int check_accessors (void)
         }
       }
 
-      /* === Function 06: geda_complex_object_get_prim_objs  === */
+      /* === Function 07: geda_complex_object_get_prim_objs  === */
 
       GList *prim_objs;
 
       prim_objs = geda_complex_object_get_prim_objs(object1);
 
       if (prim_objs == NULL) {
-        fprintf(stderr, "FAILED: (O080601A) get_prim_objs\n");
+        fprintf(stderr, "FAILED: (O080701A) get_prim_objs\n");
         fail++;
       }
       else {
@@ -424,7 +428,7 @@ int check_accessors (void)
         int count = g_list_length(prim_objs);
 
         if (count != 210) {
-          fprintf(stderr, "FAILED: (O080601B) get_prim_objs <%d>\n", count);
+          fprintf(stderr, "FAILED: (O080701B) get_prim_objs <%d>\n", count);
           fail++;
         }
       }
@@ -432,7 +436,7 @@ int check_accessors (void)
       /* === Function 08: geda_complex_object_is_embedded  === */
 
       if (geda_complex_object_is_embedded (object1)) {
-        fprintf(stderr, "FAILED: (O080801) is_embedded\n");
+        fprintf(stderr, "FAILED: (O081001) is_embedded\n");
         fail++;
       }
 
@@ -449,10 +453,10 @@ int check_accessors (void)
 
   object2 = geda_complex_object_new_embedded(100, 100, 180, 1,sym_name, 1);
 
-  /* === Function 08: geda_complex_object_is_embedded  === */
+  /* === Function 10: geda_complex_object_is_embedded  === */
 
   if (!geda_complex_object_is_embedded (object2)) {
-    fprintf(stderr, "FAILED: (O080802) is_embedded\n");
+    fprintf(stderr, "FAILED: (O081002) is_embedded\n");
     result++;
   }
 
@@ -674,19 +678,19 @@ int check_query(void)
 
   /* bounds_valid should NOT be set */
   if (object->bounds_valid) {
-    fprintf(stderr, "FAILED: (O081014A) %s bounds_valid %d\n", TOBJECT, object->bounds_valid);
+    fprintf(stderr, "FAILED: (O081214A) %s bounds_valid %d\n", TOBJECT, object->bounds_valid);
     result++;
   }
 
   /* === Virtual geda_complex_bounds  === */
   if (!geda_object_bounds(object)) {
-    fprintf(stderr, "FAILED: (O081014B) %s bounds_valid %d\n", TOBJECT, object->bounds_valid);
+    fprintf(stderr, "FAILED: (O081214B) %s bounds_valid %d\n", TOBJECT, object->bounds_valid);
     result++;
   }
 
   /* bounds_valid should be set */
   if (!object->bounds_valid) {
-    fprintf(stderr, "FAILED: (O081014C) %s bounds_valid %d\n", TOBJECT, object->bounds_valid);
+    fprintf(stderr, "FAILED: (O081214C) %s bounds_valid %d\n", TOBJECT, object->bounds_valid);
     result++;
   }
 
