@@ -898,8 +898,10 @@ GdkPixbuf *geda_picture_object_get_pixbuf_fit (GedaObject *object, int interp)
  */
 bool geda_picture_object_get_position (GedaObject *object, int *x, int *y)
 {
-  *x = min(object->picture->lower_x, object->picture->upper_x);
-  *y = min(object->picture->lower_y, object->picture->upper_y);
+
+  if (x) *x = min(object->picture->lower_x, object->picture->upper_x);
+
+  if (y) *y = min(object->picture->lower_y, object->picture->upper_y);
 
   return (x || y) ? TRUE : FALSE;
 }
