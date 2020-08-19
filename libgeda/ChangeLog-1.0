@@ -1,5 +1,8 @@
 2020-08-19 Wiley E. Hill <wileyhill@gmail.com>
 
+    * libgeda/include/libgeda_priv.h: Reorganize header; update sequence
+      of functions.
+
     * src/object/o_*_object.c: Only set value if a pointer was passed to
       _get_position function:
 
