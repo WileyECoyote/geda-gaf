@@ -538,8 +538,11 @@ bool geda_arc_object_get_nearest_point (const GedaObject *object, int x, int y, 
 bool geda_arc_object_get_position (GedaObject *object, int *x, int *y)
 {
   if (GEDA_IS_ARC(object)) {
-    *x = object->arc->x;
-    *y = object->arc->y;
+
+    if (x) *x = object->arc->x;
+
+    if (y) *y = object->arc->y;
+
     return (x || y) ? TRUE : FALSE;
   }
 

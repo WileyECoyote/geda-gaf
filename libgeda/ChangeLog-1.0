@@ -1,3 +1,10 @@
+2020-08-19 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_*_object.c: Only set value if a pointer was passed to
+      _get_position function:
+
+          * src/object/o_arc_object.c
+
 2020-08-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_*_object.c: Return FALSE instead of zero:
