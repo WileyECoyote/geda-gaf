@@ -8,6 +8,10 @@
           * src/object/o_picture_object.c
           * src/object/o_pin_object.c
 
+    * src/object/o_*_object.c: Reorganize module; alphabetize functions:
+
+          * src/object/o_complex_object.c
+
 2020-08-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_*_object.c: Return FALSE instead of zero:

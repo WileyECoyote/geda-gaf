@@ -1321,50 +1321,6 @@ void geda_complex_object_rotate(GedaObject *object, int center_x, int center_y, 
 }
 
 /*!
- * \brief Create a string representation of the complex object
- * \par Function Description
- *  This function takes a complex \a object and return a string
- *  according to the file format definition.
- *
- * \note object was validated by geda_object_save_objects.
- *
- * \param [in] object  a complex Object
- *
- * \return the string representation of the complex Object
- */
-char *geda_complex_object_to_buffer(GedaObject *object)
-{
-  if (GEDA_IS_COMPLEX(object)) {
-
-    GedaComplex *complex;
-    char        *basename;
-    char        *buf = NULL;
-    int          selectable;
-
-    complex = GEDA_COMPLEX(object);
-
-    basename = geda_sprintf ("%s%s", complex->is_embedded ? "EMBEDDED" : "",
-                                     complex->filename);
-
-    selectable = (object->selectable) ? 1 : 0;
-
-    /* Force the object type to be output as OBJ_COMPLEX for both
-     * these object types. */
-    buf = geda_sprintf("%c %d %d %d %d %d %s", OBJ_COMPLEX,
-    complex->x, complex->y,
-    selectable, complex->angle,
-    complex->mirror, basename);
-    GEDA_FREE (basename);
-
-    return(buf);
-  }
-
-  geda_complex_object_error(__func__, object);
-
-  return NULL;
-}
-
-/*!
  * \brief Get Shortest distance from Complex to point
  * \par Function Description
  *  Calculates the distance between the given point and the closest
@@ -1439,6 +1395,50 @@ double geda_complex_object_shortest_distance(ConstObject *object, int x, int y, 
   }
 
   return shortest_distance;
+}
+
+/*!
+ * \brief Create a string representation of the complex object
+ * \par Function Description
+ *  This function takes a complex \a object and return a string
+ *  according to the file format definition.
+ *
+ * \note object was validated by geda_object_save_objects.
+ *
+ * \param [in] object  a complex Object
+ *
+ * \return the string representation of the complex Object
+ */
+char *geda_complex_object_to_buffer(GedaObject *object)
+{
+  if (GEDA_IS_COMPLEX(object)) {
+
+    GedaComplex *complex;
+    char        *basename;
+    char        *buf = NULL;
+    int          selectable;
+
+    complex = GEDA_COMPLEX(object);
+
+    basename = geda_sprintf ("%s%s", complex->is_embedded ? "EMBEDDED" : "",
+                                     complex->filename);
+
+    selectable = (object->selectable) ? 1 : 0;
+
+    /* Force the object type to be output as OBJ_COMPLEX for both
+     * these object types. */
+    buf = geda_sprintf("%c %d %d %d %d %d %s", OBJ_COMPLEX,
+    complex->x, complex->y,
+    selectable, complex->angle,
+    complex->mirror, basename);
+    GEDA_FREE (basename);
+
+    return(buf);
+  }
+
+  geda_complex_object_error(__func__, object);
+
+  return NULL;
 }
 
 /*!
