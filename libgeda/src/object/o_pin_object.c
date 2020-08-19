@@ -129,8 +129,9 @@ bool geda_pin_object_get_position (GedaObject *object, int *x, int *y)
 {
   g_return_val_if_fail(GEDA_IS_PIN(object), FALSE);
 
-  *x = object->line->x[object->pin->whichend];
-  *y = object->line->y[object->pin->whichend];
+  if (x) *x = object->line->x[object->pin->whichend];
+
+  if (y) *y = object->line->y[object->pin->whichend];
 
   return (x || y) ? TRUE : FALSE;
 }
