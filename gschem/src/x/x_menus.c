@@ -834,7 +834,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
           }
           else {
             /* Note: Currently there are no non-stock, non-action items */
-            menu_item = geda_menu_item_new_with_mnemonic(raw_menu_item_name);
+            menu_item = geda_menu_item_new_with_mnemonic(menu_item_name);
           }
 
           if (menu_item) {
