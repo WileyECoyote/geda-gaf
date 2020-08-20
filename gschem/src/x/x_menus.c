@@ -1007,7 +1007,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
     }
 
     if (strstr(menu_name, "/")) {
-      root_menu = GEDA_OBJECT_GET_DATA (MENU_BAR, menu_name);
+      root_menu = GEDA_OBJECT_GET_DATA (MENU_BAR, *raw_menu_name);
     }
 
     if (root_menu == NULL) {

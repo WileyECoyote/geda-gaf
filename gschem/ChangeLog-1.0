@@ -4,6 +4,8 @@
 
     * src/x/x_menus.c: Revise x_menu_setup_ui::get_menu_item_from_scheme to
       translate nested menu items and revise menu comments for clarification.
+      Fix retrieval of root_menu items by using non-tranlated strings to find
+      the parent data.
 
 2020-08-15 Wiley E. Hill <wileyhill@gmail.com>
 
