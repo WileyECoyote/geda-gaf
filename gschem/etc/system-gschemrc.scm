@@ -2242,7 +2242,7 @@
 ;;      menu item name             menu action              menu icon name             Menu Item Tooltip
 ;;
      `(
-        (,(N_ "_Draw Order")       #f                      "gtk-index"            ,(N_ "Change order objects are drawn"))
+        (,(N_ "_Draw Order")       #f                      "gtk-index"            ,(N_ "Change the order objects are drawn"))
         ("SEPARATOR"               #f                      #f)
 
         (,(N_ "_Manager...")       page-manager            "gschem-pages"         ,(N_ "Open the Page Manager"))
