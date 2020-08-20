@@ -2,6 +2,9 @@
 
     * etc/system-gschemrc.scm: Revise menu tool tips.
 
+    * src/x/x_menus.c: Revise x_menu_setup_ui::get_menu_item_from_scheme to
+      translate nested menu items.
+
 2020-08-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/af.po: Update Afrikaans translations.

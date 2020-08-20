@@ -795,9 +795,13 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
       }
       else {
 
+        const char *menu_item_name;
+
         menu_item_stock = scm_is_false (scm_item_stock) ? NULL : scm_to_utf8_string (scm_item_stock);
 
         if (scm_is_false (scm_item_func)) { /* Then is a nested menu item */
+
+          menu_item_name = gettext(raw_menu_item_name);
 
           if (menu_item_stock) {            /* Nested menus can have icons */
 
@@ -805,7 +809,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
              * and _Restore, these are actionless items.
              */
 
-            menu_item = geda_image_menu_item_new_with_mnemonic(raw_menu_item_name);
+            menu_item = geda_image_menu_item_new_with_mnemonic(menu_item_name);
 
             if (strncmp(menu_item_stock, "gtk-",4) == 0) {
 
@@ -841,7 +845,6 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
                 char *action_name;
                 char *action_keys;
                 char *menu_icon_name;
-          const char *menu_item_name;
                 bool  is_a_toggle;
 
           action_name = scm_to_utf8_string (scm_symbol_to_string (scm_item_func));
