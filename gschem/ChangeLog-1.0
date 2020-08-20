@@ -3,7 +3,7 @@
     * etc/system-gschemrc.scm: Revise menu tool tips.
 
     * src/x/x_menus.c: Revise x_menu_setup_ui::get_menu_item_from_scheme to
-      translate nested menu items.
+      translate nested menu items and revise menu comments for clarification.
 
 2020-08-15 Wiley E. Hill <wileyhill@gmail.com>
 
