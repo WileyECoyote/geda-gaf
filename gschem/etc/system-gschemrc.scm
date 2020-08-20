@@ -2084,7 +2084,7 @@
 ;;
 ;;      menu item name             menu action          menu icon name             Menu Item Tooltip
 ;;
-     `( (,(N_ "_New")              file-new             "gtk-new"             ,(N_ "Create a new empty file" ))
+     `( (,(N_ "_New")              file-new             "gtk-new"             ,(N_ "Create a new file" ))
         (,(N_ "_Open...")          file-open            "gtk-open"            ,(N_ "Open an existing schematic or symbol file"))
         (,(N_ "Open Recen_t")      #f                   "geda-open-recent"    ,(N_ "Open recently accessed schematic or symbol files"))
        ;(,(N_ "New Window")        file-new-window      "window-new"          ,(N_ "Create a new window"))

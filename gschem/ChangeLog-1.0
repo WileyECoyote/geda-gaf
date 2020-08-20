@@ -1,21 +1,17 @@
+2020-08-20 Wiley E. Hill <wileyhill@gmail.com>
+
+    * etc/system-gschemrc.scm: Revise menu tool tips.
+
 2020-08-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/af.po: Update Afrikaans translations.
-
     * po/bg.po: Update Bulgarian translations.
-
     * po/bs.po: Update Bosnian translations.
-
     * po/el.po: Update Greek translations.
-
     * po/fa.po: Update Persian translations.
-
     * po/fr.po: Update French translations.
-
     * po/he.po: Update Hebrew translations.
-
     * po/hu.po: Update Hungarian translations.
-
     * po/it.po: Update Italian translations.
 
 2020-08-14 Wiley E. Hill <wileyhill@gmail.com>
