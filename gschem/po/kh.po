@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2020-08-14 13:58-0500\n"
+"POT-Creation-Date: 2020-08-21 13:12-0500\n"
 "PO-Revision-Date: 2015-07-29 00:24-0600\n"
 "Last-Translator: Wiley Edward Hill <wileyhill@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -625,171 +625,171 @@ msgid "Found invalid gschem window smob ~S"
 msgstr "smob bangauoch del gschem min troemotrauv del ban rk kheunh ~S"
 
 # Present value of
-#: gschem/src/iface/i_command.c:137 gschem/src/iface/i_command.c:5355
+#: gschem/src/iface/i_command.c:137 gschem/src/iface/i_command.c:5347
 msgid "current value of"
 msgstr "tamlei bachchobbann nei kar"
 
 # is
-#: gschem/src/iface/i_command.c:137 gschem/src/iface/i_command.c:5356
+#: gschem/src/iface/i_command.c:137 gschem/src/iface/i_command.c:5348
 msgid "is"
 msgstr "ku"
 
 # processing directive
-#: gschem/src/iface/i_command.c:524
+#: gschem/src/iface/i_command.c:516
 msgid "Processing Action"
 msgstr "sarachr damnaerkar"
 
 # Select object first
-#: gschem/src/iface/i_command.c:643
+#: gschem/src/iface/i_command.c:635
 msgid "Select object first"
 msgstr "chreusareusa vottho cheamoun sen"
 
-#: gschem/src/iface/i_command.c:654
+#: gschem/src/iface/i_command.c:646
 msgid "Cannot"
 msgstr "min ach"
 
-#: gschem/src/iface/i_command.c:654
+#: gschem/src/iface/i_command.c:646
 msgid "while inside an action!\n"
 msgstr "khn pel del nowknong sakammopheap muoy!\n"
 
-#: gschem/src/iface/i_command.c:921 gschem/src/iface/i_command.c:2970
+#: gschem/src/iface/i_command.c:913 gschem/src/iface/i_command.c:2962
 msgid "New page created"
 msgstr "tompr thmei del ban bangkeut laeng"
 
-#: gschem/src/iface/i_command.c:961
+#: gschem/src/iface/i_command.c:953
 msgid "New Window created"
 msgstr "ban bangkeut bangauoch kammovithi thmei"
 
-#: gschem/src/iface/i_command.c:1163
+#: gschem/src/iface/i_command.c:1155
 msgid "Failed to Save All"
 msgstr "ban breachy knong kar roksaatouk eksar teangoasa"
 
-#: gschem/src/iface/i_command.c:1166 gschem/src/iface/i_command.c:1183
+#: gschem/src/iface/i_command.c:1158 gschem/src/iface/i_command.c:1175
 msgid "Saved All"
 msgstr "eksar teangoasa trauv ban roksaatouk"
 
-#: gschem/src/iface/i_command.c:1180
+#: gschem/src/iface/i_command.c:1172
 msgid "Error encountered, Save Failed"
 msgstr "ban chuobabrateah kamhosa , roksaatouk ban breachy"
 
-#: gschem/src/iface/i_command.c:1250 gschem/src/x/x_image.c:545
+#: gschem/src/iface/i_command.c:1242 gschem/src/x/x_image.c:545
 msgid "Write Image"
 msgstr "sarser roubpheap"
 
-#: gschem/src/iface/i_command.c:1272
+#: gschem/src/iface/i_command.c:1264
 msgid "Write PDF"
 msgstr "sarser chea PDF"
 
 # Canceled close all
-#: gschem/src/iface/i_command.c:1368 gschem/src/iface/i_sessions.c:184
+#: gschem/src/iface/i_command.c:1360 gschem/src/iface/i_sessions.c:184
 msgid "Canceled close all\n"
 msgstr "loubchaol yeang chitasnetth teangoasa\n"
 
-#: gschem/src/iface/i_command.c:1377 gschem/src/iface/i_sessions.c:193
+#: gschem/src/iface/i_command.c:1369 gschem/src/iface/i_sessions.c:193
 msgid "Closing all documents\n"
 msgstr "bet eksar teangoasa\n"
 
-#: gschem/src/iface/i_command.c:1400
+#: gschem/src/iface/i_command.c:1392
 msgid "starting shut-down"
 msgstr "kar chabphtaem lomdab bet choh"
 
-#: gschem/src/iface/i_command.c:1414
+#: gschem/src/iface/i_command.c:1406
 msgid "Symbol is not embedded, export anyway?"
 msgstr "nimittasanhnhea min trauv ban bangkob,  neachenh yeangnakadaoy?"
 
-#: gschem/src/iface/i_command.c:1438
+#: gschem/src/iface/i_command.c:1430
 msgid "Picture is not embedded, export anyway?"
 msgstr "roubpheap min trauv ban bangkob neachenh te?"
 
-#: gschem/src/iface/i_command.c:1585
+#: gschem/src/iface/i_command.c:1577
 msgid "Empty buffer"
 msgstr "sate b ntaoh asann ku tte"
 
-#: gschem/src/iface/i_command.c:1850
+#: gschem/src/iface/i_command.c:1842
 msgid "Offset Mode"
 msgstr "rbieb ohvaset"
 
-#: gschem/src/iface/i_command.c:1851
+#: gschem/src/iface/i_command.c:1843
 msgid "Specify offset distance:"
 msgstr "banhcheak chamngeay bahbauv:"
 
-#: gschem/src/iface/i_command.c:2447
+#: gschem/src/iface/i_command.c:2439
 msgid "Zoom Magnification"
 msgstr "pongrik pongrik"
 
-#: gschem/src/iface/i_command.c:2447
+#: gschem/src/iface/i_command.c:2439
 msgid "Specify new zoom:"
 msgstr "banhcheak pongrik thmei:"
 
 # Check path
-#: gschem/src/iface/i_command.c:2489 gschem/src/iface/i_command.c:4837
-#: gschem/src/iface/i_command.c:4867 gschem/src/iface/i_command.c:4888
-#: gschem/src/iface/i_command.c:4908
+#: gschem/src/iface/i_command.c:2481 gschem/src/iface/i_command.c:4829
+#: gschem/src/iface/i_command.c:4859 gschem/src/iface/i_command.c:4880
+#: gschem/src/iface/i_command.c:4900
 msgid "Check path:"
 msgstr "saum pinityameul phlauv:"
 
 # error
-#: gschem/src/iface/i_command.c:2500
+#: gschem/src/iface/i_command.c:2492
 msgid "error"
 msgstr "kamhos"
 
-#: gschem/src/iface/i_command.c:2511
+#: gschem/src/iface/i_command.c:2503
 msgid "No component selected\n"
 msgstr "sameasapheak del ban chreusa min mean\n"
 
-#: gschem/src/iface/i_command.c:3056
+#: gschem/src/iface/i_command.c:3048
 msgid "Confirm revert ALL documents"
 msgstr "aahang kar phtok laengvinh eksar teangoasa"
 
-#: gschem/src/iface/i_command.c:3238
+#: gschem/src/iface/i_command.c:3230
 msgid "Searching for source"
 msgstr "karosvengork samreab braphp"
 
-#: gschem/src/iface/i_command.c:3273
+#: gschem/src/iface/i_command.c:3265
 msgid "Failed to descend into"
 msgstr "ban breachy knong kar choh chaul tow knong"
 
-#: gschem/src/iface/i_command.c:3282
+#: gschem/src/iface/i_command.c:3274
 msgid "Hierarchy Error"
 msgstr "kamhosa knong thananoukram"
 
-#: gschem/src/iface/i_command.c:3359
+#: gschem/src/iface/i_command.c:3351
 msgid "Searching for symbol"
 msgstr "karosvengork nimittaroub"
 
-#: gschem/src/iface/i_command.c:3369
+#: gschem/src/iface/i_command.c:3361
 msgid "Symbol is not a real file. Symbol cannot be loaded.\n"
 msgstr ""
 "nimittasanhnhea minmen cheaek sar pitabrakd. nimittasanhnhea del min ach "
 "trauv ban phtok.\n"
 
-#: gschem/src/iface/i_command.c:3417
+#: gschem/src/iface/i_command.c:3409
 msgid "Cannot find any schematics above the current one!\n"
 msgstr ""
 "min ach rk kheunh koumnour bampruonh teangoasa khangleu bachchobbann!\n"
 
-#: gschem/src/iface/i_command.c:3547
+#: gschem/src/iface/i_command.c:3539
 msgid "Object is attached to something\n"
 msgstr "vottho trauv ban phcheab tow nung aveimuoy\n"
 
-#: gschem/src/iface/i_command.c:3950
+#: gschem/src/iface/i_command.c:3942
 msgid "Attribute is already attached\n"
 msgstr "kounalokkhan trauv ban phcheab ruoch tow haey\n"
 
-#: gschem/src/iface/i_command.c:4364
+#: gschem/src/iface/i_command.c:4356
 msgid "WARNING: Do not translate with snap off!\n"
 msgstr "bamream: mi k bre daoyman khtasa bet!\n"
 
-#: gschem/src/iface/i_command.c:4365
+#: gschem/src/iface/i_command.c:4357
 #, fuzzy
 msgid "WARNING: Turning snap on and continuing with translation.\n"
 msgstr "promean: baek khtasa now leu ning bant cheamuoy karobakabre.\n"
 
-#: gschem/src/iface/i_command.c:4371
+#: gschem/src/iface/i_command.c:4363
 msgid "WARNING: Snap grid size is not equal to 100!\n"
 msgstr "promean: tomham kraleachatrangk khtasa min smaenung 100!\n"
 
-#: gschem/src/iface/i_command.c:4372
+#: gschem/src/iface/i_command.c:4364
 msgid ""
 "WARNING: If you are translating a symbol to the origin, the snap grid size "
 "should be set to 100\n"
@@ -797,75 +797,75 @@ msgstr ""
 "promean: brasenbae anak kampoung bakabre chea nimittasanhnhea muoy tow daem, "
 "kraleachatrangk khtasa tomham trauv ban kamnt tow 100\n"
 
-#: gschem/src/iface/i_command.c:4584
+#: gschem/src/iface/i_command.c:4576
 msgid "Grid OFF\n"
 msgstr "bet kraleachatrang\n"
 
-#: gschem/src/iface/i_command.c:4585
+#: gschem/src/iface/i_command.c:4577
 msgid "Dot grid activated\n"
 msgstr "kraleachatrangk chamnoch thveu aoy sakam\n"
 
-#: gschem/src/iface/i_command.c:4586
+#: gschem/src/iface/i_command.c:4578
 msgid "Mesh grid activated\n"
 msgstr "kraleachatrangk saamnanh ban thveu aoy sakam\n"
 
-#: gschem/src/iface/i_command.c:4665
+#: gschem/src/iface/i_command.c:4657
 msgid "Snap OFF (CAUTION!)\n"
 msgstr "khtasa bet (braytn !)\n"
 
-#: gschem/src/iface/i_command.c:4671
+#: gschem/src/iface/i_command.c:4663
 msgid "Snap ON\n"
 msgstr "khtasa now leu\n"
 
-#: gschem/src/iface/i_command.c:4676
+#: gschem/src/iface/i_command.c:4668
 msgid "Snap back to the grid (CAUTION!)\n"
 msgstr "khtasa tralbtow kraleachatrangk (braytn!)\n"
 
-#: gschem/src/iface/i_command.c:4701
+#: gschem/src/iface/i_command.c:4693
 msgid "Rubber band mode is OFF\n"
 msgstr "rbieb bet kawsaou robsa krom t nrti\n"
 
-#: gschem/src/iface/i_command.c:4705
+#: gschem/src/iface/i_command.c:4697
 msgid "Rubber band mode is ON\n"
 msgstr "rbieb del krom tantrei kawsaou ku now thngai\n"
 
-#: gschem/src/iface/i_command.c:4716
+#: gschem/src/iface/i_command.c:4708
 msgid "Magnetic net mode is ON\n"
 msgstr "rbieb sotth meanhetich del mean now leu\n"
 
-#: gschem/src/iface/i_command.c:4719
+#: gschem/src/iface/i_command.c:4711
 msgid "Magnetic net mode is OFF\n"
 msgstr "rbieb bet sotth meanhetich ku\n"
 
-#: gschem/src/iface/i_command.c:4736 gschem/src/iface/i_command.c:4779
-#: gschem/src/x/x_compselect.c:135
+#: gschem/src/iface/i_command.c:4728 gschem/src/iface/i_command.c:4771
+#: gschem/src/x/x_compselect.c:135 gschem/src/x/x_toolbars.c:259
 msgid "Off"
 msgstr "Bet"
 
-#: gschem/src/iface/i_command.c:4740 gschem/src/iface/i_command.c:4783
+#: gschem/src/iface/i_command.c:4732 gschem/src/iface/i_command.c:4775
 #: gschem/src/x/x_compselect.c:134
 msgid "On"
 msgstr "now thngaiti"
 
 # Drag-Can-Move is now
-#: gschem/src/iface/i_command.c:4742
+#: gschem/src/iface/i_command.c:4734
 msgid "Drag-Can-Move is now"
 msgstr "ausa ach phlasati ku ilauv"
 
-#: gschem/src/iface/i_command.c:4754
+#: gschem/src/iface/i_command.c:4746
 msgid "Action feedback mode set to OUTLINE\n"
 msgstr "rbieb mte anak ban kamnt daembi krong sakammopheap\n"
 
-#: gschem/src/iface/i_command.c:4758
+#: gschem/src/iface/i_command.c:4750
 msgid "Action feedback mode set to BOUNDINGBOX\n"
 msgstr "rbieb mte anak ban kamnt daembi chtokaon sakammopheap chang\n"
 
 # Auto-Pan is now
-#: gschem/src/iface/i_command.c:4785
+#: gschem/src/iface/i_command.c:4777
 msgid "Auto-Pan is now"
 msgstr "daoy svyobravotte ban ku ilauv"
 
-#: gschem/src/iface/i_command.c:5008
+#: gschem/src/iface/i_command.c:5000
 #, c-format
 msgid "(read only) width=%d, height=%d\n"
 msgstr "(ban te an) ttung=%d, kamposa=%d\n"
@@ -1122,7 +1122,7 @@ msgstr "chreusa vottho"
 msgid "Show Hidden"
 msgstr "bangheanh pi kar del ban leak"
 
-#: gschem/src/iface/i_status.c:250
+#: gschem/src/iface/i_status.c:250 gschem/src/x/x_toolbars.c:264
 msgid "Snap Off"
 msgstr "khtasa bet"
 
@@ -1562,7 +1562,8 @@ msgstr ""
 msgid "Clipboard Insertion Failed"
 msgstr "ben th kta r tambiet khtasa breachy"
 
-#: gschem/src/x/x_compselect.c:127 gschem/src/x/x_menus.c:2421
+#: gschem/src/x/x_compselect.c:127 gschem/src/x/x_menus.c:2438
+#: gschem/src/x/x_toolbars.c:150
 msgid "Open"
 msgstr "Baek"
 
@@ -1572,6 +1573,7 @@ msgid "Open all"
 msgstr "baek teangoasa"
 
 #: gschem/src/x/x_compselect.c:129 gschem/src/x/x_menus.c:152
+#: gschem/src/x/x_toolbars.c:153
 msgid "Close"
 msgstr "bet"
 
@@ -1651,11 +1653,12 @@ msgstr "sameasapheak"
 
 #: gschem/src/x/x_compselect.c:2694 gschem/src/x/x_confirm_close.c:313
 #: gschem/src/x/x_multiattrib.c:2087 gschem/src/x/x_multiattrib.c:2093
+#: gschem/src/x/x_toolbars.c:246
 msgid "Name"
 msgstr "chhmoh"
 
 #: gschem/src/x/x_compselect.c:2706 gschem/src/x/x_multiattrib.c:2089
-#: gschem/src/x/x_multiattrib.c:2095
+#: gschem/src/x/x_multiattrib.c:2095 gschem/src/x/x_toolbars.c:245
 msgid "Value"
 msgstr "koun tamlei"
 
@@ -1695,7 +1698,8 @@ msgstr "rochneabtm 7"
 msgid "Style 8"
 msgstr "rochneabtm 8"
 
-#: gschem/src/x/x_compselect.c:2896
+#: gschem/src/x/x_compselect.c:2896 gschem/src/x/x_toolbars.c:171
+#: gschem/src/x/x_toolbars.c:213
 msgid "All"
 msgstr "teangoasa"
 
@@ -1951,7 +1955,7 @@ msgstr "kamnt moum k ntal nei thnou nih."
 msgid "Background"
 msgstr "phtaikheangokraoy"
 
-#: gschem/src/x/x_dialog.c:1113
+#: gschem/src/x/x_dialog.c:1113 gschem/src/x/x_toolbars.c:185
 msgid "Pin"
 msgstr "mchoul akkisani"
 
@@ -1985,11 +1989,12 @@ msgid "Detached attribute"
 msgstr "kounalokkhan del ban phdach"
 
 #: gschem/src/x/x_dialog.c:1121 gschem/src/x/x_menus.c:99
+#: gschem/src/x/x_toolbars.c:177 gschem/src/x/x_toolbars.c:235
 msgid "Text"
 msgstr "atthabat"
 
 #: gschem/src/x/x_dialog.c:1122 gschem/src/x/x_edit_pin.c:145
-#: gschem/src/x/x_menus.c:98
+#: gschem/src/x/x_menus.c:98 gschem/src/x/x_toolbars.c:175
 msgid "Bus"
 msgstr "akkisani"
 
@@ -2010,8 +2015,8 @@ msgstr "braab pongrik"
 msgid "Stroke"
 msgstr "kayvikear"
 
-#: gschem/src/x/x_dialog.c:1127 gschem/etc/system-gschemrc.scm:2180
-#: gschem/scheme/gschem/builtins.scm:188
+#: gschem/src/x/x_dialog.c:1127 gschem/src/x/x_toolbars.c:219
+#: gschem/etc/system-gschemrc.scm:2180 gschem/scheme/gschem/builtins.scm:188
 msgid "Lock"
 msgstr "chaksao"
 
@@ -2083,7 +2088,7 @@ msgstr "brahaong"
 msgid "Filled"
 msgstr "bampenh ruoch"
 
-#: gschem/src/x/x_dialog.c:1303
+#: gschem/src/x/x_dialog.c:1303 gschem/src/x/x_toolbars.c:258
 msgid "Mesh"
 msgstr "bratak"
 
@@ -2281,7 +2286,7 @@ msgid "Automatically zoom to the new extents after translation"
 msgstr "lei tamrouv tidthpheap knong kamrit banteabpi kar phlasa btau r"
 
 # Translate
-#: gschem/src/x/x_dialog.c:3241
+#: gschem/src/x/x_dialog.c:3241 gschem/src/x/x_toolbars.c:218
 msgid "Translate"
 msgstr "bakabre"
 
@@ -2511,14 +2516,16 @@ msgid "Y Size"
 msgstr "tomham Y"
 
 #: gschem/src/x/x_edit_array.c:1120 gschem/src/x/x_menus.c:90
+#: gschem/src/x/x_toolbars.c:165
 msgid "Select"
 msgstr "chreus"
 
-#: gschem/src/x/x_edit_array.c:1124
+#: gschem/src/x/x_edit_array.c:1124 gschem/src/x/x_toolbars.c:166
 msgid "Deselect"
 msgstr "min chreus"
 
 #: gschem/src/x/x_edit_array.c:1140 gschem/src/x/x_menus.c:121
+#: gschem/src/x/x_toolbars.c:230
 msgid "Array"
 msgstr "a re"
 
@@ -2528,6 +2535,7 @@ msgstr "chuordek"
 
 # Offset
 #: gschem/src/x/x_edit_array.c:1172 gschem/src/x/x_edit_array.c:1205
+#: gschem/src/x/x_toolbars.c:228
 msgid "Offset"
 msgstr "ohvaset"
 
@@ -2660,7 +2668,7 @@ msgid "Value:"
 msgstr "Tamlei:"
 
 #: gschem/src/x/x_edit_attrib.c:524 gschem/src/x/x_multiattrib.c:2091
-#: gschem/src/x/x_multiattrib.c:2367
+#: gschem/src/x/x_multiattrib.c:2367 gschem/src/x/x_toolbars.c:248
 msgid "Visible"
 msgstr "del ach meulkheunh"
 
@@ -3046,7 +3054,7 @@ msgid "Pin Properties Editor"
 msgstr "kammovithi niponth lokkhan sambotte pin"
 
 # Set like define
-#: gschem/src/x/x_edit_pin.c:889
+#: gschem/src/x/x_edit_pin.c:889 gschem/src/x/x_toolbars.c:263
 msgid "Set"
 msgstr "kamnt"
 
@@ -3533,6 +3541,7 @@ msgid "Add operations"
 msgstr "banthem brate b tde kar"
 
 #: gschem/src/x/x_menus.c:104 gschem/src/x/x_menus.c:156
+#: gschem/src/x/x_toolbars.c:211
 msgid "In"
 msgstr "knong"
 
@@ -3542,6 +3551,7 @@ msgid "Increase the Zoom magnification"
 msgstr "bangkeun karopongrik bangruom"
 
 #: gschem/src/x/x_menus.c:105 gschem/src/x/x_menus.c:157
+#: gschem/src/x/x_toolbars.c:212
 msgid "Out"
 msgstr "Chenh"
 
@@ -3552,7 +3562,7 @@ msgid "Decrease the Zoom magnification"
 msgstr "banthoy karopongrik bangruom"
 
 # Rectangle
-#: gschem/src/x/x_menus.c:106
+#: gschem/src/x/x_menus.c:106 gschem/src/x/x_toolbars.c:181
 msgid "Box"
 msgstr "chtokaonkeng"
 
@@ -3561,6 +3571,7 @@ msgid "Zoom to a Windowed region"
 msgstr "pongrik towdl tambn muoy del mean brapnth bratebatte kar Windows"
 
 #: gschem/src/x/x_menus.c:107 gschem/src/x/x_menus.c:158
+#: gschem/src/x/x_toolbars.c:210
 msgid "Extents"
 msgstr "visaealpheap"
 
@@ -3581,7 +3592,7 @@ msgstr "pongrik dlkamrit del ban banhcheak"
 msgid "Zoom to selected objects"
 msgstr "pongrik tow vottho del ban chreus"
 
-#: gschem/src/x/x_menus.c:113
+#: gschem/src/x/x_menus.c:113 gschem/src/x/x_toolbars.c:233
 msgid "Edit"
 msgstr "kesamruol"
 
@@ -3646,7 +3657,8 @@ msgstr "loub"
 msgid "Delete the current selection"
 msgstr "loub chomreusa bachchobban"
 
-#: gschem/src/x/x_menus.c:125 gschem/scheme/gschem/builtins.scm:200
+#: gschem/src/x/x_menus.c:125 gschem/src/x/x_toolbars.c:159
+#: gschem/src/x/x_toolbars.c:224 gschem/scheme/gschem/builtins.scm:200
 msgid "Copy"
 msgstr "chamlong"
 
@@ -3662,7 +3674,7 @@ msgstr "chamlong chraen"
 msgid "Make multiple copies of selection"
 msgstr "saum chamlong multiple nei kar chreusareus"
 
-#: gschem/src/x/x_menus.c:127
+#: gschem/src/x/x_menus.c:127 gschem/src/x/x_toolbars.c:226
 msgid "Move"
 msgstr "phlasati"
 
@@ -3670,7 +3682,7 @@ msgstr "phlasati"
 msgid "Move selection"
 msgstr "kar phlasa btau r kar chreusareus"
 
-#: gschem/src/x/x_menus.c:128
+#: gschem/src/x/x_menus.c:128 gschem/src/x/x_toolbars.c:227
 msgid "Mirror"
 msgstr "kanhchok"
 
@@ -3678,7 +3690,7 @@ msgstr "kanhchok"
 msgid "Mirror an object about a point"
 msgstr "kanhchok vottho del ban pi chamnoch muoy"
 
-#: gschem/src/x/x_menus.c:129
+#: gschem/src/x/x_menus.c:129 gschem/src/x/x_toolbars.c:229
 msgid "Rotate"
 msgstr "bangvil"
 
@@ -3721,7 +3733,8 @@ msgstr "nimittasanhnhea tow"
 msgid "Descend down in the symbol hierarchy"
 msgstr "chaur tow choh nowknong thananoukram nimittasanhnhea"
 
-#: gschem/src/x/x_menus.c:139
+#: gschem/src/x/x_menus.c:139 gschem/src/x/x_toolbars.c:192
+#: gschem/src/x/x_toolbars.c:200
 msgid "Up"
 msgstr "laeng"
 
@@ -3793,7 +3806,8 @@ msgstr "baohbng"
 msgid "Cancel path mode"
 msgstr "baohbng rbieb phokaon"
 
-#: gschem/src/x/x_menus.c:162 gschem/scheme/gschem/builtins.scm:98
+#: gschem/src/x/x_menus.c:162 gschem/src/x/x_toolbars.c:162
+#: gschem/scheme/gschem/builtins.scm:98
 msgid "Undo"
 msgstr "minothveuvinh"
 
@@ -3802,7 +3816,7 @@ msgid "Undo the last path segment"
 msgstr "min thveu phnek phlauv chongokraoy"
 
 # Clear
-#: gschem/src/x/x_menus.c:492 gschem/src/x/x_menus.c:2563
+#: gschem/src/x/x_menus.c:492 gschem/src/x/x_menus.c:2580
 msgid "Clear"
 msgstr "Chomreah"
 
@@ -3831,206 +3845,206 @@ msgid "Bad string"
 msgstr "khsae aksaar meakrau"
 
 # got a empty menu name
-#: gschem/src/x/x_menus.c:977
+#: gschem/src/x/x_menus.c:980
 msgid "Oops... got a NULL menu name"
 msgstr "aur!... ttuol ban chhmoh robsa meunouy tte"
 
-#: gschem/src/x/x_menus.c:1033 gschem/etc/system-gschemrc.scm:2404
+#: gschem/src/x/x_menus.c:1037 gschem/etc/system-gschemrc.scm:2404
 msgid "_File"
 msgstr ""
 
 # View
-#: gschem/src/x/x_menus.c:1049 gschem/etc/system-gschemrc.scm:2408
+#: gschem/src/x/x_menus.c:1053 gschem/etc/system-gschemrc.scm:2408
 msgid "_View"
 msgstr "meul"
 
 # Grid
-#: gschem/src/x/x_menus.c:1065
+#: gschem/src/x/x_menus.c:1069
 msgid "_Grid"
 msgstr "Kraleachatrang"
 
 # Display dots grid
-#: gschem/src/x/x_menus.c:1100
+#: gschem/src/x/x_menus.c:1104
 msgid "Display dots grid"
 msgstr "bangheanh kraleachatrangk chamnoch"
 
 # Display mesh grid
-#: gschem/src/x/x_menus.c:1101
+#: gschem/src/x/x_menus.c:1105
 msgid "Display mesh grid"
 msgstr "bangheanh kraleachatrangk saamnanh"
 
 # Turn off the grid display
-#: gschem/src/x/x_menus.c:1102
+#: gschem/src/x/x_menus.c:1106
 msgid "Turn off the grid display"
 msgstr "bet kar bangheanh kraleachatrang"
 
 # Toolbars
-#: gschem/src/x/x_menus.c:1121
+#: gschem/src/x/x_menus.c:1125
 msgid "_Toolbars"
 msgstr "rbar ubakar"
 
-#: gschem/src/x/x_menus.c:1173
+#: gschem/src/x/x_menus.c:1177
 msgid "Toggle visibility of the Standard toolbar"
 msgstr "bet baek pheap meulkheunh nei rbar ubakar stangdar"
 
-#: gschem/src/x/x_menus.c:1174
+#: gschem/src/x/x_menus.c:1178
 msgid "Toggle visibility of the Selection toolbar"
 msgstr "pheap meulkheunh bet baek rbar ubakar kar chreusareus"
 
-#: gschem/src/x/x_menus.c:1175
+#: gschem/src/x/x_menus.c:1179
 msgid "Toggle visibility of the Page toolbar"
 msgstr "pheap meulkheunh bet baek rbar ubakar tompr"
 
-#: gschem/src/x/x_menus.c:1176
+#: gschem/src/x/x_menus.c:1180
 msgid "Toggle visibility of the Add toolbar"
 msgstr "pheap meulkheunh bet baek rbar ubakar banthem"
 
-#: gschem/src/x/x_menus.c:1177
+#: gschem/src/x/x_menus.c:1181
 msgid "Toggle visibility of the Zoom toolbar"
 msgstr "pheap meulkheunh nei kar bet baek rbar ubakar pongrik"
 
 # Toggle visibility of the Symbol toolbar
-#: gschem/src/x/x_menus.c:1178
+#: gschem/src/x/x_menus.c:1182
 msgid "Toggle visibility of the Symbol toolbar"
 msgstr "bet baek pheap meulkheunh nei rbar ubakar nimittasanhnhea"
 
-#: gschem/src/x/x_menus.c:1179
+#: gschem/src/x/x_menus.c:1183
 #, fuzzy
 msgid "Toggle visibility of the Modify toolbar"
 msgstr "pheap meulkheunh nei kar bet baek rbar ubakar kesamruol"
 
-#: gschem/src/x/x_menus.c:1180
+#: gschem/src/x/x_menus.c:1184
 msgid "Toggle visibility of the Edit toolbar"
 msgstr "pheap meulkheunh nei kar bet baek rbar ubakar kesamruol"
 
-#: gschem/src/x/x_menus.c:1181
+#: gschem/src/x/x_menus.c:1185
 msgid "Toggle visibility of the Attributes toolbar"
 msgstr "pheap meulkheunh nei kar bet baek rbar ubakar lokkhan"
 
-#: gschem/src/x/x_menus.c:1182
+#: gschem/src/x/x_menus.c:1186
 msgid "Toggle visibility of the Grid/Snap toolbar"
 msgstr "pheap meulkheunh nei kar bet baek rbar ubakar kraleachatrangk/khtasa"
 
 # Toggle visibility of tooltips on toolbars
-#: gschem/src/x/x_menus.c:1208
+#: gschem/src/x/x_menus.c:1212
 msgid "Toggle visibility of tooltips on toolbars"
 msgstr "bet/baek pheap meulkheunh nei ptrmean chomnuoy now leu rbar ubakar"
 
-#: gschem/src/x/x_menus.c:1267
+#: gschem/src/x/x_menus.c:1277
 msgid "Display Icons on the toolbar"
 msgstr "bangheanh roubtamnang now leu rbar ubakar"
 
-#: gschem/src/x/x_menus.c:1268
+#: gschem/src/x/x_menus.c:1278
 msgid "Display Text on the toolbar"
 msgstr "bangheanh atthabt now leu rbar ubakar"
 
-#: gschem/src/x/x_menus.c:1269
+#: gschem/src/x/x_menus.c:1279
 msgid "Display Icons and Text vertically on the toolbar"
 msgstr "bangheanh roubtamnang ning atthabt banhchhor now leu rbar ubakar"
 
-#: gschem/src/x/x_menus.c:1270
+#: gschem/src/x/x_menus.c:1280
 msgid "Display Icons and Text horizontally on the toolbar"
 msgstr "bangheanh roubtamnang ning atthabt phdek now leu rbar ubakar"
 
-#: gschem/src/x/x_menus.c:1325
+#: gschem/src/x/x_menus.c:1341
 msgid "Toggle visibility of main menu icons"
 msgstr "roubtamnang bet baek pheap meulkheunh meunouy"
 
-#: gschem/src/x/x_menus.c:1326
+#: gschem/src/x/x_menus.c:1342
 msgid "Toggle main menu tooltips"
 msgstr "bet baek kar chomnuoy meunouy me"
 
-#: gschem/src/x/x_menus.c:1327
+#: gschem/src/x/x_menus.c:1343
 msgid "Toggle visibility of main context menu icons"
 msgstr "kanleasa saamkhan del ach meulkheunh meunouy bribt robsa roubtamnang"
 
-#: gschem/src/x/x_menus.c:1328
+#: gschem/src/x/x_menus.c:1344
 msgid "Toggle main context menu tooltips"
 msgstr "bet baek meunouy bribt chambong chomnuoy"
 
 # Try fixing the focus on a menu item that does not exist
-#: gschem/src/x/x_menus.c:1690
+#: gschem/src/x/x_menus.c:1707
 msgid "Tried to set the sensitivity on non-existent menu item"
 msgstr ""
 "pyeayeam chuosachoul kar phtao t arommo leu theato meunouy del min mean"
 
 # Excessive errors
-#: gschem/src/x/x_menus.c:1701
+#: gschem/src/x/x_menus.c:1718
 msgid "Excessive errors"
 msgstr "kamhosa huosabraman"
 
 # disabling sensitivity warnings
-#: gschem/src/x/x_menus.c:1702
+#: gschem/src/x/x_menus.c:1719
 msgid "disabling sensitivity warnings"
 msgstr "bet karopromean pi pheap rsaeb"
 
 # Saving menu toolbar options
-#: gschem/src/x/x_menus.c:1768
+#: gschem/src/x/x_menus.c:1785
 msgid "Saving menu toolbar options..."
 msgstr "kar roksaatouk chomreusa rbar ubakar meunouy..."
 
 # done
-#: gschem/src/x/x_menus.c:1778
+#: gschem/src/x/x_menus.c:1795
 msgid " done\n"
 msgstr " ban thveu\n"
 
-#: gschem/src/x/x_menus.c:1781
+#: gschem/src/x/x_menus.c:1798
 #, c-format
 msgid " there were %d errors\n"
 msgstr " mean %d kamhos\n"
 
-#: gschem/src/x/x_menus.c:1883
+#: gschem/src/x/x_menus.c:1900
 msgid "gschem: Enabling menu icons\n"
 msgstr "gschem: baek roubtamnang meunouy\n"
 
-#: gschem/src/x/x_menus.c:1886
+#: gschem/src/x/x_menus.c:1903
 msgid "gschem: Disabling menu icons\n"
 msgstr "gschem: bet roubtamnang meunouy\n"
 
 # Enabling menu tooltips
-#: gschem/src/x/x_menus.c:1956
+#: gschem/src/x/x_menus.c:1973
 msgid "Enabling menu tooltips\n"
 msgstr "baek ptrmean chomnuoy meunouy\n"
 
 # Disabling menu tooltips
-#: gschem/src/x/x_menus.c:1959
+#: gschem/src/x/x_menus.c:1976
 msgid "Disabling menu tooltips\n"
 msgstr "bet ptrmean chomnuoy meunouy\n"
 
 # Action not found
-#: gschem/src/x/x_menus.c:2081
+#: gschem/src/x/x_menus.c:2098
 msgid "Action not found"
 msgstr "rk minkheunh sakammopheap"
 
 # Menu path not found
-#: gschem/src/x/x_menus.c:2086
+#: gschem/src/x/x_menus.c:2103
 msgid "Menu path not found"
 msgstr "rk minkheunh phlauv meunouy"
 
 # Error: did not find path
-#: gschem/src/x/x_menus.c:2175 gschem/src/x/x_menus.c:2209
+#: gschem/src/x/x_menus.c:2192 gschem/src/x/x_menus.c:2226
 msgid "Error: did not find path"
 msgstr "kamhosa: minban rk kheunh phlauv"
 
-#: gschem/src/x/x_menus.c:2318
+#: gschem/src/x/x_menus.c:2335
 msgid "Could not open file"
 msgstr "min ach baek eksar samyobrachoum"
 
 # Remove
-#: gschem/src/x/x_menus.c:2428
+#: gschem/src/x/x_menus.c:2445
 msgid "Remove"
 msgstr "yokchenh"
 
 # Show path
-#: gschem/src/x/x_menus.c:2435
+#: gschem/src/x/x_menus.c:2452
 msgid "_Show path"
 msgstr "bangheanh phlauv"
 
-#: gschem/src/x/x_menus.c:2676
+#: gschem/src/x/x_menus.c:2693
 msgid "Recent menu items saved to"
 msgstr "ban roksaatouk theato meunouy thmei  tow"
 
-#: gschem/src/x/x_menus.c:2729
+#: gschem/src/x/x_menus.c:2746
 msgid "Recent menu items restore from"
 msgstr "kar sdar theato meunouy thmei  pi"
 
@@ -4075,7 +4089,7 @@ msgstr "bangheanh te chhmoh"
 msgid "Select an attribute visibility option"
 msgstr "chreusa chomreusa pheap meulkheunh pheap chea mcheasa"
 
-#: gschem/src/x/x_multiattrib.c:1738
+#: gschem/src/x/x_multiattrib.c:1738 gschem/src/x/x_toolbars.c:243
 msgid "Promote"
 msgstr "phsaapvophsaeay"
 
@@ -4439,7 +4453,8 @@ msgstr ""
 msgid "Close without changing any settings"
 msgstr ""
 
-#: gschem/src/x/x_settings_dialog.c:2717 gschem/scheme/gschem/builtins.scm:56
+#: gschem/src/x/x_settings_dialog.c:2717 gschem/src/x/x_toolbars.c:151
+#: gschem/scheme/gschem/builtins.scm:56
 msgid "Save"
 msgstr ""
 
@@ -4471,6 +4486,242 @@ msgstr ""
 
 #: gschem/src/x/x_status_bar.c:414
 msgid "Pick"
+msgstr ""
+
+#: gschem/src/x/x_toolbars.c:149 gschem/src/x/x_toolbars.c:195
+#, fuzzy
+msgid "New"
+msgstr "Thmei"
+
+#: gschem/src/x/x_toolbars.c:152 gschem/scheme/gschem/builtins.scm:59
+msgid "Save As"
+msgstr ""
+
+#: gschem/src/x/x_toolbars.c:155 gschem/scheme/gschem/builtins.scm:68
+msgid "Print"
+msgstr "baohpoum..."
+
+#: gschem/src/x/x_toolbars.c:156
+msgid "PDF"
+msgstr ""
+
+#: gschem/src/x/x_toolbars.c:158 gschem/scheme/gschem/builtins.scm:197
+msgid "Cut"
+msgstr ""
+
+#: gschem/src/x/x_toolbars.c:160 gschem/scheme/gschem/builtins.scm:203
+msgid "Paste"
+msgstr ""
+
+#: gschem/src/x/x_toolbars.c:163 gschem/scheme/gschem/builtins.scm:101
+msgid "Redo"
+msgstr ""
+
+#: gschem/src/x/x_toolbars.c:167
+#, fuzzy
+msgid "Unselect"
+msgstr "min chreus"
+
+# Invert Image
+#: gschem/src/x/x_toolbars.c:172
+#, fuzzy
+msgid "Invert"
+msgstr "banhchrasa roubpheap"
+
+#: gschem/src/x/x_toolbars.c:173
+msgid "Library"
+msgstr ""
+
+#: gschem/src/x/x_toolbars.c:174
+msgid "Nets"
+msgstr ""
+
+#: gschem/src/x/x_toolbars.c:176
+#, fuzzy
+msgid "Attrib"
+msgstr "kounalokkhan"
+
+#: gschem/src/x/x_toolbars.c:180 gschem/src/x/x_toolbars.c:238
+#, fuzzy
+msgid "Line"
+msgstr "banthem banteat"
+
+#: gschem/src/x/x_toolbars.c:182
+#, fuzzy
+msgid "circle"
+msgstr "banthem rongvong"
+
+#: gschem/src/x/x_toolbars.c:183
+#, fuzzy
+msgid "Arc"
+msgstr "banthem thnou"
+
+#: gschem/src/x/x_toolbars.c:184 gschem/src/x/x_window.c:1012
+msgid "Path"
+msgstr "rbieb phokaon"
+
+#: gschem/src/x/x_toolbars.c:186
+#, fuzzy
+msgid "Image"
+msgstr "braphet roubpheap"
+
+#: gschem/src/x/x_toolbars.c:189
+#, fuzzy
+msgid "First"
+msgstr "kour dambaung"
+
+#: gschem/src/x/x_toolbars.c:190
+#, fuzzy
+msgid "Prev"
+msgstr "meul cheamoun"
+
+# Next page
+#: gschem/src/x/x_toolbars.c:191
+#, fuzzy
+msgid "Next"
+msgstr "tom​ p​ r​ banteab"
+
+#: gschem/src/x/x_toolbars.c:193 gschem/src/x/x_toolbars.c:198
+#: gschem/src/x/x_toolbars.c:199 gschem/src/x/x_toolbars.c:262
+#, fuzzy
+msgid "Down"
+msgstr "kar phlasa btaur rbieb"
+
+#: gschem/src/x/x_toolbars.c:194
+#, fuzzy
+msgid "Last"
+msgstr "kour chongokraoy"
+
+#: gschem/src/x/x_toolbars.c:196
+#, fuzzy
+msgid "Manage"
+msgstr "kammovithi krobkrong..."
+
+#: gschem/src/x/x_toolbars.c:202
+msgid "Spec"
+msgstr ""
+
+#: gschem/src/x/x_toolbars.c:203
+#, fuzzy
+msgid "Netnames"
+msgstr "chhmoh​ eksar"
+
+#: gschem/src/x/x_toolbars.c:206 gschem/scheme/gschem/builtins.scm:209
+msgid "Redraw"
+msgstr ""
+
+#: gschem/src/x/x_toolbars.c:207 gschem/scheme/gschem/builtins.scm:212
+msgid "Pan"
+msgstr ""
+
+#: gschem/src/x/x_toolbars.c:208
+#, fuzzy
+msgid "Window"
+msgstr "bangauoch me"
+
+#: gschem/src/x/x_toolbars.c:209
+#, fuzzy
+msgid "Selected"
+msgstr "chreus"
+
+#: gschem/src/x/x_toolbars.c:216
+#, fuzzy
+msgid "Properties"
+msgstr "lokkhan sambotte robsa tomneaktomnong"
+
+#: gschem/src/x/x_toolbars.c:220 gschem/etc/system-gschemrc.scm:2181
+#: gschem/scheme/gschem/builtins.scm:191
+msgid "Unlock"
+msgstr ""
+
+#: gschem/src/x/x_toolbars.c:221
+#, fuzzy
+msgid "Update"
+msgstr "thveu aoy teansamy"
+
+#: gschem/src/x/x_toolbars.c:225
+msgid "Multi"
+msgstr ""
+
+#: gschem/src/x/x_toolbars.c:234
+#, fuzzy
+msgid "Color"
+msgstr "n:"
+
+#: gschem/src/x/x_toolbars.c:236
+#, fuzzy
+msgid "Slots"
+msgstr "..."
+
+#: gschem/src/x/x_toolbars.c:237
+msgid "Pins"
+msgstr ""
+
+#: gschem/src/x/x_toolbars.c:239
+#, fuzzy
+msgid "Fill"
+msgstr "bampenh ruoch"
+
+#: gschem/src/x/x_toolbars.c:240
+msgid "Arcs"
+msgstr ""
+
+#: gschem/src/x/x_toolbars.c:244
+#, fuzzy
+msgid "Demote"
+msgstr "phsaapvophsaeay"
+
+#: gschem/src/x/x_toolbars.c:247
+msgid "Both"
+msgstr ""
+
+#: gschem/src/x/x_toolbars.c:249
+#, fuzzy
+msgid "Hidden"
+msgstr "bangheanh pi kar del ban leak"
+
+# Show/Hide Inherited
+#: gschem/src/x/x_toolbars.c:250
+#, fuzzy
+msgid "Inherited"
+msgstr "bangheanh/leak morotak"
+
+#: gschem/src/x/x_toolbars.c:251
+#, fuzzy
+msgid "Find"
+msgstr "rk atthabat"
+
+#: gschem/src/x/x_toolbars.c:252
+#, fuzzy
+msgid "Hide"
+msgstr "leak atthabat"
+
+#: gschem/src/x/x_toolbars.c:253
+#, fuzzy
+msgid "Show"
+msgstr "bangheanh atthabat"
+
+# automatically
+#: gschem/src/x/x_toolbars.c:255
+#, fuzzy
+msgid "Auto #"
+msgstr "daoy svyobravotte"
+
+#: gschem/src/x/x_toolbars.c:257
+msgid "Dots"
+msgstr ""
+
+#: gschem/src/x/x_toolbars.c:261
+msgid "UP"
+msgstr ""
+
+#: gschem/src/x/x_toolbars.c:265
+#, fuzzy
+msgid "Snap On"
+msgstr "khtasa now leu\n"
+
+#: gschem/src/x/x_toolbars.c:267
+msgid "Config"
 msgstr ""
 
 #: gschem/src/x/x_toolbars.c:344
@@ -4586,10 +4837,6 @@ msgstr "<b>breachy knong kar phtok eksar roubpheap</b>"
 #: gschem/src/x/x_window.c:999
 msgid "Creating new file"
 msgstr "bangkeut eksar thmei"
-
-#: gschem/src/x/x_window.c:1012
-msgid "Path"
-msgstr "rbieb phokaon"
 
 #: gschem/src/x/x_window.c:1015
 msgid ""
@@ -5040,10 +5287,6 @@ msgstr ""
 msgid "Lock selected objects"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2181 gschem/scheme/gschem/builtins.scm:191
-msgid "Unlock"
-msgstr ""
-
 #: gschem/etc/system-gschemrc.scm:2181
 msgid "Unlock selected objects"
 msgstr ""
@@ -5170,7 +5413,7 @@ msgid "_Draw Order"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2246
-msgid "Change order objects are drawn"
+msgid "Change the order objects are drawn"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2249
@@ -5762,10 +6005,6 @@ msgstr ""
 msgid "Open File"
 msgstr ""
 
-#: gschem/scheme/gschem/builtins.scm:59
-msgid "Save As"
-msgstr ""
-
 #: gschem/scheme/gschem/builtins.scm:62
 msgid "Save All"
 msgstr ""
@@ -5773,10 +6012,6 @@ msgstr ""
 #: gschem/scheme/gschem/builtins.scm:65
 msgid "Save Modified"
 msgstr ""
-
-#: gschem/scheme/gschem/builtins.scm:68
-msgid "Print"
-msgstr "baohpoum..."
 
 #: gschem/scheme/gschem/builtins.scm:71
 msgid "Export Image"
@@ -5805,10 +6040,6 @@ msgstr "Chors Symbol"
 #: gschem/scheme/gschem/builtins.scm:92
 msgid "Export Picture"
 msgstr "banthem roubpheap"
-
-#: gschem/scheme/gschem/builtins.scm:101
-msgid "Redo"
-msgstr ""
 
 #: gschem/scheme/gschem/builtins.scm:107
 msgid "Copy Mode"
@@ -5865,22 +6096,6 @@ msgstr "chreusa vottho"
 #: gschem/scheme/gschem/builtins.scm:182
 msgid "Deselect mode"
 msgstr "daoh chreusa rbieb"
-
-#: gschem/scheme/gschem/builtins.scm:197
-msgid "Cut"
-msgstr ""
-
-#: gschem/scheme/gschem/builtins.scm:203
-msgid "Paste"
-msgstr ""
-
-#: gschem/scheme/gschem/builtins.scm:209
-msgid "Redraw"
-msgstr ""
-
-#: gschem/scheme/gschem/builtins.scm:212
-msgid "Pan"
-msgstr ""
 
 #: gschem/scheme/gschem/builtins.scm:215
 msgid "Pan Left"
