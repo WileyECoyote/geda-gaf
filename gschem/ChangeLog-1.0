@@ -1,5 +1,7 @@
 2020-08-21 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/x/x_autonumber.c: Utilize geda_check_menu_item_set_state macro.
+
     * src/x/x_menus.c: Declare widget pointers separately.
 
 2020-08-20 Wiley E. Hill <wileyhill@gmail.com>

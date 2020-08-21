@@ -1466,13 +1466,13 @@ static void restore_dialog_values(AUTONUMBER_TEXT *autotext)
   geda_option_menu_set_history((GedaOptionMenu*)ScopeNumberMenu, autotext->scope_number);
   menu = geda_option_menu_get_menu((GedaOptionMenu*)ScopeNumberMenu);
   menuitem = geda_menu_widget_get_active(menu);
-  geda_check_menu_item_set_active((GedaCheckMenuItem*)menuitem, TRUE);
+  geda_check_menu_item_set_state(menuitem, TRUE);
 
   /* Set the ScopeSkip ComboMenu with the value in autotext->scope_skip */
   geda_option_menu_set_history((GedaOptionMenu*)ScopeSkipMenu, autotext->scope_skip);
   menu = geda_option_menu_get_menu((GedaOptionMenu*)ScopeSkipMenu);
   menuitem = geda_menu_widget_get_active(menu);
-  geda_check_menu_item_set_active((GedaCheckMenuItem*)menuitem, TRUE);
+  geda_check_menu_item_set_state(menuitem, TRUE);
 
   SetSwitch (ScopeOverwrite, autotext->scope_overwrite);
 
