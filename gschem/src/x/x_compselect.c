@@ -2438,7 +2438,7 @@ compselect_build_view_menu(Compselect *compselect, GtkWidget *treeview)
     active     = geda_check_menu_item_get_active (check_item);
     menuitem   = geda_check_menu_item_new_with_mnemonic (label);
 
-    geda_check_menu_item_set_active (GEDA_CHECK_MENU_ITEM(menuitem), active);
+    geda_check_menu_item_set_state (menuitem, active);
     geda_check_menu_item_set_draw_as_radio((GedaCheckMenuItem*) menuitem, FALSE);
     geda_menu_append (menu, menuitem);
 
