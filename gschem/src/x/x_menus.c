@@ -1181,8 +1181,8 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
       gtk_widget_set_tooltip_text(symbar_toggle,   _("Toggle visibility of the Symbol toolbar"));
       gtk_widget_set_tooltip_text(modbar_toggle,   _("Toggle visibility of the Modify toolbar"));
       gtk_widget_set_tooltip_text(editbar_toggle,  _("Toggle visibility of the Edit toolbar"));
-      gtk_widget_set_tooltip_text(attribar_toggle,  _("Toggle visibility of the Attributes toolbar"));
-      gtk_widget_set_tooltip_text(gridbar_toggle,   _("Toggle visibility of the Grid/Snap toolbar"));
+      gtk_widget_set_tooltip_text(attribar_toggle, _("Toggle visibility of the Attributes toolbar"));
+      gtk_widget_set_tooltip_text(gridbar_toggle,  _("Toggle visibility of the Grid/Snap toolbar"));
 
       gtk_widget_set_has_tooltip (stdbar_toggle, show_menu_tips);
       gtk_widget_set_has_tooltip (selbar_toggle, show_menu_tips);
@@ -1279,9 +1279,9 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
       gtk_widget_set_tooltip_text(tb_hori_bulb,  _("Display Icons and Text horizontally on the toolbar"));
 
       gtk_widget_set_has_tooltip (tb_icons_bulb, show_menu_tips);
-      gtk_widget_set_has_tooltip (tb_text_bulb, show_menu_tips);
-      gtk_widget_set_has_tooltip (tb_vert_bulb, show_menu_tips);
-      gtk_widget_set_has_tooltip (tb_hori_bulb, show_menu_tips);
+      gtk_widget_set_has_tooltip (tb_text_bulb,  show_menu_tips);
+      gtk_widget_set_has_tooltip (tb_vert_bulb,  show_menu_tips);
+      gtk_widget_set_has_tooltip (tb_hori_bulb,  show_menu_tips);
 
       geda_menu_shell_prepend(menu_shell, menu_item);
 
@@ -1361,7 +1361,8 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
   x_menu_add_menu_popups(w_current, menu_data);
 
   ui_list = g_slist_append(ui_list, menu_data);
-  w_current->ui_index = g_slist_length(ui_list) -1;
+  w_current->ui_index = g_slist_length(ui_list) - 1;
+
   return MENU_BAR;
 }
 
