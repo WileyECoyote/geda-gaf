@@ -1139,16 +1139,16 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
       GtkWidget *gridbar_toggle  = geda_check_menu_item_new_with_mnemonic (IDS_MENU_TB_GRID_SNAP);
 
 
-      geda_check_menu_item_set_active((GedaCheckMenuItem*)stdbar_toggle,   TRUE);
-      geda_check_menu_item_set_active((GedaCheckMenuItem*)selbar_toggle,   TRUE);
-      geda_check_menu_item_set_active((GedaCheckMenuItem*)pagebar_toggle,  TRUE);
-      geda_check_menu_item_set_active((GedaCheckMenuItem*)addbar_toggle,   TRUE);
-      geda_check_menu_item_set_active((GedaCheckMenuItem*)zoombar_toggle,  TRUE);
-      geda_check_menu_item_set_active((GedaCheckMenuItem*)symbar_toggle,   TRUE);
-      geda_check_menu_item_set_active((GedaCheckMenuItem*)modbar_toggle,   TRUE);
-      geda_check_menu_item_set_active((GedaCheckMenuItem*)editbar_toggle,  TRUE);
-      geda_check_menu_item_set_active((GedaCheckMenuItem*)attribar_toggle, TRUE);
-      geda_check_menu_item_set_active((GedaCheckMenuItem*)gridbar_toggle,  TRUE);
+      geda_check_menu_item_set_state (stdbar_toggle,   TRUE);
+      geda_check_menu_item_set_state (selbar_toggle,   TRUE);
+      geda_check_menu_item_set_state (pagebar_toggle,  TRUE);
+      geda_check_menu_item_set_state (addbar_toggle,   TRUE);
+      geda_check_menu_item_set_state (zoombar_toggle,  TRUE);
+      geda_check_menu_item_set_state (symbar_toggle,   TRUE);
+      geda_check_menu_item_set_state (modbar_toggle,   TRUE);
+      geda_check_menu_item_set_state (editbar_toggle,  TRUE);
+      geda_check_menu_item_set_state (attribar_toggle, TRUE);
+      geda_check_menu_item_set_state (gridbar_toggle,  TRUE);
 
       /* Normally the ui manager would do this for us but we don't have one so...*/
       GEDA_OBJECT_SET_DATA(MENU_BAR, stdbar_toggle,   OPT_STDBAR_MENU_PATH);
@@ -1322,10 +1322,10 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
     g_object_set (menu_popcons_toggle, "draw-as-radio", TRUE, NULL);
     g_object_set (menu_poptips_toggle, "draw-as-radio", TRUE, NULL);
 
-    geda_check_menu_item_set_active((GedaCheckMenuItem*)menu_icons_toggle,   show_menu_icons);
-    geda_check_menu_item_set_active((GedaCheckMenuItem*)menu_tips_toggle,    show_menu_tips);
-    geda_check_menu_item_set_active((GedaCheckMenuItem*)menu_popcons_toggle, show_pop_icons);
-    geda_check_menu_item_set_active((GedaCheckMenuItem*)menu_poptips_toggle, show_pop_tips);
+    geda_check_menu_item_set_state (menu_icons_toggle,   show_menu_icons);
+    geda_check_menu_item_set_state (menu_tips_toggle,    show_menu_tips);
+    geda_check_menu_item_set_state (menu_popcons_toggle, show_pop_icons);
+    geda_check_menu_item_set_state (menu_poptips_toggle, show_pop_tips);
 
     GEDA_OBJECT_SET_DATA(MENU_BAR, menu_icons_toggle,   OPT_ICON_MENU_PATH);
     GEDA_OBJECT_SET_DATA(MENU_BAR, menu_tips_toggle,    OPT_TIPS_MENU_PATH);
