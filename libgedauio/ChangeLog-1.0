@@ -1,7 +1,8 @@
 2020-08-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_check_menu_item.h: Redefine geda_check_menu_item_set_state
-      as a function macro to add cast to GedaCheckMenuItem.
+      as a function macro to add cast to GedaCheckMenuItem. Define function
+      macro geda_check_menu_item_set_as_radio.
 
 2020-08-07 Wiley E. Hill <wileyhill@gmail.com>
 

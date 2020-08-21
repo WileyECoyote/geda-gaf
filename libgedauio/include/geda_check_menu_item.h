@@ -97,6 +97,7 @@ void       geda_check_menu_item_set_show_toggle   (GedaCheckMenuItem *menu_item,
 
 void       geda_check_menu_item_toggled           (GedaCheckMenuItem *check_menu_item);
 
+#define    geda_check_menu_item_set_as_radio(i,r) geda_check_menu_item_set_draw_as_radio ((GedaCheckMenuItem*)(i),(r))
 #define    geda_check_menu_item_set_state(i,s) geda_check_menu_item_set_active ((GedaCheckMenuItem*)(i),(s))
 
 #ifdef __cplusplus
