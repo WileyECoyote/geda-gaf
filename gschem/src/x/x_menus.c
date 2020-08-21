@@ -1218,10 +1218,16 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
       geda_container_add(toggle_menu, tb_separator);
 
       /* Start Toolbar Mode Radios */
-      GtkWidget *tb_icons_bulb = geda_check_menu_item_new_with_mnemonic ("_Icons");
-      GtkWidget *tb_text_bulb  = geda_check_menu_item_new_with_mnemonic ("_Text");
-      GtkWidget *tb_vert_bulb  = geda_check_menu_item_new_with_mnemonic ("Both _Vertical");
-      GtkWidget *tb_hori_bulb  = geda_check_menu_item_new_with_mnemonic ("Both _Horizontal");
+
+      GtkWidget *tb_icons_bulb;
+      GtkWidget *tb_text_bulb;
+      GtkWidget *tb_vert_bulb;
+      GtkWidget *tb_hori_bulb;
+
+      tb_icons_bulb = geda_check_menu_item_new_with_mnemonic ("_Icons");
+      tb_text_bulb  = geda_check_menu_item_new_with_mnemonic ("_Text");
+      tb_vert_bulb  = geda_check_menu_item_new_with_mnemonic ("Both _Vertical");
+      tb_hori_bulb  = geda_check_menu_item_new_with_mnemonic ("Both _Horizontal");
 
       g_object_set (tb_icons_bulb, "draw-as-radio", TRUE, NULL);
       g_object_set (tb_text_bulb,  "draw-as-radio", TRUE, NULL);
@@ -1294,16 +1300,22 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
     }
 
     /* Menu Options */
+
+    GtkWidget *menu_icons_toggle;
+    GtkWidget *menu_tips_toggle;
+    GtkWidget *menu_popcons_toggle;
+    GtkWidget *menu_poptips_toggle;
+
     menu_item   = geda_menu_item_new_with_mnemonic("_Menu");
     toggle_menu = geda_menu_new();
 
     geda_menu_item_set_submenu_widget ((GedaMenuItem*)menu_item, toggle_menu);
     GEDA_OBJECT_SET_DATA(MENU_BAR, menu_item, IDS_MENU_VIEW_MENU);
 
-    GtkWidget *menu_icons_toggle   = geda_check_menu_item_new_with_mnemonic ("_Icons");
-    GtkWidget *menu_tips_toggle    = geda_check_menu_item_new_with_mnemonic ("_ToolTips");
-    GtkWidget *menu_popcons_toggle = geda_check_menu_item_new_with_mnemonic ("_Context Icons");
-    GtkWidget *menu_poptips_toggle = geda_check_menu_item_new_with_mnemonic ("Context Tip_s");
+    menu_icons_toggle   = geda_check_menu_item_new_with_mnemonic ("_Icons");
+    menu_tips_toggle    = geda_check_menu_item_new_with_mnemonic ("_ToolTips");
+    menu_popcons_toggle = geda_check_menu_item_new_with_mnemonic ("_Context Icons");
+    menu_poptips_toggle = geda_check_menu_item_new_with_mnemonic ("Context Tip_s");
 
     g_object_set (menu_icons_toggle,   "draw-as-radio", TRUE, NULL);
     g_object_set (menu_tips_toggle,    "draw-as-radio", TRUE, NULL);
