@@ -1,3 +1,8 @@
+2020-08-21 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/geda_check_menu_item.h: Redefine geda_check_menu_item_set_state
+      as a function macro to add cast to GedaCheckMenuItem.
+
 2020-08-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_handlebox.c: Revise geda_handle_box_get_toolbar to

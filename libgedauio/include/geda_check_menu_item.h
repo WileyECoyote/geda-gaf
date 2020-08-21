@@ -97,7 +97,7 @@ void       geda_check_menu_item_set_show_toggle   (GedaCheckMenuItem *menu_item,
 
 void       geda_check_menu_item_toggled           (GedaCheckMenuItem *check_menu_item);
 
-#define    geda_check_menu_item_set_state          geda_check_menu_item_set_active
+#define    geda_check_menu_item_set_state(i,s) geda_check_menu_item_set_active ((GedaCheckMenuItem*)(i),(s))
 
 #ifdef __cplusplus
 }
