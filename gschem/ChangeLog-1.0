@@ -7,6 +7,8 @@
     * src/x/x_menus.c: Declare widget pointers separately, utilize macro
       geda_check_menu_item_set_state.
 
+    * src/x/x_toolbars.c: Translate toolbar button labels.
+
 2020-08-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * etc/system-gschemrc.scm: Revise menu tool tips.
