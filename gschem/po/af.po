@@ -4342,10 +4342,10 @@ msgstr "Herhaal/geen"
 msgid "Pick"
 msgstr "Kies"
 
+# New
 #: gschem/src/x/x_toolbars.c:149 gschem/src/x/x_toolbars.c:195
-#, fuzzy
 msgid "New"
-msgstr "_Huur"
+msgstr "Huur"
 
 #: gschem/src/x/x_toolbars.c:152 gschem/scheme/gschem/builtins.scm:59
 msgid "Save As"
@@ -4371,17 +4371,15 @@ msgstr "Plak 2"
 msgid "Redo"
 msgstr "Herstel"
 
-# Deselect
+# Unselect => Deselect
 #: gschem/src/x/x_toolbars.c:167
-#, fuzzy
 msgid "Unselect"
 msgstr "Ontkies"
 
-# Invert Image
+# Invert Selection => Invert => Reversal
 #: gschem/src/x/x_toolbars.c:172
-#, fuzzy
 msgid "Invert"
-msgstr "Omkeer prentjie"
+msgstr "Omkeer"
 
 #: gschem/src/x/x_toolbars.c:173
 msgid "Library"
@@ -4392,33 +4390,29 @@ msgid "Nets"
 msgstr ""
 
 #: gschem/src/x/x_toolbars.c:176
-#, fuzzy
 msgid "Attrib"
 msgstr "Eienskappe"
 
 #: gschem/src/x/x_toolbars.c:180 gschem/src/x/x_toolbars.c:238
-#, fuzzy
 msgid "Line"
-msgstr "Voeg Lyn"
+msgstr "Lyn"
 
 #: gschem/src/x/x_toolbars.c:182
-#, fuzzy
-msgid "circle"
+msgid "Circle"
 msgstr "Sirkel"
 
 #: gschem/src/x/x_toolbars.c:183
-#, fuzzy
 msgid "Arc"
-msgstr "Voeg Eienskap By"
+msgstr "Boog"
 
 #: gschem/src/x/x_toolbars.c:184 gschem/src/x/x_window.c:1012
 msgid "Path"
 msgstr "Voeg Net By"
 
+# Image
 #: gschem/src/x/x_toolbars.c:186
-#, fuzzy
 msgid "Image"
-msgstr "Afbeeldingsoort"
+msgstr "Beeld"
 
 #: gschem/src/x/x_toolbars.c:189
 #, fuzzy
@@ -5241,12 +5235,13 @@ msgstr "Black and White kleur"
 msgid "Set the color map to Black and White"
 msgstr "Stel die kleur kaart om Black and White"
 
+# Draw Order => Draw Sequence
 #: gschem/etc/system-gschemrc.scm:2246
 msgid "_Draw Order"
-msgstr "Teken Bestel"
+msgstr "Trek Volgorde"
 
 #: gschem/etc/system-gschemrc.scm:2246
-msgid "Change order objects are drawn"
+msgid "Change the order objects are drawn"
 msgstr "Verandering orde voorwerpe getrek"
 
 #: gschem/etc/system-gschemrc.scm:2249
@@ -5809,10 +5804,10 @@ msgstr "Eienskappe"
 msgid "_Tools"
 msgstr "Gereedskap"
 
-# Page/Draw Order
+# Page/Draw Order  => Draw Sequence
 #: gschem/etc/system-gschemrc.scm:2416
 msgid "_Page/_Draw Order"
-msgstr "Blaai/trek volgorde"
+msgstr "Bladsy/Trek Volgorde"
 
 #: gschem/etc/system-gschemrc.scm:2423
 msgid "_Options"
