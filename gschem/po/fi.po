@@ -4392,10 +4392,10 @@ msgstr "Toista/ei mitään"
 msgid "Pick"
 msgstr "Valita"
 
+# New
 #: gschem/src/x/x_toolbars.c:149 gschem/src/x/x_toolbars.c:195
-#, fuzzy
 msgid "New"
-msgstr "_Uusi"
+msgstr "Uusi"
 
 #: gschem/src/x/x_toolbars.c:152 gschem/scheme/gschem/builtins.scm:59
 msgid "Save As"
@@ -4421,17 +4421,15 @@ msgstr "L_iitä"
 msgid "Redo"
 msgstr ""
 
-# Deselect
+# Unselect
 #: gschem/src/x/x_toolbars.c:167
-#, fuzzy
 msgid "Unselect"
-msgstr "poista"
+msgstr "Unselect"
 
-# Invert Image
+# Invert => Inversion
 #: gschem/src/x/x_toolbars.c:172
-#, fuzzy
 msgid "Invert"
-msgstr "Käänteinen kuva"
+msgstr "Inversio"
 
 #: gschem/src/x/x_toolbars.c:173
 msgid "Library"
@@ -4442,34 +4440,29 @@ msgid "Nets"
 msgstr ""
 
 #: gschem/src/x/x_toolbars.c:176
-#, fuzzy
 msgid "Attrib"
 msgstr "attribuutti"
 
 #: gschem/src/x/x_toolbars.c:180 gschem/src/x/x_toolbars.c:238
-#, fuzzy
 msgid "Line"
-msgstr "_Viiva"
+msgstr "Viiva"
 
 #: gschem/src/x/x_toolbars.c:182
-#, fuzzy
-msgid "circle"
+msgid "Circle"
 msgstr "Ympyrä"
 
 #: gschem/src/x/x_toolbars.c:183
-#, fuzzy
 msgid "Arc"
-msgstr "Kaa_ri"
+msgstr "Kaari"
 
 #: gschem/src/x/x_toolbars.c:184 gschem/src/x/x_window.c:1012
 msgid "Path"
 msgstr "Käännä 90 astetta"
 
-# write image
+# Image
 #: gschem/src/x/x_toolbars.c:186
-#, fuzzy
 msgid "Image"
-msgstr "write kuva"
+msgstr "Kuva"
 
 #: gschem/src/x/x_toolbars.c:189
 #, fuzzy
