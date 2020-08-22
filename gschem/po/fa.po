@@ -4421,10 +4421,10 @@ msgstr ""
 msgid "Pick"
 msgstr ""
 
+# New
 #: gschem/src/x/x_toolbars.c:149 gschem/src/x/x_toolbars.c:195
-#, fuzzy
 msgid "New"
-msgstr "Net"
+msgstr "جدید"
 
 # Save As
 #: gschem/src/x/x_toolbars.c:152 gschem/scheme/gschem/builtins.scm:59
@@ -4455,16 +4455,15 @@ msgstr "خمیر"
 msgid "Redo"
 msgstr "ازنو"
 
-# Deselect
+# Unselect => select not => do not select
 #: gschem/src/x/x_toolbars.c:167
-#, fuzzy
 msgid "Unselect"
-msgstr "لغو انتخاب"
+msgstr "انتخاب نکنید"
 
+# Invert => Inversion
 #: gschem/src/x/x_toolbars.c:172
-#, fuzzy
 msgid "Invert"
-msgstr "تبدیل تصویر"
+msgstr "وارونگی"
 
 #: gschem/src/x/x_toolbars.c:173
 msgid "Library"
@@ -4474,30 +4473,31 @@ msgstr ""
 msgid "Nets"
 msgstr ""
 
+# Properties
 #: gschem/src/x/x_toolbars.c:176
-#, fuzzy
 msgid "Attrib"
 msgstr "خواص"
 
+# Line
 #: gschem/src/x/x_toolbars.c:180 gschem/src/x/x_toolbars.c:238
-#, fuzzy
 msgid "Line"
-msgstr "Line"
+msgstr "خط"
 
+# Circle
 #: gschem/src/x/x_toolbars.c:182
-#, fuzzy
-msgid "circle"
-msgstr "Circle"
+msgid "Circle"
+msgstr "دایره"
 
+# Arc
 #: gschem/src/x/x_toolbars.c:183
 msgid "Arc"
-msgstr ""
+msgstr "قوس"
 
 #: gschem/src/x/x_toolbars.c:184 gschem/src/x/x_window.c:1012
 msgid "Path"
 msgstr "Rotate 90 Mode"
 
-# Write Image
+# Image
 #: gschem/src/x/x_toolbars.c:186
 #, fuzzy
 msgid "Image"
