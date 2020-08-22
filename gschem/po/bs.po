@@ -4473,10 +4473,10 @@ msgstr ""
 msgid "Pick"
 msgstr ""
 
+# New
 #: gschem/src/x/x_toolbars.c:149 gschem/src/x/x_toolbars.c:195
-#, fuzzy
 msgid "New"
-msgstr "_Nova"
+msgstr "Nova"
 
 # Save As
 #: gschem/src/x/x_toolbars.c:152 gschem/scheme/gschem/builtins.scm:59
@@ -4509,15 +4509,13 @@ msgstr "ponovo uraditi"
 
 # Deselect Mode
 #: gschem/src/x/x_toolbars.c:167
-#, fuzzy
 msgid "Unselect"
-msgstr "poništiti izbor"
+msgstr "Poništi odabir"
 
-# Invert image
+# Invert => Reversal
 #: gschem/src/x/x_toolbars.c:172
-#, fuzzy
 msgid "Invert"
-msgstr "Invert slika"
+msgstr "Preokret"
 
 #: gschem/src/x/x_toolbars.c:173
 msgid "Library"
@@ -4529,35 +4527,30 @@ msgstr ""
 
 # Attribute
 #: gschem/src/x/x_toolbars.c:176
-#, fuzzy
 msgid "Attrib"
-msgstr "atribut"
+msgstr "Atribut"
 
 #: gschem/src/x/x_toolbars.c:180 gschem/src/x/x_toolbars.c:238
-#, fuzzy
 msgid "Line"
-msgstr "_Linija"
+msgstr "Linija"
 
 #: gschem/src/x/x_toolbars.c:182
-#, fuzzy
 msgid "circle"
 msgstr "Krug"
 
 #: gschem/src/x/x_toolbars.c:183
-#, fuzzy
 msgid "Arc"
-msgstr "L_uk"
+msgstr "Luk"
 
 # Polygon
 #: gschem/src/x/x_toolbars.c:184 gschem/src/x/x_window.c:1012
 msgid "Path"
 msgstr "Poligon"
 
-# Write image
+# Image
 #: gschem/src/x/x_toolbars.c:186
-#, fuzzy
 msgid "Image"
-msgstr "Piši sliku"
+msgstr "Sliku"
 
 # draw first
 #: gschem/src/x/x_toolbars.c:189
@@ -4568,7 +4561,7 @@ msgstr "nacrtati prvo"
 #: gschem/src/x/x_toolbars.c:190
 #, fuzzy
 msgid "Prev"
-msgstr "_Prethodna"
+msgstr "Prethodna"
 
 #: gschem/src/x/x_toolbars.c:191
 #, fuzzy
