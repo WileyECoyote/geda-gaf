@@ -4406,9 +4406,8 @@ msgid "Pick"
 msgstr "التقط"
 
 #: gschem/src/x/x_toolbars.c:149 gschem/src/x/x_toolbars.c:195
-#, fuzzy
 msgid "New"
-msgstr "_جديد"
+msgstr "جديد"
 
 #: gschem/src/x/x_toolbars.c:152 gschem/scheme/gschem/builtins.scm:59
 msgid "Save As"
@@ -4434,17 +4433,15 @@ msgstr "أ_لصق"
 msgid "Redo"
 msgstr "كرّر"
 
-# Deselect
+# Deselect; iilgha
 #: gschem/src/x/x_toolbars.c:167
-#, fuzzy
 msgid "Unselect"
 msgstr "إلغاء"
 
-# Invert Image
+# Invert => Inversion; eaks
 #: gschem/src/x/x_toolbars.c:172
-#, fuzzy
 msgid "Invert"
-msgstr "عكس الصورة"
+msgstr "عكس"
 
 #: gschem/src/x/x_toolbars.c:173
 msgid "Library"
@@ -4454,30 +4451,28 @@ msgstr ""
 msgid "Nets"
 msgstr ""
 
+# Features
 #: gschem/src/x/x_toolbars.c:176
-#, fuzzy
 msgid "Attrib"
 msgstr "سمات"
 
 #: gschem/src/x/x_toolbars.c:180 gschem/src/x/x_toolbars.c:238
-#, fuzzy
 msgid "Line"
-msgstr "_خط"
+msgstr "خط"
 
 #: gschem/src/x/x_toolbars.c:182
-#, fuzzy
-msgid "circle"
-msgstr "_دائرة"
+msgid "Circle"
+msgstr "دائرة"
 
 #: gschem/src/x/x_toolbars.c:183
-#, fuzzy
 msgid "Arc"
-msgstr "ق_وس"
+msgstr "قوس"
 
 #: gschem/src/x/x_toolbars.c:184 gschem/src/x/x_window.c:1012
 msgid "Path"
 msgstr "/أضف شبكة"
 
+# Image
 #: gschem/src/x/x_toolbars.c:186
 #, fuzzy
 msgid "Image"
@@ -4783,11 +4778,10 @@ msgstr "أنشء و حرّر المخططات الكهربائية والرمو�
 
 #: gschem/etc/system-gschemrc.scm:2087 gschem/etc/system-gschemrc.scm:2296
 msgid "_New"
-msgstr "_جديد"
+msgstr "جديد"
 
 # Creating new file
 #: gschem/etc/system-gschemrc.scm:2087
-#, fuzzy
 msgid "Create a new file"
 msgstr "إنشاء ملف جديد"
 
@@ -5471,7 +5465,7 @@ msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2286 gschem/scheme/gschem/builtins.scm:371
 msgid "Add Path"
-msgstr "/أضف شبكة"
+msgstr "أضف شبكة"
 
 #: gschem/etc/system-gschemrc.scm:2287
 msgid "Pictu_re..."
@@ -6121,19 +6115,19 @@ msgstr "تسلسل هرمي"
 
 #: gschem/scheme/gschem/builtins.scm:341
 msgid "Add Component"
-msgstr "/أضف مكونا..."
+msgstr "أضف مكونا"
 
 #: gschem/scheme/gschem/builtins.scm:344
 msgid "Add Net"
-msgstr "/أضف شبكة"
+msgstr "أضف شبكة"
 
 #: gschem/scheme/gschem/builtins.scm:347
 msgid "Add Bus"
-msgstr "/أضف ناقلا"
+msgstr "أضف ناقلا"
 
 #: gschem/scheme/gschem/builtins.scm:353
 msgid "Add Text"
-msgstr "/أضف نصا"
+msgstr "أضف نصا"
 
 #: gschem/scheme/gschem/builtins.scm:356
 msgid "Add Line"
@@ -6145,7 +6139,7 @@ msgstr ""
 
 #: gschem/scheme/gschem/builtins.scm:362
 msgid "Add Box"
-msgstr "/أضف ناقلا"
+msgstr "أضف ناقلا"
 
 #: gschem/scheme/gschem/builtins.scm:365
 msgid "Add Circle"
