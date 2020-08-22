@@ -4361,10 +4361,10 @@ msgstr "Répéter/aucun"
 msgid "Pick"
 msgstr "Prendre"
 
+# New
 #: gschem/src/x/x_toolbars.c:149 gschem/src/x/x_toolbars.c:195
-#, fuzzy
 msgid "New"
-msgstr "_Nouveau"
+msgstr "Nouveau"
 
 #: gschem/src/x/x_toolbars.c:152 gschem/scheme/gschem/builtins.scm:59
 msgid "Save As"
@@ -4390,17 +4390,15 @@ msgstr "C_oller"
 msgid "Redo"
 msgstr "Refaire"
 
-# Deselect
+# Unselect => Deselect
 #: gschem/src/x/x_toolbars.c:167
-#, fuzzy
 msgid "Unselect"
 msgstr "Désélectionner"
 
-# Invert Image
+# Invert => Inversion
 #: gschem/src/x/x_toolbars.c:172
-#, fuzzy
 msgid "Invert"
-msgstr "Inverser l'image"
+msgstr "Inversion"
 
 #: gschem/src/x/x_toolbars.c:173
 msgid "Library"
@@ -4411,33 +4409,28 @@ msgid "Nets"
 msgstr ""
 
 #: gschem/src/x/x_toolbars.c:176
-#, fuzzy
 msgid "Attrib"
 msgstr "Attributs"
 
 #: gschem/src/x/x_toolbars.c:180 gschem/src/x/x_toolbars.c:238
-#, fuzzy
 msgid "Line"
-msgstr "_Ligne"
+msgstr "Ligne"
 
 #: gschem/src/x/x_toolbars.c:182
-#, fuzzy
-msgid "circle"
-msgstr "C_ercle"
+msgid "Circle"
+msgstr "Cercle"
 
 #: gschem/src/x/x_toolbars.c:183
-#, fuzzy
 msgid "Arc"
-msgstr "A_rc de cercle"
+msgstr "Arc"
 
 #: gschem/src/x/x_toolbars.c:184 gschem/src/x/x_window.c:1012
 msgid "Path"
 msgstr "Ajouter une piste"
 
 #: gschem/src/x/x_toolbars.c:186
-#, fuzzy
 msgid "Image"
-msgstr "Type d'image"
+msgstr "Image"
 
 #: gschem/src/x/x_toolbars.c:189
 #, fuzzy

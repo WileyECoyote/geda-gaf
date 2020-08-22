@@ -16,6 +16,8 @@
 
     * po/fi.po: Update Finnish translations.
 
+    * po/fr.po: Update French translations.
+
 2020-08-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_autonumber.c: Utilize geda_check_menu_item_set_state macro.
