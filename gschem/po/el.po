@@ -4357,10 +4357,10 @@ msgstr "Επανάληψη/κανένα"
 msgid "Pick"
 msgstr ""
 
+# New
 #: gschem/src/x/x_toolbars.c:149 gschem/src/x/x_toolbars.c:195
-#, fuzzy
 msgid "New"
-msgstr "_Νέο"
+msgstr "Νέο"
 
 #: gschem/src/x/x_toolbars.c:152 gschem/scheme/gschem/builtins.scm:59
 msgid "Save As"
@@ -4386,17 +4386,15 @@ msgstr "Ε_πικόλληση"
 msgid "Redo"
 msgstr "Επαναφορά"
 
-# Deselect
+# Unselect => Uncheck
 #: gschem/src/x/x_toolbars.c:167
-#, fuzzy
 msgid "Unselect"
 msgstr "Αποεπιλέξτε"
 
-# Invert Image
+# Invert => Reversal
 #: gschem/src/x/x_toolbars.c:172
-#, fuzzy
 msgid "Invert"
-msgstr "Επαναφορά εικόνας"
+msgstr "Αντιστροφή"
 
 #: gschem/src/x/x_toolbars.c:173
 msgid "Library"
@@ -4406,25 +4404,25 @@ msgstr ""
 msgid "Nets"
 msgstr ""
 
+# Attributes; Gnorísmata
 #: gschem/src/x/x_toolbars.c:176
-#, fuzzy
 msgid "Attrib"
 msgstr "Γνωρίσματα"
 
+# Line; Grammí
 #: gschem/src/x/x_toolbars.c:180 gschem/src/x/x_toolbars.c:238
-#, fuzzy
 msgid "Line"
-msgstr "_Γραμμή"
+msgstr "Γραμμή"
 
+# Circle; Kýklos
 #: gschem/src/x/x_toolbars.c:182
-#, fuzzy
-msgid "circle"
-msgstr "_Κύκλος"
+msgid "Circle"
+msgstr "Κύκλος"
 
+# Arc
 #: gschem/src/x/x_toolbars.c:183
-#, fuzzy
 msgid "Arc"
-msgstr "_Τόξο"
+msgstr "Τόξο"
 
 # Path to
 #: gschem/src/x/x_toolbars.c:184 gschem/src/x/x_window.c:1012
