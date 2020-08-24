@@ -1,21 +1,17 @@
+2020-08-24 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_toolbars.c: Make circle label lower case.
+
 2020-08-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/af.po: Update Afrikaans translations.
-
     * po/ar.po: Update Arabic translations.
-
     * po/bs.po: Update Bosnian translations.
-
     * po/de.po: Update German translations.
-
     * po/el.po: Update Greek translations.
-
     * po/es.po: Update Spanish translations.
-
     * po/fa.po: Update Persian translations.
-
     * po/fi.po: Update Finnish translations.
-
     * po/fr.po: Update French translations.
 
 2020-08-21 Wiley E. Hill <wileyhill@gmail.com>

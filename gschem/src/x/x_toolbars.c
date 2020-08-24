@@ -179,7 +179,7 @@ static ToolbarStringData ToolbarStrings[] = {
   /* Add Toolbar */
   { ACTION(ADD_LINE),          N_("Line"),      TBTS_ADD_LINE,           "geda-line",      TB_ICON_STOCK, NULL},
   { ACTION(ADD_BOX),           N_("Box"),       TBTS_ADD_BOX,            "geda-box",       TB_ICON_STOCK, NULL},
-  { ACTION(ADD_CIRCLE),        N_("circle"),    TBTS_ADD_CIRCLE,         "geda-circle",    TB_ICON_STOCK, NULL},
+  { ACTION(ADD_CIRCLE),        N_("Circle"),    TBTS_ADD_CIRCLE,         "geda-circle",    TB_ICON_STOCK, NULL},
   { ACTION(ADD_ARC),           N_("Arc"),       TBTS_ADD_ARC,            "geda-arc",       TB_ICON_STOCK, NULL},
   { ACTION(ADD_PATH),          N_("Path"),      TBTS_ADD_PATH,           "geda-path",      TB_ICON_STOCK, NULL},
   { ACTION(ADD_PIN),           N_("Pin"),       TBTS_ADD_PIN,            "geda-pin",       TB_ICON_STOCK, NULL},
