@@ -4403,7 +4403,7 @@ msgid "Line"
 msgstr ""
 
 #: gschem/src/x/x_toolbars.c:182
-msgid "circle"
+msgid "Circle"
 msgstr ""
 
 #: gschem/src/x/x_toolbars.c:183

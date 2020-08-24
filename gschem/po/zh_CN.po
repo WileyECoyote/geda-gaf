@@ -4502,7 +4502,7 @@ msgstr "添加线"
 # Circle
 #: gschem/src/x/x_toolbars.c:182
 #, fuzzy
-msgid "circle"
+msgid "Circle"
 msgstr "圈"
 
 # Arc

@@ -4597,7 +4597,7 @@ msgstr "Satır Ekle"
 # Add circle
 #: gschem/src/x/x_toolbars.c:182
 #, fuzzy
-msgid "circle"
+msgid "Circle"
 msgstr "Çevre ekle"
 
 #: gschem/src/x/x_toolbars.c:183

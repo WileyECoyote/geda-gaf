@@ -4383,7 +4383,7 @@ msgstr "直線(_L)"
 
 #: gschem/src/x/x_toolbars.c:182
 #, fuzzy
-msgid "circle"
+msgid "Circle"
 msgstr "円(_I)"
 
 #: gschem/src/x/x_toolbars.c:183

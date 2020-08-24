@@ -4548,7 +4548,7 @@ msgstr "banthem banteat"
 
 #: gschem/src/x/x_toolbars.c:182
 #, fuzzy
-msgid "circle"
+msgid "Circle"
 msgstr "banthem rongvong"
 
 #: gschem/src/x/x_toolbars.c:183

@@ -4554,7 +4554,7 @@ msgstr "_Linha"
 
 #: gschem/src/x/x_toolbars.c:182
 #, fuzzy
-msgid "circle"
+msgid "Circle"
 msgstr "C_irculo"
 
 #: gschem/src/x/x_toolbars.c:183

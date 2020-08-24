@@ -4474,7 +4474,7 @@ msgstr "הוסף שורה"
 # Add circle
 #: gschem/src/x/x_toolbars.c:182
 #, fuzzy
-msgid "circle"
+msgid "Circle"
 msgstr "הוסף מעגל"
 
 #: gschem/src/x/x_toolbars.c:183

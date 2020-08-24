@@ -4380,7 +4380,7 @@ msgstr "Vona_l"
 
 #: gschem/src/x/x_toolbars.c:182
 #, fuzzy
-msgid "circle"
+msgid "Circle"
 msgstr "Kör"
 
 #: gschem/src/x/x_toolbars.c:183

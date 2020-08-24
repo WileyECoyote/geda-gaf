@@ -4559,7 +4559,7 @@ msgstr "_Lijn"
 
 #: gschem/src/x/x_toolbars.c:182
 #, fuzzy
-msgid "circle"
+msgid "Circle"
 msgstr "C_irkel"
 
 #: gschem/src/x/x_toolbars.c:183

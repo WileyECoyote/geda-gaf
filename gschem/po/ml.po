@@ -4606,7 +4606,7 @@ msgstr "വര"
 # Add circle
 #: gschem/src/x/x_toolbars.c:182
 #, fuzzy
-msgid "circle"
+msgid "Circle"
 msgstr "സർക്കിൾ ചേർക്കുക"
 
 #: gschem/src/x/x_toolbars.c:183
