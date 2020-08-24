@@ -2449,7 +2449,7 @@ static void x_menu_recent_show_popup (GedaMenuItem   *menu_widget,
   geda_menu_append (menu, popup_item);
 
   popup_item = geda_check_menu_item_new_with_mnemonic (_("_Show path"));
-  geda_check_menu_item_set_active((GedaCheckMenuItem*)popup_item, show_recent_path);
+  geda_check_menu_item_set_state (popup_item, show_recent_path);
 
   GTK_CALLBACK_TOGGLED (popup_item, x_menu_toggle_recent_path, menu_data);
 
