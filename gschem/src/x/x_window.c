@@ -1518,10 +1518,12 @@ void x_window_edit_toolbar_toggle(GtkWidget *widget, GschemToplevel *w_current)
  */
 void x_window_page_toolbar_toggle(GtkWidget *widget, GschemToplevel *w_current)
 {
-  if (geda_check_menu_item_get_active(GEDA_CHECK_MENU_ITEM(widget)))
+  if (geda_check_menu_item_get_active(GEDA_CHECK_MENU_ITEM(widget))) {
     gtk_widget_show(w_current->page_handlebox);
-  else
+  }
+  else {
     gtk_widget_hide(w_current->page_handlebox);
+  }
 }
 
 /*!
