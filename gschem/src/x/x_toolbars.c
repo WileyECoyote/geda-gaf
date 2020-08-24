@@ -1083,6 +1083,7 @@ On_mouse_button_press(GtkWidget *widget, GdkEventButton *event, GschemToplevel *
     geda_menu_popup(GEDA_MENU(popup_menu), NULL, NULL, NULL, NULL,
                     event->button, event->time);
   }
+
   return (FALSE);
 }
 

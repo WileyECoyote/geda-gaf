@@ -438,6 +438,7 @@ static void enable_attribute_list_controls( bool state ){
  *       enable ColorMapSchemeCombo if FriendlyOutlineMapSwitch is enabled.
  */
 static void enable_color_map_controls( bool state ){
+
   gtk_widget_set_sensitive (FriendlyOutlineMapSwitch, state);
 
   if (!state) {
