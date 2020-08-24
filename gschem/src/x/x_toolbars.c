@@ -1240,8 +1240,7 @@ x_toolbars_init_window(GschemToplevel *w_current)
  *
  * \returns either a GedaHandleBox or a GtkBox
  */
-GtkWidget*
-x_toolbars_get_box_container(GschemToplevel *w_current)
+GtkWidget *x_toolbars_get_box_container(GschemToplevel *w_current)
 {
   GtkWidget *widget;
 
