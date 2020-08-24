@@ -498,8 +498,7 @@ geda_circle_object_get_nearest_point (const GedaObject *object, int x, int y, in
 
  * \return TRUE if successfully determined the position, FALSE otherwise
  */
-bool
-geda_circle_object_get_position (GedaObject *object, int *x, int *y)
+bool geda_circle_object_get_position (GedaObject *object, int *x, int *y)
 {
   if (GEDA_IS_CIRCLE(object)) {
 
@@ -1884,8 +1883,7 @@ geda_circle_object_shortest_distance (ConstObject *object, int x, int y, int for
  * \remarks The string should be freed at some point.
  *
  */
-char*
-geda_circle_object_to_buffer(GedaObject *object)
+char *geda_circle_object_to_buffer(GedaObject *object)
 {
   char *buf;
   int   x,y;
