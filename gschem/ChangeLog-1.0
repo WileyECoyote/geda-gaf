@@ -1,6 +1,12 @@
+2020-08-25 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_print.c: Add tooltip to the print_button.
+
 2020-08-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_toolbars.c: Make circle label lower case.
+
+    * src/x/x_compselect.c: Utilize geda_check_menu_item_set_as_radio macro.
 
 2020-08-23 Wiley E. Hill <wileyhill@gmail.com>
 

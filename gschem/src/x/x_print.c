@@ -599,6 +599,8 @@ static void print_dialog_instance_init (PrintDialog *dialog)
                          GTK_STOCK_CANCEL, GEDA_RESPONSE_REJECT);
   print_button = gtk_dialog_add_button (GTK_DIALOG (dialog),
                                         GTK_STOCK_PRINT, GEDA_RESPONSE_ACCEPT);
+
+  gtk_widget_set_tooltip_text(print_button, _("Print the current document"));
   gtk_widget_grab_focus(print_button);
 
   /* Set the alternative button order (ok, cancel, help) for other systems */
