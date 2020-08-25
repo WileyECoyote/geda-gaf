@@ -1,5 +1,7 @@
 2020-08-25 Wiley E. Hill <wileyhill@gmail.com>
 
+    * etc/system-gschemrc.scm: Revise menu tool tips.
+
     * src/x/x_print.c: Add tooltip to the print_button.
 
 2020-08-24 Wiley E. Hill <wileyhill@gmail.com>

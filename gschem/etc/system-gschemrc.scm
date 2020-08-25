@@ -2098,7 +2098,7 @@
         (,(N_ "Re_vert All")       page-revert-all      "gtk-revert-to-saved" ,(N_ "Discard changes and reload all open documents"))
 
         ("SEPARATOR"               #f                   #f)
-        (,(N_ "_Print...")         file-print           #f                    ,(N_ "Print the current document"))
+        (,(N_ "_Print...")         file-print           #f                    ,(N_ "Open the Print Dialog"))
         (,(N_ "_Export")           #f                   "gtk-save-as"         ,(N_ "Export options"))
         (,(N_ "Write p_df")        file-write-pdf       #f                    ,(N_ "Create PDF document"))
         (,(N_ "Write _image...")   file-write-image     "geda-save-image"     ,(N_ "Export image"))
