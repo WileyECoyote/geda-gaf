@@ -120,7 +120,7 @@ typedef struct {
    /* Standard Toolbar*/
 #define TBTS_FILE_NEW           "Create a new file"
 #define TBTS_FILE_OPEN          "Open an existing schematic or symbol file"
-#define TBTS_FILE_SAVE          "Save file"
+#define TBTS_FILE_SAVE          "Save the current document"
 #define TBTS_FILE_SAVE_AS       "Save the file to different name or location"
 #define TBTS_FILE_CLOSE         "Close the current file"
 
