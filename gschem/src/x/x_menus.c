@@ -1007,6 +1007,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
     }
 
     if (strstr(menu_name, "/")) {
+      /* Data set at end of get_menu_item_from_scheme */
       root_menu = GEDA_OBJECT_GET_DATA (MENU_BAR, *raw_menu_name);
     }
 
