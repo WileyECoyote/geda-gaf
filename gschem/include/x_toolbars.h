@@ -122,7 +122,7 @@ typedef struct {
 #define TBTS_FILE_OPEN          "Open an existing schematic or symbol file"
 #define TBTS_FILE_SAVE          "Save the current document"
 #define TBTS_FILE_SAVE_AS       "Save the current document to a new name or location"
-#define TBTS_FILE_CLOSE         "Close the current file"
+#define TBTS_FILE_CLOSE         "Close the current document"
 
 #define TBTS_FILE_PRINT         "Open the Print Dialog"
 #define TBTS_FILE_WRITE_PDF     "Create PDF document"
