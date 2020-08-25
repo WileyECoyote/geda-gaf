@@ -4322,7 +4322,7 @@ COMMAND (do_translate)
 
   if (w_current->snap == SNAP_OFF) {
     geda_log(_("WARNING: Do not translate with snap off!\n"));
-    geda_log(_("WARNING: Turning snap on and continuing with translate.\n"));
+    geda_log(_("WARNING: Turning snap on and continuing with translation.\n"));
     w_current->snap = SNAP_GRID;
     i_status_show_state(w_current, NULL); /* update status on screen */
   }
