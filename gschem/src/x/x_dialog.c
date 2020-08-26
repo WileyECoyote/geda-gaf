@@ -519,8 +519,7 @@ void about_dialog (GschemToplevel *w_current)
 
   free(guile_ver);
 
-  copyright = _("Copyright © 1998-2017 Ales Hvezda "
-                "<ahvezda@geda.seul.org>\n"
+  copyright = _("Copyright © 1998-2017 Ales Hvezda <ahvezda@geda.seul.org>\n"
                 "Copyright © 1998-2017 gEDA Contributors "
                 "(see ChangeLog for details)");
 
