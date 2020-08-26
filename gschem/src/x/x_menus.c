@@ -2186,7 +2186,7 @@ void x_menu_set_toolbar_toggle(GschemToplevel *w_current, int toggle_id, bool st
   menu_item = GEDA_OBJECT_GET_DATA (menu_bar, menu_path);
 
   if (menu_item != NULL) {
-    geda_check_menu_item_set_active((GedaCheckMenuItem*)menu_item, state);
+    geda_check_menu_item_set_state (menu_item, state);
   }
   else {
     u_log_message("%s \"%s\"\n", _("Error: did not find path"), menu_path);
