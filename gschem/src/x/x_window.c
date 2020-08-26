@@ -1488,10 +1488,12 @@ void x_window_attribute_toolbar_toggle(GtkWidget *widget, GschemToplevel *w_curr
  */
 void x_window_gridsnap_toolbar_toggle(GtkWidget *widget, GschemToplevel *w_current)
 {
-  if (geda_check_menu_item_get_active(GEDA_CHECK_MENU_ITEM(widget)))
+  if (geda_check_menu_item_get_active(GEDA_CHECK_MENU_ITEM(widget))) {
     gtk_widget_show(w_current->grid_snap_handlebox);
-  else
+  }
+  else {
     gtk_widget_hide(w_current->grid_snap_handlebox);
+  }
 }
 
 /*!
