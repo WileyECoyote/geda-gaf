@@ -128,7 +128,7 @@ typedef struct {
 #define TBTS_FILE_WRITE_PDF     "Create PDF document"
 
 #define TBTS_EDIT_CB_CUT        "Cut the current selection to the system clipboard"
-#define TBTS_EDIT_CB_COPY       "Copy selection to the clipboard"
+#define TBTS_EDIT_CB_COPY       "Copy the current selection to the system clipboard"
 #define TBTS_EDIT_CB_PASTE      "Paste selection from the clipboard"
 
 #define TBTS_EDIT_UNDO          "Undo the last operation"
