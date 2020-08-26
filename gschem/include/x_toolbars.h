@@ -129,7 +129,7 @@ typedef struct {
 
 #define TBTS_EDIT_CB_CUT        "Cut the current selection to the system clipboard"
 #define TBTS_EDIT_CB_COPY       "Copy the current selection to the system clipboard"
-#define TBTS_EDIT_CB_PASTE      "Paste selection from the clipboard"
+#define TBTS_EDIT_CB_PASTE      "Paste the contents of the system clipboard"
 
 #define TBTS_EDIT_UNDO          "Undo the last operation"
 #define TBTS_EDIT_REDO          "Redo the last undo"
