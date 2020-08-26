@@ -2118,7 +2118,7 @@
 ;;      menu item name              menu action            menu icon name          Menu Item Tooltip
 ;;
      `( (,(N_ "_Undo")              edit-undo             #f                  ,(N_ "Undo the last action"))
-        (,(N_ "_Redo")              edit-redo             #f                  ,(N_ "redo the last un-done action"))
+        (,(N_ "_Redo")              edit-redo             #f                  ,(N_ "Redo the last un-done action"))
 
         ("SEPARATOR"               #f                     #f)
         (,(N_ "Cu_t clipboard")     clipboard-cut          "gtk-cut"          ,(N_ "Cut the current selection to the system clipboard"))
