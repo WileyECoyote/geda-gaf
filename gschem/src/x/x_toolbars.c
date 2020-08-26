@@ -2074,37 +2074,48 @@ x_toolbars_update(GschemToplevel *w_current)
     case(STARTSELECT):
       target = (GtkToggleButton*) bar_widgets->toolbar_select;
       break;
+
     case(DESELECT):
     case(STARTDESELECT):
       target = (GtkToggleButton*) bar_widgets->toolbar_deselect;
       break;
+
     case(NETMODE):
       target = (GtkToggleButton*) bar_widgets->toolbar_net;
       break;
+
     case(BUSMODE):
       target = (GtkToggleButton*) bar_widgets->toolbar_bus;
       break;
+
     case(LINEMODE):
       target = (GtkToggleButton*) bar_widgets->toolbar_line;
       break;
+
     case(BOXMODE):
       target = (GtkToggleButton*) bar_widgets->toolbar_box;
       break;
+
     case(PATHMODE):
       target = (GtkToggleButton*) bar_widgets->toolbar_path;
       break;
+
     case(PICTUREMODE): /* \Launches Dialog */
       target = (GtkToggleButton*) bar_widgets->toolbar_pic;
       break;
+
     case(PINMODE):
       target = (GtkToggleButton*) bar_widgets->toolbar_pin;
       break;
+
     case(CIRCLEMODE):
       target = (GtkToggleButton*) bar_widgets->toolbar_circle;
       break;
+
     case(ARCMODE):
       target = (GtkToggleButton*) bar_widgets->toolbar_arc;
       break;
+
     default:
       target = (GtkToggleButton*)bar_widgets->toolbar_none;
       break;
