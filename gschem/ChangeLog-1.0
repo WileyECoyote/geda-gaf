@@ -1,3 +1,9 @@
+2020-08-27 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_edit.c: Revise o_edit_offset_hot to the nearest point
+      of an object if only a single object is being offset, to establish
+      the abscissa for the new pointer location.
+
 2020-08-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * etc/system-gschemrc.scm: Revise menu tool tips.

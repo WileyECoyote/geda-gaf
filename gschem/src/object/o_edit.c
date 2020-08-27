@@ -322,8 +322,23 @@ void o_edit_offset_hot(GschemToplevel *w_current, int x, int y, GList *list)
     int left, right, top, bottom;
 
     if (geda_object_get_bounds_list (list, &left, &top, &right, &bottom)) {
-      /* Save the bottom left corner to data structure */
-      w_current->first_wx = left;
+
+      if (g_list_length(list) == 1){
+
+        int nx, ny;
+
+        GedaObject *object = (GedaObject*)list->data;
+
+        geda_object_get_nearest_point(object, x, y, &nx, &ny);
+
+        w_current->first_wx = nx;
+      }
+      else {
+
+        /* Save the bottom left corner to data structure */
+        w_current->first_wx = left;
+      }
+
       w_current->first_wy = bottom > top ? top : bottom;
     }
 
