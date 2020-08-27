@@ -1853,6 +1853,10 @@ x_toolbars_set_sensitivities(GschemToplevel *w_current,
   }
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ */
 void x_toolbars_set_show_tooltips (GschemToplevel *w_current, bool show_tips)
 {
   ToolBarWidgets *bar_widgets;
@@ -1979,6 +1983,10 @@ void x_toolbars_turn_off_all_radios (GschemToplevel *w_current)
   SetToggleState(bar_widgets->toolbar_none, TRUE);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ */
 void x_toolbars_activate_select (GschemToplevel *w_current)
 {
   ToolBarWidgets *bar_widgets;
