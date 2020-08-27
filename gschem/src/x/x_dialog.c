@@ -1412,7 +1412,7 @@ static void x_dialog_edit_fill_type_set_values(fill_type_data *fill_data,
   geda_option_widget_set_history(fill_data->fill_type, type);
   menu = geda_option_widget_get_menu(fill_data->fill_type);
   menuitem = geda_menu_widget_get_active(menu);
-  geda_check_menu_item_set_active((GedaCheckMenuItem*)menuitem, TRUE);
+  geda_check_menu_item_set_state(menuitem, TRUE);
 
   if (width == LEAVE_ALONE)
     text = geda_strdup(_("*varies*"));
