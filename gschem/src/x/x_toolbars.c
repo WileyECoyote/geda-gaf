@@ -1853,8 +1853,7 @@ x_toolbars_set_sensitivities(GschemToplevel *w_current,
   }
 }
 
-void
-x_toolbars_set_show_tooltips (GschemToplevel *w_current, bool show_tips)
+void x_toolbars_set_show_tooltips (GschemToplevel *w_current, bool show_tips)
 {
   ToolBarWidgets *bar_widgets;
   bar_widgets = g_slist_nth_data (ui_list, w_current->ui_index);
@@ -1877,8 +1876,7 @@ x_toolbars_set_show_tooltips (GschemToplevel *w_current, bool show_tips)
  * \param [in] w_current  Gschem toplevel object.
  */
 /* View->Toolbar */
-void
-x_toolbar_icons_only(GtkWidget *widget, GschemToplevel *w_current)
+void x_toolbar_icons_only(GtkWidget *widget, GschemToplevel *w_current)
 {
   ToolBarWidgets *bar_widgets;
   bar_widgets = g_slist_nth_data (ui_list, w_current->ui_index);
@@ -1902,8 +1900,7 @@ x_toolbar_icons_only(GtkWidget *widget, GschemToplevel *w_current)
  * \param [in] widget     Menu-item widget that involked the call.
  * \param [in] w_current  Gschem toplevel object.
  */
-void
-x_toolbar_text_only(GtkWidget *widget, GschemToplevel *w_current)
+void x_toolbar_text_only(GtkWidget *widget, GschemToplevel *w_current)
 {
   ToolBarWidgets *bar_widgets;
   bar_widgets = g_slist_nth_data (ui_list, w_current->ui_index);
@@ -1928,8 +1925,7 @@ x_toolbar_text_only(GtkWidget *widget, GschemToplevel *w_current)
  * \param [in] widget     Menu-item widget that involked the call.
  * \param [in] w_current  Gschem toplevel object.
  */
-void
-x_toolbar_display_both(GtkWidget *widget, GschemToplevel *w_current)
+void x_toolbar_display_both(GtkWidget *widget, GschemToplevel *w_current)
 {
   ToolBarWidgets *bar_widgets;
   bar_widgets = g_slist_nth_data (ui_list, w_current->ui_index);
@@ -1951,8 +1947,7 @@ x_toolbar_display_both(GtkWidget *widget, GschemToplevel *w_current)
  *  Callback function for the View/Menu/Toolbars/Both Horizontal
  *  radio menu item.
  */
-void
-x_toolbar_display_horiz(GtkWidget *widget, GschemToplevel *w_current)
+void x_toolbar_display_horiz(GtkWidget *widget, GschemToplevel *w_current)
 {
   ToolBarWidgets *bar_widgets;
   bar_widgets = g_slist_nth_data (ui_list, w_current->ui_index);
@@ -1977,16 +1972,14 @@ x_toolbar_display_horiz(GtkWidget *widget, GschemToplevel *w_current)
  *
  * \param [in] w_current pointer to top-level data structure
  */
-void
-x_toolbars_turn_off_all_radios (GschemToplevel *w_current )
+void x_toolbars_turn_off_all_radios (GschemToplevel *w_current)
 {
   ToolBarWidgets *bar_widgets;
   bar_widgets = g_slist_nth_data (ui_list, w_current->ui_index);
   SetToggleState(bar_widgets->toolbar_none, TRUE);
 }
 
-void
-x_toolbars_activate_select (GschemToplevel *w_current)
+void x_toolbars_activate_select (GschemToplevel *w_current)
 {
   ToolBarWidgets *bar_widgets;
   bar_widgets = g_slist_nth_data (ui_list, w_current->ui_index);
@@ -2002,8 +1995,7 @@ x_toolbars_activate_select (GschemToplevel *w_current)
  *
  * \param [in] w_current pointer to top-level data structure
  */
-void
-x_toolbars_set_grid_radio (GschemToplevel *w_current)
+void x_toolbars_set_grid_radio (GschemToplevel *w_current)
 {
   if (w_current->toolbars) {
 
@@ -2057,8 +2049,7 @@ x_toolbars_set_grid_radio (GschemToplevel *w_current)
  *
  * \param [in] w_current GschemToplevel structure
  */
-void
-x_toolbars_update(GschemToplevel *w_current)
+void x_toolbars_update(GschemToplevel *w_current)
 {
   if (!w_current->toolbars) return; /* if toolbars are disabled exit */
 
