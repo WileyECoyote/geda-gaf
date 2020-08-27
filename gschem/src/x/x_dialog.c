@@ -145,9 +145,12 @@ GtkWidget *create_pixmap (const char *filename)
   return pixmap;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Set the Icon for a Dialog Box
+ * \par Function Description
+ *  Unless specified otherwise, the icon the appears for dialogs
+ *  is same icon as the parent window. This function is used to
+ *  override this behavior when desired.
  */
 void x_dialog_set_icon (GtkWidget *dialog, const char *icon_name)
 {
@@ -167,6 +170,7 @@ void x_dialog_set_icon (GtkWidget *dialog, const char *icon_name)
     fprintf(stderr, "%s is missing\n", filename);
     g_error_free(error);
   }
+
   GEDA_FREE(filename);
 }
 

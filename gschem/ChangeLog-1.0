@@ -4,6 +4,8 @@
       of an object if only a single object is being offset, to establish
       the abscissa for the new pointer location.
 
+    * src/x/x_dialog.c: Update x_dialog_set_icon function documentation.
+
     * src/x/x_toolbars.c: Add todo documentation templates.
 
 2020-08-25 Wiley E. Hill <wileyhill@gmail.com>
