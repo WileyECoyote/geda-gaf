@@ -94,7 +94,7 @@ typedef struct {
 
   GSList *toolbar_radio_list;  /* Single-linked list of mode radios on toolbars */
 
-  /* Radio Drawing Mode Widgets on the Standard Bar */
+  /* Drawing Mode Radio Widgets on the Standard Bar */
   GtkWidget *toolbar_arc;
   GtkWidget *toolbar_box;
   GtkWidget *toolbar_bus;
