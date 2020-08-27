@@ -2091,7 +2091,7 @@ static void x_menu_set_toggler(ToggleMenuData *toggler_data, bool state)
 
        if (action != NULL) {
          g_signal_handler_block(action, toggler_data->handler);
-           geda_check_menu_item_set_active((GedaCheckMenuItem*)menu_item, state);
+           geda_check_menu_item_set_state (menu_item, state);
          g_signal_handler_unblock(action, toggler_data->handler);
        }
        else {
