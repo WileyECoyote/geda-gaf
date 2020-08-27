@@ -2113,10 +2113,13 @@ void x_toolbars_update(GschemToplevel *w_current)
   }
 
   if (GTK_IS_TOGGLE_BUTTON(target)) {
-    /* if button is not active then action was not initiated by the toolbar */
+
+    /* If the button is not active then the action was not initiated by
+     * the toolbar and therefore the state must be set */
+
     if (!target->active) {
       g_signal_handlers_block_by_func (target, HideFromDoxygen, w_current);
-      SetToggleState (target, TRUE);
+        SetToggleState (target, TRUE);
       g_signal_handlers_unblock_by_func (target, HideFromDoxygen, w_current);
     }
   }
