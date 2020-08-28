@@ -12,6 +12,9 @@
       with NULL object to check_query for consistency with other test
       modules nd to not check NULL in random For loop.
 
+    * tests/test_object_list.c: Fix the check for geda_object_list_set_color;
+      restrict random color to MAX_COLORS - 1.
+
 2020-08-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * libgeda/include/libgeda_priv.h: Reorganize header; update sequence
