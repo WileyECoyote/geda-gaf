@@ -62,12 +62,12 @@ install-data-local:
 
 install-data-hook:
 if ENABLE_UPDATE_XDG_DATABASE
-	$(UPDATE_MIME_DATABASE) "$(DESTDIR)$(mimedir)"
+	$(UPDATE_MIME_DATABASE) "$(DESTDIR)$(mimedir)" 2>/dev/null
 endif
 
 uninstall-hook:
 if ENABLE_UPDATE_XDG_DATABASE
-	$(UPDATE_MIME_DATABASE) "$(DESTDIR)$(mimedir)"
+	$(UPDATE_MIME_DATABASE) "$(DESTDIR)$(mimedir)" 2>/dev/null
 endif
 	$(install_icon_exec) -u $(theme_icons)
 
