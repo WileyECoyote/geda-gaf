@@ -686,10 +686,7 @@ bool geda_object_get_position (GedaObject *object, int *x, int *y)
         BUG_IMSG("object has bad type", object->type);
   }
 
-  if (func != NULL) {
-    return (*func) (object, x, y);
-  }
-  return FALSE;
+  return (func != NULL) ? (*func) (object, x, y) : FALSE;
 }
 
 /*!
