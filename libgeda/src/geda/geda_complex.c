@@ -51,7 +51,7 @@
 static GObjectClass *geda_complex_parent_class = NULL;
 
 /*!
- * \brief Return the bounds of the given GList of objects.
+ * \brief Return the bounds of the given GedaComplex.
  * \par Given a list of objects, calculates the bounds coordinates.
  *
  * \param [in]  object The complex object whose bounds are to be determined.
