@@ -84,7 +84,6 @@ static int geda_complex_bounds(GedaObject *object)
     result       = object_class->bounds(sub_object);
 
     NEXT(iter);
-
   }
 
   if (result) {
@@ -108,6 +107,7 @@ static int geda_complex_bounds(GedaObject *object)
         right  = max( right,  sub_object->right );
         bottom = max( bottom, sub_object->bottom );
       }
+
       NEXT(iter);
     }
 
