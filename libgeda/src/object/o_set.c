@@ -86,6 +86,9 @@ void geda_set_object_color (GedaObject *object, int color)
         geda_object_list_set_color (object->complex->prim_objs, color);
       }
     }
+    else {
+      BUG_IMSG ("Invalid color <%d>", color);
+    }
   }
   else {
     BUG_MSG ("object is not a GedaObject");

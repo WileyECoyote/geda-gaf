@@ -5,6 +5,9 @@
 
     * src/object/o_get.c: Simplify geda_object_get_position return.
 
+    * src/object/o_set.c: Revise geda_set_object_color to output an error
+      message if the given color index is invalid.
+
 2020-08-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * libgeda/include/libgeda_priv.h: Reorganize header; update sequence
