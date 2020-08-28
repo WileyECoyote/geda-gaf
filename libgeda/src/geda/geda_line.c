@@ -64,7 +64,7 @@ static GObjectClass *geda_line_parent_class = NULL;
 /*!
  * \brief Calculate and return the boundaries of a Line object
  * \par Function Description
- *  This function calculates the object boudaries of a Line \a object
+ *  This function calculates the object boundaries of a Line \a object
  *  but does not account for the thickness of the line.
  *
  * \note Bus, Net and Pin objects are derived from a GedaLine, so this
