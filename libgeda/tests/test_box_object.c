@@ -563,10 +563,6 @@ int check_accessors (void)
       fail++;
     }
 
-    if (geda_box_object_get_position (NULL, &px, &py)) {
-      fprintf(stderr, "FAILED: (O041600) object NULL\n");
-      fail++;
-    }
 
     if (!geda_box_object_get_position (object0, &px, &py)) {
       fprintf(stderr, "FAILED: (O041601A) box x1=%d, y1=%d, x2=%d, y2=%d\n", x1, y1, x2, y2);
@@ -715,11 +711,6 @@ int check_query(void)
 
   int dum = 1;
 
-  if (geda_box_object_get_nearest_point(NULL, dum, dum, &dum, &dum)) {
-    fprintf(stderr, "FAILED: (O041500) box_get_nearest_point NULL\n");
-    result++;
-  }
-
   /* _new(int color, int x1, int y1, int x2, int y2) */
   GedaObject *object = geda_box_object_new(3, 100, 200, 300, 400);
 
@@ -738,6 +729,20 @@ int check_query(void)
   /* bounds_valid should be set */
   if (!object->bounds_valid) {
     fprintf(stderr, "FAILED: (O042202C) %s bounds_valid %d\n", TOBJECT, object->bounds_valid);
+    result++;
+  }
+
+  /* === Function 15: geda_box_object_get_nearest_point  === */
+
+  if (geda_box_object_get_nearest_point(NULL, dum, dum, &dum, &dum)) {
+    fprintf(stderr, "FAILED: (O041500) box_get_nearest_point NULL\n");
+    result++;
+  }
+
+  /* === Function 16: geda_bus_object_get_position  === */
+
+  if (geda_box_object_get_position (NULL, &dum, &dum)) {
+    fprintf(stderr, "FAILED: (O041600A) object NULL\n");
     result++;
   }
 

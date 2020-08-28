@@ -8,6 +8,10 @@
     * src/object/o_set.c: Revise geda_set_object_color to output an error
       message if the given color index is invalid.
 
+    * tests/test_box_object.c: Relocate geda_box_object_get_position check
+      with NULL object to check_query for consistency with other test
+      modules nd to not check NULL in random For loop.
+
 2020-08-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * libgeda/include/libgeda_priv.h: Reorganize header; update sequence
