@@ -68,7 +68,7 @@ static GObjectClass *geda_line_parent_class = NULL;
  *  but does not account for the thickness of the line.
  *
  * \note Bus, Net and Pin objects are derived from a GedaLine, so this
- *       is also the bounds function for those object type.
+ *       is also the bounds function for those object types.
  *
  * \param [in]  object Pointer to Line object
  */
