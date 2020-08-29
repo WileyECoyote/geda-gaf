@@ -4719,17 +4719,15 @@ msgstr "Вставить"
 msgid "Redo"
 msgstr "Повторить"
 
-# Deselect
+# Unselect
 #: gschem/src/x/x_toolbars.c:167
-#, fuzzy
 msgid "Unselect"
 msgstr "Отмените"
 
-# Invert Image
+# Invert => Inversion; Inversiya
 #: gschem/src/x/x_toolbars.c:172
-#, fuzzy
 msgid "Invert"
-msgstr "Инвертировать изображение"
+msgstr "Инверсия"
 
 #: gschem/src/x/x_toolbars.c:173
 msgid "Library"
@@ -4740,52 +4738,46 @@ msgid "Nets"
 msgstr ""
 
 #: gschem/src/x/x_toolbars.c:176
-#, fuzzy
 msgid "Attrib"
 msgstr "Атрибут"
 
 #: gschem/src/x/x_toolbars.c:180 gschem/src/x/x_toolbars.c:238
-#, fuzzy
 msgid "Line"
-msgstr "_Линию"
+msgstr "Линию"
 
 # Circle
 #: gschem/src/x/x_toolbars.c:182
-#, fuzzy
 msgid "Circle"
 msgstr "Круг"
 
 #: gschem/src/x/x_toolbars.c:183
-#, fuzzy
 msgid "Arc"
-msgstr "_Дугу"
+msgstr "Дугу"
 
 # Path => polygon
 #: gschem/src/x/x_toolbars.c:184 gschem/src/x/x_window.c:1012
 msgid "Path"
 msgstr "многоугольник"
 
+# Image; Obraz
 #: gschem/src/x/x_toolbars.c:186
-#, fuzzy
 msgid "Image"
-msgstr "Формат"
+msgstr "Образ"
 
-# First Page
+# First; Pervyy
 #: gschem/src/x/x_toolbars.c:189
-#, fuzzy
 msgid "First"
-msgstr "Первая страница"
+msgstr "Первый"
 
-# Можно "Предварительный просмотр", но занимает много места на экране
+# Previous; Predydushchiy
 #: gschem/src/x/x_toolbars.c:190
-#, fuzzy
 msgid "Prev"
-msgstr "Предпросмотр"
+msgstr "Предыдущий"
 
+# Next; Sleduyushchaya
 #: gschem/src/x/x_toolbars.c:191
-#, fuzzy
 msgid "Next"
-msgstr "_Следующая"
+msgstr "Следующая"
 
 # Scroll down
 #: gschem/src/x/x_toolbars.c:193 gschem/src/x/x_toolbars.c:198
