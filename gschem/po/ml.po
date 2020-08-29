@@ -4571,17 +4571,15 @@ msgstr "പേസ്റ്റ്"
 msgid "Redo"
 msgstr "ആവര്‍ത്തിക്കുക"
 
-# Deselect
+# Unselect => Change selection
 #: gschem/src/x/x_toolbars.c:167
-#, fuzzy
 msgid "Unselect"
-msgstr "തിരഞ്ഞെടുത്തത് മാറ്റുക"
+msgstr "തിരഞ്ഞെടുക്കൽ മാറ്റുക"
 
-# Invert Image
+# Invert => Inversion; viparītaṁ
 #: gschem/src/x/x_toolbars.c:172
-#, fuzzy
 msgid "Invert"
-msgstr "വിപരീത ഇമേജ്"
+msgstr "വിപരീതം"
 
 #: gschem/src/x/x_toolbars.c:173
 msgid "Library"
@@ -4591,54 +4589,50 @@ msgstr ""
 msgid "Nets"
 msgstr ""
 
-# attributes
+# attribute; āṭribyūṭṭ
 #: gschem/src/x/x_toolbars.c:176
-#, fuzzy
 msgid "Attrib"
-msgstr "ഗുണവിശേഷങ്ങൾ:"
+msgstr "ആട്രിബ്യൂട്ട്"
 
 # Line
 #: gschem/src/x/x_toolbars.c:180 gschem/src/x/x_toolbars.c:238
-#, fuzzy
 msgid "Line"
 msgstr "വര"
 
-# Add circle
+# Circle; sarkkiḷ
 #: gschem/src/x/x_toolbars.c:182
-#, fuzzy
 msgid "Circle"
-msgstr "സർക്കിൾ ചേർക്കുക"
+msgstr "സർക്കിൾ"
 
+# Arc; ārkk
 #: gschem/src/x/x_toolbars.c:183
 msgid "Arc"
-msgstr ""
+msgstr "ആർക്ക്"
 
 # Path
 #: gschem/src/x/x_toolbars.c:184 gschem/src/x/x_window.c:1012
 msgid "Path"
 msgstr "പാത"
 
-# Image type
+# Image; citraṁ
 #: gschem/src/x/x_toolbars.c:186
-#, fuzzy
 msgid "Image"
-msgstr "ഇമേജ് തരം"
+msgstr "ചിത്രം"
 
-# First Page
+# First; ādyaṁ
 #: gschem/src/x/x_toolbars.c:189
-#, fuzzy
 msgid "First"
-msgstr "ആദ്യ പേജ്"
+msgstr "ആദ്യം"
 
+# Previous; mumpatte
 #: gschem/src/x/x_toolbars.c:190
 msgid "Prev"
-msgstr ""
+msgstr "മുമ്പത്തെ"
 
-# Next Page
+# Next; aṭuttat
 #: gschem/src/x/x_toolbars.c:191
-#, fuzzy
 msgid "Next"
-msgstr "അടുത്ത പേജ്"
+msgstr "അടുത്തത്"
 
 # Move Down
 #: gschem/src/x/x_toolbars.c:193 gschem/src/x/x_toolbars.c:198
