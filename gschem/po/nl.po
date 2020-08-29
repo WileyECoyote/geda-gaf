@@ -4527,17 +4527,15 @@ msgstr "Plak"
 msgid "Redo"
 msgstr "Herstel"
 
-# Deselect
+# Unselect
 #: gschem/src/x/x_toolbars.c:167
-#, fuzzy
 msgid "Unselect"
 msgstr "Deselecteer"
 
-# Invert Image
+# Invert => Inversion
 #: gschem/src/x/x_toolbars.c:172
-#, fuzzy
 msgid "Invert"
-msgstr "Omkeer afbeelding"
+msgstr "Inversie"
 
 #: gschem/src/x/x_toolbars.c:173
 msgid "Library"
@@ -4548,24 +4546,20 @@ msgid "Nets"
 msgstr ""
 
 #: gschem/src/x/x_toolbars.c:176
-#, fuzzy
 msgid "Attrib"
 msgstr "Attribuut"
 
 #: gschem/src/x/x_toolbars.c:180 gschem/src/x/x_toolbars.c:238
-#, fuzzy
 msgid "Line"
-msgstr "_Lijn"
+msgstr "Lijn"
 
 #: gschem/src/x/x_toolbars.c:182
-#, fuzzy
 msgid "Circle"
-msgstr "C_irkel"
+msgstr "Cirkel"
 
 #: gschem/src/x/x_toolbars.c:183
-#, fuzzy
 msgid "Arc"
-msgstr "_Boog"
+msgstr "Boog"
 
 # Path
 #: gschem/src/x/x_toolbars.c:184 gschem/src/x/x_window.c:1012
@@ -4573,25 +4567,23 @@ msgid "Path"
 msgstr "Pad"
 
 #: gschem/src/x/x_toolbars.c:186
-#, fuzzy
 msgid "Image"
-msgstr "Afbeelding type"
+msgstr "Beeld"
 
-# First Page
+# First
 #: gschem/src/x/x_toolbars.c:189
-#, fuzzy
 msgid "First"
-msgstr "Eerste pagina"
+msgstr "Eerste"
 
+# Previous
 #: gschem/src/x/x_toolbars.c:190
-#, fuzzy
 msgid "Prev"
-msgstr "Vooraf zien"
+msgstr "Vorige"
 
+# Next
 #: gschem/src/x/x_toolbars.c:191
-#, fuzzy
 msgid "Next"
-msgstr "Volge_nde"
+msgstr "Volgende"
 
 # Down
 #: gschem/src/x/x_toolbars.c:193 gschem/src/x/x_toolbars.c:198
