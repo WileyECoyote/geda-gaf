@@ -4351,17 +4351,15 @@ msgstr "貼り付け(_P)"
 msgid "Redo"
 msgstr "リドゥ"
 
-# Deselect
+# Unselect
 #: gschem/src/x/x_toolbars.c:167
-#, fuzzy
 msgid "Unselect"
 msgstr "選択解除する"
 
-# Invert Image
+# Invert => Inversion; Hanten
 #: gschem/src/x/x_toolbars.c:172
-#, fuzzy
 msgid "Invert"
-msgstr "画像反転"
+msgstr "反転"
 
 #: gschem/src/x/x_toolbars.c:173
 msgid "Library"
@@ -4372,48 +4370,47 @@ msgid "Nets"
 msgstr ""
 
 #: gschem/src/x/x_toolbars.c:176
-#, fuzzy
 msgid "Attrib"
 msgstr "アトリビュート"
 
+# Line; Rain
 #: gschem/src/x/x_toolbars.c:180 gschem/src/x/x_toolbars.c:238
-#, fuzzy
 msgid "Line"
-msgstr "直線(_L)"
+msgstr "ライン"
 
+# Circle; Sākuru
 #: gschem/src/x/x_toolbars.c:182
-#, fuzzy
 msgid "Circle"
-msgstr "円(_I)"
+msgstr "サークル"
 
+# Arc; Āku
 #: gschem/src/x/x_toolbars.c:183
-#, fuzzy
 msgid "Arc"
-msgstr "円弧(_R)"
+msgstr "アーク"
 
 #: gschem/src/x/x_toolbars.c:184 gschem/src/x/x_window.c:1012
 msgid "Path"
 msgstr "パンモード"
 
+# Image; Gazō
 #: gschem/src/x/x_toolbars.c:186
-#, fuzzy
 msgid "Image"
-msgstr "画像として保存"
+msgstr "画像"
 
+# First; Saisho
 #: gschem/src/x/x_toolbars.c:189
-#, fuzzy
 msgid "First"
-msgstr "前のページ(_P)"
+msgstr "最初"
 
+# Previous; Mae
 #: gschem/src/x/x_toolbars.c:190
-#, fuzzy
 msgid "Prev"
-msgstr "プレビュー"
+msgstr "前"
 
+# Next; Tsugi
 #: gschem/src/x/x_toolbars.c:191
-#, fuzzy
 msgid "Next"
-msgstr "次のページ(_N)"
+msgstr "次"
 
 #: gschem/src/x/x_toolbars.c:193 gschem/src/x/x_toolbars.c:198
 #: gschem/src/x/x_toolbars.c:199 gschem/src/x/x_toolbars.c:262
