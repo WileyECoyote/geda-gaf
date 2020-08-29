@@ -4522,17 +4522,15 @@ msgstr "Colar"
 msgid "Redo"
 msgstr "Refazer"
 
-# Deselect
+# Unselect => Unmark
 #: gschem/src/x/x_toolbars.c:167
-#, fuzzy
 msgid "Unselect"
 msgstr "Desmarcar"
 
-# Invert Image
+# Invert => Inversion
 #: gschem/src/x/x_toolbars.c:172
-#, fuzzy
 msgid "Invert"
-msgstr "Inverter imagem"
+msgstr "Inversão"
 
 #: gschem/src/x/x_toolbars.c:173
 msgid "Library"
@@ -4543,24 +4541,20 @@ msgid "Nets"
 msgstr ""
 
 #: gschem/src/x/x_toolbars.c:176
-#, fuzzy
 msgid "Attrib"
 msgstr "Atributos"
 
 #: gschem/src/x/x_toolbars.c:180 gschem/src/x/x_toolbars.c:238
-#, fuzzy
 msgid "Line"
-msgstr "_Linha"
+msgstr "Linha"
 
 #: gschem/src/x/x_toolbars.c:182
-#, fuzzy
 msgid "Circle"
-msgstr "C_irculo"
+msgstr "Circulo"
 
 #: gschem/src/x/x_toolbars.c:183
-#, fuzzy
 msgid "Arc"
-msgstr "A_rco"
+msgstr "Arco"
 
 # Path
 #: gschem/src/x/x_toolbars.c:184 gschem/src/x/x_window.c:1012
@@ -4568,25 +4562,23 @@ msgid "Path"
 msgstr "Caminho"
 
 #: gschem/src/x/x_toolbars.c:186
-#, fuzzy
 msgid "Image"
-msgstr "Tipo de imagem"
+msgstr "Imagem"
 
-# First Page
+# First
 #: gschem/src/x/x_toolbars.c:189
-#, fuzzy
 msgid "First"
-msgstr "Primeira página"
+msgstr "Primeira"
 
+# Previous
 #: gschem/src/x/x_toolbars.c:190
-#, fuzzy
 msgid "Prev"
-msgstr "Visualização"
+msgstr "Anterior"
 
+# Next
 #: gschem/src/x/x_toolbars.c:191
-#, fuzzy
 msgid "Next"
-msgstr "_Próximo"
+msgstr "Próximo"
 
 # Down
 #: gschem/src/x/x_toolbars.c:193 gschem/src/x/x_toolbars.c:198
