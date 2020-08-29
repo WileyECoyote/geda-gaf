@@ -4579,17 +4579,15 @@ msgstr "Wklej"
 msgid "Redo"
 msgstr "Przywróć"
 
-# Deselect
+# Unselect
 #: gschem/src/x/x_toolbars.c:167
-#, fuzzy
 msgid "Unselect"
 msgstr "Odznacz"
 
-# Invert Image
+# Invert => Inversion
 #: gschem/src/x/x_toolbars.c:172
-#, fuzzy
 msgid "Invert"
-msgstr "Odwróć obraz"
+msgstr "Odwrócenie"
 
 #: gschem/src/x/x_toolbars.c:173
 msgid "Library"
@@ -4600,24 +4598,20 @@ msgid "Nets"
 msgstr ""
 
 #: gschem/src/x/x_toolbars.c:176
-#, fuzzy
 msgid "Attrib"
 msgstr "Atrybut"
 
 #: gschem/src/x/x_toolbars.c:180 gschem/src/x/x_toolbars.c:238
-#, fuzzy
 msgid "Line"
-msgstr "_Linia"
+msgstr "Linia"
 
 #: gschem/src/x/x_toolbars.c:182
-#, fuzzy
 msgid "Circle"
-msgstr "_Okrąg"
+msgstr "Okrąg"
 
 #: gschem/src/x/x_toolbars.c:183
-#, fuzzy
 msgid "Arc"
-msgstr "Ł_uk"
+msgstr "Łuk"
 
 # Path
 #: gschem/src/x/x_toolbars.c:184 gschem/src/x/x_window.c:1012
@@ -4625,25 +4619,21 @@ msgid "Path"
 msgstr "Ścieżka"
 
 #: gschem/src/x/x_toolbars.c:186
-#, fuzzy
 msgid "Image"
-msgstr "Typ obrazu"
+msgstr "Obrazu"
 
-# First Page
+# First
 #: gschem/src/x/x_toolbars.c:189
-#, fuzzy
 msgid "First"
-msgstr "Pierwsza strona"
+msgstr "Pierwsza"
 
 #: gschem/src/x/x_toolbars.c:190
-#, fuzzy
 msgid "Prev"
-msgstr "Podgląd"
+msgstr "Poprzedni"
 
 #: gschem/src/x/x_toolbars.c:191
-#, fuzzy
 msgid "Next"
-msgstr "_Następny"
+msgstr "Następny"
 
 # Down
 #: gschem/src/x/x_toolbars.c:193 gschem/src/x/x_toolbars.c:198

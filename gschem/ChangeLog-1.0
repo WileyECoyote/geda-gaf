@@ -10,6 +10,8 @@
 
     * po/nl.po: Update Dutch translations.
 
+    * po/pl.po: Update Polish translations.
+
 2020-08-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_edit.c: Revise o_edit_offset_hot to the nearest point
