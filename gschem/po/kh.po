@@ -4517,16 +4517,15 @@ msgstr ""
 msgid "Redo"
 msgstr ""
 
+# Unselect
 #: gschem/src/x/x_toolbars.c:167
-#, fuzzy
 msgid "Unselect"
 msgstr "min chreus"
 
-# Invert Image
+# Invert => Inversion
 #: gschem/src/x/x_toolbars.c:172
-#, fuzzy
 msgid "Invert"
-msgstr "banhchrasa roubpheap"
+msgstr "banhchras"
 
 #: gschem/src/x/x_toolbars.c:173
 msgid "Library"
@@ -4537,49 +4536,43 @@ msgid "Nets"
 msgstr ""
 
 #: gschem/src/x/x_toolbars.c:176
-#, fuzzy
 msgid "Attrib"
 msgstr "kounalokkhan"
 
 #: gschem/src/x/x_toolbars.c:180 gschem/src/x/x_toolbars.c:238
-#, fuzzy
 msgid "Line"
-msgstr "banthem banteat"
+msgstr "banteat"
 
 #: gschem/src/x/x_toolbars.c:182
-#, fuzzy
 msgid "Circle"
-msgstr "banthem rongvong"
+msgstr "rongvong"
 
 #: gschem/src/x/x_toolbars.c:183
-#, fuzzy
 msgid "Arc"
-msgstr "banthem thnou"
+msgstr "thnou"
 
 #: gschem/src/x/x_toolbars.c:184 gschem/src/x/x_window.c:1012
 msgid "Path"
 msgstr "rbieb phokaon"
 
 #: gschem/src/x/x_toolbars.c:186
-#, fuzzy
 msgid "Image"
-msgstr "braphet roubpheap"
+msgstr "roubpheap"
 
+# First
 #: gschem/src/x/x_toolbars.c:189
-#, fuzzy
 msgid "First"
-msgstr "kour dambaung"
+msgstr "dambaung"
 
+# Previous
 #: gschem/src/x/x_toolbars.c:190
-#, fuzzy
 msgid "Prev"
-msgstr "meul cheamoun"
+msgstr "moun"
 
-# Next page
+# Next
 #: gschem/src/x/x_toolbars.c:191
-#, fuzzy
 msgid "Next"
-msgstr "tom​ p​ r​ banteab"
+msgstr "banteab"
 
 #: gschem/src/x/x_toolbars.c:193 gschem/src/x/x_toolbars.c:198
 #: gschem/src/x/x_toolbars.c:199 gschem/src/x/x_toolbars.c:262
