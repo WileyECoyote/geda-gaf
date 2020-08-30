@@ -3,6 +3,8 @@
     * linear/reference/AD580-1.sym: Add new symbol; Precision 2.5 Volt Reference,
       +/-10 mVolts.
 
+    * linear/reference/AD581-1.sym: Add new symbol; Precision 10 Volt Reference.
+
 2020-08-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * linear/reference/AD1403-1.sym: Relocate symbol from analogdevices folder.
