@@ -25,6 +25,7 @@
  * \file o_text.c
  * \brief Low-level module for manipulating Text objects
  */
+
 #include <gschem.h>
 #include <math.h>
 #include <geda_debug.h>

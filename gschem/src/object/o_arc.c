@@ -25,6 +25,7 @@
  * \file o_arc.c
  * \brief Low-level module for manipulating Arc objects
  */
+
 #include <gschem.h>
 #include <math.h>
 #include <geda_debug.h>

@@ -25,6 +25,7 @@
  * \file o_grips.c
  * \brief Low-level module for Grip operations
  */
+
 #include <math.h>
 
 #include <gschem.h>
