@@ -488,7 +488,7 @@ void x_console_eval_command (GedaEntry *entry, int arg1, void * user_data)
     command      = get_str_token(command_line);
     command_echo = geda_strconcat(command_line, "\n", NULL);
 
-    x_log_message ("console", G_LOG_LEVEL_INFO, command_echo);
+    x_log_message (_("Console"), G_LOG_LEVEL_INFO, command_echo);
     GEDA_FREE (command_echo);
 
     if (i_command_is_valid(command)) {

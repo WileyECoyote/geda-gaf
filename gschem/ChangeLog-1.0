@@ -8,6 +8,8 @@
     * src/object/o_edit.c: Revise o_edit_offset_hot to not offset the
       cursor 2 x X.
 
+    * src/x/x_console.c: Translate console message string.
+
 2020-08-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/en_GB.po: Update Great Britain.
