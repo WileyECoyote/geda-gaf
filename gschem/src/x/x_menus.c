@@ -1203,7 +1203,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
 
       g_object_set (tb_tips_toggle, "draw-as-radio", TRUE,  NULL);
 
-      geda_check_menu_item_set_active((GedaCheckMenuItem*)tb_tips_toggle, w_current->show_toolbar_tips);
+      geda_check_menu_item_set_state (tb_tips_toggle, w_current->show_toolbar_tips);
 
       GEDA_OBJECT_SET_DATA(MENU_BAR, tb_tips_toggle, OPT_BAR_TIPS_MENU_PATH);
 
