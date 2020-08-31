@@ -1,21 +1,18 @@
+2020-08-28 Wiley E. Hill <wileyhill@gmail.com>
+
+    * data/Makefile.am: Redirect error output from update-mime-database
+      to null to suppress pesky "not in the search path" message.
+
 2020-08-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/en_GB.po: Update Great Britain.
-
     * po/ja.po: Update Japanese translations.
-
     * po/kh.po: Update Khmer translations.
-
     * po/ml.po: Updated Malayalam translations.
-
     * po/nl.po: Update Dutch translations.
-
     * po/pl.po: Update Polish translations.
-
     * po/pt.po: Update Portuguese translations.
-
     * po/pt_BR.po: Update Brazilian Portuguese translations.
-
     * po/ru.po: Update Russian translations.
 
 2020-08-27 Wiley E. Hill <wileyhill@gmail.com>

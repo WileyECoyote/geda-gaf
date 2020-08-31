@@ -128,12 +128,12 @@ install-data-local:
 
 install-data-hook:
 if ENABLE_UPDATE_XDG_DATABASE
-	$(UPDATE_DESKTOP_DATABASE) "$(DESTDIR)$(desktopdir)"
+	$(UPDATE_DESKTOP_DATABASE) "$(DESTDIR)$(desktopdir)" 2>/dev/null
 endif
 
 uninstall-hook:
 if ENABLE_UPDATE_XDG_DATABASE
-	$(UPDATE_DESKTOP_DATABASE) "$(DESTDIR)$(desktopdir)"
+	$(UPDATE_DESKTOP_DATABASE) "$(DESTDIR)$(desktopdir)" 2>/dev/null
 endif
 	$(install_icons_exec) -u $(icons)
 	$(install_theme_icons_exec) -u $(theme_icons)
