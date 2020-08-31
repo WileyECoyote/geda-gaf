@@ -26,10 +26,12 @@
  *                | Widget and Private, add member icon (to hold a pointer
  *                | to the image widget for the button.)
  * ------------------------------------------------------------------
- * WEH | 08/12/15 | Modify cast is macro GET_TOOLBAR_ID; change long pointer
+ * WEH | 08/12/15 | Modify cast in macro GET_TOOLBAR_ID; change long pointer
  *                | long.
  * ------------------------------------------------------------------
  * WEH | 02/01/18 | Replace GTK_SIGNAL_FUNC with G_CALLBACK.
+ * ------------------------------------------------------------------
+ * WEH | 08/31/20 | Remove macros GSCHEM_TOPLEVEL and TOOLBAR_BUTTON_DATA.
 */
 
 /* ------------------------------------------------------------------ */
@@ -112,11 +114,6 @@ typedef struct
   gtk_widget_show(bar);
 
 /* ------------------------- Entry Level -------------------------------- */
-/*! \brief ToolBar Macro with GSCHEM_TOPLEVEL *w_current call-back data */
-#define TOOLBAR_GEDA_BUTTON( bar, name, type, icon, func, data) \
-   GtkWidget *name##_button __attribute__ ((unused)); /* maybe mv comment for tb devel */ \
-   TOOLBAR_BUTTON_DATA( bar##_Toolbar, name, type, icon, name##_button, func, data)
-
 /*! \brief ToolBar Macro with Enumerated Control call-back data */
 #define TOOLBAR_STD_BUTTON( bar, name, type, icon, func) \
    GtkWidget *name##_button; \
@@ -131,13 +128,6 @@ typedef struct
 /*! \brief 1st LeveL Intermediate ToolBar Macro with Enumerated data */
 #define TOOLBAR_BUTTON( bar, name, type, icon, button, func, data) { \
         TOOLBAR_BUTTON_##type (bar, name, ENUM, icon, button, func, data) \
-        GEDA_TOOLBAR_BUTTON_ATK(bar, button, TB_TOOLTIP (name), TB_ACTION(name)) \
-        gtk_widget_show (button); \
-}
-
-/*! \brief 1st LeveL Intermediate ToolBar Macro with *w_current data */
-#define TOOLBAR_BUTTON_DATA( bar, name, type, icon, button, func, data) { \
-        TOOLBAR_BUTTON_##type (bar, name, GEDA, icon, button, func, data) \
         GEDA_TOOLBAR_BUTTON_ATK(bar, button, TB_TOOLTIP (name), TB_ACTION(name)) \
         gtk_widget_show (button); \
 }
