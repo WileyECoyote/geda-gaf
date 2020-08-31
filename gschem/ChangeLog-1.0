@@ -3,6 +3,9 @@
     * data/Makefile.am: Redirect error output from update-mime-database
       to null to suppress pesky "not in the search path" message.
 
+    * src/object/o_edit.c: Revise o_edit_offset_hot to not offset the
+      cursor 2 x X.
+
 2020-08-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/en_GB.po: Update Great Britain.

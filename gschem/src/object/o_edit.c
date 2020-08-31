@@ -357,7 +357,7 @@ void o_edit_offset_hot(GschemToplevel *w_current, int x, int y, GList *list)
 
     o_undo_savestate(w_current, UNDO_ALL);
 
-    int dx = x + x - w_current->first_wx;
+    int dx = w_current->first_wx;
     int dy = y + y - w_current->first_wy;
 
     i_window_set_pointer_position (w_current, dx, dy);
