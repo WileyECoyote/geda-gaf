@@ -309,6 +309,10 @@ void o_edit_mirror_world(GschemToplevel *w_current, int centerx, int centery, GL
  * \par Function Description
  *  Create a copy of selected objects at the pointer position and offset
  *  the pointer cursor the same amount.
+ *
+ * \todo: attributes should not be counted as part of the selection if
+ *        a single complex is selected and all of the attributes belong
+ *        to the complex.
  */
 void o_edit_offset_hot(GschemToplevel *w_current, int x, int y, GList *list)
 {
