@@ -1,7 +1,8 @@
 2020-09-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/test_arc_object.c: Reorganize checks with NULL object in
-      check_query, revise get_position error output message.
+      check_query, revise get_position error output message and add
+      check for geda_box_object_get_position with NULL X-Y pointers.
 
 2020-08-28 Wiley E. Hill <wileyhill@gmail.com>
 

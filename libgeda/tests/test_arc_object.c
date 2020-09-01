@@ -1336,6 +1336,9 @@ int check_query (void)
     fprintf(stderr, "FAILED: (O021700A) %s get_position NULL not FALSE\n", TOBJECT);
     result++;
   }
+
+  if (geda_arc_object_get_position(object, NULL, NULL)) {
+    fprintf(stderr, "FAILED: (O021700B) %s get_position NULL not FALSE\n", TOBJECT);
     result++;
   }
 
