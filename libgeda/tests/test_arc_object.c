@@ -1491,6 +1491,10 @@ int check_transformer (void)
     int r = 3233; //100;
 #endif
 
+    int  fail;
+
+    fail = 0;
+
     geda_arc_object_set_radius (object, r);
     geda_arc_object_set_center_x (object, x);
     geda_arc_object_set_center_y (object, y);
@@ -1506,13 +1510,13 @@ int check_transformer (void)
     geda_arc_object_get_position(object, &dx, &dy);
     if ((dx - x - 2 * r) || (dy - y)) {
       fprintf(stderr, "FAILED: (O022001) (%d,%d) != (%d,%d)\n", x, y, dx, dy);
-      result++;
+      fail++;
     }
 
     int ang = geda_arc_object_get_start_angle(object);
     if (ang != 180) {
       fprintf(stderr, "FAILED: (O022002) %d != 180\n", ang);
-      result++;
+      fail++;
     }
 
     /* === Function 21: geda_arc_object_modify === */
@@ -1522,7 +1526,7 @@ int check_transformer (void)
     geda_arc_object_get_position(object, &dx, &dy);
     if ((dx - x) || (dy - y)) {
       fprintf(stderr, "FAILED: (O022101) ARC_CENTER (%d,%d) != (%d,%d)\n", x, y, dx, dy);
-      result++;
+      fail++;
     }
 
     geda_arc_object_modify(object, r + 100, 100, ARC_RADIUS);
@@ -1530,7 +1534,7 @@ int check_transformer (void)
     int rad = geda_arc_object_get_radius(object);
     if (rad - r - 100) {
       fprintf(stderr, "FAILED: (O022102) ARC_RADIUS <%d>\n", rad);
-      result++;
+      fail++;
     }
 
     geda_arc_object_modify(object, 90, 100, ARC_START_ANGLE);
@@ -1538,7 +1542,7 @@ int check_transformer (void)
     ang = geda_arc_object_get_start_angle(object);
     if (ang != 90) {
       fprintf(stderr, "FAILED: (O022103) ARC_START_ANGLE %d != 90\n", ang);
-      result++;
+      fail++;
     }
 
     geda_arc_object_modify(object, 180, 100, ARC_END_ANGLE);
@@ -1546,7 +1550,7 @@ int check_transformer (void)
     ang = geda_arc_object_get_arc_sweep(object);
     if (ang != 180) {
       fprintf(stderr, "FAILED: (O022104) ARC_END_ANGLE %d != 180\n", ang);
-      result++;
+      fail++;
     }
 
     /* === Function 30: geda_arc_object_rotate === */
@@ -1556,7 +1560,7 @@ int check_transformer (void)
     ang = geda_arc_object_get_start_angle(object);
     if (ang != 0) {
       fprintf(stderr, "FAILED: (O023001) start angle %d != 0\n", ang);
-      result++;
+      fail++;
     }
 
     /* === Function 31: geda_arc_object_scale NULL === */
@@ -1568,7 +1572,7 @@ int check_transformer (void)
       int rad = geda_arc_object_get_radius (object);
       int sb  = r * 10;
       fprintf(stderr, "FAILED: (O023101) geda_arc_object_scale %d != %d\n", rad, sb);
-      result++;
+      fail++;
     }
 
     /* Reset the radius back to the generated value, not really needed */
@@ -1585,6 +1589,21 @@ int check_transformer (void)
 
     if ((dx - 100) || (dy - 100)) {
       fprintf(stderr, "FAILED: (O025001) (%d,%d) != (%d,%d)\n", tx, ty, dx, dy);
+      fail++;
+    }
+
+    if (fail) {
+
+      fprintf(stderr, "Conditions:\n");
+      fprintf(stderr, "Random numbers is ");
+
+#if USE_RANDOM_NUMBERS
+      fprintf(stderr, "on\n");
+#else
+      fprintf(stderr, "off\n");
+#endif
+
+      fprintf(stderr, "x=%d, y=%d, r=%d\n", x, y, r);
       result++;
     }
 
