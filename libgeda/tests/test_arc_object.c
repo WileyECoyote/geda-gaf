@@ -1401,6 +1401,30 @@ int check_query (void)
       result++;
     }
 
+    dx = x + 1;
+
+    if (!geda_arc_object_get_position (object, &dx, NULL)) {
+      fprintf(stderr, "FAILED: (O021702A) arc x=%d, y=%d\n", x, y);
+      result++;
+    }
+
+    if (dx - x) {
+      fprintf(stderr, "FAILED: (O021702B) arc %d != %d\n", dx, x);
+      result++;
+    }
+
+    dy = y + 1;
+
+    if (!geda_arc_object_get_position (object, NULL, &dy)) {
+      fprintf(stderr, "FAILED: (O021703A) arc x=%d, y=%d\n", x, y);
+      result++;
+    }
+
+    if (dy - y) {
+      fprintf(stderr, "FAILED: (O021703B) arc %d != %d\n", dy, y);
+      result++;
+    }
+
   /* === Function 25: geda_arc_object_shortest_distance === */
 
     result += query_nearest_shortest_distance(object);

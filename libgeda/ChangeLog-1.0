@@ -2,9 +2,10 @@
 
     * tests/test_arc_object.c: Reorganize checks with NULL object in
       check_query, revise get_position error output message and add
-      check for geda_box_object_get_position with NULL X-Y pointers.
+      check for geda_arc_object_get_position with NULL X-Y pointers.
       Revise For loop in check_transformer to use intermediate fail
-      counter and output the conditions when failures occur.
+      counter and output the conditions when failures occur. Check
+      geda_arc_object_get_position with only one X-Y pointer.
 
 2020-08-28 Wiley E. Hill <wileyhill@gmail.com>
 
