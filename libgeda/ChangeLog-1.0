@@ -1,3 +1,8 @@
+2020-09-01 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/test_arc_object.c: Reorganize checks with NULL object in
+      check_query.
+
 2020-08-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * data/Makefile.am: Redirect error output from update-mime-database
@@ -10,7 +15,7 @@
 
     * tests/test_box_object.c: Relocate geda_box_object_get_position check
       with NULL object to check_query for consistency with other test
-      modules nd to not check NULL in random For loop.
+      modules and to not check NULL in random For loop.
 
     * tests/test_object_list.c: Fix the check for geda_object_list_set_color;
       restrict random color to MAX_COLORS - 1.

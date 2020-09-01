@@ -1302,6 +1302,27 @@ int check_query (void)
   int result = 0;
   int dx, dy;
 
+  /* _new(int color, int x, int y, int radius, int start_angle, int arc_sweep) */
+  GedaObject *object = geda_arc_object_new (3, 10, 20, 33, 0, 90);
+
+  /* bounds_valid should NOT be set */
+  if (object->bounds_valid) {
+    fprintf(stderr, "FAILED: (O022202A) %s bounds_valid %d\n", TOBJECT, object->bounds_valid);
+    result++;
+  }
+
+  /* === Virtual geda_arc_bounds  === */
+  if (!geda_object_bounds(object)) {
+    fprintf(stderr, "FAILED: (O022202B) %s bounds_valid %d\n", TOBJECT, object->bounds_valid);
+    result++;
+  }
+
+  /* bounds_valid should be set */
+  if (!object->bounds_valid) {
+    fprintf(stderr, "FAILED: (O022202C) %s bounds_valid %d\n", TOBJECT, object->bounds_valid);
+    result++;
+  }
+
   /* === Function 05: geda_arc_object_get_nearest_point NULL === */
 
   if (geda_arc_object_get_nearest_point (NULL, 0, 0, &dx, &dy)) {
@@ -1326,27 +1347,6 @@ int check_query (void)
 
   if (geda_arc_object_within_sweep(NULL, dx, dx)) {
     fprintf(stderr, "FAILED: (O025100) %s answer not FALSE\n", TOBJECT);
-    result++;
-  }
-
-  /* _new(int color, int x, int y, int radius, int start_angle, int arc_sweep) */
-  GedaObject *object = geda_arc_object_new (3, 10, 20, 33, 0, 90);
-
-  /* bounds_valid should NOT be set */
-  if (object->bounds_valid) {
-    fprintf(stderr, "FAILED: (O022202A) %s bounds_valid %d\n", TOBJECT, object->bounds_valid);
-    result++;
-  }
-
-  /* === Virtual geda_arc_bounds  === */
-  if (!geda_object_bounds(object)) {
-    fprintf(stderr, "FAILED: (O022202B) %s bounds_valid %d\n", TOBJECT, object->bounds_valid);
-    result++;
-  }
-
-  /* bounds_valid should be set */
-  if (!object->bounds_valid) {
-    fprintf(stderr, "FAILED: (O022202C) %s bounds_valid %d\n", TOBJECT, object->bounds_valid);
     result++;
   }
 
