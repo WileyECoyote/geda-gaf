@@ -402,10 +402,10 @@ bool geda_path_object_get_position (GedaObject *object, int *x, int *y)
  *  The structure describing the path is allocated and initialized
  *  with the parameters given to the function.
  *
- *  Both the path type and the filling type are set to default
- *  values : solid path type with a width of 0, and no filling.
- *  It can be changed after with the #geda_set_object_line_options() and
- *  #geda_set_object_fill_options().
+ *  Both the path line type and filling type are set to default
+ *  values; solid path line type with a width of 0, and no filling.
+ *  Either can be changed after with the #geda_set_object_line_options()
+ *  and #geda_set_object_fill_options().
  *
  * \param [in]     color        The path color.
  * \param [in]     path_string  The string representation of the path
