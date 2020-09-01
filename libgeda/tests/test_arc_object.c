@@ -1369,6 +1369,8 @@ int check_query (void)
     int r = 10;    //100;
 #endif
 
+    int fail = 0;
+
     geda_arc_object_set_radius (object, r);
     geda_arc_object_set_center_x (object, x);
     geda_arc_object_set_center_y (object, y);
@@ -1378,19 +1380,19 @@ int check_query (void)
     /* insure starting angle is reset after looping */
     geda_arc_object_set_start_angle(object, 0);
 
-    result += query_nearest_Q13_90(object);
+    fail += query_nearest_Q13_90(object);
 
     geda_arc_object_set_start_angle(object, 90);
 
-    result += query_nearest_Q24_90(object);
+    fail += query_nearest_Q24_90(object);
 
     geda_arc_object_set_start_angle(object, 180);
 
-    result += query_nearest_Q13_90(object);
+    fail += query_nearest_Q13_90(object);
 
     geda_arc_object_set_start_angle(object, 270);
 
-    result += query_nearest_Q24_90(object);
+    fail += query_nearest_Q24_90(object);
 
   /* === Function 17: geda_arc_object_get_position === */
 
@@ -1398,40 +1400,44 @@ int check_query (void)
 
     if ((dx != x) || (dy != y)) {
       fprintf(stderr, "FAILED: (O021701) (%d,%d) != (%d,%d)\n", x, y, dx, dy);
-      result++;
+      fail++;
     }
 
     dx = x + 1;
 
     if (!geda_arc_object_get_position (object, &dx, NULL)) {
       fprintf(stderr, "FAILED: (O021702A) arc x=%d, y=%d\n", x, y);
-      result++;
+      fail++;
     }
 
     if (dx - x) {
       fprintf(stderr, "FAILED: (O021702B) arc %d != %d\n", dx, x);
-      result++;
+      fail++;
     }
 
     dy = y + 1;
 
     if (!geda_arc_object_get_position (object, NULL, &dy)) {
       fprintf(stderr, "FAILED: (O021703A) arc x=%d, y=%d\n", x, y);
-      result++;
+      fail++;
     }
 
     if (dy - y) {
       fprintf(stderr, "FAILED: (O021703B) arc %d != %d\n", dy, y);
-      result++;
+      fail++;
     }
 
   /* === Function 25: geda_arc_object_shortest_distance === */
 
-    result += query_nearest_shortest_distance(object);
+    fail += query_nearest_shortest_distance(object);
 
   /* === Function 28: geda_arc_object_within_sweep === */
 
     /* see test_geda_arc_within_sweep */
+
+    if (fail) {
+      result++;
+    }
 
 #if !USE_RANDOM_NUMBERS
     break;
