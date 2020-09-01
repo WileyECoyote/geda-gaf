@@ -1392,7 +1392,7 @@ int check_query (void)
 
     result += query_nearest_Q24_90(object);
 
-  /* === Function 06: geda_arc_object_get_position === */
+  /* === Function 17: geda_arc_object_get_position === */
 
     geda_arc_object_get_position(object, &dx, &dy);
 
