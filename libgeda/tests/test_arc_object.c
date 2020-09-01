@@ -1309,7 +1309,7 @@ int check_query (void)
     result++;
   }
 
-  /* === Function 06: geda_arc_object_get_position NULL === */
+  /* === Function 17: geda_arc_object_get_position NULL === */
 
   if (geda_arc_object_get_position(NULL, &dx, &dx)) {
     fprintf(stderr, "FAILED: (O021700) %s answer not FALSE\n", TOBJECT);
