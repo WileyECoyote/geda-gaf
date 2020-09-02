@@ -6,6 +6,8 @@
       get_last_command and update documentation.
 
 
+    * src/x/x_print.c: Update x_print_setup documentation.
+
 2020-08-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * data/Makefile.am: Redirect error output from update-mime-database

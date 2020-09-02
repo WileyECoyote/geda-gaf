@@ -663,10 +663,15 @@ is_a_print_dialog (PrintDialog *dialog)
   return FALSE;
 }
 
-/*! \todo Finish function documentation
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Display the Print Dialog.
+ * \par Function Description
+ *  Displays the Print dialog, allowing the user to set several
+ *  options, like paper size and orientation. If the user hits
+ *  "Print", the document is written to the destination.
  *
+ * \param[in] w_current  GschemToplevel structure.
+ * \param[in] filename   Suggested output filename.
  */
 void x_print_setup (GschemToplevel *w_current, char *filename)
 {
