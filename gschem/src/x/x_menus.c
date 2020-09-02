@@ -78,7 +78,7 @@ const char* IDS_Popup_Actions[] = {
  *  x_menus.h. For Separators and Sub-menu entries function must be NULL.
  *  When function is NULL the action_id fields set whether the record is
  *  is a seperator or a submenu. When action_id = 0 the record is for a
- *  separator, when action_id = 1 is the record is for a sub-menu.
+ *  separator, when action_id = 1 the record is for a sub-menu.
  *
  *  Note: gschem factory, setup by x_icons_setup_factory, are referenced
  *  use_stock = True. if use_stock = False, the string in the icon field
