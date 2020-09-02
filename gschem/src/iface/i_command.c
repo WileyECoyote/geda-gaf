@@ -192,9 +192,11 @@ static void set_action_status(int index, int state)
 static int get_last_command(void)
 {
   int ret_val;
+
   g_mutex_lock((GMutex*)&i_lock_last_command);
     ret_val = last_command;
   g_mutex_unlock((GMutex*)&i_lock_last_command);
+
   return ret_val;
 }
 
@@ -410,6 +412,7 @@ char *i_command_get_action_icon (const char *command)
     }
 
     if (!icon_id) {
+
       icon_id = geda_iface_menu_return_icon (command);
     }
   }
