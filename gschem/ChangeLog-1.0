@@ -1,7 +1,7 @@
 2020-09-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/iface/i_command.c: Include void in definition of function
-      get_last_command.
+      get_last_command and update documentation.
 
 
 2020-08-28 Wiley E. Hill <wileyhill@gmail.com>

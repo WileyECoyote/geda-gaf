@@ -183,9 +183,11 @@ static void set_action_status(int index, int state)
   g_mutex_unlock((GMutex*)&i_lock_action_status);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Retrieve the index of the Last Command
+ * \par Function Description
+ *  Returns index of the last action that was processed
+ *  by i_command_process in command_struc.
  */
 static int get_last_command(void)
 {
