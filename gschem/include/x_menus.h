@@ -98,6 +98,7 @@
 /* Used to reference IDS_Popup_Actions in x_menus.c */
 typedef enum {
   pop_edit_select,
+  pop_edit_deselect,
   pop_add_net,
   pop_add_attribute,
   pop_add_component,

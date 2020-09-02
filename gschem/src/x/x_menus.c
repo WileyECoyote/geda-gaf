@@ -53,7 +53,8 @@ static void x_menu_path_popup_execute(GtkWidget *widget, int action_id);
  *       Actions are defined in i_actions.h
  */
 const char* IDS_Popup_Actions[] = {
-  ACTION(EDIT_SELECT),    ACTION(ADD_NET),        ACTION(ADD_ATTRIB),
+  ACTION(EDIT_SELECT),    ACTION(EDIT_DESELECT),
+  ACTION(ADD_NET),        ACTION(ADD_ATTRIB),
   ACTION(ADD_COMPONENT),  ACTION(ADD_BUS),        ACTION(ADD_TEXT),
   ACTION(VIEW_ZOOM_IN),   ACTION(VIEW_ZOOM_OUT),  ACTION(VIEW_BOX),
   ACTION(VIEW_EXTENTS),   ACTION(VIEW_ZOOM_MAG),  ACTION(VIEW_SELECTED),
@@ -87,28 +88,29 @@ const char* IDS_Popup_Actions[] = {
  */
 static PopupEntry main_popup_items[] = {
 
-  { N_("Select"),            x_menu_main_popup_execute, pop_edit_select,    1, "gschem-select",  N_("Activate Select mode") },
+  { N_("Select"),            x_menu_main_popup_execute, pop_edit_select,    1, "gschem-select",   N_("Activate Select mode") },
+  { N_("Deselect"),          x_menu_main_popup_execute, pop_edit_deselect,  1, "gschem-unselect", N_("Activate Deselect mode") },
 
-  { "SEPARATOR",             NULL,                      0,                  0,  NULL,            NULL },
+  { "SEPARATOR",             NULL,                      0,                  0,  NULL,             NULL },
 
-  { N_("Add"),               NULL,                      1,                  0,  NULL,            N_("Add modes") },
-  { N_("Net"),               x_menu_main_popup_execute, pop_add_net,        1, "gschem-net",     N_("Add net") },
+  { N_("Add"),               NULL,                      1,                  0,  NULL,             N_("Add modes") },
+  { N_("Net"),               x_menu_main_popup_execute, pop_add_net,        1, "gschem-net",      N_("Add net") },
   { N_("Attribute..."),      x_menu_main_popup_execute, pop_add_attribute,  0,  GAF_MAP(ADD_ATTRIBUTE), N_("Add attribute")},
-  { N_("Component..."),      x_menu_main_popup_execute, pop_add_component,  1, "geda-component", N_("Insert a symbol from the component library") },
-  { N_("Bus"),               x_menu_main_popup_execute, pop_add_bus,        1, "gschem-bus",     N_("Add bus") },
-  { N_("Text"),              x_menu_main_popup_execute, pop_add_text,       1, "gtk-bold",       N_("Add text") },
+  { N_("Component..."),      x_menu_main_popup_execute, pop_add_component,  1, "geda-component",  N_("Insert a symbol from the component library") },
+  { N_("Bus"),               x_menu_main_popup_execute, pop_add_bus,        1, "gschem-bus",      N_("Add bus") },
+  { N_("Text"),              x_menu_main_popup_execute, pop_add_text,       1, "gtk-bold",        N_("Add text") },
 
-  { "END_SUB",               NULL,                      0,                  0,  NULL,            NULL },
+  { "END_SUB",               NULL,                      0,                  0,  NULL,             NULL },
 
-  { N_("Zoom"),              NULL,                      1,                  0,  NULL,            N_("Add operations") },
-  { N_("In"),                x_menu_main_popup_execute, pop_zoom_in,        1, "gtk-zoom-in",    N_("Increase the Zoom magnification") },
-  { N_("Out"),               x_menu_main_popup_execute, pop_zoom_out,       1, "gtk-zoom-out",   N_("Decrease the Zoom magnification") },
-  { N_("Box"),               x_menu_main_popup_execute, pop_zoom_box,       1, "geda-zoom-box",  N_("Zoom to a Windowed region") },
-  { N_("Extents"),           x_menu_main_popup_execute, pop_zoom_extents,   1, "gtk-zoom-fit",   N_("Zoom to the extents of the drawing") },
-  { N_("Mag"),               x_menu_main_popup_execute, pop_zoom_to_mag,    1, "zoom-mag",       N_("Zoom to a specified level")},
+  { N_("Zoom"),              NULL,                      1,                  0,  NULL,             N_("Add operations") },
+  { N_("In"),                x_menu_main_popup_execute, pop_zoom_in,        1, "gtk-zoom-in",     N_("Increase the Zoom magnification") },
+  { N_("Out"),               x_menu_main_popup_execute, pop_zoom_out,       1, "gtk-zoom-out",    N_("Decrease the Zoom magnification") },
+  { N_("Box"),               x_menu_main_popup_execute, pop_zoom_box,       1, "geda-zoom-box",   N_("Zoom to a Windowed region") },
+  { N_("Extents"),           x_menu_main_popup_execute, pop_zoom_extents,   1, "gtk-zoom-fit",    N_("Zoom to the extents of the drawing") },
+  { N_("Mag"),               x_menu_main_popup_execute, pop_zoom_to_mag,    1, "zoom-mag",        N_("Zoom to a specified level")},
   { N_("Selection"),         x_menu_main_popup_execute, pop_zoom_to_select, 1, "geda-zoom-selection", N_("Zoom to selected objects")},
 
-  { "END_SUB",               NULL,                      0,                  0,  NULL,            NULL },
+  { "END_SUB",               NULL,                      0,                  0,  NULL,             NULL },
 
   { N_("Edit"),              NULL,                      1,                  0,  NULL,                N_("Edit modes") },
   { N_("Object..."),         x_menu_main_popup_execute, pop_edit_objects,   1, "gtk-indent",         N_("Edit Object Attributes") },
@@ -116,7 +118,7 @@ static PopupEntry main_popup_items[] = {
   { N_("Component..."),      x_menu_main_popup_execute, pop_edit_component, 1, "geda-component",     N_("Open the Component Editor Dialog") },
   { N_("Pin type..."),       x_menu_main_popup_execute, pop_edit_pintype,   1, "geda-pin-type",      N_("Open the Pin Type Dialog") },
 
-  { "END_SUB",               NULL,                      0,                  0,  NULL,            NULL },
+  { "END_SUB",               NULL,                      0,                  0,  NULL,             NULL },
 
   { N_("Array"),             x_menu_main_popup_execute, pop_edit_array,     1, "gschem-array",       N_("Create and array of objects") },
   { N_("Break"),             x_menu_main_popup_execute, pop_edit_break,     1, "break",              N_("Break an object into separate objects") },
@@ -129,7 +131,7 @@ static PopupEntry main_popup_items[] = {
   { N_("Rotate"),            x_menu_main_popup_execute, pop_edit_rotate,    1, "geda-rotate-left",   N_("Rotate the current selection about a point") },
   { N_("Snap"),              x_menu_main_popup_execute, pop_edit_snap,      1, "geda-snap",          N_("Snap objects to the current grid") },
 
-  { "SEPARATOR",             NULL,                      0,                  0,  NULL,            NULL },
+  { "SEPARATOR",             NULL,                      0,                  0,  NULL,             NULL },
 
   /* Menu items for hierarchy added by SDB 1.9.2005. */
 
@@ -139,11 +141,11 @@ static PopupEntry main_popup_items[] = {
   { N_("Up"),                x_menu_main_popup_execute, pop_hierarchy_up,   1, "gtk-go-up",       N_("ascend up in the schematic hierarchy")},
 
   /* Menu items for clip-board added by WEH 07.20.2013 */
-  { "END_SUB",               NULL,                      0,                  0,  NULL,            NULL },
-  { "SEPARATOR",             NULL,                      0,                  0,  NULL,            NULL },
-  { N_("Cut to Clipboard"),  x_menu_main_popup_execute, pop_cb_cut,         1, "gtk-cut",        N_("Cut the current selection to the system clipboard") },
-  { N_("Copy to Clipboard"), x_menu_main_popup_execute, pop_cb_copy,        1, "gtk-copy",       N_("Copy the current selection to the system clipboard") },
-  { N_("Paste Clipboard"),   x_menu_main_popup_execute, pop_cb_paste,       1, "gtk-paste",      N_("Paste the contents of the system clipboard") },
+  { "END_SUB",               NULL,                      0,                  0,  NULL,             NULL },
+  { "SEPARATOR",             NULL,                      0,                  0,  NULL,             NULL },
+  { N_("Cut to Clipboard"),  x_menu_main_popup_execute, pop_cb_cut,         1, "gtk-cut",         N_("Cut the current selection to the system clipboard") },
+  { N_("Copy to Clipboard"), x_menu_main_popup_execute, pop_cb_copy,        1, "gtk-copy",        N_("Copy the current selection to the system clipboard") },
+  { N_("Paste Clipboard"),   x_menu_main_popup_execute, pop_cb_paste,       1, "gtk-paste",       N_("Paste the contents of the system clipboard") },
   {NULL} /* sentinel */
 };
 

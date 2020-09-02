@@ -1,10 +1,14 @@
 2020-09-02 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/x_menus.h: Add pop_edit_deselect enumeration.
+
     * include/x_toolbars.h: Revise the tool-tip for TBTS_EDIT_SELECT_ALL.
 
     * src/iface/i_command.c: Include void in definition of function
       get_last_command and update documentation.
 
+    * src/x/x_menus.c: Add action EDIT_DESELECT as the second menu item
+      in the main popup context menu.
 
     * src/x/x_print.c: Update x_print_setup documentation.
 
