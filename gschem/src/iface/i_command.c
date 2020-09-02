@@ -551,7 +551,7 @@ void i_command_process(GschemToplevel *w_current, const char *command,
             check_magnet = FALSE;
           }
         }
-        else { /* Must have been ID_ORIGIN_MOUSE*/
+        else { /* Is ID_ORIGIN_MOUSE*/
           /* low levels should do this */
           SCREENtoWORLD (w_current, w_current->pointer_sx, w_current->pointer_sy, &wx, &wy);
           command_struc[i].point.x = wx;
