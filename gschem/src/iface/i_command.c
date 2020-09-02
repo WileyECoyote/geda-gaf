@@ -522,8 +522,9 @@ void i_command_process(GschemToplevel *w_current, const char *command,
 
       /* Check the repeat last command action */
       if (i == CMD(do_repeat_last)) {
-        if ( !get_last_command())
+        if ( !get_last_command()) {
           break;
+        }
         i = get_last_command(); /* Change action to the previous value */
       }
 
