@@ -138,7 +138,7 @@ typedef struct {
 #define TBTS_EDIT_DESELECT      "Activate UnSelect mode"
 #define TBTS_EDIT_DESELECT_ALL  "Unselect everything"
 
-#define TBTS_EDIT_SELECT_ALL    "Select all objects in the database"
+#define TBTS_EDIT_SELECT_ALL    "Select all objects"
 #define TBTS_EDIT_INVERT        "Invert the current selection set"
 
 #define TBTS_ADD_COMPONENT      "Add Component...\nSelect library and component from list, move the mouse into main window, click to place\nRight mouse button to cancel"
