@@ -187,7 +187,7 @@ static void set_action_status(int index, int state)
  *  \brief
  *  \par Function Description
  */
-static int get_last_command()
+static int get_last_command(void)
 {
   int ret_val;
   g_mutex_lock((GMutex*)&i_lock_last_command);
