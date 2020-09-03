@@ -2137,7 +2137,7 @@
 
         ("SEPARATOR"               #f                     #f)
         (,(N_ "_Array")             edit-array            #f                  ,(N_ "Create and array of objects"))
-        (,(N_ "_Break")             edit-break            #f                  ,(N_ "Break a linear object into separate objects"))
+        (,(N_ "_Break")             edit-break            #f                  ,(N_ "Break an object into separate objects"))
         (,(N_ "E_xtend")            edit-extend           #f                  ,(N_ "Project linear objects to other objects"))
 
         ("SEPARATOR"               #f                     #f)
@@ -2215,6 +2215,7 @@
      `(
         (,(N_ "_Redraw")              view-redraw           #f               ,(N_ "Redraw the current window"))
         (,(N_ "_Pan")                 view-pan              #f               ,(N_ "Activate Panning"))
+        (,(N_ "Pre_vious")            view-pan              #f               ,(N_ "View previous"))
 
         (,(N_ "Zoom _All")            view-zoom-all         #f               ,(N_ "Zoom to the limits of the drawing area"))
         (,(N_ "Zoom _Box")            view-zoom-box         #f               ,(N_ "Zoom to a Windowed region"))
