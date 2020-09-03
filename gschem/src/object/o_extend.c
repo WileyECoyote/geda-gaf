@@ -1499,7 +1499,7 @@ static bool o_extend_can_bound(GedaObject *boundary,
                                char        direction,
                                GedaPoint  *point)
 {
-  bool (*discriminator)(GedaObject *, GedaObject *, int, char, GedaPoint *);
+  bool (*discriminator)(GedaObject*, GedaObject*, int, char, GedaPoint*);
 
   switch (boundary->type) {
     case OBJ_ARC:
