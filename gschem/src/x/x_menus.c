@@ -82,7 +82,7 @@ const char* IDS_Popup_Actions[] = {
  *  separator, when action_id = 1 the record is for a sub-menu.
  *
  *  Note: gschem factory, setup by x_icons_setup_factory, are referenced
- *  use_stock = True. if use_stock = False, the string in the icon field
+ *  use_stock = True. If use_stock = False, the string in the icon field
  *  is passed to create_pixmap().
  *
  */
