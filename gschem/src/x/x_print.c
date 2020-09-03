@@ -672,6 +672,9 @@ is_a_print_dialog (PrintDialog *dialog)
  *
  * \param[in] w_current  GschemToplevel structure.
  * \param[in] filename   Suggested output filename.
+ *
+ * \todo There should be an option to use the GTK or system
+ *       dialog in the configuration.
  */
 void x_print_setup (GschemToplevel *w_current, char *filename)
 {
