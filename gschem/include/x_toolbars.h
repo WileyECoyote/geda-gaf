@@ -135,7 +135,7 @@ typedef struct {
 #define TBTS_EDIT_REDO          "Redo the last undo"
 
 #define TBTS_EDIT_SELECT        "Activate Select mode"
-#define TBTS_EDIT_DESELECT      "Activate UnSelect mode"
+#define TBTS_EDIT_DESELECT      "Activate Deselect mode"
 #define TBTS_EDIT_DESELECT_ALL  "Unselect everything"
 
 #define TBTS_EDIT_SELECT_ALL    "Select all objects"

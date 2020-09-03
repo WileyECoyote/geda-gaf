@@ -1,3 +1,7 @@
+2020-09-03 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/x_toolbars.h: Revise edit-deselect tooltip.
+
 2020-09-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/x_menus.h: Add pop_edit_deselect enumeration.
