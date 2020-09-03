@@ -1684,9 +1684,9 @@ GedaObject *o_extend_get_bounder (GList *list, const GedaPoint *point)
     GList *nonlinears;       /* sub-list of non-projectable bounders  */
     GList *projectiles;      /* list of objects that can be projected */
 
-    int count_bounders;      /* length of the list bounders    */
+    int count_bounders;      /* length of the list bounders */
 
-    int count_projectiles;   /* length of the list projectiles */
+    int count_projectiles;   /* length of the list of projectiles */
 
     int most_hits;           /* index of record with the most hits */
     int num_records;         /* number of indexes, aka array size  */
