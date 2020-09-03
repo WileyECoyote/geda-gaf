@@ -196,6 +196,7 @@ typedef struct {
 #define TBTS_EDIT_OFFSET        "Offset selected objects"
 #define TBTS_EDIT_ROTATE_LEFT   "Rotate objects left"
 #define TBTS_EDIT_ARRAY         "Create and array of objects"
+#define TBTS_EDIT_BREAK         "Break an object into pieces"
 
   /* Modify Toolbar */
 #define TBTS_EDIT_ATTRIB        "Edit Attribute properties"
