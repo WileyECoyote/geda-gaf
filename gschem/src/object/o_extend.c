@@ -100,6 +100,7 @@ static bool o_extend_is_valid_projectile (GedaObject *object)
       case OBJ_BUS:
         anwser = TRUE;
         break;
+
       default:
         anwser = FALSE;
     }
@@ -107,6 +108,7 @@ static bool o_extend_is_valid_projectile (GedaObject *object)
   else {
     anwser = FALSE;
   }
+
   return anwser;
 }
 
@@ -134,6 +136,7 @@ static GList *o_extend_get_valid_bounders (GList *list)
     }
     iter = iter->next;
   }
+
   return bounders;
 }
 
@@ -167,6 +170,7 @@ static GList *o_extend_get_nonlinear (GList *list)
     }
     iter = iter->next;
   }
+
   return bounders;
 }
 
@@ -192,6 +196,7 @@ static GList *o_extend_get_projectiles (GedaObject *exclude, GList *list)
     }
     iter = iter->next;
   }
+
   return projectiles;
 }
 
@@ -1513,6 +1518,7 @@ static bool o_extend_can_bound(GedaObject *boundary,
     default:
       return FALSE;
   }
+
   return discriminator (boundary, projectile, which_end, direction, point);
 }
 
@@ -1854,6 +1860,7 @@ GedaObject *o_extend_get_bounder (GList *list, const GedaPoint *point)
     }
     g_list_free(projectiles);
   }
+
   return bounder;
 }
 
@@ -1994,6 +2001,7 @@ int o_extend_blind (GschemToplevel *w_current, GedaObject *projectile)
     }
 
     if (target != NULL) {
+
       GedaPoint point;
 
       if (o_extend_can_bound(target, projectile, which_end, direction, &point))
@@ -2035,6 +2043,7 @@ int o_extend_blind_list(GschemToplevel *w_current, GList *projectiles)
       status++;
     }
   }
+
   return status;
 }
 
@@ -2282,6 +2291,7 @@ bool o_extend_selection (GschemToplevel *w_current, int count)
   else {
     status = 1; /* Undeteminate, continue for now */
   }
+
   return status;
 }
 
@@ -2305,6 +2315,7 @@ void o_extend_hot (GschemToplevel *w_current, GList *object_list, int x, int y)
     w_current->second_wy = y;
 
     status = o_extend_blind_list(w_current, projectiles);
+
     g_list_free(projectiles);
 
     if (status) {
