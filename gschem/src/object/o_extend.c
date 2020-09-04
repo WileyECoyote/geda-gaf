@@ -1847,7 +1847,7 @@ GedaObject *o_extend_get_bounder (GList *list, const GedaPoint *point)
         /* Check if another bounder had the same hit count */
         for (index = 0; index < num_records; index++) {
           if (index == most_hits) {
-            continue; /* is number were are comparing to others */
+            continue; /* Is the number we are comparing to others */
           }
           if (hit_records[index].hits == hit_records[most_hits].hits) {
             bounder = NULL; /* Disqualify the winner, there was a tie */
