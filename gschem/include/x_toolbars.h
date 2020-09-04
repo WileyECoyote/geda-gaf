@@ -199,7 +199,7 @@ typedef struct {
 #define TBTS_EDIT_BREAK         "Break an object into pieces"
 
   /* Modify Toolbar */
-#define TBTS_EDIT_ATTRIB        "Edit Attribute properties"
+#define TBTS_EDIT_ATTRIB        "Edit Object Attributes"
 #define TBTS_EDIT_COLOR         "Change Colors"
 
 #define TBTS_EDIT_TEXT          "Edit text properties"
