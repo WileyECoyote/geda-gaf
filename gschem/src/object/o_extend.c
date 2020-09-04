@@ -1809,10 +1809,10 @@ GedaObject *o_extend_get_bounder (GList *list, const GedaPoint *point)
     if (hit_records) {
 
       /* We should have all we need to know in the array of hit_records to see
-       * if there is a winner, aka bounder. The choice depends on if a point was
-       * given. If a point was given then the closest object with a hit to the
-       * point is the bounder. If no point was given the object with the most
-       * hits is the bounder, if there is a tie, then there is no bounder.
+       * if there is a winner, aka a bounder. The choice depends on if a point
+       * was given. If a point was given then the closest object with a hit to
+       * the point is the bounder. If no point was given the object with the
+       * most hits is the bounder, if there is a tie, then there is no bounder.
        */
       if (point) {
 
@@ -1939,8 +1939,8 @@ int o_extend_object_list (GschemToplevel *w_current,
 /*!
  * \brief Extend Linear without a known target
  * \par Function Description
- *  Determine which end of the \a projectile is to used based on second_wx,
- *  and second_wy.
+ *  Determine which end of the \a projectile is to be used based on
+ *  second_wx and second_wy.
  *
  * \returns 0 if not valid, 2 if valid projectile but no hits and 3 if
  *          the operation succeeded.
