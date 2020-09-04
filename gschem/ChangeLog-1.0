@@ -7,6 +7,9 @@
     * scheme/gschem/gschem-tools-menu.scm: Add "Update Component"
       menu item under Tools/Symbols submenu.
 
+    * src/object/o_extend.c: Revise o_extend_object to invalidate the
+      bounds of the projectile.
+
 2020-09-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/x_toolbars.h: Revise edit-deselect tooltip and add
