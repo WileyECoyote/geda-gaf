@@ -87,8 +87,9 @@ static bool o_extend_is_valid_bounder (GedaObject *object)
  *  \par Function Description
  *  Projectiles are the three linear type objects; line, nets
  *  and buses.
+ *
+ * \todo Arcs should be allowed!
  */
-
 static bool o_extend_is_valid_projectile (GedaObject *object)
 {
   int anwser;
