@@ -1722,7 +1722,7 @@ GedaObject *o_extend_get_bounder (GList *list, const GedaPoint *point)
         num_records = sizeof(struct st_hit_record) * count_bounders;
         hit_records = malloc(num_records);
 
-        /* create an array of hit counts */
+        /* Create an array of hit counts */
         for (index = 0; index < count_bounders; index++) {
 
           int hits = 0;
@@ -1773,7 +1773,7 @@ GedaObject *o_extend_get_bounder (GList *list, const GedaPoint *point)
       num_records = sizeof(struct st_hit_record) * count_projectiles;
       hit_records = malloc(num_records);
 
-      /* create an array of hit counts */
+      /* Create an array of hit counts */
       for (index = 0; index < count_projectiles; index++) {
 
         int hits = 0;
@@ -2354,9 +2354,9 @@ int o_extend_interrogate (GschemToplevel *w_current, GList *object_list)
   if (count == 0) {
     status = STARTEXTEND;     /* call o_extend_start on next click */
   }
-  else if (count == 1) {       /* Can be boundary or a projectile */
+  else if (count == 1) {      /* Can be boundary or a projectile */
 
-    /* call o_extend_end on next click if valid object selected */
+    /* Call o_extend_end on next click if valid object selected */
 
     if (o_extend_is_valid_projectile(object_list->data)) {
       status = ENDEXTEND;
