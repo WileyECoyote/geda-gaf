@@ -1,6 +1,11 @@
 2020-09-04 Wiley E. Hill <wileyhill@gmail.com>
 
+    * etc/system-gschemrc.scm: Remove "Update Component" menu item.
+
     * include/x_toolbars.h: Revise edit-attributes tooltip.
+
+    * scheme/gschem/gschem-tools-menu.scm: Add "Update Component"
+      menu item under Tools/Symbols submenu.
 
 2020-09-03 Wiley E. Hill <wileyhill@gmail.com>
 

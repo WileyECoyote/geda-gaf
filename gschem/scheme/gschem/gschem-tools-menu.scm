@@ -270,6 +270,8 @@
   `(
     ("Symbol _Translate..."  tools-translate           "gtk-convert"       "Reset the X-Y Zero point")
     ("Check Symbol"          tools:check-symbol        "geda-inspect-grn"  "Run gsymcheck")
+    ("SEPARATOR"                  #f                     #f)
+    (,(N_ "Update Component")     tools-update             "gtk-refresh"      ,(N_ "Reload definition of selected component"))
   )
 )
 

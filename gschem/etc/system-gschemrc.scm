@@ -2341,7 +2341,6 @@
         ("SEPARATOR"                      #f                     #f)
         (,(N_ "Embed Component/Picture")   tools-embed           "geda-inbed"       ,(N_ "Embed a component or image object"))
         (,(N_ "Unembed Component/Picture") tools-unembed         "geda-bed"         ,(N_ "Unembed a component or image object"))
-        (,(N_ "Update Component")          tools-update          #f                 ,(N_ "Reload definition of selected component"))
       )
 )
 
