@@ -2,13 +2,16 @@
 
     * etc/system-gschemrc.scm: Remove "Update Component" menu item.
 
-    * include/x_toolbars.h: Revise edit-attributes tooltip.
+    * include/x_toolbars.h: Revise edit-attributes tooltip and add
+      TBTS_EDIT_EXTEND for new toolbar button.
 
     * scheme/gschem/gschem-tools-menu.scm: Add "Update Component"
       menu item under Tools/Symbols submenu.
 
     * src/object/o_extend.c: Revise o_extend_object to invalidate the
       bounds of the projectile.
+
+    * src/x/x_toolbars.c: Add button for edit-extend to the Edit Toolbar.
 
 2020-09-03 Wiley E. Hill <wileyhill@gmail.com>
 

@@ -114,7 +114,7 @@ typedef enum  { etb_new, etb_open, etb_save, etb_save_as, etb_close,
                 etb_zoom_extents, etb_zoom_in, etb_zoom_out, etb_zoom_all,
                 etb_edit_prop, etb_translate, etb_lock, etb_unlock, etb_update,
                 etb_edit_copy, etb_multi_copy, etb_move, etb_mirror, etb_offset,
-                etb_rotate, etb_edit_array, etb_edit_break,
+                etb_rotate, etb_edit_array, etb_edit_break, etb_edit_extend,
                 etb_edit_butes, etb_edit_color, etb_edit_text, etb_edit_slot,
                 etb_edit_pin, etb_edit_line, etb_edit_fill, etb_edit_arc,
                 etb_attach, etb_detach, etb_show_value, etb_show_name,
@@ -229,6 +229,7 @@ static ToolbarStringData ToolbarStrings[] = {
   { ACTION(EDIT_ROTATE_LEFT),  N_("Rotate"),    TBTS_EDIT_ROTATE_LEFT,   "Private",        TB_ICON_BITMAP, NULL},
   { ACTION(EDIT_ARRAY),        N_("Array"),     TBTS_EDIT_ARRAY,         "gschem-array",   TB_ICON_BITMAP, NULL},
   { ACTION(EDIT_BREAK),        N_("Break"),     TBTS_EDIT_BREAK,         "break",          TB_ICON_BITMAP, NULL},
+  { ACTION(EDIT_EXTEND),       N_("Extend"),    TBTS_EDIT_EXTEND,        "extend",         TB_ICON_BITMAP, NULL},
 
   /* Modify Toolbar */
   { ACTION(EDIT_ATTRIB),       N_("Edit"),      TBTS_EDIT_ATTRIB,        "Private",        TB_ICON_BITMAP, NULL},
@@ -1645,6 +1646,7 @@ x_toolbars_init_left(GschemToplevel *w_current, GtkWidget *parent_container)
   //gtk_toolbar_append_space (GTK_TOOLBAR(Edit_Toolbar));
 
   GSCHEM_TOOLBAR_BUTTON (Edit, etb_edit_break);
+  GSCHEM_TOOLBAR_BUTTON (Edit, etb_edit_extend);
 
   ANY_OBJECT_LIST = g_slist_append (ANY_OBJECT_LIST, TB_BUTTON ( etb_edit_copy  ));
   ANY_OBJECT_LIST = g_slist_append (ANY_OBJECT_LIST, TB_BUTTON ( etb_multi_copy ));
@@ -1654,6 +1656,7 @@ x_toolbars_init_left(GschemToplevel *w_current, GtkWidget *parent_container)
   ANY_OBJECT_LIST = g_slist_append (ANY_OBJECT_LIST, TB_BUTTON ( etb_rotate ));
   ANY_OBJECT_LIST = g_slist_append (ANY_OBJECT_LIST, TB_BUTTON ( etb_edit_array ));
   ANY_OBJECT_LIST = g_slist_append (ANY_OBJECT_LIST, TB_BUTTON ( etb_edit_break ));
+  ANY_OBJECT_LIST = g_slist_append (ANY_OBJECT_LIST, TB_BUTTON ( etb_edit_extend ));
 
   gtk_widget_show (Edit_Toolbar);
 

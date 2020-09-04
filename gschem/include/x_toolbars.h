@@ -197,6 +197,7 @@ typedef struct {
 #define TBTS_EDIT_ROTATE_LEFT   "Rotate objects left"
 #define TBTS_EDIT_ARRAY         "Create and array of objects"
 #define TBTS_EDIT_BREAK         "Break an object into pieces"
+#define TBTS_EDIT_EXTEND        "Project linear objects to other objects"
 
   /* Modify Toolbar */
 #define TBTS_EDIT_ATTRIB        "Edit Object Attributes"
