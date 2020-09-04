@@ -1870,7 +1870,7 @@ GedaObject *o_extend_get_bounder (GList *list, const GedaPoint *point)
  * \brief Project Linear to Boundary
  * \par Function Description
  *  Determine which end of the projectile is closest to the bounder
- *  and if o_extend_can_bound return TRUE, then change the previously
+ *  and if o_extend_can_bound returns TRUE, then change the previously
  *  selected point, the "which_end" to the returned coordinates.
  *
  * \returns True if the operation succeeded, otherwise false
