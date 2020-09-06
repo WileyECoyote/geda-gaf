@@ -4529,10 +4529,10 @@ msgstr ""
 msgid "Pick"
 msgstr ""
 
+# New
 #: gschem/src/x/x_toolbars.c:149 gschem/src/x/x_toolbars.c:195
-#, fuzzy
 msgid "New"
-msgstr "Ağ"
+msgstr "Yeni"
 
 # Save As
 #: gschem/src/x/x_toolbars.c:152 gschem/scheme/gschem/builtins.scm:59
@@ -4564,15 +4564,13 @@ msgstr "Yinele"
 
 # Remove Mode Selection
 #: gschem/src/x/x_toolbars.c:167
-#, fuzzy
 msgid "Unselect"
-msgstr "Seçimini kaldır"
+msgstr "Seçimi kaldır"
 
-# Invert Image
+# Invert => Reverse
 #: gschem/src/x/x_toolbars.c:172
-#, fuzzy
 msgid "Invert"
-msgstr "Görüntüyü Ters Çevir"
+msgstr "Ters çevir"
 
 #: gschem/src/x/x_toolbars.c:173
 msgid "Library"
@@ -4584,71 +4582,64 @@ msgstr ""
 
 # Attribute
 #: gschem/src/x/x_toolbars.c:176
-#, fuzzy
 msgid "Attrib"
 msgstr "nitelik"
 
-# Add Line
+# Line
 #: gschem/src/x/x_toolbars.c:180 gschem/src/x/x_toolbars.c:238
-#, fuzzy
 msgid "Line"
-msgstr "Satır Ekle"
+msgstr "Hat"
 
-# Add circle
+# Circle
 #: gschem/src/x/x_toolbars.c:182
-#, fuzzy
 msgid "Circle"
-msgstr "Çevre ekle"
+msgstr "Daire"
 
+# Arc
 #: gschem/src/x/x_toolbars.c:183
 msgid "Arc"
-msgstr ""
+msgstr "Ark"
 
 # Path
 #: gschem/src/x/x_toolbars.c:184 gschem/src/x/x_window.c:1012
 msgid "Path"
 msgstr "Çokgen"
 
-# Write Image => Write Picture; Görüntü yazma
+# Image
 #: gschem/src/x/x_toolbars.c:186
-#, fuzzy
 msgid "Image"
-msgstr "Resim Yaz"
+msgstr "Resim"
 
-# First Page
+# First
 #: gschem/src/x/x_toolbars.c:189
-#, fuzzy
 msgid "First"
-msgstr "İlk sayfa"
+msgstr "İlk"
 
+# Prev => Previous
 #: gschem/src/x/x_toolbars.c:190
 msgid "Prev"
-msgstr ""
+msgstr "Önceki"
 
-# Next Page
+# Next
 #: gschem/src/x/x_toolbars.c:191
-#, fuzzy
 msgid "Next"
-msgstr "Sonraki Sayfa"
+msgstr "Sonraki"
 
-# Move Down
+# Down
 #: gschem/src/x/x_toolbars.c:193 gschem/src/x/x_toolbars.c:198
 #: gschem/src/x/x_toolbars.c:199 gschem/src/x/x_toolbars.c:262
-#, fuzzy
 msgid "Down"
-msgstr "Aşağı inmek"
+msgstr "Aşağı"
 
-# Last Page
+# Last
 #: gschem/src/x/x_toolbars.c:194
-#, fuzzy
 msgid "Last"
-msgstr "Son Sayfa"
+msgstr "Son"
 
 # Manage
 #: gschem/src/x/x_toolbars.c:196
-#, fuzzy
 msgid "Manage"
-msgstr "Yönet..."
+msgstr "Yönetin"
 
 #: gschem/src/x/x_toolbars.c:202
 msgid "Spec"
@@ -5597,33 +5588,33 @@ msgid "A_rc"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2282
-msgid "Create arc"
+msgid "Add an arc"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2283
 msgid "_Box"
 msgstr ""
 
-# Add box
+# Add a box
 #: gschem/etc/system-gschemrc.scm:2283
-msgid "Add box"
+msgid "Add a box"
 msgstr "Kutuyu ekle"
 
 #: gschem/etc/system-gschemrc.scm:2284
 msgid "C_ircle"
-msgstr ""
+msgstr "Daire"
 
-# Add circle
+# Add a circle
 #: gschem/etc/system-gschemrc.scm:2284
-msgid "Add circle"
-msgstr "Çevre ekle"
+msgid "Add a circle"
+msgstr "daire ekleyin"
 
 #: gschem/etc/system-gschemrc.scm:2285
 msgid "_Line"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2285
-msgid "Add line"
+msgid "Add a line"
 msgstr "Satır ekle"
 
 #: gschem/etc/system-gschemrc.scm:2286
@@ -5631,7 +5622,7 @@ msgid "Pat_h"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2286 gschem/scheme/gschem/builtins.scm:371
-msgid "Add Path"
+msgid "Add a path"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2287
@@ -5648,7 +5639,7 @@ msgstr "_Pimi"
 
 # Add pin
 #: gschem/etc/system-gschemrc.scm:2288
-msgid "Add pin"
+msgid "Add a pin"
 msgstr "Pimi ekle"
 
 #: gschem/etc/system-gschemrc.scm:2296
@@ -6351,7 +6342,7 @@ msgstr "Yazı ekle"
 # Add Line
 #: gschem/scheme/gschem/builtins.scm:356
 msgid "Add Line"
-msgstr "Satır Ekle"
+msgstr "Hat Ekle"
 
 #: gschem/scheme/gschem/builtins.scm:359
 msgid "Add Pin"
