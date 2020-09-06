@@ -14,6 +14,8 @@
 
     * po/tr.po: Update Turkish translations.
 
+    * po/zh_CN.po: Update Chinese simplified translations.
+
 2020-09-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * etc/system-gschemrc.scm: Remove "Update Component" menu item.
