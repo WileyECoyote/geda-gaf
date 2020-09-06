@@ -4474,49 +4474,48 @@ msgstr "/أضف شبكة"
 
 # Image
 #: gschem/src/x/x_toolbars.c:186
-#, fuzzy
 msgid "Image"
-msgstr "نوع الصورة"
+msgstr "صورة"
 
+# First; 'awal
 #: gschem/src/x/x_toolbars.c:189
-#, fuzzy
 msgid "First"
-msgstr "ال_سّابقة"
+msgstr "أول"
 
+# Prev => Previous; alssabiq
 #: gschem/src/x/x_toolbars.c:190
-#, fuzzy
 msgid "Prev"
-msgstr "معاينة"
+msgstr "السابق"
 
+# Next; alttalaa
 #: gschem/src/x/x_toolbars.c:191
-#, fuzzy
 msgid "Next"
-msgstr "ال_تّالية"
+msgstr "التالى"
 
+# Down; 'asfal
 #: gschem/src/x/x_toolbars.c:193 gschem/src/x/x_toolbars.c:198
 #: gschem/src/x/x_toolbars.c:199 gschem/src/x/x_toolbars.c:262
-#, fuzzy
 msgid "Down"
-msgstr "وضع الإنتقال الإختياري"
+msgstr "أسفل"
 
+# Last; al'akhir
 #: gschem/src/x/x_toolbars.c:194
-#, fuzzy
 msgid "Last"
-msgstr "صفحة جديدة"
+msgstr "الاخير"
 
+# Manage; yudir
 #: gschem/src/x/x_toolbars.c:196
-#, fuzzy
 msgid "Manage"
-msgstr "م_دير..."
+msgstr "يدير"
 
 #: gschem/src/x/x_toolbars.c:202
 msgid "Spec"
 msgstr ""
 
+# Net names; al'asma' alssafia
 #: gschem/src/x/x_toolbars.c:203
-#, fuzzy
 msgid "Netnames"
-msgstr "اسم الملف"
+msgstr "الأسماء الصافية"
 
 #: gschem/src/x/x_toolbars.c:206 gschem/scheme/gschem/builtins.scm:209
 msgid "Redraw"
@@ -4847,7 +4846,7 @@ msgstr "ا_طبع..."
 
 #: gschem/etc/system-gschemrc.scm:2101
 msgid "Print the current document"
-msgstr "طُبع المخطط الحالي إلى [‎%s‬]"
+msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2102
 msgid "Export options"
@@ -5432,7 +5431,7 @@ msgid "A_rc"
 msgstr "ق_وس"
 
 #: gschem/etc/system-gschemrc.scm:2282
-msgid "Create arc"
+msgid "Create an arc"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2283
@@ -5440,15 +5439,15 @@ msgid "_Box"
 msgstr "_إطار"
 
 #: gschem/etc/system-gschemrc.scm:2283
-msgid "Add box"
-msgstr "/أضف ناقلا"
+msgid "Add a box"
+msgstr "أضف ناقلا"
 
 #: gschem/etc/system-gschemrc.scm:2284
 msgid "C_ircle"
 msgstr "_دائرة"
 
 #: gschem/etc/system-gschemrc.scm:2284
-msgid "Add circle"
+msgid "Add a circle"
 msgstr "دائرة"
 
 #: gschem/etc/system-gschemrc.scm:2285
@@ -5456,7 +5455,7 @@ msgid "_Line"
 msgstr "_خط"
 
 #: gschem/etc/system-gschemrc.scm:2285
-msgid "Add line"
+msgid "Add a line"
 msgstr "خط"
 
 #: gschem/etc/system-gschemrc.scm:2286
@@ -5464,7 +5463,7 @@ msgid "Pat_h"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2286 gschem/scheme/gschem/builtins.scm:371
-msgid "Add Path"
+msgid "Add a path"
 msgstr "أضف شبكة"
 
 #: gschem/etc/system-gschemrc.scm:2287
@@ -5480,7 +5479,7 @@ msgid "_Pin"
 msgstr "د_بوس"
 
 #: gschem/etc/system-gschemrc.scm:2288
-msgid "Add pin"
+msgid "Add a pin"
 msgstr "خط"
 
 #: gschem/etc/system-gschemrc.scm:2296
@@ -6455,15 +6454,3 @@ msgstr ""
 #, scheme-format
 msgid "~S is not a prefix key sequence."
 msgstr ""
-
-#~ msgid "Input attribute is invalid"
-#~ msgstr "السمالسمة المدخلات غير صالحة"
-
-#~ msgid "<b>Scope</b>"
-#~ msgstr "<b>المجال</b>"
-
-#~ msgid "<b>Add Attribute</b>"
-#~ msgstr "<b>أضف سمة</b>"
-
-#~ msgid "<b>Edit Attribute</b>"
-#~ msgstr "<b>حرّر السّمة</b>"
