@@ -16,6 +16,8 @@
 
     * po/zh_CN.po: Update Chinese simplified translations.
 
+    * po/zh_TW.po: Update Chinese traditional translations.
+
 2020-09-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * etc/system-gschemrc.scm: Remove "Update Component" menu item.

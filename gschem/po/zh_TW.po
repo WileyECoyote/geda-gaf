@@ -4484,17 +4484,15 @@ msgstr "糊"
 msgid "Redo"
 msgstr "取消上次復原"
 
-# Deselect
+# Unselect => Deselect; Qǔxiāo xuǎnzé
 #: gschem/src/x/x_toolbars.c:167
-#, fuzzy
 msgid "Unselect"
 msgstr "取消"
 
-# Invert Image
+# Invert; Dàozhì
 #: gschem/src/x/x_toolbars.c:172
-#, fuzzy
 msgid "Invert"
-msgstr "反轉圖像"
+msgstr "倒置"
 
 #: gschem/src/x/x_toolbars.c:173
 msgid "Library"
@@ -4504,72 +4502,64 @@ msgstr ""
 msgid "Nets"
 msgstr ""
 
-# Attribute
+# Attribute; Shǔxìng
 #: gschem/src/x/x_toolbars.c:176
-#, fuzzy
 msgid "Attrib"
 msgstr "屬性"
 
-# Add Line
+# Line; Xiàn
 #: gschem/src/x/x_toolbars.c:180 gschem/src/x/x_toolbars.c:238
-#, fuzzy
 msgid "Line"
-msgstr "添加線"
+msgstr "線"
 
-# Circle
+# Circle; Quān
 #: gschem/src/x/x_toolbars.c:182
-#, fuzzy
 msgid "Circle"
 msgstr "圈"
 
-# Add Arc
+# Arc; Hú
 #: gschem/src/x/x_toolbars.c:183
-#, fuzzy
 msgid "Arc"
-msgstr "添加弧"
+msgstr "弧"
 
-# file path
+# Path => Polygon; Duōbiānxíng
 #: gschem/src/x/x_toolbars.c:184 gschem/src/x/x_window.c:1012
 msgid "Path"
-msgstr "文件路徑"
+msgstr "多邊形"
 
+# Image; Túpiàn
 #: gschem/src/x/x_toolbars.c:186
-#, fuzzy
 msgid "Image"
-msgstr "圖片格式"
+msgstr "圖片"
 
-# First Page
+# First; Dì yī
 #: gschem/src/x/x_toolbars.c:189
-#, fuzzy
 msgid "First"
-msgstr "第一頁"
+msgstr "第一"
 
+# Prev => Previous; Yǐqián
 #: gschem/src/x/x_toolbars.c:190
-#, fuzzy
 msgid "Prev"
-msgstr "預覽"
+msgstr "以前"
 
+# Next; Xià yīgè
 #: gschem/src/x/x_toolbars.c:191
-#, fuzzy
 msgid "Next"
-msgstr "下一個分頁"
+msgstr "下一個"
 
-# # Move Down => Move Downward
+# Down => Downward; Xiàng xià
 #: gschem/src/x/x_toolbars.c:193 gschem/src/x/x_toolbars.c:198
 #: gschem/src/x/x_toolbars.c:199 gschem/src/x/x_toolbars.c:262
-#, fuzzy
 msgid "Down"
-msgstr "向下移動"
+msgstr "向下"
 
-# Last Page
+# Last; Chíxù
 #: gschem/src/x/x_toolbars.c:194
-#, fuzzy
 msgid "Last"
-msgstr "最後一頁"
+msgstr "持續"
 
-# manager
+# Manage; Guǎnlǐ
 #: gschem/src/x/x_toolbars.c:196
-#, fuzzy
 msgid "Manage"
 msgstr "經理..."
 
@@ -5583,7 +5573,7 @@ msgstr ""
 
 # Add box
 #: gschem/etc/system-gschemrc.scm:2283
-msgid "Add box"
+msgid "Add a box"
 msgstr "添加框"
 
 # Circle
@@ -5593,7 +5583,7 @@ msgstr "圈"
 
 # Add circle
 #: gschem/etc/system-gschemrc.scm:2284
-msgid "Add circle"
+msgid "Add a circle"
 msgstr "添加圈子"
 
 #: gschem/etc/system-gschemrc.scm:2285
@@ -5602,7 +5592,7 @@ msgstr ""
 
 # Add line
 #: gschem/etc/system-gschemrc.scm:2285
-msgid "Add line"
+msgid "Add a line"
 msgstr "添加行"
 
 #: gschem/etc/system-gschemrc.scm:2286
@@ -5610,7 +5600,7 @@ msgid "Pat_h"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2286 gschem/scheme/gschem/builtins.scm:371
-msgid "Add Path"
+msgid "Add a path"
 msgstr ""
 
 # Picture
@@ -5628,7 +5618,7 @@ msgstr ""
 
 # Add pin
 #: gschem/etc/system-gschemrc.scm:2288
-msgid "Add pin"
+msgid "Add a pin"
 msgstr "添加引腳"
 
 #: gschem/etc/system-gschemrc.scm:2296
