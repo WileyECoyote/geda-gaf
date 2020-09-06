@@ -4373,16 +4373,15 @@ msgstr "Incolla"
 msgid "Redo"
 msgstr "Ripristina"
 
+# Unselect
 #: gschem/src/x/x_toolbars.c:167
-#, fuzzy
 msgid "Unselect"
 msgstr "Deseleziona"
 
-# Invert Image
+# Invert
 #: gschem/src/x/x_toolbars.c:172
-#, fuzzy
 msgid "Invert"
-msgstr "Inverti l'immagine"
+msgstr "Invertire"
 
 #: gschem/src/x/x_toolbars.c:173
 msgid "Library"
@@ -4393,73 +4392,70 @@ msgid "Nets"
 msgstr ""
 
 #: gschem/src/x/x_toolbars.c:176
-#, fuzzy
 msgid "Attrib"
 msgstr "Attributo"
 
+# Line
 #: gschem/src/x/x_toolbars.c:180 gschem/src/x/x_toolbars.c:238
-#, fuzzy
 msgid "Line"
-msgstr "_Linea"
+msgstr "Linea"
 
 #: gschem/src/x/x_toolbars.c:182
-#, fuzzy
 msgid "Circle"
-msgstr "Cerch_io"
+msgstr "Cerchio"
 
 #: gschem/src/x/x_toolbars.c:183
-#, fuzzy
 msgid "Arc"
-msgstr "A_rco"
+msgstr "Arco"
 
+# Path => Polygon
 #: gschem/src/x/x_toolbars.c:184 gschem/src/x/x_window.c:1012
 msgid "Path"
-msgstr "Aggiungi percorso"
+msgstr "Poligono"
 
+# Image
 #: gschem/src/x/x_toolbars.c:186
-#, fuzzy
 msgid "Image"
-msgstr "Tipo di immagine"
+msgstr "Immagine"
 
+# First
 #: gschem/src/x/x_toolbars.c:189
-#, fuzzy
 msgid "First"
-msgstr "Stampa pagina"
+msgstr "Primo"
 
+# Prev => Previous
 #: gschem/src/x/x_toolbars.c:190
-#, fuzzy
 msgid "Prev"
-msgstr "Anteprima"
+msgstr "Precedente"
 
+# Next; Successivo
 #: gschem/src/x/x_toolbars.c:191
-#, fuzzy
 msgid "Next"
-msgstr "_Successivo"
+msgstr "Prossimo"
 
+# Down
 #: gschem/src/x/x_toolbars.c:193 gschem/src/x/x_toolbars.c:198
 #: gschem/src/x/x_toolbars.c:199 gschem/src/x/x_toolbars.c:262
-#, fuzzy
 msgid "Down"
-msgstr "Trascina in giù"
+msgstr "Giù"
 
+# Last
 #: gschem/src/x/x_toolbars.c:194
-#, fuzzy
 msgid "Last"
-msgstr "Pagina successiva"
+msgstr "Scorsa"
 
 #: gschem/src/x/x_toolbars.c:196
-#, fuzzy
 msgid "Manage"
-msgstr "_Manager..."
+msgstr "Gestire"
 
 #: gschem/src/x/x_toolbars.c:202
 msgid "Spec"
 msgstr ""
 
+# Net names
 #: gschem/src/x/x_toolbars.c:203
-#, fuzzy
 msgid "Netnames"
-msgstr "Nome file"
+msgstr "Nomi di rete"
 
 #: gschem/src/x/x_toolbars.c:206 gschem/scheme/gschem/builtins.scm:209
 msgid "Redraw"
@@ -5374,7 +5370,7 @@ msgid "A_rc"
 msgstr "A_rco"
 
 #: gschem/etc/system-gschemrc.scm:2282
-msgid "Create arc"
+msgid "Create an arc"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2283
@@ -5382,7 +5378,7 @@ msgid "_Box"
 msgstr "_Rettangolo"
 
 #: gschem/etc/system-gschemrc.scm:2283
-msgid "Add box"
+msgid "Add a box"
 msgstr "Aggiungi riquadro"
 
 #: gschem/etc/system-gschemrc.scm:2284
@@ -5390,7 +5386,7 @@ msgid "C_ircle"
 msgstr "Cerch_io"
 
 #: gschem/etc/system-gschemrc.scm:2284
-msgid "Add circle"
+msgid "Add a circle"
 msgstr "Aggiungi cerchio"
 
 #: gschem/etc/system-gschemrc.scm:2285
@@ -5406,7 +5402,7 @@ msgid "Pat_h"
 msgstr "Pe_rcorso"
 
 #: gschem/etc/system-gschemrc.scm:2286 gschem/scheme/gschem/builtins.scm:371
-msgid "Add Path"
+msgid "Add a path"
 msgstr "Aggiungi percorso"
 
 #: gschem/etc/system-gschemrc.scm:2287
@@ -5422,7 +5418,7 @@ msgid "_Pin"
 msgstr "_Pin"
 
 #: gschem/etc/system-gschemrc.scm:2288
-msgid "Add pin"
+msgid "Add a pin"
 msgstr "Aggiungi pin"
 
 #: gschem/etc/system-gschemrc.scm:2296
