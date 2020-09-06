@@ -4425,44 +4425,40 @@ msgid "Image"
 msgstr "Imagen"
 
 #: gschem/src/x/x_toolbars.c:189
-#, fuzzy
 msgid "First"
-msgstr "_Primero"
+msgstr "Primero"
 
+# Prev => Previous
 #: gschem/src/x/x_toolbars.c:190
-#, fuzzy
 msgid "Prev"
-msgstr "Vista preliminar"
+msgstr "Previa"
 
+# Next; Siguiente
 #: gschem/src/x/x_toolbars.c:191
-#, fuzzy
 msgid "Next"
-msgstr "_Siguiente"
+msgstr "Próxima"
 
 #: gschem/src/x/x_toolbars.c:193 gschem/src/x/x_toolbars.c:198
 #: gschem/src/x/x_toolbars.c:199 gschem/src/x/x_toolbars.c:262
-#, fuzzy
 msgid "Down"
-msgstr "Modo Centrar"
+msgstr "Abajo"
 
+# Last
 #: gschem/src/x/x_toolbars.c:194
-#, fuzzy
 msgid "Last"
-msgstr "_Último"
+msgstr "Último"
 
 #: gschem/src/x/x_toolbars.c:196
-#, fuzzy
 msgid "Manage"
-msgstr "Ad_ministrador..."
+msgstr "Gestionar"
 
 #: gschem/src/x/x_toolbars.c:202
 msgid "Spec"
 msgstr ""
 
 #: gschem/src/x/x_toolbars.c:203
-#, fuzzy
 msgid "Netnames"
-msgstr "Nombre de archivo"
+msgstr "Nombres de red"
 
 #: gschem/src/x/x_toolbars.c:206 gschem/scheme/gschem/builtins.scm:209
 msgid "Redraw"
@@ -4502,9 +4498,8 @@ msgid "Multi"
 msgstr ""
 
 #: gschem/src/x/x_toolbars.c:234
-#, fuzzy
 msgid "Color"
-msgstr "_Color:"
+msgstr "Color"
 
 #: gschem/src/x/x_toolbars.c:236
 #, fuzzy
@@ -5388,7 +5383,7 @@ msgid "A_rc"
 msgstr "A_rco"
 
 #: gschem/etc/system-gschemrc.scm:2282
-msgid "Create arc"
+msgid "Create an arc"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2283
@@ -5396,7 +5391,7 @@ msgid "_Box"
 msgstr "Rectán_gulo"
 
 #: gschem/etc/system-gschemrc.scm:2283
-msgid "Add box"
+msgid "Add a box"
 msgstr "Añadir bus"
 
 #: gschem/etc/system-gschemrc.scm:2284
@@ -5404,7 +5399,7 @@ msgid "C_ircle"
 msgstr "Círcul_o"
 
 #: gschem/etc/system-gschemrc.scm:2284
-msgid "Add circle"
+msgid "Add a circle"
 msgstr "Círculo"
 
 #: gschem/etc/system-gschemrc.scm:2285
@@ -5412,7 +5407,7 @@ msgid "_Line"
 msgstr "_Línea"
 
 #: gschem/etc/system-gschemrc.scm:2285
-msgid "Add line"
+msgid "Add a line"
 msgstr "Línea"
 
 #: gschem/etc/system-gschemrc.scm:2286
@@ -5420,7 +5415,7 @@ msgid "Pat_h"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2286 gschem/scheme/gschem/builtins.scm:371
-msgid "Add Path"
+msgid "Add a path"
 msgstr "Añadir polígono"
 
 #: gschem/etc/system-gschemrc.scm:2287
@@ -5436,7 +5431,7 @@ msgid "_Pin"
 msgstr "_Pin"
 
 #: gschem/etc/system-gschemrc.scm:2288
-msgid "Add pin"
+msgid "Add a pin"
 msgstr "Agregar contacto"
 
 #: gschem/etc/system-gschemrc.scm:2296
