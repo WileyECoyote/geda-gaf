@@ -4,6 +4,8 @@
 
     * po/de.po: Update German translations.
 
+    * po/el.po: Update Greek translations.
+
 2020-09-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * etc/system-gschemrc.scm: Remove "Update Component" menu item.

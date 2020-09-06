@@ -4429,50 +4429,50 @@ msgstr "Τόξο"
 msgid "Path"
 msgstr "διαδρομή προς"
 
+# Image
 #: gschem/src/x/x_toolbars.c:186
-#, fuzzy
 msgid "Image"
-msgstr "Τύπος εικόνας"
+msgstr "Εικόνα"
 
+# First; Próta
 #: gschem/src/x/x_toolbars.c:189
-#, fuzzy
 msgid "First"
-msgstr "_Προηγούμενο"
+msgstr "Πρώτα"
 
+# Prev => Previous; Proepiskópisi
 #: gschem/src/x/x_toolbars.c:190
-#, fuzzy
 msgid "Prev"
-msgstr "Προεπισκόπηση"
+msgstr "Προηγούμενος"
 
+# Next; Epómeno
 #: gschem/src/x/x_toolbars.c:191
-#, fuzzy
 msgid "Next"
-msgstr "_Επόμενο"
+msgstr "Επόμενο"
 
+# Down; Káto
 #: gschem/src/x/x_toolbars.c:193 gschem/src/x/x_toolbars.c:198
 #: gschem/src/x/x_toolbars.c:199 gschem/src/x/x_toolbars.c:262
-#, fuzzy
 msgid "Down"
-msgstr "_Σελίδα"
+msgstr "Κάτω"
 
+# Last; teleftaíos
 #: gschem/src/x/x_toolbars.c:194
-#, fuzzy
 msgid "Last"
-msgstr "Νέα σελίδα"
+msgstr "τελευταίος"
 
+# Manage; Diacheirízontai
 #: gschem/src/x/x_toolbars.c:196
-#, fuzzy
 msgid "Manage"
-msgstr "_Διαχειριστής..."
+msgstr "Διαχειρίζονται"
 
 #: gschem/src/x/x_toolbars.c:202
 msgid "Spec"
 msgstr ""
 
+# Netnames; Ónoma diktýou
 #: gschem/src/x/x_toolbars.c:203
-#, fuzzy
 msgid "Netnames"
-msgstr "Όνομα αρχείου"
+msgstr "Όνομα δικτύου"
 
 #: gschem/src/x/x_toolbars.c:206 gschem/scheme/gschem/builtins.scm:209
 msgid "Redraw"
@@ -5399,7 +5399,7 @@ msgid "A_rc"
 msgstr "_Τόξο"
 
 #: gschem/etc/system-gschemrc.scm:2282
-msgid "Create arc"
+msgid "Create an arc"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2283
@@ -5407,15 +5407,15 @@ msgid "_Box"
 msgstr "_Κουτί"
 
 #: gschem/etc/system-gschemrc.scm:2283
-msgid "Add box"
-msgstr "/Προσθήκη διαύλου"
+msgid "Add a box"
+msgstr "Προσθήκη διαύλου"
 
 #: gschem/etc/system-gschemrc.scm:2284
 msgid "C_ircle"
 msgstr "_Κύκλος"
 
 #: gschem/etc/system-gschemrc.scm:2284
-msgid "Add circle"
+msgid "Add a circle"
 msgstr "Κύκλος"
 
 #: gschem/etc/system-gschemrc.scm:2285
@@ -5423,7 +5423,7 @@ msgid "_Line"
 msgstr "_Γραμμή"
 
 #: gschem/etc/system-gschemrc.scm:2285
-msgid "Add line"
+msgid "Add a line"
 msgstr "Γραμμή"
 
 #: gschem/etc/system-gschemrc.scm:2286
@@ -5431,8 +5431,8 @@ msgid "Pat_h"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2286 gschem/scheme/gschem/builtins.scm:371
-msgid "Add Path"
-msgstr "/Προσθήκη δικτύου"
+msgid "Add a path"
+msgstr "Προσθήκη δικτύου"
 
 #: gschem/etc/system-gschemrc.scm:2287
 msgid "Pictu_re..."
@@ -5447,7 +5447,7 @@ msgid "_Pin"
 msgstr "_Ακροδέκτης"
 
 #: gschem/etc/system-gschemrc.scm:2288
-msgid "Add pin"
+msgid "Add a pin"
 msgstr "Γραμμή"
 
 #: gschem/etc/system-gschemrc.scm:2296
