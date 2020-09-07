@@ -1978,9 +1978,9 @@
 (map-icon "gtk-goto-bottom"            "hierarchy-down-symbol")
 (map-icon "gtk-go-up"                  "hierarchy-up")
 
-;(map-icon "gtk-info"                   "hierarchy-documentation")
-;(map-icon "gtk-indent"                 "hierarchy-documentation")
-(map-icon "gtk-index"                   "hierarchy-documentation")
+;(map-icon "gtk-info"                  "hierarchy-documentation")
+;(map-icon "gtk-indent"                "hierarchy-documentation")
+(map-icon "gtk-index"                  "hierarchy-documentation")
 
 ;(map-icon "gschem-comp"               "add-component")
 ;(map-icon "gschem-transistor"         "add-component")
