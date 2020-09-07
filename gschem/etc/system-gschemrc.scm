@@ -2281,7 +2281,7 @@
         ("SEPARATOR"              #f                       #f)
         (,(N_ "A_rc")              add-arc                 "geda-arc"         ,(N_ "Create an arc"))
         (,(N_ "_Box")              add-box                 "geda-box"         ,(N_ "Add a box"))
-        (,(N_ "C_ircle")           add-circle              "geda-circle"      ,(N_ "Add circle"))
+        (,(N_ "C_ircle")           add-circle              "geda-circle"      ,(N_ "Add a circle"))
         (,(N_ "_Line")             add-line                "geda-line"        ,(N_ "Add line"))
         (,(N_ "Pat_h")             add-path                "geda-path"        ,(N_ "Add Path"))
         (,(N_ "Pictu_re...")       add-picture             "gtk-orientation-portrait" ,(N_ "Insert an image into the current document"))
