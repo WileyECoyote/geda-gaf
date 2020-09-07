@@ -2280,7 +2280,7 @@
 
         ("SEPARATOR"              #f                       #f)
         (,(N_ "A_rc")              add-arc                 "geda-arc"         ,(N_ "Create an arc"))
-        (,(N_ "_Box")              add-box                 "geda-box"         ,(N_ "Add box"))
+        (,(N_ "_Box")              add-box                 "geda-box"         ,(N_ "Add a box"))
         (,(N_ "C_ircle")           add-circle              "geda-circle"      ,(N_ "Add circle"))
         (,(N_ "_Line")             add-line                "geda-line"        ,(N_ "Add line"))
         (,(N_ "Pat_h")             add-path                "geda-path"        ,(N_ "Add Path"))
