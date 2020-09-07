@@ -5354,7 +5354,7 @@ msgid "_Box"
 msgstr "ボックス(_B)"
 
 #: gschem/etc/system-gschemrc.scm:2283
-msgid "Add box"
+msgid "Add a box"
 msgstr "テキスト追加..."
 
 #: gschem/etc/system-gschemrc.scm:2284
@@ -5362,7 +5362,7 @@ msgid "C_ircle"
 msgstr "円(_I)"
 
 #: gschem/etc/system-gschemrc.scm:2284
-msgid "Add circle"
+msgid "Add a circle"
 msgstr "円"
 
 #: gschem/etc/system-gschemrc.scm:2285
@@ -5378,7 +5378,7 @@ msgid "Pat_h"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2286 gschem/scheme/gschem/builtins.scm:371
-msgid "Add Path"
+msgid "Add a path"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2287
@@ -5394,7 +5394,7 @@ msgid "_Pin"
 msgstr "ピン(_P)"
 
 #: gschem/etc/system-gschemrc.scm:2288
-msgid "Add pin"
+msgid "Add a pin"
 msgstr "線"
 
 #: gschem/etc/system-gschemrc.scm:2296

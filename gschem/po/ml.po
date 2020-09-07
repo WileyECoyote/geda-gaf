@@ -5617,7 +5617,7 @@ msgstr ""
 
 # Add circle
 #: gschem/etc/system-gschemrc.scm:2284
-msgid "Add circle"
+msgid "Add a circle"
 msgstr "സർക്കിൾ ചേർക്കുക"
 
 # Line
@@ -5627,7 +5627,7 @@ msgstr "വര"
 
 # Add line
 #: gschem/etc/system-gschemrc.scm:2285
-msgid "Add line"
+msgid "Add a line"
 msgstr "ലൈൻ ചേർക്കുക"
 
 #: gschem/etc/system-gschemrc.scm:2286
@@ -5635,7 +5635,7 @@ msgid "Pat_h"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2286 gschem/scheme/gschem/builtins.scm:371
-msgid "Add Path"
+msgid "Add a path"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2287
@@ -5652,7 +5652,7 @@ msgstr ""
 
 # Add pin
 #: gschem/etc/system-gschemrc.scm:2288
-msgid "Add pin"
+msgid "Add a pin"
 msgstr "പിൻ ചേർക്കുക"
 
 #: gschem/etc/system-gschemrc.scm:2296

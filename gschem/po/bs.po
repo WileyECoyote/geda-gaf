@@ -5542,7 +5542,7 @@ msgid "A_rc"
 msgstr "L_uk"
 
 #: gschem/etc/system-gschemrc.scm:2282
-msgid "Create arc"
+msgid "Create an arc"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2283
@@ -5551,7 +5551,7 @@ msgstr "_Kvadrat"
 
 # Add box
 #: gschem/etc/system-gschemrc.scm:2283
-msgid "Add box"
+msgid "Add a box"
 msgstr "Dodaj polje"
 
 #: gschem/etc/system-gschemrc.scm:2284
@@ -5560,7 +5560,7 @@ msgstr "Krug"
 
 # Add circle
 #: gschem/etc/system-gschemrc.scm:2284
-msgid "Add circle"
+msgid "Add a circle"
 msgstr "Dodaj Krug"
 
 #: gschem/etc/system-gschemrc.scm:2285
@@ -5569,7 +5569,7 @@ msgstr "_Linija"
 
 # Add line
 #: gschem/etc/system-gschemrc.scm:2285
-msgid "Add line"
+msgid "Add a line"
 msgstr "Dodaj Linija"
 
 #: gschem/etc/system-gschemrc.scm:2286
@@ -5577,7 +5577,7 @@ msgid "Pat_h"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2286 gschem/scheme/gschem/builtins.scm:371
-msgid "Add Path"
+msgid "Add a path"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2287
@@ -5594,7 +5594,7 @@ msgstr "_Pin"
 
 # Add pin
 #: gschem/etc/system-gschemrc.scm:2288
-msgid "Add pin"
+msgid "Add a pin"
 msgstr "Dodaj pin"
 
 #: gschem/etc/system-gschemrc.scm:2296

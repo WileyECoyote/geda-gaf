@@ -5660,7 +5660,7 @@ msgstr "Pros_tokąt"
 
 # Add box
 #: gschem/etc/system-gschemrc.scm:2283
-msgid "Add box"
+msgid "Add a box"
 msgstr "Dodaj pole"
 
 #: gschem/etc/system-gschemrc.scm:2284
@@ -5669,7 +5669,7 @@ msgstr "_Okrąg"
 
 # Add circle
 #: gschem/etc/system-gschemrc.scm:2284
-msgid "Add circle"
+msgid "Add a circle"
 msgstr "Dodaj okrąg"
 
 #: gschem/etc/system-gschemrc.scm:2285
@@ -5678,7 +5678,7 @@ msgstr "_Linia"
 
 # Add line
 #: gschem/etc/system-gschemrc.scm:2285
-msgid "Add line"
+msgid "Add a line"
 msgstr "Dodaj Linię"
 
 #: gschem/etc/system-gschemrc.scm:2286
@@ -5687,7 +5687,7 @@ msgstr ""
 
 # Add Path => Add Polygon
 #: gschem/etc/system-gschemrc.scm:2286 gschem/scheme/gschem/builtins.scm:371
-msgid "Add Path"
+msgid "Add a Path"
 msgstr "Dodaj Wielokąt"
 
 #: gschem/etc/system-gschemrc.scm:2287
@@ -5704,7 +5704,7 @@ msgstr "_Pin"
 
 # Add pin
 #: gschem/etc/system-gschemrc.scm:2288
-msgid "Add pin"
+msgid "Add a pin"
 msgstr "Dodaj pin"
 
 #: gschem/etc/system-gschemrc.scm:2296

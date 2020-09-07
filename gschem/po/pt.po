@@ -5615,7 +5615,7 @@ msgstr "Rectân_gulo"
 
 # Add box
 #: gschem/etc/system-gschemrc.scm:2283
-msgid "Add box"
+msgid "Add a box"
 msgstr "Adicionar rectângulo"
 
 #: gschem/etc/system-gschemrc.scm:2284
@@ -5624,7 +5624,7 @@ msgstr "Círculo"
 
 # Add circle
 #: gschem/etc/system-gschemrc.scm:2284
-msgid "Add circle"
+msgid "Add a circle"
 msgstr "Adicionar círculo"
 
 #: gschem/etc/system-gschemrc.scm:2285
@@ -5633,7 +5633,7 @@ msgstr "_Linha"
 
 # Add line
 #: gschem/etc/system-gschemrc.scm:2285
-msgid "Add line"
+msgid "Add a line"
 msgstr "Adicionar linha"
 
 # polygon
@@ -5643,7 +5643,7 @@ msgstr "Polígono"
 
 # Add polygon
 #: gschem/etc/system-gschemrc.scm:2286 gschem/scheme/gschem/builtins.scm:371
-msgid "Add Path"
+msgid "Add a path"
 msgstr "Adicionar Polígono"
 
 #: gschem/etc/system-gschemrc.scm:2287
@@ -5660,7 +5660,7 @@ msgstr "_Pino"
 
 # Add pin
 #: gschem/etc/system-gschemrc.scm:2288
-msgid "Add pin"
+msgid "Add a pin"
 msgstr "Adicionar pino"
 
 #: gschem/etc/system-gschemrc.scm:2296

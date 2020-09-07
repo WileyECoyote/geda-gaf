@@ -5463,7 +5463,7 @@ msgid "A_rc"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2282
-msgid "Create arc"
+msgid "Create an arc"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2283
@@ -5472,7 +5472,7 @@ msgstr "_кутия"
 
 # Add box
 #: gschem/etc/system-gschemrc.scm:2283
-msgid "Add box"
+msgid "Add a box"
 msgstr "Добавете кутия"
 
 # Circle
@@ -5481,7 +5481,7 @@ msgid "C_ircle"
 msgstr "кръг"
 
 #: gschem/etc/system-gschemrc.scm:2284
-msgid "Add circle"
+msgid "Add a circle"
 msgstr "Добави кръг"
 
 #: gschem/etc/system-gschemrc.scm:2285
@@ -5489,7 +5489,7 @@ msgid "_Line"
 msgstr "линия"
 
 #: gschem/etc/system-gschemrc.scm:2285
-msgid "Add line"
+msgid "Add a line"
 msgstr "Добави линия"
 
 #: gschem/etc/system-gschemrc.scm:2286
@@ -5497,7 +5497,7 @@ msgid "Pat_h"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2286 gschem/scheme/gschem/builtins.scm:371
-msgid "Add Path"
+msgid "Add a path"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2287
@@ -5513,7 +5513,7 @@ msgid "_Pin"
 msgstr "щифт"
 
 #: gschem/etc/system-gschemrc.scm:2288
-msgid "Add pin"
+msgid "Add a pin"
 msgstr "Добави щифт"
 
 #: gschem/etc/system-gschemrc.scm:2296
