@@ -254,7 +254,7 @@
 
     ("SEPARATOR"                #f                     #f)
     (,(N_ "gEDA netlist")         tools:geda-netlist         "gschem-net")
-    (,(N_ "S_pice netlist")      #f                          "geda-wave"          "Generate spice netlists")
+    (,(N_ "S_pice netlist")     #f                           "geda-wave"          "Generate spice netlists")
     ("SEPARATOR"                #f                     #f)
     (,(N_ "VHDL netlist")         tools:vhdl-sch-netlist     "geda-simulate")
     (,(N_ "Verilog netlist")      tools:verilog-netlist      "geda-verilog-blue")
