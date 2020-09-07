@@ -2285,7 +2285,7 @@
         (,(N_ "_Line")             add-line                "geda-line"        ,(N_ "Add a line"))
         (,(N_ "Pat_h")             add-path                "geda-path"        ,(N_ "Add a path"))
         (,(N_ "Pictu_re...")       add-picture             "gtk-orientation-portrait" ,(N_ "Insert an image into the current document"))
-        (,(N_ "_Pin")              add-pin                 "geda-pin"                 ,(N_ "Add pin"))
+        (,(N_ "_Pin")              add-pin                 "geda-pin"                 ,(N_ "Add a pin"))
       )
 )
 
