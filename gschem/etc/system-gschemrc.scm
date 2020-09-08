@@ -1839,7 +1839,12 @@
 
 (map-keys "<Shift>F5"     "tools-update")
 
-; Map icons to actions
+; Map icons to actions, map-icon sets the icon for built-in actions.
+;
+; Syntax (map-icon icon-name-string action-name-string)
+;
+; For non built-in actions specify the icon in the menu item entry.
+;
 (map-icon "gtk-new"                    "file-new")
 (map-icon "gtk-open"                   "file-open")
 (map-icon "gtk-save"                   "file-save")
