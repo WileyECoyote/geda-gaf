@@ -201,7 +201,7 @@ typedef struct {
 
   /* Modify Toolbar */
 #define TBTS_EDIT_ATTRIB        "Edit Object Attributes"
-#define TBTS_EDIT_COLOR         "Change Colors"
+#define TBTS_EDIT_COLOR         "Open the Color Editor Dialog"
 
 #define TBTS_EDIT_TEXT          "Edit text properties"
 #define TBTS_EDIT_SLOT          "Edit Slot number of complex"

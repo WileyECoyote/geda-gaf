@@ -1,5 +1,7 @@
 2020-09-08 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/x_toolbars.h: Revise edit-color toolbar button tooltip.
+
     * scheme/gschem/gschem-tools-menu.scm: Translate symbol-items.
 
 2020-09-05 Wiley E. Hill <wileyhill@gmail.com>
