@@ -2012,6 +2012,8 @@ int o_extend_blind (GschemToplevel *w_current, GedaObject *projectile)
         projectile->line->x[which_end] = point.x;
         projectile->line->y[which_end] = point.y;
 
+        geda_object_set_bounds_valid(projectile, FALSE);
+
         if (projectile->type == OBJ_NET || projectile->type == OBJ_BUS) {
           geda_struct_tile_update_object (projectile);
           geda_struct_conn_update_object (projectile);
