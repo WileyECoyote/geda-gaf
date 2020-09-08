@@ -1643,7 +1643,7 @@ x_toolbars_init_left(GschemToplevel *w_current, GtkWidget *parent_container)
   GSCHEM_TOOLBAR_BUTTON (Edit, etb_rotate);
   GSCHEM_TOOLBAR_BUTTON (Edit, etb_edit_array);
 
-  //gtk_toolbar_append_space (GTK_TOOLBAR(Edit_Toolbar));
+  gtk_toolbar_append_space (GTK_TOOLBAR(Edit_Toolbar));
 
   GSCHEM_TOOLBAR_BUTTON (Edit, etb_edit_break);
   GSCHEM_TOOLBAR_BUTTON (Edit, etb_edit_extend);

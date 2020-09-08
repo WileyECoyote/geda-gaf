@@ -7,6 +7,9 @@
 
     * scheme/gschem/gschem-tools-menu.scm: Translate symbol-items.
 
+    * src/x/x_toolbars.c: Add a separator between the array and break
+      buttons on the edit bar.
+
 2020-09-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/ar.po: Update Arabic translations.
