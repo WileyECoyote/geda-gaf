@@ -282,8 +282,8 @@
   `(
     ("Spice netlist"        tools:spice-netlist        "geda-spectrum"    "Generate spice netlists")
     ("SDB netlist"          tools:spice-sdb-netlist    "geda-wave"        "Generate spice netlists using SDB backend")
-    ("Anise netlist"        tools:spice-anise-netlist  "geda-waves")
     ("NoSqi netlist"        tools:spice-noqsi-netlist  "geda-sinx")
+    ("Anise netlist"        tools:spice-anise-netlist  "geda-waves"       "Generate spice netlists using the Anise backend")
   )
 )
 

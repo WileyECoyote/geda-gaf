@@ -5,7 +5,8 @@
 
     * include/x_toolbars.h: Revise edit-color toolbar button tooltip.
 
-    * scheme/gschem/gschem-tools-menu.scm: Translate symbol-items.
+    * scheme/gschem/gschem-tools-menu.scm: Translate symbol-items, add
+      menu tooltips for Anise spice net list.
 
     * src/x/x_toolbars.c: Add a separator between the array and break
       buttons on the edit bar.
