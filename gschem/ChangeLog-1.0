@@ -1,21 +1,17 @@
+2020-09-08 Wiley E. Hill <wileyhill@gmail.com>
+
+    * scheme/gschem/gschem-tools-menu.scm: Translate symbol-items.
+
 2020-09-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/ar.po: Update Arabic translations.
-
     * po/de.po: Update German translations.
-
     * po/el.po: Update Greek translations.
-
     * po/es.po: Update Spanish translations.
-
     * po/hu.po: Update Hungarian translations.
-
     * po/it.po: Update Italian translations.
-
     * po/tr.po: Update Turkish translations.
-
     * po/zh_CN.po: Update Chinese simplified translations.
-
     * po/zh_TW.po: Update Chinese traditional translations.
 
 2020-09-04 Wiley E. Hill <wileyhill@gmail.com>

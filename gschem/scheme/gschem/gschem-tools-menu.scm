@@ -268,8 +268,8 @@
 ;;    menu item name       menu action            menu stock icon menu       Menu Item Tooltip
 ;;
   `(
-    ("Symbol _Translate..."  tools-translate           "gtk-convert"       "Reset the X-Y Zero point")
-    ("Check Symbol"          tools:check-symbol        "geda-inspect-grn"  "Run gsymcheck")
+    (,(N_ "Symbol _Translate...") tools-translate          "gtk-convert"      ,(N_ "Reset the X-Y Zero point"))
+    (,(N_ "Check Symbol")         tools:check-symbol       "geda-inspect-grn" ,(N_ "Run gsymcheck"))
     ("SEPARATOR"                  #f                     #f)
     (,(N_ "Update Component")     tools-update             "gtk-refresh"      ,(N_ "Reload definition of selected component"))
   )
