@@ -381,8 +381,7 @@ GtkWidget *x_menu_get_main_menu(GschemToplevel *w_current)
  * for the menu radio that is being set active so this function
  * is ONLY called when a grid mode menu toggle item is selected.
  */
-static void
-x_menu_set_grid_mode(GschemToplevel *w_current, int mode)
+static void x_menu_set_grid_mode(GschemToplevel *w_current, int mode)
 {
   w_current->grid_mode = mode;
 
