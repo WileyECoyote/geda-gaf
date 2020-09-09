@@ -3,6 +3,9 @@
     * etc/system-gschemrc.scm: Remove non-existent icon from page-manager
       menu entry.
 
+    * src/iface/i_status.c: Eliminate setting sensitivity for the _Tools
+      /_Symbols/Update Component item.
+
 2020-09-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * etc/system-gschemrc.scm: Set hierarchy-documentation icon in the
