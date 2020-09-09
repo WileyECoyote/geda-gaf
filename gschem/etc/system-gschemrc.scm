@@ -1954,7 +1954,7 @@
 ;(map-icon #f                          "view-bw-colors")
 
 ;(map-icon "gtk-properties"             "page-manager")
-(map-icon "gschem-page-man"               "page-manager")
+(map-icon "gschem-page-man"            "page-manager")
 
 (map-icon "gtk-goto-first"             "page-first")
 (map-icon "gtk-go-back"                "page-prev")
