@@ -254,6 +254,8 @@ int x_event_button_pressed(GtkWidget      *widget,
           }
 
         default:
+          w_current->first_wx = unsnapped_wx;
+          w_current->first_wy = unsnapped_wy;
           break;
     }
   }

@@ -6,6 +6,9 @@
     * src/iface/i_status.c: Eliminate setting sensitivity for the _Tools
       /_Symbols/Update Component item.
 
+    * src/x/x_event.c: Record the raw X-Y position to the toplevel in the
+      default case in x_event_button_pressed for button one.
+
 2020-09-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * etc/system-gschemrc.scm: Set hierarchy-documentation icon in the
