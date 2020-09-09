@@ -2251,7 +2251,7 @@
         ("SEPARATOR"               #f                      #f)
 
         (,(N_ "_Manager...")       page-manager            "gschem-pages"         ,(N_ "Open the Page Manager"))
-        (,(N_ "_First")            page-first              "gtk-goto-first"       ,(N_ "Goto the first page"))
+        (,(N_ "_First")            page-first              "gtk-goto-first"       ,(N_ "Go to the first page"))
         (,(N_ "_Previous")         page-prev               "gtk-go-back"          ,(N_ "Switch to the previous page"))
         (,(N_ "_Next")             page-next               "gtk-go-forward"       ,(N_ "Switch to the next page"))
         (,(N_ "_Up")               page-up                 "gtk-go-up"            ,(N_ "Go up one page"))
