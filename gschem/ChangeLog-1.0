@@ -1,3 +1,8 @@
+2020-09-09 Wiley E. Hill <wileyhill@gmail.com>
+
+    * etc/system-gschemrc.scm: Remove non-existent icon from page-manager
+      menu entry.
+
 2020-09-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * etc/system-gschemrc.scm: Set hierarchy-documentation icon in the
