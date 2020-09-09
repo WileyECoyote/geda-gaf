@@ -226,9 +226,11 @@ static void set_is_busy(int value)
 static int get_is_busy()
 {
   int ret_val;
+
   g_mutex_lock((GMutex*)&g_lock_is_busy);
     ret_val = is_busy;
   g_mutex_unlock((GMutex*)&g_lock_is_busy);
+
   return ret_val;
 }
 

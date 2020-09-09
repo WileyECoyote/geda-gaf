@@ -264,7 +264,6 @@ i_zoom_world_specify (GschemToplevel *w_current, double zoom_new, int x, int y,
                       relative_zoom_factor, 0);
 }
 
-
 /*!
  * \brief Resolves Zoom Box Operation
  * \par Function Description
