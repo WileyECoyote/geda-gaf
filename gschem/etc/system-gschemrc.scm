@@ -2256,7 +2256,7 @@
         (,(N_ "_Next")             page-next               "gtk-go-forward"       ,(N_ "Switch to the next page"))
         (,(N_ "_Up")               page-up                 "gtk-go-up"            ,(N_ "Go up one page"))
         (,(N_ "_Down")             page-down               "gtk-go-down"          ,(N_ "Go down one page"))
-        (,(N_ "_Last")             page-last               "gtk-goto-last"        ,(N_ "Goto the last page"))
+        (,(N_ "_Last")             page-last               "gtk-goto-last"        ,(N_ "Go to the last page"))
         (,(N_ "Ne_w")              page-new                "gtk-new"              ,(N_ "Create a new Page"))
 
         ("SEPARATOR"              #f                      #f)
