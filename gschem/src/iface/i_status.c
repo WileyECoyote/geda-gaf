@@ -573,7 +573,7 @@ static bool i_status_idle_update_sensitivities(GschemToplevel *w_current)
     x_menu_popup_sensitivity(w_current, "Down Symbol",       state);
     /* x_menu_popup_sensitivity(w_current, "Up", state); */
 
-    x_menu_sensitivity(w_current, "_Tools/_Symbols/Update Component", state);
+    /* x_menu_sensitivity(w_current, "_Tools/_Symbols/Update Component", state); */
   }
 
   void set_embedded_sensitivities (bool state) {
