@@ -12,6 +12,7 @@ geda-install.html
 geda-install-bin.html
 gfix-library.html
 gmake-caps-sym.html
+gmake-set-resistors.html
 gmake-transistors-sym.html
 gnet_hier_verilog.html
 gmk_sym.html
