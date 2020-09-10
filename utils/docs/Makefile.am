@@ -27,8 +27,8 @@ dist_man_MANS = gsch2pcb.1 gsch2pdf.1 gschemdoc.1 grenum.1 gxyrs.1 olib.1 \
 	        schdiff.1 sw2asc.1 tragesym.1 smash_megafile.1 convert_sym.1 \
 	        garchive.1 gmk_sym.1 gschlas.1 sarlacc_sym.1 sarlacc_schem.1 \
 	        gclean-symbol.1 gsymfix.1 gfix-library.1 gcheck-library.1 \
-	        gmake-transistors-sym.1 gmake-caps-sym.1 gnet_hier_verilog.1 \
-	        geda-install.1 geda-install-bin.1
+	        gmake-caps-sym.1 gmake-set-resistors.1 gmake-transistors-sym.1 \
+	        gnet_hier_verilog.1 geda-install.1 geda-install-bin.1
 
 docsreadmedir   = $(docdir)/readmes
 docsreadme_DATA = $(READ_MES)

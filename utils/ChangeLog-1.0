@@ -1,3 +1,7 @@
+2020-09-10 Wiley E. Hill <wileyhill@gmail.com>
+
+    * docs/gmake-set-resistors.1.in: Add new man page for gmake-set-resistors.
+
 2020-06-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * scripts/geda-install.sh.in: Revise do_install_manuals to use an argument

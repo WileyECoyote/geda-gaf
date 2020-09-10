@@ -1,0 +1,71 @@
+.TH gmake-set-resistors 1 "@DATE@" "gEDA Project" @VERSION@
+
+.SH NAME
+gmake-set-resistors \- Make gEDA Resistor Symbols
+
+.SH SYNOPSIS
+.B gmake-set-resistors
+.RI [ OPTIONS ] TEMPLATE[.sym] PARAMETERS[.spm]
+
+.SH DESCRIPTION
+.B gmake-set-resistors
+Make gEDA Resistor Symbols
+
+gmake-set-resistors is for 'batch' setting the values in resistor symbol files for the geda-gaf project.
+The gmake-set-resistors script creates a tmp directory in the current directory.
+In all files in the current directory, the text "Ohms" will be substitute with
+the value argument and the results put in the tmp directory. After the values are
+set in the files, the strings in the file names matching "old_string" will be
+replaced with "new_string". This is useful to set both the values and the file
+name of a collection of template symbols with placeholder strings in the file
+name to identifiers, such as real part numbers
+
+.SH QUICK
+.B usage: [-h, --help] | [--version] | [options] old_string, new_string value
+example:
+gmake-set-resistors gmake-set-resistors xxxxR00 180R00 180
+
+will change  "xxxxR00" in the file names to "180R00" and the text "Ohms"
+would be replaced with "180".
+
+.SH INFORMATION
+Use of the following options displays information related to gmake-set-resistors
+but does not create any symbols:
+.IP "-h, --help"
+Show information about the advanced usage of this command.
+.IP "-u, --usage"
+Displays examples on usage"
+.IP "--version"
+Displays software version information"
+
+.SH DIRECTIVES
+.IP "-q, --quiet"
+Suppress extraneous messages.
+.IP "-v, --verbose"
+Include additional information during processing.
+
+.SH OPTIONS
+The current version of gmake-set-resistors does not recognize any additional command-line options
+
+.SH HOMEPAGE
+http://www.gpleda.org/
+
+.SH BUGS
+You can report bugs at the Launchpad site of gmake-set-resistors:
+https://bugs.launchpad.net/geda/gmake-set-resistors/+filebug
+
+.SH AUTHOR
+Wiley Edward Hill < wileyhill dot gmail dot com >
+
+.SH SEE ALSO
+.BR gmake-transistors-sym (1)
+
+.SH COPYRIGHT
+.nf
+Copyright \(co 2012-@YEAR@ Wiley Edward Hill.  License GPLv2+: GNU GPL
+version 2 or later.  Please see the "COPYING" file included with this
+program for full details.
+.PP
+This is free software: you are free to change and redistribute it. There is NO
+WARRANTY; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE, to
+the extent permitted by law.
