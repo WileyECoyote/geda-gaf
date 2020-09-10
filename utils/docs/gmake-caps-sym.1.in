@@ -53,7 +53,7 @@ https://bugs.launchpad.net/geda/gmake-caps-sym/+filebug
 Wiley Edward Hill < wileyhill dot gmail dot com >
 
 .SH SEE ALSO
-.BR gmake-transistors-sym (1)
+.BR gmake-transistors-sym (1) gmake-set-resistors (1)
 
 .SH COPYRIGHT
 .nf
