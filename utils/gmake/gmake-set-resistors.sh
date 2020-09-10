@@ -39,6 +39,7 @@ do_show_help(){
   echo "         would be replaced with \"180\"."
   echo
   echo "Options: -h, --help       Show this information"
+  echo "         -q, --quiet      Suppress extraneous messages"
   echo "         -v, --verbose    Display extra information during processing"
   echo "             --version    Display software version information"
 }

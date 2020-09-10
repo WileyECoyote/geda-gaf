@@ -2,6 +2,8 @@
 
     * docs/gmake-set-resistors.1.in: Add new man page for gmake-set-resistors.
 
+    * gmake/gmake-set-resistors.sh: Add undocumented quiet mode in do_show_help.
+
 2020-06-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * scripts/geda-install.sh.in: Revise do_install_manuals to use an argument
