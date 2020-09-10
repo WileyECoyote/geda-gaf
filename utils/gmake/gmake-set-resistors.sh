@@ -25,7 +25,7 @@ do_show_help(){
   do_show_usage
 
   echo "Abstract: This script is for 'batch' setting the values in resistor symbol files for the"
-  echo "         geda=gaf project. The script creates a tmp directory in the current directory."
+  echo "         geda-gaf project. The script creates a tmp directory in the current directory."
   echo "         In all files in the current directory, the text \"Ohms\" will be substitute with"
   echo "         the value argument and the results put in the tmp directory. After the values are"
   echo "         set in the files, the strings in the file names matching \"old_string\" will be"
