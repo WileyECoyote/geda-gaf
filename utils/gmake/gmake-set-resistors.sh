@@ -112,14 +112,13 @@ if [ "$#" -lt $MINARGS ] ; then do_show_usage; exit $ERR_BAD_ARGS ; fi
 
 # ----------------------- Parse Command Line ----------------------
 do_Assimilate_Arguments $*
-
 if [ $? != 0 ]; then exit $?; fi
+
 old_name=$1
 new_name=$2
 value=$3
 
 do_check_arguments $old_name $new_name $value
-
 if [ $? != 0 ]; then exit $?; fi
 
 mkdir -p tmp
@@ -130,4 +129,3 @@ if [ $? != 0 ]; then exit $?; fi
 cd tmp
 do_rm_substr $old_name $new_name
 cd ..
-
