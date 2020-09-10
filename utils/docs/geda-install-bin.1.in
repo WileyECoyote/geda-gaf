@@ -45,7 +45,7 @@ Specify the target folder where the links are to be created. The default is /usr
 By default geda-install-bin will trim extensions from scripts, like ".sh" or ".pl" because, well, they are annoying. The justification for this is that geda-gaf utilizes different types of scripts and user should not be required to "remember" the language used for each script. This option disables this feature so that extension are preserved during creation of the links.
 
 .SH HOMEPAGE
-http://www.gpleda.org/
+http://www.geda-project.org
 
 .SH BUGS
 You can report bugs at the Launchpad site of geda-install-bin:

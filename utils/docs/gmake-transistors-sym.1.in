@@ -55,7 +55,7 @@ Include the template prefix and suffix in the output symbol name
 Suffix the template modifier in the output symbol name, like _ecb
 
 .SH HOMEPAGE
-http://www.gpleda.org/
+http://www.geda-project.org
 
 .SH BUGS
 You can report bugs at the Launchpad site of gmake-transistors-sym:

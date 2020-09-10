@@ -41,7 +41,7 @@ keep orginal file, do not delete
 symbol file filter pattern is changed from '*.sym' to <pattern>
 
 .SH HOMEPAGE
-http://www.gpleda.org/
+http://www.geda-project.org
 
 .SH BUGS
 You can report bugs at the Launchpad site of gfix-library:

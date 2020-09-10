@@ -15,7 +15,7 @@ clean gEDA symbol
          ROTATE will rotate the labels of top and bottom pins
 
 .SH HOMEPAGE
-http://www.gpleda.org/
+http://www.geda-project.org
 
 .SH BUGS
 You can report bugs at the Launchpad site of gclean-symbol:

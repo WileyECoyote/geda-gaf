@@ -47,7 +47,7 @@ The Filter directive is intended to over-ride the internal default symbol file t
 .SH DIAGNOSTICS
 Note: arguments are case sensitive. See documentation for more detailed information. [dirname] &2>result.txt.
 .SH HOMEPAGE
-http://www.gpleda.org/
+http://www.geda-project.org
 .SH BUGS
 You can report bugs at the Launchpad site of gcheck-library:
 https://bugs.launchpad.net/geda/gcheck-library/+filebug

@@ -22,6 +22,7 @@ name to identifiers, such as real part numbers
 
 .SH QUICK
 .B usage: [-h, --help] | [--version] | [options] old_string, new_string value
+
 example:
 gmake-set-resistors gmake-set-resistors xxxxR00 180R00 180
 
@@ -48,7 +49,7 @@ Include additional information during processing.
 The current version of gmake-set-resistors does not recognize any additional command-line options
 
 .SH HOMEPAGE
-http://www.gpleda.org/
+http://www.geda-project.org
 
 .SH BUGS
 You can report bugs at the Launchpad site of gmake-set-resistors:

@@ -43,7 +43,7 @@ Include additional information during processing.
 The current version of gmake-caps-sym does not recognize any additional command-line options
 
 .SH HOMEPAGE
-http://www.gpleda.org/
+http://www.geda-project.org
 
 .SH BUGS
 You can report bugs at the Launchpad site of gmake-caps-sym:
