@@ -27,7 +27,7 @@ vecho()
 }
 
 do_show_usage(){
-   echo Usage:   `basename $0` '[-h, --help] | [--version] | template[.sym] parameters[.spm]'
+   echo Usage:   `basename $0` '[-h, --help] | [--version] | [options] template[.sym] parameters[.spm]'
 }
 
 do_process(){
