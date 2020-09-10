@@ -2,7 +2,8 @@
 
     * docs/gmake-set-resistors.1.in: Add new man page for gmake-set-resistors.
 
-    * gmake/gmake-set-resistors.sh: Add undocumented quiet mode in do_show_help.
+    * gmake/gmake-set-resistors.sh: Add undocumented quiet mode in do_show_help
+      and update Usage message with options.
 
 2020-06-12 Wiley E. Hill <wileyhill@gmail.com>
 

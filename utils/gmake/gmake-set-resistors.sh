@@ -16,7 +16,7 @@ Extension="sym"
 
 do_show_usage(){
   echo
-  echo Usage:   `basename $0` '[-h, --help] | [--version] | old_string, new_string value'
+  echo Usage:   `basename $0` '[-h, --help] | [--version] | [options] old_string, new_string value'
   echo
 }
 
