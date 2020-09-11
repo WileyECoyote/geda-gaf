@@ -145,7 +145,7 @@ typedef struct {
 #define TBTS_ADD_NET            "Add Nets mode\nRight mouse button to cancel"
 #define TBTS_ADD_BUS            "Add Buses mode\nRight mouse button to cancel"
 #define TBTS_ADD_ATTRIB         "Add attribute"
-#define TBTS_ADD_TEXT           "Add Text..."
+#define TBTS_ADD_TEXT           "Add text"
 
   /* Add Toolbar */
 #define TBTS_ADD_LINE           "Add line"
