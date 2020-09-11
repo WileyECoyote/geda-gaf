@@ -2276,7 +2276,7 @@
 ;;
 ;;      menu item name             menu action              menu icon name         Menu Item Tooltip
 ;;
-     `( (,(N_ "_Component...")     add-component           "geda-component"   ,(N_ "Insert a symbol from the component library"))
+     `( (,(N_ "_Component...")     add-component           "geda-component"   ,(N_ "Insert a library symbol"))
         (,(N_ "_Net")              add-net                 "gschem-net"       ,(N_ "Add net"))
         (,(N_ "B_us")              add-bus                 "gschem-bus"       ,(N_ "Add bus"))
         (,(N_ "_Attribute...")     add-attribute           #f                 ,(N_ "Add attribute"))
