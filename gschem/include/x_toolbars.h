@@ -148,7 +148,7 @@ typedef struct {
 #define TBTS_ADD_TEXT           "Add text"
 
   /* Add Toolbar */
-#define TBTS_ADD_LINE           "Add line"
+#define TBTS_ADD_LINE           "Add a line"
 #define TBTS_ADD_BOX            "Add Box"
 #define TBTS_ADD_CIRCLE         "Add Circle"
 #define TBTS_ADD_ARC            "Add Arc"
