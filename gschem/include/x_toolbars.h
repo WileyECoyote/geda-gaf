@@ -141,7 +141,7 @@ typedef struct {
 #define TBTS_EDIT_SELECT_ALL    "Select all objects"
 #define TBTS_EDIT_INVERT        "Invert the current selection set"
 
-#define TBTS_ADD_COMPONENT      "Add Component...\nSelect library and component from list, move the mouse into main window, click to place\nRight mouse button to cancel"
+#define TBTS_ADD_COMPONENT      "Insert a library symbol"
 #define TBTS_ADD_NET            "Add Nets mode\nRight mouse button to cancel"
 #define TBTS_ADD_BUS            "Add Buses mode\nRight mouse button to cancel"
 #define TBTS_ADD_ATTRIB         "Add Attribute..."
