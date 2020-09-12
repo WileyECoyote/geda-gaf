@@ -731,9 +731,8 @@ msgid "WARNING: Do not translate with snap off!\n"
 msgstr "WARNING: Do not translate with snap off!\n"
 
 #: gschem/src/iface/i_command.c:4357
-#, fuzzy
 msgid "WARNING: Turning snap on and continuing with translation.\n"
-msgstr "WARNING: Turning snap on and continuing with translate.\n"
+msgstr "WARNING: Turning snap on and continuing with translation.\n"
 
 #: gschem/src/iface/i_command.c:4363
 msgid "WARNING: Snap grid size is not equal to 100!\n"
@@ -4220,9 +4219,8 @@ msgid "Pick"
 msgstr "Pick"
 
 #: gschem/src/x/x_toolbars.c:149 gschem/src/x/x_toolbars.c:195
-#, fuzzy
 msgid "New"
-msgstr "_New"
+msgstr "New"
 
 #: gschem/src/x/x_toolbars.c:152 gschem/scheme/gschem/builtins.scm:59
 msgid "Save As"
@@ -4249,14 +4247,12 @@ msgid "Redo"
 msgstr "Redo"
 
 #: gschem/src/x/x_toolbars.c:167
-#, fuzzy
 msgid "Unselect"
 msgstr "Unselect"
 
 #: gschem/src/x/x_toolbars.c:172
-#, fuzzy
 msgid "Invert"
-msgstr "Invert image"
+msgstr "Invert"
 
 #: gschem/src/x/x_toolbars.c:173
 msgid "Library"
@@ -4320,9 +4316,8 @@ msgid "Spec"
 msgstr ""
 
 #: gschem/src/x/x_toolbars.c:203
-#, fuzzy
 msgid "Netnames"
-msgstr "_Rename"
+msgstr "Netnames"
 
 #: gschem/src/x/x_toolbars.c:206 gschem/scheme/gschem/builtins.scm:209
 msgid "Redraw"
@@ -4333,19 +4328,16 @@ msgid "Pan"
 msgstr "Pan"
 
 #: gschem/src/x/x_toolbars.c:208
-#, fuzzy
 msgid "Window"
-msgstr "New Window"
+msgstr "Window"
 
 #: gschem/src/x/x_toolbars.c:209
-#, fuzzy
 msgid "Selected"
-msgstr "Select"
+msgstr "Selected"
 
 #: gschem/src/x/x_toolbars.c:216
-#, fuzzy
 msgid "Properties"
-msgstr "Edit Text Properties"
+msgstr "Properties"
 
 #: gschem/src/x/x_toolbars.c:220 gschem/etc/system-gschemrc.scm:2181
 #: gschem/scheme/gschem/builtins.scm:191
@@ -4353,32 +4345,28 @@ msgid "Unlock"
 msgstr "Unlock"
 
 #: gschem/src/x/x_toolbars.c:221
-#, fuzzy
 msgid "Update"
-msgstr "Update All"
+msgstr "Update"
 
 #: gschem/src/x/x_toolbars.c:225
 msgid "Multi"
 msgstr ""
 
 #: gschem/src/x/x_toolbars.c:234
-#, fuzzy
 msgid "Color"
-msgstr "_Colour:"
+msgstr "Colour"
 
 #: gschem/src/x/x_toolbars.c:236
-#, fuzzy
 msgid "Slots"
-msgstr "Slot..."
+msgstr "Slots"
 
 #: gschem/src/x/x_toolbars.c:237
 msgid "Pins"
 msgstr ""
 
 #: gschem/src/x/x_toolbars.c:239
-#, fuzzy
 msgid "Fill"
-msgstr "Filled"
+msgstr "Fill"
 
 #: gschem/src/x/x_toolbars.c:240
 msgid "Arcs"

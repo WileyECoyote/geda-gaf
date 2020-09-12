@@ -4,6 +4,8 @@
 
     * po/fr.po: Update French translations.
 
+    * po/en_GB.po: Update Great Britain.
+
 2020-09-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * etc/system-gschemrc.scm: Revise menu add-component item tooltip.
