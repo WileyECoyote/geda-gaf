@@ -877,10 +877,10 @@ msgstr "Атрибут уже прикреплен\n"
 msgid "WARNING: Do not translate with snap off!\n"
 msgstr "ВНИМАНИЕ: Не производите смещение с отключенной привязкой!\n"
 
+# VNIMANIYe: vklyucheniye Snap i prodolzheniye perevoda
 #: gschem/src/iface/i_command.c:4357
-#, fuzzy
 msgid "WARNING: Turning snap on and continuing with translation.\n"
-msgstr "ВНИМАНИЕ: Включите привязку и повторите смещение.\n"
+msgstr "ВНИМАНИЕ: включение Snap и продолжение перевода.\n"
 
 #: gschem/src/iface/i_command.c:4363
 msgid "WARNING: Snap grid size is not equal to 100!\n"
@@ -4690,10 +4690,10 @@ msgstr "Повтор: ---"
 msgid "Pick"
 msgstr "Выбор"
 
+# New; Novyy
 #: gschem/src/x/x_toolbars.c:149 gschem/src/x/x_toolbars.c:195
-#, fuzzy
 msgid "New"
-msgstr "_Новый"
+msgstr "Новый"
 
 #: gschem/src/x/x_toolbars.c:152 gschem/scheme/gschem/builtins.scm:59
 msgid "Save As"
@@ -4779,24 +4779,21 @@ msgstr "Предыдущий"
 msgid "Next"
 msgstr "Следующая"
 
-# Scroll down
+# Down; vniz
 #: gschem/src/x/x_toolbars.c:193 gschem/src/x/x_toolbars.c:198
 #: gschem/src/x/x_toolbars.c:199 gschem/src/x/x_toolbars.c:262
-#, fuzzy
 msgid "Down"
-msgstr "Прокрутка вниз"
+msgstr "вниз"
 
-# Last Page
+# Last; Posledniy
 #: gschem/src/x/x_toolbars.c:194
-#, fuzzy
 msgid "Last"
-msgstr "Последняя страница"
+msgstr "Последний"
 
-# Manage
+# Manage; Upravlyat
 #: gschem/src/x/x_toolbars.c:196
-#, fuzzy
 msgid "Manage"
-msgstr "управлять..."
+msgstr "Управлять"
 
 #: gschem/src/x/x_toolbars.c:202
 msgid "Spec"

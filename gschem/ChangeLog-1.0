@@ -12,6 +12,8 @@
 
     * po/pt_BR.po: Update Brazilian Portuguese translations.
 
+    * po/ru.po: Update Russian translations.
+
 2020-09-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * etc/system-gschemrc.scm: Revise menu add-component item tooltip.
