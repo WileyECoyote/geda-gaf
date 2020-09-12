@@ -4433,35 +4433,32 @@ msgid "Image"
 msgstr "Image"
 
 #: gschem/src/x/x_toolbars.c:189
-#, fuzzy
 msgid "First"
-msgstr "Première page"
+msgstr "Première"
 
+# Previous
 #: gschem/src/x/x_toolbars.c:190
-#, fuzzy
 msgid "Prev"
-msgstr "Prévisualisation"
+msgstr "Précédente"
 
+# Next; Suivant
 #: gschem/src/x/x_toolbars.c:191
-#, fuzzy
 msgid "Next"
-msgstr "_Suivant"
+msgstr "Prochain"
 
 #: gschem/src/x/x_toolbars.c:193 gschem/src/x/x_toolbars.c:198
 #: gschem/src/x/x_toolbars.c:199 gschem/src/x/x_toolbars.c:262
-#, fuzzy
 msgid "Down"
-msgstr "Mode Panoramique"
+msgstr "Vers le bas"
 
 #: gschem/src/x/x_toolbars.c:194
-#, fuzzy
 msgid "Last"
-msgstr "Nouvelle page"
+msgstr "Dernière"
 
+# Manage
 #: gschem/src/x/x_toolbars.c:196
-#, fuzzy
 msgid "Manage"
-msgstr "_Gestionnaire..."
+msgstr "Gérer"
 
 #: gschem/src/x/x_toolbars.c:202
 msgid "Spec"

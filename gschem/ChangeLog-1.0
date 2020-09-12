@@ -2,6 +2,8 @@
 
     * po/af.po: Update Afrikaans translations.
 
+    * po/fr.po: Update French translations.
+
 2020-09-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * etc/system-gschemrc.scm: Revise menu add-component item tooltip.
