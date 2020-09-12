@@ -3514,9 +3514,9 @@ msgstr "Adicionar atributo"
 msgid "Component..."
 msgstr "Componente..."
 
-# Insert a symbol from the component library
+# Insert a library symbol
 #: gschem/src/x/x_menus.c:97 gschem/etc/system-gschemrc.scm:2275
-msgid "Insert a symbol from the component library"
+msgid "Insert a library symbol"
 msgstr "Inserir um símbolo a partir da biblioteca de componentes"
 
 #: gschem/src/x/x_menus.c:98 gschem/etc/system-gschemrc.scm:2277

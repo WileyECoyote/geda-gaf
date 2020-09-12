@@ -3521,7 +3521,7 @@ msgid "Component..."
 msgstr "sameasapheak..."
 
 #: gschem/src/x/x_menus.c:97 gschem/etc/system-gschemrc.scm:2275
-msgid "Insert a symbol from the component library"
+msgid "Insert a library symbol"
 msgstr "banhchoul nimittasanhnhea muoy pi bannaly sameasapheak"
 
 #: gschem/src/x/x_menus.c:98 gschem/etc/system-gschemrc.scm:2277

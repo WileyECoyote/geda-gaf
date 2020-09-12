@@ -3421,7 +3421,7 @@ msgid "Component..."
 msgstr "_Composant..."
 
 #: gschem/src/x/x_menus.c:97 gschem/etc/system-gschemrc.scm:2275
-msgid "Insert a symbol from the component library"
+msgid "Insert a library symbol"
 msgstr "Insérer un symbole dans la bibliothèque de composants"
 
 #: gschem/src/x/x_menus.c:98 gschem/etc/system-gschemrc.scm:2277

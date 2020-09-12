@@ -3492,9 +3492,9 @@ msgstr "Dodaj Atribut"
 msgid "Component..."
 msgstr "Komponenta..."
 
-# Insert a symbol from the component library
+# Insert a library symbol
 #: gschem/src/x/x_menus.c:97 gschem/etc/system-gschemrc.scm:2275
-msgid "Insert a symbol from the component library"
+msgid "Insert a library symbol"
 msgstr "Ubacite simbol iz komponentu knjižnica"
 
 # Add multi-conductor

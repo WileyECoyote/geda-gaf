@@ -3459,8 +3459,8 @@ msgid "Component..."
 msgstr "م_كون..."
 
 #: gschem/src/x/x_menus.c:97 gschem/etc/system-gschemrc.scm:2275
-msgid "Insert a symbol from the component library"
-msgstr "﻿لم يتم العثور على رمز كسار الناقل [%s] في أي مكتبة مكون"
+msgid "Insert a library symbol"
+msgstr "﻿"
 
 #: gschem/src/x/x_menus.c:98 gschem/etc/system-gschemrc.scm:2277
 msgid "Add bus"

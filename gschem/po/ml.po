@@ -3527,9 +3527,9 @@ msgstr "ആട്രിബ്യൂട്ട് ചേർക്കുക"
 msgid "Component..."
 msgstr "ഘടക..."
 
-# Insert a symbol from the component library
+# Insert a library symbol
 #: gschem/src/x/x_menus.c:97 gschem/etc/system-gschemrc.scm:2275
-msgid "Insert a symbol from the component library"
+msgid "Insert a library symbol"
 msgstr "ഘടകം ലൈബ്രറിയിൽ നിന്ന് ഒരു ചിഹ്നം ഉൾപ്പെടുത്തുക"
 
 # add multi-conductor
