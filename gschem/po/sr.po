@@ -856,10 +856,10 @@ msgstr "Атрибут је већ у прилогу\n"
 msgid "WARNING: Do not translate with snap off!\n"
 msgstr "УПОЗОРЕЊЕ: До нот транслате са снап онемогућен!\n"
 
+# UPOZORENJE: Uključivanje snap-a i nastavak prevoda
 #: gschem/src/iface/i_command.c:4357
-#, fuzzy
 msgid "WARNING: Turning snap on and continuing with translation.\n"
-msgstr "УПОЗОРЕЊЕ: Окретање Снап Он и наставља са транслате.\n"
+msgstr "УПОЗОРЕЊЕ: Укључивање снап-а и наставак превода.\n"
 
 #: gschem/src/iface/i_command.c:4363
 msgid "WARNING: Snap grid size is not equal to 100!\n"
@@ -4519,10 +4519,10 @@ msgstr ""
 msgid "Pick"
 msgstr ""
 
+# New; Nova
 #: gschem/src/x/x_toolbars.c:149 gschem/src/x/x_toolbars.c:195
-#, fuzzy
 msgid "New"
-msgstr "Но_во"
+msgstr "Нова"
 
 # Save As
 #: gschem/src/x/x_toolbars.c:152 gschem/scheme/gschem/builtins.scm:59
@@ -4595,37 +4595,34 @@ msgstr ""
 msgid "Path"
 msgstr ""
 
-# Write Image
+# Image; Slika
 #: gschem/src/x/x_toolbars.c:186
-#, fuzzy
 msgid "Image"
-msgstr "Напиши Слика"
+msgstr "Слика"
 
-# First Page
+# First Prvi
 #: gschem/src/x/x_toolbars.c:189
-#, fuzzy
 msgid "First"
-msgstr "Прва страна"
+msgstr "Први"
 
 #: gschem/src/x/x_toolbars.c:190
 msgid "Prev"
 msgstr ""
 
+# Next; Sledeći
 #: gschem/src/x/x_toolbars.c:191
 msgid "Next"
-msgstr ""
+msgstr "Следећи"
 
 #: gschem/src/x/x_toolbars.c:193 gschem/src/x/x_toolbars.c:198
 #: gschem/src/x/x_toolbars.c:199 gschem/src/x/x_toolbars.c:262
-#, fuzzy
 msgid "Down"
-msgstr "пан доле"
+msgstr "доле"
 
-# Last Page
+# Last; Poslednji
 #: gschem/src/x/x_toolbars.c:194
-#, fuzzy
 msgid "Last"
-msgstr "Последња страна"
+msgstr "Последњи"
 
 #: gschem/src/x/x_toolbars.c:196
 msgid "Manage"
