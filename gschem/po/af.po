@@ -3400,7 +3400,7 @@ msgid "Component..."
 msgstr "Voeg Komponent By..."
 
 #: gschem/src/x/x_menus.c:97 gschem/etc/system-gschemrc.scm:2275
-msgid "Insert a symbol from the component library"
+msgid "Insert a library symbol"
 msgstr "Voeg 'n simbool van die komponent biblioteek"
 
 #: gschem/src/x/x_menus.c:98 gschem/etc/system-gschemrc.scm:2277
@@ -4414,36 +4414,34 @@ msgstr "Voeg Net By"
 msgid "Image"
 msgstr "Beeld"
 
+# First
 #: gschem/src/x/x_toolbars.c:189
-#, fuzzy
 msgid "First"
-msgstr "_Eerste"
+msgstr "Eerste"
 
+# Previous
 #: gschem/src/x/x_toolbars.c:190
-#, fuzzy
 msgid "Prev"
-msgstr "Voorskou"
+msgstr "Vorige"
 
+# Next
 #: gschem/src/x/x_toolbars.c:191
-#, fuzzy
 msgid "Next"
 msgstr "Volgende"
 
 #: gschem/src/x/x_toolbars.c:193 gschem/src/x/x_toolbars.c:198
 #: gschem/src/x/x_toolbars.c:199 gschem/src/x/x_toolbars.c:262
-#, fuzzy
 msgid "Down"
 msgstr "Af"
 
 #: gschem/src/x/x_toolbars.c:194
-#, fuzzy
 msgid "Last"
-msgstr "_Laaste"
+msgstr "Laaste"
 
+# Manage
 #: gschem/src/x/x_toolbars.c:196
-#, fuzzy
 msgid "Manage"
-msgstr "Maak Bladsy Oop..."
+msgstr "Bestuur"
 
 #: gschem/src/x/x_toolbars.c:202
 msgid "Spec"
@@ -5377,8 +5375,8 @@ msgid "_Box"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2283
-msgstr "/Voeg Bus By"
 msgid "Add a box"
+msgstr "Voeg Bus By"
 
 #: gschem/etc/system-gschemrc.scm:2284
 msgid "C_ircle"
@@ -5401,8 +5399,8 @@ msgid "Pat_h"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2286 gschem/scheme/gschem/builtins.scm:371
-msgstr "/Voeg Net By"
 msgid "Add a path"
+msgstr "Voeg Net By"
 
 #: gschem/etc/system-gschemrc.scm:2287
 msgid "Pictu_re..."
