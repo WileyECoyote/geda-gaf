@@ -781,9 +781,8 @@ msgid "WARNING: Do not translate with snap off!\n"
 msgstr "bamream: mi k bre daoyman khtasa bet!\n"
 
 #: gschem/src/iface/i_command.c:4357
-#, fuzzy
 msgid "WARNING: Turning snap on and continuing with translation.\n"
-msgstr "promean: baek khtasa now leu ning bant cheamuoy karobakabre.\n"
+msgstr "karopromean: baek ning bant bakabre.\n"
 
 #: gschem/src/iface/i_command.c:4363
 msgid "WARNING: Snap grid size is not equal to 100!\n"
@@ -3909,9 +3908,8 @@ msgid "Toggle visibility of the Symbol toolbar"
 msgstr "bet baek pheap meulkheunh nei rbar ubakar nimittasanhnhea"
 
 #: gschem/src/x/x_menus.c:1183
-#, fuzzy
 msgid "Toggle visibility of the Modify toolbar"
-msgstr "pheap meulkheunh nei kar bet baek rbar ubakar kesamruol"
+msgstr "bet baek pheap meulkheunh nei rbar ubakar kebre"
 
 #: gschem/src/x/x_menus.c:1184
 msgid "Toggle visibility of the Edit toolbar"
@@ -4488,8 +4486,8 @@ msgstr ""
 msgid "Pick"
 msgstr ""
 
+# New
 #: gschem/src/x/x_toolbars.c:149 gschem/src/x/x_toolbars.c:195
-#, fuzzy
 msgid "New"
 msgstr "Thmei"
 
@@ -4576,14 +4574,12 @@ msgstr "banteab"
 
 #: gschem/src/x/x_toolbars.c:193 gschem/src/x/x_toolbars.c:198
 #: gschem/src/x/x_toolbars.c:199 gschem/src/x/x_toolbars.c:262
-#, fuzzy
 msgid "Down"
-msgstr "kar phlasa btaur rbieb"
+msgstr "Chohkraom"
 
 #: gschem/src/x/x_toolbars.c:194
-#, fuzzy
 msgid "Last"
-msgstr "kour chongokraoy"
+msgstr "Chongokraoy"
 
 #: gschem/src/x/x_toolbars.c:196
 #, fuzzy
