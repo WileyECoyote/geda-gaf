@@ -147,6 +147,7 @@ geda_tearoff_menu_item_paint (GtkWidget *widget, GdkRectangle *area)
     GedaMenuItem    *menu_item;
     GdkWindow       *window;
     GtkStyle        *style;
+    GtkWidget       *parent;
     GtkArrowType     arrow_type;
     GtkStateType     state_type;
     GtkTextDirection direction;
@@ -189,7 +190,9 @@ geda_tearoff_menu_item_paint (GtkWidget *widget, GdkRectangle *area)
       gdk_window_clear_area (window, area->x, area->y, area->width, area->height);
     }
 
-    if (GEDA_IS_MENU (widget->parent) && ((GedaMenu*)widget->parent)->torn_off)
+    parent = geda_get_widget_parent (widget);
+
+    if (GEDA_IS_MENU (parent) && ((GedaMenu*)parent)->torn_off)
     {
       int arrow_x;
       int toggle_size;
