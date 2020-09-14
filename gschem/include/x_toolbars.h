@@ -216,7 +216,7 @@ typedef struct {
 #define TBTS_ATTRIB_VALUE       "Set selected value visible"
 #define TBTS_ATTRIB_NAME        "Set selected name visible"
 #define TBTS_ATTRIB_BOTH        "Set selected name and value visible"
-#define TBTS_ATTRIB_VISIBILITY  "Toggle Visibilty"
+#define TBTS_ATTRIB_VISIBILITY  "Toggle attribute visibility"
 #define TBTS_VIEW_HIDDEN        "Toggle hidden text attributes"
 #define TBTS_VIEW_INHERITED     "Toggle hidden inherited text attributes"
 #define TBTS_ATTRIB_FIND        "Find attribute"
