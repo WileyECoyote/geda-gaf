@@ -4,6 +4,10 @@
 
           * geda_get_widget_parent
 
+    * src/widgets/geda_toolbar.c: Utilize macro:
+
+          * geda_get_widget_window
+
 2020-08-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_check_menu_item.h: Redefine geda_check_menu_item_set_state

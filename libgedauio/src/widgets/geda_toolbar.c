@@ -36,6 +36,7 @@
 #include <geda/geda.h>
 #include <geda/geda_standard.h>
 
+#include "../../include/geda_gtk_compat.h"
 #include "../../include/geda_container.h"
 #include "../../include/geda_toolbar.h"
 #include "../../include/gettext.h"
@@ -134,10 +135,14 @@ geda_toolbar_finalize (GObject *object)
 static void
 geda_toolbar_box_realize (GtkWidget *widget)
 {
+  GdkWindow *window;
+
   /* Chain up to parent class */
   ((GtkWidgetClass*)geda_toolbar_parent_class)->realize (widget);
 
-  gdk_window_set_type_hint (widget->window, GDK_WINDOW_TYPE_HINT_TOOLBAR);
+  window = geda_get_widget_window (widget);
+
+  gdk_window_set_type_hint (window, GDK_WINDOW_TYPE_HINT_TOOLBAR);
 }
 
 /*! \internal widget_class->size_request */
