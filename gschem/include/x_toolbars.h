@@ -153,7 +153,7 @@ typedef struct {
 #define TBTS_ADD_CIRCLE         "Add a circle"
 #define TBTS_ADD_ARC            "Create an arc"
 #define TBTS_ADD_PATH           "Add a path"
-#define TBTS_ADD_PIN            "Add Pin"
+#define TBTS_ADD_PIN            "Add a pin"
 #define TBTS_ADD_PICTURE        "Insert an image"
 
   /* Page Toolbar */
