@@ -563,6 +563,7 @@ int check_accessors (void)
       fail++;
     }
 
+    /* === Function 16: geda_bus_object_get_position  === */
 
     if (!geda_box_object_get_position (object0, &px, &py)) {
       fprintf(stderr, "FAILED: (O041601A) box x1=%d, y1=%d, x2=%d, y2=%d\n", x1, y1, x2, y2);
