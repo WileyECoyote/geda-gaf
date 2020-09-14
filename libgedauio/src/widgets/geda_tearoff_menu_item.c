@@ -223,6 +223,7 @@ geda_tearoff_menu_item_paint (GtkWidget *widget, GdkRectangle *area)
           arrow_x = x + width - 2 * ARROW_SIZE + ARROW_SIZE / 2;
           arrow_type = GTK_ARROW_RIGHT;
         }
+
         x += ARROW_SIZE << 1 ; /* Multiply by 2 */
       }
 
