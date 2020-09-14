@@ -988,7 +988,7 @@ void geda_arc_object_print_center(GedaToplevel *toplevel, FILE *fp,
 
 /*! O0225
  * \brief
- *  \par Function Description
+ * \par Function Description
  *  This function prints an arc when a dashed line type is required. The arc
  *  is defined by its center in <B>x</B> and <B>y</B>, its radius in <B>radius</B>
  *  and the start and end angles of the arc on the circle. The postscript file
