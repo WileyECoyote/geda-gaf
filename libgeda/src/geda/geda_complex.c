@@ -76,7 +76,7 @@ static int geda_complex_bounds(GedaObject *object)
   /* Loop thru sub objects, if any exist */
   while (!result && iter != NULL) {
 
-    sub_object = (GedaObject *) iter->data;
+    sub_object = (GedaObject*)iter->data;
 
     g_return_val_if_fail (GEDA_IS_OBJECT(sub_object), FALSE);
 
