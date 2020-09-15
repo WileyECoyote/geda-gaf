@@ -353,6 +353,17 @@ geda_toolbar_append_item (GedaToolbar     *toolbar,
   return button;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
+void geda_toolbar_append_space (GedaToolbar *toolbar)
+{
+  gtk_toolbar_insert_element ((GtkToolbar*)toolbar, GEDA_TOOLBAR_CHILD_SPACE,
+                               NULL, NULL, NULL, NULL, NULL, NULL, NULL, -1);
+}
+
 /* Generic Widgets */
 void
 geda_toolbar_append_widget (GedaToolbar *bar,

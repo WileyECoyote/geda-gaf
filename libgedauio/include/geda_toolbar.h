@@ -91,6 +91,8 @@ GtkWidget      *geda_toolbar_append_item         (GedaToolbar     *toolbar,
                                                   GCallback        callback,
                                                   void            *user_data);
 
+void            geda_toolbar_append_space        (GedaToolbar     *toolbar);
+
 /* Generic Widgets */
 void            geda_toolbar_append_widget       (GedaToolbar     *toolbar,
                                                   GtkWidget       *widget,
