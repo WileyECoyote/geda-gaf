@@ -245,7 +245,7 @@ void x_toolbars_init(GtkWidget *parent_container) {
   TOOLBAR_STD_BUTTON(Standard, tb_copy,  STK, COPY,  callback_clipboard)
   TOOLBAR_STD_BUTTON(Standard, tb_paste, STK, PASTE, callback_clipboard)
 
-  gtk_toolbar_append_space(GTK_TOOLBAR(Standard_Toolbar));
+  geda_toolbar_append_space(GEDA_TOOLBAR(Standard_Toolbar));
 
   /* Add Find Button to Search_ToolbarToolbar */
   TOOLBAR_STD_BUTTON(Standard, tb_find,  PIX, GEDA_BITMAP_FIND_TINY, callback_searchbar)
