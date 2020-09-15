@@ -374,6 +374,11 @@ void geda_toolbar_append_space (GedaToolbar *toolbar)
                                NULL, NULL, NULL, NULL, NULL, NULL, NULL, -1);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 /* Generic Widgets */
 void
 geda_toolbar_append_widget (GedaToolbar *bar,
