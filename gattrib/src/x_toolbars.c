@@ -239,7 +239,7 @@ void x_toolbars_init(GtkWidget *parent_container) {
   /* Add Save As Button to Toolbar */
   TOOLBAR_STD_BUTTON(Standard, tb_save_as, STK, SAVE_AS, callback_toolbar)
 
-  gtk_toolbar_append_space(GTK_TOOLBAR(Standard_Toolbar));
+  geda_toolbar_append_space(GEDA_TOOLBAR(Standard_Toolbar));
 
   TOOLBAR_STD_BUTTON(Standard, tb_cut,   STK, CUT,   callback_clipboard)
   TOOLBAR_STD_BUTTON(Standard, tb_copy,  STK, COPY,  callback_clipboard)

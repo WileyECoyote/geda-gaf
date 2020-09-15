@@ -1,3 +1,7 @@
+2020-09-15 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x_toolbars.c: Utilize geda_toolbar_append_space in x_toolbars_init.
+
 2020-08-31 Wiley E. Hill <wileyhill@gmail.com>
 
     * data/Makefile.am: Redirect error output from update-mime-database
