@@ -335,6 +335,11 @@ geda_toolbar_append_element (GedaToolbar         *toolbar,
   return element;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 /* Simple button items */
 GtkWidget*
 geda_toolbar_append_item (GedaToolbar     *toolbar,
