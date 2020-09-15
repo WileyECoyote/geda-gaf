@@ -314,16 +314,18 @@ geda_toolbar_append_element (GedaToolbar         *toolbar,
 {
   GtkWidget *element;
 
-  element = gtk_toolbar_append_element((GtkToolbar*)toolbar, type,
-                                       widget,
-                                       text,
-                                       tooltip_text,
-                                       tooltip_private_text,
-                                       (GtkWidget*)icon,
-                                       (GtkSignalFunc) callback,
-                                       user_data);
+  element = gtk_toolbar_insert_element ((GtkToolbar*)toolbar,
+                                        type,
+                                        widget,
+                                        text,
+                                        tooltip_text,
+                                        tooltip_private_text,
+                                        (GtkWidget*)icon,
+                                        callback,
+                                        user_data,
+                                        -1);
 
-  geda_toolbar_setup_label(element, toolbar);
+  geda_toolbar_setup_label (element, toolbar);
 
   return element;
 }
