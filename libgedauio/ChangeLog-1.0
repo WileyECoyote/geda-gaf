@@ -2,6 +2,8 @@
 
     * src/widgets/geda_toolbar.c: Replace call to gtk_toolbar_append_element
       with call to gtk_toolbar_insert_element in geda_toolbar_append_element.
+      Revise geda_toolbar_set_orientation to set the  "orientation" property
+      rather than call gtk_toolbar_set_orientation.
 
 2020-09-14 Wiley E. Hill <wileyhill@gmail.com>
 

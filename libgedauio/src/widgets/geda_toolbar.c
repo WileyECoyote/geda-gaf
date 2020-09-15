@@ -400,8 +400,7 @@ void geda_toolbar_set_orientation (GedaToolbar *toolbar, int orientation)
 
       toolbar->orientation = orientation;
 
-      gtk_toolbar_set_orientation ((GtkToolbar*)toolbar,
-                                   (GtkOrientation) orientation);
+      g_object_set (toolbar, "orientation", orientation, NULL);
     }
   }
 }
