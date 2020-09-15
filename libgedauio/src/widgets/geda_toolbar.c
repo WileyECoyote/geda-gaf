@@ -300,6 +300,11 @@ is_a_geda_toolbar (GedaToolbar *toolbar)
   return FALSE;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 /* Any element type */
 GtkWidget*
 geda_toolbar_append_element (GedaToolbar         *toolbar,
