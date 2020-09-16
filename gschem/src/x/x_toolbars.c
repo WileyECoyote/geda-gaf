@@ -1367,7 +1367,7 @@ x_toolbars_init_top(GschemToplevel *w_current, GtkWidget *parent_container)
 
   GSCHEM_TOOLBAR_BUTTON (Page, etb_new_page);
 
-  gtk_toolbar_append_space (GTK_TOOLBAR(Page_Toolbar));
+  geda_toolbar_append_space (GEDA_TOOLBAR(Page_Toolbar));
 
   GSCHEM_TOOLBAR_BUTTON (Page, etb_down_symbol);
   GSCHEM_TOOLBAR_BUTTON (Page, etb_down_schematic);
