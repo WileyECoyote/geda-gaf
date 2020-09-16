@@ -424,9 +424,15 @@ int geda_toolbar_get_orientation (GedaToolbar *toolbar)
   return -1;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void geda_toolbar_set_orientation (GedaToolbar *toolbar, int orientation)
 {
   if (GEDA_IS_TOOLBAR(toolbar)) {
+
     if (orientation != toolbar->orientation) {
 
       toolbar->orientation = orientation;
