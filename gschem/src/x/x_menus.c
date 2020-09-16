@@ -96,7 +96,7 @@ static PopupEntry main_popup_items[] = {
   { N_("Add"),               NULL,                      1,                  0,  NULL,             N_("Add modes") },
   { N_("Net"),               x_menu_main_popup_execute, pop_add_net,        1, "gschem-net",      N_("Add net") },
   { N_("Attribute..."),      x_menu_main_popup_execute, pop_add_attribute,  0,  GAF_MAP(ADD_ATTRIBUTE), N_("Add attribute")},
-  { N_("Component..."),      x_menu_main_popup_execute, pop_add_component,  1, "geda-component",  N_("Insert a symbol from the component library") },
+  { N_("Component..."),      x_menu_main_popup_execute, pop_add_component,  1, "geda-component",  N_("Insert a library symbol") },
   { N_("Bus"),               x_menu_main_popup_execute, pop_add_bus,        1, "gschem-bus",      N_("Add bus") },
   { N_("Text"),              x_menu_main_popup_execute, pop_add_text,       1, "gtk-bold",        N_("Add text") },
 
