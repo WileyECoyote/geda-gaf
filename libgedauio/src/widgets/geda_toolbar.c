@@ -410,6 +410,11 @@ GtkWidget *geda_toolbar_new (int orientation)
                        NULL);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 int geda_toolbar_get_orientation (GedaToolbar *toolbar)
 {
   if (GEDA_IS_TOOLBAR(toolbar)) {
