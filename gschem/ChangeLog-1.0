@@ -1,6 +1,7 @@
 2020-09-16 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/x/x_menus.c: Revise pop_add_component menu item tooltip.
+    * src/x/x_menus.c: Revise pop_add_component menu item tooltip. Add source
+      comments.
 
     * src/x_toolbars.c: Replace gtk_toolbar_append_space with
       geda_toolbar_append_space.

@@ -149,6 +149,7 @@ static PopupEntry main_popup_items[] = {
   {NULL} /* sentinel */
 };
 
+/* Popup menu items when creating path objects */
 static PopupEntry path_popup_items[] = {
 
   { N_("Close"),    x_menu_path_popup_execute,  pop_path_close,    1, "close-path",   N_("Close the current path") },
