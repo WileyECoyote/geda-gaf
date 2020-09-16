@@ -437,7 +437,8 @@ x_menu_grid_none_mode(GedaCheckMenuItem *widget, GschemToplevel *w_current)
   }
 }
 
-/* Callback for "Clear" popup menu on "Paste from" menu items.
+/*!
+ * \internal Callback for "Clear" popup menu on "Paste from" menu items.
  * Clears the buffer associated with the menu item and closes the menu.
  *
  * menuitem is the popup menu item, GedaMenuItem, that was clicked */
