@@ -1,21 +1,18 @@
+2020-09-16 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x_toolbars.c: Replace gtk_toolbar_append_space with
+      geda_toolbar_append_space.
+
 2020-09-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/af.po: Update Afrikaans translations.
-
     * po/fr.po: Update French translations.
-
     * po/en_GB.po: Update Great Britain.
-
     * po/kh.po: Update Khmer translations.
-
     * po/pt.po: Update Portuguese translations.
-
     * po/pt_BR.po: Update Brazilian Portuguese translations.
-
     * po/ru.po: Update Russian translations.
-
     * po/sl.po: Update Slovenian translations.
-
     * po/sr.po: Update Serbian translations.
 
 2020-09-11 Wiley E. Hill <wileyhill@gmail.com>

@@ -1314,7 +1314,7 @@ x_toolbars_init_top(GschemToplevel *w_current, GtkWidget *parent_container)
   GSCHEM_TOOLBAR_BUTTON (Standard, etb_save_as);
   GSCHEM_TOOLBAR_BUTTON (Standard, etb_close);
 
-  gtk_toolbar_append_space (GTK_TOOLBAR(Standard_Toolbar));
+  geda_toolbar_append_space (GEDA_TOOLBAR(Standard_Toolbar));
 
   /* Add Print and Export PDF Buttons to the Standard Toolbar */
   GSCHEM_TOOLBAR_BUTTON (Standard, etb_print);
