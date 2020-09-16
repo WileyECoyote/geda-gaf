@@ -1326,7 +1326,7 @@ x_toolbars_init_top(GschemToplevel *w_current, GtkWidget *parent_container)
   GSCHEM_TOOLBAR_BUTTON (Standard, etb_copy);
   GSCHEM_TOOLBAR_BUTTON (Standard, etb_paste);
 
-  gtk_toolbar_append_space (GTK_TOOLBAR(Standard_Toolbar));
+  geda_toolbar_append_space (GEDA_TOOLBAR(Standard_Toolbar));
 
   GSCHEM_TOOLBAR_BUTTON (Standard, etb_undo);
   GSCHEM_TOOLBAR_BUTTON (Standard, etb_redo);
