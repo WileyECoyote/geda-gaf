@@ -1983,10 +1983,10 @@ static void x_menu_toggle_tips(GtkWidget *widget, GSList *list)
 /*!
  * \brief Callback to Toggle Visibility of Tooltips for All Main Menu Items
  * \par Function Description
- * Set visibility of tool tips for all menu items. Retrieves the menu data for
- * the current window and passes the containing menu list to x_menu_toggle_tips
- * to set the visibility of tooltips for non-toggle menu items and then  set
-   the visibility of tips for menu toggle items.;
+ *  Set visibility of tool tips for all menu items. Retrieves the menu data for
+ *  the current window and passes the containing menu list to x_menu_toggle_tips
+ *  to set the visibility of tooltips for non-toggle menu items and then set the
+ *  visibility of tips for menu toggle items.
  */
 static void x_menu_toggle_main_tips(GtkWidget *widget, GschemToplevel *w_current)
 {
