@@ -31,8 +31,6 @@
  *
  *  \brief Pre-Processor Marcos for gschem
  *  The file contains macros used by gschem.
- *
- *  \note Presently, this header is only included by o_box.c and o_grips.c.
  */
 
 /* Macro for inserting and (grip) editing Box Objects. */
