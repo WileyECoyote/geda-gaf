@@ -2,6 +2,11 @@
 
     * include/gschem.h: Include gschem_macros.h.
 
+    * include/gschem_globals.h: Remove message dialog macros.
+
+    * include/gschem_macros.h: Relocate message dialog macros removed from
+      gschem_globals.h.
+
     * src/object/o_box.c: Remove individual inclusion of gschem_macros.h.
 
     * src/object/o_grips.c: Remove individual inclusion of gschem_macros.h.

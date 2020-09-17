@@ -55,3 +55,62 @@
 
 /* Grips Related */
 #define GET_GRIP_SIZE(w)           gschem_toplevel_get_grips_size(w)
+
+/* Utility Macros for Message Dialogs */
+#define message_dialog(text, type) \
+        x_dialog_show_message(text, type, NULL);
+
+#define titled_message_dialog(text, type, title) \
+        x_dialog_show_message(text, type, title);
+
+#define pango_message_dialog(text1, text2, type, title) \
+        x_dialog_message_with_markup(text1, text2, type, title);
+
+/* These don't really justify their own functions - just do inline */
+/* Plain Text dialogs */
+#define information_dialog(...) { \
+        char *msg = (char*)geda_sprintf(__VA_ARGS__); \
+        message_dialog(msg, GEDA_MESSAGE_INFO) \
+        GEDA_FREE (msg); }
+#define warning_dialog(...) { \
+        char *msg = (char*)geda_sprintf(__VA_ARGS__); \
+        message_dialog(msg, GEDA_MESSAGE_WARNING) \
+        GEDA_FREE (msg); }
+#define error_dialog(...) { \
+        char *msg = (char*)geda_sprintf(__VA_ARGS__); \
+        titled_message_dialog(msg, GEDA_MESSAGE_ERROR, NULL) \
+        GEDA_FREE (msg); }
+
+/* Titled Plain Text dialogs */
+#define titled_information_dialog(title, ...) { \
+        char *msg = (char*)geda_sprintf(__VA_ARGS__); \
+        titled_message_dialog(msg, GEDA_MESSAGE_INFO, title) \
+        GEDA_FREE (msg); }
+#define titled_warning_dialog(title, ...) { \
+        char *msg = (char*)geda_sprintf(__VA_ARGS__); \
+        titled_message_dialog(msg, GEDA_MESSAGE_WARNING, title) \
+        GEDA_FREE (msg); }
+#define titled_error_dialog(title, ...) { \
+        char *msg = (char*)geda_sprintf(__VA_ARGS__); \
+        titled_message_dialog(msg, GEDA_MESSAGE_ERROR, title) \
+        GEDA_FREE (msg); }
+
+/* Pango Text dialogs - markup is optional for messages */
+#define pango_info_dialog(msg1, msg2) \
+        pango_message_dialog( msg1, msg2, GEDA_MESSAGE_INFO, NULL)
+
+#define pango_warning_dialog(msg1, msg2) \
+        pango_message_dialog( msg1, msg2, GEDA_MESSAGE_WARNING, NULL)
+
+#define pango_error_dialog(msg1, msg2) \
+        pango_message_dialog( msg1, msg2, GEDA_MESSAGE_ERROR, NULL)
+
+/* Titled Pango Text dialogs */
+#define titled_pango_info_dialog(msg1, msg2, title) \
+        pango_message_dialog( msg1, msg2, GEDA_MESSAGE_INFO, title)
+
+#define titled_pango_warning_dialog(msg1, msg2, title) \
+        pango_message_dialog( msg1, msg2, GEDA_MESSAGE_WARNING, title)
+
+#define titled_pango_error_dialog(msg1, msg2, title) \
+        pango_message_dialog( msg1, msg2, GEDA_MESSAGE_ERROR, title)
