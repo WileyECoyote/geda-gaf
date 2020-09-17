@@ -370,6 +370,7 @@ void x_menu_free_all(void)
 GtkWidget *x_menu_get_main_menu(GschemToplevel *w_current)
 {
   MenuData *menu_data = g_slist_nth_data (ui_list, w_current->ui_index);
+
   return MENU_BAR;
 }
 
@@ -1365,6 +1366,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
   x_menu_add_menu_popups(w_current, menu_data);
 
   ui_list = g_slist_append(ui_list, menu_data);
+
   w_current->ui_index = g_slist_length(ui_list) - 1;
 
   return MENU_BAR;
@@ -1868,6 +1870,7 @@ char *x_menu_get_buffer_menu (GschemToplevel *w_current)
   MenuData *menu_data;
 
   menu_data = g_slist_nth_data (ui_list, w_current->ui_index);
+
   return menu_data->buffer_menu_name;
 }
 
@@ -1919,6 +1922,7 @@ static void x_menu_lowlevel_set_icon_visibility (GSList* list, bool state)
 void x_menu_set_icon_visibility(GschemToplevel *w_current, bool state)
 {
   MenuData *menu_data = g_slist_nth_data (ui_list, w_current->ui_index);
+
   x_menu_lowlevel_set_icon_visibility(MENU_ITEMS_LIST, state);
 }
 
@@ -2774,5 +2778,6 @@ const char *x_menu_recent_files_last(void)
 }
 
 /** @} end group recent-file-menu */
+
 /** @} end group Main-Menu-Support */
 /** @} end group Menu-Module */
