@@ -211,7 +211,7 @@ typedef struct {
 #define TBTS_EDIT_ARC           "Edit Arc parameters"
 
   /* Attribute Toolbar */
-#define TBTS_ATTRIB_ATTACH      "Attach selected attribute"
+#define TBTS_ATTRIB_ATTACH      "Attach selected attributes to symbol"
 #define TBTS_ATTRIB_DETACH      "Dettach selected attribute"
 #define TBTS_ATTRIB_VALUE       "Set selected value visible"
 #define TBTS_ATTRIB_NAME        "Set selected name visible"

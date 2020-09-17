@@ -9,6 +9,8 @@
     * include/gschem_macros.h: Relocate message dialog macros removed from
       gschem_globals.h.
 
+    * include/x_toolbars.h: Revise attributes-attach toolbar button tooltip.
+
     * src/object/o_box.c: Remove individual inclusion of gschem_macros.h.
 
     * src/object/o_grips.c: Remove individual inclusion of gschem_macros.h.
