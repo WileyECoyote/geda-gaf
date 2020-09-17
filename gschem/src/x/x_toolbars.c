@@ -1412,7 +1412,7 @@ x_toolbars_init_top(GschemToplevel *w_current, GtkWidget *parent_container)
   GSCHEM_TOOLBAR_BUTTON (Add, etb_add_attribute);
   GSCHEM_TOOLBAR_BUTTON (Add, etb_add_text);
 
-  gtk_toolbar_append_space (GTK_TOOLBAR(Add_Toolbar));
+  geda_toolbar_append_space (GEDA_TOOLBAR(Add_Toolbar));
 
   /* Toolbar radio button group - ToolBar_Radio_Responder defines a callback so ver 1 is expanded here*/
   /*                    bar, var,              grp,              name,            data */
