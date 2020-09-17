@@ -2313,7 +2313,7 @@
 ;;      menu item name             menu action                   menu icon name                Menu Item Tooltip
 ;;
      `( (,(N_ "_Attach")           attributes-attach             #f            ,(N_ "Attach selected attributes to symbol"))
-        (,(N_ "_Detach")           attributes-detach             #f            ,(N_ "Detach selected attributes from a symbol"))
+        (,(N_ "_Detach")           attributes-detach             #f            ,(N_ "Detach selected attributes from symbol"))
         (,(N_ "Show _Value")       attributes-show-value         #f            ,(N_ "Set selected value visible"))
         (,(N_ "Show _Name")        attributes-show-name          #f            ,(N_ "Set selected name visible"))
         (,(N_ "Show _Both")        attributes-show-both          #f            ,(N_ "Set selected name and value visible"))
