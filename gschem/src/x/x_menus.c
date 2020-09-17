@@ -2285,6 +2285,7 @@ static void x_menu_update_recent_files(void)
        return;
 
      submenu = geda_menu_item_get_submenu_widget((GedaMenuItem*)recent_menu_item);
+
      gtk_widget_destroy(submenu);
 
      x_menu_attach_recent_submenu(w_current);
@@ -2393,6 +2394,7 @@ static void x_menu_toggle_recent_path (GedaCheckMenuItem *menuitem, void *user_d
   MenuData     *menu_data;
 
   show_recent_path = geda_check_menu_item_get_active (menuitem);
+
   x_menu_update_recent_files();
 
   /* Get pointer to the recent files submenu */
@@ -2453,6 +2455,7 @@ static void x_menu_recent_show_popup (GedaMenuItem   *menu_widget,
   geda_menu_append (menu, popup_item);
 
   popup_item = geda_check_menu_item_new_with_mnemonic (_("_Show path"));
+
   geda_check_menu_item_set_state (popup_item, show_recent_path);
 
   GTK_CALLBACK_TOGGLED (popup_item, x_menu_toggle_recent_path, menu_data);
