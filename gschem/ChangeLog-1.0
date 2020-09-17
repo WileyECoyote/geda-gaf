@@ -1,3 +1,11 @@
+2020-09-17 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/gschem.h: Include gschem_macros.h.
+
+    * src/object/o_box.c: Remove individual inclusion of gschem_macros.h.
+
+    * src/object/o_grips.c: Remove individual inclusion of gschem_macros.h.
+
 2020-09-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_menus.c: Revise pop_add_component menu item tooltip. Add source

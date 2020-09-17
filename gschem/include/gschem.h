@@ -16,6 +16,7 @@
 #include "gschem_event.h"
 #include "gschem_globals.h"
 #include "gschem_idefines.h"       /* integer defines */
+#include "gschem_macros.h"
 #include "gschem_sdefines.h"       /* string defines  */
 #include "gschem_page_history.h"
 #include "gschem_toplevel.h"

@@ -27,7 +27,6 @@
  */
 
 #include <gschem.h>
-#include <gschem_macros.h>
 #include <geda_debug.h>
 
 /*!
