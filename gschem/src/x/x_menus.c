@@ -363,7 +363,7 @@ void x_menu_free_all(void)
 /*!
  * \brief Get Pointer to Main Menu Bar
  * \par Function Description
- * This function retrieves a pointer to the main menu bar.
+ *  This function retrieves a pointer to the main menu bar.
  *
  * \retval GedaMenu pointer disguised as a GtkWidget
  */
@@ -2380,9 +2380,9 @@ static void x_menu_recent_files_create_empty(void)
 /*!
  * \brief Recent Menu item Popup Show Recent Paths Toggled
  * \par Function Description
- *  Called with user toggles to Show path items on recent file pop-up menu.
- *  Toggles the state of show_recent_path, calls to update the menu and
- *  causes the recent file sub-menu to reappear with the opposite state.
+ *  Called when the user toggles to Show path items on recent file pop-up
+ *  menu. Toggles the state of show_recent_path, calls to update the menu
+ *  and causes the recent file sub-menu to reappear with the opposite state.
  */
 static void x_menu_toggle_recent_path (GedaCheckMenuItem *menuitem, void *user_data)
 {
