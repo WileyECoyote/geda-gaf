@@ -1596,7 +1596,7 @@ x_toolbars_init_left(GschemToplevel *w_current, GtkWidget *parent_container)
   GSCHEM_TOOLBAR_BUTTON (Modify, etb_edit_text);
   GSCHEM_TOOLBAR_BUTTON (Modify, etb_edit_color);
 
-  gtk_toolbar_append_space (GTK_TOOLBAR(Modify_Toolbar));
+  geda_toolbar_append_space (GEDA_TOOLBAR(Modify_Toolbar));
 
   GSCHEM_TOOLBAR_BUTTON (Modify, etb_edit_slot);
   GSCHEM_TOOLBAR_BUTTON (Modify, etb_edit_line);
