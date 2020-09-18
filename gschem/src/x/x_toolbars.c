@@ -1559,7 +1559,7 @@ x_toolbars_init_left(GschemToplevel *w_current, GtkWidget *parent_container)
   GSCHEM_TOOLBAR_BUTTON (Symbol, etb_unlock);
   GSCHEM_TOOLBAR_BUTTON (Symbol, etb_update);
 
-  gtk_toolbar_append_space (GTK_TOOLBAR(Symbol_Toolbar));
+  geda_toolbar_append_space (GEDA_TOOLBAR(Symbol_Toolbar));
 
   GSCHEM_TOOLBAR_BUTTON (Symbol, etb_edit_pin);
 
