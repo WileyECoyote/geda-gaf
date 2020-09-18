@@ -1860,9 +1860,11 @@ x_toolbars_set_sensitivities(GschemToplevel *w_current,
   }
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Set Show Tool Bar Tooltips
+ * \par Function Description
+ *  Loops over all toolbars and sets the "has-tooltip" property to
+ *  the value of \a show_tips.
  */
 void x_toolbars_set_show_tooltips (GschemToplevel *w_current, bool show_tips)
 {
