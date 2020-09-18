@@ -1450,7 +1450,7 @@ void x_window_update_title(GschemToplevel *w_current)
 /*!
  * \brief View toggle Add toolbar
  * \par Function Description
- *  This function toggles the visibility of the Add toobar.
+ *  This function toggles the visibility of the Add toolbar.
  *  Note the function actually toggle visibility of the handlebox
  *  containing the toolbar.
  */
