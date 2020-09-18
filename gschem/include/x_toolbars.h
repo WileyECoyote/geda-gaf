@@ -212,7 +212,7 @@ typedef struct {
 
   /* Attribute Toolbar */
 #define TBTS_ATTRIB_ATTACH      "Attach selected attributes to symbol"
-#define TBTS_ATTRIB_DETACH      "Dettach selected attribute"
+#define TBTS_ATTRIB_DETACH      "Detach selected attributes from symbol"
 #define TBTS_ATTRIB_VALUE       "Set selected value visible"
 #define TBTS_ATTRIB_NAME        "Set selected name visible"
 #define TBTS_ATTRIB_BOTH        "Set selected name and value visible"
