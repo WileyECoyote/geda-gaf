@@ -1428,7 +1428,7 @@ x_toolbars_init_top(GschemToplevel *w_current, GtkWidget *parent_container)
 
   GSCHEM_TOOLBAR_BUTTON (Add, etb_add_component);
 
-  gtk_toolbar_append_space (GTK_TOOLBAR(Add_Toolbar));
+  geda_toolbar_append_space (GEDA_TOOLBAR(Add_Toolbar));
 
   TOOLBAR_GSCHEM_RADIO( Add, BarRadio(select),   BarRadio(net),    etb_selector,   w_current)
   TOOLBAR_GSCHEM_RADIO( Add, BarRadio(deselect), BarRadio(net),    etb_deselector, w_current)
