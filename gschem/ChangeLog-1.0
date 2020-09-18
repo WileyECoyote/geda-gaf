@@ -2,6 +2,7 @@
 
     * src/x/x_toolbars.c: Add function documentation:
 
+        * x_toolbars_activate_select
         * x_toolbars_set_show_tooltips
 
     * src/x/x_window.c

@@ -1994,9 +1994,11 @@ void x_toolbars_turn_off_all_radios (GschemToplevel *w_current)
   SetToggleState(bar_widgets->toolbar_none, TRUE);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Activate Toolbar None Radio Widget
+ * \par Function Description
+ *  This function activates the hidden radio toolbar_none so as
+ *  to deactivate any other adder radio on the Add Toolbar.
  */
 void x_toolbars_activate_select (GschemToplevel *w_current)
 {
