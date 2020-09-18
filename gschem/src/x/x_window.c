@@ -1618,11 +1618,13 @@ void x_window_zoom_toolbar_toggle(GtkWidget *widget, GschemToplevel *w_current)
 }
 
 /*!
- * \brief View toggle Zoom toolbar
+ * \brief Toggle visibility of toolbar tooltips
  * \par Function Description
- *  This function toggles the visibility of the Zoom toobar.
- *  Note the function actually toggle visibility of the handlebox
- *  containing the toolbar
+ *  Callback function to toggle the visibility of tooltips on toolbars.
+ *  Passes the state of the toggle item to x_toolbars_set_show_tooltips.
+ *
+ * \param [in] widget     "View/Toolbars/Display tips" menu-item widget
+ * \param [in] w_current  Gschem toplevel object.
  */
 void x_window_toolbar_tips_toggle(GtkWidget *widget, GschemToplevel *w_current)
 {

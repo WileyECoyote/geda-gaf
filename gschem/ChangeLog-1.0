@@ -4,6 +4,10 @@
 
         * x_toolbars_set_show_tooltips
 
+    * src/x/x_window.c
+
+        * x_window_toolbar_tips_toggle
+
 2020-09-17 Wiley E. Hill <wileyhill@gmail.com>
 
     * etc/system-gschemrc.scm: Revise attributes-detach menu item tooltip.
