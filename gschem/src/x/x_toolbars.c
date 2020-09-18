@@ -1988,7 +1988,9 @@ void x_toolbar_display_horiz(GtkWidget *widget, GschemToplevel *w_current)
 void x_toolbars_turn_off_all_radios (GschemToplevel *w_current)
 {
   ToolBarWidgets *bar_widgets;
+
   bar_widgets = g_slist_nth_data (ui_list, w_current->ui_index);
+
   SetToggleState(bar_widgets->toolbar_none, TRUE);
 }
 
@@ -1999,7 +2001,9 @@ void x_toolbars_turn_off_all_radios (GschemToplevel *w_current)
 void x_toolbars_activate_select (GschemToplevel *w_current)
 {
   ToolBarWidgets *bar_widgets;
+
   bar_widgets = g_slist_nth_data (ui_list, w_current->ui_index);
+
   SetToggleState(bar_widgets->toolbar_none, TRUE);
 }
 
