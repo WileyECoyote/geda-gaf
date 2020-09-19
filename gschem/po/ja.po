@@ -767,10 +767,10 @@ msgstr ""
 msgid "WARNING: Do not translate with snap off!\n"
 msgstr "警告:スナップ・オフで転送しないでください!\n"
 
+# Keikoku: Sunappu o on ni shite hon'yaku o zokkō shite imasu.
 #: gschem/src/iface/i_command.c:4357
-#, fuzzy
 msgid "WARNING: Turning snap on and continuing with translation.\n"
-msgstr "警告:スナップをオンしてから転送してください。\n"
+msgstr "警告：スナップをオンにして翻訳を続行しています。\n"
 
 #: gschem/src/iface/i_command.c:4363
 msgid "WARNING: Snap grid size is not equal to 100!\n"
@@ -4412,30 +4412,30 @@ msgstr "前"
 msgid "Next"
 msgstr "次"
 
+# Down; Daun
 #: gschem/src/x/x_toolbars.c:193 gschem/src/x/x_toolbars.c:198
 #: gschem/src/x/x_toolbars.c:199 gschem/src/x/x_toolbars.c:262
-#, fuzzy
 msgid "Down"
-msgstr "パンモード"
+msgstr "ダウン"
 
+# Last; Saishū
 #: gschem/src/x/x_toolbars.c:194
-#, fuzzy
 msgid "Last"
-msgstr "新規ページ"
+msgstr "最終"
 
+# Manage
 #: gschem/src/x/x_toolbars.c:196
-#, fuzzy
 msgid "Manage"
-msgstr "管理..."
+msgstr "管理"
 
 #: gschem/src/x/x_toolbars.c:202
 msgid "Spec"
 msgstr ""
 
+# Netnames => Net names; Netto-mei
 #: gschem/src/x/x_toolbars.c:203
-#, fuzzy
 msgid "Netnames"
-msgstr "ファイル名"
+msgstr "ネット名"
 
 #: gschem/src/x/x_toolbars.c:206 gschem/scheme/gschem/builtins.scm:209
 msgid "Redraw"
@@ -4445,28 +4445,28 @@ msgstr "再描画"
 msgid "Pan"
 msgstr "パン"
 
+# Window; Mado
 #: gschem/src/x/x_toolbars.c:208
-#, fuzzy
 msgid "Window"
-msgstr "新規ウィンドウ"
+msgstr "窓"
 
+# Selected; Sentaku-zumi
 #: gschem/src/x/x_toolbars.c:209
-#, fuzzy
 msgid "Selected"
-msgstr "選択"
+msgstr "選択済み"
 
+# Properties; Puropati
 #: gschem/src/x/x_toolbars.c:216
-#, fuzzy
 msgid "Properties"
-msgstr "テキスト編集"
+msgstr "プロパティ"
 
 #: gschem/src/x/x_toolbars.c:220 gschem/etc/system-gschemrc.scm:2181
 #: gschem/scheme/gschem/builtins.scm:191
 msgid "Unlock"
 msgstr "ロック解除"
 
+# Update; Kōshin
 #: gschem/src/x/x_toolbars.c:221
-#, fuzzy
 msgid "Update"
 msgstr "更新"
 
