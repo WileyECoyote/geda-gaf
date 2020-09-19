@@ -4799,11 +4799,10 @@ msgstr "Управлять"
 msgid "Spec"
 msgstr ""
 
-# Rename
+# Netnames => Network names; Setevyye imena
 #: gschem/src/x/x_toolbars.c:203
-#, fuzzy
 msgid "Netnames"
-msgstr "переименовывать"
+msgstr "Сетевые имена"
 
 #: gschem/src/x/x_toolbars.c:206 gschem/scheme/gschem/builtins.scm:209
 msgid "Redraw"
@@ -4813,32 +4812,30 @@ msgstr "Перерисовать"
 msgid "Pan"
 msgstr "Центрирование"
 
+# Window; Okno
 #: gschem/src/x/x_toolbars.c:208
-#, fuzzy
 msgid "Window"
-msgstr "Новое окно"
+msgstr "Окно"
 
+# Selected; Vybrano
 #: gschem/src/x/x_toolbars.c:209
-#, fuzzy
 msgid "Selected"
-msgstr "Выделение"
+msgstr "Выбрано"
 
-# Pin Properties => Contact properties
+# Properties; Svoystva
 #: gschem/src/x/x_toolbars.c:216
-#, fuzzy
 msgid "Properties"
-msgstr "Контакт свойства"
+msgstr "Свойства"
 
 #: gschem/src/x/x_toolbars.c:220 gschem/etc/system-gschemrc.scm:2181
 #: gschem/scheme/gschem/builtins.scm:191
 msgid "Unlock"
 msgstr "Разблокировка"
 
-# Update All
+# Update; Obnovit'
 #: gschem/src/x/x_toolbars.c:221
-#, fuzzy
 msgid "Update"
-msgstr "обновить все"
+msgstr "Обновить"
 
 #: gschem/src/x/x_toolbars.c:225
 msgid "Multi"
