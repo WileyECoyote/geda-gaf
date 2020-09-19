@@ -4582,18 +4582,16 @@ msgid "Last"
 msgstr "Chongokraoy"
 
 #: gschem/src/x/x_toolbars.c:196
-#, fuzzy
 msgid "Manage"
-msgstr "kammovithi krobkrong..."
+msgstr "Krobkrong"
 
 #: gschem/src/x/x_toolbars.c:202
 msgid "Spec"
 msgstr ""
 
 #: gschem/src/x/x_toolbars.c:203
-#, fuzzy
 msgid "Netnames"
-msgstr "chhmoh​ eksar"
+msgstr "chhmoh b nta nh"
 
 #: gschem/src/x/x_toolbars.c:206 gschem/scheme/gschem/builtins.scm:209
 msgid "Redraw"
@@ -4603,30 +4601,31 @@ msgstr ""
 msgid "Pan"
 msgstr ""
 
+# Window
 #: gschem/src/x/x_toolbars.c:208
-#, fuzzy
 msgid "Window"
-msgstr "bangauoch me"
+msgstr "Bangauoch"
 
+# Selected
 #: gschem/src/x/x_toolbars.c:209
-#, fuzzy
 msgid "Selected"
-msgstr "chreus"
+msgstr "Ban chreusareus"
 
+# Properties
 #: gschem/src/x/x_toolbars.c:216
-#, fuzzy
 msgid "Properties"
-msgstr "lokkhan sambotte robsa tomneaktomnong"
+msgstr "lokkhan sambotte"
 
+# Unlock
 #: gschem/src/x/x_toolbars.c:220 gschem/etc/system-gschemrc.scm:2181
 #: gschem/scheme/gschem/builtins.scm:191
 msgid "Unlock"
-msgstr ""
+msgstr "Daoh sao"
 
+# Update
 #: gschem/src/x/x_toolbars.c:221
-#, fuzzy
 msgid "Update"
-msgstr "thveu aoy teansamy"
+msgstr "Thveu bachchobbannphap"
 
 #: gschem/src/x/x_toolbars.c:225
 msgid "Multi"
