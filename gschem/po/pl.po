@@ -4546,10 +4546,10 @@ msgstr "Powtórz/brak"
 msgid "Pick"
 msgstr "Wybierz"
 
+# New
 #: gschem/src/x/x_toolbars.c:149 gschem/src/x/x_toolbars.c:195
-#, fuzzy
 msgid "New"
-msgstr "_Nowy"
+msgstr "Nowy"
 
 # Save As
 #: gschem/src/x/x_toolbars.c:152 gschem/scheme/gschem/builtins.scm:59
@@ -4638,31 +4638,27 @@ msgstr "Następny"
 # Down
 #: gschem/src/x/x_toolbars.c:193 gschem/src/x/x_toolbars.c:198
 #: gschem/src/x/x_toolbars.c:199 gschem/src/x/x_toolbars.c:262
-#, fuzzy
 msgid "Down"
-msgstr "na _dół"
+msgstr "Na dół"
 
-# Last Page
+# Last
 #: gschem/src/x/x_toolbars.c:194
-#, fuzzy
 msgid "Last"
-msgstr "Ostatnia strona"
+msgstr "Ostatnia"
 
 # Manage
 #: gschem/src/x/x_toolbars.c:196
-#, fuzzy
 msgid "Manage"
-msgstr "_Zarządzanie..."
+msgstr "Zarządzać"
 
 #: gschem/src/x/x_toolbars.c:202
 msgid "Spec"
 msgstr ""
 
-# Rename
+# Netnames; Network names
 #: gschem/src/x/x_toolbars.c:203
-#, fuzzy
 msgid "Netnames"
-msgstr "Przemianować"
+msgstr "Nazwy sieciowe"
 
 # Update
 #: gschem/src/x/x_toolbars.c:206 gschem/scheme/gschem/builtins.scm:209
@@ -4673,32 +4669,30 @@ msgstr "Aktualizuj"
 msgid "Pan"
 msgstr "Przesuń widok"
 
+# Window
 #: gschem/src/x/x_toolbars.c:208
-#, fuzzy
 msgid "Window"
-msgstr "Nowe okno"
+msgstr "Okno"
 
+# Selected
 #: gschem/src/x/x_toolbars.c:209
-#, fuzzy
 msgid "Selected"
-msgstr "Zaznaczanie"
+msgstr "Wybrany"
 
-# Pin Properties
+# Properties
 #: gschem/src/x/x_toolbars.c:216
-#, fuzzy
 msgid "Properties"
-msgstr "Właściwości pin"
+msgstr "Nieruchomości"
 
 #: gschem/src/x/x_toolbars.c:220 gschem/etc/system-gschemrc.scm:2181
 #: gschem/scheme/gschem/builtins.scm:191
 msgid "Unlock"
 msgstr "Odblokuj"
 
-# Update All
+# Update
 #: gschem/src/x/x_toolbars.c:221
-#, fuzzy
 msgid "Update"
-msgstr "aktualizacja Wszystko"
+msgstr "Aktualizacja"
 
 #: gschem/src/x/x_toolbars.c:225
 msgid "Multi"
