@@ -4593,19 +4593,17 @@ msgstr "Última"
 
 # Manage
 #: gschem/src/x/x_toolbars.c:196
-#, fuzzy
 msgid "Manage"
-msgstr "_Gerenciar..."
+msgstr "Gerenciar"
 
 #: gschem/src/x/x_toolbars.c:202
 msgid "Spec"
 msgstr ""
 
-# Rename
+# Netnames => Network names
 #: gschem/src/x/x_toolbars.c:203
-#, fuzzy
 msgid "Netnames"
-msgstr "_Renomear"
+msgstr "Nomes de rede"
 
 # Redraw
 #: gschem/src/x/x_toolbars.c:206 gschem/scheme/gschem/builtins.scm:209
@@ -4616,31 +4614,30 @@ msgstr "Redesenhar"
 msgid "Pan"
 msgstr "Centrar em respeito com o cursor"
 
+# Window
 #: gschem/src/x/x_toolbars.c:208
-#, fuzzy
 msgid "Window"
-msgstr "Nova Janela"
+msgstr "Janela"
 
+# Selected
 #: gschem/src/x/x_toolbars.c:209
-#, fuzzy
 msgid "Selected"
-msgstr "Seleccionar"
+msgstr "Selecionada"
 
+# Properties
 #: gschem/src/x/x_toolbars.c:216
-#, fuzzy
 msgid "Properties"
-msgstr "Sociedade Anônima do Pino"
+msgstr "Propriedades"
 
 #: gschem/src/x/x_toolbars.c:220 gschem/etc/system-gschemrc.scm:2181
 #: gschem/scheme/gschem/builtins.scm:191
 msgid "Unlock"
 msgstr "Destrancar"
 
-# Update All
+# Update
 #: gschem/src/x/x_toolbars.c:221
-#, fuzzy
 msgid "Update"
-msgstr "Atualizar todos os"
+msgstr "Atualizar"
 
 #: gschem/src/x/x_toolbars.c:225
 msgid "Multi"

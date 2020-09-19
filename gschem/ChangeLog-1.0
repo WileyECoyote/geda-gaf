@@ -10,6 +10,8 @@
 
     * po/pl.po: Update Polish translations.
 
+    * po/pt.po: Update Portuguese translations.
+
 2020-09-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_toolbars.c: Add function documentation:
