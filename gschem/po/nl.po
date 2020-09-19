@@ -794,9 +794,8 @@ msgid "WARNING: Do not translate with snap off!\n"
 msgstr "WAARSCHUWING: Niet verplaatsen met snap uit!\n"
 
 #: gschem/src/iface/i_command.c:4357
-#, fuzzy
 msgid "WARNING: Turning snap on and continuing with translation.\n"
-msgstr "WAARSCHUWING: Zet snap aan en vervolg de verplaatsing.\n"
+msgstr "WAARSCHUWING: Snap inschakelen en doorgaan met vertalen.\n"
 
 #: gschem/src/iface/i_command.c:4363
 msgid "WARNING: Snap grid size is not equal to 100!\n"
@@ -4498,10 +4497,10 @@ msgstr "Herhaal/geen"
 msgid "Pick"
 msgstr "Pak"
 
+# New
 #: gschem/src/x/x_toolbars.c:149 gschem/src/x/x_toolbars.c:195
-#, fuzzy
 msgid "New"
-msgstr "_Nieuw"
+msgstr "Nieuw"
 
 #: gschem/src/x/x_toolbars.c:152 gschem/scheme/gschem/builtins.scm:59
 msgid "Save As"
@@ -4588,31 +4587,27 @@ msgstr "Volgende"
 # Down
 #: gschem/src/x/x_toolbars.c:193 gschem/src/x/x_toolbars.c:198
 #: gschem/src/x/x_toolbars.c:199 gschem/src/x/x_toolbars.c:262
-#, fuzzy
 msgid "Down"
-msgstr "naar beneden"
+msgstr "Omlaag"
 
-# Last Page
+# Last
 #: gschem/src/x/x_toolbars.c:194
-#, fuzzy
 msgid "Last"
-msgstr "Laatste pagina"
+msgstr "Laatste"
 
 # Manage
 #: gschem/src/x/x_toolbars.c:196
-#, fuzzy
 msgid "Manage"
-msgstr "beheren..."
+msgstr "Beheer"
 
 #: gschem/src/x/x_toolbars.c:202
 msgid "Spec"
 msgstr ""
 
-# Rename
+# Netnames
 #: gschem/src/x/x_toolbars.c:203
-#, fuzzy
 msgid "Netnames"
-msgstr "_Verdopen"
+msgstr "Netnamen"
 
 #: gschem/src/x/x_toolbars.c:206 gschem/scheme/gschem/builtins.scm:209
 msgid "Redraw"
@@ -4622,30 +4617,30 @@ msgstr "Hertekenen"
 msgid "Pan"
 msgstr "Schuif"
 
+# Window
 #: gschem/src/x/x_toolbars.c:208
-#, fuzzy
 msgid "Window"
-msgstr "Nieuw Venster"
+msgstr "Venster"
 
+# Selected
 #: gschem/src/x/x_toolbars.c:209
-#, fuzzy
 msgid "Selected"
-msgstr "Selecteer"
+msgstr "Geselecteerd"
 
+# Properties
 #: gschem/src/x/x_toolbars.c:216
-#, fuzzy
 msgid "Properties"
-msgstr "pin woningen"
+msgstr "Eigendommen"
 
 #: gschem/src/x/x_toolbars.c:220 gschem/etc/system-gschemrc.scm:2181
 #: gschem/scheme/gschem/builtins.scm:191
 msgid "Unlock"
 msgstr "Ontgrendel"
 
+# Update
 #: gschem/src/x/x_toolbars.c:221
-#, fuzzy
 msgid "Update"
-msgstr "Update alles"
+msgstr "Bijwerken"
 
 #: gschem/src/x/x_toolbars.c:225
 msgid "Multi"
