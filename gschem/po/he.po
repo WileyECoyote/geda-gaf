@@ -4406,10 +4406,10 @@ msgstr ""
 msgid "Pick"
 msgstr ""
 
+# New
 #: gschem/src/x/x_toolbars.c:149 gschem/src/x/x_toolbars.c:195
-#, fuzzy
 msgid "New"
-msgstr "חיבור"
+msgstr "חָדָשׁ"
 
 # Save As
 #: gschem/src/x/x_toolbars.c:152 gschem/scheme/gschem/builtins.scm:59
@@ -4441,15 +4441,13 @@ msgstr "בצע שוב"
 
 # Deselect => Unfollow
 #: gschem/src/x/x_toolbars.c:167
-#, fuzzy
 msgid "Unselect"
 msgstr "לעקוב"
 
-# Invert Image
+# Invert
 #: gschem/src/x/x_toolbars.c:172
-#, fuzzy
 msgid "Invert"
-msgstr "הפוך את התמונה"
+msgstr "לַהֲפוֹך"
 
 #: gschem/src/x/x_toolbars.c:173
 msgid "Library"
@@ -4461,21 +4459,18 @@ msgstr ""
 
 # Attribute
 #: gschem/src/x/x_toolbars.c:176
-#, fuzzy
 msgid "Attrib"
 msgstr "תְכוּנָה"
 
-# Add Line
+# Line
 #: gschem/src/x/x_toolbars.c:180 gschem/src/x/x_toolbars.c:238
-#, fuzzy
 msgid "Line"
-msgstr "הוסף שורה"
+msgstr "קַו"
 
-# Add circle
+# Circle
 #: gschem/src/x/x_toolbars.c:182
-#, fuzzy
 msgid "Circle"
-msgstr "הוסף מעגל"
+msgstr "מעגל"
 
 #: gschem/src/x/x_toolbars.c:183
 msgid "Arc"
@@ -4486,56 +4481,49 @@ msgstr ""
 msgid "Path"
 msgstr "נָתִיב"
 
-# Write Image
+# Image
 #: gschem/src/x/x_toolbars.c:186
-#, fuzzy
 msgid "Image"
-msgstr "ככתוב תמונה"
+msgstr "תמונה"
 
-# First Page
+# First
 #: gschem/src/x/x_toolbars.c:189
-#, fuzzy
 msgid "First"
-msgstr "עמוד ראשון"
+msgstr "ראשון"
 
 #: gschem/src/x/x_toolbars.c:190
 msgid "Prev"
 msgstr ""
 
-# Next Page
+# Next
 #: gschem/src/x/x_toolbars.c:191
-#, fuzzy
 msgid "Next"
-msgstr "עמוד הבא"
+msgstr "הַבָּא"
 
-# Move Down
+# Down
 #: gschem/src/x/x_toolbars.c:193 gschem/src/x/x_toolbars.c:198
 #: gschem/src/x/x_toolbars.c:199 gschem/src/x/x_toolbars.c:262
-#, fuzzy
 msgid "Down"
-msgstr "לרדת"
+msgstr "מטה"
 
-# Last Page
+# Last
 #: gschem/src/x/x_toolbars.c:194
-#, fuzzy
 msgid "Last"
-msgstr "עמוד אחרון"
+msgstr "אחרון"
 
 # Manage
 #: gschem/src/x/x_toolbars.c:196
-#, fuzzy
 msgid "Manage"
-msgstr "לנהל..."
+msgstr "לנהל"
 
 #: gschem/src/x/x_toolbars.c:202
 msgid "Spec"
 msgstr ""
 
-# Filename
+# Netnames; Network names
 #: gschem/src/x/x_toolbars.c:203
-#, fuzzy
 msgid "Netnames"
-msgstr "שם קובץ"
+msgstr "שמות רשת"
 
 #: gschem/src/x/x_toolbars.c:206 gschem/scheme/gschem/builtins.scm:209
 msgid "Redraw"
@@ -4545,31 +4533,30 @@ msgstr ""
 msgid "Pan"
 msgstr "עבור"
 
+# Window
 #: gschem/src/x/x_toolbars.c:208
-#, fuzzy
 msgid "Window"
-msgstr "חלון חדש"
+msgstr "חַלוֹן"
 
-# Select
+# Selected
 #: gschem/src/x/x_toolbars.c:209
-#, fuzzy
 msgid "Selected"
-msgstr "בחר"
+msgstr "נבחר"
 
+# Properties
 #: gschem/src/x/x_toolbars.c:216
 msgid "Properties"
-msgstr ""
+msgstr "נכסים"
 
 #: gschem/src/x/x_toolbars.c:220 gschem/etc/system-gschemrc.scm:2181
 #: gschem/scheme/gschem/builtins.scm:191
 msgid "Unlock"
 msgstr "שחרר נעילה"
 
-# Update All
+# Update
 #: gschem/src/x/x_toolbars.c:221
-#, fuzzy
 msgid "Update"
-msgstr "עדכן הכל"
+msgstr "עדכון"
 
 #: gschem/src/x/x_toolbars.c:225
 msgid "Multi"
