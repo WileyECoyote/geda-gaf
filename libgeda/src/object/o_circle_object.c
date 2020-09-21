@@ -487,7 +487,7 @@ geda_circle_object_get_nearest_point (const GedaObject *object, int x, int y, in
   return result;
 }
 
-/*!
+/*! O0616
  * \brief get the position of the center point
  * \par Function Description
  *  This function gets the position of the center point of a circle object.
