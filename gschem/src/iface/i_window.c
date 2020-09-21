@@ -30,12 +30,13 @@
 
 #include <geda_debug.h>
 
-/*! \brief Idle Update Editing Dialogs Page Selection change
- *  \par Function Description
- *   Checks for eack of the editing dialog with selection trackers and
- *   updates the selection if the dialog is active.
+/*!
+ * \brief Idle Update Editing Dialogs Page Selection change
+ * \par Function Description
+ *  Checks for eack of the editing dialog with selection trackers and
+ *  updates the selection if the dialog is active.
  *
- *  \param [in] w_current  The GschemToplevel object
+ * \param [in] w_current  The GschemToplevel object
  */
 static bool i_window_idle_notify_dialogs (GschemToplevel *w_current)
 {
@@ -115,18 +116,19 @@ void i_window_close_page (GschemToplevel *w_current)
   i_status_set_state(w_current, SELECT);
 }
 
-/*! \brief get the pointer position of a given GschemToplevel
- *  \par Function Description
+/*!
+ * \brief get the pointer position of a given GschemToplevel
+ * \par Function Description
  *  This function gets the pointer position of the drawing area of the
  *  current workspace <b>GschemToplevel</b>. The flag <b>snapped</b> specifies
  *  whether the pointer position should be snapped to the current grid.
  *
- *  \param [in] w_current  The GschemToplevel object.
- *  \param [in] snapped    An option flag to specify the wished coords
- *  \param [out] wx        snapped/unsnapped world x coordinate
- *  \param [out] wy        snapped/unsnapped world y coordinate
+ * \param [in] w_current  The GschemToplevel object.
+ * \param [in] snapped    An option flag to specify the wished coords
+ * \param [out] wx        snapped/unsnapped world x coordinate
+ * \param [out] wy        snapped/unsnapped world y coordinate
  *
- *  \return Returns TRUE if the pointer position is inside the drawing area.
+ * \return Returns TRUE if the pointer position is inside the drawing area.
  */
 bool i_window_get_pointer_position (GschemToplevel *w_current,
                                     bool snapped, int *wx, int *wy)
@@ -154,13 +156,14 @@ bool i_window_get_pointer_position (GschemToplevel *w_current,
   return TRUE;
 }
 
-/*! \brief Do updates when the Current Page is Changed
- *  \par Function Description
+/*!
+ * \brief Do updates when the Current Page is Changed
+ * \par Function Description
  *  This function calls various functions in order to update the main
  *  window interface and dialogs that are linked to the page selection
  *  and send notifification to SCM hooks that the page has been changed.
  *
- *  \param [in] w_current  The GschemToplevel object
+ * \param [in] w_current  The GschemToplevel object
  */
 void i_window_on_page_changed (GschemToplevel *w_current)
 {
@@ -244,14 +247,15 @@ static bool i_window_idle_zoom_pages(GschemToplevel *w_current)
   return FALSE;
 }
 
-/*! \brief Request idle schecule zoom all page
- *  \par Function Description
- *   This function is called once, after any documents specified on the
- *   command line, sessions or implicit loading such as load-last, have
- *   been loaded and the GUI configured in order to zoom each document
- *   to the extents of the drawings in the almost complete GUI. An idle
- *   in source thread is used here to allow the main-loop to iterate and
- *   gtk/gdk to finish.
+/*!
+ * \brief Request idle schecule zoom all page
+ * \par Function Description
+ *  This function is called once, after any documents specified on the
+ *  command line, sessions or implicit loading such as load-last, have
+ *  been loaded and the GUI configured in order to zoom each document
+ *  to the extents of the drawings in the almost complete GUI. An idle
+ *  in source thread is used here to allow the main-loop to iterate and
+ *  gtk/gdk to finish.
  */
 void i_window_zoom_all_pages(GschemToplevel *w_current)
 {
@@ -405,15 +409,15 @@ void i_window_set_grid_type (GschemToplevel *w_current)
   x_toolbars_set_grid_radio (w_current);
 }
 
-/*! \brief Set Pointer Position Relative to the Drawing Area
- *  \par Function Description
- *   This function sets the pointer position to relative
- *   screen coordinates off the given widget.
+/*!
+ * \brief Set Pointer Position Relative to the Drawing Area
+ * \par Function Description
+ *  This function sets the pointer position to relative
+ *  screen coordinates off the given widget.
  *
- *  \param [in] w_current The GschemToplevel object
- *  \param [in] wx        Integer is abscissa in World units
- *  \param [in] wy        Integer is ordinate in World units
- *
+ * \param [in] w_current The GschemToplevel object
+ * \param [in] wx        Integer is abscissa in World units
+ * \param [in] wy        Integer is ordinate in World units
  */
 void i_window_set_pointer_position (GschemToplevel *w_current, int wx, int wy)
 {
