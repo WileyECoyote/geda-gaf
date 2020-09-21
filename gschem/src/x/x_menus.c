@@ -2280,13 +2280,15 @@ static void x_menu_update_recent_files(void)
      w_current = (GschemToplevel*)iter->data;
      menu_data = g_slist_nth_data (ui_list, w_current->ui_index);
 
-     if (MENU_BAR == NULL)
+     if (MENU_BAR == NULL) {
        continue;
+     }
 
      recent_menu_item = GEDA_OBJECT_GET_DATA (MENU_BAR, "_File/Open Recen_t");
 
-     if (recent_menu_item == NULL)
+     if (recent_menu_item == NULL) {
        return;
+     }
 
      submenu = geda_menu_item_get_submenu_widget((GedaMenuItem*)recent_menu_item);
 
