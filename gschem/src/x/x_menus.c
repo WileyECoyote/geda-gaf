@@ -2343,13 +2343,18 @@ static void x_menu_recent_file_clicked (GedaMenuItem *menuitem, void *menu_data)
    if (fp == NULL) {
       /* Remove this entry from all menus */
       u_log_message("%s \"%s\"\n", _("Could not open file"), filename);
+
       recent_files = g_list_remove(recent_files, filename);
+
       x_menu_update_recent_files();
+
       return;
    }
+
    fclose(fp);
 
    page = x_window_open_page(w_current, filename);
+
    x_window_set_current_page(w_current, page);
 }
 
@@ -2425,6 +2430,7 @@ static void x_menu_recent_file_remove (GedaMenuItem *menuitem, void *user_data)
 
   /* Remove this entry from all menus */
   recent_files = g_list_remove(recent_files, filename);
+
   x_menu_update_recent_files();
 }
 
