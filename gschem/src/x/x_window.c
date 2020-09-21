@@ -906,8 +906,8 @@ Page *x_window_open_page(GschemToplevel *w_current, const char *filename)
                                          w_current->world_right,
                                          w_current->world_top,
                                          w_current->world_bottom);
-    //geda_struct_page_goto (page);
     geda_toplevel_set_current_page(toplevel, page);
+
     return page;
   }
 
