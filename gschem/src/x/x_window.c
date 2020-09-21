@@ -776,10 +776,14 @@ x_window_idle_thread_post_load_file (void *filename)
   return FALSE;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Reset Page Geometry
+ * \par Function Description
+ *  Sets the current viewport for \a page to the current extent of the
+ *  bounds. Helper for:
  *
+ *      i_window_idle_zoom_pages
+ *      x_window_open_page
  */
 void x_window_reset_page_geometry(GschemToplevel *w_current, Page *page)
 {
