@@ -1467,7 +1467,7 @@ void x_window_add_toolbar_toggle(GtkWidget *widget, GschemToplevel *w_current)
 /*!
  * \brief View toggle Attribute toolbar
  * \par Function Description
- *  This function toggles the visibility of the Attribute toobar.
+ *  This function toggles the visibility of the Attribute toolbar.
  *  Note: the function actually toggles visibility of the handlebox
  *  containing the toolbar.
  */
