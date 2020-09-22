@@ -1488,7 +1488,7 @@ void x_window_attribute_toolbar_toggle(GtkWidget *widget, GschemToplevel *w_curr
 /*!
  * \brief View toggle Grid/Snap toolbar
  * \par Function Description
- *  This function toggles the visibility of the Grid/Snap toobar.
+ *  This function toggles the visibility of the Grid/Snap toolbar.
  *  Note: the function actually toggles visibility of the handlebox
  *  containing the toolbar.
  */
