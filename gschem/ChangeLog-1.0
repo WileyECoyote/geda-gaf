@@ -1,5 +1,12 @@
 2020-09-22 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/x_settings.h: Enumerate AutoPan.
+
+    * include/x_settings_dialog.h: Add AutoPanSwitch to DialogStrings.
+
+    * src/x/x_settings_dialog.c: Add switch for auto_pan option on the Windows
+      tab.
+
     * templates/schematic.sch.in: Add a titleblock to the template schematic.
 
 2020-09-21 Wiley E. Hill <wileyhill@gmail.com>

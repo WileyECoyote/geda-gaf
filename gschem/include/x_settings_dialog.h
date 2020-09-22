@@ -250,6 +250,7 @@ WidgetStringData DialogStrings[] = {
 
     /* Strings for Switch Controls */
         { "AutoLoadLastSwitch",         "    Auto Last:",	"Enable or disable automatic loading of the last edited schematic."},
+        { "AutoPanSwitch",              "Auto Pan:",      "Controls if ."},
         { "AutoSaveSwitch",             "Auto Save:",		"Controls if a backup copy is made every interval. Note that the backup copy is made when you make some change to the schematic and there were more than \"interval\" seconds from the last auto-save."},
         { "ClassicWheelSwitch",         "Classic Wheel:",	"Controls binding of the scroll wheel. With no modifier keys, the gschem default \"Classic\" style  maps scrolling to zoom, + CTRL -> x-axis pan, + SHIFT -> y-axis pan. GTK style changes the behavior to be more like other GTK applications, no modifier -> y-axis pan, + CTRL -> zoom, + SHIFT -> x-axis pan"},
         { "ConsolidateNets",            "Consolidate:",	        "Controls if the net consolidation code is used when schematics are read in written to disk and when nets are being drawn (does not consolidate when things are being copied or moved yet). Net consolidation is the connection of nets which can be combined into one. Note: scrollbars must be enable for this to work properly."},

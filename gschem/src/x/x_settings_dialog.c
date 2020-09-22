@@ -343,6 +343,7 @@ static GtkWidget *ZoomGainSpin;
 /* The Switches */
 static GtkWidget *AutoLoadLastSwitch=NULL;
 static GtkWidget *AutoSaveSwitch=NULL;
+static GtkWidget *AutoPanSwitch=NULL;
 static GtkWidget *ClassicWheelSwitch=NULL;
 static GtkWidget *ConsolidateNetsSwitch=NULL;
 static GtkWidget *ContinuePlaceSwitch=NULL;
@@ -2014,6 +2015,7 @@ static void switch_responder(GtkWidget *widget, int response,  ControlID *Contro
 
    switch ( response ) {
    case AutoLoadLast:
+   case AutoPan:
      break;
 
    case AutoSave:
@@ -2243,6 +2245,7 @@ bool load_settings_dialog (GschemToplevel *w_current)
 /* The Switches Alphabetically (31) */
 
   SetSwitch(AutoLoadLast, auto_load_last);
+  SetSwitch(AutoPan, w_current->auto_pan);
   SetSwitch(AutoSave, geda_toplevel_get_auto_save_interval(toplevel));
   SetSwitch(EnableUndo, w_current->undo_control);
   SetSwitch(ClassicWheel, w_current->scroll_wheel);
@@ -2557,6 +2560,7 @@ GtkWidget *create_settings_dialog (GschemToplevel *w_current)
          GTK_SWITCH(Scrolling_hbox, ScrollBars,        DIALOG_H_SPACING + 10, TRUE);
          GTK_SWITCH(Scrolling_hbox, ScrollBarsVisible, DIALOG_H_SPACING + 10, TRUE);
          GTK_SWITCH(Scrolling_hbox, DelayScrolling,    DIALOG_H_SPACING + 10, FALSE);
+         GTK_SWITCH(Scrolling_hbox, AutoPan,           DIALOG_H_SPACING + 10, FALSE);
    GTK_END_TAB(WindowPref);
   } /*** END Window TAB Contents ***/
 
@@ -2888,8 +2892,9 @@ void GatherSettings(GschemToplevel *w_current) {
     g_free(tmpstr);
   }
 
-/* The Switches Alphabetically (31) */
+/* The Switches Alphabetically (32) */
              auto_load_last             = GET_SWITCH_STATE (AutoLoadLastSwitch);
+  w_current->auto_pan                   = GET_SWITCH_STATE (AutoPanSwitch);
   w_current->bus_ripper_rotation        = GET_SWITCH_STATE (RipperRotationSwitch);
   w_current->bus_ripper_type            = GET_SWITCH_STATE (RipperTypeSwitch);
   w_current->continue_component_place   = GET_SWITCH_STATE (ContinuePlaceSwitch);

@@ -278,6 +278,7 @@ typedef enum {
 
 /* Text for Switch Controls */
         AutoLoadLast,
+        AutoPan,
         AutoSave,
         ClassicWheel,
         ConsolidateNets,
