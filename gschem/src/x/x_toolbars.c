@@ -1717,7 +1717,7 @@ x_toolbars_init_bottom(GschemToplevel *w_current, GtkWidget *parent_container)
   GSCHEM_TOOLBAR_BUTTON (Attribute, etb_view_nets);
   GSCHEM_TOOLBAR_BUTTON (Attribute, etb_show_inherited);
 
-  gtk_toolbar_append_space (GTK_TOOLBAR(Attribute_Toolbar));
+  geda_toolbar_append_space (GEDA_TOOLBAR(Attribute_Toolbar));
 
   GSCHEM_TOOLBAR_BUTTON(Attribute, etb_find_text);
   GSCHEM_TOOLBAR_BUTTON(Attribute, etb_hide_text);
