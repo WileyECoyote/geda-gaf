@@ -397,11 +397,14 @@ void i_window_set_cursor(GschemToplevel *w_current, int cursor_id)
   }
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Set the Type of Grid used in the Drawing Area
+ * \par Function Description
+ *  This function is a wrapper for x_grid_configure_variables and
+ *  x_toolbars_set_grid_radio, which updates the grid parameters
+ *  and the toolbar buttons.
  *
- *  \param [in] w_current   The GschemToplevel object
+ * \param [in] w_current   The GschemToplevel object
  */
 void i_window_set_grid_type (GschemToplevel *w_current)
 {

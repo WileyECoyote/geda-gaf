@@ -4,6 +4,10 @@
 
     * include/x_settings_dialog.h: Add AutoPanSwitch to DialogStrings.
 
+    * src/iface/i_window.c: Add function documentation:
+
+        * i_window_set_grid_type
+
     * src/x/x_settings.c: Revise configure_dialog_response to update the
       AUTO_PAN_TOGGLE menu item.
 
