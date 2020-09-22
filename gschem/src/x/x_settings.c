@@ -194,6 +194,7 @@ void configure_dialog_response(GtkWidget *Dialog, int response,
   x_status_bar_update_third_mouse(w_current);
 
   /* Update toggle option in menu, not worth checking for changes */
+  x_menu_set_togglable(w_current, AUTO_PAN_TOGGLE, w_current->auto_pan);
   x_menu_set_togglable(w_current, DRAG_CAN_MOVE,   w_current->drag_can_move);
   x_menu_set_togglable(w_current, MAGNETIC_TOGGLE, w_current->magnetic_net_mode);
   x_menu_set_togglable(w_current, OUTLINE_TOGGLE,  w_current->action_feedback_mode);

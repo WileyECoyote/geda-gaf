@@ -4,6 +4,9 @@
 
     * include/x_settings_dialog.h: Add AutoPanSwitch to DialogStrings.
 
+    * src/x/x_settings.c: Revise configure_dialog_response to update the
+      AUTO_PAN_TOGGLE menu item.
+
     * src/x/x_settings_dialog.c: Add switch for auto_pan option on the Windows
       tab.
 
