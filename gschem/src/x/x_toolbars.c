@@ -2031,12 +2031,15 @@ void x_toolbars_set_grid_radio (GschemToplevel *w_current)
       case(GRID_NONE):
         target = (GtkToggleButton*) bar_widgets->toolbar_off;
         break;
+
       case(GRID_DOTS):
         target = (GtkToggleButton*) bar_widgets->toolbar_dot;
         break;
+
       case(GRID_MESH):
         target = (GtkToggleButton*) bar_widgets->toolbar_mesh;
         break;
+
       default:
         break;
     }
