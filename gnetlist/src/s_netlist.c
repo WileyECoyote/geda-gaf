@@ -107,10 +107,12 @@ void s_netlist_destroy_or_report(NETLIST *netlist, GedaList *strings)
   }
 }
 
-/*! \todo Finish function documentation
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Retrieve Object with given uref from Netlist
+ * \par Function Description
+ *  Iterates \a netlist and returns the object with matching \a uref
+ *  or NULL if uref was not found. Also returns NULL if either pointer
+ *  argument is NULL.
  */
 GedaObject *s_netlist_find_object (NETLIST *netlist, const char *uref)
 {
