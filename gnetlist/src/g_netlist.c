@@ -361,6 +361,7 @@ SCM g_get_all_connections(SCM scm_netname)
   }
 
   free (wanted_net_name);
+
   return connlist;
 }
 
@@ -598,6 +599,7 @@ SCM g_get_all_package_attributes(SCM scm_uref, SCM scm_wanted_attrib)
         GEDA_FREE (value);
       }
     }
+
     nl_current = nl_current->next;
   }
 
@@ -852,7 +854,9 @@ SCM g_get_attribute_by_pinnumber(SCM scm_uref, SCM scm_pin,
       }
     }
   }
+
   scm_dynwind_end ();
+
   return (scm_return_value);
 }
 
