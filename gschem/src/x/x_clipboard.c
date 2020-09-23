@@ -37,6 +37,11 @@
  *  to and from the system clipboard using Gtk library routines.
  */
 
+struct query_usable {
+  void (*callback) (int, void *);
+  void *userdata;
+};
+
 /*!
  * \internal Anonymous static mutex clip_got_answer_lock
  * \par
@@ -65,11 +70,6 @@ static bool got_an_answer()
 
   return ret_val;
 }
-
-struct query_usable {
-  void (*callback) (int, void *);
-  void *userdata;
-};
 
 /*!
  * \internal Callback System Clipboard Change Ownership.
