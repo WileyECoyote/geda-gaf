@@ -1,3 +1,7 @@
+2020-09-23 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/s_netlist.c: Rename nl_current -> nl_iter in s_netlist_find_object.
+
 2020-06-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * docs/gnetlist.1.in: Add gnetlist(5) to SEE ALSO section.

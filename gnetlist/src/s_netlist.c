@@ -116,23 +116,23 @@ GedaObject *s_netlist_find_object (NETLIST *netlist, const char *uref)
 {
   if (netlist && uref) {
 
-    NETLIST    *nl_current;
-    GedaObject *object = NULL;
-
-    nl_current = netlist;
+    NETLIST    *nl_iter = netlist;
+    GedaObject *object  = NULL;
 
     /* Loop through the net list */
-    while (nl_current != NULL) {
+    while (nl_iter != NULL) {
 
-      if (nl_current->component_uref) {
+      if (nl_iter->component_uref) {
 
-        if (strcmp(nl_current->component_uref, uref) == 0) {
-          object = nl_current->object_ptr;
+        if (strcmp(nl_iter->component_uref, uref) == 0) {
+          object = nl_iter->object_ptr;
           break;
         }
       }
-      nl_current = nl_current->next;
+
+      nl_iter = nl_iter->next;
     }
+
     return object;
   }
 
