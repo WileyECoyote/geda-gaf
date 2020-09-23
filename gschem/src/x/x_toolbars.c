@@ -1754,7 +1754,7 @@ x_toolbars_init_bottom(GschemToplevel *w_current, GtkWidget *parent_container)
   TOOLBAR_GSCHEM_RADIO( GripSnap, BarRadio(mesh),  BarRadio(dot),   etb_grid_mesh,   w_current);
   TOOLBAR_GSCHEM_RADIO( GripSnap, BarRadio(off),   BarRadio(mesh),  etb_grid_off,    w_current);
 
-  gtk_toolbar_append_space (GTK_TOOLBAR(GripSnap_Toolbar));
+  geda_toolbar_append_space (GEDA_TOOLBAR(GripSnap_Toolbar));
 
   GSCHEM_TOOLBAR_BUTTON(GripSnap, etb_snap_set);
   GSCHEM_TOOLBAR_BUTTON(GripSnap, etb_snap_up);
