@@ -1,3 +1,8 @@
+2020-09-23 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/geda/geda_line.c: Revise goofy calculation of expansion in
+      geda_line_bounds.
+
 2020-09-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/test_arc_object.c: Reorganize checks with NULL object in
