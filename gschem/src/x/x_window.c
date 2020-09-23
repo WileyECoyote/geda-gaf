@@ -1505,7 +1505,7 @@ void x_window_gridsnap_toolbar_toggle(GtkWidget *widget, GschemToplevel *w_curre
 /*!
  * \brief View toggle Edit toolbar
  * \par Function Description
- *  This function toggles the visibility of the Edit toobar.
+ *  This function toggles the visibility of the Edit toolbar.
  *  Note the function actually toggle visibility of the handlebox
  *  containing the toolbar.
  */
