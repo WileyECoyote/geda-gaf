@@ -2045,7 +2045,7 @@ void x_toolbars_set_grid_radio (GschemToplevel *w_current)
     }
 
     if (GTK_IS_TOGGLE_BUTTON(target)) {
-      /* if button is not active then action was not initiated by the toolbar */
+      /* if button is not active then the action was not initiated by the toolbar */
       if (!target->active) {
         g_signal_handlers_block_by_func (target, x_toolbars_execute_radio, w_current);
         SetToggleState (target, TRUE);
