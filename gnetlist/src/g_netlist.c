@@ -834,7 +834,7 @@ SCM g_get_attribute_by_pinnumber(SCM scm_uref, SCM scm_pin,
 
         if (pin_object) {
 
-          /* only look for the first occurance of wanted_attrib */
+          /* Only look for the first occurance of wanted_attrib */
           return_value = geda_attrib_search_object_by_name (pin_object,
                                                             wanted_attrib, 0);
 
