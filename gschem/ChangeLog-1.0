@@ -1,7 +1,8 @@
 2020-09-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_confirm_close.c: Revise confirm_close_dialog_constructor; wait
-      until widgets are assembled before showing.
+      until widgets are assembled before showing. Revise close confirmation
+      message.
 
     * src/x/x_settings_dialog.c: Add missing mnemonic to the save button.
 

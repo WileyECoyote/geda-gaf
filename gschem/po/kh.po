@@ -1764,7 +1764,7 @@ msgstr "chreusa krongkar del anak chng roksaatouk:"
 
 #: gschem/src/x/x_confirm_close.c:510
 #, c-format
-msgid "Save the changes to schematic \"%s\" before closing?"
+msgid "Save changes to the schematic \"%s\" before closing?"
 msgstr "roksaatouk kar phlasa btau rtow schematic \"%s\" moun pel bet?"
 
 #: gschem/src/x/x_confirm_close.c:517

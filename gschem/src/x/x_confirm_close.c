@@ -507,7 +507,7 @@ confirm_close_dialog_constructor (GedaType type,
 
     page_name = get_page_name (GTK_TREE_MODEL (dialog->store_unsaved_pages), NULL);
     tmp = geda_sprintf (
-      _("Save the changes to schematic \"%s\" before closing?"), page_name);
+      _("Save changes to the schematic \"%s\" before closing?"), page_name);
 
     GEDA_FREE (page_name);
   }
