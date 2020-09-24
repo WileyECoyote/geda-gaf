@@ -575,11 +575,11 @@ confirm_close_dialog_constructor (GedaType type,
 
   gtk_dialog_set_default_response (GTK_DIALOG (dialog), GEDA_RESPONSE_YES);
 
-  /* all done, let's show the contents of the dialog */
-  gtk_widget_show_all (hbox);
-
   gtk_box_pack_start (GTK_BOX (GTK_DIALOG (dialog)->vbox), hbox,
                       TRUE, TRUE, 0);
+
+  /* all done, let's show the contents of the dialog */
+  gtk_widget_show_all (hbox);
 
   return object;
 }

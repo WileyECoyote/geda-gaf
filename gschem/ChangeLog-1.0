@@ -1,3 +1,8 @@
+2020-09-24 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_confirm_close.c: Revise confirm_close_dialog_constructor; wait
+      until widgets are assembled before showing.
+
 2020-09-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/x_settings.h: Enumerate AutoPan.
