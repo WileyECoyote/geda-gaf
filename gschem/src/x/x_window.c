@@ -1522,7 +1522,7 @@ void x_window_edit_toolbar_toggle(GtkWidget *widget, GschemToplevel *w_current)
 /*!
  * \brief View toggle Page toolbar
  * \par Function Description
- *  This function toggles the visibility of the Page toobar.
+ *  This function toggles the visibility of the Page toolbar.
  *  Note the function actually toggle visibility of the handlebox
  *  containing the toolbar.
  */
