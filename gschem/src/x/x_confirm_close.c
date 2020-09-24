@@ -559,7 +559,7 @@ confirm_close_dialog_constructor (GedaType type,
   gtk_box_pack_start (GTK_BOX (hbox), vbox, TRUE, TRUE, 0);
 
 
-  /* add buttons to dialog action area */
+  /* Add buttons to dialog action area */
   gtk_dialog_add_buttons (GTK_DIALOG (dialog),
                           _("Close without saving"),  GEDA_RESPONSE_NO,
                           GTK_STOCK_CANCEL,           GEDA_RESPONSE_CANCEL,
