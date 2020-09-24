@@ -2718,7 +2718,7 @@ GtkWidget *create_settings_dialog (GschemToplevel *w_current)
   gtk_widget_set_can_default(CancelButt, TRUE);
   gtk_widget_set_tooltip_text (CancelButt, _("Close without changing any settings"));
 
-  SaveButt = gtk_button_new_with_mnemonic (_("Save"));
+  SaveButt = gtk_button_new_with_mnemonic (_("_Save"));
   g_object_set (SaveButt, "visible", TRUE, NULL);
   gtk_dialog_add_action_widget (GTK_DIALOG (ThisDialog), SaveButt, GEDA_RESPONSE_APPLY);
   gtk_widget_set_can_default(SaveButt, TRUE);
