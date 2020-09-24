@@ -1,3 +1,9 @@
+2020-24 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_menu_shell.c: Revise conditionals in geda_menu_shell_
+      button_press to only reference the parent when there is a menu item
+      associated with the event, otherwise there is no parent.
+
 2020-09-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_toolbar.c: Replace call to gtk_toolbar_append_element
