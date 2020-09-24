@@ -1,3 +1,7 @@
+2020-09-24 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/s_netlist.c: Add documentation for s_netlist_length.
+
 2020-09-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/s_netlist.c: Rename nl_current -> nl_iter in s_netlist_find_object

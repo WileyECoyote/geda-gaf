@@ -141,10 +141,10 @@ GedaObject *s_netlist_find_object (NETLIST *netlist, const char *uref)
   return NULL;
 }
 
-/*! \todo Finish function documentation
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Get the length of a Net List
+ * \par Function Description
+ *  Returns the count of items in \a netlist.
  */
 int s_netlist_length (NETLIST *netlist)
 {
