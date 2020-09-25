@@ -429,6 +429,7 @@ confirm_close_dialog_constructor (GedaType type,
   GObject *object;
   ConfirmCloseDialog *dialog;
   GtkWidget *hbox, *image, *vbox, *label;
+  GtkWidget *discard_butt, *cancel_butt, *save_butt;
   GtkTreeIter iter;
   bool ret, single_page;
   char *tmp, *str;
@@ -560,11 +561,25 @@ confirm_close_dialog_constructor (GedaType type,
 
 
   /* Add buttons to dialog action area */
-  gtk_dialog_add_buttons (GTK_DIALOG (dialog),
-                          _("Close without saving"),  GEDA_RESPONSE_NO,
-                          GTK_STOCK_CANCEL,           GEDA_RESPONSE_CANCEL,
-                          GTK_STOCK_SAVE,             GEDA_RESPONSE_YES,
-                          NULL);
+
+  discard_butt = gtk_button_new_with_mnemonic ("_Discard");
+  g_object_set (discard_butt, "visible", TRUE, NULL);
+  gtk_dialog_add_action_widget (GTK_DIALOG (dialog), discard_butt, GEDA_RESPONSE_NO);
+  gtk_widget_set_can_default(discard_butt, TRUE);
+  gtk_widget_set_tooltip_text (discard_butt, _("Close without saving"));
+
+  cancel_butt = gtk_button_new_from_stock ("gtk-cancel");
+  g_object_set (cancel_butt, "visible", TRUE, NULL);
+  gtk_dialog_add_action_widget (GTK_DIALOG (dialog), cancel_butt, GEDA_RESPONSE_CANCEL);
+  gtk_widget_set_can_default(cancel_butt, TRUE);
+  gtk_widget_set_tooltip_text (cancel_butt, _("Cancel closing and return to editor"));
+
+  save_butt = gtk_button_new_from_stock ("gtk-save");
+  g_object_set (save_butt, "visible", TRUE, NULL);
+  gtk_dialog_add_action_widget (GTK_DIALOG (dialog), save_butt, GEDA_RESPONSE_YES);
+  gtk_widget_set_can_default(save_butt, TRUE);
+  gtk_widget_set_tooltip_text (save_butt, _("Save changes"));
+
 
   /* Set the alternative button order (ok, cancel, help) for other systems */
   gtk_dialog_set_alternative_button_order(GTK_DIALOG(dialog),

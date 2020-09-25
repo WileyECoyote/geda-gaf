@@ -1,3 +1,9 @@
+2020-09-25 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_confirm_close.c: Revise confirm_close_dialog_constructor to
+      create button for the action area seperately so that tooltips can be
+      added.
+
 2020-09-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_confirm_close.c: Revise confirm_close_dialog_constructor; wait
