@@ -1,3 +1,7 @@
+2020-09-25 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x_toolbars.c: Replace gtk_toolbar_set_style with geda_toolbar_set_style.
+
 2020-09-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x_toolbars.c: Utilize geda_toolbar_append_space in x_toolbars_init.
