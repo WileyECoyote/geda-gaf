@@ -289,7 +289,7 @@ static void toolbar_icons_only( void )
 static void toolbar_text_only( void )
 {
   gtk_toolbar_set_style (GTK_TOOLBAR (Standard_Toolbar), GTK_TOOLBAR_TEXT);
-  gtk_toolbar_set_style (GTK_TOOLBAR (Attribute_Toolbar), GTK_TOOLBAR_TEXT);
+  geda_toolbar_set_style (GTK_TOOLBAR (Attribute_Toolbar), GTK_TOOLBAR_TEXT);
 }
 
 /*!
