@@ -8,6 +8,8 @@
 
     * po/es.po: Update Spanish translations.
 
+    * po/fa.po: Update Persian translations.
+
 2020-09-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_confirm_close.c: Revise confirm_close_dialog_constructor to

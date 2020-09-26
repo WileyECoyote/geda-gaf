@@ -1853,11 +1853,10 @@ msgstr "بدون صرفه جویی در بست"
 msgid "Cancel closing and return to editor"
 msgstr ""
 
-# Save Page
+# Save changes
 #: gschem/src/x/x_confirm_close.c:581
-#, fuzzy
 msgid "Save changes"
-msgstr "صفحه را ذخیره کن"
+msgstr "ذخیره تغییرات"
 
 # unsaved page
 #: gschem/src/x/x_confirm_close.c:631
@@ -4526,49 +4525,47 @@ msgstr "Rotate 90 Mode"
 
 # Image
 #: gschem/src/x/x_toolbars.c:186
-#, fuzzy
 msgid "Image"
-msgstr "نوشتن تصویر"
+msgstr "تصویر"
 
+# First
 #: gschem/src/x/x_toolbars.c:189
-#, fuzzy
 msgid "First"
-msgstr "Close Page"
+msgstr "اولین"
 
 #: gschem/src/x/x_toolbars.c:190
 msgid "Prev"
 msgstr ""
 
+# Next
 #: gschem/src/x/x_toolbars.c:191
-#, fuzzy
 msgid "Next"
-msgstr "New Page"
+msgstr "بعد"
 
+# Down
 #: gschem/src/x/x_toolbars.c:193 gschem/src/x/x_toolbars.c:198
 #: gschem/src/x/x_toolbars.c:199 gschem/src/x/x_toolbars.c:264
-#, fuzzy
 msgid "Down"
-msgstr "حرکت به پایین"
+msgstr "پایین"
 
+# Last
 #: gschem/src/x/x_toolbars.c:194
-#, fuzzy
 msgid "Last"
-msgstr "New Page"
+msgstr "آخر"
 
+# Manage
 #: gschem/src/x/x_toolbars.c:196
-#, fuzzy
 msgid "Manage"
-msgstr "Open Page..."
+msgstr "مدیریت کنید"
 
 #: gschem/src/x/x_toolbars.c:202
 msgid "Spec"
 msgstr ""
 
-# Filename
+# Netnames => Network names
 #: gschem/src/x/x_toolbars.c:203
-#, fuzzy
 msgid "Netnames"
-msgstr "نام فایل"
+msgstr "نامهای شبکه"
 
 # Redraw
 #: gschem/src/x/x_toolbars.c:206 gschem/scheme/gschem/builtins.scm:209
@@ -4580,16 +4577,15 @@ msgstr "مجددا،"
 msgid "Pan"
 msgstr "ماهی تابه"
 
-# New Window
+# Window
 #: gschem/src/x/x_toolbars.c:208
-#, fuzzy
 msgid "Window"
-msgstr "پنجره جدید"
+msgstr "پنجره"
 
+# Selected
 #: gschem/src/x/x_toolbars.c:209
-#, fuzzy
 msgid "Selected"
-msgstr "Select Mode"
+msgstr "انتخاب شد"
 
 #: gschem/src/x/x_toolbars.c:216
 msgid "Properties"
@@ -4600,19 +4596,19 @@ msgstr ""
 msgid "Unlock"
 msgstr "Unlock"
 
+# Update
 #: gschem/src/x/x_toolbars.c:221
-#, fuzzy
 msgid "Update"
-msgstr "Save All"
+msgstr "به روز رسانی"
 
 #: gschem/src/x/x_toolbars.c:225
 msgid "Multi"
 msgstr ""
 
+# Color
 #: gschem/src/x/x_toolbars.c:236
-#, fuzzy
 msgid "Color"
-msgstr "رنگ:"
+msgstr "رنگ"
 
 #: gschem/src/x/x_toolbars.c:238
 #, fuzzy
