@@ -1756,10 +1756,10 @@ msgstr "Fermer sans enregistrer"
 msgid "Cancel closing and return to editor"
 msgstr ""
 
+# Save changes
 #: gschem/src/x/x_confirm_close.c:581
-#, fuzzy
 msgid "Save changes"
-msgstr "Enregistrer la page"
+msgstr "Sauvegarder les modifications"
 
 # unsaved page
 #: gschem/src/x/x_confirm_close.c:631
@@ -4491,9 +4491,8 @@ msgid "Spec"
 msgstr ""
 
 #: gschem/src/x/x_toolbars.c:203
-#, fuzzy
 msgid "Netnames"
-msgstr "Nom de fichier"
+msgstr "Noms de réseau"
 
 #: gschem/src/x/x_toolbars.c:206 gschem/scheme/gschem/builtins.scm:209
 msgid "Redraw"
@@ -4503,28 +4502,27 @@ msgstr "_Redessiner"
 msgid "Pan"
 msgstr "Panoramique"
 
+# Window
 #: gschem/src/x/x_toolbars.c:208
-#, fuzzy
 msgid "Window"
-msgstr "Nouvelle fenêtre"
+msgstr "fenêtre"
 
+# Selected
 #: gschem/src/x/x_toolbars.c:209
-#, fuzzy
 msgid "Selected"
-msgstr "Sélectionner"
+msgstr "Choisie"
 
 #: gschem/src/x/x_toolbars.c:216
-#, fuzzy
 msgid "Properties"
-msgstr "Editer les propriétés du texte"
+msgstr "Propriétés"
 
 #: gschem/src/x/x_toolbars.c:220 gschem/etc/system-gschemrc.scm:2185
 #: gschem/scheme/gschem/builtins.scm:191
 msgid "Unlock"
 msgstr "Déverrouiller"
 
+# Update
 #: gschem/src/x/x_toolbars.c:221
-#, fuzzy
 msgid "Update"
 msgstr "Mettre à jour"
 
@@ -4533,9 +4531,8 @@ msgid "Multi"
 msgstr ""
 
 #: gschem/src/x/x_toolbars.c:236
-#, fuzzy
 msgid "Color"
-msgstr "_Couleur:"
+msgstr "Couleur"
 
 #: gschem/src/x/x_toolbars.c:238
 #, fuzzy

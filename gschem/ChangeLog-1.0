@@ -12,6 +12,8 @@
 
     * po/fi.po: Update Finnish translations.
 
+    * po/fr.po: Update French translations.
+
 2020-09-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_confirm_close.c: Revise confirm_close_dialog_constructor to
