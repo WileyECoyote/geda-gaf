@@ -2,6 +2,8 @@
 
     * po/af.po: Update Afrikaans translations.
 
+    * po/ar.po: Update Arabic translations.
+
 2020-09-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_confirm_close.c: Revise confirm_close_dialog_constructor to

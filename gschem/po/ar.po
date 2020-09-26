@@ -1796,10 +1796,10 @@ msgstr "إغلاق بدون حفظ"
 msgid "Cancel closing and return to editor"
 msgstr ""
 
+# Save changes; ahfuzu altaghyirat
 #: gschem/src/x/x_confirm_close.c:581
-#, fuzzy
 msgid "Save changes"
-msgstr "احفظ الصفحة"
+msgstr "احفظ التغييرات"
 
 # unsaved page
 #: gschem/src/x/x_confirm_close.c:631
@@ -1846,11 +1846,10 @@ msgstr ""
 msgid "** Invalid UTF-8 in log message. See stderr or gschem.log.\n"
 msgstr "‏﻿** UTF-8 غير صالح في رسالة سجل. راجع stderr أو gschem.log.\n"
 
-# Console terminal
+# Console window
 #: gschem/src/x/x_console.c:491
-#, fuzzy
 msgid "Console"
-msgstr "gEDA وحدة التحكم الطرفية"
+msgstr "نافذة وحدة التحكم"
 
 # Console terminal
 #: gschem/src/x/x_console.c:657
@@ -4553,39 +4552,39 @@ msgstr "أ_عد الرسم"
 msgid "Pan"
 msgstr "انتقل"
 
+# Window; nafidhat 'aw shibak
 #: gschem/src/x/x_toolbars.c:208
-#, fuzzy
 msgid "Window"
-msgstr "نافذة جديدة"
+msgstr "نافذة او شباك"
 
+# Selected; almuhadad
 #: gschem/src/x/x_toolbars.c:209
-#, fuzzy
 msgid "Selected"
-msgstr "انتق"
+msgstr "المحدد"
 
+# Properties; alkhasayis
 #: gschem/src/x/x_toolbars.c:216
-#, fuzzy
 msgid "Properties"
-msgstr "حرّر خصائص النص"
+msgstr "الخصائص"
 
 #: gschem/src/x/x_toolbars.c:220 gschem/etc/system-gschemrc.scm:2185
 #: gschem/scheme/gschem/builtins.scm:191
 msgid "Unlock"
 msgstr "فكّ القفل"
 
+# Update
 #: gschem/src/x/x_toolbars.c:221
-#, fuzzy
 msgid "Update"
-msgstr "حدّث"
+msgstr "تحديث"
 
 #: gschem/src/x/x_toolbars.c:225
 msgid "Multi"
 msgstr ""
 
+# Color
 #: gschem/src/x/x_toolbars.c:236
-#, fuzzy
 msgid "Color"
-msgstr "لون:"
+msgstr "لون"
 
 #: gschem/src/x/x_toolbars.c:238
 #, fuzzy
