@@ -1771,10 +1771,10 @@ msgstr "Cerrar sin guardar"
 msgid "Cancel closing and return to editor"
 msgstr ""
 
+# Save changes
 #: gschem/src/x/x_confirm_close.c:581
-#, fuzzy
 msgid "Save changes"
-msgstr "Guardar página"
+msgstr "Guardar cambios"
 
 # unsaved page
 #: gschem/src/x/x_confirm_close.c:631
@@ -4495,27 +4495,24 @@ msgid "Pan"
 msgstr "Centrar respecto al cursor"
 
 #: gschem/src/x/x_toolbars.c:208
-#, fuzzy
 msgid "Window"
-msgstr "Nueva ventana"
+msgstr "Ventana"
 
 #: gschem/src/x/x_toolbars.c:209
-#, fuzzy
 msgid "Selected"
-msgstr "Seleccionar"
+msgstr "Seleccionada"
 
 #: gschem/src/x/x_toolbars.c:216
-#, fuzzy
 msgid "Properties"
-msgstr "Editar las propiedades del texto"
+msgstr "Propiedades"
 
 #: gschem/src/x/x_toolbars.c:220 gschem/etc/system-gschemrc.scm:2185
 #: gschem/scheme/gschem/builtins.scm:191
 msgid "Unlock"
 msgstr "Desfijar"
 
+# Update
 #: gschem/src/x/x_toolbars.c:221
-#, fuzzy
 msgid "Update"
 msgstr "Actualizar"
 
