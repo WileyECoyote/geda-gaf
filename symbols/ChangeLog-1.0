@@ -4,7 +4,10 @@
 
     * passive/resistor/resistor-1.sym: Remove author attribute.
 
-    * vishay/src/nmosfet-12.sym: Update sequence of attributes.
+    * vishay/src/*.sym: Update sequence of attributes.
+
+            * vishay/src/nmosfet-12.sym
+            * vishay/src/pmosfet-12.sym
 
 2020-08-30 Wiley E. Hill <wileyhill@gmail.com>
 
