@@ -4,6 +4,8 @@
 
     * passive/resistor/resistor-1.sym: Remove author attribute.
 
+    * vishay/src/nmosfet-12.sym: Update sequence of attributes.
+
 2020-08-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * linear/reference/AD580-1.sym: Add new symbol; precision 2.5 Volt reference,
