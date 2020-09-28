@@ -1,5 +1,8 @@
 2020-09-28 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/gschem_macros.h: Relocate function styled macros from
+      gschem_globals.h.
+
     * src/iface/i_command.c: Add function documentation:
 
         * set_last_command

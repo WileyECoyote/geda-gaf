@@ -54,6 +54,10 @@
 /* Grips Related */
 #define GET_GRIP_SIZE(w)           gschem_toplevel_get_grips_size(w)
 
+/* Macros used to set and unset the toplevel inside_action flag */
+#define i_status_action_start(w) i_status_update_action_state (w, TRUE);
+#define i_status_action_stop(w) i_status_update_action_state (w, FALSE);
+
 /* Utility Macros for Message Dialogs */
 #define message_dialog(text, type) \
         x_dialog_show_message(text, type, NULL);

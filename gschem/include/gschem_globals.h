@@ -209,8 +209,6 @@ typedef enum { ZOOM_OUT_DIRECTIVE,
 typedef enum {UNDO_NONE, UNDO_DISK, UNDO_MEMORY} EID_UNDO_TYPE;
 
 /* define some convenience macros (helps reduce lines lengths) */
-#define i_status_action_start(w) i_status_update_action_state (w, TRUE);
-#define i_status_action_stop(w) i_status_update_action_state (w, FALSE);
 
 #define CairoRenderer w_current->cairo_renderer
 
