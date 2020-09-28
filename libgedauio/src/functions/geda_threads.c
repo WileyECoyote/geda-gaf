@@ -89,6 +89,10 @@ geda_main_context_invoke_full (GMainContext *context, int priority, GSourceFunc 
   }
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ */
 void
 geda_main_context_invoke (GMainContext *context, GSourceFunc function, void *data)
 {
