@@ -81,6 +81,7 @@ geda_main_context_invoke_full (GMainContext *context, int priority, GSourceFunc 
       GSource *source;
 
       source = g_idle_source_new ();
+
       g_source_set_priority (source, priority);
       g_source_set_callback (source, function, data, notify);
       g_source_attach (source, context);
