@@ -31,6 +31,17 @@
 #include "../../../config.h"
 #include <libgeda_priv.h>
 
+void geda_struct_place_append_place_list(GedaToplevel *toplevel, GedaObject *object)
+{
+  Page *page = geda_toplevel_get_current_page (toplevel);
+
+  if (page && GEDA_IS_OBJECT (object)) {
+
+    page->place_list = g_list_append (page->place_list, object);
+
+  }
+}
+
 /*! \brief Free Place List
  *  \par
  *   The functions releases all objects reference by the current

@@ -720,6 +720,7 @@ const CLibSymbol *geda_struct_clib_get_symbol_by_name      (const char *name);
        double    geda_struct_path_shortest_distance        (GedaPath *path, int x, int y, int solid);
 
 /* s_place.c */
+         void    geda_struct_place_append_place_list       (GedaToplevel *toplevel, GedaObject *object);
          void    geda_struct_place_free_place_list         (GedaToplevel *toplevel);
          GList  *geda_struct_place_get_place_list          (GedaToplevel *toplevel);
          void    geda_struct_place_set_place_list          (GedaToplevel *toplevel, GList *new_place_list );

@@ -1,3 +1,7 @@
+2020-09-28 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/struct/s_place.c: Add function geda_struct_place_append_place_list.
+
 2020-09-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_line.c: Revise goofy calculation of expansion in
