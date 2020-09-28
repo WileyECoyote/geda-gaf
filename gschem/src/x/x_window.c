@@ -1539,7 +1539,7 @@ void x_window_page_toolbar_toggle(GtkWidget *widget, GschemToplevel *w_current)
 /*!
  * \brief View toggle standard toolbar
  * \par Function Description
- *  This function toggles the visibility of the Standard toobar.
+ *  This function toggles the visibility of the Standard toolbar.
  *  Note the function actually toggle visibility of the handlebox
  *  containing the toolbar.
  */
