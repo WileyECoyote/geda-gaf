@@ -3,6 +3,7 @@
     * src/iface/i_command.c: Add function documentation:
 
         * set_last_command
+        * i_command_dispatch
 
 2020-09-26 Wiley E. Hill <wileyhill@gmail.com>
 

@@ -213,9 +213,12 @@ static void set_last_command(int value)
   g_mutex_unlock((GMutex*)&i_lock_last_command);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Dispatch Command Task
+ * \par Function Description
+ *  This function is threaded in the main loop and exist to
+ *  dispatch commands routed to the main context in order to
+ *  call main loop worker tasks.
  */
 static bool i_command_dispatch(gschem_task *task)
 {
