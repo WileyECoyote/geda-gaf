@@ -8,6 +8,10 @@
         * set_last_command
         * i_command_dispatch
 
+    * src/object/o_text.c: Revise function o_text_prepare_place to utilize
+      geda_struct_place_append_place_list insead of accessing the place list
+      directly.
+
 2020-09-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/af.po: Update Afrikaans translations.

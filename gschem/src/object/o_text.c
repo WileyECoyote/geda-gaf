@@ -161,8 +161,8 @@ void o_text_prepare_place(GschemToplevel *w_current, char *text)
   /* remove the old place list if it exists */
   geda_struct_place_free_place_list(toplevel);
 
-  /* here we need to add OBJ_TEXT when it is done */
-  Current_PlaceList = g_list_append (Current_PlaceList, object);
+  /* Add the new text object to the list */
+  geda_struct_place_append_place_list (toplevel, object);
 
   i_status_set_state (w_current, TEXTMODE);
   i_event_start_paster_handler(w_current, o_text_end);
