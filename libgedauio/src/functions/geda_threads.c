@@ -35,6 +35,10 @@
 #include <geda/geda.h>
 #include <glib.h>
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ */
 void
 geda_main_context_invoke_full (GMainContext *context, int priority, GSourceFunc function,
                                void         *data, GDestroyNotify  notify)
