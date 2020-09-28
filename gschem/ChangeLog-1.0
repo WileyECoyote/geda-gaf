@@ -1,19 +1,18 @@
+2020-09-28 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/iface/i_command.c: Add function documentation:
+
+        * set_last_command
+
 2020-09-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/af.po: Update Afrikaans translations.
-
     * po/ar.po: Update Arabic translations.
-
     * po/el.po: Update Greek translations
-
     * po/es.po: Update Spanish translations.
-
     * po/fa.po: Update Persian translations.
-
     * po/fi.po: Update Finnish translations.
-
     * po/fr.po: Update French translations.
-
     * po/it.po: Update Italian translations.
 
 2020-09-25 Wiley E. Hill <wileyhill@gmail.com>

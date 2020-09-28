@@ -200,9 +200,11 @@ static int get_last_command(void)
   return ret_val;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Set index of the Last Command
+ * \par Function Description
+ *  Sets the index of the last action that was processed
+ *  by i_command_process in command_struc.
  */
 static void set_last_command(int value)
 {
