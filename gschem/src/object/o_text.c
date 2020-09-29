@@ -132,7 +132,7 @@ static void o_text_end (GschemToplevel *w_current)
  * \brief Prepare for Placement of New Text Object
  * \par Function Description
  *  Creates a new text object and adds the Text object to
- *  #Current_PlaceList after ensuring the place list is empty.
+ *  current place list after ensuring the place list is empty.
  */
 void o_text_prepare_place(GschemToplevel *w_current, char *text)
 {
