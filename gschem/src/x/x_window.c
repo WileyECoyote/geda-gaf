@@ -1556,7 +1556,7 @@ void x_window_standard_toolbar_toggle(GtkWidget *widget, GschemToplevel *w_curre
 /*!
  * \brief View toggle selection toolbar
  * \par Function Description
- *  This function toggles the visibility of the Select toobar.
+ *  This function toggles the visibility of the Select toolbar.
  *  Note the function actually toggle visibility of the handlebox
  *  containing the toolbar.
  */
