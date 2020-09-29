@@ -1,3 +1,8 @@
+2020-09-29 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_event.c: Replace Current_PlaceList geda_struct_place_get_place_list
+      in x_event_button_released.
+
 2020-09-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/gschem_macros.h: Relocate function styled macros from
