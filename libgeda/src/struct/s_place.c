@@ -31,6 +31,11 @@
 #include "../../../config.h"
 #include <libgeda_priv.h>
 
+
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ */
 void geda_struct_place_append_place_list(GedaToplevel *toplevel, GedaObject *object)
 {
   Page *page = geda_toplevel_get_current_page (toplevel);
