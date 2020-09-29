@@ -1,6 +1,7 @@
 2020-09-29 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/object/o_buffer.c: Add pointer to toplevel in o_buffer_paste_start.
+    * src/object/o_buffer.c: Add pointer to toplevel in o_buffer_paste_start,
+      utilize geda_struct_place_append_place_list to replace Current_PlaceList.
 
     * src/x/x_event.c: Replace Current_PlaceList geda_struct_place_get_place_list
       in x_event_button_released.

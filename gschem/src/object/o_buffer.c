@@ -166,6 +166,8 @@ bool o_buffer_paste_start(GschemToplevel *w_current, int w_x, int w_y)
     else {
 
       GedaToplevel *toplevel = w_current->toplevel;
+
+      GList *place_list;
       int left, top, bottom, right;
 
       /* Cancel current place or draw action if it is being done */
@@ -184,7 +186,9 @@ bool o_buffer_paste_start(GschemToplevel *w_current, int w_x, int w_y)
       printf("%s: buffers has %d objects\n", __func__, dint);
 #endif
 
-      if (geda_object_get_bounds_list(Current_PlaceList, &left, &top, &right, &bottom)) {
+      place_list = geda_struct_place_get_place_list(w_current->toplevel);
+
+      if (geda_object_get_bounds_list(place_list, &left, &top, &right, &bottom)) {
 
         const GList *iter;
         int x, y;
