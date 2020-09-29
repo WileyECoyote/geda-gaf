@@ -89,7 +89,6 @@ int o_text_get_rendered_bounds (void *user_data, GedaObject *o_current,
     }
     else {
 
-
 #ifdef WITH_LIBGEDADRAW
 
       result =  x_draw_set_text_bounds(o_current);
@@ -137,7 +136,7 @@ static void o_text_end (GschemToplevel *w_current)
 void o_text_prepare_place(GschemToplevel *w_current, char *text)
 {
   GedaToplevel *toplevel = w_current->toplevel;
-  GedaObject *object;
+  GedaObject   *object;
 
   /* Insert the new object into the buffer at world coordinates (0,0).
    * It will be translated to the mouse coordinates during placement. */
@@ -185,7 +184,7 @@ void o_text_edit(GschemToplevel *w_current, GedaObject *o_current)
 /*!
  * \brief Complete Text Editing
  * \par Function Description
- *   This function is called by x_dialog_edit_text_ok if the OKAY button was
+ *  This function is called by x_dialog_edit_text_ok if the OKAY button was
  *  pressed. There may or by not have been any changes so we will loop thru
  *  all of the selected objects and make changes when there is a difference.
  *  If we changed something we recreate that object and undate UNDO.
