@@ -158,7 +158,7 @@ void o_text_prepare_place(GschemToplevel *w_current, char *text)
                                    o_text_get_rendered_bounds,
                                    w_current);
 
-  /* remove the old place list if it exists */
+  /* Remove the old place list if it exists */
   geda_struct_place_free_place_list(toplevel);
 
   /* Add the new text object to the list */
