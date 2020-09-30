@@ -5,6 +5,8 @@
 
     * src/object/o_buffer.c: Revise debug output in o_buffer_paste_start.
 
+    * src/object/o_redraw.c: Utilize defined LAST_DRAWB_MODE_NONE.
+
 2020-09-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_buffer.c: Add pointer to toplevel in o_buffer_paste_start,
