@@ -1,7 +1,8 @@
 /* gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's library
+ *
  * Copyright (C) 1998-2010 Ales Hvezda
- * Copyright (C) 1998-2015 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2020 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -107,7 +108,7 @@ GList *geda_struct_place_get_place_list(GedaToplevel *toplevel)
  *  \param [in] new_place_list Glist of objects to append or NULL to clear
  *                             the current place list.
  */
-void geda_struct_place_set_place_list(GedaToplevel *toplevel, GList *new_place_list)
+GList *geda_struct_place_set_place_list(GedaToplevel *toplevel, GList *new_place_list)
 {
   Page *page = geda_toplevel_get_current_page (toplevel);
 
@@ -122,6 +123,10 @@ void geda_struct_place_set_place_list(GedaToplevel *toplevel, GList *new_place_l
       list = geda_copy_list (new_place_list, page->place_list);
 
       geda_page_set_place_list (page, list);
+
+      return page->place_list;
     }
   }
+
+  return NULL;
 }

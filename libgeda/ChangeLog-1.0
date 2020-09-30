@@ -1,3 +1,8 @@
+2020-09-30 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/struct/s_place.c: Revise geda_struct_place_set_place_list to
+      return a pointer to the new place list instead of void.
+
 2020-09-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/struct/s_place.c: Add function geda_struct_place_append_place_list.

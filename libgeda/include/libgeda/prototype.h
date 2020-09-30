@@ -723,7 +723,7 @@ const CLibSymbol *geda_struct_clib_get_symbol_by_name      (const char *name);
          void    geda_struct_place_append_place_list       (GedaToplevel *toplevel, GedaObject *object);
          void    geda_struct_place_free_place_list         (GedaToplevel *toplevel);
          GList  *geda_struct_place_get_place_list          (GedaToplevel *toplevel);
-         void    geda_struct_place_set_place_list          (GedaToplevel *toplevel, GList *new_place_list );
+         GList  *geda_struct_place_set_place_list          (GedaToplevel *toplevel, GList *new_place_list );
 
 /* s_encoding.c */
          char   *geda_struct_encoding_base64_encode        (char *src, unsigned int srclen, unsigned int *dstlenp, bool strict);
