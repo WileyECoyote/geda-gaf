@@ -519,7 +519,7 @@ i_event_paster_pressed(GtkWidget *widget, GdkEventButton *event,
 
       if (w_current->inside_action) {
 
-        if (Current_PlaceList != NULL) {
+        if (geda_struct_place_get_place_list(w_current->toplevel)) {
 
           w_current->second_wx = w_x;
           w_current->second_wy = w_y;
