@@ -403,7 +403,7 @@ void o_redraw_rectangle (GschemToplevel *w_current, GdkRectangle *rectangle)
              w_current->event_state == DRAGMOVE)
     {
 
-      if (w_current->last_drawb_mode != -1) {
+      if (w_current->last_drawb_mode != LAST_DRAWB_MODE_NONE) {
         eda_renderer_set_color_map (renderer, render_outline_color_map);
         o_move_draw_rubber (w_current, draw_selected);
         eda_renderer_set_color_map (renderer, render_color_map);
