@@ -1,3 +1,7 @@
+2020-09-30 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_buffer.c: Revise debug output in o_buffer_paste_start.
+
 2020-09-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_buffer.c: Add pointer to toplevel in o_buffer_paste_start,

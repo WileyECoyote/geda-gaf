@@ -180,13 +180,15 @@ bool o_buffer_paste_start(GschemToplevel *w_current, int w_x, int w_y)
       /* Remove old place list and set from buffer content */
       geda_struct_place_set_place_list (toplevel, object_buffer[buf_num]);
 
-#if DEBUG || DEBUG_DND_EVENTS || DEBUG_PASTE
-      int dint;
-      dint = g_list_length(Current_PlaceList);
-      printf("%s: buffers has %d objects\n", __func__, dint);
-#endif
-
       place_list = geda_struct_place_get_place_list(w_current->toplevel);
+
+#if DEBUG || DEBUG_DND_EVENTS || DEBUG_PASTE
+
+      int dint = g_list_length(place_list);
+
+      printf("%s: buffers has %d objects\n", __func__, dint);
+
+#endif
 
       if (geda_object_get_bounds_list(place_list, &left, &top, &right, &bottom)) {
 
