@@ -301,7 +301,7 @@ o_text_edit_end(GschemToplevel *w_current, char *string, int text_align,
 /*!
  * \brief Change Text String
  * \par Function Description
- *  This function is call by:
+ *  This function is called from:
  *
  *     attrib_edit_dialog_ok
  *     ma_callback_edited_name
