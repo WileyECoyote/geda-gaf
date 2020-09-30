@@ -5,7 +5,7 @@
  * gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's Library
  *
- * Copyright (C) 1998-2017 Ales Hvezda
+ * Copyright (C) 1998-2010 Ales Hvezda
  * Copyright (C) 1998-2017 gEDA Contributors (see ChangeLog for details)
  *
  * This library is free software; you can redistribute it and/or

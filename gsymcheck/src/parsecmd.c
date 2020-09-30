@@ -5,7 +5,7 @@
  * gEDA - GPL Electronic Design Automation
  * gsymcheck - gEDA Symbol Check
  *
- * Copyright (C) 1998-2017 Ales Hvezda
+ * Copyright (C) 1998-2010 Ales Hvezda
  * Copyright (C) 1998-2017 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify

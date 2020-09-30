@@ -3,7 +3,7 @@
  * gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
  *
- * Copyright (C) 1998-2017 Ales Hvezda
+ * Copyright (C) 1998-2010 Ales Hvezda
  * Copyright (C) 1998-2017 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or
@@ -523,7 +523,7 @@ void about_dialog (GschemToplevel *w_current)
 
   free(guile_ver);
 
-  copyright = _("Copyright © 1998-2017 Ales Hvezda <ahvezda@geda.seul.org>\n"
+  copyright = _("Copyright © 1998-2010 Ales Hvezda <ahvezda@geda.seul.org>\n"
                 "Copyright © 1998-2017 gEDA Contributors "
                 "(see ChangeLog for details)");
 

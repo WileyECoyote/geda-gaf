@@ -4,7 +4,6 @@
  * libgeda - gEDA's library
  *
  * Copyright (C) 2013-2015 Wiley Edward Hill
- *
  * Copyright (C) 2013-2015 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify

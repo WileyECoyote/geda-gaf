@@ -3,8 +3,8 @@
  * gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
  *
- * Copyright (C) 1998-2017 Ales Hvezda
- * Copyright (C) 1998-2017 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2010 Ales Hvezda
+ * Copyright (C) 1998-2019 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -406,9 +406,12 @@ bool x_event_button_released (GtkWidget      *widget,
   w_current->CONTROLKEY = (event->state & GDK_CONTROL_MASK) ? 1 : 0;
   w_current->ALTKEY     = (event->state & GDK_MOD1_MASK)    ? 1 : 0;
 
-  /* Capture where in the World this event occurred */
+  /* Capture where in the World this event occurred
   SCREENtoWORLD (w_current, (int) event->x, (int) event->y,
-                             &unsnapped_wx, &unsnapped_wy);
+                             &unsnapped_wx, &unsnapped_wy); */
+
+  unsnapped_wx = w_current->first_wx;
+  unsnapped_wy = w_current->first_wy;
 
   if (event->button == 1) {
 

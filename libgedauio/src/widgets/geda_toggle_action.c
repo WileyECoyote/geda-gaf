@@ -6,7 +6,6 @@
  * gEDA - GPL Electronic Design Automation
  * libgedauio - gEDA's library for User Interface Objects
  *
- * Copyright (C) 2012-2015 Ales Hvezda
  * Copyright (C) 2012-2015 gEDA Contributors (see ChangeLog for details)
  *
  * This library is free software; you can redistribute it and/or

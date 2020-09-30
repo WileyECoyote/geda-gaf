@@ -3,7 +3,7 @@
     * src/iface/i_event.c: Replace macro Current_PlaceList with
       geda_struct_place_get_place_list in i_event_paster_pressed.
 
-    * src/object/*.c: Fix and update copyrights dates.
+    * src/object/*.c: Fix and update copyright dates.
 
     * src/object/o_buffer.c: Revise debug output in o_buffer_paste_start.
 

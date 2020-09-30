@@ -4,7 +4,7 @@
  * gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
  *
- * Copyright (C) 1998-2015 Ales Hvezda
+ * Copyright (C) 1998-2010 Ales Hvezda
  *
  * Copyright (C) 2013-2015 Wiley Edward Hill <wileyhill@gmail.com>
  * Copyright (C) 2013-2015 gEDA Contributors (see ChangeLog for details)
@@ -116,7 +116,15 @@ typedef struct {
 } ToolBarWidgets;
 
 
-/* ---------------------- Toolbar tooltip strings ---------------------- */
+/* ---------------------- Toolbar tooltip strings ----------------------
+ *
+ * The toolbar tooltip strings are somewhat redundant with the strings
+ * for menu tool tips found in "system-gschemrc.scm" and else where in
+ * scm, where they are tagged for translation. It is okay for the tool
+ * tips strings to differ between the menu and the toolbar for the same
+ * action but one should note that doing so will result in two different
+ * translations being required.
+ */
    /* Standard Toolbar*/
 #define TBTS_FILE_NEW           "Create a new file"
 #define TBTS_FILE_OPEN          "Open an existing schematic or symbol file"

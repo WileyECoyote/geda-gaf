@@ -9,7 +9,7 @@
  * gEDA - GPL Electronic Design Automation
  * gschlas - gEDA Load and Save
  *
- * Copyright (C) 2002-2015 Ales Hvezda
+ * Copyright (C) 2002-2010 Ales Hvezda
  * Copyright (C) 2002-2015 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
