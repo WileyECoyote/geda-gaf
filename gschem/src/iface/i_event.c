@@ -619,7 +619,7 @@ i_event_paster_released(GtkWidget      *widget,
       switch (w_current->event_state) {
 
         case(DRAGMOVE):  /* 8 */
-          if (Current_PlaceList != NULL) {
+          if (geda_struct_place_get_place_list(w_current->toplevel)) {
             o_move_end(w_current);
           }
 
