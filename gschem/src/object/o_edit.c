@@ -366,6 +366,7 @@ void o_edit_offset_hot(GschemToplevel *w_current, int x, int y, GList *list)
 
     i_window_set_pointer_position (w_current, dx, dy);
   }
+
   i_status_action_stop(w_current);
 }
 
@@ -488,6 +489,7 @@ void o_edit_offset_world(GschemToplevel *w_current, int x, int y, GList *list)
       o_undo_savestate(w_current, UNDO_ALL);
     }
   }
+
   i_status_action_stop(w_current);
 }
 
