@@ -331,12 +331,15 @@ void i_command_engage(GschemToplevel *w_current)
     g_thread_pool_set_max_unused_threads (MAX_THREADS_UNUSED);
     g_thread_pool_set_max_idle_time (MAX_THREADS_IDLE_TIME);
   }
+
   return;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief Disable multitasking mode
- *  \par Function Description
+/*!
+ * \brief Disable multitasking mode
+ * \par Function Description
+ *  This function releases the thread pool after the last
+ *  thread has completed.
  */
 void i_command_disengage(bool immediate, bool wait_return)
 {
