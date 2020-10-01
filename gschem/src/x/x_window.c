@@ -1590,7 +1590,7 @@ void x_window_symbol_toolbar_toggle(GtkWidget *widget, GschemToplevel *w_current
 /*!
  * \brief View toggle Modify toolbar
  * \par Function Description
- *  This function toggles the visibility of the Modify toobar.
+ *  This function toggles the visibility of the Modify toolbar.
  *  Note the function actually toggle visibility of the handlebox
  *  containing the toolbar.
  */
