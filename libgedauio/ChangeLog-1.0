@@ -1,4 +1,10 @@
-2020-24 Wiley E. Hill <wileyhill@gmail.com>
+2020-10-01 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/functions/geda_threads.c: Add function documentation:
+
+        * geda_main_context_invoke_full
+
+2020-09-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu_shell.c: Revise conditionals in geda_menu_shell_
       button_press to only reference the parent when there is a menu item

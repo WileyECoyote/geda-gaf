@@ -38,6 +38,14 @@
 /*! \todo Finish function documentation!!!
  *  \brief
  *  \par Function Description
+ * Invokes a function in such a way that context is owned during
+ * the invocation of function. This function is the same as g_main_context_invoke()
+ * except that it lets you specify the priority in case function
+ * ends up being scheduled as an idle and also lets you give a
+ * GDestroyNotify for data.
+ *
+ * Note: \a notify should not assume that it has been called from
+ * any particular thread or with any particular context acquired.
  */
 void
 geda_main_context_invoke_full (GMainContext *context, int priority, GSourceFunc function,
