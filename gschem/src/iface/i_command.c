@@ -308,9 +308,10 @@ void i_command_router(char *command, GschemToplevel *w_current)
   return;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief Enable multitasking mode
- *  \par Function Description
+/*!
+ * \brief Enable multitasking mode
+ * \par Function Description
+ *  These function creates and configures a new thread pool.
  */
 void i_command_engage(GschemToplevel *w_current)
 {

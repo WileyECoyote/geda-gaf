@@ -3,6 +3,7 @@
     * src/iface/i_command.c: Add function documentation:
 
         * i_command_router
+        * i_command_engage
 
     * src/object/o_buffer.c: Utilize return list from geda_struct_place_set_place_list
       and eliminate call to geda_struct_place_get_place_list.
