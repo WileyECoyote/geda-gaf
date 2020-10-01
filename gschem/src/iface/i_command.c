@@ -5,8 +5,8 @@
  * gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
  *
- * Copyright (C) 2013-2016 Wiley Edward Hill
- * Copyright (C) 2013-2016 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 2013-2020 Wiley Edward Hill
+ * Copyright (C) 2013-2020 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -235,9 +235,14 @@ static bool i_command_dispatch(gschem_task *task)
   return FALSE;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Threaded Pool Function to Route Command Task
+ * \par Function Description
+ *  MAX_THREADS_UNUSED number of threads are created for the
+ *  thread pool and suspended and up to MAX_THREADS can be
+ *  created, each is a copy of this function which routes the
+ *  command task for the handler to be ran as a thread in the
+ *  main loop or invokes the worker function directly.
  */
 static
 void i_command_router(char *command, GschemToplevel *w_current)
