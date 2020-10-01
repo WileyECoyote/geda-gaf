@@ -2,6 +2,7 @@
 
     * src/functions/geda_threads.c: Add function documentation:
 
+        * geda_main_context_invoke
         * geda_main_context_invoke_full
 
 2020-09-24 Wiley E. Hill <wileyhill@gmail.com>
