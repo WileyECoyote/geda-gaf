@@ -178,9 +178,7 @@ bool o_buffer_paste_start(GschemToplevel *w_current, int w_x, int w_y)
       w_current->last_drawb_mode = LAST_DRAWB_MODE_NONE;
 
       /* Remove old place list and set from buffer content */
-      geda_struct_place_set_place_list (toplevel, object_buffer[buf_num]);
-
-      place_list = geda_struct_place_get_place_list(w_current->toplevel);
+      place_list = geda_struct_place_set_place_list (toplevel, object_buffer[buf_num]);
 
 #if DEBUG || DEBUG_DND_EVENTS || DEBUG_PASTE
 

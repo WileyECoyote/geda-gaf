@@ -1,3 +1,8 @@
+2020-10-01 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_buffer.c: Utilize return list from geda_struct_place_set_place_list
+      and eliminate call to geda_struct_place_get_place_list.
+
 2020-09-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/iface/i_event.c: Replace macro Current_PlaceList with
