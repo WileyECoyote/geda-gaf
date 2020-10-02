@@ -766,7 +766,7 @@ void geda_pin_object_set_attributes(GedaObject *object, const char *label_str,
                                                         PIN_MECH    m_type,
                                                         PIN_NODE    n_type)
 {
-  if (object != NULL && object->type == OBJ_PIN) {
+  if (GEDA_IS_PIN(object)) {
 
     GedaPin *pin = object->pin;
 
