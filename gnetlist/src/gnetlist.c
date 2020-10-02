@@ -186,9 +186,6 @@ static void main_prog(void *closure, int argc, char *argv[])
 
   setlocale (LC_ALL, "");
   setlocale (LC_NUMERIC, "C"); /* This must be the same for all locales */
-  bindtextdomain ("geda-gnetlist", LOCALEDIR);
-  textdomain ("geda-gnetlist");
-  bind_textdomain_codeset("geda-gnetlist", "UTF-8");
 
 #endif
 
