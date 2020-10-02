@@ -209,7 +209,7 @@ geda_math_hatch_arc(GedaArc *arc, int angle, int pitch, GArray *lines)
 /*!
  * \brief Calculates line segments to hatch a box shape
  * \par Function Description
- *  This function appends new line segments to the lines GArray.  For creating
+ *  This function appends new line segments to the lines GArray. For creating
  *  a hatch pattern, the GArray must be cleared before calling this function.
  *  For creating cross hatch patterns, this function can be called multiple
  *  times with a different angle or pitch while passing the same lines GArray.
@@ -266,7 +266,6 @@ geda_math_hatch_box(GedaBox *box, int angle, int pitch, GArray *lines)
  * \param circle [in] The circle shape to hatch.
  * \param angle  [in] The angle of the hatch lines with respect to the x axis.
  * \param pitch  [in] The distance between hatch lines
- *
  * \param lines  [out] A GArray of Line to contain the new hatch line segments.
  */
 void
