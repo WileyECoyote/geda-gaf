@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda-gnetlist\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2020-01-04 12:10-0600\n"
+"POT-Creation-Date: 2020-10-02 10:28-0500\n"
 "PO-Revision-Date: 2014-08-31 20:38+0100\n"
 "Last-Translator: Bert Timmerman <bert.timmerman@xs4all.nl>\n"
 "Language-Team: gEDA Developers\n"
@@ -18,16 +18,16 @@ msgstr ""
 "X-Poedit-Language: Dutch\n"
 "X-Poedit-Country: NETHERLANDS\n"
 
-#: gnetlist/src/g_netlist.c:465
+#: gnetlist/src/g_netlist.c:466
 #, c-format
 msgid "Invalid refdes ('%s') and pin ('%s') passed to get-nets\n"
 msgstr "Ongeldige refdes ('%s') en pen ('%s') overgedragen aan get-nets\n"
 
-#: gnetlist/src/g_netlist.c:840
+#: gnetlist/src/g_netlist.c:842
 msgid "retrieved from a graphical object"
 msgstr ""
 
-#: gnetlist/src/g_netlist.c:841
+#: gnetlist/src/g_netlist.c:843
 msgid "Pin"
 msgstr ""
 
@@ -43,70 +43,70 @@ msgstr "Kan bestandenmap niet openen"
 msgid "List of available backends"
 msgstr "Lijst van beschikbare backends"
 
-#: gnetlist/src/gnetlist.c:238
+#: gnetlist/src/gnetlist.c:235
 msgid ""
 "gEDA/gnetlist comes with ABSOLUTELY NO WARRANTY; see COPYING for more "
 "details.\n"
 msgstr ""
 
-#: gnetlist/src/gnetlist.c:240
+#: gnetlist/src/gnetlist.c:237
 msgid ""
 "This is free software, and you are welcome to redistribute it under certain\n"
 msgstr ""
 
-#: gnetlist/src/gnetlist.c:242
+#: gnetlist/src/gnetlist.c:239
 msgid ""
 "conditions; please see the COPYING file for more details.\n"
 "\n"
 msgstr ""
 
 # Loading schematic
-#: gnetlist/src/gnetlist.c:280
+#: gnetlist/src/gnetlist.c:277
 msgid "Loading schematic"
 msgstr "Laden van schema"
 
 # Failed to load
-#: gnetlist/src/gnetlist.c:286
+#: gnetlist/src/gnetlist.c:283
 msgid "load failed"
 msgstr "faalde bij het laden van"
 
-#: gnetlist/src/gnetlist.c:302 gnetlist/src/gnetlist.c:365
+#: gnetlist/src/gnetlist.c:299 gnetlist/src/gnetlist.c:362
 msgid "System could not change to directory"
 msgstr "Systeem kan niet wijzigen naar directory"
 
-#: gnetlist/src/gnetlist.c:328
+#: gnetlist/src/gnetlist.c:325
 msgid "ERROR: Could not find backend"
 msgstr "FOUT: Kan backend niet vinden in het"
 
-#: gnetlist/src/gnetlist.c:329
+#: gnetlist/src/gnetlist.c:326
 msgid "for a full list of available backends"
 msgstr "voor een volledige lijst van beschikbare backends"
 
-#: gnetlist/src/gnetlist.c:331
+#: gnetlist/src/gnetlist.c:328
 msgid "in load path"
 msgstr ""
 
-#: gnetlist/src/gnetlist.c:332
+#: gnetlist/src/gnetlist.c:329
 msgid "Run"
 msgstr "Doe"
 
-#: gnetlist/src/gnetlist.c:400 gnetlist/src/gnetlist.c:427
+#: gnetlist/src/gnetlist.c:397 gnetlist/src/gnetlist.c:424
 msgid "Path"
 msgstr ""
 
-#: gnetlist/src/gnetlist.c:401 gnetlist/src/gnetlist.c:428
+#: gnetlist/src/gnetlist.c:398 gnetlist/src/gnetlist.c:425
 msgid "is not accessible"
 msgstr ""
 
-#: gnetlist/src/gnetlist.c:412 gnetlist/src/g_rc.c:75
+#: gnetlist/src/gnetlist.c:409 gnetlist/src/g_rc.c:75
 msgid "file"
 msgstr ""
 
-#: gnetlist/src/gnetlist.c:450
+#: gnetlist/src/gnetlist.c:447
 msgid "Could not create"
 msgstr ""
 
-#: gnetlist/src/gnetlist.c:476
+#: gnetlist/src/gnetlist.c:473
 #, c-format
 msgid "Either specify a backend to execute or interactive mode!\n"
 msgstr "U gaf geen backend om uit voeren noch interactieve modus!\n"
@@ -174,7 +174,8 @@ msgstr ""
 "  --list-backends    Druk een lijst met beschikbare netlijst backends.\n"
 "  -h, --help         Help; dit bericht.\n"
 "  -V, --version      Toon versie informatie.\n"
-"  --                 Behandel alle overblijvende argumenten als bestandsnamen.\n"
+"  --                 Behandel alle overblijvende argumenten als "
+"bestandsnamen.\n"
 "\n"
 "  Opmerking: Hulp en versie argumenten zijn positionele ten opzichte van de\n"
 "  backend argument, wanneer gespecificeerd na de backend, specifieke "
@@ -296,43 +297,43 @@ msgstr "naar"
 msgid "Add rename record for"
 msgstr "Voeg record voor hernoemen toe"
 
-#: gnetlist/src/s_netlist.c:230
+#: gnetlist/src/s_netlist.c:232
 msgid "Starting post processing"
 msgstr ""
 
-#: gnetlist/src/s_netlist.c:231
+#: gnetlist/src/s_netlist.c:233
 msgid "Naming nets of graphical objects"
 msgstr ""
 
-#: gnetlist/src/s_netlist.c:347
+#: gnetlist/src/s_netlist.c:349
 msgid "Staring post processing"
 msgstr ""
 
-#: gnetlist/src/s_netlist.c:348
+#: gnetlist/src/s_netlist.c:350
 msgid "Naming nets"
 msgstr ""
 
-#: gnetlist/src/s_netlist.c:403
+#: gnetlist/src/s_netlist.c:405
 msgid "Renaming nets"
 msgstr ""
 
-#: gnetlist/src/s_netlist.c:410
+#: gnetlist/src/s_netlist.c:412
 msgid "Resolving hierarchy"
 msgstr ""
 
-#: gnetlist/src/s_netlist.c:420
+#: gnetlist/src/s_netlist.c:422
 msgid "Removing refdes mangling"
 msgstr ""
 
-#: gnetlist/src/s_netlist.c:445
+#: gnetlist/src/s_netlist.c:447
 msgid "component"
 msgstr ""
 
-#: gnetlist/src/s_netlist.c:451
+#: gnetlist/src/s_netlist.c:453
 msgid "SPECIAL"
 msgstr ""
 
-#: gnetlist/src/s_netlist.c:456
+#: gnetlist/src/s_netlist.c:458
 msgid "Hierarchy tag"
 msgstr ""
 
