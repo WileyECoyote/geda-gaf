@@ -754,10 +754,20 @@ bool geda_pin_object_get_attributes(GedaObject *object, const char **label,
   return result;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Set Attributes of a Pin Object
+ * \par Function Description
+ *  This function set attributes of a pin object to the given value.
+ *  If the cooresponding attribute exist then the value is modified
+ *  otherwise a new attribute is created with the given value.
  *
+ * \param [in] object    GedaObject to read the properties
+ * \param [in] label     Pointer to the pin Label string.
+ * \param [in] number    The pin number of the pin object
+ * \param [in] sequence  The pin sequence number
+ * \param [in] e_type    The pin electrical attribute code
+ * \param [in] m_type    The pin mechanical attribute code
+ * \param [in] n_type    The pin node type (Net or Bus type).
  */
 void geda_pin_object_set_attributes(GedaObject *object, const char *label_str,
                                                         const char *number,

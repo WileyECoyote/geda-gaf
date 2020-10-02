@@ -3,7 +3,7 @@
     * src/math/m_hatch.c: Add geda_math_hatch_arc function documentation.
 
     * src/object/o_pin_object.c: Utilize GEDA_IS_PIN in geda_pin_object_
-      set_attributes.
+      set_attributes and add function documentation.
 
 2020-09-30 Wiley E. Hill <wileyhill@gmail.com>
 
