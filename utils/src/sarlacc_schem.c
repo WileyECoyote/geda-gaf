@@ -380,7 +380,7 @@ void parse_component(int fd1,int fd2)
         if (mirror) {
           /* BAD untested */
           ygeda = ygeda - (sarlacc_xsize + sarlacc_xoffset);
-        } 
+        }
         else {
           ygeda = ygeda + sarlacc_xoffset;
         }
