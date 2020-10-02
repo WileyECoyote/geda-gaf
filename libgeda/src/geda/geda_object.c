@@ -807,7 +807,7 @@ GedaObject *geda_object_new (int type)
  *  the GedaObject base class. This function is intended
  *  to be used via the \a Macro #GEDA_IS_OBJECT, but only
  *  for convention, really makes no difference. Both of the
- *  following example produce exactly the same code:
+ *  following examples produce exactly the same code:
  *
  *  example   if (is_a_geda_object(MyComplex))
  *
