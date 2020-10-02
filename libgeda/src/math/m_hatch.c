@@ -114,10 +114,19 @@ compare_status(const void *a, const void *b)
   return (status_b->x - status_a->x);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Calculates line segments to hatch an arc.
+ * \par Function Description
+ *  This function appends new line segments to the lines GArray. For creating
+ *  cross hatch patterns, this function can be called multiple times with a
+ *  different angle or pitch while passing the same lines GArray. This function
+ *  appends new line segments to the GArray and leaves existing GArray contents
+ *  unchanged.
  *
+ * \param arc    [in] The Arc shape to hatch.
+ * \param angle  [in] The angle of the hatch lines with respect to the x axis.
+ * \param pitch  [in] The distance between hatch lines
+ * \param lines  [out] A GArray of Line to contain the new hatch line segments.
  */
 void
 geda_math_hatch_arc(GedaArc *arc, int angle, int pitch, GArray *lines)

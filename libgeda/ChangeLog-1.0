@@ -1,3 +1,7 @@
+2020-10-02 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/math/m_hatch.c: Add geda_math_hatch_arc function documentation.
+
 2020-09-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/struct/s_place.c: Revise geda_struct_place_set_place_list to
