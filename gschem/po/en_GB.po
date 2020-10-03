@@ -759,39 +759,32 @@ msgid "Mesh grid activated\n"
 msgstr "Mesh grid selected\n"
 
 #: gschem/src/iface/i_command.c:4679
-#, fuzzy
 msgid "Snap OFF (CAUTION!)"
-msgstr "Snap OFF (CAUTION!)\n"
+msgstr "Snap OFF (CAUTION!)"
 
 #: gschem/src/iface/i_command.c:4685
-#, fuzzy
 msgid "Snap ON"
-msgstr "Snap ON\n"
+msgstr "Snap ON"
 
 #: gschem/src/iface/i_command.c:4690
-#, fuzzy
 msgid "Snap back to the grid (CAUTION!)"
-msgstr "Snap back to the grid (CAUTION!)\n"
+msgstr "Snap back to the grid (CAUTION!)"
 
 #: gschem/src/iface/i_command.c:4716
-#, fuzzy
 msgid "Rubber band mode is OFF"
-msgstr "Rubber band OFF \n"
+msgstr "Rubber band mode is OFF"
 
 #: gschem/src/iface/i_command.c:4720
-#, fuzzy
 msgid "Rubber band mode is ON"
-msgstr "Rubber band ON\n"
+msgstr "Rubber band mode is ON"
 
 #: gschem/src/iface/i_command.c:4731
-#, fuzzy
 msgid "Magnetic net mode is ON"
-msgstr "magnetic net mode: ON\n"
+msgstr "Magnetic net mode is ON"
 
 #: gschem/src/iface/i_command.c:4734
-#, fuzzy
 msgid "Magnetic net mode is OFF"
-msgstr "magnetic net mode: OFF\n"
+msgstr "Magnetic net mode is OFF"
 
 #: gschem/src/iface/i_command.c:4751 gschem/src/iface/i_command.c:4794
 #: gschem/src/x/x_compselect.c:135 gschem/src/x/x_toolbars.c:261
@@ -808,14 +801,12 @@ msgid "Drag-Can-Move is now"
 msgstr ""
 
 #: gschem/src/iface/i_command.c:4769
-#, fuzzy
 msgid "Action feedback mode set to OUTLINE"
-msgstr "Action feedback mode set to OUTLINE\n"
+msgstr "Action feedback mode set to OUTLINE"
 
 #: gschem/src/iface/i_command.c:4773
-#, fuzzy
 msgid "Action feedback mode set to BOUNDINGBOX"
-msgstr "Action feedback mode set to BOUNDINGBOX\n"
+msgstr "Action feedback mode set to BOUNDINGBOX"
 
 #: gschem/src/iface/i_command.c:4800
 msgid "Auto-Pan is now"
@@ -1700,9 +1691,8 @@ msgid "Cancel closing and return to editor"
 msgstr ""
 
 #: gschem/src/x/x_confirm_close.c:581
-#, fuzzy
 msgid "Save changes"
-msgstr "Save Page"
+msgstr "Save changes"
 
 #: gschem/src/x/x_confirm_close.c:631
 msgid "unsaved page"
@@ -1797,13 +1787,12 @@ msgid "Guile"
 msgstr ""
 
 #: gschem/src/x/x_dialog.c:526
-#, fuzzy
 msgid ""
 "Copyright © 1998-2010 Ales Hvezda <ahvezda@geda.seul.org>\n"
 "Copyright © 1998-2017 gEDA Contributors (see ChangeLog for details)"
 msgstr ""
-"Copyright © 1998-2012 Ales Hvezda <ahvezda@geda.seul.org>\n"
-"Copyright © 1998-2012 gEDA Contributors (see ChangeLog for details)"
+"Copyright © 1998-2010 Ales Hvezda <ahvezda@geda.seul.org>\n"
+"Copyright © 1998-2017 gEDA Contributors (see ChangeLog for details)"
 
 #: gschem/src/x/x_dialog.c:534 gschem/scheme/gschem/builtins.scm:565
 msgid "About gschem"
@@ -4409,43 +4398,36 @@ msgid "Arcs"
 msgstr ""
 
 #: gschem/src/x/x_toolbars.c:246
-#, fuzzy
 msgid "Demote"
-msgstr "Promote"
+msgstr "Demote"
 
 #: gschem/src/x/x_toolbars.c:249
 msgid "Both"
 msgstr ""
 
 #: gschem/src/x/x_toolbars.c:251
-#, fuzzy
 msgid "Hidden"
-msgstr "Show Hidden"
+msgstr "Hidden"
 
 #: gschem/src/x/x_toolbars.c:252
-#, fuzzy
 msgid "Inherited"
-msgstr "Show/Hide Inheri_ted"
+msgstr "Inherited"
 
 #: gschem/src/x/x_toolbars.c:253
-#, fuzzy
 msgid "Find"
-msgstr "Find Text"
+msgstr "Find"
 
 #: gschem/src/x/x_toolbars.c:254
-#, fuzzy
 msgid "Hide"
-msgstr "Hide Text"
+msgstr "Hide"
 
 #: gschem/src/x/x_toolbars.c:255
-#, fuzzy
 msgid "Show"
-msgstr "Show Text"
+msgstr "Show"
 
 #: gschem/src/x/x_toolbars.c:257
-#, fuzzy
-msgid "Auto #"
-msgstr "Auto Load"
+msgid "Auto"
+msgstr "Auto"
 
 #: gschem/src/x/x_toolbars.c:259
 msgid "Dots"
@@ -4608,9 +4590,8 @@ msgid "_New"
 msgstr "_New"
 
 #: gschem/etc/system-gschemrc.scm:2091
-#, fuzzy
 msgid "Create a new file"
-msgstr "Create a new empty file"
+msgstr "Create a new file"
 
 #: gschem/etc/system-gschemrc.scm:2092 gschem/etc/system-gschemrc.scm:2301
 msgid "_Open..."
@@ -4669,9 +4650,8 @@ msgid "_Print..."
 msgstr "_Print..."
 
 #: gschem/etc/system-gschemrc.scm:2105
-#, fuzzy
 msgid "Open the Print Dialog"
-msgstr "Open the Colour Editor Dialog"
+msgstr "Open the Print Dialog"
 
 #: gschem/etc/system-gschemrc.scm:2106
 msgid "Export options"
@@ -4726,8 +4706,7 @@ msgid "_Undo"
 msgstr "_Undo"
 
 #: gschem/etc/system-gschemrc.scm:2124
-#, fuzzy
-msgid "Undo the last operation"
+msgid "Undo last operation"
 msgstr "Undo last operation"
 
 #: gschem/etc/system-gschemrc.scm:2125
@@ -4735,8 +4714,7 @@ msgid "_Redo"
 msgstr "_Redo"
 
 #: gschem/etc/system-gschemrc.scm:2125
-#, fuzzy
-msgid "Redo the last undo"
+msgid "Redo last operation"
 msgstr "Undo last operation"
 
 #: gschem/etc/system-gschemrc.scm:2128
@@ -5132,9 +5110,8 @@ msgid "_First"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2254
-#, fuzzy
 msgid "Go to the first page"
-msgstr "Goto the first page"
+msgstr "Go to the first page"
 
 #: gschem/etc/system-gschemrc.scm:2255
 msgid "_Previous"
@@ -5173,9 +5150,8 @@ msgid "_Last"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2259
-#, fuzzy
 msgid "Go to the last page"
-msgstr "Goto the first page"
+msgstr "Go to the first page"
 
 #: gschem/etc/system-gschemrc.scm:2260
 msgid "Ne_w"
@@ -5286,9 +5262,8 @@ msgid "Pictu_re..."
 msgstr "Pictu_re..."
 
 #: gschem/etc/system-gschemrc.scm:2291
-#, fuzzy
 msgid "Insert an image"
-msgstr "Invert image"
+msgstr "Insert an image"
 
 #: gschem/etc/system-gschemrc.scm:2292
 msgid "_Pin"
@@ -5343,9 +5318,8 @@ msgid "_Detach"
 msgstr "_Detach"
 
 #: gschem/etc/system-gschemrc.scm:2316
-#, fuzzy
 msgid "Detach selected attributes from symbol"
-msgstr "Detached attribute"
+msgstr "Detach selected attributes from symbol"
 
 #: gschem/etc/system-gschemrc.scm:2317
 msgid "Show _Value"
@@ -5946,9 +5920,8 @@ msgid "Add Arc"
 msgstr ""
 
 #: gschem/scheme/gschem/builtins.scm:371
-#, fuzzy
 msgid "Add Path"
-msgstr "Add a path"
+msgstr "Add Path"
 
 #: gschem/scheme/gschem/builtins.scm:374
 msgid "Add Picture"
@@ -6229,18 +6202,16 @@ msgid "hierarchy Verilog"
 msgstr "Hierarchy Verilog"
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:276
-#, fuzzy
 msgid "Symbol _Translate..."
-msgstr "Translate"
+msgstr "Symbol _Translate..."
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:276
 msgid "Reset the X-Y Zero point"
 msgstr ""
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:277
-#, fuzzy
 msgid "Check Symbol"
-msgstr "Symbol"
+msgstr "Check Symbol"
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:277
 msgid "Run gsymcheck"
