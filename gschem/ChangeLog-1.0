@@ -14,6 +14,8 @@
 
     * po/pt_BR.po: Update Brazilian Portuguese translations.
 
+    * po/ru.po: Update Russian translations.
+
 2020-10-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/iface/i_command.c: Add function documentation:

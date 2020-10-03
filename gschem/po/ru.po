@@ -4879,71 +4879,64 @@ msgid "Multi"
 msgstr ""
 
 #: gschem/src/x/x_toolbars.c:236
-#, fuzzy
 msgid "Color"
-msgstr "Цвет:"
+msgstr "Цвет"
 
+# Slots => Section
 #: gschem/src/x/x_toolbars.c:238
-#, fuzzy
 msgid "Slots"
-msgstr "Секция..."
+msgstr "Секция"
 
 #: gschem/src/x/x_toolbars.c:239
 msgid "Pins"
 msgstr ""
 
 #: gschem/src/x/x_toolbars.c:241
-#, fuzzy
 msgid "Fill"
-msgstr "Заливка"
+msgstr "Заполнить"
 
 #: gschem/src/x/x_toolbars.c:242
 msgid "Arcs"
 msgstr ""
 
+# Demote; Ponizit'
 #: gschem/src/x/x_toolbars.c:246
-#, fuzzy
 msgid "Demote"
-msgstr "Вынести"
+msgstr "Понизить"
 
 #: gschem/src/x/x_toolbars.c:249
 msgid "Both"
 msgstr ""
 
-# См. примечание для "Copy"
+# Hidden; Skrytyy
 #: gschem/src/x/x_toolbars.c:251
-#, fuzzy
 msgid "Hidden"
-msgstr "Отображение скрытого текста"
+msgstr "Скрытый"
 
-# Show/Hide Inherited
+# Inherited; Unasledovano
 #: gschem/src/x/x_toolbars.c:252
-#, fuzzy
 msgid "Inherited"
-msgstr "Показать/скрыть наследство"
+msgstr "Унаследовано"
 
+# Find; Poisk
 #: gschem/src/x/x_toolbars.c:253
-#, fuzzy
 msgid "Find"
-msgstr "Поиск текста"
+msgstr "Поиск"
 
-# Hide Text
+# Hide; Spryatat
 #: gschem/src/x/x_toolbars.c:254
-#, fuzzy
 msgid "Hide"
-msgstr "Скрыть текст"
+msgstr "Спрятать"
 
-# Show Text
+# Show
 #: gschem/src/x/x_toolbars.c:255
-#, fuzzy
 msgid "Show"
-msgstr "Показать текст"
+msgstr "Показать"
 
-# Auto Load
+# Auto Number => number automatically
 #: gschem/src/x/x_toolbars.c:257
-#, fuzzy
 msgid "Auto #"
-msgstr "Автонагрузка"
+msgstr "номер автоматически"
 
 #: gschem/src/x/x_toolbars.c:259
 msgid "Dots"
@@ -4953,10 +4946,10 @@ msgstr ""
 msgid "UP"
 msgstr ""
 
+# Snapping enabled
 #: gschem/src/x/x_toolbars.c:267
-#, fuzzy
 msgid "Snap On"
-msgstr "Привязка включена\n"
+msgstr "Привязка включена"
 
 #: gschem/src/x/x_toolbars.c:269
 msgid "Config"
