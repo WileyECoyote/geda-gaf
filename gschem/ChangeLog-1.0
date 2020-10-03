@@ -6,6 +6,8 @@
 
     * po/fr.po: Update French translations.
 
+    * po/kh.po: Update Khmer translations.
+
 2020-10-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/iface/i_command.c: Add function documentation:
