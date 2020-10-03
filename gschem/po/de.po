@@ -4531,8 +4531,8 @@ msgstr "Text Eigenschaften bearbeiten"
 msgid "Unlock"
 msgstr "Entsperren"
 
+# Update
 #: gschem/src/x/x_toolbars.c:221
-#, fuzzy
 msgid "Update"
 msgstr "Aktualisieren"
 
@@ -4541,21 +4541,19 @@ msgid "Multi"
 msgstr ""
 
 #: gschem/src/x/x_toolbars.c:236
-#, fuzzy
 msgid "Color"
-msgstr "_Farbe:"
+msgstr "Farbe"
 
+# Slots => Instance
 #: gschem/src/x/x_toolbars.c:238
-#, fuzzy
 msgid "Slots"
-msgstr "Slot..."
+msgstr "Beispiel"
 
 #: gschem/src/x/x_toolbars.c:239
 msgid "Pins"
 msgstr ""
 
 #: gschem/src/x/x_toolbars.c:241
-#, fuzzy
 msgid "Fill"
 msgstr "Gefüllt"
 
@@ -4563,45 +4561,44 @@ msgstr "Gefüllt"
 msgid "Arcs"
 msgstr ""
 
+# Demote
 #: gschem/src/x/x_toolbars.c:246
-#, fuzzy
 msgid "Demote"
-msgstr "Einsetzen"
+msgstr "Degradieren"
 
 #: gschem/src/x/x_toolbars.c:249
 msgid "Both"
 msgstr ""
 
+# Hidden
 #: gschem/src/x/x_toolbars.c:251
-#, fuzzy
 msgid "Hidden"
-msgstr "Verborgenes anzeigen"
+msgstr "Versteckt"
 
-# Show/Hide Inherited
+# Inherited
 #: gschem/src/x/x_toolbars.c:252
-#, fuzzy
 msgid "Inherited"
-msgstr "Zeig/ausblenden Vererbt"
+msgstr "Vererbt"
 
+# Find
 #: gschem/src/x/x_toolbars.c:253
-#, fuzzy
 msgid "Find"
-msgstr "Text suchen"
+msgstr "Suchen"
 
+# Hide; Ausblenden
 #: gschem/src/x/x_toolbars.c:254
-#, fuzzy
 msgid "Hide"
-msgstr "Text verbergen"
+msgstr "Verbergen"
 
+# Show
 #: gschem/src/x/x_toolbars.c:255
-#, fuzzy
 msgid "Show"
-msgstr "Text anzeigen"
+msgstr "Anzeigen"
 
+# Auto Number => Automatically number
 #: gschem/src/x/x_toolbars.c:257
-#, fuzzy
 msgid "Auto #"
-msgstr "Automatisches Laden"
+msgstr "Automatisch nummerieren"
 
 #: gschem/src/x/x_toolbars.c:259
 msgid "Dots"
@@ -4612,9 +4609,8 @@ msgid "UP"
 msgstr ""
 
 #: gschem/src/x/x_toolbars.c:267
-#, fuzzy
 msgid "Snap On"
-msgstr "Am Raster ausrichten\n"
+msgstr "Raster ausrichten"
 
 #: gschem/src/x/x_toolbars.c:269
 msgid "Config"
