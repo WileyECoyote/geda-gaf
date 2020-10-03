@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fr_FR\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2020-09-25 11:28-0500\n"
+"POT-Creation-Date: 2020-10-03 09:15-0500\n"
 "PO-Revision-Date: 2016-12-28 19:57-0600\n"
 "Last-Translator: Wiley Edward Hill <wileyhill@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -606,178 +606,178 @@ msgid "Found invalid gschem window smob ~S"
 msgstr ""
 
 # current value of
-#: gschem/src/iface/i_command.c:137 gschem/src/iface/i_command.c:5355
+#: gschem/src/iface/i_command.c:137 gschem/src/iface/i_command.c:5370
 msgid "current value of"
 msgstr "valeur actuelle de"
 
-#: gschem/src/iface/i_command.c:137 gschem/src/iface/i_command.c:5356
+#: gschem/src/iface/i_command.c:137 gschem/src/iface/i_command.c:5371
 msgid "is"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:520
+#: gschem/src/iface/i_command.c:534
 msgid "Processing Action"
 msgstr "Traitement de l'action"
 
 # Select object first
-#: gschem/src/iface/i_command.c:640
+#: gschem/src/iface/i_command.c:654
 msgid "Select object first"
 msgstr "Sélectionnez d'abord l'objet"
 
 # Cannot
-#: gschem/src/iface/i_command.c:651
+#: gschem/src/iface/i_command.c:665
 msgid "Cannot"
 msgstr "Ne peux pas"
 
-#: gschem/src/iface/i_command.c:651
+#: gschem/src/iface/i_command.c:665
 msgid "while inside an action!\n"
 msgstr "alors que dans une action!\n"
 
-#: gschem/src/iface/i_command.c:918 gschem/src/iface/i_command.c:2967
+#: gschem/src/iface/i_command.c:932 gschem/src/iface/i_command.c:2981
 msgid "New page created"
 msgstr "Nouvelle page créée"
 
 # New Window created
-#: gschem/src/iface/i_command.c:958
+#: gschem/src/iface/i_command.c:972
 msgid "New Window created"
 msgstr "Nouvelle fenêtre créée"
 
-#: gschem/src/iface/i_command.c:1160
+#: gschem/src/iface/i_command.c:1174
 msgid "Failed to Save All"
 msgstr "Échec de la sauvegarde de toutes les pages"
 
-#: gschem/src/iface/i_command.c:1163 gschem/src/iface/i_command.c:1180
+#: gschem/src/iface/i_command.c:1177 gschem/src/iface/i_command.c:1194
 msgid "Saved All"
 msgstr "Toutes les pages enregistrées"
 
 # Error encountered, Save Failed
-#: gschem/src/iface/i_command.c:1177
+#: gschem/src/iface/i_command.c:1191
 msgid "Error encountered, Save Failed"
 msgstr "Error encountered, Save Failed"
 
-#: gschem/src/iface/i_command.c:1247 gschem/src/x/x_image.c:545
+#: gschem/src/iface/i_command.c:1261 gschem/src/x/x_image.c:545
 msgid "Write Image"
 msgstr "Tracer l'image"
 
 # Write PDF
-#: gschem/src/iface/i_command.c:1269
+#: gschem/src/iface/i_command.c:1283
 msgid "Write PDF"
 msgstr "Écrire PDF"
 
 # Canceled close all
-#: gschem/src/iface/i_command.c:1365 gschem/src/iface/i_sessions.c:184
+#: gschem/src/iface/i_command.c:1379 gschem/src/iface/i_sessions.c:184
 msgid "Canceled close all\n"
 msgstr "Annulé fermer tout\n"
 
-#: gschem/src/iface/i_command.c:1374 gschem/src/iface/i_sessions.c:193
+#: gschem/src/iface/i_command.c:1388 gschem/src/iface/i_sessions.c:193
 msgid "Closing all documents\n"
 msgstr "Fermer la page\n"
 
 # starting shut-down
-#: gschem/src/iface/i_command.c:1397
+#: gschem/src/iface/i_command.c:1411
 msgid "starting shut-down"
 msgstr "démarrage de l'arrêt"
 
 # Symbol is not embedded, export anyway?
-#: gschem/src/iface/i_command.c:1411
+#: gschem/src/iface/i_command.c:1425
 msgid "Symbol is not embedded, export anyway?"
 msgstr "Le symbole n'est pas intégré, exporter quand même?"
 
 # Picture is not embedded, export anyway?
-#: gschem/src/iface/i_command.c:1435
+#: gschem/src/iface/i_command.c:1449
 msgid "Picture is not embedded, export anyway?"
 msgstr "L'image n'est pas intégrée, exporter quand même?"
 
-#: gschem/src/iface/i_command.c:1582
+#: gschem/src/iface/i_command.c:1596
 msgid "Empty buffer"
 msgstr "Tampon vide"
 
-#: gschem/src/iface/i_command.c:1847
+#: gschem/src/iface/i_command.c:1861
 msgid "Offset Mode"
 msgstr "Mode Piste"
 
 # Specify offset distance
-#: gschem/src/iface/i_command.c:1848
+#: gschem/src/iface/i_command.c:1862
 msgid "Specify offset distance:"
 msgstr "Spécifiez la distance de décalage:"
 
 # Zoom Magnification
-#: gschem/src/iface/i_command.c:2444
+#: gschem/src/iface/i_command.c:2458
 msgid "Zoom Magnification"
 msgstr "Zoom Grossissement"
 
-#: gschem/src/iface/i_command.c:2444
+#: gschem/src/iface/i_command.c:2458
 msgid "Specify new zoom:"
 msgstr "Specify new zoom:"
 
-#: gschem/src/iface/i_command.c:2486 gschem/src/iface/i_command.c:4837
-#: gschem/src/iface/i_command.c:4867 gschem/src/iface/i_command.c:4888
-#: gschem/src/iface/i_command.c:4908
+#: gschem/src/iface/i_command.c:2500 gschem/src/iface/i_command.c:4852
+#: gschem/src/iface/i_command.c:4882 gschem/src/iface/i_command.c:4903
+#: gschem/src/iface/i_command.c:4923
 msgid "Check path:"
 msgstr ""
 
 # error
-#: gschem/src/iface/i_command.c:2497
+#: gschem/src/iface/i_command.c:2511
 msgid "error"
 msgstr "erreur"
 
-#: gschem/src/iface/i_command.c:2508
+#: gschem/src/iface/i_command.c:2522
 msgid "No component selected\n"
 msgstr "Aucun composant sélectionné\n"
 
 # Confirm revert ALL documents
-#: gschem/src/iface/i_command.c:3053
+#: gschem/src/iface/i_command.c:3067
 msgid "Confirm revert ALL documents"
 msgstr "Confirmer revenir à TOUS les documents"
 
 # Search for source
-#: gschem/src/iface/i_command.c:3235
+#: gschem/src/iface/i_command.c:3249
 msgid "Searching for source"
 msgstr "Recherche de source"
 
-#: gschem/src/iface/i_command.c:3270
+#: gschem/src/iface/i_command.c:3284
 msgid "Failed to descend into"
 msgstr "Impossible de remplacer les image"
 
 # Hierarchy Error
-#: gschem/src/iface/i_command.c:3279
+#: gschem/src/iface/i_command.c:3293
 msgid "Hierarchy Error"
 msgstr "Erreur de hiérarchie"
 
 # Search for symbol
-#: gschem/src/iface/i_command.c:3356
+#: gschem/src/iface/i_command.c:3370
 msgid "Searching for symbol"
 msgstr "Recherche du symbole"
 
-#: gschem/src/iface/i_command.c:3366
+#: gschem/src/iface/i_command.c:3380
 msgid "Symbol is not a real file. Symbol cannot be loaded.\n"
 msgstr "Le symbole n'est pas un fichier réel. Il ne peut pas être chargé.\n"
 
-#: gschem/src/iface/i_command.c:3414
+#: gschem/src/iface/i_command.c:3428
 msgid "Cannot find any schematics above the current one!\n"
 msgstr "Impossible de trouver des schémas au-dessus de celui-ci!\n"
 
-#: gschem/src/iface/i_command.c:3544
+#: gschem/src/iface/i_command.c:3558
 msgid "Object is attached to something\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:3950
+#: gschem/src/iface/i_command.c:3964
 msgid "Attribute is already attached\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4364
+#: gschem/src/iface/i_command.c:4378
 msgid "WARNING: Do not translate with snap off!\n"
 msgstr "ATTENTION : ne translatez pas quand le snap est désactivé !\n"
 
-#: gschem/src/iface/i_command.c:4365
+#: gschem/src/iface/i_command.c:4379
 msgid "WARNING: Turning snap on and continuing with translation.\n"
 msgstr ""
 "AVERTISSEMENT: activation de l'accrochage et poursuite de la traduction.\n"
 
-#: gschem/src/iface/i_command.c:4371
+#: gschem/src/iface/i_command.c:4385
 msgid "WARNING: Snap grid size is not equal to 100!\n"
 msgstr "ATTENTION : la taille du snap sur la grille n'est pas égale à 100 !\n"
 
-#: gschem/src/iface/i_command.c:4372
+#: gschem/src/iface/i_command.c:4386
 msgid ""
 "WARNING: If you are translating a symbol to the origin, the snap grid size "
 "should be set to 100\n"
@@ -785,75 +785,84 @@ msgstr ""
 "ATTENTION : si vous déplacez un symbole à l'origine, la taille de snap de la "
 "grille devrait être de 100 !\n"
 
-#: gschem/src/iface/i_command.c:4584
+#: gschem/src/iface/i_command.c:4598
 msgid "Grid OFF\n"
 msgstr "Grille OFF\n"
 
-#: gschem/src/iface/i_command.c:4585
+#: gschem/src/iface/i_command.c:4599
 msgid "Dot grid activated\n"
 msgstr "Grille à points sélectionnée\n"
 
-#: gschem/src/iface/i_command.c:4586
+#: gschem/src/iface/i_command.c:4600
 msgid "Mesh grid activated\n"
 msgstr "Grille à mailles sélectionnée\n"
 
-#: gschem/src/iface/i_command.c:4665
-msgid "Snap OFF (CAUTION!)\n"
+#: gschem/src/iface/i_command.c:4679
+#, fuzzy
+msgid "Snap OFF (CAUTION!)"
 msgstr "Snap OFF (ATTENTION)\n"
 
-#: gschem/src/iface/i_command.c:4671
-msgid "Snap ON\n"
+#: gschem/src/iface/i_command.c:4685
+#, fuzzy
+msgid "Snap ON"
 msgstr "Snap ON\n"
 
-#: gschem/src/iface/i_command.c:4676
-msgid "Snap back to the grid (CAUTION!)\n"
+#: gschem/src/iface/i_command.c:4690
+#, fuzzy
+msgid "Snap back to the grid (CAUTION!)"
 msgstr "Retour brusque à la grille (ATTENTION!)\n"
 
-#: gschem/src/iface/i_command.c:4701
-msgid "Rubber band mode is OFF\n"
+#: gschem/src/iface/i_command.c:4716
+#, fuzzy
+msgid "Rubber band mode is OFF"
 msgstr "Mode piste élastique : OFF \n"
 
-#: gschem/src/iface/i_command.c:4705
-msgid "Rubber band mode is ON\n"
+#: gschem/src/iface/i_command.c:4720
+#, fuzzy
+msgid "Rubber band mode is ON"
 msgstr "Mode piste élastique : ON\n"
 
-#: gschem/src/iface/i_command.c:4716
-msgid "Magnetic net mode is ON\n"
+#: gschem/src/iface/i_command.c:4731
+#, fuzzy
+msgid "Magnetic net mode is ON"
 msgstr "Mode Piste Magnétique : ON\n"
 
-#: gschem/src/iface/i_command.c:4719
-msgid "Magnetic net mode is OFF\n"
+#: gschem/src/iface/i_command.c:4734
+#, fuzzy
+msgid "Magnetic net mode is OFF"
 msgstr "Mode Piste Magnétique : OFF\n"
 
-#: gschem/src/iface/i_command.c:4736 gschem/src/iface/i_command.c:4779
+#: gschem/src/iface/i_command.c:4751 gschem/src/iface/i_command.c:4794
 #: gschem/src/x/x_compselect.c:135 gschem/src/x/x_toolbars.c:261
 msgid "Off"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4740 gschem/src/iface/i_command.c:4783
+#: gschem/src/iface/i_command.c:4755 gschem/src/iface/i_command.c:4798
 #: gschem/src/x/x_compselect.c:134
 msgid "On"
 msgstr "Ouvrir"
 
 # drag-can-move is now
-#: gschem/src/iface/i_command.c:4742
+#: gschem/src/iface/i_command.c:4757
 msgid "Drag-Can-Move is now"
 msgstr "Drag-can-move est maintenant"
 
-#: gschem/src/iface/i_command.c:4754
-msgid "Action feedback mode set to OUTLINE\n"
+#: gschem/src/iface/i_command.c:4769
+#, fuzzy
+msgid "Action feedback mode set to OUTLINE"
 msgstr "Mode de retour utilisateur positionné à OUTLINE\n"
 
-#: gschem/src/iface/i_command.c:4758
-msgid "Action feedback mode set to BOUNDINGBOX\n"
+#: gschem/src/iface/i_command.c:4773
+#, fuzzy
+msgid "Action feedback mode set to BOUNDINGBOX"
 msgstr "Mode de retour utilisateur positionné à BOUNDINGBOX\n"
 
 # Auto Pan is now
-#: gschem/src/iface/i_command.c:4785
+#: gschem/src/iface/i_command.c:4800
 msgid "Auto-Pan is now"
 msgstr "Le panoramique automatique est maintenant"
 
-#: gschem/src/iface/i_command.c:5008
+#: gschem/src/iface/i_command.c:5023
 #, c-format
 msgid "(read only) width=%d, height=%d\n"
 msgstr ""
@@ -1221,31 +1230,31 @@ msgid_plural "Delete %u locked objects?"
 msgstr[0] "Supprimer l'objet verrouillé?"
 msgstr[1] "Supprimer les objets %u bloqués?"
 
-#: gschem/src/object/o_edit.c:606
+#: gschem/src/object/o_edit.c:608
 msgid "attributes were hidden"
 msgstr "Attributs"
 
-#: gschem/src/object/o_edit.c:610
+#: gschem/src/object/o_edit.c:612
 msgid "hidden attributes were revealed"
 msgstr "Montrer les attributs hérités"
 
-#: gschem/src/object/o_edit.c:825
+#: gschem/src/object/o_edit.c:827
 msgid "Hidden text is now visible\n"
 msgstr "Le texte normalement caché est maintenant visible\n"
 
-#: gschem/src/object/o_edit.c:828
+#: gschem/src/object/o_edit.c:830
 msgid "Hidden text is now invisible\n"
 msgstr "Le texte normalement caché est maintenant invisible\n"
 
-#: gschem/src/object/o_edit.c:1263 gschem/src/x/x_edit_cprop.c:389
+#: gschem/src/object/o_edit.c:1265 gschem/src/x/x_edit_cprop.c:389
 msgid "Could not find symbol"
 msgstr "Impossible de trouver le symbole"
 
-#: gschem/src/object/o_edit.c:1264 gschem/src/x/x_edit_cprop.c:390
+#: gschem/src/object/o_edit.c:1266 gschem/src/x/x_edit_cprop.c:390
 msgid "in library. Update failed"
 msgstr "Dans la bibliothèque. Mise à jour a échoué"
 
-#: gschem/src/object/o_edit.c:1269
+#: gschem/src/object/o_edit.c:1271
 msgid "Updating symbol"
 msgstr "Mise à jour du symbole"
 
@@ -1863,8 +1872,9 @@ msgid "Guile"
 msgstr ""
 
 #: gschem/src/x/x_dialog.c:526
+#, fuzzy
 msgid ""
-"Copyright © 1998-2017 Ales Hvezda <ahvezda@geda.seul.org>\n"
+"Copyright © 1998-2010 Ales Hvezda <ahvezda@geda.seul.org>\n"
 "Copyright © 1998-2017 gEDA Contributors (see ChangeLog for details)"
 msgstr ""
 "Copyright © 1998-2017 Ales Hvezda <ahvezda@geda.seul.org>\n"
@@ -1972,7 +1982,7 @@ msgstr "Texte"
 msgid "Bus"
 msgstr "Bus"
 
-#: gschem/src/x/x_dialog.c:1126 gschem/src/x/x_edit_array.c:1077
+#: gschem/src/x/x_dialog.c:1126 gschem/src/x/x_edit_array.c:1078
 #: gschem/src/x/x_menus.c:111
 msgid "Selection"
 msgstr "Sélection"
@@ -2381,165 +2391,165 @@ msgstr ""
 msgid "Done, renderer is down"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:612
+#: gschem/src/x/x_edit_array.c:613
 msgid "X pitch distance is less than extents\n"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:613
+#: gschem/src/x/x_edit_array.c:614
 msgid "Y pitch distance is less than extents\n"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:626
+#: gschem/src/x/x_edit_array.c:627
 msgid "X and Y pitch distance are less than extents\n"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:645
+#: gschem/src/x/x_edit_array.c:646
 msgid "Components may overlay, Continue?"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:658 gschem/src/x/x_edit_array.c:663
-#: gschem/src/x/x_edit_array.c:668
+#: gschem/src/x/x_edit_array.c:659 gschem/src/x/x_edit_array.c:664
+#: gschem/src/x/x_edit_array.c:669
 msgid "Create Array:Error"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:659
+#: gschem/src/x/x_edit_array.c:660
 msgid ""
 "Both row and column offset\n"
 "can not be zero"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:664
+#: gschem/src/x/x_edit_array.c:665
 msgid ""
 "Either row or column count\n"
 " must be greater than 1"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:669
+#: gschem/src/x/x_edit_array.c:670
 msgid ""
 "Both row and column\n"
 "can not be zero"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:1026
+#: gschem/src/x/x_edit_array.c:1027
 msgid "Indicates total number of objects currently selected"
 msgstr ""
 
 # Selection x size
-#: gschem/src/x/x_edit_array.c:1027
+#: gschem/src/x/x_edit_array.c:1028
 msgid "Selection x size"
 msgstr "Sélection x taille"
 
 # Selection y size
-#: gschem/src/x/x_edit_array.c:1028
+#: gschem/src/x/x_edit_array.c:1029
 msgid "Selection y size"
 msgstr "Sélection y taille"
 
 # Number of rows to create
-#: gschem/src/x/x_edit_array.c:1029
+#: gschem/src/x/x_edit_array.c:1030
 msgid "Number of rows to create"
 msgstr "Nombre de lignes à créer"
 
 # Number of columns to create
-#: gschem/src/x/x_edit_array.c:1030
+#: gschem/src/x/x_edit_array.c:1031
 msgid "Number of columns to create"
 msgstr "Nombre de colonnes à créer"
 
-#: gschem/src/x/x_edit_array.c:1031
+#: gschem/src/x/x_edit_array.c:1032
 msgid "Vertical pitch of array, negative is downward"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:1032
+#: gschem/src/x/x_edit_array.c:1033
 msgid "Horizontal pitch of array, negative is to left"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:1050 gschem/scheme/gschem/builtins.scm:131
+#: gschem/src/x/x_edit_array.c:1051 gschem/scheme/gschem/builtins.scm:131
 msgid "Create Array"
 msgstr ""
 
 # Count
-#: gschem/src/x/x_edit_array.c:1087 gschem/src/x/x_edit_array.c:1157
-#: gschem/src/x/x_edit_array.c:1190
+#: gschem/src/x/x_edit_array.c:1088 gschem/src/x/x_edit_array.c:1158
+#: gschem/src/x/x_edit_array.c:1191
 msgid "Count"
 msgstr "Compter"
 
 # X Size
-#: gschem/src/x/x_edit_array.c:1098
+#: gschem/src/x/x_edit_array.c:1099
 msgid "X Size"
 msgstr "Taille X"
 
 # Y Size
-#: gschem/src/x/x_edit_array.c:1101
+#: gschem/src/x/x_edit_array.c:1102
 msgid "Y Size"
 msgstr "Taille Y"
 
-#: gschem/src/x/x_edit_array.c:1120 gschem/src/x/x_menus.c:91
+#: gschem/src/x/x_edit_array.c:1121 gschem/src/x/x_menus.c:91
 #: gschem/src/x/x_toolbars.c:165
 msgid "Select"
 msgstr "Sélectionner"
 
 # Deselect
-#: gschem/src/x/x_edit_array.c:1124 gschem/src/x/x_menus.c:92
+#: gschem/src/x/x_edit_array.c:1125 gschem/src/x/x_menus.c:92
 #: gschem/src/x/x_toolbars.c:166
 msgid "Deselect"
 msgstr "Désélectionner"
 
-#: gschem/src/x/x_edit_array.c:1140 gschem/src/x/x_menus.c:123
+#: gschem/src/x/x_edit_array.c:1141 gschem/src/x/x_menus.c:123
 #: gschem/src/x/x_toolbars.c:230
 msgid "Array"
 msgstr "Array"
 
-#: gschem/src/x/x_edit_array.c:1149
+#: gschem/src/x/x_edit_array.c:1150
 msgid "Row"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:1172 gschem/src/x/x_edit_array.c:1205
+#: gschem/src/x/x_edit_array.c:1173 gschem/src/x/x_edit_array.c:1206
 #: gschem/src/x/x_toolbars.c:228
 msgid "Offset"
 msgstr "Décalage"
 
-#: gschem/src/x/x_edit_array.c:1182
+#: gschem/src/x/x_edit_array.c:1183
 msgid "Column"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:1215
+#: gschem/src/x/x_edit_array.c:1216
 msgid "Y"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:1223
+#: gschem/src/x/x_edit_array.c:1224
 msgid "X,Y"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:1227
+#: gschem/src/x/x_edit_array.c:1228
 msgid "X"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:1245
+#: gschem/src/x/x_edit_array.c:1246
 msgid "Read only count of objects currently selected"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:1252
+#: gschem/src/x/x_edit_array.c:1253
 msgid "Read only x bounds displacement of selected object"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:1259
+#: gschem/src/x/x_edit_array.c:1260
 msgid "Read only y bounds displacement of selected object"
 msgstr ""
 
 # Spinner entry number of rows to create
-#: gschem/src/x/x_edit_array.c:1266
+#: gschem/src/x/x_edit_array.c:1267
 msgid "Spinner entry number of rows to create"
 msgstr "Spinner nombre de lignes à créer"
 
 # Spinner entry number of columns to create
-#: gschem/src/x/x_edit_array.c:1273
+#: gschem/src/x/x_edit_array.c:1274
 msgid "Spinner entry number of columns to create"
 msgstr "Spinner nombre de colonnes à créer"
 
-#: gschem/src/x/x_edit_array.c:1280
+#: gschem/src/x/x_edit_array.c:1281
 msgid "Entry for array horizontal pitch"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:1287
+#: gschem/src/x/x_edit_array.c:1288
 msgid "entry for array vertical pitch"
 msgstr ""
 
