@@ -4737,67 +4737,64 @@ msgid "Multi"
 msgstr ""
 
 #: gschem/src/x/x_toolbars.c:236
-#, fuzzy
 msgid "Color"
-msgstr "_Kolor:"
+msgstr "Kolor"
 
+# Slots => Element
 #: gschem/src/x/x_toolbars.c:238
-#, fuzzy
 msgid "Slots"
-msgstr "Element..."
+msgstr "Element"
 
 #: gschem/src/x/x_toolbars.c:239
 msgid "Pins"
 msgstr ""
 
 #: gschem/src/x/x_toolbars.c:241
-#, fuzzy
 msgid "Fill"
-msgstr "Pełne"
+msgstr "Napełnić"
 
 #: gschem/src/x/x_toolbars.c:242
 msgid "Arcs"
 msgstr ""
 
+# Demote
 #: gschem/src/x/x_toolbars.c:246
-#, fuzzy
 msgid "Demote"
-msgstr "Promuj"
+msgstr "Zdegradować"
 
 #: gschem/src/x/x_toolbars.c:249
 msgid "Both"
 msgstr ""
 
+# Hidden
 #: gschem/src/x/x_toolbars.c:251
-#, fuzzy
 msgid "Hidden"
-msgstr "Pokaż ukryte"
+msgstr "Ukryty"
 
-# Show/Hide Inherited
+# Inherited
 #: gschem/src/x/x_toolbars.c:252
-#, fuzzy
 msgid "Inherited"
-msgstr "Wyświe_tlaj/ukryj Dziedziczny"
+msgstr "Dziedziczny"
 
+# Find; To locate
 #: gschem/src/x/x_toolbars.c:253
-#, fuzzy
 msgid "Find"
-msgstr "Znajdź tekst"
+msgstr "Zlokalizować"
 
+# Hide
 #: gschem/src/x/x_toolbars.c:254
-#, fuzzy
 msgid "Hide"
-msgstr "Ukryj tekst"
+msgstr "Ukryć"
 
+# Show
 #: gschem/src/x/x_toolbars.c:255
-#, fuzzy
 msgid "Show"
-msgstr "Wyświetl tekst"
+msgstr "Wyświetl"
 
+# Auto Number => number automatically
 #: gschem/src/x/x_toolbars.c:257
-#, fuzzy
 msgid "Auto #"
-msgstr "Automatyczne ładowanie"
+msgstr "numer automatycznie"
 
 #: gschem/src/x/x_toolbars.c:259
 msgid "Dots"
@@ -4807,10 +4804,10 @@ msgstr ""
 msgid "UP"
 msgstr ""
 
+# Grid Snap: Enabled
 #: gschem/src/x/x_toolbars.c:267
-#, fuzzy
 msgid "Snap On"
-msgstr "Przyciąganie do siatki: włączone\n"
+msgstr "Przyciąganie do siatki: włączone"
 
 #: gschem/src/x/x_toolbars.c:269
 msgid "Config"
