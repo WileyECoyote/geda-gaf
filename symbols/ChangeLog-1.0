@@ -1,5 +1,9 @@
 2020-10-04 Wiley E. Hill <wileyhill@gmail.com>
 
+    * diode/zener52/zener*.sym: Revise sequence of attributes:
+
+            * diode/zener52/zener_2.4_1N5221B.sym
+
     * logic/power/74-power-1.sym: Rename symbol file with dash.
 
     * logic/power/*.sym: Revise device attributes to contain strings in the
