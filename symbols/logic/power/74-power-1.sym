@@ -34,4 +34,4 @@ T 200 1650 8 10 0 0 0 0 1
 description=power symbol for gates with vcc on 14 and gnd on 7
 L 400 200 400 800 3 0 0 0 -1 -1
 T 500 600 8 10 1 1 0 0 1
-device=74??
+device=74

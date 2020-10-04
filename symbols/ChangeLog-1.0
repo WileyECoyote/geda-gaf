@@ -1,6 +1,11 @@
 2020-10-04 Wiley E. Hill <wileyhill@gmail.com>
 
-    * logic/power/74-power-1.sym: Rename symbol file with dash
+    * logic/power/74-power-1.sym: Rename symbol file with dash.
+
+    * logic/power/*.sym: Revise device attributes to contain strings in the
+      filenames:
+
+            * logic/power/74-power-1.sym
 
 2020-09-27 Wiley E. Hill <wileyhill@gmail.com>
 
