@@ -6,6 +6,7 @@
             * diode/zener52/zener_2.5_1N5222B.sym
             * diode/zener52/zener_2.7_1N5223B.sym
             * diode/zener52/zener_2.8_1N5224B.sym
+            * diode/zener52/zener_3.0_1N5225B.sym
 
     * logic/power/74-power-1.sym: Rename symbol file with dash.
 

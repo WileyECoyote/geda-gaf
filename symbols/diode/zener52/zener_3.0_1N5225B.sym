@@ -33,15 +33,15 @@ T 550 400 5 10 1 1 0 0 1
 device=1N5225B
 T 550 800 8 10 1 1 0 0 1
 refdes=Z?
-T 550 1400 8 10 0 0 0 0 1
-author=AutoTron
-T 550 1200 8 10 0 0 0 0 1
-dist-license=GPLv2
-T 550 1000 8 10 0 0 0 0 1
-use-license=unlimited
 T 550 200 8 10 0 1 0 0 1
 footprint=DO-35
 T 550 600 5 10 1 1 0 0 1
 value=3.0V
 T 550 -15 8 10 0 1 0 0 1
 description=ZENER DIODE,3.0V,1/2W
+T 550 1400 8 10 0 0 0 0 1
+author=AutoTron
+T 550 1200 8 10 0 0 0 0 1
+dist-license=GPLv2
+T 550 1000 8 10 0 0 0 0 1
+use-license=unlimited
