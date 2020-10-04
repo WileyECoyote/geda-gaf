@@ -34,4 +34,4 @@ T 200 1650 8 10 0 0 0 0 1
 description=power symbol for gates with vdd on 16 and vss on 8
 L 400 200 400 800 3 0 0 0 -1 -1
 T 500 600 8 10 1 1 0 0 1
-device=4???
+device=4000
