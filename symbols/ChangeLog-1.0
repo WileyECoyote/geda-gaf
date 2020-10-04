@@ -3,6 +3,7 @@
     * diode/zener52/zener*.sym: Revise sequence of attributes:
 
             * diode/zener52/zener_2.4_1N5221B.sym
+            * diode/zener52/zener_2.5_1N5222B.sym
 
     * logic/power/74-power-1.sym: Rename symbol file with dash.
 
