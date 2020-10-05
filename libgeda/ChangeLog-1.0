@@ -1,3 +1,8 @@
+2020-10-05 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_pin_object.c: rename pointer to label string in function
+      geda_pin_object_set_attributes.
+
 2020-10-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/math/m_hatch.c: Add geda_math_hatch_arc function documentation.

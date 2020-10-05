@@ -769,7 +769,7 @@ bool geda_pin_object_get_attributes(GedaObject *object, const char **label,
  * \param [in] m_type    The pin mechanical attribute code
  * \param [in] n_type    The pin node type (Net or Bus type).
  */
-void geda_pin_object_set_attributes(GedaObject *object, const char *label_str,
+void geda_pin_object_set_attributes(GedaObject *object, const char *label,
                                                         const char *number,
                                                         int         sequence,
                                                         PIN_ELECT   e_type,
@@ -822,18 +822,18 @@ void geda_pin_object_set_attributes(GedaObject *object, const char *label_str,
     GEDA_FREE(str_seq);
 
 #if DEBUG
-    fprintf(stderr, "%s: pinlabel=<%s>\n", __func__, label_str);
+    fprintf(stderr, "%s: pinlabel=<%s>\n", __func__, label);
 #endif
 
     /* pin label */
-    if (label_str && geda_pin_set_label(pin, label_str)) {
+    if (label && geda_pin_set_label(pin, label)) {
       bute = geda_attrib_first_attrib_by_name (object, "pinlabel");
       if(bute !=NULL && bute->type == OBJ_TEXT) {
-        geda_attrib_object_set_value(bute, "pinlabel", (char*)label_str);
+        geda_attrib_object_set_value(bute, "pinlabel", (char*)label);
         geda_text_object_recreate(bute);
       }
       else {
-        bute = geda_pin_object_create_label_attrib (NULL, object, label_str, -1, -1);
+        bute = geda_pin_object_create_label_attrib (NULL, object, label, -1, -1);
         if (bute && object->page) {
           geda_struct_page_append_object(object->page, bute);
           bute->page = object->page;
