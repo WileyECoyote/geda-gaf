@@ -275,11 +275,6 @@ int check_accessors (void)
 
     /* === Function 05: geda_bus_object_get_position  === */
 
-    if (geda_bus_object_get_position (NULL, &px, &py)) {
-      fprintf(stderr, "FAILED: (O050500) object NULL\n");
-      fail++;
-    }
-
     if (!geda_bus_object_get_position (object0, &px, &py)) {
       fprintf(stderr, "FAILED: (O050501A) geda_bus_object_get_position\n");
       fail++;
@@ -525,6 +520,14 @@ int check_query(void)
   /* bounds_valid should be set */
   if (!object->bounds_valid) {
     fprintf(stderr, "FAILED: (O051203C) %s bounds_valid %d\n", TOBJECT, object->bounds_valid);
+    result++;
+  }
+
+  /* === Function 05: geda_bus_object_get_position  === */
+  int px, py;
+
+  if (geda_bus_object_get_position (NULL, &px, &py)) {
+    fprintf(stderr, "FAILED: (O050500A) object NULL\n");
     result++;
   }
 

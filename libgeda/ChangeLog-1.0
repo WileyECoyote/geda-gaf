@@ -12,7 +12,7 @@
       with NULL X-Y pointers.
 
     * tests/test_bus_object.c: Relocate check for geda_bus_object_get_position
-      with object to check_query.
+      with object to check_query and add check with NULL X-Y pointers.
 
 2020-10-02 Wiley E. Hill <wileyhill@gmail.com>
 
