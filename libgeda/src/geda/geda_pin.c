@@ -77,24 +77,31 @@ static void geda_pin_set_property (GObject *object,     unsigned int  prop_id,
     case PROP_ELECTRICAL:
       geda_pin_set_electrical (pin, g_value_get_string (value));
       break;
+
     case PROP_LABEL:
       geda_pin_set_label (pin, g_value_get_string (value));
       break;
+
     case PROP_MECHANICAL:
       geda_pin_set_mechanical (pin, g_value_get_string (value));
       break;
+
     case PROP_NUMBER:
       geda_pin_set_number (pin, g_value_get_string (value));
       break;
+
     case PROP_SEQUENCE:
       geda_pin_set_sequence (pin, g_value_get_string (value));
       break;
+
     case PROP_TYPE:
       geda_pin_set_electrical (pin, g_value_get_string (value));
       break;
+
     case PROP_WHICHEND:
       pin->whichend = g_value_get_int (value);
       break;
+
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
       break;
@@ -482,11 +489,14 @@ const char *geda_pin_lookup_estring(PIN_ELECT e_type) {
 PIN_MECH geda_pin_lookup_mtype(const char *m_str) {
 
   PIN_MECH index;
+
   for (index = PIN_MECH_LEAD; m_strings[index] != NULL; index++) {
     if (strcmp(m_str, m_strings[index]) == 0)
       break;
   }
+
   if(m_strings[index] == NULL ) index = PIN_MECH_VOID;
+
   return index;
 }
 
