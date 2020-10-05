@@ -8,6 +8,9 @@
     * src/object/o_pin_object.c: rename pointer to label string in function
       geda_pin_object_set_attributes.
 
+    * tests/test_box_object.c: Add checks for geda_box_object_get_position
+      with NULL X-Y pointers.
+
 2020-10-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/math/m_hatch.c: Add geda_math_hatch_arc function documentation.

@@ -579,9 +579,35 @@ int check_accessors (void)
       fprintf(stderr, "FAILED: (O041601C) box %d != %d\n", py, y2);
       fail++;
     }
+
+    px = x1 + 1;
+
+    if (!geda_box_object_get_position (object0, &px, NULL)) {
+      fprintf(stderr, "FAILED: (O041602A) box x1=%d, y1=%d, x2=%d, y2=%d\n", x1, y1, x2, y2);
+      fail++;
+    }
+
+    if (px - x1) {
+      fprintf(stderr, "FAILED: (O041602B) box %d != %d\n", px, x1);
+      fail++;
+    }
+
+    py = y2 + 1;
+
+    if (!geda_box_object_get_position (object0, NULL, &py)) {
+      fprintf(stderr, "FAILED: (O041603A) box x1=%d, y1=%d, x2=%d, y2=%d\n", x1, y1, x2, y2);
+      fail++;
+    }
+
+    if (py - y2) {
+      fprintf(stderr, "FAILED: (O041603B) box %d != %d\n", py, y2);
+      fail++;
+    }
+
     if (fail) {
       result++;
     }
+
     g_object_unref (object0);
   }
   return result;
@@ -747,6 +773,11 @@ int check_query(void)
     result++;
   }
 
+  if (geda_box_object_get_position (object, NULL, NULL)) {
+    fprintf(stderr, "FAILED: (O041600B) X Y NULL\n");
+    result++;
+  }
+
   g_object_unref (object);
 
   for (count = 0; count < 3; count++) {
@@ -903,6 +934,7 @@ int check_query(void)
     qy = y1 - 100;
     nx = 0;
     ny = 0;
+
     if (geda_box_object_get_nearest_point(object, qx, qy, &nx, &ny)) {
       fprintf(stderr, "FAILED: (O041510) box qx=%d, qy=%d\n", qx, qy);
       fail++;
