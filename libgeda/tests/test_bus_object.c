@@ -193,6 +193,7 @@ check_construction (void)
     }
     g_object_unref (object0);
   }
+
   return result;
 }
 
@@ -524,6 +525,11 @@ int check_query(void)
   /* bounds_valid should be set */
   if (!object->bounds_valid) {
     fprintf(stderr, "FAILED: (O051203C) %s bounds_valid %d\n", TOBJECT, object->bounds_valid);
+    result++;
+  }
+
+  if (geda_bus_object_get_position (object, NULL, NULL)) {
+    fprintf(stderr, "FAILED: (O050500B) X Y NULL\n");
     result++;
   }
 

@@ -5,11 +5,14 @@
           * geda_pin_get_whichend
           * geda_pin_lookup_mtype
 
-    * src/object/o_pin_object.c: rename pointer to label string in function
+    * src/object/o_pin_object.c: Rename pointer to label string in function
       geda_pin_object_set_attributes.
 
     * tests/test_box_object.c: Add checks for geda_box_object_get_position
       with NULL X-Y pointers.
+
+    * tests/test_bus_object.c: Relocate check for geda_bus_object_get_position
+      with object to check_query.
 
 2020-10-02 Wiley E. Hill <wileyhill@gmail.com>
 
