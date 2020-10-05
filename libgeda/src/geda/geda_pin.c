@@ -481,10 +481,22 @@ const char *geda_pin_lookup_estring(PIN_ELECT e_type) {
   return str;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Look up Pin Mechanical Type from String Code
+ * \par Function Description
+ *  Compares m_str to each entry in m_strings and returns the index,
+ *  if found. The index is the PIN_MECH associated with m_str or
+ *  PIN_ELECT_VOID if m_str was not found in e_strings.
  *
+ * \note e_strings must always be in the same order as the PIN_MECH
+ *       enumeration found in "geda_enum.h"
+ *
+ * \param [in]  m_str Pointer to pin-type string to lookup.
+ *
+ * \retval PIN_ELECT
+ *
+ * \remarks Libgeda does not treat pin-type PIN_MECH_VOID as an
+ *          error.
  */
 PIN_MECH geda_pin_lookup_mtype(const char *m_str) {
 

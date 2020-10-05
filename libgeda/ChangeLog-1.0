@@ -3,6 +3,7 @@
     * src/geda/geda_pin.c: Add function documentation:
 
           * geda_pin_get_whichend
+          * geda_pin_lookup_mtype
 
     * src/object/o_pin_object.c: rename pointer to label string in function
       geda_pin_object_set_attributes.
