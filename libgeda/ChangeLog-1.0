@@ -14,6 +14,10 @@
     * tests/test_bus_object.c: Relocate check for geda_bus_object_get_position
       with object to check_query and add check with NULL X-Y pointers.
 
+    * tests/test_object_list.c: Revise For loops in check_object_list_set_color
+      to use intermediate fail counter and output the conditions when failures
+      occur.
+
 2020-10-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/math/m_hatch.c: Add geda_math_hatch_arc function documentation.

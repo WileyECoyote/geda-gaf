@@ -998,14 +998,20 @@ int check_object_list_set_color (GedaToplevel *toplevel)
 
     /* === object1->arc === */
 
-    int c = geda_object_get_color (object1);
+    c = geda_object_get_color (object1);
 
     if (c != color) {
       fprintf(stderr, "FAILED: (O120701) geda_object_list_set_color (%d)\n", c);
-      result++;
+      fail++;
     }
 
     /* === object2->box === */
+
+    c = geda_object_get_color (object2);
+    if (fail) {
+      fprintf(stderr, "count (%d) color (%d)\n", count, color);
+      result++;
+    }
   }
 
   return result;
