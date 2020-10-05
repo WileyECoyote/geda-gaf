@@ -421,10 +421,10 @@ int geda_pin_get_sequence(GedaPin *pin)
   return pin->sequence;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Get which end of a pin is the connnection node
+ * \par Function Description
+ *  Returns the value of the pin->whichend member.
  */
 int geda_pin_get_whichend(GedaPin *pin)
 {
