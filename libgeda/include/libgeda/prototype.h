@@ -729,7 +729,6 @@ const CLibSymbol *geda_struct_clib_get_symbol_by_name      (const char *name);
          char   *geda_struct_encoding_base64_encode        (char *src, unsigned int srclen, unsigned int *dstlenp, bool strict);
          char   *geda_struct_encoding_base64_decode        (char *src, unsigned int srclen, unsigned int *dstlenp);
 
-
 /* s_slib.c */
           int    geda_struct_slib_add_entry                (const char *new_path);
 
