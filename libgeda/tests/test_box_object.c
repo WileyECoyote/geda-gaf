@@ -605,6 +605,7 @@ int check_accessors (void)
     }
 
     if (fail) {
+      fprintf(stderr, "Conditions x1=%d, y1=%d, x2=%d, y2=%d\n", x1, y1, x2, y2);
       result++;
     }
 

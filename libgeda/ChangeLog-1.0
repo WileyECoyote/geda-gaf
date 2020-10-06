@@ -2,7 +2,8 @@
 
     * tests/test_arc_object.c: Output conditions when failures occur.
 
-    * tests/test_box_object.c: Revise fail output messages for O04160[1-3]A.
+    * tests/test_box_object.c: Revise fail output messages for O04160[1-3]A
+      and output conditions when failures occur.
 
 2020-10-05 Wiley E. Hill <wileyhill@gmail.com>
 
