@@ -7,6 +7,7 @@
 
     * tests/test_bus_object.c: Add checks for geda_bus_object_get_position
       with NULL X-Y pointers and output conditions when failures occur.
+      Unwrap functions definitions.
 
 2020-10-05 Wiley E. Hill <wileyhill@gmail.com>
 

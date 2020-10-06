@@ -86,8 +86,7 @@
  *      O0523    geda_bus_object_translate
  */
 
-int
-check_construction (void)
+int check_construction (void)
 {
   int count;
   int result = 0;
@@ -392,8 +391,7 @@ int check_accessors (void)
   return result;
 }
 
-int
-check_serialization (void)
+int check_serialization (void)
 {
   int  count;
   int  converted;
@@ -594,8 +592,7 @@ int check_query(void)
   return result;
 }
 
-int
-check_transformer(void)
+int check_transformer(void)
 {
   int result = 0;
   int count;
@@ -690,8 +687,7 @@ check_transformer(void)
 
 /** @} endgroup test-object-geda-bus */
 
-int
-main (int argc, char *argv[])
+int main (int argc, char *argv[])
 {
   int result = 0;
 
