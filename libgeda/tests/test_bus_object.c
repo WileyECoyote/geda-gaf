@@ -388,6 +388,7 @@ int check_accessors (void)
     }
     g_object_unref (object0);
   }
+
   return result;
 }
 
@@ -512,6 +513,7 @@ int check_serialization (void)
       g_free (buffer1);
     }
   }
+
   return result;
 }
 
