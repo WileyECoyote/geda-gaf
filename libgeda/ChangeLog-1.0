@@ -9,6 +9,8 @@
       with NULL X-Y pointers and output conditions when failures occur.
       Unwrap functions definitions.
 
+    * tests/test_object_list.c: Extend checks for geda_object_list_set_color.
+
 2020-10-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_pin.c: Add function documentation:
@@ -13095,7 +13097,7 @@ include/struct.h: Removed the ADDING_SEL variable from the TOPLEVEL struct
           just set complex pointer to NULL, and hence created a leak.
           Plugged leak by freeing complex list completely before NULLing
 
-        * src/o_net_basic.c: #if DEBUG'ed out some printf`s which dealt
+        * src/o_net_basic.c: #if DEBUG`ed out some printf`s which dealt
           with net consolidation
 
 2000-06-03  Ales Hvezda  <ahvezda@geda.seul.org>
@@ -13118,7 +13120,7 @@ include/struct.h: Removed the ADDING_SEL variable from the TOPLEVEL struct
 
         * include/struct.h: Added attribute_promotion to TOPLEVEL structure
 
-        * src/o_complex_basic.c: Added Martin Benes' code to implement
+        * src/o_complex_basic.c: Added Martin Benes` code to implement
           attribute promotion.
 
         * src/o_complex_basic.c: Renamed attach_attributes to
@@ -13130,7 +13132,7 @@ include/struct.h: Removed the ADDING_SEL variable from the TOPLEVEL struct
           o_complex_is_eligible_attribute, only visible floating text
           attributes will be promoted
 
-        * src/o_list.c: Added Martin Benes' code changes
+        * src/o_list.c: Added Martin Benes` code changes
 
 2000-05-27  Ales Hvezda  <ahvezda@geda.seul.org>
 
@@ -13929,7 +13931,7 @@ include/struct.h: Removed the ADDING_SEL variable from the TOPLEVEL struct
 
 2/25/99 Added gsymcheck structures (include/struct.h)
 
-2/12/99 Added code (#ifndef'ed) for vnsprintf to fix the Solaris 5.5.x
+2/12/99 Added code (#ifndef`ed) for vnsprintf to fix the Solaris 5.5.x
         problem (did not have vnsprintf).  The vnsprintf wrapper is from
         Timidity++-1.2.1, which is under the GPL v2.0
 
@@ -13939,7 +13941,7 @@ include/struct.h: Removed the ADDING_SEL variable from the TOPLEVEL struct
         Found a memory leak in s_clib_cache_free, the index used in the loop
         could wrap, so you might end up freeing only a portion of the entries
 
-2/11/99        Searching through stroke structure fixed to be faster (does not
+2/11/99 Searching through stroke structure fixed to be faster (does not
         search the whole array of structures)
 
         Implemented a return value of s_stroke_search_execute (TRUE if it

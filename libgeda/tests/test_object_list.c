@@ -992,6 +992,7 @@ int check_object_list_set_color (GedaToplevel *toplevel)
   for (count = 0; count < 10; count++) {
 
     int color = geda_math_random_number (0, MAX_COLORS - 1);
+    int c, fail = 0;
 
     /* === Function 06: geda_object_list_set_color  === */
     geda_object_list_set_color (list, color);
@@ -1008,6 +1009,12 @@ int check_object_list_set_color (GedaToplevel *toplevel)
     /* === object2->box === */
 
     c = geda_object_get_color (object2);
+
+    if (c != color) {
+      fprintf(stderr, "FAILED: (O120702) geda_object_list_set_color\n");
+      fail++;
+    }
+
     if (fail) {
       fprintf(stderr, "count (%d) color (%d)\n", count, color);
       result++;
