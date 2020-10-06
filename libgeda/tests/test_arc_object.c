@@ -1436,6 +1436,7 @@ int check_query (void)
     /* see test_geda_arc_within_sweep */
 
     if (fail) {
+      fprintf(stderr, "Conditions x=%d,\t  y=%d,\t  r=%d,\t  a=%d\n", x, y, r, 270);
       result++;
     }
 

@@ -1,3 +1,7 @@
+2020-10-06 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/test_arc_object.c: Output conditions when failures occur.
+
 2020-10-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_pin.c: Add function documentation:
