@@ -6,7 +6,7 @@
       and output conditions when failures occur.
 
     * tests/test_bus_object.c: Add checks for geda_bus_object_get_position
-      with NULL X-Y pointers.
+      with NULL X-Y pointers and output conditions when failures occur.
 
 2020-10-05 Wiley E. Hill <wileyhill@gmail.com>
 
