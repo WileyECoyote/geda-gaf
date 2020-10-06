@@ -566,7 +566,7 @@ int check_accessors (void)
     /* === Function 16: geda_box_object_get_position  === */
 
     if (!geda_box_object_get_position (object0, &px, &py)) {
-      fprintf(stderr, "FAILED: (O041601A) box x1=%d, y1=%d, x2=%d, y2=%d\n", x1, y1, x2, y2);
+      fprintf(stderr, "FAILED: (O041601A) geda_box_object_get_position\n");
       fail++;
     }
 
@@ -583,7 +583,7 @@ int check_accessors (void)
     px = x1 + 1;
 
     if (!geda_box_object_get_position (object0, &px, NULL)) {
-      fprintf(stderr, "FAILED: (O041602A) box x1=%d, y1=%d, x2=%d, y2=%d\n", x1, y1, x2, y2);
+      fprintf(stderr, "FAILED: (O041602A) geda_box_object_get_position\n");
       fail++;
     }
 
@@ -595,7 +595,7 @@ int check_accessors (void)
     py = y2 + 1;
 
     if (!geda_box_object_get_position (object0, NULL, &py)) {
-      fprintf(stderr, "FAILED: (O041603A) box x1=%d, y1=%d, x2=%d, y2=%d\n", x1, y1, x2, y2);
+      fprintf(stderr, "FAILED: (O041603A) geda_box_object_get_position\n");
       fail++;
     }
 
