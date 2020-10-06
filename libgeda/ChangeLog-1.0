@@ -5,6 +5,9 @@
     * tests/test_box_object.c: Revise fail output messages for O04160[1-3]A
       and output conditions when failures occur.
 
+    * tests/test_bus_object.c: Add checks for geda_bus_object_get_position
+      with NULL X-Y pointers.
+
 2020-10-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_pin.c: Add function documentation:

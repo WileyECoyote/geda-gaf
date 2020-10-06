@@ -290,6 +290,30 @@ int check_accessors (void)
       fail++;
     }
 
+    px = x1 + 1;
+
+    if (!geda_bus_object_get_position (object0, &px, NULL)) {
+      fprintf(stderr, "FAILED: (O050502A) geda_bus_object_get_position\n");
+      fail++;
+    }
+
+    if (px - x1) {
+      fprintf(stderr, "FAILED: (O050502B) bus %d != %d\n", px, x1);
+      fail++;
+    }
+
+    py = y1 + 1;
+
+    if (!geda_bus_object_get_position (object0, NULL, &py)) {
+      fprintf(stderr, "FAILED: (O050503A) geda_bus_object_get_position\n");
+      fail++;
+    }
+
+    if (py - y1) {
+      fprintf(stderr, "FAILED: (O050503B) bus %d != %d\n", py, y1);
+      fail++;
+    }
+
     /* === Function 06: geda_bus_object_get_x1  === */
 
     value = geda_bus_object_get_x1(object0);
