@@ -4674,7 +4674,7 @@ COMMAND (do_toggle_magneticnet)
     geda_log_q("%s\n", _("Magnetic net mode is ON"));
   }
   else {
-    geda_log_q(_("Magnetic net mode is OFF\n"));
+    geda_log_q("%s\n", _("Magnetic net mode is OFF"));
   }
   x_menu_set_togglable(w_current, MAGNETIC_TOGGLE, w_current->magnetic_net_mode);
   i_status_show_state(w_current, NULL);
