@@ -4660,7 +4660,7 @@ COMMAND (do_toggle_rubberband)
   }
   else {
     w_current->netconn_rubberband = 1;
-    geda_log_q(_("Rubber band mode is ON\n"));
+    geda_log_q("%s\n", _("Rubber band mode is ON"));
   }
   x_menu_set_togglable(w_current, RUBBER_TOGGLE, w_current->netconn_rubberband);
 }
