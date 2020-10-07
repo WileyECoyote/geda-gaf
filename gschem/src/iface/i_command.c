@@ -4671,7 +4671,7 @@ COMMAND (do_toggle_magneticnet)
   NOT_NULL(w_current);
   BEGIN_NO_ARGUMENT(do_toggle_magneticnet);
   if ((w_current->magnetic_net_mode = !w_current->magnetic_net_mode)) {
-    geda_log_q(_("Magnetic net mode is ON\n"));
+    geda_log_q("%s\n", _("Magnetic net mode is ON"));
   }
   else {
     geda_log_q(_("Magnetic net mode is OFF\n"));
