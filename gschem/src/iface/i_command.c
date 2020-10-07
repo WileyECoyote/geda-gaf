@@ -4709,7 +4709,7 @@ COMMAND (do_toggle_feedback)
 
   if (w_current->action_feedback_mode == BOUNDINGBOX) {
     w_current->action_feedback_mode = OUTLINE;
-    geda_log_q(_("Action feedback mode set to OUTLINE\n"));
+    geda_log_q("%s\n", _("Action feedback mode set to OUTLINE"));
   }
   else {
     w_current->action_feedback_mode = BOUNDINGBOX;
