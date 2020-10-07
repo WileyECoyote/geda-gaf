@@ -4656,7 +4656,7 @@ COMMAND (do_toggle_rubberband)
   BEGIN_NO_ARGUMENT(do_toggle_rubberband);
   if (w_current->netconn_rubberband) {
     w_current->netconn_rubberband = 0;
-    geda_log_q(_("Rubber band mode is OFF\n"));
+    geda_log_q("%s\n", _("Rubber band mode is OFF"));
   }
   else {
     w_current->netconn_rubberband = 1;
