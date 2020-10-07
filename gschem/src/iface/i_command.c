@@ -4625,7 +4625,7 @@ COMMAND (do_cycle_snap)
 
   case SNAP_GRID:
     x_menu_set_togglable(w_current, SNAP_TOGGLE, TRUE);
-    geda_log_q(_("Snap ON\n"));
+    geda_log_q("%s\n", _("Snap ON"));
     break;
 
   case SNAP_RESNAP:
