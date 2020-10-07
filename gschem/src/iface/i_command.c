@@ -4619,7 +4619,7 @@ COMMAND (do_cycle_snap)
 
   switch (w_current->snap) {
   case SNAP_OFF:
-    geda_log_q(_("Snap OFF (CAUTION!)\n"));
+    geda_log_q("%s\n", _("Snap OFF (CAUTION!)"));
     x_menu_set_togglable(w_current, SNAP_TOGGLE, FALSE);
     break;
 

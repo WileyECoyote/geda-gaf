@@ -1,19 +1,17 @@
+2020-10-07 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/iface/i_command.c: Revise log messages to eliminate line feed
+      characters in translation text.
+
 2020-10-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/de.po: Update German translations.
-
     * po/en_GB.po: Update Great Britain.
-
     * po/fr.po: Update French translations.
-
     * po/kh.po: Update Khmer translations.
-
     * po/pl.po: Update Polish translations.
-
     * po/pt.po: Update Portuguese translations.
-
     * po/pt_BR.po: Update Brazilian Portuguese translations.
-
     * po/ru.po: Update Russian translations.
 
 2020-10-01 Wiley E. Hill <wileyhill@gmail.com>
