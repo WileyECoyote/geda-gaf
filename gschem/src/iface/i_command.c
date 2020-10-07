@@ -3597,6 +3597,7 @@ COMMAND (do_add_text)
   i_event_cancel_action_handler(w_current);
 
   x_dialog_text_input(w_current);
+
   EXIT_COMMAND(do_add_text);
 }
 
@@ -4421,6 +4422,7 @@ COMMAND (do_unembed)
           }
         }
       }
+
       NEXT(s_current);
     }
     o_undo_savestate(w_current, UNDO_ALL);
@@ -4634,6 +4636,7 @@ COMMAND (do_cycle_snap)
   default:
     g_critical("options_snap: toplevel->snap out of range: %d\n", w_current->snap);
   }
+
   i_status_show_state(w_current, NULL);  /* update status on screen */
   i_status_update_grid_info (w_current); /* update on screen grid status */
 }
