@@ -4630,7 +4630,7 @@ COMMAND (do_cycle_snap)
 
   case SNAP_RESNAP:
     x_menu_set_togglable(w_current, SNAP_TOGGLE, TRUE);
-    geda_log_q(_("Snap back to the grid (CAUTION!)\n"));
+    geda_log_q("%s\n", _("Snap back to the grid (CAUTION!)"));
     break;
 
   default:
