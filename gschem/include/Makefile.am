@@ -15,10 +15,10 @@ noinst_HEADERS = \
 		gschem_page_geometry.h      \
 		gschem_page_history.h       \
 		gschem_page_view.h          \
-		gschem_patch.h               \
-		gschem_patch_widget.h \
+		gschem_patch.h              \
+		gschem_patch_widget.h       \
 		gschem_preview.h            \
-		gschem_search_widget.h \
+		gschem_search_widget.h      \
 		gschem_sdefines.h           \
 		gschem_status_bar.h         \
 		gschem_struct.h             \
