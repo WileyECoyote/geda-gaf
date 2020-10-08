@@ -476,9 +476,13 @@ bool i_command_is_valid(const char *command)
   return result;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Set the Icon Name for a given Command Action
+ * \par Function Description
+ *  Sets the command_struc[i].icon_id corresponding to the
+ *  command_struc[i].name entry associated with \a command.
+ *
+ * \sa g_rc_map_icon
  */
 bool i_command_map_icon  (const char *command, const char *icon)
 {

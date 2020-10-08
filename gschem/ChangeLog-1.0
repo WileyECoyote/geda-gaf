@@ -4,6 +4,7 @@
 
         * i_command_get_command_list
         * i_command_is_valid
+        * i_command_map_icon
 
 2020-10-07 Wiley E. Hill <wileyhill@gmail.com>
 
