@@ -1002,7 +1002,7 @@ int check_object_list_set_color (GedaToplevel *toplevel)
     c = geda_object_get_color (object1);
 
     if (c != color) {
-      fprintf(stderr, "FAILED: (O120701) geda_object_list_set_color (%d)\n", c);
+      fprintf(stderr, "FAILED: (O120701) geda_object_list_set_color\n");
       fail++;
     }
 
