@@ -881,7 +881,7 @@ COMMAND (do_debug)
 
 /** \defgroup i_command_Action_Functions Action Handler Function */
 
-/** @brief i_cmd_do_repeat_last in i_command_Command_Handlers
+/*! \brief i_cmd_do_repeat_last in i_command_Command_Handlers
  *  @remark Yes, repeat is a command, not just an action
  */
 COMMAND (do_repeat_last)
@@ -889,7 +889,7 @@ COMMAND (do_repeat_last)
   BEGIN_NO_ARGUMENT(do_repeat_last);
 }
 
-/** @brief i_cmd_do_file in i_command_Command_Handlers */
+/*! \brief i_cmd_do_file in i_command_Command_Handlers */
 COMMAND (do_file)
 {
   BEGIN_COMMAND(do_file);
@@ -910,7 +910,7 @@ COMMAND (do_file)
  * @{
  */
 
-/** @brief i_cmd_do_new in i_command_File_Actions */
+/*! \brief i_cmd_do_new in i_command_File_Actions */
 COMMAND (do_file_new)
 {
   BEGIN_W_COMMAND(do_file_new);
@@ -1031,7 +1031,7 @@ open_command_idle_notify (void *data)
   GEDA_FREE(data);
 }
 
-/** @brief i_cmd_do_open in i_command_File_Actions
+/*! \brief i_cmd_do_open in i_command_File_Actions
  *  \par Function Description
  *  Calls x_fileselect_list to display a standard system file
  *  open dialog, if not canceled, the dialog returns a single
@@ -1085,7 +1085,7 @@ COMMAND (do_open) {
 
 /** @} endgroup open-files-command */
 
-/** @brief i_cmd_do_save in i_command_File_Actions */
+/*! \brief i_cmd_do_save in i_command_File_Actions */
 /*!
  * \brief Save File As command action handler function
  * \par Function Description
@@ -1127,7 +1127,7 @@ COMMAND (do_save) {
  *  This is a callback function for the File Save As API
  *  The function calls i_command to process the action.
  */
-/** @brief i_cmd_do_save_as in i_command_File_Actions */
+/*! \brief i_cmd_do_save_as in i_command_File_Actions */
 COMMAND (do_save_as) {
 
   BEGIN_W_COMMAND(do_save_as);
@@ -1156,7 +1156,7 @@ COMMAND (do_save_as) {
   EXIT_COMMAND(do_save_as);
 }
 
-/** @brief i_cmd_do_save_all in i_command_File_Actions */
+/*! \brief i_cmd_do_save_all in i_command_File_Actions */
 COMMAND (do_save_all) {
   NOT_NULL(w_current);
   NOT_NULL(w_current->toplevel);
@@ -1173,7 +1173,7 @@ COMMAND (do_save_all) {
   i_status_update_sensitivities(w_current);
 }
 
-/** @brief i_cmd_do_save_mods in i_command_File_Actions */
+/*! \brief i_cmd_do_save_mods in i_command_File_Actions */
 COMMAND (do_save_mods) {
   NOT_NULL(w_current);
   NOT_NULL(w_current->toplevel);
@@ -1190,7 +1190,7 @@ COMMAND (do_save_mods) {
   i_status_update_sensitivities(w_current);
 }
 
-/** @brief i_cmd_do_print in i_command_File_Actions */
+/*! \brief i_cmd_do_print in i_command_File_Actions */
 COMMAND (do_print) {
   NOT_NULL(w_current);
   NOT_NULL(w_current->toplevel);
@@ -1245,7 +1245,7 @@ COMMAND (do_print) {
   EXIT_COMMAND(do_print);
 }
 
-/** @brief i_cmd_do_write_image in i_command_File_Actions */
+/*! \brief i_cmd_do_write_image in i_command_File_Actions */
 COMMAND (do_write_image) {
   BEGIN_W_COMMAND(do_write_image);
     i_status_action_stop(w_current);
@@ -1257,7 +1257,7 @@ COMMAND (do_write_image) {
   EXIT_COMMAND(do_write_image);
 }
 
-/** @brief i_cmd_do_write_pdf in i_command_File_Actions */
+/*! \brief i_cmd_do_write_pdf in i_command_File_Actions */
 /*!
  * \brief Write PDF command
  * \par Function Description
@@ -1309,7 +1309,7 @@ COMMAND (do_write_pdf) {
   EXIT_COMMAND(do_write_pdf);
 }
 
-/** @brief i_cmd_do_run_script in i_command_File_Actions */
+/*! \brief i_cmd_do_run_script in i_command_File_Actions */
 COMMAND (do_run_script) {
   BEGIN_W_COMMAND(do_run_script);
   char *filename;
@@ -1324,7 +1324,7 @@ COMMAND (do_run_script) {
 }
 
 
-/** @brief i_cmd_do_close in i_command_File_Actions */
+/*! \brief i_cmd_do_close in i_command_File_Actions */
 COMMAND (do_close) {
   BEGIN_W_COMMAND(do_close);
 
@@ -1333,7 +1333,7 @@ COMMAND (do_close) {
   EXIT_COMMAND(do_close);
 }
 
-/** @brief i_cmd_do_close_all in i_command_File_Actions */
+/*! \brief i_cmd_do_close_all in i_command_File_Actions */
 COMMAND (do_close_all) {
   BEGIN_W_COMMAND(do_close_all);
   GList *iter;
@@ -1397,14 +1397,14 @@ COMMAND (do_close_all) {
   EXIT_COMMAND(do_close_all);
 }
 
-/** @brief i_cmd_do_quit in i_command_File_Actions */
+/*! \brief i_cmd_do_quit in i_command_File_Actions */
 COMMAND (do_quit) {
   BEGIN_NO_ARGUMENT(do_quit);
   geda_log_v("gschem: %s\n", _("starting shut-down"));
   x_window_close_all(w_current);
 }
 
-/** @brief i_cmd_do_export_symbol in i_command_File_Actions */
+/*! \brief i_cmd_do_export_symbol in i_command_File_Actions */
 COMMAND (do_export_symbol) {
   BEGIN_W_COMMAND(do_export_symbol);
 
@@ -1428,7 +1428,7 @@ COMMAND (do_export_symbol) {
   EXIT_COMMAND(do_export_symbol);
 }
 
-/** @brief i_cmd_do_export_symbol in i_command_File_Actions */
+/*! \brief i_cmd_do_export_symbol in i_command_File_Actions */
 COMMAND (do_export_picture) {
   BEGIN_W_COMMAND(do_export_picture);
 
@@ -1607,7 +1607,7 @@ COMMAND (do_delete)
   EXIT_COMMAND(do_delete);
 }
 
-/** @brief i_cmd_do_copy in i_command_Edit_Actions */
+/*! \brief i_cmd_do_copy in i_command_Edit_Actions */
 /*!
  * \brief Copy selected objects on page.
  * \par Function Description
@@ -1638,7 +1638,7 @@ COMMAND (do_copy)
   EXIT_COMMAND(do_copy);
 }
 
-/** @brief i_cmd_do_mcopy in i_command_Edit_Actions */
+/*! \brief i_cmd_do_mcopy in i_command_Edit_Actions */
 /*!
  * \brief Make multi copies of selected objects on page.
  * \par Function Description
@@ -1709,7 +1709,7 @@ COMMAND (do_mirror)
   EXIT_COMMAND(do_mirror);
 }
 
-/** @brief i_cmd_do_move in i_command_Edit_Actions */
+/*! \brief i_cmd_do_move in i_command_Edit_Actions */
 /*!
  * \brief Move selected objects on page.
  * \par Function Description
@@ -2180,7 +2180,7 @@ COMMAND (do_select_all)
   EXIT_COMMAND(do_select_all);
 }
 
-/** @brief i_cmd_do_select_invert in i_command_Select_Actions
+/*! \brief i_cmd_do_select_invert in i_command_Select_Actions
  *! \brief Inverts the Selection Set for all unlocked objects on page.
  *  \par Function Description
  * Sets all objects on page as deselected if the objected is selected and
@@ -2206,7 +2206,7 @@ COMMAND (do_select_invert)
   EXIT_COMMAND(do_select_invert);
 }
 
-/** @brief i_cmd_do_select_last in i_command_Select_Actions
+/*! \brief i_cmd_do_select_last in i_command_Select_Actions
  *! \brief Re Select the last object that was selected
  *  \par Function Description
  *  Sets the last object selected as selected.
@@ -2233,7 +2233,7 @@ COMMAND (do_select_last)
   EXIT_COMMAND(do_select_last);
 }
 
-/** @brief i_cmd_do_deselect in i_command_Select_Actions
+/*! \brief i_cmd_do_deselect in i_command_Select_Actions
  *! \brief Deselect all objects on page.
  *  \par Function Description
  * Sets all objects on page as deselected.
@@ -2262,7 +2262,7 @@ COMMAND (do_deselect)
   EXIT_COMMAND(do_deselect);
 }
 
-/** @brief i_cmd_do_deselect in i_command_Select_Actions
+/*! \brief i_cmd_do_deselect in i_command_Select_Actions
  *! \brief Deselect all objects on page.
  *  \par Function Description
  * Sets all objects on page as deselected.
@@ -2629,7 +2629,7 @@ COMMAND (do_page)
 /** \defgroup i_command_Page_Actions Actions under the Page Menu
  * @{*/
 
-/** @brief i_cmd_do_draw_after in i_command_Command_Functions */
+/*! \brief i_cmd_do_draw_after in i_command_Command_Functions */
 COMMAND (do_draw_after)
 {
   BEGIN_NO_ACTION(do_draw_after);
@@ -2655,7 +2655,7 @@ COMMAND (do_draw_after)
   EXIT_COMMAND(do_draw_after);
 }
 
-/** @brief i_cmd_do_draw_before in i_command_Command_Functions */
+/*! \brief i_cmd_do_draw_before in i_command_Command_Functions */
 COMMAND (do_draw_before)
 {
   BEGIN_NO_ACTION(do_draw_before);
@@ -2683,7 +2683,7 @@ COMMAND (do_draw_before)
   EXIT_COMMAND(do_draw_before);
 }
 
-/** @brief i_cmd_do_draw_first in i_command_Command_Functions */
+/*! \brief i_cmd_do_draw_first in i_command_Command_Functions */
 COMMAND (do_draw_first)
 {
   BEGIN_NO_ACTION(do_draw_first);
@@ -2703,7 +2703,7 @@ COMMAND (do_draw_first)
   EXIT_COMMAND(do_draw_first);
 }
 
-/** @brief i_cmd_do_draw_last in i_command_Command_Functions */
+/*! \brief i_cmd_do_draw_last in i_command_Command_Functions */
 COMMAND (do_draw_last)
 {
   BEGIN_NO_ACTION(do_draw_last);
@@ -2723,7 +2723,7 @@ COMMAND (do_draw_last)
   EXIT_COMMAND(do_draw_last);
 }
 
-/** @brief i_cmd_do_page_manager in i_command_Command_Functions */
+/*! \brief i_cmd_do_page_manager in i_command_Command_Functions */
 COMMAND (do_page_manager)
 {
   BEGIN_W_COMMAND(do_page_manager);
@@ -2731,7 +2731,7 @@ COMMAND (do_page_manager)
   EXIT_COMMAND(do_page_manager);
 }
 
-/** @brief i_cmd_do_page_first in i_command_Command_Functions */
+/*! \brief i_cmd_do_page_first in i_command_Command_Functions */
 COMMAND (do_page_first)
 {
   NOT_NULL(w_current);
@@ -2781,7 +2781,7 @@ COMMAND (do_page_first)
   }
 }
 
-/** @brief i_cmd_do_page_prev in i_command_Command_Functions */
+/*! \brief i_cmd_do_page_prev in i_command_Command_Functions */
 COMMAND (do_page_prev) /* Aka Back */
 {
   NOT_NULL(w_current);
@@ -2805,7 +2805,7 @@ COMMAND (do_page_prev) /* Aka Back */
   }
 }
 
-/** @brief i_cmd_do_page_next in i_command_Command_Functions */
+/*! \brief i_cmd_do_page_next in i_command_Command_Functions */
 COMMAND (do_page_next)
 {
   NOT_NULL(w_current);
@@ -2827,7 +2827,7 @@ COMMAND (do_page_next)
   }
 }
 
-/** @brief i_cmd_do_page_up in i_command_Command_Functions */
+/*! \brief i_cmd_do_page_up in i_command_Command_Functions */
 COMMAND (do_page_up)
 {
   NOT_NULL(w_current);
@@ -2861,7 +2861,7 @@ COMMAND (do_page_up)
   }
 }
 
-/** @brief i_cmd_do_page_down in i_command_Command_Functions */
+/*! \brief i_cmd_do_page_down in i_command_Command_Functions */
 COMMAND (do_page_down)
 {
   NOT_NULL(w_current);
@@ -2894,7 +2894,7 @@ COMMAND (do_page_down)
   }
 }
 
-/** @brief i_cmd_do_page_last in i_command_Command_Functions */
+/*! \brief i_cmd_do_page_last in i_command_Command_Functions */
 COMMAND (do_page_last)
 {
   NOT_NULL(w_current);
@@ -2940,7 +2940,7 @@ COMMAND (do_page_last)
   }
 }
 
-/** @brief i_cmd_do_page_new in i_command_Command_Functions */
+/*! \brief i_cmd_do_page_new in i_command_Command_Functions */
 /* This is similar to file new accept we add new page hook*/
 COMMAND (do_page_new)
 {
@@ -2975,7 +2975,7 @@ COMMAND (do_page_new)
   EXIT_COMMAND(do_page_new);
 }
 
-/** @brief i_cmd_do_page_print in i_command_Command_Functions */
+/*! \brief i_cmd_do_page_print in i_command_Command_Functions */
 COMMAND (do_page_print)
 {
   NOT_NULL(w_current);
@@ -2985,7 +2985,7 @@ COMMAND (do_page_print)
   EXIT_COMMAND(do_page_print);
 }
 
-/** @brief i_cmd_do_page_revert in i_command_Command_Functions */
+/*! \brief i_cmd_do_page_revert in i_command_Command_Functions */
 COMMAND (do_page_revert)
 {
   BEGIN_W_COMMAND(do_page_revert);
@@ -2995,7 +2995,7 @@ COMMAND (do_page_revert)
   EXIT_COMMAND(do_page_revert);
 }
 
-/** @brief i_cmd_do_page_revert_all in i_command_Command_Functions */
+/*! \brief i_cmd_do_page_revert_all in i_command_Command_Functions */
 COMMAND (do_page_revert_all)
 {
   BEGIN_W_COMMAND(do_page_revert_all);
@@ -3154,7 +3154,7 @@ COMMAND (do_page_revert_all)
   EXIT_COMMAND(do_page_revert_all);
 }
 
-/** @brief i_cmd_do_page_close in i_command_Command_Functions */
+/*! \brief i_cmd_do_page_close in i_command_Command_Functions */
 COMMAND (do_page_close)
 {
   NOT_NULL(w_current);
@@ -3165,7 +3165,7 @@ COMMAND (do_page_close)
   EXIT_COMMAND(do_page_close);
 }
 
-/** @brief i_cmd_do_page_discard in i_command_Command_Functions */
+/*! \brief i_cmd_do_page_discard in i_command_Command_Functions */
 COMMAND (do_page_discard)
 {
   NOT_NULL(w_current);
@@ -3560,7 +3560,7 @@ COMMAND (do_add_attribute)
  * \par Function Description
  *  This is the action handler function for ADD_LINE.
  */
-/** @brief i_cmd_do_add_line in i_command_Command_Functions */
+/*! \brief i_cmd_do_add_line in i_command_Command_Functions */
 COMMAND (do_add_line)
 {
   BEGIN_W_COMMAND(do_add_line);
@@ -3896,7 +3896,7 @@ COMMAND (do_session_manage)
  *  This is the action handler function to attach selected attributes
  *  to an object.
  */
-/** @brief i_cmd_do_attach in i_command_Attribute_Actions */
+/*! \brief i_cmd_do_attach in i_command_Attribute_Actions */
 COMMAND (do_attach)
 {
   NOT_NULL(w_current);
@@ -3984,7 +3984,7 @@ COMMAND (do_attach)
  *  This is the action handler function to detach selected attributes
  *  from their parent.
  */
-/** @brief i_cmd_do_detach in i_command_Attribute_Actions */
+/*! \brief i_cmd_do_detach in i_command_Attribute_Actions */
 COMMAND (do_detach)
 {
   NOT_NULL(w_current);
@@ -4043,7 +4043,7 @@ COMMAND (do_detach)
  *  positions. The function operates on either selected text
  *  attributes or complex objects.
  */
-/** @brief do_home_attributes in i_command_Attribute_Actions */
+/*! \brief do_home_attributes in i_command_Attribute_Actions */
 COMMAND (do_home_attributes)
 {
  /* Do Not modify attributes while inside an action */
@@ -4094,7 +4094,7 @@ COMMAND (do_home_attributes)
  *  This is the action handler function to set selected Attributes bits
  *  to show only the value of the attributes.
  */
-/** @brief i_cmd_do_show_value in i_command_Attribute_Actions */
+/*! \brief i_cmd_do_show_value in i_command_Attribute_Actions */
 COMMAND (do_show_value)
 {
   /* Do Not modify attributes while inside an action */
@@ -4128,7 +4128,7 @@ COMMAND (do_show_value)
  *  This is the action handler function to set selected Attributes bits
  *  to show only the name of the attributes.
  */
-/** @brief i_cmd_do_show_name in i_command_Attribute_Actions */
+/*! \brief i_cmd_do_show_name in i_command_Attribute_Actions */
 COMMAND (do_show_name)
 {
  /* Do Not modify attributes while inside an action */
@@ -4162,7 +4162,7 @@ COMMAND (do_show_name)
  *  This is the action handler function to set selected Attributes bits
  *  to show both the name and the value of selected attributes.
  */
-/** @brief i_cmd_do_show_both in i_command_Attribute_Actions */
+/*! \brief i_cmd_do_show_both in i_command_Attribute_Actions */
 COMMAND (do_show_both)
 {
   /* Do Not modify attributes while inside an action */
@@ -4391,7 +4391,7 @@ COMMAND (do_embed)
   EXIT_COMMAND(do_embed);
 }
 
-/** @brief i_cmd_unembed in i_command_Edit_Actions */
+/*! \brief i_cmd_unembed in i_command_Edit_Actions */
 COMMAND (do_unembed)
 {
   BEGIN_W_COMMAND(do_unembed);
@@ -4436,7 +4436,7 @@ COMMAND (do_unembed)
   EXIT_COMMAND(do_unembed);
 }
 
-/** @brief i_cmd_update in i_command_Edit_Actions */
+/*! \brief i_cmd_update in i_command_Edit_Actions */
 COMMAND (do_update)
 {
   BEGIN_W_COMMAND(do_update);
@@ -4641,14 +4641,15 @@ COMMAND (do_cycle_snap)
   i_status_update_grid_info (w_current); /* update on screen grid status */
 }
 
-/*! \brief Toggle Rubberband Mode in i_command_Option_Actions
- *  \par Function Description
+/*!
+ * \brief Toggle Rubberband Mode in i_command_Option_Actions
+ * \par Function Description
  *  This is a callback function for the Toggle Rubberband action API.
- *  \note
  *
+ * \note
  *  Rubber band is cool !
- *  Chris Ellec - January 2001:Added on/off option from the pull down menu
- *  Wiley E. Hill- December 2012:Changed to Menu Toggle Button
+ *  Chris Ellec - January 2001: Added on/off option from the pull down menu
+ *  Wiley E. Hill- December 2012: Changed to Menu Toggle Button
  */
 COMMAND (do_toggle_rubberband)
 {
@@ -4680,8 +4681,9 @@ COMMAND (do_toggle_magneticnet)
   i_status_show_state(w_current, NULL);
 }
 
-/*! \brief Toggle Drag-Can-Move Mode in i_command_Option_Actions
- *  \par Function Description
+/*!
+ * \brief Toggle Drag-Can-Move Mode in i_command_Option_Actions
+ * \par Function Description
  *  This is a callback function for the Toggle draw-can-move action API.
  */
 COMMAND (do_toggle_dragcanmove)
@@ -4723,8 +4725,9 @@ COMMAND (do_toggle_feedback)
   x_menu_set_togglable(w_current, OUTLINE_TOGGLE, w_current->action_feedback_mode);
 }
 
-/*! \brief Toggle Auto-Pan Mode in i_command_Option_Actions
- *  \par Function Description
+/*!
+ * \brief Toggle Auto-Pan Mode in i_command_Option_Actions
+ * \par Function Description
  *  This is a callback function for the Toggle options-auto-pan action API.
  */
 COMMAND (do_toggle_auto_pan)
@@ -4754,10 +4757,9 @@ COMMAND (do_show_text_size)
   EXIT_COMMAND(do_show_text_size);
 }
 
-/*! \brief Preferences Dialog Action Responder API Function
- *  @brief i_cmd_do_show_settings in i_command_Option_Actions
- *
- *  \par Function Description
+/*!
+ * \brief Preferences Dialog Action Responder API Function
+ * \par Function Description
  *  This is a callback function to Launch the Preferences Dialog.
  *
  *  Author: Wiley E. Hill
@@ -4889,76 +4891,76 @@ COMMAND (do_show_about)
  *        (maybe optional command sequence "Set Varible")
  */
 
-/** @brief i_cmd_draw_grips in i_command_Variable_Handlers */
+/*! \brief i_cmd_draw_grips in i_command_Variable_Handlers */
 COMMAND (draw_grips) {
   SHOW_VARIABLE(draw_grips, R);
 }
 
-/** @brief i_cmd_grid_mode in i_command_Variable_Handlers */
+/*! \brief i_cmd_grid_mode in i_command_Variable_Handlers */
 COMMAND (grid_mode) {
   SHOW_VARIABLE(grid_mode, W);
 }
 
-/** @brief i_cmd_dots_grid_dot_size in i_command_Variable_Handlers */
+/*! \brief i_cmd_dots_grid_dot_size in i_command_Variable_Handlers */
 COMMAND (dots_grid_dot_size) {
   SHOW_VARIABLE(grid_mode, W);
 }
 
-/** @brief i_cmd_dots_grid_threshold in i_command_Variable_Handlers */
+/*! \brief i_cmd_dots_grid_threshold in i_command_Variable_Handlers */
 COMMAND (dots_grid_threshold) {
 
   SHOW_VARIABLE(dots_grid_threshold, W);
 }
 
-/** @brief i_cmd_dots_grid_mode in i_command_Variable_Handlers */
+/*! \brief i_cmd_dots_grid_mode in i_command_Variable_Handlers */
 COMMAND (dots_grid_mode) {
 
   SHOW_VARIABLE(dots_grid_mode, W);
 }
 
-/** @brief i_cmd_mesh_grid_threshold in i_command_Variable_Handlers */
+/*! \brief i_cmd_mesh_grid_threshold in i_command_Variable_Handlers */
 COMMAND (mesh_grid_threshold) {
 
   SHOW_VARIABLE(mesh_grid_threshold, W);
 }
 
-/** @brief i_cmd_object_clipping in i_command_Variable_Handlers */
+/*! \brief i_cmd_object_clipping in i_command_Variable_Handlers */
 COMMAND (object_clipping) {
 
   SHOW_VARIABLE(object_clipping, W);
 }
 
-/** @brief i_cmd_scrollbars in i_command_Variable_Handlers */
+/*! \brief i_cmd_scrollbars in i_command_Variable_Handlers */
 COMMAND (scrollbars) {
 
   SHOW_VARIABLE(scrollbars, W);
 }
 
-/** @brief i_cmd_scrollbar_update in i_command_Variable_Handlers */
+/*! \brief i_cmd_scrollbar_update in i_command_Variable_Handlers */
 COMMAND (scrollbar_update) {
 
   SHOW_VARIABLE(scrollbar_update, W);
 }
 
-/** @brief i_cmd_scrollbars_visible in i_command_Variable_Handlers */
+/*! \brief i_cmd_scrollbars_visible in i_command_Variable_Handlers */
 COMMAND (scrollbars_visible) {
 
   SHOW_VARIABLE(scrollbars_visible, W);
 }
 
-/** @brief i_cmd_scrollpan_steps in i_command_Variable_Handlers */
+/*! \brief i_cmd_scrollpan_steps in i_command_Variable_Handlers */
 COMMAND (scrollpan_steps) {
 
   SHOW_VARIABLE(scrollpan_steps, W);
 }
 
-/** @brief i_cmd_warp_cursor in i_command_Variable_Handlers */
+/*! \brief i_cmd_warp_cursor in i_command_Variable_Handlers */
 COMMAND (warp_cursor) {
 
   SHOW_VARIABLE(warp_cursor, W);
 }
 
-/** @brief i_cmd_world_size in i_command_Variable_Handlers */
+/*! \brief i_cmd_world_size in i_command_Variable_Handlers */
 COMMAND (world_size) {
 
   int width  = w_current->world_right;
@@ -4966,385 +4968,385 @@ COMMAND (world_size) {
   geda_log(_("(read only) width=%d, height=%d\n"), width, height);
 }
 
-/** @brief i_cmd_zoom_gain in i_command_Variable_Handlers */
+/*! \brief i_cmd_zoom_gain in i_command_Variable_Handlers */
 COMMAND (zoom_gain) {
 
   SHOW_VARIABLE(zoom_gain, W);
 }
 
-/** @brief i_cmd_zoom_with_pan in i_command_Variable_Handlers */
+/*! \brief i_cmd_zoom_with_pan in i_command_Variable_Handlers */
 COMMAND (zoom_with_pan) {
 
   SHOW_VARIABLE(zoom_gain, W);
 }
 
-/** @brief i_cmd_logging in i_command_Variable_Handlers */
+/*! \brief i_cmd_logging in i_command_Variable_Handlers */
 COMMAND (logging) {
   SHOW_VARIABLE(logging, G);
 }
 
-/** @brief i_cmd_log_destiny in i_command_Variable_Handlers */
+/*! \brief i_cmd_log_destiny in i_command_Variable_Handlers */
 COMMAND (log_destiny) {
   SHOW_VARIABLE(log_destiny, G);
 }
 
-/** @brief i_cmd_console_window in i_command_Variable_Handlers */
+/*! \brief i_cmd_console_window in i_command_Variable_Handlers */
 COMMAND (console_window) {
   SHOW_VARIABLE(console_window, G);
 }
 
-/** @brief i_cmd_console_window_type in i_command_Variable_Handlers */
+/*! \brief i_cmd_console_window_type in i_command_Variable_Handlers */
 COMMAND (console_window_type) {
   SHOW_VARIABLE(console_window_type, G);
 }
 
-/** @brief i_cmd_action_feedback_mode in i_command_Variable_Handlers */
+/*! \brief i_cmd_action_feedback_mode in i_command_Variable_Handlers */
 COMMAND (action_feedback_mode) {
 
   SHOW_VARIABLE(action_feedback_mode, W)
 }
 
-/** @brief i_cmd_add_attribute_offset in i_command_Variable_Handlers */
+/*! \brief i_cmd_add_attribute_offset in i_command_Variable_Handlers */
 COMMAND (add_attribute_offset) {
 
   SHOW_VARIABLE(add_attribute_offset, W);
 }
 
-/** @brief i_cmd_auto_load_last in i_command_Variable_Handlers */
+/*! \brief i_cmd_auto_load_last in i_command_Variable_Handlers */
 COMMAND (auto_load_last) {
   SHOW_VARIABLE(auto_load_last, G);
 }
 
-/** @brief i_cmd_auto_pan in i_command_Variable_Handlers */
+/*! \brief i_cmd_auto_pan in i_command_Variable_Handlers */
 COMMAND (auto_pan) {
   SHOW_VARIABLE(auto_pan, W);
 }
 
-/** @brief i_cmd_auto_pan_step in i_command_Variable_Handlers */
+/*! \brief i_cmd_auto_pan_step in i_command_Variable_Handlers */
 COMMAND (auto_pan_step) {
   SHOW_VARIABLE(auto_pan_step, W);
 }
 
-/** @brief i_cmd_auto_save_interval in i_command_Variable_Handlers */
+/*! \brief i_cmd_auto_save_interval in i_command_Variable_Handlers */
 COMMAND (auto_save_interval) {
 
   SHOW_VARIABLE(auto_save_interval, T);
 }
 
-/** @brief i_cmd_attribute_placement_grid in i_command_Variable_Handlers */
+/*! \brief i_cmd_attribute_placement_grid in i_command_Variable_Handlers */
 COMMAND (attribute_placement_grid) {
 
   SHOW_VARIABLE(attribute_placement_grid, W);
 }
 
-/** @brief i_cmd_continue_component_place in i_command_Variable_Handlers */
+/*! \brief i_cmd_continue_component_place in i_command_Variable_Handlers */
 COMMAND (continue_component_place) {
 
   SHOW_VARIABLE(continue_component_place, W);
 }
 
-/** @brief i_cmd_embed_components in i_command_Variable_Handlers */
+/*! \brief i_cmd_embed_components in i_command_Variable_Handlers */
 COMMAND (embed_components) {
 
   SHOW_VARIABLE(embed_components, W);
 }
 
-/** @brief i_cmd_enforce_hierarchy in i_command_Variable_Handlers */
+/*! \brief i_cmd_enforce_hierarchy in i_command_Variable_Handlers */
 COMMAND (enforce_hierarchy) {
 
   SHOW_VARIABLE(enforce_hierarchy, W);
 }
 
-/** @brief i_cmd_hierarchy_up_close in i_command_Variable_Handlers */
+/*! \brief i_cmd_hierarchy_up_close in i_command_Variable_Handlers */
 COMMAND (hierarchy_up_close) {
 
   SHOW_VARIABLE(hierarchy_up_close, W);
 }
 
-/** @brief i_cmdfile_preview in i_command_Variable_Handlers */
+/*! \brief i_cmdfile_preview in i_command_Variable_Handlers */
 COMMAND (file_preview) {
 
   SHOW_VARIABLE(file_preview, W);
 }
 
-/** @brief i_cmd_force_boundingbox in i_command_Variable_Handlers */
+/*! \brief i_cmd_force_boundingbox in i_command_Variable_Handlers */
 COMMAND (force_boundingbox) {
 
   SHOW_VARIABLE(force_boundingbox, W);
 }
 
-/** @brief i_cmd_keyboardpan_gain in i_command_Variable_Handlers */
+/*! \brief i_cmd_keyboardpan_gain in i_command_Variable_Handlers */
 COMMAND (keyboardpan_gain) {
 
   SHOW_VARIABLE(keyboardpan_gain, W);
 }
 
-/** @brief i_cmd_magnetic_net_mode in i_command_Variable_Handlers */
+/*! \brief i_cmd_magnetic_net_mode in i_command_Variable_Handlers */
 COMMAND (magnetic_net_mode) {
 
   SHOW_VARIABLE(magnetic_net_mode, W);
 }
 
-/** @brief i_cmd_netconn_rubberband in i_command_Variable_Handlers */
+/*! \brief i_cmd_netconn_rubberband in i_command_Variable_Handlers */
 COMMAND (netconn_rubberband) {
 
   SHOW_VARIABLE(netconn_rubberband, W);
 }
 
-/** @brief i_cmd_raise_dialog_boxes in i_command_Variable_Handlers */
+/*! \brief i_cmd_raise_dialog_boxes in i_command_Variable_Handlers */
 COMMAND (raise_dialog_boxes) {
 
   SHOW_VARIABLE(raise_dialog_boxes, W);
 }
 
-/** @brief i_cmd_select_slack_pixels in i_command_Variable_Handlers */
+/*! \brief i_cmd_select_slack_pixels in i_command_Variable_Handlers */
 COMMAND (select_slack_pixels) {
 
   SHOW_VARIABLE(select_slack_pixels, W);
 }
 
-/** @brief i_cmd_snap_size in i_command_Variable_Handlers */
+/*! \brief i_cmd_snap_size in i_command_Variable_Handlers */
 COMMAND (snap_size) {
 
   SHOW_VARIABLE(snap_size, W);
 }
 
-/** @brief i_cmd_sort_component_library in i_command_Variable_Handlers */
+/*! \brief i_cmd_sort_component_library in i_command_Variable_Handlers */
 COMMAND (sort_component_library) {
 
   SHOW_VARIABLE(sort_component_library, W);
 }
 
-/** @brief i_cmd_untitled_name in i_command_Variable_Handlers */
+/*! \brief i_cmd_untitled_name in i_command_Variable_Handlers */
 COMMAND (untitled_name) {
 
   geda_log("<%s>", w_current->toplevel->untitled_name);
 }
 
-/** @brief i_cmd_net_consolidate in i_command_Variable_Handlers */
+/*! \brief i_cmd_net_consolidate in i_command_Variable_Handlers */
 COMMAND (net_consolidate) {
 
   SHOW_VARIABLE(net_consolidate, T);
 }
 
-/** @brief i_cmd_net_endpoint_mode in i_command_Variable_Handlers */
+/*! \brief i_cmd_net_endpoint_mode in i_command_Variable_Handlers */
 COMMAND (net_endpoint_mode) {
 
   SHOW_VARIABLE(net_endpoint_mode, W);
 }
 
-/** @brief i_cmd_net_midpoint_mode in i_command_Variable_Handlers */
+/*! \brief i_cmd_net_midpoint_mode in i_command_Variable_Handlers */
 COMMAND (net_midpoint_mode) {
 
   SHOW_VARIABLE(net_midpoint_mode, W);
 }
 
-/** @brief i_cmd_net_direction_mode in i_command_Variable_Handlers */
+/*! \brief i_cmd_net_direction_mode in i_command_Variable_Handlers */
 COMMAND (net_direction_mode) {
 
   SHOW_VARIABLE(net_direction_mode,W);
 }
 
-/** @brief i_cmd_net_selection_mode in i_command_Variable_Handlers */
+/*! \brief i_cmd_net_selection_mode in i_command_Variable_Handlers */
 COMMAND (net_selection_mode) {
 
   SHOW_VARIABLE(net_selection_mode, W)
 }
 
-/** @brief i_cmd_bus_style in i_command_Variable_Handlers */
+/*! \brief i_cmd_bus_style in i_command_Variable_Handlers */
 COMMAND (bus_style) {
 
   SHOW_VARIABLE(bus_style, T)
 }
-/** @brief i_cmd_net_style in i_command_Variable_Handlers */
+/*! \brief i_cmd_net_style in i_command_Variable_Handlers */
 COMMAND (net_style) {
 
   SHOW_VARIABLE(net_style, T)
 }
-/** @brief i_cmd_pin_style in i_command_Variable_Handlers */
+/*! \brief i_cmd_pin_style in i_command_Variable_Handlers */
 COMMAND (pin_style) {
 
   SHOW_VARIABLE(pin_style, T)
 }
-/** @brief i_cmd_line_style in i_command_Variable_Handlers */
+/*! \brief i_cmd_line_style in i_command_Variable_Handlers */
 COMMAND (line_style) {
 
   SHOW_VARIABLE(line_style, T)
 }
-/** @brief i_cmd_thick_bus_width in i_command_Variable_Handlers */
+/*! \brief i_cmd_thick_bus_width in i_command_Variable_Handlers */
 COMMAND (thick_bus_width) {
 
   SHOW_VARIABLE(thick_bus_width, T)
 }
-/** @brief i_cmd_thick_line_width in i_command_Variable_Handlers */
+/*! \brief i_cmd_thick_line_width in i_command_Variable_Handlers */
 COMMAND (thick_line_width) {
 
   SHOW_VARIABLE(thick_line_width, T)
 }
-/** @brief i_cmd_thick_line_width in i_command_Variable_Handlers */
+/*! \brief i_cmd_thick_line_width in i_command_Variable_Handlers */
 COMMAND (thick_net_width) {
 
   SHOW_VARIABLE(thick_net_width, T)
 }
-/** @brief i_cmd_thick_pin_width in i_command_Variable_Handlers */
+/*! \brief i_cmd_thick_pin_width in i_command_Variable_Handlers */
 COMMAND (thick_pin_width) {
 
   SHOW_VARIABLE(thick_pin_width, T)
 }
-/** @brief i_cmd_thick_line_width in i_command_Variable_Handlers */
+/*! \brief i_cmd_thick_line_width in i_command_Variable_Handlers */
 COMMAND (thin_bus_width) {
 
   SHOW_VARIABLE(thin_bus_width, T)
 }
-/** @brief i_cmd_thin_line_width in i_command_Variable_Handlers */
+/*! \brief i_cmd_thin_line_width in i_command_Variable_Handlers */
 COMMAND (thin_line_width) {
 
   SHOW_VARIABLE(thin_line_width, T)
 }
-/** @brief i_cmd_thin_net_width in i_command_Variable_Handlers */
+/*! \brief i_cmd_thin_net_width in i_command_Variable_Handlers */
 COMMAND (thin_net_width) {
 
   SHOW_VARIABLE(thin_net_width, T)
 }
-/** @brief i_cmd_thin_pin_width in i_command_Variable_Handlers */
+/*! \brief i_cmd_thin_pin_width in i_command_Variable_Handlers */
 COMMAND (thin_pin_width) {
 
   SHOW_VARIABLE(thin_pin_width, T)
 }
 
-/** @brief i_cmd_bus_ripper_rotation in i_command_Variable_Handlers */
+/*! \brief i_cmd_bus_ripper_rotation in i_command_Variable_Handlers */
 COMMAND (bus_ripper_rotation) {
 
   SHOW_VARIABLE(bus_ripper_rotation, W)
 }
 
-/** @brief i_cmd_bus_ripper_size in i_command_Variable_Handlers */
+/*! \brief i_cmd_bus_ripper_size in i_command_Variable_Handlers */
 COMMAND (bus_ripper_size) {
 
   SHOW_VARIABLE(bus_ripper_size, W)
 }
-/** @brief i_cmd_bus_ripper_type in i_command_Variable_Handlers */
+/*! \brief i_cmd_bus_ripper_type in i_command_Variable_Handlers */
 COMMAND (bus_ripper_type) {
 
   SHOW_VARIABLE(bus_ripper_type, W)
 }
-/** @brief i_cmd_bus_ripper_symname in i_command_Variable_Handlers */
+/*! \brief i_cmd_bus_ripper_symname in i_command_Variable_Handlers */
 COMMAND(bus_ripper_symname) {
 
   geda_log("<%s>", w_current->bus_ripper_symname);
 }
 
-/** @brief i_cmd_fast_mousepan in i_command_Variable_Handlers */
+/*! \brief i_cmd_fast_mousepan in i_command_Variable_Handlers */
 COMMAND (fast_mousepan) {
 
   SHOW_VARIABLE(fast_mousepan, W)
 }
 
-/** @brief i_cmd_drag_can_move in i_command_Variable_Handlers */
+/*! \brief i_cmd_drag_can_move in i_command_Variable_Handlers */
 COMMAND (drag_can_move) {
 
   SHOW_VARIABLE(drag_can_move, W)
 }
 
-/** @brief i_cmd_middle_button in i_command_Variable_Handlers */
+/*! \brief i_cmd_middle_button in i_command_Variable_Handlers */
 COMMAND (middle_button) {
 
   SHOW_VARIABLE(middle_button, W)
 }
 
-/** @brief i_cmd_third_button in i_command_Variable_Handlers */
+/*! \brief i_cmd_third_button in i_command_Variable_Handlers */
 COMMAND (third_button) {
 
   SHOW_VARIABLE(third_button, W)
 }
 
-/** @brief i_cmd_mousepan_gain in i_command_Variable_Handlers */
+/*! \brief i_cmd_mousepan_gain in i_command_Variable_Handlers */
 COMMAND (mousepan_gain) {
 
   SHOW_VARIABLE(mousepan_gain, W)
 }
 
-/** @brief i_cmd_scroll_wheel in i_command_Variable_Handlers */
+/*! \brief i_cmd_scroll_wheel in i_command_Variable_Handlers */
 COMMAND (scroll_wheel) {
 
   SHOW_VARIABLE(scroll_wheel, W)
 }
 
-/** @brief i_cmd_image_color in i_command_Variable_Handlers */
+/*! \brief i_cmd_image_color in i_command_Variable_Handlers */
 COMMAND (image_color) {
 
   SHOW_VARIABLE(image_color, T)
 }
-/** @brief i_cmd_invert_images in i_command_Variable_Handlers */
+/*! \brief i_cmd_invert_images in i_command_Variable_Handlers */
 COMMAND (invert_images) {
 
   SHOW_VARIABLE(invert_images, T)
 }
-/** @brief i_cmd_text_case in i_command_Variable_Handlers */
+/*! \brief i_cmd_text_case in i_command_Variable_Handlers */
 COMMAND (text_case) {
 
   SHOW_VARIABLE(text_case, W)
 }
 
-/** @brief i_cmd_text_display_zoomfactor in i_command_Variable_Handlers */
+/*! \brief i_cmd_text_display_zoomfactor in i_command_Variable_Handlers */
 COMMAND (text_display_zoomfactor) {
 
   SHOW_VARIABLE(text_display_zoomfactor, W)
 }
 
-/** @brief i_cmd_text_feedback in i_command_Variable_Handlers */
+/*! \brief i_cmd_text_feedback in i_command_Variable_Handlers */
 COMMAND (text_feedback) {
 
   SHOW_VARIABLE(text_feedback, W)
 }
 
-/** @brief i_cmd_text_origin_marker in i_command_Variable_Handlers */
+/*! \brief i_cmd_text_origin_marker in i_command_Variable_Handlers */
 COMMAND (text_origin_marker) {
 
   SHOW_VARIABLE(text_origin_marker, R)
 }
-/** @brief i_cmd_text_marker_size in i_command_Variable_Handlers */
+/*! \brief i_cmd_text_marker_size in i_command_Variable_Handlers */
 COMMAND (text_marker_size) {
 
   SHOW_VARIABLE(text_marker_size, R)
 }
-/** @brief i_cmd_text_marker_threshold in i_command_Variable_Handlers */
+/*! \brief i_cmd_text_marker_threshold in i_command_Variable_Handlers */
 COMMAND (text_marker_threshold) {
   const char *msg = _("current value of");
   geda_log("%s <%s> %s <%.1f>\n", msg, "text-marker-threshold", _("is"),
             w_current->cairo_renderer->text_marker_threshold);
 }
-/** @brief i_cmd_text_size in i_command_Variable_Handlers */
+/*! \brief i_cmd_text_size in i_command_Variable_Handlers */
 COMMAND (text_size) {
 
   SHOW_VARIABLE(text_size, W)
 }
 
-/** @brief i_cmd_undo_control in i_command_Variable_Handlers */
+/*! \brief i_cmd_undo_control in i_command_Variable_Handlers */
 COMMAND (undo_control) {
 
   SHOW_VARIABLE(undo_control, W)
 }
 
-/** @brief i_cmd_undo_levels in i_command_Variable_Handlers */
+/*! \brief i_cmd_undo_levels in i_command_Variable_Handlers */
 COMMAND (undo_levels) {
 
   SHOW_VARIABLE(undo_levels, W)
 }
 
-/** @brief i_cmd_undo_panzoom in i_command_Variable_Handlers */
+/*! \brief i_cmd_undo_panzoom in i_command_Variable_Handlers */
 COMMAND (undo_panzoom) {
 
   SHOW_VARIABLE(undo_panzoom, W)
 }
 
-/** @brief i_cmd_undo_preserve in i_command_Variable_Handlers */
+/*! \brief i_cmd_undo_preserve in i_command_Variable_Handlers */
 COMMAND (undo_preserve) {
 
   SHOW_VARIABLE(undo_preserve, W)
 }
 
-/** @brief i_cmd_undo_type in i_command_Variable_Handlers */
+/*! \brief i_cmd_undo_type in i_command_Variable_Handlers */
 COMMAND (undo_type) {
 
   SHOW_VARIABLE(undo_type, W)
