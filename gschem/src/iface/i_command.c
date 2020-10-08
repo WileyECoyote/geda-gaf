@@ -455,9 +455,11 @@ void i_command_get_command_list(GList** list)
   return;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Check if Command string is Valid
+ * \par Function Description
+ *  Returns TRUE if the string \a command is a valid command and
+ *  therefore can be passed to i_command_process, otherwise FALSE.
  */
 bool i_command_is_valid(const char *command)
 {

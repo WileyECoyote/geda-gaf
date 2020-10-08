@@ -3,6 +3,7 @@
     * src/iface/i_command.c: Add function documentation:
 
         * i_command_get_command_list
+        * i_command_is_valid
 
 2020-10-07 Wiley E. Hill <wileyhill@gmail.com>
 
