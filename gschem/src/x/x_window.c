@@ -1607,7 +1607,7 @@ void x_window_modify_toolbar_toggle(GtkWidget *widget, GschemToplevel *w_current
 /*!
  * \brief View toggle Zoom toolbar
  * \par Function Description
- *  This function toggles the visibility of the Zoom toobar.
+ *  This function toggles the visibility of the Zoom toolbar.
  *  Note the function actually toggle visibility of the handlebox
  *  containing the toolbar
  */
