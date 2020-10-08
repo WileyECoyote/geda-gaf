@@ -4713,7 +4713,7 @@ COMMAND (do_toggle_feedback)
   }
   else {
     w_current->action_feedback_mode = BOUNDINGBOX;
-    geda_log_q(_("Action feedback mode set to BOUNDINGBOX\n"));
+    geda_log_q("%s\n", _("Action feedback mode set to BOUNDINGBOX"));
   }
 
   if (w_current->inside_action && Current_PlaceList != NULL) {
