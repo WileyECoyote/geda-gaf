@@ -434,9 +434,15 @@ char *i_command_get_action_icon (const char *command)
   return icon_id;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Get a List of All Internal Commands
+ * \par Function Description
+ *  Loads \a list with pointers to string names of an extended
+ *  version of the action list including all the RC variables.
+ *  This list is used by command console history completion
+ *  mechanism.
+ *
+ * \sa console_instance_init
  */
 void i_command_get_command_list(GList** list)
 {
