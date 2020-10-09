@@ -1,3 +1,9 @@
+2020-10-09 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/iface/i_command.c: Add function documentation:
+
+        * i_command_process
+
 2020-10-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/iface/i_command.c: Add function documentation:

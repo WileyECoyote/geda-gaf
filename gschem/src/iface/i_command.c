@@ -521,10 +521,19 @@ bool i_command_map_icon  (const char *command, const char *icon)
   return result;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief Main Command Processor
- *  \par Function Description
+/*!
+ * \brief Main Command Processor
+ * \par Function Description
+ *  This routines sets fields in the command structure before either
+ *  pushing the action to the thread pool or calling the function
+ *  directly. Functions are called directly when the USE_INLINE_MODE
+ *  aflag bit is set or operating in safe mode.
  *
+ *  \param [in] w_current  The GschemToplevel object
+ *  \param [in] command    String name of command action
+ *  \param [in] narg       Number of arguments
+ *  \param [in] arg
+ *  \param [in] who        The source that initiated the action
  */
 void i_command_process(GschemToplevel *w_current, const char *command,
                        int narg, char *arg, EID_ACTION_ORIGIN who)
