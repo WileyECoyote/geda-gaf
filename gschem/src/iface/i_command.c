@@ -608,8 +608,9 @@ void i_command_process(GschemToplevel *w_current, const char *command,
         if (getrusage (RUSAGE_SELF, &usage) == 0) {
           printRusage("", &usage);
         }
-        else
+        else {
           fprintf(stderr, "getrusage returned error: %s\n", strerror(errno));
+        }
       }
 #endif
 
