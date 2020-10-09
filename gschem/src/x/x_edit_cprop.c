@@ -572,6 +572,7 @@ static void x_dialog_ep_refdes_update_entry (GtkWidget *widget,
 
 /*!
  * \brief Component Properties Dialog Electrical Check-box Callback
+ * \par Function Description
  *  Enable or disabled sensitivities of widgets within the electrical
  *  frame depending on the state of the check-box.
  *
@@ -591,6 +592,7 @@ static void x_dialog_ep_electrical_cb (GtkWidget *check_butt, void *data)
 
 /*!
  * \brief Component Properties Dialog Enable Version Check-box Callback
+ * \par Function Description
  *  Enable or disabled sensitivities of widgets within the electrical
  *  frame depending on the state of the check-box.
  *
@@ -852,6 +854,7 @@ static void x_dialog_ep_no_selection(GschemToplevel *w_current,
 
 /*!
  * \brief Component Properties Dialog Check-box Callback
+ * \par Function Description
  *  Enable or disabled sensitivities of widgets within the electrical
  *  frame depending on the state of the check-box.
  *
