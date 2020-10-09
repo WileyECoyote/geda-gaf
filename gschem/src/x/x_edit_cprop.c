@@ -81,8 +81,9 @@ static WidgetStringData DialogStrings[] = {
   { NULL, NULL, NULL},
 };
 
-/*! \brief Component Properties Internal Check and Update Attributes
- *  \par Function Description
+/*!
+ * \brief Component Properties Internal Check and Update Attributes
+ * \par Function Description
  *  This function is called with or without and \a Object argument, when
  *  the \a object argument is present then attributes searching is limited
  *  to \a Object, otherwise all <b>Text</b> objects on the page are searched.
@@ -92,12 +93,12 @@ static WidgetStringData DialogStrings[] = {
  *  value and changed if strings are difference. If an attribute is not
  *  found then a new attribute is created with the form key=value.
  *
- *  \param [in] w_current Gschem toplevel structure.
- *  \param [in] object    Pointer to an <b>Object</b> to search, also used as a flag
- *  \param [in] key       The name of the attribute
- *  \param [in] new_value String value that attribute should be assigned
+ * \param [in] w_current Gschem toplevel structure.
+ * \param [in] object    Pointer to an <b>Object</b> to search, also used as a flag
+ * \param [in] key       The name of the attribute
+ * \param [in] new_value String value that attribute should be assigned
  *
- *  \return boolean TRUE is a change was made, otherwise FALSE
+ * \return boolean TRUE is a change was made, otherwise FALSE
  */
 static bool x_dialog_ep_check_update_attribs (GschemToplevel *w_current,
                                               GedaObject     *object,
@@ -179,8 +180,9 @@ static bool x_dialog_ep_check_update_attribs (GschemToplevel *w_current,
   return result;
 }
 
-/*! \brief Component Properties Internal Revise Electrical Attributes
- *  \par Function Description
+/*!
+ * \brief Component Properties Internal Revise Electrical Attributes
+ * \par Function Description
  *  This function is called with or without and \a Object argument, which is
  *  passed as a flag to x_dialog_ep_check_update_attribs to indicate the
  *  editing mode, with schematic or symbol. The function retrieves strings
@@ -188,13 +190,13 @@ static bool x_dialog_ep_check_update_attribs (GschemToplevel *w_current,
  *  the electrical check-box, and calls x_dialog_ep_check_update_attribs
  *  for each field.
  *
- *  \param [in] w_current  Gschem toplevel structure.
- *  \param [in] properties Pointer to a Component Dialog data structure
- *  \param [in] object     Pointer to an<b>Object</b> to search, also used as a flag
+ * \param [in] w_current  Gschem toplevel structure.
+ * \param [in] properties Pointer to a Component Dialog data structure
+ * \param [in] object     Pointer to an<b>Object</b> to search, also used as a flag
  *
- *  \return boolean TRUE is a change was made, otherwise FALSE
+ * \return boolean TRUE is a change was made, otherwise FALSE
  *
- *  \sa x_dialog_ep_revise_symbol_attribs
+ * \sa x_dialog_ep_revise_symbol_attribs
  */
 static bool x_dialog_ep_revise_elect_attribs(GschemToplevel *w_current,
                                              property_data  *properties,
@@ -237,8 +239,9 @@ static bool x_dialog_ep_revise_elect_attribs(GschemToplevel *w_current,
   return (result == !FALSE);
 }
 
-/*! \brief Component Properties Internal Revise Non-Electrical Attributes
- *  \par Function Description
+/*!
+ * \brief Component Properties Internal Revise Non-Electrical Attributes
+ * \par Function Description
  *  This function retrieves strings from the entries in the upper halve of
  *  the dialog, fields not controlled by the electrical check-box, and calls
  *  x_dialog_ep_check_update_attribs for each field. The functions returns
@@ -246,12 +249,12 @@ static bool x_dialog_ep_revise_elect_attribs(GschemToplevel *w_current,
  *  object to indicate symbol editing mode. This function is not called when
  *  editing schematic files.
  *
- *  \param [in] w_current  Gschem toplevel structure.
- *  \param [in] properties Pointer to a Component Dialog data structure
+ * \param [in] w_current  Gschem toplevel structure.
+ * \param [in] properties Pointer to a Component Dialog data structure
  *
- *  \return boolean TRUE is a change was made, otherwise FALSE
+ * \return boolean TRUE is a change was made, otherwise FALSE
  *
- *  \sa x_dialog_ep_revise_elect_attribs
+ * \sa x_dialog_ep_revise_elect_attribs
  */
 static bool x_dialog_ep_revise_symbol_attribs (GschemToplevel *w_current,
                                                property_data  *properties)
@@ -318,16 +321,16 @@ static bool x_dialog_ep_check_symver_attribs (GschemToplevel *w_current,
   return result;
 }
 
-/*! \brief Component Properties Dialog Apply Settings
- *  \par Function Description
+/*!
+ * \brief Component Properties Dialog Apply Settings
+ * \par Function Description
  *  This function applies the settings in the properties dialog to the
  *  selected objects or to the symbol page depending on whether object
  *  has a value. The function handles the case of exchanging the symbol
  *  and calls helper functions for attribute handling.
  *
- *  \param [in] dialog     Pointer to a Component Dialog instance.
- *  \param [in] properties Pointer to a Component Dialog data structure
- *
+ * \param [in] dialog     Pointer to a Component Dialog instance.
+ * \param [in] properties Pointer to a Component Dialog data structure
  */
 static void x_dialog_edit_properties_ok(GtkWidget     *dialog,
                                         property_data *properties)
@@ -500,8 +503,9 @@ static void x_dialog_edit_properties_ok(GtkWidget     *dialog,
   }
 }
 
-/*! \brief Response Function for the Component Properties Dialog
- *  \par Function Description
+/*!
+ * \brief Response Function for the Component Properties Dialog
+ * \par Function Description
  *  This function handles the response to the Component Properties dialog.
  *  This is called to either retrieve and process data in the dialog or
  *  the dialog session is terminated.
@@ -566,12 +570,13 @@ static void x_dialog_ep_refdes_update_entry (GtkWidget *widget,
   }
 }
 
-/*! \brief Component Properties Dialog Electrical Check-box Callback
- *   Enable or disabled sensitivities of widgets within the electrical
- *   frame depending on the state of the check-box.
+/*!
+ * \brief Component Properties Dialog Electrical Check-box Callback
+ *  Enable or disabled sensitivities of widgets within the electrical
+ *  frame depending on the state of the check-box.
  *
- *  \param [in] check_butt Pointer to the CheckBox widget
- *  \param [in] data       Pointer to a Component Dialog data structure
+ * \param [in] check_butt Pointer to the CheckBox widget
+ * \param [in] data       Pointer to a Component Dialog data structure
  */
 static void x_dialog_ep_electrical_cb (GtkWidget *check_butt, void *data)
 {
@@ -584,12 +589,13 @@ static void x_dialog_ep_electrical_cb (GtkWidget *check_butt, void *data)
   geda_container_foreach (properties->elect_table, set_sensitive, NULL);
 }
 
-/*! \brief Component Properties Dialog Enable Version Check-box Callback
- *   Enable or disabled sensitivities of widgets within the electrical
- *   frame depending on the state of the check-box.
+/*!
+ * \brief Component Properties Dialog Enable Version Check-box Callback
+ *  Enable or disabled sensitivities of widgets within the electrical
+ *  frame depending on the state of the check-box.
  *
- *  \param [in] check_butt Pointer to the CheckBox widget
- *  \param [in] data       Pointer to a Component Dialog data structure
+ * \param [in] check_butt Pointer to the CheckBox widget
+ * \param [in] data       Pointer to a Component Dialog data structure
  *
  */
 static void x_dialog_ep_version_cb (GtkWidget *check_butt, void *data)
@@ -620,14 +626,15 @@ static void x_dialog_ep_version_cb (GtkWidget *check_butt, void *data)
   }
 }
 
-/*! \brief Handle selection change event for x_dialog_edit_properties
- *  \par Function Description
+/*!
+ * \brief Handle selection change event for x_dialog_edit_properties
+ * \par Function Description
  *  Updates component information in dialog widgets when the selection
  *  changes.
  *
- *  \param w_current  pointer to GschemToplevel context
- *  \param object     pointer to a selected Object.
- *  \param properties pointer to property_data structure
+ * \param w_current  pointer to GschemToplevel context
+ * \param object     pointer to a selected Object.
+ * \param properties pointer to property_data structure
  */
 static void x_dialog_ep_component_change(GschemToplevel *w_current,
                                          GedaObject     *object,
@@ -808,13 +815,14 @@ static void x_dialog_ep_component_change(GschemToplevel *w_current,
 }
 
 
-/*! \brief Handle selection change event for x_dialog_edit_properties
- *  \par Function Description
+/*!
+ * \brief Handle selection change event for x_dialog_edit_properties
+ * \par Function Description
  *  Updates component information in dialog widgets when the selection
  *  changes.
  *
- *  \param w_current  pointer to GschemToplevel context
- *  \param properties pointer to property_data structure
+ * \param w_current  pointer to GschemToplevel context
+ * \param properties pointer to property_data structure
  */
 static void x_dialog_ep_no_selection(GschemToplevel *w_current,
                                      property_data  *properties)
@@ -842,13 +850,14 @@ static void x_dialog_ep_no_selection(GschemToplevel *w_current,
 
 }
 
-/*! \brief Component Properties Dialog Check-box Callback
- *   Enable or disabled sensitivities of widgets within the electrical
- *   frame depending on the state of the check-box.
+/*!
+ * \brief Component Properties Dialog Check-box Callback
+ *  Enable or disabled sensitivities of widgets within the electrical
+ *  frame depending on the state of the check-box.
  *
- *  \param [in] properties Pointer to property_data structure
- *  \param [in] state      Boolean value to set main sensitivities
- *  \param [in] sch        Boolean value to set electrical frame sensitivities
+ * \param [in] properties Pointer to property_data structure
+ * \param [in] state      Boolean value to set main sensitivities
+ * \param [in] sch        Boolean value to set electrical frame sensitivities
  */
 static void x_dialog_ep_set_sensitive (property_data *properties, bool state, bool sch)
 {
@@ -871,13 +880,14 @@ static void x_dialog_ep_set_sensitive (property_data *properties, bool state, bo
   gtk_widget_set_sensitive(properties->opt_frame, sch);
 }
 
-/*! \brief Handle selection change event for x_dialog_edit_properties
- *  \par Function Description
+/*!
+ * \brief Handle selection change event for x_dialog_edit_properties
+ * \par Function Description
  *  Called when the selection changes. The functions calls
  *  x_dialog_ep_component_change to update the data fields
  *
- *  \param w_current pointer to GschemToplevel context
- *  \param object    pointer to a selected Object.
+ * \param w_current pointer to GschemToplevel context
+ * \param object    pointer to a selected Object.
  */
 static void x_dialog_ep_update_selection (GschemToplevel *w_current,
                                           GedaObject     *object)
@@ -923,13 +933,14 @@ static void x_dialog_ep_update_selection (GschemToplevel *w_current,
   }
 }
 
-/*! \brief Component Properties Dialog Construction Helper to Load Combo
- *  \par Function Description
+/*!
+ * \brief Component Properties Dialog Construction Helper to Load Combo
+ * \par Function Description
  *  Called during construction to load string into the combo text box for
  *  reference designators.
  *
- *  \param dialog  pointer to the Properties Dialog
- *  \param type    integer type is the set of desginator to be loaded.
+ * \param dialog  pointer to the Properties Dialog
+ * \param type    integer type is the set of desginator to be loaded.
  */
 static void x_dialog_edit_properties_load_refdes(GtkWidget *dialog, int type)
 {
@@ -974,10 +985,12 @@ static void x_dialog_edit_properties_load_refdes(GtkWidget *dialog, int type)
   x_dialog_ep_refdes_update_entry(properties->refdes_combo, dialog);
 }
 
-/*! \brief Function to toggle radio images
- *  \par Function Description: This function changes the images of
- *       controls created with create_geda_switch to the opposite
- *       state, i.e. if ON use OFF image and if OFF use ON image.
+/*!
+ * \brief Function to toggle radio images
+ * \par Function Description
+ *  This function changes the images of controls created with
+ *  create_geda_switch to the opposite state, i.e. if ON use
+ *  OFF image and if OFF use ON image.
  */
 static void radio_responder(GtkWidget *widget,  int control)
 {
@@ -1027,8 +1040,9 @@ static void x_dialog_edit_properties_load_ieee_des(GtkWidget *widget,
   x_dialog_edit_properties_load_refdes(dialog, RefDesIeee);
 }
 
-/*! \brief Emit GEDA_RESPONSE_CLOSE signal.
- *  \par Function Description
+/*!
+ * \brief Emit GEDA_RESPONSE_CLOSE signal.
+ * \par Function Description
  *  This function is called when the Close button on the Component
  *  Select dialog is pressed.
  */
@@ -1040,8 +1054,9 @@ static void on_close_butt_clicked(GtkButton *button, void *user_data)
                            user_data);
 }
 
-/*! \brief Emit COMPSELECT_RESPONSE_HIDE signal.
- *  \par Function Description
+/*!
+ * \brief Emit COMPSELECT_RESPONSE_HIDE signal.
+ * \par Function Description
  *  This function is called when the Okay button on the Component
  *  Select dialog is pressed.
  */
@@ -1144,13 +1159,14 @@ static void x_dialog_edit_properties_action_area (GtkWidget     *ThisDialog,
   gtk_widget_grab_default (apply_butt);
 }
 
-/*! \brief Component Properties Dialog Constructor
- *  \par Function Description
+/*!
+ * \brief Component Properties Dialog Constructor
+ * \par Function Description
  *  Called to construct the Componenent Properties dialog box.
  *
- *  \param w_current pointer to GschemToplevel data structure
+ * \param w_current pointer to GschemToplevel data structure
  *
- *  \return GtkDialog pointer to a new Componenent Properties Dialog
+ * \return GtkDialog pointer to a new Componenent Properties Dialog
  */
 static
 GtkWidget* x_dialog_edit_properties_constructor (GschemToplevel *w_current)
@@ -1746,8 +1762,9 @@ GtkWidget* x_dialog_edit_properties_constructor (GschemToplevel *w_current)
   return dialog;
 }
 
-/*! \brief Creates the Properties dialog
- *  \par Function Description
+/*!
+ * \brief Creates the Properties dialog
+ * \par Function Description
  *  This function initiates creation of the Component Properties type dialog
  *  or raises the current dialog if called when the dialog is already open.
  */
