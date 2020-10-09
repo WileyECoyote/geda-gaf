@@ -587,8 +587,8 @@ void i_command_process(GschemToplevel *w_current, const char *command,
                              w_current->pointer_sx,
                              w_current->pointer_sy);
         }
-        /* could check action but all current actions that also
-         * use "hot" seem magnetic-able candidates */
+        /* Could check action but all current actions that use "hot"
+         * also seem to be magnetic-able candidates */
         if (check_magnet && w_current->magnetic_net_mode) {
           command_struc[i].point.x = snap_grid (w_current, wx);
           command_struc[i].point.y = snap_grid (w_current, wy);
