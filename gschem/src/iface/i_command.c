@@ -574,7 +574,7 @@ void i_command_process(GschemToplevel *w_current, const char *command,
             command_struc[i].point.y = 0;
             w_current->first_wx      = -1;
             w_current->first_wy      = -1;
-            check_magnet = FALSE;
+            check_magnet             = FALSE;
           }
         }
         else { /* Is ID_ORIGIN_MOUSE*/
@@ -582,7 +582,7 @@ void i_command_process(GschemToplevel *w_current, const char *command,
           SCREENtoWORLD (w_current, w_current->pointer_sx, w_current->pointer_sy, &wx, &wy);
           command_struc[i].point.x = wx;
           command_struc[i].point.y = wy;
-          check_magnet = TRUE;
+          check_magnet             = TRUE;
           i_pan_warp_cursor (w_current->drawing_area,
                              w_current->pointer_sx,
                              w_current->pointer_sy);
