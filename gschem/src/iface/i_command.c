@@ -602,6 +602,7 @@ void i_command_process(GschemToplevel *w_current, const char *command,
       command_struc[i].w_current = w_current;
 
 #ifdef PERFORMANCE
+
       /* Is temporary block used for performance and memory evaluations */
       if (performance_diagnostics) {
         struct rusage usage;
@@ -612,6 +613,7 @@ void i_command_process(GschemToplevel *w_current, const char *command,
           fprintf(stderr, "getrusage returned error: %s\n", strerror(errno));
         }
       }
+
 #endif
 
       /* Either push task to cache of actions, or do in-line */
@@ -624,6 +626,7 @@ void i_command_process(GschemToplevel *w_current, const char *command,
       break;
     }
   }
+
   return;
 }
 
