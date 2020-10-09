@@ -676,9 +676,13 @@ static inline void msg_need_select_1st(GschemToplevel *w_current)
   i_status_set_state_msg(w_current, SELECT, message);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Common Error Output Cannot Start Action while inside Action
+ * \par Function Description
+ *  Outputs formated error message with name of command action that
+ *  cannot be initiated while another action is on-going.
+ *
+ * \sa macro #BEGIN_NO_ACTION
  */
 static inline void action_err(char *var)
 {

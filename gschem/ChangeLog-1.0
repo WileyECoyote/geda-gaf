@@ -3,6 +3,7 @@
     * src/iface/i_command.c: Add function documentation:
 
         * i_command_process
+        * action_err
 
 2020-10-08 Wiley E. Hill <wileyhill@gmail.com>
 
