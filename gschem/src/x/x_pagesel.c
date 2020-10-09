@@ -460,11 +460,11 @@ pagesel_callback_button_pressed (GtkWidget      *widget,
 /*!
  * \brief Callback for keyboard initiated Pop-up Menu
  * \par Function Description
- * Called when "pop-up-menu" is emitted on the tree-view, which
- * occurs when users initiated the pop-up menu using a keyboard
- * short-cut such as Shift-F10, this callback is not associated
- * with mouse button events.
- * Calls pagesel_popup_menu to create the context pop-up menu.
+ *  Called when "pop-up-menu" is emitted on the tree-view, which
+ *  occurs when users initiated the pop-up menu using a keyboard
+ *  short-cut such as Shift-F10, this callback is not associated
+ *  with mouse button events.
+ *  Calls pagesel_popup_menu to create the context pop-up menu.
  */
 static bool
 pagesel_callback_popup_menu (GtkWidget *widget, void *user_data)
@@ -487,8 +487,8 @@ pagesel_callback_popup_menu (GtkWidget *widget, void *user_data)
  *  pagesel_callback_selection_changed having called x_window_set_
  *  current_page.
  *
- *  \param [in] menuitem   The Popup Menu Item selected (not used).
- *  \param [in] user_data  The Pagesel object.
+ * \param [in] menuitem   The Popup Menu Item selected (not used).
+ * \param [in] user_data  The Pagesel object.
  */
 static void
 pagesel_callback_popup_down  (GedaMenuItem *menuitem, void *user_data)
@@ -529,8 +529,8 @@ pagesel_callback_popup_down  (GedaMenuItem *menuitem, void *user_data)
  *  with pagesel_callback_selection_changed having called x_window_
  *  set_current_page.
  *
- *  \param [in] menuitem   The Popup Menu Item selected (not used).
- *  \param [in] user_data  The Pagesel object.
+ * \param [in] menuitem   The Popup Menu Item selected (not used).
+ * \param [in] user_data  The Pagesel object.
  */
 static void
 pagesel_callback_popup_up (GedaMenuItem *menuitem, void *user_data)
