@@ -4715,25 +4715,23 @@ msgstr "Pin Özellikleri"
 msgid "Unlock"
 msgstr "Kilidi Aç"
 
-# Update All
+# Update; Güncelleme
 #: gschem/src/x/x_toolbars.c:221
-#, fuzzy
 msgid "Update"
-msgstr "Tümünü Güncelle"
+msgstr "Güncelle"
 
 #: gschem/src/x/x_toolbars.c:225
 msgid "Multi"
 msgstr ""
 
+# Color
 #: gschem/src/x/x_toolbars.c:236
-#, fuzzy
 msgid "Color"
-msgstr "_Renk:"
+msgstr "Renk"
 
 #: gschem/src/x/x_toolbars.c:238
-#, fuzzy
 msgid "Slots"
-msgstr "Yuva..."
+msgstr "Yuvalar"
 
 #: gschem/src/x/x_toolbars.c:239
 msgid "Pins"
@@ -4755,34 +4753,35 @@ msgstr ""
 msgid "Both"
 msgstr ""
 
+# Hidden
 #: gschem/src/x/x_toolbars.c:251
-#, fuzzy
 msgid "Hidden"
-msgstr "Gizlileri Göster"
+msgstr "Gizli"
 
-# Show/Hide Inherited
+# Inherited
 #: gschem/src/x/x_toolbars.c:252
-#, fuzzy
 msgid "Inherited"
-msgstr "Miras Alınanları Göster/Gizle"
+msgstr "Miras"
 
+# Find => Search
 #: gschem/src/x/x_toolbars.c:253
 msgid "Find"
-msgstr ""
+msgstr "Arama"
 
+# Hide
 #: gschem/src/x/x_toolbars.c:254
 msgid "Hide"
-msgstr ""
+msgstr "Saklamak"
 
+# Show
 #: gschem/src/x/x_toolbars.c:255
 msgid "Show"
-msgstr ""
+msgstr "Göstermek"
 
-# Auto Sequence
+# Number Automatically
 #: gschem/src/x/x_toolbars.c:257
-#, fuzzy
 msgid "Auto #"
-msgstr "Otomatik dizi"
+msgstr "Otomatik Numara"
 
 #: gschem/src/x/x_toolbars.c:259
 msgid "Dots"
@@ -4794,9 +4793,8 @@ msgstr ""
 
 # Snap ON => Alignment ON
 #: gschem/src/x/x_toolbars.c:267
-#, fuzzy
 msgid "Snap On"
-msgstr "Hizalama AÇIK\n"
+msgstr "Hizalama AÇIK"
 
 #: gschem/src/x/x_toolbars.c:269
 msgid "Config"
