@@ -4507,22 +4507,22 @@ msgstr "更新"
 msgid "Multi"
 msgstr ""
 
+# Color; Iro
 #: gschem/src/x/x_toolbars.c:236
-#, fuzzy
 msgid "Color"
-msgstr "色:"
+msgstr "色"
 
+# Slots; Surotto
 #: gschem/src/x/x_toolbars.c:238
-#, fuzzy
 msgid "Slots"
-msgstr "スロット..."
+msgstr "スロット"
 
 #: gschem/src/x/x_toolbars.c:239
 msgid "Pins"
 msgstr ""
 
+# Fill; Nuritsubushi
 #: gschem/src/x/x_toolbars.c:241
-#, fuzzy
 msgid "Fill"
 msgstr "塗りつぶし"
 
@@ -4530,43 +4530,44 @@ msgstr "塗りつぶし"
 msgid "Arcs"
 msgstr ""
 
+# Demote; Kōkaku
 #: gschem/src/x/x_toolbars.c:246
 msgid "Demote"
-msgstr ""
+msgstr "降格"
 
 #: gschem/src/x/x_toolbars.c:249
 msgid "Both"
 msgstr ""
 
+# Hidden; Kakushi
 #: gschem/src/x/x_toolbars.c:251
-#, fuzzy
 msgid "Hidden"
-msgstr "隠しテキスト表示"
+msgstr "隠し"
 
-# Show/Hide Inherited
+# Inherited; Iden-sei no
 #: gschem/src/x/x_toolbars.c:252
-#, fuzzy
 msgid "Inherited"
-msgstr "Keishō o hyōji/ hi hyōji"
+msgstr "遺伝性の"
 
+# Find => Search; Sagasu
 #: gschem/src/x/x_toolbars.c:253
 msgid "Find"
-msgstr ""
+msgstr "探す"
 
+# Hide; Kakusu
 #: gschem/src/x/x_toolbars.c:254
 msgid "Hide"
-msgstr ""
+msgstr "隠す"
 
+# Show; Kōen
 #: gschem/src/x/x_toolbars.c:255
-#, fuzzy
 msgid "Show"
-msgstr "テキストを表示する"
+msgstr "公演"
 
-# Auto Load: Jidō rōdo
+# Number Automatically; Jidōteki ni bangōwotsukeru
 #: gschem/src/x/x_toolbars.c:257
-#, fuzzy
 msgid "Auto #"
-msgstr "自動ロード"
+msgstr "自動的に番号を付ける"
 
 #: gschem/src/x/x_toolbars.c:259
 msgid "Dots"
@@ -4577,9 +4578,8 @@ msgid "UP"
 msgstr ""
 
 #: gschem/src/x/x_toolbars.c:267
-#, fuzzy
 msgid "Snap On"
-msgstr "スナップ・オン\n"
+msgstr "スナップ・オン"
 
 #: gschem/src/x/x_toolbars.c:269
 msgid "Config"

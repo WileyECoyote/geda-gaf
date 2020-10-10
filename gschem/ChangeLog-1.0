@@ -10,6 +10,8 @@
 
     * po/it.po: Update Italian translations.
 
+    * po/ja.po: Update Japanese translations.
+
 2020-10-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/iface/i_command.c: Add function documentation:
