@@ -4535,16 +4535,15 @@ msgid "Color"
 msgstr "Color"
 
 #: gschem/src/x/x_toolbars.c:238
-#, fuzzy
 msgid "Slots"
-msgstr "Elemento..."
+msgstr "Elemento"
 
 #: gschem/src/x/x_toolbars.c:239
 msgid "Pins"
 msgstr ""
 
+# Fill; Llenar
 #: gschem/src/x/x_toolbars.c:241
-#, fuzzy
 msgid "Fill"
 msgstr "Relleno"
 
@@ -4552,45 +4551,44 @@ msgstr "Relleno"
 msgid "Arcs"
 msgstr ""
 
+# Demote
 #: gschem/src/x/x_toolbars.c:246
-#, fuzzy
 msgid "Demote"
-msgstr "Promocionar"
+msgstr "Degradar"
 
 #: gschem/src/x/x_toolbars.c:249
 msgid "Both"
 msgstr ""
 
+# Hidden
 #: gschem/src/x/x_toolbars.c:251
-#, fuzzy
 msgid "Hidden"
-msgstr "Mostrar ocultos"
+msgstr "Oculto"
 
-# Show/Hide Inherited
+# Inherited
 #: gschem/src/x/x_toolbars.c:252
-#, fuzzy
 msgid "Inherited"
-msgstr "Mostrar/Ocultar Heredado"
+msgstr "Heredado"
 
+# Find => Search
 #: gschem/src/x/x_toolbars.c:253
-#, fuzzy
 msgid "Find"
-msgstr "Encontrar texto:"
+msgstr "Buscar"
 
+# Hide; Ocultar
 #: gschem/src/x/x_toolbars.c:254
-#, fuzzy
 msgid "Hide"
-msgstr "Ocultar texto:"
+msgstr "Esconder"
 
+# Show
 #: gschem/src/x/x_toolbars.c:255
-#, fuzzy
 msgid "Show"
-msgstr "Mostrar texto"
+msgstr "Mostrar"
 
+# Number Automatically
 #: gschem/src/x/x_toolbars.c:257
-#, fuzzy
 msgid "Auto #"
-msgstr "Carga automática"
+msgstr "Número automáticamente"
 
 #: gschem/src/x/x_toolbars.c:259
 msgid "Dots"
@@ -4600,10 +4598,10 @@ msgstr ""
 msgid "UP"
 msgstr ""
 
+# Snap On; Ajuste a la rejilla ACTIVADO
 #: gschem/src/x/x_toolbars.c:267
-#, fuzzy
 msgid "Snap On"
-msgstr "Ajuste a la rejilla ACTIVADO\n"
+msgstr "Broche de presión en"
 
 #: gschem/src/x/x_toolbars.c:269
 msgid "Config"
