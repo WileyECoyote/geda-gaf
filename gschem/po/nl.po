@@ -4684,21 +4684,19 @@ msgid "Multi"
 msgstr ""
 
 #: gschem/src/x/x_toolbars.c:236
-#, fuzzy
 msgid "Color"
-msgstr "_Kleur:"
+msgstr "Kleur"
 
 #: gschem/src/x/x_toolbars.c:238
-#, fuzzy
 msgid "Slots"
-msgstr "_Slot..."
+msgstr "Slots"
 
 #: gschem/src/x/x_toolbars.c:239
 msgid "Pins"
 msgstr ""
 
+# Fill
 #: gschem/src/x/x_toolbars.c:241
-#, fuzzy
 msgid "Fill"
 msgstr "Gevuld"
 
@@ -4707,44 +4705,42 @@ msgid "Arcs"
 msgstr ""
 
 #: gschem/src/x/x_toolbars.c:246
-#, fuzzy
 msgid "Demote"
-msgstr "Promoot"
+msgstr "Degraderen"
 
 #: gschem/src/x/x_toolbars.c:249
 msgid "Both"
 msgstr ""
 
+# Hidden
 #: gschem/src/x/x_toolbars.c:251
-#, fuzzy
 msgid "Hidden"
-msgstr "Zichtbaar Verborgen"
+msgstr "Verborgen"
 
-# Visible/Hidden Inherited
+# Inherited
 #: gschem/src/x/x_toolbars.c:252
-#, fuzzy
 msgid "Inherited"
-msgstr "Overerfd weergeven/verbergen"
+msgstr "Overgeërfd"
 
+# Find; Zoeken
 #: gschem/src/x/x_toolbars.c:253
-#, fuzzy
 msgid "Find"
-msgstr "Vind tekst"
+msgstr "Vind"
 
+# Hide; Zich verstoppen
 #: gschem/src/x/x_toolbars.c:254
-#, fuzzy
 msgid "Hide"
-msgstr "Verberg tekst"
+msgstr "Verberg"
 
+# Show
 #: gschem/src/x/x_toolbars.c:255
-#, fuzzy
 msgid "Show"
-msgstr "Toon tekst"
+msgstr "Tonen"
 
+# Number Automatically
 #: gschem/src/x/x_toolbars.c:257
-#, fuzzy
 msgid "Auto #"
-msgstr "Automatisch"
+msgstr "Nummer automatisch"
 
 #: gschem/src/x/x_toolbars.c:259
 msgid "Dots"
@@ -4755,9 +4751,8 @@ msgid "UP"
 msgstr ""
 
 #: gschem/src/x/x_toolbars.c:267
-#, fuzzy
 msgid "Snap On"
-msgstr "Snap AAN\n"
+msgstr "Snap AAN"
 
 #: gschem/src/x/x_toolbars.c:269
 msgid "Config"
