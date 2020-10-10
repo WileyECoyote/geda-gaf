@@ -8,6 +8,8 @@
 
     * po/es.po: Update Spanish translations.
 
+    * po/it.po: Update Italian translations.
+
 2020-10-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/iface/i_command.c: Add function documentation:
