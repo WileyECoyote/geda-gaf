@@ -4638,48 +4638,43 @@ msgstr "prekrajanje"
 msgid "Pan"
 msgstr "pan pogled"
 
+# Window
 #: gschem/src/x/x_toolbars.c:208
-#, fuzzy
 msgid "Window"
-msgstr "Novi prozor"
+msgstr "Prozor"
 
-# Select
+# Selected
 #: gschem/src/x/x_toolbars.c:209
-#, fuzzy
 msgid "Selected"
-msgstr "Izabrati"
+msgstr "Odabrano"
 
-# Edit Text Properties
+# Properties
 #: gschem/src/x/x_toolbars.c:216
-#, fuzzy
 msgid "Properties"
-msgstr "Uredi tekst svojstva"
+msgstr "Svojstva"
 
 #: gschem/src/x/x_toolbars.c:220 gschem/etc/system-gschemrc.scm:2185
 #: gschem/scheme/gschem/builtins.scm:191
 msgid "Unlock"
 msgstr "Otključaj"
 
-# Update All
+# Update
 #: gschem/src/x/x_toolbars.c:221
-#, fuzzy
 msgid "Update"
-msgstr "Ažuriraj Sve"
+msgstr "Ažuriraj"
 
 #: gschem/src/x/x_toolbars.c:225
 msgid "Multi"
 msgstr ""
 
-# Color
 #: gschem/src/x/x_toolbars.c:236
-#, fuzzy
 msgid "Color"
-msgstr "_Boja:"
+msgstr "Boja"
 
+# Slots; Prorez
 #: gschem/src/x/x_toolbars.c:238
-#, fuzzy
 msgid "Slots"
-msgstr "Prorez..."
+msgstr "Slotovi"
 
 #: gschem/src/x/x_toolbars.c:239
 msgid "Pins"
@@ -4701,34 +4696,35 @@ msgstr ""
 msgid "Both"
 msgstr ""
 
+# Hidden
 #: gschem/src/x/x_toolbars.c:251
-#, fuzzy
 msgid "Hidden"
-msgstr "Prikaži skriveno"
+msgstr "Skriven"
 
-# Show/hide Inherited
+# Inherited
 #: gschem/src/x/x_toolbars.c:252
-#, fuzzy
 msgid "Inherited"
-msgstr "Pokaži/sakrij naslijeđeno"
+msgstr "Naslijeđeno"
 
+# Find => Search
 #: gschem/src/x/x_toolbars.c:253
 msgid "Find"
-msgstr ""
+msgstr "Pretraži"
 
+# Hide
 #: gschem/src/x/x_toolbars.c:254
 msgid "Hide"
-msgstr ""
+msgstr "Sakrij se"
 
+# Show
 #: gschem/src/x/x_toolbars.c:255
 msgid "Show"
-msgstr ""
+msgstr "Pokaži"
 
-# Auto Load
+# Number Automatically
 #: gschem/src/x/x_toolbars.c:257
-#, fuzzy
 msgid "Auto #"
-msgstr "Auto Load"
+msgstr "Broj automatski"
 
 #: gschem/src/x/x_toolbars.c:259
 msgid "Dots"
@@ -4740,9 +4736,8 @@ msgstr ""
 
 # Snap ON
 #: gschem/src/x/x_toolbars.c:267
-#, fuzzy
 msgid "Snap On"
-msgstr "Snap ON\n"
+msgstr "Snap ON"
 
 #: gschem/src/x/x_toolbars.c:269
 msgid "Config"
