@@ -2,6 +2,8 @@
 
     * po/af.po: Update Arabic translations.
 
+    * po/bg.po: Update Bulgarian translations.
+
 2020-10-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/iface/i_command.c: Add function documentation:
