@@ -4703,25 +4703,24 @@ msgstr ""
 msgid "Unlock"
 msgstr ""
 
-# Update All
+# Update; ажурирање
 #: gschem/src/x/x_toolbars.c:221
-#, fuzzy
 msgid "Update"
-msgstr "Упдате Алл"
+msgstr "Упдате"
 
 #: gschem/src/x/x_toolbars.c:225
 msgid "Multi"
 msgstr ""
 
-# Edit Color
+# Color; Boja
 #: gschem/src/x/x_toolbars.c:236
-#, fuzzy
 msgid "Color"
-msgstr "Eдит боја"
+msgstr "боја"
 
+# Slots; Slotovi
 #: gschem/src/x/x_toolbars.c:238
 msgid "Slots"
-msgstr ""
+msgstr "Слотови"
 
 #: gschem/src/x/x_toolbars.c:239
 msgid "Pins"
@@ -4743,33 +4742,35 @@ msgstr ""
 msgid "Both"
 msgstr ""
 
-# Show Hidden
+# Hidden; Sakriven
 #: gschem/src/x/x_toolbars.c:251
-#, fuzzy
 msgid "Hidden"
-msgstr "Схов Хидден"
+msgstr "Сакривен"
 
+# Inherited
 #: gschem/src/x/x_toolbars.c:252
 msgid "Inherited"
-msgstr ""
+msgstr "Наслеђен"
 
+# Find => Search; Pretraga
 #: gschem/src/x/x_toolbars.c:253
 msgid "Find"
-msgstr ""
+msgstr "Претрага"
 
+# Hide; Sakriti
 #: gschem/src/x/x_toolbars.c:254
 msgid "Hide"
-msgstr ""
+msgstr "Сакрити"
 
+# Show; Prikaži
 #: gschem/src/x/x_toolbars.c:255
 msgid "Show"
-msgstr ""
+msgstr "Прикажи"
 
-# automatically load
+# Number Automatically; Broj automatski
 #: gschem/src/x/x_toolbars.c:257
-#, fuzzy
 msgid "Auto #"
-msgstr "automatski лоад"
+msgstr "Број аутоматски"
 
 #: gschem/src/x/x_toolbars.c:259
 msgid "Dots"
@@ -4781,9 +4782,8 @@ msgstr ""
 
 # Snap ON
 #: gschem/src/x/x_toolbars.c:267
-#, fuzzy
 msgid "Snap On"
-msgstr "snap Он\n"
+msgstr "snap Он"
 
 #: gschem/src/x/x_toolbars.c:269
 msgid "Config"
