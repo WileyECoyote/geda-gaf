@@ -36,31 +36,32 @@ SCM_SYMBOL (value_sym , "value");
 SCM_SYMBOL (both_sym ,  "both");
 SCM_SYMBOL (object_state_sym, "object-state");
 
-/*! \brief Add an attribute to an object, or floating.
+/*!
+ * \brief Add an attribute to an object, or floating.
  * \par Function Description
- * Creates a new attribute, either attached to an object or floating.
+ *  Creates a new attribute, either attached to an object or floating.
  *
- * The \a name_s and \a value_s should be strings.  If \a visible_s is
- * false, the new attribute will be invisible; otherwise it will be
- * visible.  \a show_s determines which parts of an
- * attribute-formatted string should be shown, and should be one of
- * the symbols "name", "value" or "both".
+ *  The \a name_s and \a value_s should be strings.  If \a visible_s is
+ *  false, the new attribute will be invisible; otherwise it will be
+ *  visible.  \a show_s determines which parts of an
+ *  attribute-formatted string should be shown, and should be one of
+ *  the symbols "name", "value" or "both".
  *
- * If \a target_s is specified and is a gEDA object, the new attribute
- * will be attached to it. If \a target_s is not in gschem's active
- * page, an "object-state" error will be raised.
+ *  If \a target_s is specified and is a gEDA object, the new attribute
+ *  will be attached to it. If \a target_s is not in gschem's active
+ *  page, an "object-state" error will be raised.
  *
- * If \a target_s is false, the new attribute will be floating in
- * gschem's current active page.
+ *  If \a target_s is false, the new attribute will be floating in
+ *  gschem's current active page.
  *
  * \note Scheme API: Implements the %add-attrib! procedure in the
- * (gschem core attrib) module.
+ *  (gschem core attrib) module.
  *
  * \bug This function does not verify that \a name_s is actually a
- * valid attribute name.
+ *  valid attribute name.
  *
  * \todo It would be nice to support pages other than the current
- * active page.
+ *  active page.
  *
  * \param target_s  where to attach the new attribute.
  * \param name_s    name for the new attribute.
@@ -148,8 +149,8 @@ SCM_DEFINE (add_attrib_x, "%add-attrib!", 6, 0, 0,
 /*!
  * \brief Create the (gschem core attrib) Scheme module.
  * \par Function Description
- * Defines procedures in the (gschem core attrib) module. The module can
- * be accessed using (use-modules (gschem core attrib)).
+ *  Defines procedures in the (gschem core attrib) module. The module can
+ *  be accessed using (use-modules (gschem core attrib)).
  */
 static void
 init_module_gschem_core_attrib ()
@@ -164,8 +165,8 @@ init_module_gschem_core_attrib ()
 /*!
  * \brief Initialize the gschem attribute procedures.
  * \par Function Description
- * Registers some Scheme procedures for working with
- * attributes. Should only be called by main_prog().
+ *  Registers some Scheme procedures for working with
+ *  attributes. Should only be called by main_prog().
  */
 void
 g_init_attrib ()
