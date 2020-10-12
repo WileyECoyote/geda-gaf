@@ -164,7 +164,6 @@ init_module_gschem_core_attrib ()
 /*!
  * \brief Initialize the gschem attribute procedures.
  * \par Function Description
-
  * Registers some Scheme procedures for working with
  * attributes. Should only be called by main_prog().
  */
