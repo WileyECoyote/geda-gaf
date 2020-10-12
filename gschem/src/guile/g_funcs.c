@@ -33,7 +33,10 @@
  *  This module contains routines for general Scheme API functions
  *  to dialogs and options under the file menu.
  */
-/* function: g_funcs_common_image
+
+/*!
+ * \internal function: g_funcs_common_image
+ * \par Function Description
  *
  * called by: g_funcs_bmp_image
  *            g_funcs_jpeg_image
