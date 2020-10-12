@@ -70,17 +70,16 @@ SCM g_process_anonymous_action()
   return SCM_BOOL_T;
 }
 
-/*! \brief Evaluate a gschem action by name.
+/*!
+ * \brief Evaluate a gschem action by name.
  * \par Function Description
- * Evaluates the action named \a action_name, which should be a UTF-8
- * string naming a symbol in the user module.  If evaluating the
- * action fails, prints a message to the log and returns FALSE;
- * otherwise, returns TRUE.
+ *  Evaluates the action named \a action_name, which should be a UTF-8
+ *  string naming a symbol in the user module.  If evaluating the
+ *  action fails, prints a message to the log and returns FALSE;
+ *  otherwise, returns TRUE.
  *
  * \param w_current    Current gschem toplevel structure.
  * \param action_name  Name of action to evaluate.
- *
- *
  *
  * \return TRUE on success, FALSE on failure.
  */
@@ -131,19 +130,20 @@ g_action_eval_by_name (GschemToplevel *w_current, const char *action_name)
   return result;
 }
 
-/*! \brief Get the action position.
+/*!
+ * \brief Get the action position.
  * \par Function Description
- * Retrieves the current action position and stores it in \a x and \a y,
- * optionally snapping it to the grid if \a snap is true. This should be
- * interpreted as the position that the user was pointing with the mouse
- * pointer when the current action was invoked. If there is no valid world
- * position for the current action, returns FALSE without modifying the
- * output variables.
+ *  Retrieves the current action position and stores it in \a x and \a y,
+ *  optionally snapping it to the grid if \a snap is true. This should be
+ *  interpreted as the position that the user was pointing with the mouse
+ *  pointer when the current action was invoked. If there is no valid world
+ *  position for the current action, returns FALSE without modifying the
+ *  output variables.
  *
- * This should be used by actions implemented in C to figure out where
- * on the schematic the user wants them to apply the action.
+ *  This should be used by actions implemented in C to figure out where
+ *  on the schematic the user wants them to apply the action.
  *
- * See also the (gschem action) Scheme module.
+ *  See also the (gschem action) Scheme module.
  *
  * \param snap    If true then snap to grid.
  * \param x       Location to store x coordinate.
