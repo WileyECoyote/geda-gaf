@@ -25,6 +25,10 @@
 #include <gschem.h>
 #include <geda_debug.h>
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ */
 SCM g_process_action(SCM action)
 {
   GschemToplevel *w_current = g_current_window ();
@@ -37,6 +41,10 @@ SCM g_process_action(SCM action)
   return SCM_BOOL_T;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ */
 SCM g_process_anonymous_action()
 {
   SCM   stack;
