@@ -920,10 +920,11 @@ SCM g_rc_add_menu(SCM scm_menu_name, SCM scm_menu_items)
   return SCM_BOOL_T;
 }
 
-/*! \brief Process map-icon RC entry.
- *  \par Function Description
- *       This procedure is used to load icon id string to the i_command
- *       table stucture via i_command_map_icon.
+/*!
+ * \brief Process map-icon RC entry.
+ * \par Function Description
+ *  This procedure is used to load icon id string to the i_command
+ *  table stucture via i_command_map_icon.
  */
 SCM g_rc_map_icon(SCM s_icon, SCM s_action)
 {
@@ -950,11 +951,12 @@ SCM g_rc_map_icon(SCM s_icon, SCM s_action)
 
 }
 
-/*! \brief Process map-keys RC entry.
- *  \par Function Description
- *       This procedure is functionally equivalent to the
- *       global-set-key function but uses a slightly different
- *       syntax and bypasses the routines in gschem.scm.
+/*!
+ * \brief Process map-keys RC entry.
+ * \par Function Description
+ *  This procedure is functionally equivalent to the global-set-key
+ *  function but uses a slightly different syntax and bypasses the
+ *  routines in gschem.scm.
  */
 SCM g_rc_map_keys(SCM keys, SCM action)
 {
@@ -985,11 +987,13 @@ SCM g_rc_map_keys(SCM keys, SCM action)
 
 }
 
-/*! \brief Process autoplace-attributes-grid RC entry.
- *  \par Function Description
- *       C function to dynamically convert lisp variable while
- *       processing configuration data for the autoplacement-grid  RC entry.
- *       The keyword is used to set the value of autoplace-attributes-grid.
+/*!
+ * \brief Process autoplace-attributes-grid RC entry.
+ * \par Function Description
+ *  C function to convert lisp variable while processing configuration
+ *  data for the autoplacement-grid RC entry.
+ *
+ *  The keyword is used to set the value of autoplace-attributes-grid.
  */
 SCM g_rc_attribute_placement_grid(SCM offset)
 {
@@ -1004,10 +1008,11 @@ SCM g_rc_attribute_placement_grid(SCM offset)
   return SCM_BOOL_T;
 }
 
-/*! \brief Process auto-load-last RC entry.
- *  \par Function Description
- *       C function to dynamically convert lisp variable while
- *       processing configuration data for the auto-load-last RC entry.
+/*!
+ * \brief Process auto-load-last RC entry.
+ * \par Function Description
+ *  C function to convert lisp variable while processing configuration
+ *  data for the auto-load-last RC entry.
  */
 SCM g_rc_auto_load_last(SCM mode)
 {
@@ -1019,10 +1024,11 @@ SCM g_rc_auto_load_last(SCM mode)
   RETURN_G_RC_MODE("auto-load-last", default_auto_load_last, mode_table);
 }
 
-/*! \brief Process auto-pan RC entry.
- *  \par Function Description
- *       C function to dynamically convert lisp variable while
- *       processing configuration data for the auto-pan RC entry.
+/*!
+ * \brief Process auto-pan RC entry.
+ * \par Function Description
+ *  C function to convert lisp variable while processing configuration
+ *  data for the auto-pan RC entry.
  */
 SCM g_rc_auto_pan(SCM mode)
 {
@@ -1034,10 +1040,11 @@ SCM g_rc_auto_pan(SCM mode)
   RETURN_G_RC_MODE("auto-pan", default_auto_pan, mode_table);
 }
 
-/*! \brief Process auto-pan-step RC entry.
- *  \par Function Description
- *       C function to dynamically convert lisp variable while
- *       processing configuration data for the auto-pan-step RC entry.
+/*!
+ * \brief Process auto-pan-step RC entry.
+ * \par Function Description
+ *  C function to convert lisp variable while processing configuration data
+ *  for the auto-pan-step RC entry.
  *
  */
 SCM g_rc_auto_pan_step(SCM step)
@@ -1051,10 +1058,10 @@ SCM g_rc_auto_pan_step(SCM step)
   return SCM_BOOL_T;
 }
 
-/*! \brief Process auto-save-interval RC entry.
- *  \par Function Description
- *       C function to dynamically convert lisp variable while
- *       processing configuration data for the auto-save-interval RC entry.
+/*!\brief Process auto-save-interval RC entry.
+ * \par Function Description
+ *  C function to convert lisp variable while processing configuration
+ *  data for the auto-save-interval RC entry.
  */
 SCM g_rc_auto_save_interval(SCM seconds)
 {
