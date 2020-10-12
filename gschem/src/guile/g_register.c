@@ -255,10 +255,11 @@ static struct gsubr_t gschem_hk_funcs[] = {
   { NULL,                        0, 0, 0, NULL }
 };
 
-/*! \brief Define a hook.
+/*!
+ * \brief Define a hook.
  * \par Function Description
- * Creates a Guile new hook with \a n_args arguments, and binds it to
- * the variable \a name, returning the newly created hook.
+ *  Creates a Guile new hook with \a n_args arguments, and binds it
+ *  to the variable \a name, returning the newly created hook.
  *
  * \param n_args Number of arguments the hook should take.
  * \param name   Name of variable to bind the hook to.
@@ -273,10 +274,11 @@ create_hook (const char *name, int n_args)
   return scm_permanent_object (hook);
 }
 
-/*! \brief Register function with Scheme.
- *  \par Function Description
- *  Creates <B>subr</B> objects to make <B>g_rc_*</B> functions that are
- *  defined *  g_rc.c, g_keys.c and g_funcs.c visible to Scheme.
+/*!
+ * \brief Register function with Scheme.
+ * \par Function Description
+ *  Creates <B>subr</B> objects to make <B>g_rc_*</B> functions that
+ *  are defined *  g_rc.c, g_keys.c and g_funcs.c visible to Scheme.
  */
 void g_register_funcs (void)
 {
