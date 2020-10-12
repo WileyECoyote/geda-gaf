@@ -74,7 +74,9 @@ SCM g_process_anonymous_action()
   }
 
   i_command_process(w_current, real_action, 0, NULL, ID_ORIGIN_SCM);
+
   free(action);
+
   return SCM_BOOL_T;
 }
 
