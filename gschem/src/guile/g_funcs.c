@@ -171,8 +171,9 @@ SCM g_funcs_confirm_cancel(SCM scm_msg)
   return scm_response;
 }
 
-/*! \brief SCM API terminate program
- *  \par Function Description
+/*!
+ * \brief SCM API terminate program
+ * \par Function Description
  *  Scheme API function to terminate gschem without saving any
  *  open documents.
  *
@@ -195,8 +196,9 @@ SCM g_funcs_exit(SCM status)
   exit(status_code);
 }
 
-/*! \brief SCM API File Select Dialog
- *  \par Function Description
+/*!
+ * \brief SCM API File Select Dialog
+ * \par Function Description
  *  This function launches a file select dialog and returns the
  *  selected filename to the calling Scheme procedure. If the
  *  user cancels the filename is NULL.
@@ -278,9 +280,10 @@ SCM g_funcs_jpeg_image(SCM scm_filename)
   return g_funcs_common_image (scm_filename, "gschem-jpeg-image", "jpeg");
 }
 
-/*! \brief SCM API Write to log
- *  \par Function Description
- *  \todo Should this be in libgeda?
+/*!
+ * \brief SCM API Write to log
+ * \par Function Description
+ * \todo Should this be in libgeda?
  */
 SCM g_funcs_log(SCM scm_msg)
 {
@@ -295,10 +298,11 @@ SCM g_funcs_log(SCM scm_msg)
   return SCM_BOOL_T;
 }
 
-/*! \brief  SCM API Show message dialog
- *  \par Function Description
- *   Allows Scheme routines to present a dialog to display
- *   a text message.
+/*!
+ * \brief  SCM API Show message dialog
+ * \par Function Description
+ *  Allows Scheme routines to present a dialog to display
+ *  a text message.
  */
 SCM g_funcs_msg(SCM scm_msg)
 {
@@ -342,9 +346,10 @@ SCM g_funcs_output_type(void)
   return (scm_return_value);
 }
 
-/*! \brief SCM API Export PDF Document
- *  \par Function Description
- *   Scheme API to export the current document as a PDF document.
+/*!
+ * \brief SCM API Export PDF Document
+ * \par Function Description
+ *  Scheme API to export the current document as a PDF document.
  *
  * \param scm_filename Scheme filename string is ignored if output
  *                     output specified on the command-line.
@@ -391,10 +396,11 @@ SCM g_funcs_png_image(SCM scm_filename)
   return g_funcs_common_image (scm_filename, "gschem-png-image", "png");
 }
 
-/*! \brief SCM API Export Postscript image
- *  \par Function Description
- *   Allows Scheme routines to export the current document
- *   as a Postscript image.
+/*!
+ * \brief SCM API Export Postscript image
+ * \par Function Description
+ *  Allows Scheme routines to export the current document
+ *  as a Postscript image.
  *
  * \param scm_filename Scheme filename string is ignored if output
  *                     output specified on the command-line.
@@ -439,9 +445,10 @@ SCM g_funcs_postscript(SCM scm_filename)
   return success ? SCM_BOOL_F : SCM_BOOL_T;
 }
 
-/*! \brief SCM API Print Current Document
- *  \par Function Description
- *   Scheme API to print the current document.
+/*!
+ * \brief SCM API Print Current Document
+ * \par Function Description
+ *  Scheme API to print the current document.
  *
  * \param scm_filename Scheme filename string is ignored if output
  *                     output specified on the command-line.
@@ -484,8 +491,9 @@ SCM g_funcs_print(SCM scm_filename)
   return success ? SCM_BOOL_F : SCM_BOOL_T;
 }
 
-/*! \brief Scheme API Save the Current File
- *  \par Function Description
+/*!
+ * \brief Scheme API Save the Current File
+ * \par Function Description
  *  This function accomplishes the same effect as using the builtin
  *  "file-save" function, which is to save the active document. The
  *  difference is that "file-save" is threaded and control will likely
@@ -551,8 +559,9 @@ SCM g_funcs_tiff_image(SCM scm_filename)
   return g_funcs_common_image (scm_filename, "gschem-tiff-image", "tiff");
 }
 
-/*! \brief Scheme API Set Top Level Variables
- *  \par Function Description
+/*!
+ * \brief Scheme API Set Top Level Variables
+ * \par Function Description
  *  This functions calls i_vars_set and this will reset the value of
  *  top-level variables to the current "defaults", which can be set
  *  individually using scheme. Some variables may not be set if the

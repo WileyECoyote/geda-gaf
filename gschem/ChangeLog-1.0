@@ -1,11 +1,12 @@
 2020-10-12 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/guile/:
+    * src/guile/: Reformat function documentation:
 
         * src/guile/g_action.c
         * src/guile/g_attrib.c
         * src/guile/g_rc.c
         * src/guile/g_register.c
+        * src/guile/g_funcs.c
 
     * src/guile/g_action.c: Add todo documentation templates.
 
