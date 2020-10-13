@@ -287,9 +287,10 @@ void g_register_funcs (void)
                               gschem_hk_funcs,
                               gschem_buffer_funcs};
 
-  static GList *action_list;
+  GList *action_list;
 
   int j;
+
   for(j = 0; j < 4; j++) {
 
     struct gsubr_t *grp = func[j];

@@ -1,3 +1,8 @@
+2020-10-13 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/guile/g_register.c: Remove static specifier from action_list in
+      g_register_funcs.
+
 2020-10-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/guile/: Reformat function documentation:
