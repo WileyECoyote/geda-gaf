@@ -2910,9 +2910,9 @@ msgstr "Single Attribute Editor"
 msgid "Set"
 msgstr "Net"
 
-#: gschem/src/x/x_edit_pin.c:892
+#: gschem/src/x/x_edit_pin.c:892 gschem/src/x/x_toolbars.c:257
 msgid "Auto"
-msgstr ""
+msgstr "Auto"
 
 #: gschem/src/x/x_edit_pin.c:958
 msgid "Attribute Type List"
@@ -4424,10 +4424,6 @@ msgstr "Hide"
 #: gschem/src/x/x_toolbars.c:255
 msgid "Show"
 msgstr "Show"
-
-#: gschem/src/x/x_toolbars.c:257
-msgid "Auto"
-msgstr "Auto"
 
 #: gschem/src/x/x_toolbars.c:259
 msgid "Dots"
