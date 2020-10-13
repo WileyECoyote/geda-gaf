@@ -278,7 +278,7 @@ create_hook (const char *name, int n_args)
  * \brief Register function with Scheme.
  * \par Function Description
  *  Creates <B>subr</B> objects to make <B>g_rc_*</B> functions that
- *  are defined *  g_rc.c, g_keys.c and g_funcs.c visible to Scheme.
+ *  are defined in g_rc.c, g_keys.c and g_funcs.c visible to Scheme.
  */
 void g_register_funcs (void)
 {
