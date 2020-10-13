@@ -1323,7 +1323,7 @@
 ;(add-hook! mirror-pin-hook (lambda (pin) (autoplace-pin-attributes pin )) #t)
 
 ; Autoplace component/net/buses text attributes hook.
-; Uncomment in these if you want the component attributes to be
+; Uncomment these if you want the component attributes to be
 ; automatically placed.
 ; There are different hooks for situations like adding a new pin, rotating
 ; or mirroring an existing one, adding a new attribute or a new component.
