@@ -25,9 +25,16 @@
 #include <gschem.h>
 #include <geda_debug.h>
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Process Gschem Action initiated in Guile
+ * \par Function Description
+ *  This is essentially a callback function to handle all Guile
+ *  calls for registered functions listed in:
+ *
+ *          gschem_rc_funcs,
+ *          gschem_g_funcs,
+ *          gschem_hk_funcs,
+ *          gschem_buffer_funcs
  */
 SCM g_process_action(SCM action)
 {
