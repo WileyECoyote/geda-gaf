@@ -141,7 +141,7 @@ SCM_DEFINE (deselect_object_x, "%deselect-object!", 1, 0, 0,
 /*!
  * \brief Test if an object is selected.
  * \par Function Description
- *  If \a obj_s is selected, returns SCM_BOOL_T.  Otherwise, returns
+ *  If \a obj_s is selected, returns SCM_BOOL_T. Otherwise, returns
  *  SCM_BOOL_F.  If \a obj_s is not included directly in a page
  *  (i.e. not via inclusion in a component), throws a Scheme error.
  *
