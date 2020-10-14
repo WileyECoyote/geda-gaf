@@ -104,13 +104,13 @@ SCM_DEFINE (select_object_x, "%select-object!", 1, 0, 0,
 /*!
  * \brief Deselect an object.
  * \par Function Description
- * Remove \a obj_s from its associated page's selection.  If \a obj_s
- * is not included directly in a page (i.e. not via inclusion in a
- * component), throws a Scheme error.  If \a obj_s is not selected,
- * does nothing.
+ *  Remove \a obj_s from its associated page's selection.  If \a obj_s
+ *  is not included directly in a page (i.e. not via inclusion in a
+ *  component), throws a Scheme error.  If \a obj_s is not selected,
+ *  does nothing.
  *
  * \note Scheme API: Implements the %deselect-object! procedure in the
- * (gschem core selection) module.
+ *       (gschem core selection) module.
  *
  * \param obj_s Object smob for object to be deselected.
  * \return obj_s.

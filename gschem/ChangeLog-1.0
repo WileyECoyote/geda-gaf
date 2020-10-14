@@ -3,6 +3,7 @@
     * src/guile/: Reformat function documentation:
 
         * src/guile/g_rc.c
+        * src/guile/g_select.c
 
     * src/guile/g_action.c: Add function documentation:
 
