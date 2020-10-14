@@ -1058,7 +1058,8 @@ SCM g_rc_auto_pan_step(SCM step)
   return SCM_BOOL_T;
 }
 
-/*!\brief Process auto-save-interval RC entry.
+/*!
+ * \brief Process auto-save-interval RC entry.
  * \par Function Description
  *  C function to convert lisp variable while processing configuration
  *  data for the auto-save-interval RC entry.
@@ -1071,10 +1072,11 @@ SCM g_rc_auto_save_interval(SCM seconds)
   return SCM_BOOL_T;
 }
 
-/*! \brief Process attribute-name RC entry.
- *  \par Function Description
- *       C function to dynamically convert lisp variable while
- *       processing configuration data for the attribute-name RC entry.
+/*!
+ * \brief Process attribute-name RC entry.
+ * \par Function Description
+ *  C function to convert lisp variable while processing configuration
+ *  data for the attribute-name RC entry.
  */
 SCM g_rc_attribute_name(SCM scm_path)
 {
@@ -1099,8 +1101,9 @@ SCM g_rc_attribute_name(SCM scm_path)
   return ret;
 }
 
-/*! \brief Process component dialog RC entry.
- *  \par Function Description
+/*!
+ * \brief Process component dialog RC entry.
+ * \par Function Description
  *  This function reads the string list from the component-dialog-attributes
  *  configuration parameter and converts the list into a GList.
  *  The GList is stored in the global default_component_select_attrlist variable.
@@ -1147,10 +1150,11 @@ SCM g_rc_component_dialog_attributes(SCM stringlist)
   return SCM_BOOL_T;
 }
 
-/*! \brief Process continue-component-place RC entry.
- *  \par Function Description
- *       C function to dynamically convert lisp variable while
- *       processing configuration data for the continue-component-place RC entry.
+/*!
+ * \brief Process continue-component-place RC entry.
+ * \par Function Description
+ *  C function to convert lisp variable while processing configuration
+ *  data for the continue-component-place RC entry.
  */
 SCM g_rc_continue_component_place(SCM mode)
 {
@@ -1163,10 +1167,11 @@ SCM g_rc_continue_component_place(SCM mode)
                     default_continue_component_place, mode_table);
 }
 
-/*! \brief Process embed-components RC entry.
- *  \par Function Description
- *       C function to dynamically convert lisp variable while
- *       processing configuration data for the embed-components RC entry.
+/*!
+ * \brief Process embed-components RC entry.
+ * \par Function Description
+ *  C function to convert lisp variable while processing configuration
+ *  data for the embed-components RC entry.
  */
 SCM g_rc_embed_components(SCM mode)
 {
@@ -1178,10 +1183,11 @@ SCM g_rc_embed_components(SCM mode)
   RETURN_G_RC_MODE("embed-components", default_embed_components, mode_table);
 }
 
-/*! \brief Process enforce-hierarchy RC entry.
- *  \par Function Description
- *       C function to dynamically convert lisp variable while
- *       processing configuration data for the enforce-hierarchy RC entry.
+/*!
+ * \brief Process enforce-hierarchy RC entry.
+ * \par Function Description
+ *  C function to convert lisp variable while processing configuration
+ *  data for the enforce-hierarchy RC entry.
  */
 SCM g_rc_enforce_hierarchy(SCM mode)
 {

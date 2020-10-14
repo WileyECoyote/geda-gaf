@@ -1,5 +1,9 @@
 2020-10-13 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/guile/: Reformat function documentation:
+
+        * src/guile/g_rc.c
+
     * src/guile/g_action.c: Add function documentation:
 
         * g_process_action
