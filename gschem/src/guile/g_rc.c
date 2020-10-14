@@ -1210,10 +1210,11 @@ SCM g_rc_hierarchy_up_close(SCM mode)
   RETURN_G_RC_MODE("hierarchy-up-close", default_hierarchy_up_close, mode_table);
 }
 
-/*! \brief Process force_boundingbox RC entry.
- *  \par Function Description
- *       C function to dynamically convert lisp variable while
- *       processing configuration data for force_boundingbox RC entry.
+/*!
+ * \brief Process force_boundingbox RC entry.
+ * \par Function Description
+ *  C function to convert lisp variable while processing configuration
+ *  data for force_boundingbox RC entry.
  */
 SCM g_rc_force_boundingbox(SCM mode)
 {
@@ -1225,10 +1226,11 @@ SCM g_rc_force_boundingbox(SCM mode)
   RETURN_G_RC_MODE("force-boundingbox", default_force_boundingbox, mode_table);
 }
 
-/*! \brief This function is for setting the keyboardpan_gain.
- *  \par Function Description
- *       C function to dynamically convert lisp variable while
- *       processing configuration data for the keyboardpan-gain RC entry.
+/*!
+ * \brief This function is for setting the keyboardpan_gain.
+ * \par Function Description
+ *  C function to convert lisp variable while processing configuration
+ *  data for the keyboardpan-gain RC entry.
  */
 SCM g_rc_keyboardpan_gain(SCM gain)
 {
@@ -1239,10 +1241,11 @@ SCM g_rc_keyboardpan_gain(SCM gain)
   return SCM_BOOL_T;
 }
 
-/*! \brief Process magnetic-net-mode RC entry.
- *  \par Function Description
- *       C function to dynamically convert lisp variable while
- *       processing configuration data for the magnetic-net-mode RC entry.
+/*!
+ * \brief Process magnetic-net-mode RC entry.
+ * \par Function Description
+ *  C function to convert lisp variable while processing configuration
+ *  data for the magnetic-net-mode RC entry.
  */
 SCM g_rc_magnetic_net_mode(SCM mode)
 {
@@ -1254,10 +1257,11 @@ SCM g_rc_magnetic_net_mode(SCM mode)
   RETURN_G_RC_MODE("magnetic-net-mode", default_magnetic_net_mode, mode_table);
 }
 
-/*! \brief Process netconn-rubberband RC entry.
- *  \par Function Description
- *       C function to dynamically convert lisp variable while
- *       processing configuration data for the netconn-rubberband RC entry.
+/*!
+ * \brief Process netconn-rubberband RC entry.
+ * \par Function Description
+ *  C function to convert lisp variable while processing configuration
+ *  data for the netconn-rubberband RC entry.
  */
 SCM g_rc_netconn_rubberband(SCM mode)
 {
@@ -1269,10 +1273,11 @@ SCM g_rc_netconn_rubberband(SCM mode)
   RETURN_G_RC_MODE("netconn-rubberband", default_netconn_rubberband, mode_table);
 }
 
-/*! \brief Process select-slack-pixels RC entry.
- *  \par Function Description
- *       C function to dynamically convert lisp variable while
- *       processing configuration data for the select-slack-pixels RC entry.
+/*!
+ * \brief Process select-slack-pixels RC entry.
+ * \par Function Description
+ *  C function to dynamically convert lisp variable while processing
+ *  configuration data for the select-slack-pixels RC entry.
  */
 SCM g_rc_select_slack_pixels(SCM pixels)
 {
