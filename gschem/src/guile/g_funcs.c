@@ -471,7 +471,7 @@ SCM g_funcs_print(SCM scm_filename)
   SCM_ASSERT (scm_is_string (scm_filename), scm_filename,
               SCM_ARG1, "gschem-print");
 
-  toplevel = edascm_c_current_toplevel ();
+  toplevel  = edascm_c_current_toplevel ();
   page      = geda_toplevel_get_current_page(toplevel);
   color_map = geda_color_get_print_map();
   success   = FALSE;
