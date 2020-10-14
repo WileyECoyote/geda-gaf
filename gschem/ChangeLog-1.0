@@ -1,7 +1,8 @@
 2020-10-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/guile/g_funcs.c: Change int successes to bool in g_funcs_postscript
-      and g_funcs_print.
+      and g_funcs_print. Revise g_funcs_output_type to eliminate second
+      conditional.
 
 2020-10-13 Wiley E. Hill <wileyhill@gmail.com>
 

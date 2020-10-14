@@ -333,19 +333,15 @@ SCM g_funcs_msg(SCM scm_msg)
 SCM g_funcs_output_type(void)
 {
   SCM scm_return_value;
-  const char *return_value;
 
   if (output_filename) {
-    return_value = geda_file_get_filename_ext (output_filename);
-  }
-  else {
-    return_value = NULL;
-  }
 
-  if (return_value) {
+    const char *return_value;
+
+    return_value     = geda_file_get_filename_ext (output_filename);
     scm_return_value = scm_from_utf8_string (return_value);
   }
-   else {
+  else {
     scm_return_value = scm_from_utf8_string ("pdf");
   }
 
