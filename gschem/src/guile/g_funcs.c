@@ -222,10 +222,12 @@ SCM g_funcs_filesel(SCM scm_msg, SCM scm_templ, SCM scm_flags)
    * Should I throw a scheme error?  Just deal in the c code?
    */
   for (c_flags = 0; scm_is_pair (scm_flags); scm_flags = SCM_CDR (scm_flags)) {
+
     char *flag;
     SCM scm_flag = SCM_CAR (scm_flags);
 
     flag = scm_to_utf8_string (scm_flag);
+
     if (strcmp (flag, "may_exist") == 0) {
       c_flags |= FSB_MAY_EXIST;
 
@@ -266,6 +268,7 @@ SCM g_funcs_filesel(SCM scm_msg, SCM scm_templ, SCM scm_flags)
   v = scm_from_utf8_string (r);
 
   scm_dynwind_end();
+
   return v;
 }
 
@@ -318,6 +321,7 @@ SCM g_funcs_msg(SCM scm_msg)
   x_dialog_show_message(msg, GEDA_MESSAGE_INFO, NULL);
 
   free(msg);
+
   return SCM_BOOL_T;
 }
 
@@ -575,5 +579,6 @@ SCM g_funcs_tiff_image(SCM scm_filename)
 SCM g_funcs_use_rc_values(void)
 {
   i_vars_set(g_current_window ());
+
   return SCM_BOOL_T;
 }
