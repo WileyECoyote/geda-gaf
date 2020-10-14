@@ -287,7 +287,7 @@ void g_register_funcs (void)
                               gschem_hk_funcs,
                               gschem_buffer_funcs};
 
-  GList *action_list;
+  static GList *action_list;
 
   int j;
 
