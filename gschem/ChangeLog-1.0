@@ -1,3 +1,8 @@
+2020-10-14 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/guile/g_funcs.c: Change int successes to bool in g_funcs_postscript
+      and g_funcs_print.
+
 2020-10-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/guile/: Reformat function documentation:

@@ -418,7 +418,7 @@ SCM g_funcs_postscript(SCM scm_filename)
   GedaToplevel *toplevel;
   Page         *page;
   GArray       *color_map;
-  int           success;
+  bool          success;
 
   SCM_ASSERT (scm_is_string (scm_filename), scm_filename,
               SCM_ARG1, "gschem-postscript");
@@ -466,7 +466,7 @@ SCM g_funcs_print(SCM scm_filename)
   GedaToplevel *toplevel;
   Page         *page;
   GArray       *color_map;
-  int           success;
+  bool          success;
 
   SCM_ASSERT (scm_is_string (scm_filename), scm_filename,
               SCM_ARG1, "gschem-print");
