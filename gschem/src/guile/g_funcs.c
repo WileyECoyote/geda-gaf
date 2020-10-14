@@ -307,8 +307,7 @@ SCM g_funcs_log(SCM scm_msg)
 /*!
  * \brief  SCM API Show message dialog
  * \par Function Description
- *  Allows Scheme routines to present a dialog to display
- *  a text message.
+ *  Allows Scheme routines to present a dialog to display a text message.
  */
 SCM g_funcs_msg(SCM scm_msg)
 {
