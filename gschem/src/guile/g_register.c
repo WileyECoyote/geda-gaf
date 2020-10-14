@@ -270,7 +270,9 @@ static SCM
 create_hook (const char *name, int n_args)
 {
   SCM hook = scm_make_hook (scm_from_int (n_args));
+
   scm_c_define (name, hook);
+
   return scm_permanent_object (hook);
 }
 
