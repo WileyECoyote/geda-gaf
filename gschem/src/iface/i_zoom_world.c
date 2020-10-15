@@ -301,7 +301,7 @@ i_zoom_world_box(GschemToplevel *w_current, int pan_flags)
   world_pan_center_x = (w_current->first_wx + w_current->second_wx) / 2.0;
   world_pan_center_y = (w_current->first_wy + w_current->second_wy) / 2.0;
 
-  /* and create the new window*/
+  /* and pan the view */
   i_pan_world_general(w_current, page, world_pan_center_x, world_pan_center_y,
                       relative_zoom_factor, pan_flags);
 }
