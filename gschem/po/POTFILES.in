@@ -93,6 +93,7 @@ gschem/src/x/x_multiattrib.c
 gschem/src/x/x_pagesel.c
 gschem/src/x/x_print.c
 gschem/src/x/x_rc.c
+gschem/src/x/x_recent_menu.c
 gschem/src/x/x_scroll.c
 gschem/src/x/x_sessions.c
 gschem/src/x/x_settings.c

@@ -1,5 +1,7 @@
 2020-10-15 Wiley E. Hill <wileyhill@gmail.com>
 
+    * po/POTFILES.in: Include new module x_recent_menu.c.
+
     * src/x/x_menus.c: Add function x_menu_get_ui_list.
 
     * src/x/x_recent_menu.c: Add new module with code for the recent menu
