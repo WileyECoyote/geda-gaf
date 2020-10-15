@@ -267,8 +267,9 @@ i_zoom_world_specify (GschemToplevel *w_current, double zoom_new, int x, int y,
 /*!
  * \brief Resolves Zoom Box Operation
  * \par Function Description
- *  Resolves the result a zoom box action. The coordinates of the box
- *  should be in w_current. Calculates scaling factor and converts the
+ *  Resolves the result of a zoom box action. The coordinates of the
+ *  box should be in w_current. Calculates scaling factor and converts
+ *  the
  *  stored screen coordinates to world coordinates and then calls
  *  i_pan_world_general to perform the opertion.
  */
