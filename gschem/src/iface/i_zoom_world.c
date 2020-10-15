@@ -289,7 +289,7 @@ i_zoom_world_box(GschemToplevel *w_current, int pan_flags)
 
   page = geda_toplevel_get_current_page(w_current->toplevel);
 
-  /*calc new zoomfactors and choose the smaller one*/
+  /* Calculate new zoom factors and choose the smaller one */
   zx = (double) abs(page->left - page->right) /
                 abs(w_current->first_wx - w_current->second_wx);
   zy = (double) abs(page->top - page->bottom) /
