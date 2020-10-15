@@ -2,6 +2,9 @@
 
     * src/x/x_menus.c: Add function x_menu_get_ui_list.
 
+    * src/x/x_recent_menu.c: Add new module with code for the recent menu
+      relocated from x_menus.c.
+
 2020-10-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/guile/g_funcs.c: Change int successes to bool in g_funcs_postscript

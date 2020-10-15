@@ -31,6 +31,7 @@ gschem_SOURCES += \
 		x/x_pagesel.c \
 		x/x_print.c \
 		x/x_rc.c \
+		x/x_recent_menu.c \
 		x/x_scroll.c \
 		x/x_sessions.c \
 		x/x_settings.c \
