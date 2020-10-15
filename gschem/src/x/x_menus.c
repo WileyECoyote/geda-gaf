@@ -374,6 +374,11 @@ GtkWidget *x_menu_get_main_menu(GschemToplevel *w_current)
   return MENU_BAR;
 }
 
+GSList *x_menu_get_ui_list (void)
+{
+  return ui_list;
+}
+
 /*!
  * \internal Helper common to the grid mode radio callbacks
  * The menu callbacks connected to the "toggled" signal do not

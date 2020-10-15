@@ -838,6 +838,7 @@ bool       x_show_uri                       (const char *str);
 /* x_menus.c */
 void        x_menu_free_all(void);
 GtkWidget  *x_menu_get_main_menu            (GschemToplevel *w_current);
+GSList     *x_menu_get_ui_list              (void);
 GtkWidget  *x_menu_setup_ui                 (GschemToplevel *w_current);
 int         x_menu_setup_popup              (GschemToplevel *w_current);
 int         x_menu_display_main_popup       (GschemToplevel *w_current, GdkEventButton *event);
