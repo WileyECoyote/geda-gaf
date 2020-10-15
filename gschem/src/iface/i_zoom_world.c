@@ -317,6 +317,7 @@ i_zoom_world_box_start(GschemToplevel *w_current, int w_x, int w_y)
 {
   w_current->first_wx = w_current->second_wx = w_x;
   w_current->first_wy = w_current->second_wy = w_y;
+
   i_status_action_start(w_current);
 }
 
@@ -371,6 +372,7 @@ i_zoom_world_box_motion (GschemToplevel *w_current, int w_x, int w_y)
     w_current->second_wy = w_y;
 
     i_zoom_world_box_invalidate_rubber (w_current);
+
     w_current->rubber_visible = 1;
   }
 }
