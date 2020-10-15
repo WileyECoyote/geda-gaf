@@ -297,7 +297,7 @@ i_zoom_world_box(GschemToplevel *w_current, int pan_flags)
 
   relative_zoom_factor = (zx < zy ? zx : zy);
 
-  /* calculate the center of the zoom box */
+  /* Calculate the center of the zoom box */
   world_pan_center_x = (w_current->first_wx + w_current->second_wx) / 2.0;
   world_pan_center_y = (w_current->first_wy + w_current->second_wy) / 2.0;
 
