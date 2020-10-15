@@ -281,7 +281,7 @@ i_zoom_world_box(GschemToplevel *w_current, int pan_flags)
   double zx, zy, relative_zoom_factor;
   double world_pan_center_x, world_pan_center_y;
 
-  /*test if there is really a box*/
+  /* Check if there is really a box */
   if (w_current->first_wx == w_current->second_wx ||
       w_current->first_wy == w_current->second_wy) {
     return;
