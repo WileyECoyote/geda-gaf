@@ -371,6 +371,10 @@ GtkWidget *x_menu_get_main_menu(GschemToplevel *w_current)
   return MENU_BAR;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ */
 GSList *x_menu_get_ui_list (void)
 {
   return ui_list;
@@ -1442,6 +1446,10 @@ x_menu_build_path_popup(GschemToplevel *w_current, MenuData *menu_data,
   return (menu);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ */
 int x_menu_display_path_popup (GschemToplevel *w_current, GdkEventButton *event)
 {
   GtkWidget *menu;
@@ -1860,6 +1868,10 @@ void x_menu_set_grid_radio(GschemToplevel *w_current)
   }
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ */
 const char *x_menu_get_buffer_menu (GschemToplevel *w_current)
 {
   MenuData *menu_data;
