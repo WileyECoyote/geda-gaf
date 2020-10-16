@@ -2,7 +2,10 @@
 
     * include/prototype.h: Declare functions in x_recent_menu.c.
 
-    * src/x/x_menus.c: Add todo documentation templates.
+    * src/x/x_menus.c: Add todo documentation templates, add function
+      documentation:
+
+        * x_menu_display_main_popup
 
     * src/x/x_window.c: Update x_recent_menu_ function prefix.
 

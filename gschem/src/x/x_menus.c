@@ -1655,8 +1655,8 @@ int x_menu_setup_popup (GschemToplevel *w_current)
 /*!
  * \brief Show the Popup Menu
  * \par Function Description
- *
- * \note need to look at this... here and the setup
+ *  Displays the main popup menu. The menu was previously created and
+ *  is displayed on demand.
  */
 int
 x_menu_display_main_popup (GschemToplevel *w_current, GdkEventButton *event)
