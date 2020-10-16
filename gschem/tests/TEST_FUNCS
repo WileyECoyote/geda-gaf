@@ -85,6 +85,7 @@ EOF
 # test as skipped and give an error message
 #
 check_exist() {
+
     local func="$1"
     local f1="$2"
     local f2="$3"
@@ -98,8 +99,9 @@ check_exist() {
     if test ! -f "$f2" ; then
 	  echo "$0:  ${func}(): $f2 does not exist"
 	  test_skipped=yes
-	return 1
+	  return 1
     fi
+
     return 0
 }
 
@@ -112,13 +114,19 @@ check_exist() {
 #   run_diff "f1" "f2"
 #
 run_diff() {
+
     local f1="$1"
     local f2="$2"
+
     diff -U 2 $f1 $f2
+
     if test $? -ne 0 ; then return 1 ; fi
+
     return 0
 }
+
 COMPARE_OPTIONS="-metric MAE -alpha opaque"
+
 #-------------------------------------------------------------------
 #
 # GIF/JPEG/PNG comparison routines
@@ -126,6 +134,7 @@ COMPARE_OPTIONS="-metric MAE -alpha opaque"
 # compare_image
 #
 compare_image() {
+
     local tn="$1"
     local f1="$2"
     local f2="$3"
@@ -159,6 +168,6 @@ ${IM_ANIMATE} -delay 0.5 -loop 0 -
 EOF
 	  chmod a+x ${mismatch}/animate.sh
     fi
+
   return $result;
 }
-
