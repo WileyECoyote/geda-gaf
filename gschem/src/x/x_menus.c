@@ -1442,8 +1442,7 @@ x_menu_build_path_popup(GschemToplevel *w_current, MenuData *menu_data,
   return (menu);
 }
 
-int
-x_menu_display_path_popup (GschemToplevel *w_current, GdkEventButton *event)
+int x_menu_display_path_popup (GschemToplevel *w_current, GdkEventButton *event)
 {
   GtkWidget *menu;
   MenuData  *menu_data;
@@ -1817,8 +1816,7 @@ void x_menu_save_state(GschemToplevel *w_current)
  * being set active. And in this way both radio button groups
  * can be synchronized and not recursively trigger the other.
  */
-void
-x_menu_set_grid_radio(GschemToplevel *w_current)
+void x_menu_set_grid_radio(GschemToplevel *w_current)
 {
   GedaCheckMenuItem *radio;
   MenuData *menu_data;
@@ -1862,8 +1860,7 @@ x_menu_set_grid_radio(GschemToplevel *w_current)
   }
 }
 
-const
-char *x_menu_get_buffer_menu (GschemToplevel *w_current)
+const char *x_menu_get_buffer_menu (GschemToplevel *w_current)
 {
   MenuData *menu_data;
 
