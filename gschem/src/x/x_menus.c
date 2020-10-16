@@ -1813,16 +1813,19 @@ void x_menu_save_state(GschemToplevel *w_current)
   }
 }
 
-/* Called to set the menu radio button for the grid mode when
- * the mode was changed by a means other than the menu. Unlike
- * the toolbars buttons, the Menu/View/Grid radios do not have
- * an associated action. If a menu grid-mode radio is selected
- * only the active button calls to update the toolbar radio
- * group, and when the toolbar grid button is toggled, the
- * action handler calls this function, which blocks the call
- * back for the menu grid-mode radio for the button that is
- * being set active. And in this way both radio button groups
- * can be synchronized and not recursively trigger the other.
+/*!
+ * \brief
+ * \par Function Description
+ *  Called to set the menu radio button for the grid mode when
+ *  the mode was changed by a means other than the menu. Unlike
+ *  the toolbars buttons, the Menu/View/Grid radios do not have
+ *  an associated action. If a menu grid-mode radio is selected
+ *  only the active button calls to update the toolbar radio
+ *  group, and when the toolbar grid button is toggled, the
+ *  action handler calls this function, which blocks the call
+ *  back for the menu grid-mode radio for the button that is
+ *  being set active. And in this way both radio button groups
+ *  can be synchronized and not recursively trigger the other.
  */
 void x_menu_set_grid_radio(GschemToplevel *w_current)
 {
