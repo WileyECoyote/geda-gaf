@@ -95,11 +95,11 @@ void x_window_setup (GschemToplevel *w_current)
 
 #endif
 
-  /* Load recent files list before calling x_menu_attach_recent_submenu */
-  x_menu_recent_files_load();
-  gschem_atexit(x_menu_recent_files_save, NULL);
+  /* Load recent files list before calling x_recent_menu_attach_submenu */
+  x_recent_menu_load_files();
+  gschem_atexit(x_recent_menu_save_files, NULL);
 
-  x_menu_attach_recent_submenu (w_current);
+  x_recent_menu_attach_submenu (w_current);
 
   /* Initialize the clipboard callback */
   x_clipboard_init (w_current);
@@ -772,7 +772,7 @@ static bool
 x_window_idle_thread_post_load_file (void *filename)
 {
   geda_log_q ("%s \"%s\"\n", _("Loading file"), filename);
-  x_menu_recent_files_add (filename);
+  x_recent_menu_add_file (filename);
   return FALSE;
 }
 
@@ -1255,7 +1255,7 @@ int x_window_save_page (GschemToplevel *w_current, Page *page, const char *filen
     state_msg  = _("Saved");
 
     /* Update recent file list */
-    x_menu_recent_files_add(filename);
+    x_recent_menu_add_file(filename);
   }
 
   /* log status of operation */

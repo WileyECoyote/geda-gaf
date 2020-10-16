@@ -291,7 +291,7 @@ load_documents(GschemToplevel *w_current, int argv_index, int argc, char *argv[]
       /* Check and do Auto Load if file recordered */
       if (load_last) {
 
-        const char *last_file = x_menu_recent_files_last();
+        const char *last_file = x_recent_menu_last_file();
 
         if (last_file && !access(last_file, F_OK )) {
 
