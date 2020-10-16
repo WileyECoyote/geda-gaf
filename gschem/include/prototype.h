@@ -876,6 +876,14 @@ void       x_print                          (GschemToplevel *w_current);
 /* x_rc.c */
 void       x_rc_parse_gschem                (GschemToplevel *w_current, const char *rcfile);
 
+/* x_recent_menu.c */
+void        x_recent_menu_attach_submenu    (GschemToplevel *w_current);
+void        x_recent_menu_load_files        (void);
+void        x_recent_menu_save_files        (void       *user_data);
+void        x_recent_menu_add_file          (const char *filename);
+const char *x_recent_menu_last_file         (void);
+void        x_recent_menu_update_files      (void);
+
 /* x_scroll.c */
 void       x_hscrollbar_set_ranges          (GschemToplevel *w_current);
 void       x_hscrollbar_update              (GschemToplevel *w_current);

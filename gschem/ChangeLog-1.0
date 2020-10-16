@@ -1,5 +1,7 @@
 2020-10-16 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/prototype.h: Declare functions in x_recent_menu.c.
+
     * src/x/x_window.c: Update x_recent_menu_ function prefix.
 
 2020-10-15 Wiley E. Hill <wileyhill@gmail.com>
