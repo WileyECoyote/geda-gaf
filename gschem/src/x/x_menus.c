@@ -1468,6 +1468,7 @@ int x_menu_display_path_popup (GschemToplevel *w_current, GdkEventButton *event)
     geda_menu_popup ((GedaMenu*)menu, NULL, NULL, NULL, NULL,
                     event->button, event->time);
   }
+
   return FALSE;
 }
 
@@ -2247,6 +2248,5 @@ void x_menu_set_toolbar_toggle_tips(GschemToplevel *w_current, bool state)
 }
 
 /** @} end group menu-toggle-action  */
-
 /** @} end group Main-Menu-Support */
 /** @} end group Menu-Module */
