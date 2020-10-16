@@ -188,7 +188,7 @@ const char *IDS_Menu_Toggles[] = { /* temp Menu Toggle Strings*/
    NULL
 };
 
-static GSList *ui_list      = NULL;
+static GSList *ui_list = NULL;
 
 static void x_menu_toggle_icons        (GtkWidget *widget, GSList *list);
 static void x_menu_toggle_tips         (GtkWidget *widget, GSList *list);
