@@ -4468,20 +4468,20 @@ msgstr "Újrarajzolás"
 msgid "Pan"
 msgstr "Középre"
 
+# Window
 #: gschem/src/x/x_toolbars.c:208
-#, fuzzy
 msgid "Window"
-msgstr "Új ablak"
+msgstr "Ablak"
 
+# Selected
 #: gschem/src/x/x_toolbars.c:209
-#, fuzzy
 msgid "Selected"
-msgstr "Kiválasztás"
+msgstr "Kiválasztott"
 
+# Properties
 #: gschem/src/x/x_toolbars.c:216
-#, fuzzy
 msgid "Properties"
-msgstr "Szövegtulajdonságok szerkesztése"
+msgstr "Tulajdonságok"
 
 #: gschem/src/x/x_toolbars.c:220 gschem/etc/system-gschemrc.scm:2185
 #: gschem/scheme/gschem/builtins.scm:191
@@ -4497,24 +4497,24 @@ msgstr "Frissítés"
 msgid "Multi"
 msgstr ""
 
+# Color
 #: gschem/src/x/x_toolbars.c:236
-#, fuzzy
 msgid "Color"
-msgstr "_Szín:"
+msgstr "Szín"
 
+# Segment
 #: gschem/src/x/x_toolbars.c:238
-#, fuzzy
 msgid "Slots"
-msgstr "Szegmens..."
+msgstr "Szegmens"
 
 #: gschem/src/x/x_toolbars.c:239
 msgid "Pins"
 msgstr ""
 
+# Fill in
 #: gschem/src/x/x_toolbars.c:241
-#, fuzzy
 msgid "Fill"
-msgstr "Kitöltött"
+msgstr "Töltsd ki"
 
 #: gschem/src/x/x_toolbars.c:242
 msgid "Arcs"
@@ -4522,22 +4522,21 @@ msgstr ""
 
 #: gschem/src/x/x_toolbars.c:246
 msgid "Demote"
-msgstr ""
+msgstr "Lefokoz"
 
 #: gschem/src/x/x_toolbars.c:249
 msgid "Both"
 msgstr ""
 
+# Hidden
 #: gschem/src/x/x_toolbars.c:251
-#, fuzzy
 msgid "Hidden"
-msgstr "Rejtett megjelenítése"
+msgstr "Rejtett"
 
-# Show/Hide Inherited
+# Inherited
 #: gschem/src/x/x_toolbars.c:252
-#, fuzzy
 msgid "Inherited"
-msgstr "Megjelenítés/elrejtés örökölt"
+msgstr "Örökölt"
 
 #: gschem/src/x/x_toolbars.c:253
 #, fuzzy
