@@ -4543,23 +4543,22 @@ msgstr "Εκσυγχρονίζω"
 msgid "Multi"
 msgstr ""
 
-# Color
+# Color; Chróma
 #: gschem/src/x/x_toolbars.c:236
-#, fuzzy
 msgid "Color"
 msgstr "Χρώμα"
 
+# Slots; Koulochérides
 #: gschem/src/x/x_toolbars.c:238
-#, fuzzy
 msgid "Slots"
-msgstr "Υποδοχή..."
+msgstr "Κουλοχέρηδες"
 
 #: gschem/src/x/x_toolbars.c:239
 msgid "Pins"
 msgstr ""
 
+# Fill
 #: gschem/src/x/x_toolbars.c:241
-#, fuzzy
 msgid "Fill"
 msgstr "Γεμισμένο"
 
@@ -4567,25 +4566,24 @@ msgstr "Γεμισμένο"
 msgid "Arcs"
 msgstr ""
 
+# Demote
 #: gschem/src/x/x_toolbars.c:246
-#, fuzzy
 msgid "Demote"
-msgstr "Προώθηση"
+msgstr "Υποβιβάζω"
 
 #: gschem/src/x/x_toolbars.c:249
 msgid "Both"
 msgstr ""
 
+# Hidden; Krymménos
 #: gschem/src/x/x_toolbars.c:251
-#, fuzzy
 msgid "Hidden"
-msgstr "Εμφάνιση κρυφών"
+msgstr "Κρυμμένος"
 
-# Show/Hide Inherited; Emfánisi/Apókrypsi klironomikón
+# Inherited; Klironómise
 #: gschem/src/x/x_toolbars.c:252
-#, fuzzy
 msgid "Inherited"
-msgstr "Εμφάνιση/Απόκρυψη κληρονομικών"
+msgstr "Κληρονόμησε"
 
 #: gschem/src/x/x_toolbars.c:253
 #, fuzzy
