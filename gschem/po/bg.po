@@ -897,47 +897,45 @@ msgstr "Точкова решетка е активирана\n"
 msgid "Mesh grid activated\n"
 msgstr "Мрежовата мрежа е активирана\n"
 
-# Snap OFF (CAUTION!)
+# Snap OFF (CAUTION!); IZKLYUCHETE (VNIMANIE!)
 #: gschem/src/iface/i_command.c:4679
-#, fuzzy
 msgid "Snap OFF (CAUTION!)"
-msgstr "Щракнете OFF (ВНИМАНИЕ!)\n"
+msgstr "ИЗКЛЮЧЕТЕ (ВНИМАНИЕ!)"
 
 # Snap ON; Prekŭsnete se
 #: gschem/src/iface/i_command.c:4685
-#, fuzzy
 msgid "Snap ON"
-msgstr "Прекъснете се\n"
+msgstr "Прекъснете се"
 
 #: gschem/src/iface/i_command.c:4690
-#, fuzzy
 msgid "Snap back to the grid (CAUTION!)"
-msgstr "Върнете се обратно към мрежата (ВНИМАНИЕ!)\n"
+msgstr "Върнете се обратно към мрежата (ВНИМАНИЕ!)"
 
 #: gschem/src/iface/i_command.c:4716
 msgid "Rubber band mode is OFF"
 msgstr ""
 
-# Switch mode elastic
+# Switch elastic mode on
 #: gschem/src/iface/i_command.c:4720
-#, fuzzy
 msgid "Rubber band mode is ON"
-msgstr "Превключване режим еластичен"
+msgstr "Включете еластичния режим"
 
+# Automatic connection mode is on
 #: gschem/src/iface/i_command.c:4731
-#, fuzzy
 msgid "Magnetic net mode is ON"
-msgstr "Режим на автоматична връзка"
+msgstr "Режимът на автоматична връзка е включен"
 
+# Automatic connection mode is off
+# Rezhimŭt na avtomatichna vrŭzka e izklyuchen
 #: gschem/src/iface/i_command.c:4734
-#, fuzzy
 msgid "Magnetic net mode is OFF"
-msgstr "Режим на автоматична връзка"
+msgstr "Режимът на автоматична връзка е изключен"
 
+# Off; Izklyucheno
 #: gschem/src/iface/i_command.c:4751 gschem/src/iface/i_command.c:4794
 #: gschem/src/x/x_compselect.c:135 gschem/src/x/x_toolbars.c:261
 msgid "Off"
-msgstr ""
+msgstr "Изключено"
 
 #: gschem/src/iface/i_command.c:4755 gschem/src/iface/i_command.c:4798
 #: gschem/src/x/x_compselect.c:134
