@@ -4703,23 +4703,20 @@ msgstr ""
 msgid "Pan"
 msgstr ""
 
-# New Window
+# Window; jālakaṁ
 #: gschem/src/x/x_toolbars.c:208
-#, fuzzy
 msgid "Window"
-msgstr "പുതിയ ജാലകം"
+msgstr "ജാലകം"
 
-# Select
+# Selected; tiraññeṭuttu
 #: gschem/src/x/x_toolbars.c:209
-#, fuzzy
 msgid "Selected"
-msgstr "തിരഞ്ഞെടുക്കുക"
+msgstr "തിരഞ്ഞെടുത്തു"
 
-# Text Properties
+# Properties; prēāpparṭṭikaḷ
 #: gschem/src/x/x_toolbars.c:216
-#, fuzzy
 msgid "Properties"
-msgstr "ടെക്സ്റ്റ് ഗുണവിശേഷതകൾ"
+msgstr "പ്രോപ്പർട്ടികൾ"
 
 #: gschem/src/x/x_toolbars.c:220 gschem/etc/system-gschemrc.scm:2185
 #: gschem/scheme/gschem/builtins.scm:191
@@ -4734,9 +4731,8 @@ msgstr ""
 msgid "Multi"
 msgstr ""
 
-# Colour
+# Colour; niṟaṁ
 #: gschem/src/x/x_toolbars.c:236
-#, fuzzy
 msgid "Color"
 msgstr "നിറം:"
 
@@ -4764,10 +4760,10 @@ msgstr ""
 msgid "Both"
 msgstr ""
 
+# Hidden; maṟaccirikkunnu
 #: gschem/src/x/x_toolbars.c:251
-#, fuzzy
 msgid "Hidden"
-msgstr "മറച്ചത് കാണിക്കുക"
+msgstr "മറച്ചിരിക്കുന്നു"
 
 #: gschem/src/x/x_toolbars.c:252
 msgid "Inherited"

@@ -12,6 +12,8 @@
 
     * po/hu.po: Update Hungarian translations.
 
+    * po/ml.po: Updated Malayalam translations.
+
 2020-10-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/prototype.h: Declare functions in x_recent_menu.c.
