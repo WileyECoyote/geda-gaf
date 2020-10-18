@@ -4,6 +4,8 @@
 
     * po/bg.po: Update Bulgarian translations.
 
+    * po/de.po: Update German translations.
+
 2020-10-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/prototype.h: Declare functions in x_recent_menu.c.

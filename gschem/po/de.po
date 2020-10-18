@@ -4511,20 +4511,20 @@ msgstr "Akt_ualisieren"
 msgid "Pan"
 msgstr "Ausschnitt verschieben"
 
+# Window
 #: gschem/src/x/x_toolbars.c:208
-#, fuzzy
 msgid "Window"
-msgstr "Neues _Fenster"
+msgstr "Fenster"
 
+# Selected
 #: gschem/src/x/x_toolbars.c:209
-#, fuzzy
 msgid "Selected"
-msgstr "Auswählen"
+msgstr "Ausgewählt"
 
+# Properties
 #: gschem/src/x/x_toolbars.c:216
-#, fuzzy
 msgid "Properties"
-msgstr "Text Eigenschaften bearbeiten"
+msgstr "Eigenschaften"
 
 #: gschem/src/x/x_toolbars.c:220 gschem/etc/system-gschemrc.scm:2185
 #: gschem/scheme/gschem/builtins.scm:191
