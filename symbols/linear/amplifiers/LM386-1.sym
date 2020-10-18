@@ -1,11 +1,9 @@
 v 20150101 2
-T 10 1510 5 10 0 0 0 0 1
-author=AutoTron
-T 975 750 5 10 1 1 0 0 1
+T 900 1100 5 10 1 1 0 0 1
 device=LM386
-T 1000 900 8 10 1 1 0 0 1
+T 900 900 8 10 1 1 0 0 1
 refdes=U?
-T 25 1175 9 10 0 0 0 0 1
+T 900 1500 9 10 0 1 0 0 1
 description=low power amplifier
 P 700 300 700 100 1 0 1
 {
@@ -13,10 +11,10 @@ T 725 150 5 8 1 1 0 0 1
 pinnumber=1
 T 725 150 5 8 0 1 0 0 1
 pinseq=1
+T 850 150 9 10 0 1 0 0 1
+pinlabel=GAIN
 T 850 50 5 8 0 1 0 0 1
 pintype=in
-T 850 150 5 10 0 1 0 0 1
-pinlabel=GAIN
 }
 P 200 200 0 200 1 0 1
 {
@@ -24,10 +22,10 @@ T 50 225 5 8 1 1 0 0 1
 pinnumber=2
 T 50 225 5 8 0 1 0 0 1
 pinseq=2
-T 50 75 5 8 0 1 0 0 1
-pintype=in
 T 250 150 5 10 1 1 0 0 1
 pinlabel=-
+T 50 75 5 8 0 1 0 0 1
+pintype=in
 }
 P 200 600 0 600 1 0 1
 {
@@ -35,10 +33,10 @@ T 50 625 5 8 1 1 0 0 1
 pinnumber=3
 T 50 625 5 8 0 1 0 0 1
 pinseq=3
-T 50 475 5 8 0 1 0 0 1
-pintype=in
 T 250 550 5 10 1 1 0 0 1
 pinlabel=+
+T 50 475 5 8 0 1 0 0 1
+pintype=in
 }
 P 500 200 500 0 1 0 1
 {
@@ -46,10 +44,10 @@ T 525 50 5 8 1 1 0 0 1
 pinnumber=4
 T 525 50 5 8 0 1 0 0 1
 pinseq=4
+T 250 225 9 10 0 1 0 0 1
+pinlabel=GND
 T 250 25 5 8 0 1 0 0 1
 pintype=pwr
-T 350 225 5 10 0 1 0 0 1
-pinlabel=GND
 }
 P 900 400 1100 400 1 0 1
 {
@@ -57,21 +55,21 @@ T 975 425 5 8 1 1 0 0 1
 pinnumber=5
 T 975 425 5 8 0 1 0 0 1
 pinseq=5
+T 1175 425 9 10 0 1 0 0 1
+pinlabel=OUT
 T 1175 325 5 8 0 1 0 0 1
 pintype=out
-T 1175 425 5 10 0 1 0 0 1
-pinlabel=OUT
 }
 P 400 700 400 900 1 0 1
 {
-T 261 839 5 8 1 1 0 0 1
+T 350 800 5 8 1 1 0 6 1
 pinnumber=6
-T 261 839 5 8 0 1 0 0 1
+T 350 800 5 8 0 1 0 6 1
 pinseq=6
-T 11 864 5 8 0 1 0 0 1
-pintype=pwr
-T 436 889 5 10 0 1 0 0 1
+T 300 1000 9 10 0 1 0 6 1
 pinlabel=Vs
+T 0 875 5 8 0 1 0 0 1
+pintype=pwr
 }
 P 500 600 500 800 1 0 1
 {
@@ -79,10 +77,10 @@ T 550 675 5 8 1 1 0 0 1
 pinnumber=7
 T 550 675 5 8 0 1 0 0 1
 pinseq=7
+T 550 775 9 10 0 1 0 0 1
+pinlabel=ByPass
 T 400 525 5 8 0 1 0 0 1
 pintype=io
-T 550 775 5 10 0 1 0 0 1
-pinlabel=ByPass
 }
 P 700 500 700 700 1 0 1
 {
@@ -90,15 +88,17 @@ T 750 575 5 8 1 1 0 0 1
 pinnumber=8
 T 750 575 5 8 0 1 0 0 1
 pinseq=8
-T 750 700 5 8 0 1 0 0 1
-pintype=io
 T 850 575 5 10 0 1 0 0 1
 pinlabel=offset
+T 750 700 5 8 0 1 0 0 1
+pintype=io
 }
 L 200 800 200 0 3 0 0 0 -1 -1
 L 900 400 200 800 3 0 0 0 -1 -1
 L 900 400 200 0 3 0 0 0 -1 -1
-T 0 1300 9 10 0 0 0 0 1
+T 900 1700 9 10 0 0 0 0 1
 numslots=0
-T 0 1000 9 10 0 0 0 0 1
+T 900 1300 9 10 0 1 0 0 1
 footprint=MSOP8
+T 910 1910 5 10 0 0 0 0 1
+author=AutoTron
