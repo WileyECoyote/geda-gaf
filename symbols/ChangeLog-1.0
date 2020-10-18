@@ -3,6 +3,10 @@
     * cypress/CYW20704-1.sym; Add symbol; 802.11 b,g,n, bluetooth 5.0
       baseband processor.
 
+    * diode/zener52/zener*.sym: Revise sequence of attributes:
+
+            * diode/zener52/zener_6.8_1N5235B.sym
+
 2020-10-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * diode/zener52/zener*.sym: Revise sequence of attributes:
