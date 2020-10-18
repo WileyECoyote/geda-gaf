@@ -4596,47 +4596,44 @@ msgstr "重绘"
 msgid "Pan"
 msgstr ""
 
+# Window; Chuāngkǒu
 #: gschem/src/x/x_toolbars.c:208
-#, fuzzy
 msgid "Window"
-msgstr "新建窗口"
+msgstr "窗口"
 
-# Select
+# Selected; Yǐ xuǎn
 #: gschem/src/x/x_toolbars.c:209
-#, fuzzy
 msgid "Selected"
-msgstr "选择"
+msgstr "已选"
 
-# Text Properties
+# Properties; Wùchǎn
 #: gschem/src/x/x_toolbars.c:216
-#, fuzzy
 msgid "Properties"
-msgstr "文本属性"
+msgstr "物产"
 
 #: gschem/src/x/x_toolbars.c:220 gschem/etc/system-gschemrc.scm:2185
 #: gschem/scheme/gschem/builtins.scm:191
 msgid "Unlock"
 msgstr "解锁"
 
-# Update All
+# Update; Gēngxīn zīliào
 #: gschem/src/x/x_toolbars.c:221
-#, fuzzy
 msgid "Update"
-msgstr "全部更新"
+msgstr "更新资料"
 
 #: gschem/src/x/x_toolbars.c:225
 msgid "Multi"
 msgstr ""
 
+# Color; Yánsè
 #: gschem/src/x/x_toolbars.c:236
-#, fuzzy
 msgid "Color"
-msgstr "颜色:"
+msgstr "颜色"
 
+# Segment
 #: gschem/src/x/x_toolbars.c:238
-#, fuzzy
 msgid "Slots"
-msgstr "插槽..."
+msgstr "分割"
 
 #: gschem/src/x/x_toolbars.c:239
 msgid "Pins"
@@ -4662,11 +4659,10 @@ msgstr ""
 msgid "Hidden"
 msgstr ""
 
-# Show/Hide Inherited; Xiǎnshì/yǐncáng jìchéng
+# Inherited
 #: gschem/src/x/x_toolbars.c:252
-#, fuzzy
 msgid "Inherited"
-msgstr "显示/隐藏继承"
+msgstr "遗传"
 
 #: gschem/src/x/x_toolbars.c:253
 msgid "Find"
