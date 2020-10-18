@@ -798,39 +798,32 @@ msgid "Mesh grid activated\n"
 msgstr "Grille à mailles sélectionnée\n"
 
 #: gschem/src/iface/i_command.c:4679
-#, fuzzy
 msgid "Snap OFF (CAUTION!)"
-msgstr "Snap OFF (ATTENTION)\n"
+msgstr "Snap OFF (ATTENTION)"
 
 #: gschem/src/iface/i_command.c:4685
-#, fuzzy
 msgid "Snap ON"
-msgstr "Snap ON\n"
+msgstr "Snap ON"
 
 #: gschem/src/iface/i_command.c:4690
-#, fuzzy
 msgid "Snap back to the grid (CAUTION!)"
-msgstr "Retour brusque à la grille (ATTENTION!)\n"
+msgstr "Retour brusque à la grille (ATTENTION!)"
 
 #: gschem/src/iface/i_command.c:4716
-#, fuzzy
 msgid "Rubber band mode is OFF"
-msgstr "Mode piste élastique : OFF \n"
+msgstr "Mode piste élastique est désactivé"
 
 #: gschem/src/iface/i_command.c:4720
-#, fuzzy
 msgid "Rubber band mode is ON"
-msgstr "Mode piste élastique : ON\n"
+msgstr "Mode piste élastique est activé"
 
 #: gschem/src/iface/i_command.c:4731
-#, fuzzy
 msgid "Magnetic net mode is ON"
-msgstr "Mode Piste Magnétique : ON\n"
+msgstr "Mode Piste magnétique est activé"
 
 #: gschem/src/iface/i_command.c:4734
-#, fuzzy
 msgid "Magnetic net mode is OFF"
-msgstr "Mode Piste Magnétique : OFF\n"
+msgstr "Mode Piste magnétique est désactivé"
 
 #: gschem/src/iface/i_command.c:4751 gschem/src/iface/i_command.c:4794
 #: gschem/src/x/x_compselect.c:135 gschem/src/x/x_toolbars.c:261
