@@ -6,6 +6,8 @@
     * diode/zener52/zener*.sym: Revise sequence of attributes:
 
             * diode/zener52/zener_6.8_1N5235B.sym
+            * diode/zener52/zener_7.5_1N5236B.sym
+            * diode/zener52/zener_8.2_1N5237B.sym
 
 2020-10-04 Wiley E. Hill <wileyhill@gmail.com>
 
