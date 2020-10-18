@@ -795,40 +795,34 @@ msgstr "Dot rooster geaktiveer\n"
 msgid "Mesh grid activated\n"
 msgstr "Mesh rooster geaktiveer\n"
 
+# Snap OFF (CAUTION!)
 #: gschem/src/iface/i_command.c:4679
-#, fuzzy
 msgid "Snap OFF (CAUTION!)"
-msgstr "Snap AF (VERSIGTIG!)\n"
+msgstr "Snap AF (VERSIGTIG!)"
 
 #: gschem/src/iface/i_command.c:4685
-#, fuzzy
 msgid "Snap ON"
-msgstr "Snap Op\n"
+msgstr "Snap Op"
 
 #: gschem/src/iface/i_command.c:4690
-#, fuzzy
 msgid "Snap back to the grid (CAUTION!)"
-msgstr "Snap terug na die rooster (VERSIGTIG!)\n"
+msgstr "Snap terug na die rooster (VERSIGTIG!)"
 
 #: gschem/src/iface/i_command.c:4716
-#, fuzzy
 msgid "Rubber band mode is OFF"
-msgstr "Rekkie is AF\n"
+msgstr "Rekkie is AF"
 
 #: gschem/src/iface/i_command.c:4720
-#, fuzzy
 msgid "Rubber band mode is ON"
-msgstr "Rekkie is AAN\n"
+msgstr "Rekkie is AAN"
 
 #: gschem/src/iface/i_command.c:4731
-#, fuzzy
 msgid "Magnetic net mode is ON"
-msgstr "Magnetiese netto modus is OP\n"
+msgstr "Magnetiese netto modus is OP"
 
 #: gschem/src/iface/i_command.c:4734
-#, fuzzy
 msgid "Magnetic net mode is OFF"
-msgstr "Magnetiese netto modus is off\n"
+msgstr "Magnetiese netto modus is off"
 
 #: gschem/src/iface/i_command.c:4751 gschem/src/iface/i_command.c:4794
 #: gschem/src/x/x_compselect.c:135 gschem/src/x/x_toolbars.c:261
@@ -844,15 +838,14 @@ msgstr "op"
 msgid "Drag-Can-Move is now"
 msgstr "Sleep-Can-Move is nou"
 
+# Action Feedback Mode Set to SKETCH
 #: gschem/src/iface/i_command.c:4769
-#, fuzzy
 msgid "Action feedback mode set to OUTLINE"
-msgstr "Handelingsterugvoermodus na SKETS gestel\n"
+msgstr "Handelingsterugvoermodus na SKETS gestel"
 
 #: gschem/src/iface/i_command.c:4773
-#, fuzzy
 msgid "Action feedback mode set to BOUNDINGBOX"
-msgstr "Handelingsterugvoermodus na OMTREKREGHOEK\n"
+msgstr "Handelingsterugvoermodus na OMTREKREGHOEK"
 
 #: gschem/src/iface/i_command.c:4800
 msgid "Auto-Pan is now"
