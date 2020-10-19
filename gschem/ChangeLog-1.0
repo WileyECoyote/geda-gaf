@@ -1,21 +1,19 @@
+2020-10-19 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/gschem_page_view.h: Remove GdkGC member.
+
+    * src/base/gschem_page_view.c: Remove function gschem_page_view_get_gc.
+
 2020-10-17 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/af.po: Update Arabic translations.
-
     * po/bg.po: Update Bulgarian translations.
-
     * po/de.po: Update German translations.
-
     * po/el.po: Update Greek translations
-
     * po/fr.po: Update French translations.
-
     * po/hu.po: Update Hungarian translations.
-
     * po/ml.po: Updated Malayalam translations.
-
     * po/zh_CN.po: Update Chinese simplified translations.
-
     * po/zh_TW.po: Update Chinese traditional translations.
 
 2020-10-16 Wiley E. Hill <wileyhill@gmail.com>

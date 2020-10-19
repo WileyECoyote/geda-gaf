@@ -124,11 +124,6 @@ dispose (GObject *object)
     gschem_page_view_set_page (view, NULL);
   }
 
-  if (view->gc != NULL) {
-    g_object_unref (view->gc);
-    view->gc = NULL;
-  }
-
   /* lastly, chain up to the parent dispose */
 
   g_return_if_fail (gschem_page_view_parent_class != NULL);
@@ -148,8 +143,6 @@ event_realize(GtkWidget *widget, void *unused)
   g_return_if_fail (view != NULL);
   g_return_if_fail (window != NULL);
 
-  view->gc = gdk_gc_new (window);
-
   gtk_widget_get_allocation (widget, &(view->previous_allocation));
 }
 
@@ -164,10 +157,6 @@ event_unrealize(GtkWidget *widget, void *unused)
 
   g_return_if_fail (view != NULL);
 
-  if (view->gc != NULL) {
-    g_object_unref (view->gc);
-    view->gc = NULL;
-  }
 }
 
 /*!
@@ -299,24 +288,6 @@ gschem_page_view_class_init (void *g_class, void *g_class_data)
                 geda_marshal_VOID__VOID,
                 G_TYPE_NONE,
                 0);
-}
-
-/*!
- * \brief Get a graphics context for this view
- * \par Function Description
- *
- * \param [in] w_current Pointer to GschemToplevel data structure
- *
- * \return The graphics context, or NULL if the window is not realized
- */
-GdkGC*
-gschem_page_view_get_gc (GschemToplevel *w_current)
-{
-  g_return_val_if_fail (w_current != NULL, NULL);
-
-  GschemPageView *view = (GschemPageView*)w_current->drawing_area;
-
-  return view->gc;
 }
 
 /*!

@@ -51,8 +51,6 @@ struct _GschemPageView
   GtkWindow parent;
   GedaType  instance_type;
 
-  GdkGC *gc;
-
   GtkAllocation previous_allocation;
 
   GtkAdjustment *hadjustment;
@@ -73,9 +71,6 @@ struct _GschemPageView
 #ifdef __cplusplus
 extern "C" {
 #endif
-
-GdkGC*
-gschem_page_view_get_gc (GschemToplevel *w_current);
 
 GtkAdjustment*
 gschem_page_view_get_hadjustment (GschemPageView *view);
