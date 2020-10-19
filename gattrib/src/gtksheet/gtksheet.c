@@ -11115,15 +11115,15 @@ gtk_sheet_extend_selection(GtkSheet *sheet, int row, int column)
         sheet->range.coli = c;
         sheet->range.rowi = r;
 
-        _gtk_sheet_draw_pixmap(sheet->sheet_window,
-                               gtk_widget_get_style((GtkWidget*)sheet)->fg_gc[GTK_STATE_NORMAL],
-                               sheet->pixmap,
-                               _gtk_sheet_column_left_xpixel(sheet, c) - 1,
-                               _gtk_sheet_row_top_ypixel(sheet, r) - 1,
-                               _gtk_sheet_column_left_xpixel(sheet, c) - 1,
-                               _gtk_sheet_row_top_ypixel(sheet, r) - 1,
-                               COLPTR(sheet, c)->width + 4,
-                               sheet->row[r].height + 4);
+        gdk_draw_pixmap(sheet->sheet_window,
+                        gtk_widget_get_style(GTK_WIDGET(sheet))->fg_gc[GTK_STATE_NORMAL],
+                        sheet->pixmap,
+                        _gtk_sheet_column_left_xpixel(sheet, c) - 1,
+                        _gtk_sheet_row_top_ypixel(sheet, r) - 1,
+                        _gtk_sheet_column_left_xpixel(sheet, c) - 1,
+                        _gtk_sheet_row_top_ypixel(sheet, r) - 1,
+                        COLPTR(sheet, c)->width + 4,
+                        sheet->row[r].height + 4);
 
         sheet->state = GTK_SHEET_RANGE_SELECTED;
         gtk_sheet_range_draw_selection(sheet, sheet->range);
@@ -11147,10 +11147,10 @@ gtk_sheet_extend_selection(GtkSheet *sheet, int row, int column)
     range.rowi = MIN(range.rowi, sheet->maxrow);
 
     if (range.row0 != sheet->range.row0 || range.rowi != sheet->range.rowi ||
-	range.col0 != sheet->range.col0 || range.coli != sheet->range.coli ||
-	state == GTK_SHEET_NORMAL)
+        range.col0 != sheet->range.col0 || range.coli != sheet->range.coli ||
+        state == GTK_SHEET_NORMAL)
     {
-	gtk_sheet_real_select_range(sheet, &range);
+      gtk_sheet_real_select_range(sheet, &range);
     }
 }
 
