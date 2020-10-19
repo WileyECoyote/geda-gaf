@@ -2,6 +2,7 @@
 
     * src/gtksheet/gtksheet.c: Remove old debug code. revise gtk_sheet_flash to
       utilize gdk_draw_pixmap instead of gdk_draw_pixmap and eliminate GdkGC.
+      Remove ancillary GdkGC pointer bg_gc in _cell_draw_background.
 
 2020-09-25 Wiley E. Hill <wileyhill@gmail.com>
 

@@ -6652,7 +6652,6 @@ gtk_sheet_draw_tooltip_marker(GtkSheet *sheet,
 static void
 _cell_draw_background(GtkSheet *sheet, int row, int col)
 {
-    GdkGC *bg_gc;
     GdkRectangle area;
 
     /* bail now if we arn't drawable yet */
@@ -6675,8 +6674,6 @@ _cell_draw_background(GtkSheet *sheet, int row, int col)
     gdk_gc_set_foreground(sheet->fg_gc, &attributes.foreground);
     gdk_gc_set_foreground(sheet->bg_gc, &attributes.background);
 
-    bg_gc = sheet->bg_gc;
-
     area.x = _gtk_sheet_column_left_xpixel(sheet, col);
     area.y = _gtk_sheet_row_top_ypixel(sheet, row);
     area.width = COLPTR(sheet, col)->width;
@@ -6693,7 +6690,7 @@ _cell_draw_background(GtkSheet *sheet, int row, int col)
 
     /* fill cell background */
     gdk_draw_rectangle(sheet->pixmap,
-                       bg_gc,
+                       sheet->bg_gc,
                        TRUE,
                        area.x, area.y,
                        area.width, area.height);
