@@ -327,24 +327,6 @@ typedef enum _GtkSheetArea
 #   define GTK_SHEET_DEBUG_COLOR  "green"
 static GdkColor debug_color;
 
-#   if 0
-#       include <stdarg.h>
-static void g_debug_popup(char *fmt, ...)  /* used to intercept/debug drawing sequences */
-{
-    va_list ap;
-    va_start(ap, fmt);
-
-    GtkWidget *dialog = gtk_message_dialog_new (NULL,
-						GTK_DIALOG_DESTROY_WITH_PARENT,
-						GTK_MESSAGE_ERROR,
-						GTK_BUTTONS_CLOSE,
-						fmt, ap);
-
-    gtk_dialog_run (GTK_DIALOG (dialog));
-    gtk_widget_destroy (dialog);
-}
-#   endif
-
 #endif
 
 #if !GTK_CHECK_VERSION(2,22,0)
