@@ -147,19 +147,6 @@ event_realize(GtkWidget *widget, void *unused)
 }
 
 /*!
- * \brief Event handler for window unrealized
- * \par Function Description
- */
-static void
-event_unrealize(GtkWidget *widget, void *unused)
-{
-  GschemPageView *view = GSCHEM_PAGE_VIEW(widget);
-
-  g_return_if_fail (view != NULL);
-
-}
-
-/*!
  * \brief Finalize object
  * \par Function Description
  */
@@ -635,11 +622,6 @@ gschem_page_view_instance_init (GTypeInstance *instance, void *g_class)
   g_signal_connect(view,
                    "realize",
                    G_CALLBACK (event_realize),
-                   NULL);
-
-  g_signal_connect(view,
-                   "unrealize",
-                   G_CALLBACK (event_unrealize),
                    NULL);
 }
 

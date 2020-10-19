@@ -2,7 +2,8 @@
 
     * include/gschem_page_view.h: Remove GdkGC member.
 
-    * src/base/gschem_page_view.c: Remove function gschem_page_view_get_gc.
+    * src/base/gschem_page_view.c: Remove function gschem_page_view_get_gc
+      and remove callback event_unrealize.
 
 2020-10-17 Wiley E. Hill <wileyhill@gmail.com>
 
