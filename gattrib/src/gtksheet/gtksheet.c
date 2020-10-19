@@ -5535,12 +5535,16 @@ static int gtk_sheet_flash(void *data)
 
   if (!gtk_widget_get_realized((GtkWidget*)sheet))
     return (TRUE);
+
   if (!gtk_widget_is_drawable((GtkWidget*)sheet))
     return (TRUE);
+
   if (!gtk_sheet_range_isvisible(sheet, sheet->clip_range))
     return (TRUE);
+
   if (GTK_SHEET_IN_XDRAG(sheet))
     return (TRUE);
+
   if (GTK_SHEET_IN_YDRAG(sheet))
     return (TRUE);
 
