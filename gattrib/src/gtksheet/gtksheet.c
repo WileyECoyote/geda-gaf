@@ -10976,7 +10976,7 @@ _gtk_sheet_move_query(GtkSheet *sheet, int row, int column,
 #endif
 
     height = sheet->sheet_window_height;
-    width = sheet->sheet_window_width;
+    width  = sheet->sheet_window_width;
 
     /* beware of invisible columns/rows */
     if (!_gtk_sheet_get_visible_range(sheet, &visr))
@@ -10984,7 +10984,7 @@ _gtk_sheet_move_query(GtkSheet *sheet, int row, int column,
 
 #if GTK_SHEET_DEBUG_MOVE > 0
     fprintf(stderr,"gtk_sheet_move_query: state %d visr row %d-%d col %d-%d",
-	sheet->state, visr.row0, visr.rowi, visr.col0, visr.coli);
+            sheet->state, visr.row0, visr.rowi, visr.col0, visr.coli);
 #endif
 
     if (row >= MAX_VIEW_ROW(sheet) &&
@@ -11029,7 +11029,7 @@ _gtk_sheet_move_query(GtkSheet *sheet, int row, int column,
 
       row_align = 0;  /* top */
 
-      if (need_focus) [
+      if (need_focus) {
         _HUNT_FOCUS_UP(new_row);
       }
       else {
