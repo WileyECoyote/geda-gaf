@@ -1,6 +1,7 @@
 2020-10-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gtksheet/gtksheet.c: Clean code; update code style, fix indentations.
+      Convert plain text to Doxygen documenation.
 
 2020-10-19 Wiley E. Hill <wileyhill@gmail.com>
 

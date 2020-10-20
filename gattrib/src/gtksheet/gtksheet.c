@@ -10462,14 +10462,15 @@ gtk_sheet_button_release_handler(GtkWidget *widget, GdkEventButton *event)
     return (TRUE);
 }
 
-/*
- * gtk_sheet_motion_handler:<p>
+/*!
+ * gtk_sheet_motion_handler:
  * this is the #GtkSheet widget class "motion-notify-event" signal handler
  *
  * \param widget the #GtkSheet
  * \param event  the GdkEventMotion which triggered this signal
  *
- * \param return TRUE to stop other handlers from being invoked for the event. FALSE to propagate the event further.
+ * \return TRUE to stop other handlers from being invoked for
+ *         the event. FALSE to propagate the event further.
  */
 static int
 gtk_sheet_motion_handler(GtkWidget *widget, GdkEventMotion *event)
