@@ -10591,17 +10591,18 @@ gtk_sheet_motion_handler(GtkWidget *widget, GdkEventMotion *event)
 
   gdk_window_get_pointer(gtk_widget_get_window(widget), &x, &y, &mods);
 
-  if (!(mods & GDK_BUTTON1_MASK))
+  if (!(mods & GDK_BUTTON1_MASK)) {
     return (FALSE);
+  }
 
   if (GTK_SHEET_IN_XDRAG(sheet)) {
 
-    if (event->is_hint || event->window != gtk_widget_get_window(widget))
-    {
+    if (event->is_hint || event->window != gtk_widget_get_window(widget)) {
       gtk_widget_get_pointer(widget, &x, NULL);
     }
-    else
+    else {
       x = event->x;
+    }
 
     new_column_width(sheet, sheet->drag_cell.col, &x);
 
@@ -10621,8 +10622,9 @@ gtk_sheet_motion_handler(GtkWidget *widget, GdkEventMotion *event)
     {
       gtk_widget_get_pointer(widget, NULL, &y);
     }
-    else
+    else {
       y = event->y;
+    }
 
     new_row_height(sheet, sheet->drag_cell.row, &y);
 
@@ -10645,11 +10647,13 @@ gtk_sheet_motion_handler(GtkWidget *widget, GdkEventMotion *event)
     row = current_row - sheet->drag_cell.row;
     column = current_col - sheet->drag_cell.col;
 
-    if (sheet->state == GTK_SHEET_ROW_SELECTED)
+    if (sheet->state == GTK_SHEET_ROW_SELECTED) {
       column = 0;
+    }
 
-    if (sheet->state == GTK_SHEET_COLUMN_SELECTED)
+    if (sheet->state == GTK_SHEET_COLUMN_SELECTED) {
       row = 0;
+    }
 
     sheet->x_drag = x;
     sheet->y_drag = y;
@@ -10677,8 +10681,8 @@ gtk_sheet_motion_handler(GtkWidget *widget, GdkEventMotion *event)
 
         int nrow0 = _gtk_sheet_first_visible_rowidx(sheet, sheet->range.row0 + row);
         int nrowi = _gtk_sheet_first_visible_rowidx(sheet, sheet->range.rowi + row);
-        if (nrow0 >= 0 && nrowi >= 0)
-        {
+
+        if (nrow0 >= 0 && nrowi >= 0) {
           sheet->drag_range.row0 = nrow0;
           sheet->drag_range.rowi = nrowi;
         }
@@ -10687,8 +10691,8 @@ gtk_sheet_motion_handler(GtkWidget *widget, GdkEventMotion *event)
 
         int nrow0 = _gtk_sheet_last_visible_rowidx(sheet, sheet->range.row0 + row);
         int nrowi = _gtk_sheet_last_visible_rowidx(sheet, sheet->range.rowi + row);
-        if (nrow0 >= 0 && nrowi >= 0)
-        {
+
+        if (nrow0 >= 0 && nrowi >= 0) {
           sheet->drag_range.row0 = nrow0;
           sheet->drag_range.rowi = nrowi;
         }
@@ -10698,8 +10702,8 @@ gtk_sheet_motion_handler(GtkWidget *widget, GdkEventMotion *event)
 
         int ncol0 = _gtk_sheet_first_visible_colidx(sheet, sheet->range.col0 + column);
         int ncoli = _gtk_sheet_first_visible_colidx(sheet, sheet->range.coli + column);
-        if (ncol0 >= 0 && ncoli >= 0)
-        {
+
+        if (ncol0 >= 0 && ncoli >= 0) {
           sheet->drag_range.col0 = ncol0;
           sheet->drag_range.coli = ncoli;
         }
@@ -10708,8 +10712,8 @@ gtk_sheet_motion_handler(GtkWidget *widget, GdkEventMotion *event)
 
         int ncol0 = _gtk_sheet_last_visible_colidx(sheet, sheet->range.col0 + column);
         int ncoli = _gtk_sheet_last_visible_colidx(sheet, sheet->range.coli + column);
-        if (ncol0 >= 0 && ncoli >= 0)
-        {
+
+        if (ncol0 >= 0 && ncoli >= 0) {
           sheet->drag_range.col0 = ncol0;
           sheet->drag_range.coli = ncoli;
         }
@@ -10750,31 +10754,38 @@ gtk_sheet_motion_handler(GtkWidget *widget, GdkEventMotion *event)
     /*use half of column width resp. row height as threshold to expand selection*/
     row_threshold = _gtk_sheet_row_top_ypixel(sheet, current_row);
 
-    if (current_row >= 0)
+    if (current_row >= 0) {
       row_threshold += (ROWPTR(sheet, current_row)->height) / 2;
+    }
 
-    if (current_row > sheet->drag_range.row0 && y < row_threshold)
+    if (current_row > sheet->drag_range.row0 && y < row_threshold) {
       current_row = _gtk_sheet_last_visible_rowidx(sheet, current_row - 1);
-    else if (current_row < sheet->drag_range.row0 && y < row_threshold)
+    }
+    else if (current_row < sheet->drag_range.row0 && y < row_threshold) {
       current_row = _gtk_sheet_first_visible_rowidx(sheet, current_row + 1);
+    }
 
     col_threshold = _gtk_sheet_column_left_xpixel(sheet, current_col);
 
-    if (current_col >= 0)
+    if (current_col >= 0) {
       col_threshold += (COLPTR(sheet, current_col)->width) / 2;
+    }
 
-    if (current_col > sheet->drag_range.col0 && x < col_threshold)
+    if (current_col > sheet->drag_range.col0 && x < col_threshold) {
       current_col = _gtk_sheet_last_visible_colidx(sheet, current_col - 1);
-    else if (current_col < sheet->drag_range.col0 && x > col_threshold)
+    }
+    else if (current_col < sheet->drag_range.col0 && x > col_threshold) {
       current_col = _gtk_sheet_first_visible_colidx(sheet, current_col + 1);
+    }
 
     sheet->x_drag = x;
     sheet->y_drag = y;
     aux = sheet->range;
 
     /* beware of invisible columns/rows */
-    if (!_gtk_sheet_get_visible_range(sheet, &visr))
+    if (!_gtk_sheet_get_visible_range(sheet, &visr)) {
       return (TRUE);
+    }
 
 #if GTK_SHEET_DEBUG_SELECTION > 0
       fprintf(stderr,"gtk_sheet_motion: RESIZE th %d row %d col %d cr %d cc %d",
@@ -10830,8 +10841,9 @@ gtk_sheet_motion_handler(GtkWidget *widget, GdkEventMotion *event)
 
     GtkSheetRange visr;
 
-    if (!_gtk_sheet_get_visible_range(sheet, &visr))
+    if (!_gtk_sheet_get_visible_range(sheet, &visr)) {
       return (TRUE);
+    }
 
     if (_POINT_IN_RANGE(
       row >= 0 ? row : _gtk_sheet_first_visible_rowidx(sheet, 0),
