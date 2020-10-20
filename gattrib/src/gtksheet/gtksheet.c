@@ -10978,7 +10978,9 @@ _gtk_sheet_move_query(GtkSheet *sheet, int row, int column,
         _HUNT_VISIBLE_DOWN(new_row);
       }
 
-      if (new_row >= 0) row_move = TRUE;
+      if (new_row >= 0) {
+        row_move = TRUE;
+      }
 
       if (MAX_VIEW_ROW(sheet) == sheet->maxrow &&
         _gtk_sheet_row_bottom_ypixel(sheet, sheet->maxrow) < height)
@@ -11006,7 +11008,9 @@ _gtk_sheet_move_query(GtkSheet *sheet, int row, int column,
         _HUNT_VISIBLE_UP(new_row);
       }
 
-      if (new_row >= 0) row_move = TRUE;
+      if (new_row >= 0) {
+        row_move = TRUE;
+      }
     }
 
     if (column >= MAX_VIEW_COLUMN(sheet) &&
@@ -11027,7 +11031,9 @@ _gtk_sheet_move_query(GtkSheet *sheet, int row, int column,
         _HUNT_VISIBLE_RIGHT(new_col);
       }
 
-      if (new_col >= 0) column_move = TRUE;
+      if (new_col >= 0) {
+        column_move = TRUE;
+      }
 
       if (MAX_VIEW_COLUMN(sheet) == sheet->maxcol &&
         _gtk_sheet_column_right_xpixel(sheet, sheet->maxcol) < width)
@@ -11056,7 +11062,9 @@ _gtk_sheet_move_query(GtkSheet *sheet, int row, int column,
         _HUNT_VISIBLE_LEFT(new_col);
       }
 
-      if (new_col >= 0) column_move = TRUE;
+      if (new_col >= 0) {
+        column_move = TRUE;
+      }
     }
 
 #if GTK_SHEET_DEBUG_MOVE > 0
