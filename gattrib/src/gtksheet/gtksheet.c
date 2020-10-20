@@ -228,7 +228,6 @@ typedef enum _GtkSheetArea
 #define GTK_SHEET_ROW_SET_SENSITIVE(rowptr, value) ((rowptr)->is_sensitive = (value))
 #define GTK_SHEET_ROW_CAN_FOCUS(rowptr) GTK_SHEET_ROW_IS_SENSITIVE(rowptr)
 
-
 #define MIN_VIEW_ROW(sheet)  (sheet->view.row0)
 #define MAX_VIEW_ROW(sheet)  (sheet->view.rowi)  /* beware: MAX_VISIBLE_ROW() can be maxrow+1 */
 #define MIN_VIEW_COLUMN(sheet)  (sheet->view.col0)
@@ -297,7 +296,6 @@ typedef enum _GtkSheetArea
      ((range1)->row0) != (range2)->row0 || (range1)->rowi != (range2)->rowi \
      || (range1)->col0 != (range2)->col0 || (range1)->coli != (range2)->coli)
 
-
 /* defaults */
 
 #define CELL_SPACING    1
@@ -361,7 +359,6 @@ gtk_sheet_draw_pixmap (GdkDrawable *drawable, GdkDrawable *src,
 
   cairo_destroy (cr);
 }
-
 
 /*!
  * \brief _gtk_sheet_row_default_height
@@ -9512,6 +9509,7 @@ gtk_sheet_draw_corners(GtkSheet *sheet, GtkSheetRange range)
       width = 3;
     if (sheet->state == GTK_SHEET_NORMAL)
       width = 3;
+
     gtk_sheet_draw_pixmap(sheet->sheet_window,
                           sheet->pixmap,
                           x - width,
@@ -10459,7 +10457,6 @@ gtk_sheet_motion_handler(GtkWidget *widget, GdkEventMotion *event)
   g_return_val_if_fail(widget != NULL, FALSE);
   g_return_val_if_fail(GTK_IS_SHEET(widget), FALSE);
   g_return_val_if_fail(event != NULL, FALSE);
-
 
   sheet = GTK_SHEET(widget);
 
