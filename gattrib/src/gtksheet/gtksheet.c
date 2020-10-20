@@ -10474,360 +10474,375 @@ gtk_sheet_button_release_handler(GtkWidget *widget, GdkEventButton *event)
 static int
 gtk_sheet_motion_handler(GtkWidget *widget, GdkEventMotion *event)
 {
-    GtkSheet *sheet;
-    GdkModifierType mods;
-    GdkCursorType new_cursor;
-    int x, y, row, column;
+  GtkSheet *sheet;
+  GdkModifierType mods;
+  GdkCursorType new_cursor;
+  int x, y, row, column;
 
-    g_return_val_if_fail(widget != NULL, FALSE);
-    g_return_val_if_fail(GTK_IS_SHEET(widget), FALSE);
-    g_return_val_if_fail(event != NULL, FALSE);
+  g_return_val_if_fail(widget != NULL, FALSE);
+  g_return_val_if_fail(GTK_IS_SHEET(widget), FALSE);
+  g_return_val_if_fail(event != NULL, FALSE);
 
 
-    sheet = GTK_SHEET(widget);
+  sheet = GTK_SHEET(widget);
 
-    /* selections on the sheet */
-    x = event->x;
-    y = event->y;
+  /* selections on the sheet */
+  x = event->x;
+  y = event->y;
 
 #if GTK_SHEET_DEBUG_MOTION > 0
-    fprintf(stderr,"gtk_sheet_motion_handler: (%d,%d) inSel %s", x, y,
-	GTK_SHEET_IN_SELECTION(sheet) ? "Yes" : "No" );
+  fprintf(stderr,"gtk_sheet_motion_handler: (%d,%d) inSel %s", x, y,
+          GTK_SHEET_IN_SELECTION(sheet) ? "Yes" : "No" );
 #endif
 
-    if (event->window == sheet->column_title_window
-	&& gtk_sheet_columns_resizable(sheet))
-    {
-	gtk_widget_get_pointer(widget, &x, &y);
-	if (!GTK_SHEET_IN_SELECTION(sheet) && POSSIBLE_XDRAG(sheet, x, &column))
-	{
-	    new_cursor = GDK_SB_H_DOUBLE_ARROW;
-	    if (new_cursor != gdk_cursor_get_cursor_type(sheet->cursor_drag))
-	    {
-		gdk_cursor_destroy(sheet->cursor_drag);
-		sheet->cursor_drag = gdk_cursor_new(GDK_SB_H_DOUBLE_ARROW);
-		gdk_window_set_cursor(sheet->column_title_window, sheet->cursor_drag);
-	    }
-	}
-	else
-	{
-	    new_cursor = GDK_TOP_LEFT_ARROW;
-	    if (!GTK_SHEET_IN_XDRAG(sheet) && new_cursor != gdk_cursor_get_cursor_type(sheet->cursor_drag))
-	    {
-		gdk_cursor_destroy(sheet->cursor_drag);
-		sheet->cursor_drag = gdk_cursor_new(GDK_TOP_LEFT_ARROW);
-		gdk_window_set_cursor(sheet->column_title_window, sheet->cursor_drag);
-	    }
-	}
+  if (event->window == sheet->column_title_window &&
+      gtk_sheet_columns_resizable(sheet))
+  {
+    gtk_widget_get_pointer(widget, &x, &y);
+
+    if (!GTK_SHEET_IN_SELECTION(sheet) &&
+         POSSIBLE_XDRAG(sheet, x, &column)) {
+
+      new_cursor = GDK_SB_H_DOUBLE_ARROW;
+
+      if (new_cursor != gdk_cursor_get_cursor_type(sheet->cursor_drag)) {
+        gdk_cursor_destroy(sheet->cursor_drag);
+        sheet->cursor_drag = gdk_cursor_new(GDK_SB_H_DOUBLE_ARROW);
+        gdk_window_set_cursor(sheet->column_title_window, sheet->cursor_drag);
+      }
     }
+    else {
 
-    if (event->window == sheet->row_title_window
-	&& gtk_sheet_rows_resizable(sheet))
-    {
-	gtk_widget_get_pointer(widget, &x, &y);
-	if (!GTK_SHEET_IN_SELECTION(sheet) && POSSIBLE_YDRAG(sheet, y, &column))
-	{
-	    new_cursor = GDK_SB_V_DOUBLE_ARROW;
-	    if (new_cursor != gdk_cursor_get_cursor_type(sheet->cursor_drag))
-	    {
-		gdk_cursor_destroy(sheet->cursor_drag);
-		sheet->cursor_drag = gdk_cursor_new(GDK_SB_V_DOUBLE_ARROW);
-		gdk_window_set_cursor(sheet->row_title_window, sheet->cursor_drag);
-	    }
-	}
-	else
-	{
-	    new_cursor = GDK_TOP_LEFT_ARROW;
-	    if (!GTK_SHEET_IN_YDRAG(sheet) && new_cursor != gdk_cursor_get_cursor_type(sheet->cursor_drag))
-	    {
-		gdk_cursor_destroy(sheet->cursor_drag);
-		sheet->cursor_drag = gdk_cursor_new(GDK_TOP_LEFT_ARROW);
-		gdk_window_set_cursor(sheet->row_title_window, sheet->cursor_drag);
-	    }
-	}
+      new_cursor = GDK_TOP_LEFT_ARROW;
+
+      if (!GTK_SHEET_IN_XDRAG(sheet) &&
+           new_cursor != gdk_cursor_get_cursor_type(sheet->cursor_drag))
+      {
+        gdk_cursor_destroy(sheet->cursor_drag);
+        sheet->cursor_drag = gdk_cursor_new(GDK_TOP_LEFT_ARROW);
+        gdk_window_set_cursor(sheet->column_title_window, sheet->cursor_drag);
+      }
     }
+  }
 
-    new_cursor = GDK_PLUS;
-    if (!POSSIBLE_DRAG(sheet, x, y, &row, &column) && !GTK_SHEET_IN_DRAG(sheet) &&
-	!POSSIBLE_RESIZE(sheet, x, y, &row, &column) && !GTK_SHEET_IN_RESIZE(sheet) &&
-	event->window == sheet->sheet_window &&
-	new_cursor != gdk_cursor_get_cursor_type(sheet->cursor_drag))
+  if (event->window == sheet->row_title_window &&
+      gtk_sheet_rows_resizable(sheet)) {
+
+    gtk_widget_get_pointer(widget, &x, &y);
+
+    if (!GTK_SHEET_IN_SELECTION(sheet) && POSSIBLE_YDRAG(sheet, y, &column))
     {
-	gdk_cursor_destroy(sheet->cursor_drag);
-	sheet->cursor_drag = gdk_cursor_new(GDK_PLUS);
-	gdk_window_set_cursor(sheet->sheet_window, sheet->cursor_drag);
+      new_cursor = GDK_SB_V_DOUBLE_ARROW;
+      if (new_cursor != gdk_cursor_get_cursor_type(sheet->cursor_drag))
+      {
+        gdk_cursor_destroy(sheet->cursor_drag);
+        sheet->cursor_drag = gdk_cursor_new(GDK_SB_V_DOUBLE_ARROW);
+        gdk_window_set_cursor(sheet->row_title_window, sheet->cursor_drag);
+      }
     }
-
-    new_cursor = GDK_TOP_LEFT_ARROW;
-    if (!(POSSIBLE_RESIZE(sheet, x, y, &row, &column) || GTK_SHEET_IN_RESIZE(sheet)) &&
-	(POSSIBLE_DRAG(sheet, x, y, &row, &column) || GTK_SHEET_IN_DRAG(sheet)) &&
-	event->window == sheet->sheet_window &&
-	new_cursor != gdk_cursor_get_cursor_type(sheet->cursor_drag))
+    else
     {
-	gdk_cursor_destroy(sheet->cursor_drag);
-	sheet->cursor_drag = gdk_cursor_new(GDK_TOP_LEFT_ARROW);
-	gdk_window_set_cursor(sheet->sheet_window, sheet->cursor_drag);
+      new_cursor = GDK_TOP_LEFT_ARROW;
+      if (!GTK_SHEET_IN_YDRAG(sheet) &&
+           new_cursor != gdk_cursor_get_cursor_type(sheet->cursor_drag))
+      {
+        gdk_cursor_destroy(sheet->cursor_drag);
+        sheet->cursor_drag = gdk_cursor_new(GDK_TOP_LEFT_ARROW);
+        gdk_window_set_cursor(sheet->row_title_window, sheet->cursor_drag);
+      }
     }
+  }
 
-    new_cursor = GDK_SIZING;
-    if (!GTK_SHEET_IN_DRAG(sheet) &&
-	(POSSIBLE_RESIZE(sheet, x, y, &row, &column) || GTK_SHEET_IN_RESIZE(sheet)) &&
-	event->window == sheet->sheet_window &&
-	new_cursor != gdk_cursor_get_cursor_type(sheet->cursor_drag))
+  new_cursor = GDK_PLUS;
+
+  if (!POSSIBLE_DRAG(sheet, x, y, &row, &column) && !GTK_SHEET_IN_DRAG(sheet) &&
+    !POSSIBLE_RESIZE(sheet, x, y, &row, &column) && !GTK_SHEET_IN_RESIZE(sheet) &&
+    event->window == sheet->sheet_window &&
+    new_cursor != gdk_cursor_get_cursor_type(sheet->cursor_drag))
+  {
+    gdk_cursor_destroy(sheet->cursor_drag);
+    sheet->cursor_drag = gdk_cursor_new(GDK_PLUS);
+    gdk_window_set_cursor(sheet->sheet_window, sheet->cursor_drag);
+  }
+
+  new_cursor = GDK_TOP_LEFT_ARROW;
+
+  if (!(POSSIBLE_RESIZE(sheet, x, y, &row, &column) || GTK_SHEET_IN_RESIZE(sheet)) &&
+    (POSSIBLE_DRAG(sheet, x, y, &row, &column) || GTK_SHEET_IN_DRAG(sheet)) &&
+    event->window == sheet->sheet_window &&
+    new_cursor != gdk_cursor_get_cursor_type(sheet->cursor_drag))
+  {
+    gdk_cursor_destroy(sheet->cursor_drag);
+    sheet->cursor_drag = gdk_cursor_new(GDK_TOP_LEFT_ARROW);
+    gdk_window_set_cursor(sheet->sheet_window, sheet->cursor_drag);
+  }
+
+  new_cursor = GDK_SIZING;
+
+  if (!GTK_SHEET_IN_DRAG(sheet) &&
+    (POSSIBLE_RESIZE(sheet, x, y, &row, &column) || GTK_SHEET_IN_RESIZE(sheet)) &&
+    event->window == sheet->sheet_window &&
+    new_cursor != gdk_cursor_get_cursor_type(sheet->cursor_drag))
+  {
+    gdk_cursor_destroy(sheet->cursor_drag);
+    sheet->cursor_drag = gdk_cursor_new(GDK_SIZING);
+    gdk_window_set_cursor(sheet->sheet_window, sheet->cursor_drag);
+  }
+
+  gdk_window_get_pointer(gtk_widget_get_window(widget), &x, &y, &mods);
+
+  if (!(mods & GDK_BUTTON1_MASK))
+    return (FALSE);
+
+  if (GTK_SHEET_IN_XDRAG(sheet)) {
+
+    if (event->is_hint || event->window != gtk_widget_get_window(widget))
     {
-	gdk_cursor_destroy(sheet->cursor_drag);
-	sheet->cursor_drag = gdk_cursor_new(GDK_SIZING);
-	gdk_window_set_cursor(sheet->sheet_window, sheet->cursor_drag);
+      gtk_widget_get_pointer(widget, &x, NULL);
     }
+    else
+      x = event->x;
 
-    gdk_window_get_pointer(gtk_widget_get_window(widget), &x, &y, &mods);
-    if (!(mods & GDK_BUTTON1_MASK))
-	return (FALSE);
+    new_column_width(sheet, sheet->drag_cell.col, &x);
 
-    if (GTK_SHEET_IN_XDRAG(sheet))
-    {
-	if (event->is_hint ||
-	    event->window != gtk_widget_get_window(widget))
-	{
-	    gtk_widget_get_pointer(widget, &x, NULL);
-	}
-	else
-	    x = event->x;
-
-	new_column_width(sheet, sheet->drag_cell.col, &x);
-	if (x != sheet->x_drag)
-	{
-	    draw_xor_vline(sheet);
-	    sheet->x_drag = x;
-	    draw_xor_vline(sheet);
-	}
-	return (TRUE);
-    }
-
-    if (GTK_SHEET_IN_YDRAG(sheet))
-    {
-	if (event->is_hint ||
-	    event->window != gtk_widget_get_window(widget))
-	{
-	    gtk_widget_get_pointer(widget, NULL, &y);
-	}
-	else
-	    y = event->y;
-
-	new_row_height(sheet, sheet->drag_cell.row, &y);
-	if (y != sheet->y_drag)
-	{
-	    draw_xor_hline(sheet);
-	    sheet->y_drag = y;
-	    draw_xor_hline(sheet);
-	}
-	return (TRUE);
-    }
-
-    if (GTK_SHEET_IN_DRAG(sheet))
-    {
-	GtkSheetRange aux, visr;
-
-	int current_row = MIN(sheet->maxrow, _gtk_sheet_row_from_ypixel(sheet, y));
-	int current_col = MIN(sheet->maxcol, _gtk_sheet_column_from_xpixel(sheet, x));
-
-	row = current_row - sheet->drag_cell.row;
-	column = current_col - sheet->drag_cell.col;
-
-	if (sheet->state == GTK_SHEET_ROW_SELECTED)
-	    column = 0;
-	if (sheet->state == GTK_SHEET_COLUMN_SELECTED)
-	    row = 0;
-	sheet->x_drag = x;
-	sheet->y_drag = y;
-	aux = sheet->range;
-
-	/* beware of invisible columns/rows */
-	if (!_gtk_sheet_get_visible_range(sheet, &visr))
-	    return (TRUE);
-
-	if (_RECT_IN_RANGE(aux.row0 + row, aux.rowi + row,
-		aux.col0 + column, aux.coli + column, &visr))
-	{
-	    aux = sheet->drag_range;
-
-#if 1
-	    /* The following code doesn't behave properly when there
-	       are invisible columns in the sheet. For a proper user experience
-	       it should
-	       1. _gtk_sheet_count_visible(drag_range)
-	       2. try to move the outer edge into the given direction
-	       3. find and add enough visible columns backwards
-	       Beware: above algo will modify width/height of the drag area
-	       */
-	    if (row > 0)
-	    {
-		int nrow0 = _gtk_sheet_first_visible_rowidx(sheet, sheet->range.row0 + row);
-		int nrowi = _gtk_sheet_first_visible_rowidx(sheet, sheet->range.rowi + row);
-		if (nrow0 >= 0 && nrowi >= 0)
-		{
-		    sheet->drag_range.row0 = nrow0;
-		    sheet->drag_range.rowi = nrowi;
-		}
-	    }
-	    else
-	    {
-		int nrow0 = _gtk_sheet_last_visible_rowidx(sheet, sheet->range.row0 + row);
-		int nrowi = _gtk_sheet_last_visible_rowidx(sheet, sheet->range.rowi + row);
-		if (nrow0 >= 0 && nrowi >= 0)
-		{
-		    sheet->drag_range.row0 = nrow0;
-		    sheet->drag_range.rowi = nrowi;
-		}
-	    }
-	    if (column > 0)
-	    {
-		int ncol0 = _gtk_sheet_first_visible_colidx(sheet, sheet->range.col0 + column);
-		int ncoli = _gtk_sheet_first_visible_colidx(sheet, sheet->range.coli + column);
-		if (ncol0 >= 0 && ncoli >= 0)
-		{
-		    sheet->drag_range.col0 = ncol0;
-		    sheet->drag_range.coli = ncoli;
-		}
-	    }
-	    else
-	    {
-		int ncol0 = _gtk_sheet_last_visible_colidx(sheet, sheet->range.col0 + column);
-		int ncoli = _gtk_sheet_last_visible_colidx(sheet, sheet->range.coli + column);
-		if (ncol0 >= 0 && ncoli >= 0)
-		{
-		    sheet->drag_range.col0 = ncol0;
-		    sheet->drag_range.coli = ncoli;
-		}
-	    }
-#endif
-
-	    if (aux.row0 != sheet->drag_range.row0 ||
-		aux.col0 != sheet->drag_range.col0)
-	    {
-		draw_xor_rectangle(sheet, aux);
-		draw_xor_rectangle(sheet, sheet->drag_range);
-	    }
-	}
-	return (TRUE);
-    }
-
-    if (GTK_SHEET_IN_RESIZE(sheet))
-    {
-	GtkSheetRange aux, visr;
-	int current_col, current_row, col_threshold, row_threshold;
-
-	g_assert(0 <= sheet->drag_cell.row && sheet->drag_cell.row <= sheet->maxrow);
-	g_assert(0 <= sheet->drag_cell.col && sheet->drag_cell.col <= sheet->maxcol);
-
-	current_row = MIN(sheet->maxrow, _gtk_sheet_row_from_ypixel(sheet, y));
-	current_col = MIN(sheet->maxcol, _gtk_sheet_column_from_xpixel(sheet, x));
-
-	row    = current_row - sheet->drag_cell.row;
-	column = current_col - sheet->drag_cell.col;
-
-#if GTK_SHEET_DEBUG_SELECTION > 0
-	fprintf(stderr,"gtk_sheet_motion: RESIZE row %d col %d cr %d cc %d",
-	    row, column, current_row, current_col);
-#endif
-
-	/*use half of column width resp. row height as threshold to expand selection*/
-	row_threshold = _gtk_sheet_row_top_ypixel(sheet, current_row);
-	if (current_row >= 0)
-	    row_threshold += (ROWPTR(sheet, current_row)->height) / 2;
-
-	if (current_row > sheet->drag_range.row0 && y < row_threshold)
-	    current_row = _gtk_sheet_last_visible_rowidx(sheet, current_row - 1);
-	else if (current_row < sheet->drag_range.row0 && y < row_threshold)
-	    current_row = _gtk_sheet_first_visible_rowidx(sheet, current_row + 1);
-
-	col_threshold = _gtk_sheet_column_left_xpixel(sheet, current_col);
-	if (current_col >= 0)
-	    col_threshold += (COLPTR(sheet, current_col)->width) / 2;
-
-	if (current_col > sheet->drag_range.col0 && x < col_threshold)
-	    current_col = _gtk_sheet_last_visible_colidx(sheet, current_col - 1);
-	else if (current_col < sheet->drag_range.col0 && x > col_threshold)
-	    current_col = _gtk_sheet_first_visible_colidx(sheet, current_col + 1);
-
-	sheet->x_drag = x;
-	sheet->y_drag = y;
-	aux = sheet->range;
-
-	/* beware of invisible columns/rows */
-	if (!_gtk_sheet_get_visible_range(sheet, &visr))
-	    return (TRUE);
-
-#if GTK_SHEET_DEBUG_SELECTION > 0
-	fprintf(stderr,"gtk_sheet_motion: RESIZE th %d row %d col %d cr %d cc %d",
-	    row_threshold, row, column, current_row, current_col);
-#endif
-
-	if (_POINT_IN_RANGE(current_row, current_col, &visr))
-	{
-	    aux = sheet->drag_range;
-	    sheet->drag_range = sheet->range;
-
-	    if (sheet->state != GTK_SHEET_COLUMN_SELECTED)
-	    {
-		if (current_row >= sheet->drag_range.row0)
-		{
-		    sheet->drag_range.rowi = current_row;
-		}
-		else if (current_row < sheet->drag_range.row0)
-		{
-		    sheet->drag_range.rowi = sheet->drag_range.row0;
-		    sheet->drag_range.row0 = current_row;
-		}
-	    }
-
-	    if (sheet->state != GTK_SHEET_ROW_SELECTED)
-	    {
-		if (current_col >= sheet->drag_range.col0)
-		{
-		    sheet->drag_range.coli = current_col;
-		}
-		else if (current_col < sheet->drag_range.col0)
-		{
-		    sheet->drag_range.coli = sheet->drag_range.col0;
-		    sheet->drag_range.col0 = current_col;
-		}
-	    }
-
-	    if (_RANGE_NEQ_RANGE(&aux, &sheet->drag_range)
-	    {
-		draw_xor_rectangle(sheet, aux);
-		draw_xor_rectangle(sheet, sheet->drag_range);
-	    }
-	}
-	return (TRUE);
-    }
-
-    gtk_sheet_get_pixel_info(sheet, NULL, x, y, &row, &column);
-
-    if (sheet->state == GTK_SHEET_NORMAL
-	&& row == sheet->active_cell.row && column == sheet->active_cell.col)
-    {
-	return (TRUE);
-    }
-
-    if (GTK_SHEET_IN_SELECTION(sheet) && (mods & GDK_BUTTON1_MASK))
-    {
-	GtkSheetRange visr;
-
-	if (!_gtk_sheet_get_visible_range(sheet, &visr))
-	    return (TRUE);
-
-	if (_POINT_IN_RANGE(
-	    row >= 0 ? row : _gtk_sheet_first_visible_rowidx(sheet, 0),
-	    column >= 0 ? column : _gtk_sheet_first_visible_colidx(sheet, 0),
-	    &visr))
-	{
-	    gtk_sheet_extend_selection(sheet, row, column);
-	}
+    if (x != sheet->x_drag) {
+      draw_xor_vline(sheet);
+      sheet->x_drag = x;
+      draw_xor_vline(sheet);
     }
 
     return (TRUE);
+  }
+
+  if (GTK_SHEET_IN_YDRAG(sheet)) {
+
+    if (event->is_hint ||
+      event->window != gtk_widget_get_window(widget))
+    {
+      gtk_widget_get_pointer(widget, NULL, &y);
+    }
+    else
+      y = event->y;
+
+    new_row_height(sheet, sheet->drag_cell.row, &y);
+
+    if (y != sheet->y_drag) {
+      draw_xor_hline(sheet);
+      sheet->y_drag = y;
+      draw_xor_hline(sheet);
+    }
+
+    return (TRUE);
+  }
+
+  if (GTK_SHEET_IN_DRAG(sheet)) {
+
+    GtkSheetRange aux, visr;
+
+    int current_row = MIN(sheet->maxrow, _gtk_sheet_row_from_ypixel(sheet, y));
+    int current_col = MIN(sheet->maxcol, _gtk_sheet_column_from_xpixel(sheet, x));
+
+    row = current_row - sheet->drag_cell.row;
+    column = current_col - sheet->drag_cell.col;
+
+    if (sheet->state == GTK_SHEET_ROW_SELECTED)
+      column = 0;
+
+    if (sheet->state == GTK_SHEET_COLUMN_SELECTED)
+      row = 0;
+
+    sheet->x_drag = x;
+    sheet->y_drag = y;
+    aux = sheet->range;
+
+    /* beware of invisible columns/rows */
+    if (!_gtk_sheet_get_visible_range(sheet, &visr))
+      return (TRUE);
+
+    if (_RECT_IN_RANGE(aux.row0 + row, aux.rowi + row,
+        aux.col0 + column, aux.coli + column, &visr))
+    {
+      aux = sheet->drag_range;
+
+#if 1
+      /* The following code doesn't behave properly when there
+       *       are invisible columns in the sheet. For a proper user experience
+       *       it should
+       *       1. _gtk_sheet_count_visible(drag_range)
+       *       2. try to move the outer edge into the given direction
+       *       3. find and add enough visible columns backwards
+       *       Beware: above algo will modify width/height of the drag area
+       */
+      if (row > 0) {
+
+        int nrow0 = _gtk_sheet_first_visible_rowidx(sheet, sheet->range.row0 + row);
+        int nrowi = _gtk_sheet_first_visible_rowidx(sheet, sheet->range.rowi + row);
+        if (nrow0 >= 0 && nrowi >= 0)
+        {
+          sheet->drag_range.row0 = nrow0;
+          sheet->drag_range.rowi = nrowi;
+        }
+      }
+      else {
+
+        int nrow0 = _gtk_sheet_last_visible_rowidx(sheet, sheet->range.row0 + row);
+        int nrowi = _gtk_sheet_last_visible_rowidx(sheet, sheet->range.rowi + row);
+        if (nrow0 >= 0 && nrowi >= 0)
+        {
+          sheet->drag_range.row0 = nrow0;
+          sheet->drag_range.rowi = nrowi;
+        }
+      }
+
+      if (column > 0) {
+
+        int ncol0 = _gtk_sheet_first_visible_colidx(sheet, sheet->range.col0 + column);
+        int ncoli = _gtk_sheet_first_visible_colidx(sheet, sheet->range.coli + column);
+        if (ncol0 >= 0 && ncoli >= 0)
+        {
+          sheet->drag_range.col0 = ncol0;
+          sheet->drag_range.coli = ncoli;
+        }
+      }
+      else {
+
+        int ncol0 = _gtk_sheet_last_visible_colidx(sheet, sheet->range.col0 + column);
+        int ncoli = _gtk_sheet_last_visible_colidx(sheet, sheet->range.coli + column);
+        if (ncol0 >= 0 && ncoli >= 0)
+        {
+          sheet->drag_range.col0 = ncol0;
+          sheet->drag_range.coli = ncoli;
+        }
+      }
+
+#endif
+
+      if (aux.row0 != sheet->drag_range.row0 ||
+        aux.col0 != sheet->drag_range.col0)
+      {
+        draw_xor_rectangle(sheet, aux);
+        draw_xor_rectangle(sheet, sheet->drag_range);
+      }
+    }
+
+    return (TRUE);
+  }
+
+  if (GTK_SHEET_IN_RESIZE(sheet)) {
+
+    GtkSheetRange aux, visr;
+    int current_col, current_row, col_threshold, row_threshold;
+
+    g_assert(0 <= sheet->drag_cell.row && sheet->drag_cell.row <= sheet->maxrow);
+    g_assert(0 <= sheet->drag_cell.col && sheet->drag_cell.col <= sheet->maxcol);
+
+    current_row = MIN(sheet->maxrow, _gtk_sheet_row_from_ypixel(sheet, y));
+    current_col = MIN(sheet->maxcol, _gtk_sheet_column_from_xpixel(sheet, x));
+
+    row    = current_row - sheet->drag_cell.row;
+    column = current_col - sheet->drag_cell.col;
+
+#if GTK_SHEET_DEBUG_SELECTION > 0
+    fprintf(stderr,"gtk_sheet_motion: RESIZE row %d col %d cr %d cc %d",
+            row, column, current_row, current_col);
+#endif
+
+    /*use half of column width resp. row height as threshold to expand selection*/
+    row_threshold = _gtk_sheet_row_top_ypixel(sheet, current_row);
+
+    if (current_row >= 0)
+      row_threshold += (ROWPTR(sheet, current_row)->height) / 2;
+
+    if (current_row > sheet->drag_range.row0 && y < row_threshold)
+      current_row = _gtk_sheet_last_visible_rowidx(sheet, current_row - 1);
+    else if (current_row < sheet->drag_range.row0 && y < row_threshold)
+      current_row = _gtk_sheet_first_visible_rowidx(sheet, current_row + 1);
+
+    col_threshold = _gtk_sheet_column_left_xpixel(sheet, current_col);
+
+    if (current_col >= 0)
+      col_threshold += (COLPTR(sheet, current_col)->width) / 2;
+
+    if (current_col > sheet->drag_range.col0 && x < col_threshold)
+      current_col = _gtk_sheet_last_visible_colidx(sheet, current_col - 1);
+    else if (current_col < sheet->drag_range.col0 && x > col_threshold)
+      current_col = _gtk_sheet_first_visible_colidx(sheet, current_col + 1);
+
+    sheet->x_drag = x;
+    sheet->y_drag = y;
+    aux = sheet->range;
+
+    /* beware of invisible columns/rows */
+    if (!_gtk_sheet_get_visible_range(sheet, &visr))
+      return (TRUE);
+
+#if GTK_SHEET_DEBUG_SELECTION > 0
+      fprintf(stderr,"gtk_sheet_motion: RESIZE th %d row %d col %d cr %d cc %d",
+              row_threshold, row, column, current_row, current_col);
+#endif
+
+      if (_POINT_IN_RANGE(current_row, current_col, &visr)) {
+
+        aux = sheet->drag_range;
+        sheet->drag_range = sheet->range;
+
+        if (sheet->state != GTK_SHEET_COLUMN_SELECTED) {
+
+          if (current_row >= sheet->drag_range.row0) {
+            sheet->drag_range.rowi = current_row;
+          }
+          else if (current_row < sheet->drag_range.row0) {
+            sheet->drag_range.rowi = sheet->drag_range.row0;
+            sheet->drag_range.row0 = current_row;
+          }
+        }
+
+        if (sheet->state != GTK_SHEET_ROW_SELECTED) {
+
+          if (current_col >= sheet->drag_range.col0) {
+            sheet->drag_range.coli = current_col;
+          }
+          else if (current_col < sheet->drag_range.col0) {
+            sheet->drag_range.coli = sheet->drag_range.col0;
+            sheet->drag_range.col0 = current_col;
+          }
+        }
+
+        if (_RANGE_NEQ_RANGE(&aux, &sheet->drag_range) {
+          draw_xor_rectangle(sheet, aux);
+          draw_xor_rectangle(sheet, sheet->drag_range);
+        }
+      }
+
+      return (TRUE);
+  }
+
+  gtk_sheet_get_pixel_info(sheet, NULL, x, y, &row, &column);
+
+  if (sheet->state == GTK_SHEET_NORMAL &&
+      row == sheet->active_cell.row &&
+      column == sheet->active_cell.col)
+  {
+    return (TRUE);
+  }
+
+  if (GTK_SHEET_IN_SELECTION(sheet) && (mods & GDK_BUTTON1_MASK)) {
+
+    GtkSheetRange visr;
+
+    if (!_gtk_sheet_get_visible_range(sheet, &visr))
+      return (TRUE);
+
+    if (_POINT_IN_RANGE(
+      row >= 0 ? row : _gtk_sheet_first_visible_rowidx(sheet, 0),
+                        column >= 0 ? column : _gtk_sheet_first_visible_colidx(sheet, 0),
+                        &visr))
+    {
+      gtk_sheet_extend_selection(sheet, row, column);
+    }
+  }
+
+  return (TRUE);
 }
 
 /* _HUNT_() statement macros find visible row/col into hunting direction */
