@@ -329,14 +329,8 @@ static GdkColor debug_color;
 
 #endif
 
-#if !GTK_CHECK_VERSION(2,22,0)
-
-#define _gtk_sheet_draw_pixmap gdk_draw_pixmap
-
-#else
-
 static inline void
-_gtk_sheet_draw_pixmap (GdkDrawable *drawable, GdkGC *gc, GdkDrawable *src,
+gtk_sheet_draw_pixmap (GdkDrawable *drawable, GdkGC *gc, GdkDrawable *src,
                         int xsrc, int ysrc,
                         int xdest,
                         int ydest,
@@ -367,8 +361,6 @@ _gtk_sheet_draw_pixmap (GdkDrawable *drawable, GdkGC *gc, GdkDrawable *src,
 
   cairo_destroy (cr);
 }
-
-#endif
 
 
 /*!
@@ -5582,25 +5574,25 @@ static int gtk_sheet_flash(void *data)
       height = clip_area.height + 10;
     }
 
-    gdk_draw_pixmap(sheet->sheet_window,
+    gtk_sheet_draw_pixmap(sheet->sheet_window,
                     gtk_widget_get_style(GTK_WIDGET(sheet))->fg_gc[GTK_STATE_NORMAL],
                     sheet->pixmap,
                     x, y,
                     x, y, 1, height);
 
-    gdk_draw_pixmap(sheet->sheet_window,
+    gtk_sheet_draw_pixmap(sheet->sheet_window,
                     gtk_widget_get_style(GTK_WIDGET(sheet))->fg_gc[GTK_STATE_NORMAL],
                     sheet->pixmap,
                     x, y,
                     x, y, width, 1);
 
-    gdk_draw_pixmap(sheet->sheet_window,
+    gtk_sheet_draw_pixmap(sheet->sheet_window,
                     gtk_widget_get_style(GTK_WIDGET(sheet))->fg_gc[GTK_STATE_NORMAL],
                     sheet->pixmap,
                     x, y + height,
                     x, y + height, width, 1);
 
-    gdk_draw_pixmap(sheet->sheet_window,
+    gtk_sheet_draw_pixmap(sheet->sheet_window,
                     gtk_widget_get_style(GTK_WIDGET(sheet))->fg_gc[GTK_STATE_NORMAL],
                     sheet->pixmap,
                     x + width, y,
@@ -7131,7 +7123,7 @@ static void _cell_draw_label(GtkSheet *sheet, int row, int col)
 
     /* copy sheet->pixmap to window */
 
-    _gtk_sheet_draw_pixmap(sheet->sheet_window,
+    gtk_sheet_draw_pixmap(sheet->sheet_window,
                            gc,
                            sheet->pixmap,
                            area.x, area.y,
@@ -7249,7 +7241,7 @@ _gtk_sheet_range_draw(GtkSheet *sheet,
                          area.x, area.y,
                          area.width, area.height);
 
-      _gtk_sheet_draw_pixmap(sheet->sheet_window,
+      gtk_sheet_draw_pixmap(sheet->sheet_window,
                              gtk_widget_get_style((GtkWidget*)sheet)->fg_gc[GTK_STATE_NORMAL],
                              sheet->pixmap,
                              area.x, area.y,
@@ -7298,7 +7290,7 @@ _gtk_sheet_range_draw(GtkSheet *sheet,
                            area.x, area.y,
                            area.width, area.height);
 
-        _gtk_sheet_draw_pixmap(sheet->sheet_window,
+        gtk_sheet_draw_pixmap(sheet->sheet_window,
                                gtk_widget_get_style((GtkWidget*)sheet)->fg_gc[GTK_STATE_NORMAL],
                                sheet->pixmap,
                                area.x, area.y,
@@ -7601,7 +7593,7 @@ gtk_sheet_draw_backing_pixmap(GtkSheet *sheet, GtkSheetRange range)
 	x, y, width + 1, height + 1);
 #endif
 
-    _gtk_sheet_draw_pixmap(sheet->sheet_window,
+    gtk_sheet_draw_pixmap(sheet->sheet_window,
                            gtk_widget_get_style((GtkWidget*)sheet)->fg_gc[GTK_STATE_NORMAL],
                            sheet->pixmap,
                            x, y,
@@ -8703,7 +8695,7 @@ _gtk_sheet_hide_active_cell(GtkSheet *sheet)
 
     gtk_widget_unmap(sheet->sheet_entry);
 
-    _gtk_sheet_draw_pixmap(sheet->sheet_window,
+    gtk_sheet_draw_pixmap(sheet->sheet_window,
                            gtk_widget_get_style(widget)->fg_gc[GTK_STATE_NORMAL],
                            sheet->pixmap,
                            _gtk_sheet_column_left_xpixel(sheet, col) - 1,
@@ -9192,7 +9184,7 @@ static void gtk_sheet_new_selection(GtkSheet *sheet, GtkSheetRange *range)
 		    if (j == sheet->range.coli)
 			width = width + 3;
 
-            _gtk_sheet_draw_pixmap(sheet->sheet_window,
+            gtk_sheet_draw_pixmap(sheet->sheet_window,
                                    gtk_widget_get_style((GtkWidget*)sheet)->fg_gc[GTK_STATE_NORMAL],
                                    sheet->pixmap,
                                    x + 1,
@@ -9267,7 +9259,7 @@ static void gtk_sheet_new_selection(GtkSheet *sheet, GtkSheetRange *range)
 		if (j == sheet->range.coli)
 		    width = width + 3;
 
-        _gtk_sheet_draw_pixmap(sheet->sheet_window,
+        gtk_sheet_draw_pixmap(sheet->sheet_window,
                                gtk_widget_get_style((GtkWidget*)sheet)->fg_gc[GTK_STATE_NORMAL],
                                sheet->pixmap,
                                x + 1,
@@ -9452,7 +9444,7 @@ gtk_sheet_draw_corners(GtkSheet *sheet, GtkSheetRange range)
   {
     x = _gtk_sheet_column_left_xpixel(sheet, range.col0);
     y = _gtk_sheet_row_top_ypixel(sheet, range.row0);
-    _gtk_sheet_draw_pixmap(sheet->sheet_window,
+    gtk_sheet_draw_pixmap(sheet->sheet_window,
                            gtk_widget_get_style((GtkWidget*)sheet)->fg_gc[GTK_STATE_NORMAL],
                            sheet->pixmap,
                            x - 1,
@@ -9480,7 +9472,7 @@ gtk_sheet_draw_corners(GtkSheet *sheet, GtkSheetRange range)
       y = _gtk_sheet_row_top_ypixel(sheet, sheet->view.row0) + 3;
       width = 3;
     }
-    _gtk_sheet_draw_pixmap(sheet->sheet_window,
+    gtk_sheet_draw_pixmap(sheet->sheet_window,
                            gtk_widget_get_style((GtkWidget*)sheet)->fg_gc[GTK_STATE_NORMAL],
                            sheet->pixmap,
                            x - width,
@@ -9508,7 +9500,7 @@ gtk_sheet_draw_corners(GtkSheet *sheet, GtkSheetRange range)
       x = _gtk_sheet_column_left_xpixel(sheet, sheet->view.col0) + 3;
       width = 3;
     }
-    _gtk_sheet_draw_pixmap(sheet->sheet_window,
+    gtk_sheet_draw_pixmap(sheet->sheet_window,
                            gtk_widget_get_style((GtkWidget*)sheet)->fg_gc[GTK_STATE_NORMAL],
                            sheet->pixmap,
                            x - width,
@@ -9535,7 +9527,7 @@ gtk_sheet_draw_corners(GtkSheet *sheet, GtkSheetRange range)
       width = 3;
     if (sheet->state == GTK_SHEET_NORMAL)
       width = 3;
-    _gtk_sheet_draw_pixmap(sheet->sheet_window,
+    gtk_sheet_draw_pixmap(sheet->sheet_window,
                            gtk_widget_get_style((GtkWidget*)sheet)->fg_gc[GTK_STATE_NORMAL],
                            sheet->pixmap,
                            x - width,
@@ -11156,7 +11148,7 @@ gtk_sheet_extend_selection(GtkSheet *sheet, int row, int column)
         sheet->range.coli = c;
         sheet->range.rowi = r;
 
-        gdk_draw_pixmap(sheet->sheet_window,
+        gtk_sheet_draw_pixmap(sheet->sheet_window,
                         gtk_widget_get_style(GTK_WIDGET(sheet))->fg_gc[GTK_STATE_NORMAL],
                         sheet->pixmap,
                         _gtk_sheet_column_left_xpixel(sheet, c) - 1,

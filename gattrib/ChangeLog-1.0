@@ -1,7 +1,8 @@
 2020-10-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gtksheet/gtksheet.c: Clean code; update code style, fix indentations.
-      Convert plain text to Doxygen documenation.
+      Convert plain text to Doxygen documenation. Remove conditional definition
+      of _gtk_sheet_draw_pixmap and rename to gtk_sheet_draw_pixmap.
 
 2020-10-19 Wiley E. Hill <wileyhill@gmail.com>
 
