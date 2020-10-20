@@ -10942,9 +10942,9 @@ _gtk_sheet_move_query(GtkSheet *sheet, int row, int column,
 
 #if GTK_SHEET_DEBUG_MOVE > 0
     fprintf(stderr,"gtk_sheet_move_query: row %d column %d view row %d-%d col %d-%d",
-	row, column,
-	MIN_VIEW_ROW(sheet), MAX_VIEW_ROW(sheet),
-	MIN_VIEW_COLUMN(sheet), MAX_VIEW_COLUMN(sheet));
+            row, column,
+            MIN_VIEW_ROW(sheet), MAX_VIEW_ROW(sheet),
+            MIN_VIEW_COLUMN(sheet), MAX_VIEW_COLUMN(sheet));
 #endif
 
     height = sheet->sheet_window_height;
@@ -10952,105 +10952,111 @@ _gtk_sheet_move_query(GtkSheet *sheet, int row, int column,
 
     /* beware of invisible columns/rows */
     if (!_gtk_sheet_get_visible_range(sheet, &visr))
-	return (0);
+      return (0);
 
 #if GTK_SHEET_DEBUG_MOVE > 0
     fprintf(stderr,"gtk_sheet_move_query: state %d visr row %d-%d col %d-%d",
 	sheet->state, visr.row0, visr.rowi, visr.col0, visr.coli);
 #endif
 
-    if (row >= MAX_VIEW_ROW(sheet)
-	&& row <= visr.rowi
-	&& sheet->state != GTK_SHEET_COLUMN_SELECTED)
+    if (row >= MAX_VIEW_ROW(sheet) &&
+        row <= visr.rowi &&
+        sheet->state != GTK_SHEET_COLUMN_SELECTED)
     {
-#if GTK_SHEET_DEBUG_MOVE > 0
-	fprintf(stderr,"gtk_sheet_move_query: row %d > maxvr %d visr.rowi %d",
-	    row, MAX_VIEW_ROW(sheet), visr.rowi);
-#endif
-	row_align = 1;  /* bottom */
-	if (need_focus)
-	{
-	    _HUNT_FOCUS_DOWN(new_row);
-	}
-	else
-	{
-	    _HUNT_VISIBLE_DOWN(new_row);
-	}
-	if (new_row >= 0) row_move = TRUE;
 
-	if (MAX_VIEW_ROW(sheet) == sheet->maxrow &&
-	    _gtk_sheet_row_bottom_ypixel(sheet, sheet->maxrow) < height)
-	{
-	    row_move = FALSE;
-	    row_align = -1;
-	}
+#if GTK_SHEET_DEBUG_MOVE > 0
+      fprintf(stderr,"gtk_sheet_move_query: row %d > maxvr %d visr.rowi %d",
+              row, MAX_VIEW_ROW(sheet), visr.rowi);
+#endif
+
+      row_align = 1;  /* bottom */
+
+      if (need_focus) {
+        _HUNT_FOCUS_DOWN(new_row);
+      }
+      else {
+        _HUNT_VISIBLE_DOWN(new_row);
+      }
+
+      if (new_row >= 0) row_move = TRUE;
+
+      if (MAX_VIEW_ROW(sheet) == sheet->maxrow &&
+        _gtk_sheet_row_bottom_ypixel(sheet, sheet->maxrow) < height)
+      {
+        row_move = FALSE;
+        row_align = -1;
+      }
     }
 
-    if (row <= MIN_VIEW_ROW(sheet)
-	&& row >= visr.row0
-	&& sheet->state != GTK_SHEET_COLUMN_SELECTED)
+    if (row <= MIN_VIEW_ROW(sheet) &&
+        row >= visr.row0 &&
+        sheet->state != GTK_SHEET_COLUMN_SELECTED)
     {
 #if GTK_SHEET_DEBUG_MOVE > 0
-	fprintf(stderr,"gtk_sheet_move_query: row %d < minvr %d visr.row0 %d",
-	    row, MIN_VIEW_ROW(sheet), visr.row0);
+      fprintf(stderr,"gtk_sheet_move_query: row %d < minvr %d visr.row0 %d",
+              row, MIN_VIEW_ROW(sheet), visr.row0);
 #endif
-	row_align = 0;  /* top */
-	if (need_focus)
-	{
-	    _HUNT_FOCUS_UP(new_row);
-	}
-	else
-	{
-	    _HUNT_VISIBLE_UP(new_row);
-	}
-	if (new_row >= 0) row_move = TRUE;
+
+      row_align = 0;  /* top */
+
+      if (need_focus) [
+        _HUNT_FOCUS_UP(new_row);
+      }
+      else {
+        _HUNT_VISIBLE_UP(new_row);
+      }
+
+      if (new_row >= 0) row_move = TRUE;
     }
 
-    if (column >= MAX_VIEW_COLUMN(sheet)
-	&& column <= visr.coli
-	&& sheet->state != GTK_SHEET_ROW_SELECTED)
+    if (column >= MAX_VIEW_COLUMN(sheet) &&
+        column <= visr.coli &&
+        sheet->state != GTK_SHEET_ROW_SELECTED)
     {
 #if GTK_SHEET_DEBUG_MOVE > 0
-	fprintf(stderr,"gtk_sheet_move_query: col %d > maxvc %d visr.coli %d",
-	    column, MAX_VIEW_COLUMN(sheet), visr.coli);
+      fprintf(stderr,"gtk_sheet_move_query: col %d > maxvc %d visr.coli %d",
+              column, MAX_VIEW_COLUMN(sheet), visr.coli);
 #endif
-	col_align = 1;  /* right */
-	if (need_focus)
-	{
-	    _HUNT_FOCUS_RIGHT(new_col);
-	}
-	else
-	{
-	    _HUNT_VISIBLE_RIGHT(new_col);
-	}
-	if (new_col >= 0) column_move = TRUE;
 
-	if (MAX_VIEW_COLUMN(sheet) == sheet->maxcol &&
-	    _gtk_sheet_column_right_xpixel(sheet, sheet->maxcol) < width)
-	{
-	    column_move = FALSE;
-	    col_align = -1;
-	}
+      col_align = 1;  /* right */
+
+      if (need_focus) {
+        _HUNT_FOCUS_RIGHT(new_col);
+      }
+      else {
+        _HUNT_VISIBLE_RIGHT(new_col);
+      }
+
+      if (new_col >= 0) column_move = TRUE;
+
+      if (MAX_VIEW_COLUMN(sheet) == sheet->maxcol &&
+        _gtk_sheet_column_right_xpixel(sheet, sheet->maxcol) < width)
+      {
+        column_move = FALSE;
+        col_align = -1;
+      }
     }
 
-    if (column <= MIN_VIEW_COLUMN(sheet)
-	&& column >= visr.col0
-	&& sheet->state != GTK_SHEET_ROW_SELECTED)
+    if (column <= MIN_VIEW_COLUMN(sheet) &&
+        column >= visr.col0 &&
+        sheet->state != GTK_SHEET_ROW_SELECTED)
     {
+
 #if GTK_SHEET_DEBUG_MOVE > 0
-	fprintf(stderr,"gtk_sheet_move_query: col %d < minvc %d visr.col0 %d",
-	    column, MIN_VIEW_COLUMN(sheet), visr.col0);
+      fprintf(stderr,"gtk_sheet_move_query: col %d < minvc %d visr.col0 %d",
+              column, MIN_VIEW_COLUMN(sheet), visr.col0);
 #endif
-	col_align = 0;  /* left */
-	if (need_focus)
-	{
-	    _HUNT_FOCUS_LEFT(new_col);
-	}
-	else
-	{
-	    _HUNT_VISIBLE_LEFT(new_col);
-	}
-	if (new_col >= 0) column_move = TRUE;
+
+      col_align = 0;  /* left */
+
+      if (need_focus) {
+        _HUNT_FOCUS_LEFT(new_col);
+      }
+      else {
+        _HUNT_VISIBLE_LEFT(new_col);
+      }
+
+      if (new_col >= 0) column_move = TRUE;
     }
 
 #if GTK_SHEET_DEBUG_MOVE > 0
@@ -11058,9 +11064,8 @@ _gtk_sheet_move_query(GtkSheet *sheet, int row, int column,
 	row_move, column_move, new_row, new_col);
 #endif
 
-    if (row_move || column_move)
-    {
-	gtk_sheet_moveto(sheet, new_row, new_col, row_align, col_align);
+    if (row_move || column_move) {
+      gtk_sheet_moveto(sheet, new_row, new_col, row_align, col_align);
     }
 
     return (row_move || column_move);
