@@ -8694,7 +8694,7 @@ _gtk_sheet_hide_active_cell(GtkSheet *sheet)
                            sheet->row[row].height + 4);
 
 #if 0
-    /* why shoud we first set the cursor to the cell we want hide ? */
+    /* why should we first set the cursor to the cell we want hide ? */
     gtk_widget_grab_focus((GtkWidget*)sheet);
 #endif
 
