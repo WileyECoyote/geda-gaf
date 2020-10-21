@@ -1076,7 +1076,7 @@ POSSIBLE_RESIZE(GtkSheet *sheet, int x, int y, int *drag_row, int *drag_column)
 }
 
 void
-_gtksheet_signal_emit(void *object, unsigned int signal_id, ...)
+_gtk_sheet_signal_emit(void *object, unsigned int signal_id, ...)
 {
   int *result;
   GValue ret = { 0, };
@@ -8579,7 +8579,7 @@ gtk_sheet_deactivate_cell(GtkSheet *sheet)
 
     /* beware: DEACTIVATE handler may call gtk_sheet_set_active_cell() */
 
-    _gtksheet_signal_emit(sheet, sheet_signals[DEACTIVATE], row, col, &veto);
+    _gtk_sheet_signal_emit(sheet, sheet_signals[DEACTIVATE], row, col, &veto);
 
     if (!veto) {
 
@@ -8739,7 +8739,7 @@ gtk_sheet_activate_cell(GtkSheet *sheet, int row, int col)
     }
 
 /*
-   _gtksheet_signal_emit(sheet,sheet_signals[ACTIVATE], row, col, &veto);
+   _gtk_sheet_signal_emit(sheet,sheet_signals[ACTIVATE], row, col, &veto);
     if(!gtk_widget_get_realized((GtkWidget*)sheet)) return veto;
     if (!veto) return FALSE;
 */
@@ -8773,7 +8773,7 @@ gtk_sheet_activate_cell(GtkSheet *sheet, int row, int col)
     gtk_sheet_entry_signal_connect_changed(sheet,
                                            G_CALLBACK(gtk_sheet_entry_changed_handler));
 
-    _gtksheet_signal_emit(sheet, sheet_signals[ACTIVATE], row, col, &veto);
+    _gtk_sheet_signal_emit(sheet, sheet_signals[ACTIVATE], row, col, &veto);
 
     return (TRUE);
 }
@@ -10131,7 +10131,7 @@ gtk_sheet_click_cell(GtkSheet *sheet, int row, int col, int *veto)
 
     gtk_widget_grab_focus((GtkWidget*)sheet);
 
-    _gtksheet_signal_emit(sheet, sheet_signals[TRAVERSE],
+    _gtk_sheet_signal_emit(sheet, sheet_signals[TRAVERSE],
                           sheet->active_cell.row, sheet->active_cell.col,
                           &row, &col, veto);
 
@@ -11207,7 +11207,7 @@ gtk_sheet_entry_key_press_handler(GtkWidget *widget, GdkEventKey *key, void *use
     fprintf(stderr,"gtk_sheet_entry_key_press_handler: enter-pressed: invoke");
 #endif
 
-    _gtksheet_signal_emit(sheet, sheet_signals[ENTER_PRESSED], key, &stop_emission);
+    _gtk_sheet_signal_emit(sheet, sheet_signals[ENTER_PRESSED], key, &stop_emission);
 
 #if GTK_SHEET_DEBUG_ENTER_PRESSED > 0
     fprintf(stderr,"gtk_sheet_entry_key_press_handler: enter-pressed: returns %d", stop_emission);

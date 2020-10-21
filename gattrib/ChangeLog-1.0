@@ -1,3 +1,8 @@
+2020-10-21 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/gtksheet/gtksheet.c: Rename gtksheet_signal_emit with an undescore;
+      gtk_sheet_signal_emit.
+
 2020-10-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gtksheet/gtksheet.c: Clean code; update code style, fix indentations.
