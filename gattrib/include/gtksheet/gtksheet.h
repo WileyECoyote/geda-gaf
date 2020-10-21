@@ -785,7 +785,7 @@ void _gtk_sheet_reset_text_column(GtkSheet *sheet, int start_column);
 
 void _gtk_sheet_range_draw(GtkSheet *sheet,
                            const GtkSheetRange *range, int  activate_active_cell);
-void _gtk_sheet_hide_active_cell(GtkSheet *sheet);
+void gtk_sheet_hide_active_cell(GtkSheet *sheet);
 void _gtk_sheet_redraw_internal(GtkSheet *sheet,
                                 int  reset_hadjustment, int  reset_vadjustment);
 

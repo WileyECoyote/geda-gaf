@@ -1748,7 +1748,7 @@ void gtk_sheet_column_set_visibility(GtkSheet *sheet, int col, int visible)
     /* hide active column -> disable active cell */
     if (act_col == col) {
 
-        _gtk_sheet_hide_active_cell(sheet);
+        gtk_sheet_hide_active_cell(sheet);
 
         sheet->active_cell.row = -1;
         sheet->active_cell.col = -1;

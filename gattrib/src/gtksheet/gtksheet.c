@@ -3457,7 +3457,7 @@ void gtk_sheet_change_entry(GtkSheet *sheet, const GType entry_type)
     state = sheet->state;
 
     if (state == GTK_SHEET_NORMAL) {
-      _gtk_sheet_hide_active_cell(sheet);
+      gtk_sheet_hide_active_cell(sheet);
     }
 
     create_sheet_entry(sheet, entry_type ? entry_type : G_TYPE_NONE);
@@ -5070,7 +5070,7 @@ void gtk_sheet_row_set_visibility(GtkSheet *sheet, int row, int visible)
 
   if (act_row == row)   /* hide active column -> disable active cell */
   {
-    _gtk_sheet_hide_active_cell(sheet);
+    gtk_sheet_hide_active_cell(sheet);
 
     sheet->active_cell.row = -1;
     sheet->active_cell.col = -1;
@@ -8429,8 +8429,9 @@ gtk_sheet_set_active_cell(GtkSheet *sheet, int row, int col)
     sheet->active_cell.row = row;
     sheet->active_cell.col = col;
 
-    if (!gtk_sheet_activate_cell(sheet, row, col))
-	return (FALSE);
+    if (!gtk_sheet_activate_cell(sheet, row, col)) {
+      return (FALSE);
+    }
 
     _gtk_sheet_move_query(sheet, row, col, TRUE);
 
@@ -8572,7 +8573,7 @@ gtk_sheet_deactivate_cell(GtkSheet *sheet)
     gtk_sheet_entry_signal_disconnect_by_func(sheet,
                                               G_CALLBACK(gtk_sheet_entry_changed_handler));
 
-    _gtk_sheet_hide_active_cell(sheet);
+    gtk_sheet_hide_active_cell(sheet);
 
     sheet->active_cell.row = -1;  /* reset before signal emission, to prevent recursion */
     sheet->active_cell.col = -1;
@@ -8608,14 +8609,13 @@ gtk_sheet_deactivate_cell(GtkSheet *sheet)
 }
 
 /**
- * _gtk_sheet_hide_active_cell:
+ * gtk_sheet_hide_active_cell:
  *
  * \param sheet  the #GtkSheet
  *
  * hide active cell
  */
-void
-_gtk_sheet_hide_active_cell(GtkSheet *sheet)
+void gtk_sheet_hide_active_cell(GtkSheet *sheet)
 {
     GtkWidget *widget = (GtkWidget*)sheet;
     int row, col;
@@ -8629,7 +8629,7 @@ _gtk_sheet_hide_active_cell(GtkSheet *sheet)
     col = sheet->active_cell.col;
 
 #if GTK_SHEET_DEBUG_CELL_ACTIVATION > 0
-    fprintf(stderr,"_gtk_sheet_hide_active_cell: called row %d col %d\n", row, col);
+    fprintf(stderr,"gtk_sheet_hide_active_cell: called row %d col %d\n", row, col);
 #endif
 
     if (row < 0 || row > sheet->maxrow)
@@ -8670,13 +8670,13 @@ _gtk_sheet_hide_active_cell(GtkSheet *sheet)
     }
 
 #if GTK_SHEET_DEBUG_CELL_ACTIVATION > 0
-    fprintf(stderr,"_gtk_sheet_hide_active_cell: _gtk_sheet_column_button_release\n");
+    fprintf(stderr,"gtk_sheet_hide_active_cell: _gtk_sheet_column_button_release\n");
 #endif
 
     _gtk_sheet_column_button_release(sheet, col);
     row_button_release(sheet, row);
 #if GTK_SHEET_DEBUG_CELL_ACTIVATION > 0
-    fprintf(stderr,"_gtk_sheet_hide_active_cell: gtk_widget_unmap\n");
+    fprintf(stderr,"gtk_sheet_hide_active_cell: gtk_widget_unmap\n");
 #endif
 
     gtk_widget_unmap(sheet->sheet_entry);
@@ -8696,13 +8696,13 @@ _gtk_sheet_hide_active_cell(GtkSheet *sheet)
 #endif
 
 #if GTK_SHEET_DEBUG_CELL_ACTIVATION > 0
-    fprintf(stderr,"_gtk_sheet_hide_active_cell: gtk_widget_set_visible\n");
+    fprintf(stderr,"gtk_sheet_hide_active_cell: gtk_widget_set_visible\n");
 #endif
 
     gtk_widget_set_visible((GtkWidget*)sheet->sheet_entry, FALSE);
 
 #if GTK_SHEET_DEBUG_CELL_ACTIVATION > 0
-    fprintf(stderr,"_gtk_sheet_hide_active_cell: done\n");
+    fprintf(stderr,"gtk_sheet_hide_active_cell: done\n");
 #endif
 }
 
@@ -10237,7 +10237,7 @@ gtk_sheet_click_cell(GtkSheet *sheet, int row, int col, int *veto)
         if (installed_entry_type != wanted_type)
         {
           if (sheet->state == GTK_SHEET_NORMAL)
-            _gtk_sheet_hide_active_cell(sheet);
+            gtk_sheet_hide_active_cell(sheet);
 
           create_sheet_entry(sheet, wanted_type ? wanted_type : G_TYPE_NONE);
         }
@@ -13911,7 +13911,7 @@ void gtk_sheet_delete_rows(GtkSheet *sheet, unsigned int row, unsigned int nrows
   act_row = sheet->active_cell.row;
   //act_col = sheet->active_cell.col;
 
-  _gtk_sheet_hide_active_cell(sheet);
+  gtk_sheet_hide_active_cell(sheet);
   gtk_sheet_real_unselect_range(sheet, NULL);
 
   DeleteRow(sheet, row, nrows);
@@ -13979,7 +13979,7 @@ void gtk_sheet_delete_columns(GtkSheet *sheet, unsigned int col, unsigned int nc
 
     ncols = MIN(ncols, sheet->maxcol - col + 1);
 
-    _gtk_sheet_hide_active_cell(sheet);
+    gtk_sheet_hide_active_cell(sheet);
     gtk_sheet_real_unselect_range(sheet, NULL);
 
     DeleteColumn(sheet, col, ncols);
