@@ -8447,8 +8447,7 @@ gtk_sheet_set_active_cell(GtkSheet *sheet, int row, int col)
  * If (row<0 || col<0) then there was no active cell in the
  * sheet.
  */
-void
-gtk_sheet_get_active_cell(GtkSheet *sheet, int *row, int *column)
+void gtk_sheet_get_active_cell(GtkSheet *sheet, int *row, int *column)
 {
     g_return_if_fail(GTK_IS_SHEET(sheet));
 
@@ -8476,8 +8475,7 @@ gtk_sheet_get_active_cell(GtkSheet *sheet, int *row, int *column)
  *
  * Since: 3.0.2
  */
-void
-gtk_sheet_set_tab_direction(GtkSheet *sheet, GtkDirectionType dir)
+void gtk_sheet_set_tab_direction(GtkSheet *sheet, GtkDirectionType dir)
 {
     g_return_if_fail(GTK_IS_SHEET(sheet));
 
@@ -8497,8 +8495,7 @@ gtk_sheet_set_tab_direction(GtkSheet *sheet, GtkDirectionType dir)
  * \param widget the sheet_entry widget
  * \param data the #GtkSheet, passed on signal creation
  */
-static void
-gtk_sheet_entry_changed_handler(GtkWidget *widget, void *data)
+static void gtk_sheet_entry_changed_handler(GtkWidget *widget, void *data)
 {
     GtkSheet *sheet;
     int row, col;
@@ -10932,8 +10929,7 @@ gtk_sheet_motion_handler(GtkWidget *widget, GdkEventMotion *event)
 
 
 static int
-_gtk_sheet_move_query(GtkSheet *sheet, int row, int column,
-    int need_focus)
+_gtk_sheet_move_query(GtkSheet *sheet, int row, int column, int need_focus)
 {
     int row_move = FALSE, column_move = FALSE;
     int row_align = -1, col_align = -1;  /* undef. */
