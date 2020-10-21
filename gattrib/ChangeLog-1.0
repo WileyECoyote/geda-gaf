@@ -2,7 +2,7 @@
 
     * src/gtksheet/gtksheet.c: Rename gtksheet_signal_emit with an undescore;
       gtk_sheet_signal_emit and rename gtk_sheet_hide_active_cell without a
-      leading underscore.
+      leading underscore. Add ancillary offset in gtk_sheet_flash.
 
 2020-10-20 Wiley E. Hill <wileyhill@gmail.com>
 

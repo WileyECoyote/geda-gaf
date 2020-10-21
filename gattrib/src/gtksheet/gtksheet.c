@@ -5517,7 +5517,7 @@ int gtk_sheet_in_clip(GtkSheet *sheet)
 static int gtk_sheet_flash(void *data)
 {
   GtkSheet *sheet;
-  int x, y, width, height;
+  int x, y, offset, width, height;
   GdkRectangle clip_area;
 
   sheet = (GtkSheet*)data;
@@ -5543,10 +5543,12 @@ static int gtk_sheet_flash(void *data)
 
     x = _gtk_sheet_column_left_xpixel(sheet, sheet->clip_range.col0) + 1;
     y = _gtk_sheet_row_top_ypixel(sheet, sheet->clip_range.row0) + 1;
-    width = _gtk_sheet_column_left_xpixel(sheet, sheet->clip_range.coli) - x +
-    COLPTR(sheet, sheet->clip_range.coli)->width - 1;
-    height = _gtk_sheet_row_top_ypixel(sheet, sheet->clip_range.rowi) - y +
-    sheet->row[sheet->clip_range.rowi].height - 1;
+
+    offset = _gtk_sheet_column_left_xpixel(sheet, sheet->clip_range.coli);
+    width  = offset - x + COLPTR(sheet, sheet->clip_range.coli)->width - 1;
+
+    offset = _gtk_sheet_row_top_ypixel(sheet, sheet->clip_range.rowi);
+    height = offset - y + sheet->row[sheet->clip_range.rowi].height - 1;
 
     clip_area.x = _gtk_sheet_column_left_xpixel(sheet, MIN_VIEW_COLUMN(sheet));
     clip_area.y = _gtk_sheet_row_top_ypixel(sheet, MIN_VIEW_ROW(sheet));
