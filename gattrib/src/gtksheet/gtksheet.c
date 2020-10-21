@@ -8620,10 +8620,13 @@ void gtk_sheet_hide_active_cell(GtkSheet *sheet)
     GtkWidget *widget = (GtkWidget*)sheet;
     int row, col;
 
-    if (!gtk_widget_get_realized(widget))
-	return;
-    if (!gtk_widget_get_visible(sheet->sheet_entry))
-	return;
+    if (!gtk_widget_get_realized(widget)) {
+      return;
+    }
+
+    if (!gtk_widget_get_visible(sheet->sheet_entry)) {
+      return;
+    }
 
     row = sheet->active_cell.row;
     col = sheet->active_cell.col;
@@ -8632,13 +8635,17 @@ void gtk_sheet_hide_active_cell(GtkSheet *sheet)
     fprintf(stderr,"gtk_sheet_hide_active_cell: called row %d col %d\n", row, col);
 #endif
 
-    if (row < 0 || row > sheet->maxrow)
-	return;
-    if (col < 0 || col > sheet->maxcol)
-	return;
+    if (row < 0 || row > sheet->maxrow) {
+      return;
+    }
 
-    if (sheet->freeze_count == 0)
-	GTK_SHEET_UNSET_FLAGS(sheet, GTK_SHEET_IS_FROZEN);
+    if (col < 0 || col > sheet->maxcol) {
+      return;
+    }
+
+    if (sheet->freeze_count == 0) {
+      GTK_SHEET_UNSET_FLAGS(sheet, GTK_SHEET_IS_FROZEN);
+    }
 
 #if 0
     /* transferring entry text to the cell gives problems when gtk_sheet_change_entry()
