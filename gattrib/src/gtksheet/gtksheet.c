@@ -8359,46 +8359,46 @@ gtk_sheet_set_active_cell(GtkSheet *sheet, int row, int col)
 {
     g_return_val_if_fail(GTK_IS_SHEET(sheet), 0);
 
-    if (row > sheet->maxrow || col > sheet->maxcol)
-	return (FALSE);
+    if (row > sheet->maxrow || col > sheet->maxcol) {
+      return (FALSE);
+    }
 
 #if GTK_SHEET_DEBUG_CELL_ACTIVATION > 0
     fprintf(stderr,"gtk_sheet_set_active_cell: row %d col %d\n", row, col);
 #endif
 
-    if (!gtk_widget_get_can_focus((GtkWidget*)sheet))
-    {
+    if (!gtk_widget_get_can_focus((GtkWidget*)sheet)) {
+
 #if GTK_SHEET_DEBUG_CELL_ACTIVATION > 0
-	fprintf(stderr,"gtk_sheet_set_active_cell: row %d col %d abort: sheet, can-focus false\n", row, col);
+      fprintf(stderr,"gtk_sheet_set_active_cell: row %d col %d abort: sheet, can-focus false\n", row, col);
 #endif
-	return (FALSE);
+      return (FALSE);
     }
 
     if (col >= 0 && !gtk_widget_get_can_focus((GtkWidget*)COLPTR(sheet, col)))
     {
 #if GTK_SHEET_DEBUG_CELL_ACTIVATION > 0
-	fprintf(stderr,"gtk_sheet_set_active_cell: row %d col %d abort: sheet column, can-focus false\n", row, col);
+      fprintf(stderr,"gtk_sheet_set_active_cell: row %d col %d abort: sheet column, can-focus false\n", row, col);
 #endif
-	return (FALSE);
+      return (FALSE);
     }
 
-    if (col >= 0 && !GTK_SHEET_COLUMN_IS_VISIBLE(COLPTR(sheet, col)))
-    {
+    if (col >= 0 && !GTK_SHEET_COLUMN_IS_VISIBLE(COLPTR(sheet, col))) {
 #if GTK_SHEET_DEBUG_CELL_ACTIVATION > 0
-	fprintf(stderr,"gtk_sheet_set_active_cell: row %d col %d abort: sheet column, visible false\n", row, col);
+      fprintf(stderr,"gtk_sheet_set_active_cell: row %d col %d abort: sheet column, visible false\n", row, col);
 #endif
-	return (FALSE);
+      return (FALSE);
     }
 
-    if (gtk_widget_get_realized((GtkWidget*)sheet))
-    {
+    if (gtk_widget_get_realized((GtkWidget*)sheet)) {
+
 #if 0
 	int old_row = sheet->active_cell.row;
 	int old_col = sheet->active_cell.col;
 #endif
 
-	if (!gtk_sheet_deactivate_cell(sheet))
-	{
+	if (!gtk_sheet_deactivate_cell(sheet)) {
+
 #if GTK_SHEET_DEBUG_CELL_ACTIVATION > 0
 	    fprintf(stderr,"gtk_sheet_set_active_cell: abort: deactivation false\n");
 #endif
@@ -8418,14 +8418,14 @@ gtk_sheet_set_active_cell(GtkSheet *sheet, int row, int col)
 #endif
     }
 
-    if (row < 0 || col < 0)
-    {
-	sheet->range.row0 = -1;
-	sheet->range.rowi = -1;
-	sheet->range.col0 = -1;
-	sheet->range.coli = -1;
+    if (row < 0 || col < 0) {
 
-	return (TRUE);
+      sheet->range.row0 = -1;
+      sheet->range.rowi = -1;
+      sheet->range.col0 = -1;
+      sheet->range.coli = -1;
+
+      return (TRUE);
     }
 
     sheet->active_cell.row = row;
