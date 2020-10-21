@@ -9120,89 +9120,58 @@ static void gtk_sheet_new_selection(GtkSheet *sheet, GtkSheetRange *range)
 
     for (i = range->row0; i <= range->rowi; i++)
     {
-	if (i > sheet->maxrow)
-	    break;
+      if (i > sheet->maxrow)
+        break;
 
-	for (j = range->col0; j <= range->coli; j++)
-	{
-	    if (j > sheet->maxcol)
-		break;
+      for (j = range->col0; j <= range->coli; j++)
+      {
+        if (j > sheet->maxcol)
+          break;
 
-	    state = gtk_sheet_cell_get_state(sheet, i, j);
-	    selected = (i <= new_range.rowi && i >= new_range.row0 &&
-		j <= new_range.coli && j >= new_range.col0) ? TRUE : FALSE;
+        state = gtk_sheet_cell_get_state(sheet, i, j);
+        selected = (i <= new_range.rowi && i >= new_range.row0 &&
+        j <= new_range.coli && j >= new_range.col0) ? TRUE : FALSE;
 
-	    if (state == GTK_STATE_SELECTED && selected &&
-		GTK_SHEET_COLUMN_IS_VISIBLE(COLPTR(sheet, j)) && GTK_SHEET_ROW_IS_VISIBLE(ROWPTR(sheet, i)) &&
-		(i == sheet->range.row0 || i == sheet->range.rowi ||
-		    j == sheet->range.col0 || j == sheet->range.coli ||
-		    i == new_range.row0 || i == new_range.rowi ||
-		    j == new_range.col0 || j == new_range.coli))
-	    {
+        if (state == GTK_STATE_SELECTED && selected &&
+          GTK_SHEET_COLUMN_IS_VISIBLE(COLPTR(sheet, j)) && GTK_SHEET_ROW_IS_VISIBLE(ROWPTR(sheet, i)) &&
+          (i == sheet->range.row0 || i == sheet->range.rowi ||
+          j == sheet->range.col0 || j == sheet->range.coli ||
+          i == new_range.row0 || i == new_range.rowi ||
+          j == new_range.col0 || j == new_range.coli))
+        {
 
-		mask1 = i == sheet->range.row0 ? 1 : 0;
-		mask1 = i == sheet->range.rowi ? mask1 + 2 : mask1;
-		mask1 = j == sheet->range.col0 ? mask1 + 4 : mask1;
-		mask1 = j == sheet->range.coli ? mask1 + 8 : mask1;
+          mask1 = i == sheet->range.row0 ? 1 : 0;
+          mask1 = i == sheet->range.rowi ? mask1 + 2 : mask1;
+          mask1 = j == sheet->range.col0 ? mask1 + 4 : mask1;
+          mask1 = j == sheet->range.coli ? mask1 + 8 : mask1;
 
-		mask2 = i == new_range.row0 ? 1 : 0;
-		mask2 = i == new_range.rowi ? mask2 + 2 : mask2;
-		mask2 = j == new_range.col0 ? mask2 + 4 : mask2;
-		mask2 = j == new_range.coli ? mask2 + 8 : mask2;
+          mask2 = i == new_range.row0 ? 1 : 0;
+          mask2 = i == new_range.rowi ? mask2 + 2 : mask2;
+          mask2 = j == new_range.col0 ? mask2 + 4 : mask2;
+          mask2 = j == new_range.coli ? mask2 + 8 : mask2;
 
-		if (mask1 != mask2)
-		{
-		    x = _gtk_sheet_column_left_xpixel(sheet, j);
-		    y = _gtk_sheet_row_top_ypixel(sheet, i);
-		    width = _gtk_sheet_column_left_xpixel(sheet, j) - x + COLPTR(sheet, j)->width;
-		    height = _gtk_sheet_row_top_ypixel(sheet, i) - y + sheet->row[i].height;
+          if (mask1 != mask2)
+          {
+            x = _gtk_sheet_column_left_xpixel(sheet, j);
+            y = _gtk_sheet_row_top_ypixel(sheet, i);
+            width = _gtk_sheet_column_left_xpixel(sheet, j) - x + COLPTR(sheet, j)->width;
+            height = _gtk_sheet_row_top_ypixel(sheet, i) - y + sheet->row[i].height;
 
-		    if (i == sheet->range.row0)
-		    {
-			y = y - 3;
-			height = height + 3;
-		    }
-		    if (i == sheet->range.rowi)
-			height = height + 3;
-		    if (j == sheet->range.col0)
-		    {
-			x = x - 3;
-			width = width + 3;
-		    }
-		    if (j == sheet->range.coli)
-			width = width + 3;
+            if (i == sheet->range.row0)
+            {
+              y = y - 3;
+              height = height + 3;
+            }
+            if (i == sheet->range.rowi)
+              height = height + 3;
+            if (j == sheet->range.col0)
+            {
+              x = x - 3;
+              width = width + 3;
+            }
+            if (j == sheet->range.coli)
+              width = width + 3;
 
-
-		    if (i != sheet->active_cell.row || j != sheet->active_cell.col) {
-			x = _gtk_sheet_column_left_xpixel(sheet, j);
-			y = _gtk_sheet_row_top_ypixel(sheet, i);
-			width = _gtk_sheet_column_left_xpixel(sheet, j) - x + COLPTR(sheet, j)->width;
-			height = _gtk_sheet_row_top_ypixel(sheet, i) - y + sheet->row[i].height;
-
-			if (i == new_range.row0)
-			{
-			    y = y + 2;
-			    height = height - 2;
-			}
-			if (i == new_range.rowi)
-			    height = height - 3;
-			if (j == new_range.col0)
-			{
-			    x = x + 2;
-			    width = width - 2;
-			}
-			if (j == new_range.coli)
-			    width = width - 3;
-
-			gdk_draw_rectangle(sheet->sheet_window,
-			    sheet->xor_gc,
-			    TRUE,
-			    x + 1, y + 1,
-			    width, height);
-		    }
-		}
-	    }
-	}
             _gtk_sheet_draw_pixmap(sheet->sheet_window,
                                    sheet->pixmap,
                                    x + 1,
@@ -9211,42 +9180,72 @@ static void gtk_sheet_new_selection(GtkSheet *sheet, GtkSheetRange *range)
                                    y + 1,
                                    width,
                                    height);
+
+            if (i != sheet->active_cell.row || j != sheet->active_cell.col) {
+
+              x = _gtk_sheet_column_left_xpixel(sheet, j);
+              y = _gtk_sheet_row_top_ypixel(sheet, i);
+              width = _gtk_sheet_column_left_xpixel(sheet, j) - x + COLPTR(sheet, j)->width;
+              height = _gtk_sheet_row_top_ypixel(sheet, i) - y + sheet->row[i].height;
+
+              if (i == new_range.row0)
+              {
+                y = y + 2;
+                height = height - 2;
+              }
+              if (i == new_range.rowi)
+                height = height - 3;
+              if (j == new_range.col0)
+              {
+                x = x + 2;
+                width = width - 2;
+              }
+              if (j == new_range.coli)
+                width = width - 3;
+
+              gdk_draw_rectangle(sheet->sheet_window,
+                                 sheet->xor_gc,
+                                 TRUE,
+                                 x + 1, y + 1,
+                                 width, height);
+            }
+          }
+        }
+      }
     }
 
-    for (i = range->row0; i <= range->rowi; i++)
-    {
-	for (j = range->col0; j <= range->coli; j++)
-	{
-	    state = gtk_sheet_cell_get_state(sheet, i, j);
-	    selected = (i <= new_range.rowi && i >= new_range.row0 &&
-		j <= new_range.coli && j >= new_range.col0) ? TRUE : FALSE;
+    for (i = range->row0; i <= range->rowi; i++) {
 
-	    if (state == GTK_STATE_SELECTED && !selected &&
-		GTK_SHEET_COLUMN_IS_VISIBLE(COLPTR(sheet, j)) &&
-		GTK_SHEET_ROW_IS_VISIBLE(ROWPTR(sheet, i)))
-	    {
-		x = _gtk_sheet_column_left_xpixel(sheet, j);
-		y = _gtk_sheet_row_top_ypixel(sheet, i);
-		width = _gtk_sheet_column_left_xpixel(sheet, j) - x + COLPTR(sheet, j)->width;
-		height = _gtk_sheet_row_top_ypixel(sheet, i) - y + sheet->row[i].height;
+      for (j = range->col0; j <= range->coli; j++) {
 
-		if (i == sheet->range.row0)
-		{
-		    y = y - 3;
-		    height = height + 3;
-		}
-		if (i == sheet->range.rowi)
-		    height = height + 3;
-		if (j == sheet->range.col0)
-		{
-		    x = x - 3;
-		    width = width + 3;
-		}
-		if (j == sheet->range.coli)
-		    width = width + 3;
+        state = gtk_sheet_cell_get_state(sheet, i, j);
+        selected = (i <= new_range.rowi && i >= new_range.row0 &&
+        j <= new_range.coli && j >= new_range.col0) ? TRUE : FALSE;
 
-	    }
-	}
+        if (state == GTK_STATE_SELECTED && !selected &&
+          GTK_SHEET_COLUMN_IS_VISIBLE(COLPTR(sheet, j)) &&
+          GTK_SHEET_ROW_IS_VISIBLE(ROWPTR(sheet, i)))
+        {
+          x = _gtk_sheet_column_left_xpixel(sheet, j);
+          y = _gtk_sheet_row_top_ypixel(sheet, i);
+          width = _gtk_sheet_column_left_xpixel(sheet, j) - x + COLPTR(sheet, j)->width;
+          height = _gtk_sheet_row_top_ypixel(sheet, i) - y + sheet->row[i].height;
+
+          if (i == sheet->range.row0)
+          {
+            y = y - 3;
+            height = height + 3;
+          }
+          if (i == sheet->range.rowi)
+            height = height + 3;
+          if (j == sheet->range.col0)
+          {
+            x = x - 3;
+            width = width + 3;
+          }
+          if (j == sheet->range.coli)
+            width = width + 3;
+
           _gtk_sheet_draw_pixmap(sheet->sheet_window,
                                  sheet->pixmap,
                                  x + 1,
@@ -9255,53 +9254,55 @@ static void gtk_sheet_new_selection(GtkSheet *sheet, GtkSheetRange *range)
                                  y + 1,
                                  width,
                                  height);
+        }
+      }
     }
 
-    for (i = range->row0; i <= range->rowi; i++)
-    {
-	for (j = range->col0; j <= range->coli; j++)
-	{
-	    state = gtk_sheet_cell_get_state(sheet, i, j);
-	    selected = (i <= new_range.rowi && i >= new_range.row0 &&
-		j <= new_range.coli && j >= new_range.col0) ? TRUE : FALSE;
+    for (i = range->row0; i <= range->rowi; i++) {
 
-	    if (state != GTK_STATE_SELECTED && selected &&
-		GTK_SHEET_COLUMN_IS_VISIBLE(COLPTR(sheet, j)) && GTK_SHEET_ROW_IS_VISIBLE(ROWPTR(sheet, i)) &&
-		(i != sheet->active_cell.row || j != sheet->active_cell.col))
-	    {
-		x = _gtk_sheet_column_left_xpixel(sheet, j);
-		y = _gtk_sheet_row_top_ypixel(sheet, i);
-		width = _gtk_sheet_column_left_xpixel(sheet, j) - x + COLPTR(sheet, j)->width;
-		height = _gtk_sheet_row_top_ypixel(sheet, i) - y + sheet->row[i].height;
+      for (j = range->col0; j <= range->coli; j++) {
 
-		if (i == new_range.row0)
-		{
-		    y = y + 2;
-		    height = height - 2;
-		}
-		if (i == new_range.rowi)
-		    height = height - 3;
-		if (j == new_range.col0)
-		{
-		    x = x + 2;
-		    width = width - 2;
-		}
-		if (j == new_range.coli)
-		    width = width - 3;
+        state = gtk_sheet_cell_get_state(sheet, i, j);
+        selected = (i <= new_range.rowi && i >= new_range.row0 &&
+        j <= new_range.coli && j >= new_range.col0) ? TRUE : FALSE;
 
-		gdk_draw_rectangle(sheet->sheet_window,
-		    sheet->xor_gc,
-		    TRUE,
-		    x + 1, y + 1,
-		    width, height);
-	    }
-	}
+        if (state != GTK_STATE_SELECTED && selected &&
+          GTK_SHEET_COLUMN_IS_VISIBLE(COLPTR(sheet, j)) && GTK_SHEET_ROW_IS_VISIBLE(ROWPTR(sheet, i)) &&
+          (i != sheet->active_cell.row || j != sheet->active_cell.col))
+        {
+          x = _gtk_sheet_column_left_xpixel(sheet, j);
+          y = _gtk_sheet_row_top_ypixel(sheet, i);
+          width = _gtk_sheet_column_left_xpixel(sheet, j) - x + COLPTR(sheet, j)->width;
+          height = _gtk_sheet_row_top_ypixel(sheet, i) - y + sheet->row[i].height;
+
+          if (i == new_range.row0)
+          {
+            y = y + 2;
+            height = height - 2;
+          }
+          if (i == new_range.rowi)
+            height = height - 3;
+          if (j == new_range.col0)
+          {
+            x = x + 2;
+            width = width - 2;
+          }
+          if (j == new_range.coli)
+            width = width - 3;
+
+          gdk_draw_rectangle(sheet->sheet_window,
+                             sheet->xor_gc,
+                             TRUE,
+                             x + 1, y + 1,
+                             width, height);
+        }
+      }
     }
 
-    for (i = aux_range.row0; i <= aux_range.rowi; i++)
-    {
-	for (j = aux_range.col0; j <= aux_range.coli; j++)
-	{
+    for (i = aux_range.row0; i <= aux_range.rowi; i++) {
+
+	for (j = aux_range.col0; j <= aux_range.coli; j++) {
+
 	    if (GTK_SHEET_COLUMN_IS_VISIBLE(COLPTR(sheet, j)) && GTK_SHEET_ROW_IS_VISIBLE(ROWPTR(sheet, i)))
 	    {
 		state = gtk_sheet_cell_get_state(sheet, i, j);
