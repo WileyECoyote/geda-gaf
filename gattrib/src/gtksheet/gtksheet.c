@@ -6117,11 +6117,11 @@ gtk_sheet_realize_handler(GtkWidget *widget)
   attributes.height = sheet->column_title_area.height;
 
   /* column-title window */
-  sheet->column_title_window = gdk_window_new( gtk_widget_get_window(widget),
-                                               &attributes, attributes_mask);
-  gdk_window_set_user_data(sheet->column_title_window, sheet);
-  gtk_style_set_background(gtk_widget_get_style(widget),
-                           sheet->column_title_window, GTK_STATE_NORMAL);
+  sheet->column_title_window = gdk_window_new (window, &attributes, attributes_mask);
+
+  gdk_window_set_user_data (sheet->column_title_window, sheet);
+  gtk_style_set_background (gtk_widget_get_style(widget),
+                            sheet->column_title_window, GTK_STATE_NORMAL);
 
   attributes.x = 0;
   attributes.y = 0;
@@ -6134,10 +6134,10 @@ gtk_sheet_realize_handler(GtkWidget *widget)
   attributes.height = sheet->row_title_area.height;
 
   /* row-title window */
-  sheet->row_title_window = gdk_window_new( gtk_widget_get_window(widget),
-                                            &attributes, attributes_mask);
-  gdk_window_set_user_data(sheet->row_title_window, sheet);
-  gtk_style_set_background(gtk_widget_get_style(widget),
+  sheet->row_title_window = gdk_window_new (window, &attributes, attributes_mask);
+
+  gdk_window_set_user_data (sheet->row_title_window, sheet);
+  gtk_style_set_background (gtk_widget_get_style(widget),
                            sheet->row_title_window, GTK_STATE_NORMAL);
 
   /* sheet-window */
@@ -6148,12 +6148,10 @@ gtk_sheet_realize_handler(GtkWidget *widget)
   attributes.width = sheet->sheet_window_width;
   attributes.height = sheet->sheet_window_height;
 
-  sheet->sheet_window = gdk_window_new(gtk_widget_get_window(widget),
-                                       &attributes, attributes_mask);
-  gdk_window_set_user_data(sheet->sheet_window, sheet);
+  sheet->sheet_window = gdk_window_new(window, &attributes, attributes_mask);
 
-  gdk_window_set_background(sheet->sheet_window,
-                            &(gtk_widget_get_style(widget)->white));
+  gdk_window_set_user_data(sheet->sheet_window, sheet);
+  gdk_window_set_background(sheet->sheet_window, &(gtk_widget_get_style(widget)->white));
   gdk_window_show(sheet->sheet_window);
 
   /* backing_pixmap */
@@ -6184,7 +6182,7 @@ gtk_sheet_realize_handler(GtkWidget *widget)
   if (sheet->xor_gc)
     g_object_unref(sheet->xor_gc);
 
-  sheet->xor_gc = gdk_gc_new_with_values(gtk_widget_get_window(widget),
+  sheet->xor_gc = gdk_gc_new_with_values(window,
                                          &values,
                                          GDK_GC_FOREGROUND |
                                          GDK_GC_FUNCTION |
