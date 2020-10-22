@@ -11300,7 +11300,6 @@ gtk_sheet_key_press_handler(GtkWidget *widget, GdkEventKey *key)
     return (FALSE);
 }
 
-
 /*!
  * _gtk_sheet_move_cursor:
  * \param sheet:  the sheet
@@ -12429,7 +12428,6 @@ static void create_sheet_entry(GtkSheet *sheet, GType new_entry_type)
 
     gtk_widget_show(sheet->sheet_entry);
 }
-
 
 /*!
  * gtk_sheet_get_entry_type:
@@ -15642,7 +15640,6 @@ gtk_sheet_forall_handler(GtkContainer *container,
       g_object_unref(sheet->sheet_entry);
     }
 }
-
 
 static void gtk_sheet_position_children(GtkSheet *sheet)
 {
