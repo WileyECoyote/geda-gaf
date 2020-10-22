@@ -8541,8 +8541,7 @@ static void gtk_sheet_entry_changed_handler(GtkWidget *widget, void *data)
 }
 
 
-static int
-gtk_sheet_deactivate_cell(GtkSheet *sheet)
+static int gtk_sheet_deactivate_cell(GtkSheet *sheet)
 {
     int veto = TRUE;
     int row, col;
@@ -15765,8 +15764,7 @@ gtk_sheet_realize_child(GtkSheet *sheet, GtkSheetChild *child)
  *
  * returns: the #GtkSheetChild attached to @row,@col or NULL
  */
-const GtkSheetChild *
-gtk_sheet_get_child_at(GtkSheet *sheet, int row, int col)
+const GtkSheetChild *gtk_sheet_get_child_at(GtkSheet *sheet, int row, int col)
 {
     GList *children;
 
@@ -15795,8 +15793,7 @@ gtk_sheet_get_child_at(GtkSheet *sheet, int row, int col)
  *
  * gtk_widget_hide(child)
  */
-void
-_gtk_sheet_child_hide(GtkSheetChild *child)
+void _gtk_sheet_child_hide(GtkSheetChild *child)
 {
     g_return_if_fail(child != NULL);
     gtk_widget_hide(child->widget);
@@ -15808,8 +15805,7 @@ _gtk_sheet_child_hide(GtkSheetChild *child)
  *
  * gtk_widget_show(child)
  */
-void
-_gtk_sheet_child_show(GtkSheetChild *child)
+void _gtk_sheet_child_show(GtkSheetChild *child)
 {
     g_return_if_fail(child != NULL);
     gtk_widget_show(child->widget);
