@@ -6046,6 +6046,7 @@ gtk_sheet_realize_handler(GtkWidget *widget)
   GtkSheet      *sheet;
   GdkWindowAttr  attributes;
   GdkColormap   *colormap;
+  GdkWindow     *window;
   GList         *children;
   GtkAllocation  allocation;
   GdkGCValues    values;
@@ -6092,18 +6093,17 @@ gtk_sheet_realize_handler(GtkWidget *widget)
   attributes.cursor = gdk_cursor_new(GDK_TOP_LEFT_ARROW);
 
   /* main window */
-  gtk_widget_set_window(widget,
-                        gdk_window_new(gtk_widget_get_parent_window(widget),
-                                       &attributes, attributes_mask));
+  window = gtk_widget_get_parent_window(widget);
+  window = gdk_window_new(window, &attributes, attributes_mask);
 
-  gdk_window_set_user_data(gtk_widget_get_window(widget), sheet);
+  gtk_widget_set_window(widget, window);
+
+  gdk_window_set_user_data(window, sheet);
 
   gtk_widget_set_style(widget,
-                       gtk_style_attach(gtk_widget_get_style(widget),
-                                        gtk_widget_get_window(widget)));
+                       gtk_style_attach(gtk_widget_get_style(widget), window));
 
-  gtk_style_set_background(gtk_widget_get_style(widget),
-                           gtk_widget_get_window(widget),
+  gtk_style_set_background(gtk_widget_get_style(widget), window,
                            GTK_STATE_NORMAL);
 
   attributes.x = 0;
