@@ -6108,8 +6108,9 @@ gtk_sheet_realize_handler(GtkWidget *widget)
 
   attributes.x = 0;
 
-  if (sheet->row_titles_visible)
+  if (sheet->row_titles_visible) {
     attributes.x = sheet->row_title_area.width;
+  }
 
   attributes.y = 0;
   attributes.width = sheet->column_title_area.width;
@@ -6125,8 +6126,9 @@ gtk_sheet_realize_handler(GtkWidget *widget)
   attributes.x = 0;
   attributes.y = 0;
 
-  if (sheet->column_titles_visible)
+  if (sheet->column_titles_visible) {
     attributes.y = sheet->column_title_area.height;
+  }
 
   attributes.width = sheet->row_title_area.width;
   attributes.height = sheet->row_title_area.height;
@@ -6208,13 +6210,17 @@ gtk_sheet_realize_handler(GtkWidget *widget)
    * gtk_sheet_activate_cell(sheet, sheet->active_cell.row, sheet->active_cell.col);
    */
 
-  if (!sheet->cursor_drag)
+  if (!sheet->cursor_drag) {
     sheet->cursor_drag = gdk_cursor_new(GDK_PLUS);
+  }
 
-  if (sheet->column_titles_visible)
+  if (sheet->column_titles_visible) {
     gdk_window_show(sheet->column_title_window);
-  if (sheet->row_titles_visible)
+  }
+
+  if (sheet->row_titles_visible) {
     gdk_window_show(sheet->row_title_window);
+  }
 
   size_allocate_row_title_buttons(sheet);
   _gtk_sheet_column_buttons_size_allocate(sheet);
