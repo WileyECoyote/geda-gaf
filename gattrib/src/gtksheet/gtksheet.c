@@ -15417,136 +15417,135 @@ void gtk_sheet_move_child(GtkSheet *sheet, GtkWidget *widget, int x, int y)
   g_warning("Widget must be a GtkSheet child");
 }
 
-static void
-gtk_sheet_position_child(GtkSheet *sheet, GtkSheetChild *child)
+static void gtk_sheet_position_child(GtkSheet *sheet, GtkSheetChild *child)
 {
-    GtkRequisition child_requisition;
-    GtkAllocation child_allocation;
-    //int xoffset = 0;
-    //int yoffset = 0;
-    //int x = 0, y = 0;
-    GdkRectangle area;
+  GtkRequisition child_requisition;
+  GtkAllocation child_allocation;
+  //int xoffset = 0;
+  //int yoffset = 0;
+  //int x = 0, y = 0;
+  GdkRectangle area;
 
-    /* PR#99118 - we cannot reposition all children while scrolling because
-       with many offside rows it will consume lots of CPU and incredibly
-       slow down scrolling.
+  /* PR#99118 - we cannot reposition all children while scrolling because
+   *      with many offside rows it will consume lots of CPU and incredibly
+   *      slow down scrolling.
+   *
+   *      If we do not reposition all childs, we have to hide them whenn going
+   *      off screen, in order not to stray around. We're using unmap/map here
+   *      in order to leave hide/show available for the application
+   */
 
-       If we do not reposition all childs, we have to hide them whenn going
-       off screen, in order not to stray around. We're using unmap/map here
-       in order to leave hide/show available for the application
-       */
+  if (child->attached_to_cell) {
 
-    if (child->attached_to_cell) {
-
-      if ((child->row < MIN_VIEW_ROW(sheet) || child->row > MAX_VIEW_ROW(sheet))
-        || (child->col < MIN_VIEW_COLUMN(sheet) || child->col > MAX_VIEW_COLUMN(sheet))
-      )
-      {
-        gtk_widget_unmap(child->widget);
-        return;
-      }
-      if (gtk_widget_get_realized(child->widget)
-        && !gtk_widget_get_mapped(child->widget))
-      {
-        gtk_widget_map(child->widget);
-      }
+    if ((child->row < MIN_VIEW_ROW(sheet) || child->row > MAX_VIEW_ROW(sheet))
+      || (child->col < MIN_VIEW_COLUMN(sheet) || child->col > MAX_VIEW_COLUMN(sheet))
+    )
+    {
+      gtk_widget_unmap(child->widget);
+      return;
     }
+    if (gtk_widget_get_realized(child->widget)
+      && !gtk_widget_get_mapped(child->widget))
+    {
+      gtk_widget_map(child->widget);
+    }
+  }
 
-    gtk_widget_get_child_requisition(child->widget, &child_requisition);
-/*
-    if (sheet->column_titles_visible)
-      yoffset = sheet->column_title_area.height;
+  gtk_widget_get_child_requisition(child->widget, &child_requisition);
+  /*
+   *   if (sheet->column_titles_visible)
+   *     yoffset = sheet->column_title_area.height;
+   *
+   *   if (sheet->row_titles_visible)
+   *     xoffset = sheet->row_title_area.width;
+   */
+  if (child->attached_to_cell) {
 
-    if (sheet->row_titles_visible)
-      xoffset = sheet->row_title_area.width;
-*/
-    if (child->attached_to_cell) {
+    gtk_sheet_get_cell_area(sheet, child->row, child->col, &area);
 
-      gtk_sheet_get_cell_area(sheet, child->row, child->col, &area);
+    child->x = area.x + child->xpadding;
+    child->y = area.y + child->ypadding;
 
-      child->x = area.x + child->xpadding;
-      child->y = area.y + child->ypadding;
+    if (!child->floating) {
 
-      if (!child->floating) {
-
-        if (child_requisition.width + 2 * child->xpadding <= COLPTR(sheet, child->col)->width)
-        {
-          if (child->xfill) {
-            child_requisition.width = child_allocation.width =
-            COLPTR(sheet, child->col)->width - 2 * child->xpadding;
-          }
-          else {
-
-            if (child->xexpand) {
-
-              child->x = area.x + COLPTR(sheet, child->col)->width / 2 -
-              child_requisition.width / 2;
-            }
-            child_allocation.width = child_requisition.width;
-          }
+      if (child_requisition.width + 2 * child->xpadding <= COLPTR(sheet, child->col)->width)
+      {
+        if (child->xfill) {
+          child_requisition.width = child_allocation.width =
+          COLPTR(sheet, child->col)->width - 2 * child->xpadding;
         }
         else {
 
-          if (!child->xshrink) {
+          if (child->xexpand) {
 
-#if GTK_SHEET_DEBUG_SIZE > 0
-            fprintf(stderr,"gtk_sheet_position_child[%d]: set width %d",
-            child->col, child_requisition.width + 2 * child->xpadding);
-#endif
-        gtk_sheet_set_column_width(sheet,
-                                   child->col, child_requisition.width + 2 * child->xpadding);
+            child->x = area.x + COLPTR(sheet, child->col)->width / 2 -
+            child_requisition.width / 2;
           }
-          child_allocation.width = COLPTR(sheet, child->col)->width - 2 * child->xpadding;
-        }
-
-        if (child_requisition.height + 2 * child->ypadding <= sheet->row[child->row].height)
-        {
-          if (child->yfill) {
-
-            child_requisition.height = child_allocation.height =
-            sheet->row[child->row].height - 2 * child->ypadding;
-          }
-          else {
-
-            if (child->yexpand)
-            {
-              child->y = area.y + sheet->row[child->row].height / 2 -
-              child_requisition.height / 2;
-            }
-            child_allocation.height = child_requisition.height;
-          }
-        }
-        else {
-
-          if (!child->yshrink)
-          {
-            gtk_sheet_set_row_height(sheet, child->row,
-                                     child_requisition.height + 2 * child->ypadding);
-          }
-          child_allocation.height = sheet->row[child->row].height - 2 * child->ypadding;
+          child_allocation.width = child_requisition.width;
         }
       }
       else {
 
-        child_allocation.width = child_requisition.width;
-        child_allocation.height = child_requisition.height;
+        if (!child->xshrink) {
+
+          #if GTK_SHEET_DEBUG_SIZE > 0
+          fprintf(stderr,"gtk_sheet_position_child[%d]: set width %d",
+                  child->col, child_requisition.width + 2 * child->xpadding);
+          #endif
+          gtk_sheet_set_column_width(sheet,
+                                     child->col, child_requisition.width + 2 * child->xpadding);
+        }
+        child_allocation.width = COLPTR(sheet, child->col)->width - 2 * child->xpadding;
       }
 
-      //x = child_allocation.x = child->x + xoffset;
-      //y = child_allocation.y = child->y + yoffset;
-    }
-    else { /* not attached_to_cell */
+      if (child_requisition.height + 2 * child->ypadding <= sheet->row[child->row].height)
+      {
+        if (child->yfill) {
 
-      //x = child_allocation.x  = child->x + sheet->hoffset + xoffset;
-      //x = child_allocation.x  = child->x + xoffset;
-      //y = child_allocation.y  = child->y + sheet->voffset + yoffset;
-      //y = child_allocation.y  = child->y + yoffset;
-      child_allocation.width  = child_requisition.width;
+          child_requisition.height = child_allocation.height =
+          sheet->row[child->row].height - 2 * child->ypadding;
+        }
+        else {
+
+          if (child->yexpand)
+          {
+            child->y = area.y + sheet->row[child->row].height / 2 -
+            child_requisition.height / 2;
+          }
+          child_allocation.height = child_requisition.height;
+        }
+      }
+      else {
+
+        if (!child->yshrink)
+        {
+          gtk_sheet_set_row_height(sheet, child->row,
+                                   child_requisition.height + 2 * child->ypadding);
+        }
+        child_allocation.height = sheet->row[child->row].height - 2 * child->ypadding;
+      }
+    }
+    else {
+
+      child_allocation.width = child_requisition.width;
       child_allocation.height = child_requisition.height;
     }
 
-    gtk_widget_size_allocate(child->widget, &child_allocation);
-    gtk_widget_queue_draw(child->widget);
+    //x = child_allocation.x = child->x + xoffset;
+    //y = child_allocation.y = child->y + yoffset;
+  }
+  else { /* not attached_to_cell */
+
+    //x = child_allocation.x  = child->x + sheet->hoffset + xoffset;
+    //x = child_allocation.x  = child->x + xoffset;
+    //y = child_allocation.y  = child->y + sheet->voffset + yoffset;
+    //y = child_allocation.y  = child->y + yoffset;
+    child_allocation.width  = child_requisition.width;
+    child_allocation.height = child_requisition.height;
+  }
+
+  gtk_widget_size_allocate(child->widget, &child_allocation);
+  gtk_widget_queue_draw(child->widget);
 }
 
 /*
@@ -15578,7 +15577,7 @@ gtk_sheet_forall_handler(GtkContainer *container,
 
 #if GTK_SHEET_DEBUG_CHILDREN > 1
     fprintf(stderr,"gtk_sheet_forall_handler: Sheet <%s>\n",
-	gtk_widget_get_name((GtkWidget*)sheet));
+            gtk_widget_get_name((GtkWidget*)sheet));
 #endif
 
     while (children) {
@@ -15592,8 +15591,7 @@ gtk_sheet_forall_handler(GtkContainer *container,
       fprintf(stderr,"gtk_sheet_forall_handler: L1 %p\n", child->widget);
 #endif
 
-      if (G_IS_OBJECT(child->widget) && GTK_IS_WIDGET(child->widget))
-      {
+      if (G_IS_OBJECT(child->widget) && GTK_IS_WIDGET(child->widget)) {
 
 #if GTK_SHEET_DEBUG_CHILDREN > 1
         fprintf(stderr,"gtk_sheet_forall_handler: L2 %p\n", child->widget);
@@ -15605,7 +15603,7 @@ gtk_sheet_forall_handler(GtkContainer *container,
 
 #if GTK_SHEET_DEBUG_CHILDREN > 1
     fprintf(stderr,"gtk_sheet_forall_handler: B1 %p %d\n",
-	sheet->button, GTK_IS_WIDGET(sheet->button));
+            sheet->button, GTK_IS_WIDGET(sheet->button));
 #endif
 
     if (sheet->button && GTK_IS_WIDGET(sheet->button)) {
@@ -15642,8 +15640,7 @@ gtk_sheet_forall_handler(GtkContainer *container,
 }
 
 
-static void
-gtk_sheet_position_children(GtkSheet *sheet)
+static void gtk_sheet_position_children(GtkSheet *sheet)
 {
   GList *children = sheet->children;
 
@@ -15733,24 +15730,23 @@ gtk_sheet_remove_handler(GtkContainer *container, GtkWidget *widget)
 
 }
 
-static void
-gtk_sheet_realize_child(GtkSheet *sheet, GtkSheetChild *child)
+static void gtk_sheet_realize_child(GtkSheet *sheet, GtkSheetChild *child)
 {
-    GtkWidget *widget;
+  GtkWidget *widget;
 
-    widget = (GtkWidget*)sheet;
+  widget = (GtkWidget*)sheet;
 
-    if (gtk_widget_get_realized(widget))
-    {
-	if (child->row == -1)
-	    gtk_widget_set_parent_window(child->widget, sheet->column_title_window);
-	else if (child->col == -1)
-	    gtk_widget_set_parent_window(child->widget, sheet->row_title_window);
-	else
-	    gtk_widget_set_parent_window(child->widget, sheet->sheet_window);
-    }
+  if (gtk_widget_get_realized(widget)) {
 
-    gtk_widget_set_parent(child->widget, widget);
+    if (child->row == -1)
+      gtk_widget_set_parent_window(child->widget, sheet->column_title_window);
+    else if (child->col == -1)
+      gtk_widget_set_parent_window(child->widget, sheet->row_title_window);
+    else
+      gtk_widget_set_parent_window(child->widget, sheet->sheet_window);
+  }
+
+  gtk_widget_set_parent(child->widget, widget);
 }
 
 
@@ -15766,25 +15762,26 @@ gtk_sheet_realize_child(GtkSheet *sheet, GtkSheetChild *child)
  */
 const GtkSheetChild *gtk_sheet_get_child_at(GtkSheet *sheet, int row, int col)
 {
-    GList *children;
+  GList *children;
 
-    g_return_val_if_fail(GTK_IS_SHEET(sheet), NULL);
+  g_return_val_if_fail(GTK_IS_SHEET(sheet), NULL);
 
-    children = sheet->children;
+  children = sheet->children;
 
-    while (children)
-    {
-	const GtkSheetChild *child = (GtkSheetChild *)children->data;
+  while (children) {
 
-	if (child->attached_to_cell)
-	{
-	    if (child->row == row && child->col == col)
-		return (child);
-	}
+    const GtkSheetChild *child = (GtkSheetChild *)children->data;
 
-	children = children->next;
+    if (child->attached_to_cell) {
+
+      if (child->row == row && child->col == col)
+        return (child);
     }
-    return (NULL);
+
+    children = children->next;
+  }
+
+  return (NULL);
 }
 
 /*!
