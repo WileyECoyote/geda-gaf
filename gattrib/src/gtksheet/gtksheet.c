@@ -6055,7 +6055,7 @@ gtk_sheet_realize_handler(GtkWidget *widget)
   sheet = (GtkSheet*)widget;
 
   /* we need to recalc all positions, because row/column visibility
-   *      may have changed between adding rows/cols and realisation
+   *      may have changed between adding rows/cols and realization
    *      PR#92947
    */
   _gtk_sheet_recalc_top_ypixels(sheet);
