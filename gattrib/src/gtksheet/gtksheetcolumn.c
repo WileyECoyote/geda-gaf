@@ -636,8 +636,7 @@ static void gtk_sheet_column_class_init_properties(GObjectClass *gobject_class)
 
 }
 
-static void
-gtk_sheet_column_init(GtkSheetColumn *column)
+static void gtk_sheet_column_init(GtkSheetColumn *column)
 {
     column->sheet = NULL;
     column->title = NULL;
@@ -683,8 +682,7 @@ gtk_sheet_column_init(GtkSheetColumn *column)
  *
  * @param gobject the #GtkSheetColumn
  */
-static void
-gtk_sheet_column_finalize_handler(GObject *gobject)
+static void gtk_sheet_column_finalize_handler(GObject *gobject)
 {
     GtkSheetColumn *column = GTK_SHEET_COLUMN(gobject);
 
@@ -711,8 +709,7 @@ gtk_sheet_column_finalize_handler(GObject *gobject)
     G_OBJECT_CLASS(sheet_column_parent_class)->finalize(gobject);
 }
 
-static void
-gtk_sheet_column_class_init(GtkSheetColumnClass *klass)
+static void gtk_sheet_column_class_init(GtkSheetColumnClass *klass)
 {
     GObjectClass *gobject_class = G_OBJECT_CLASS(klass);
 
@@ -757,8 +754,7 @@ gtk_sheet_column_set_buildable_property(GtkBuildable  *buildable,
 }
 
 
-static void
-gtk_sheet_column_buildable_init(GtkBuildableIface *iface)
+static void gtk_sheet_column_buildable_init(GtkBuildableIface *iface)
 {
 #if GTK_SHEET_COL_DEBUG_BUILDER > 0
     g_debug("gtk_sheet_column_buildable_init");
@@ -770,8 +766,7 @@ gtk_sheet_column_buildable_init(GtkBuildableIface *iface)
 
 /* Type initialization */
 
-GType
-gtk_sheet_column_get_type(void)
+GType gtk_sheet_column_get_type(void)
 {
     static GType sheet_column_type = 0;
 
@@ -838,8 +833,7 @@ GtkSheetColumn *gtk_sheet_column_get(GtkSheet *sheet, int col)
  *
  * \returns column index or -1
  */
-int
-gtk_sheet_column_get_index(GtkSheetColumn *colobj)
+int gtk_sheet_column_get_index(GtkSheetColumn *colobj)
 {
     GtkSheet *sheet = colobj->sheet;
     int i;
@@ -863,8 +857,7 @@ gtk_sheet_column_get_index(GtkSheetColumn *colobj)
  *
  * \returns index of rightmost visible column or -1 (if none)
  */
-static inline int
-gtk_sheet_column_rightmost_visible(GtkSheet *sheet)
+static inline int gtk_sheet_column_rightmost_visible(GtkSheet *sheet)
 {
     int i, res = -1;
 
@@ -886,8 +879,7 @@ gtk_sheet_column_rightmost_visible(GtkSheet *sheet)
  *
  * \returns pixel offset
  */
-int
-_gtk_sheet_column_left_xpixel(GtkSheet *sheet, int col)
+int _gtk_sheet_column_left_xpixel(GtkSheet *sheet, int col)
 {
     if (col < 0 || col > sheet->maxcol) {
       return (sheet->hoffset);
@@ -906,8 +898,7 @@ _gtk_sheet_column_left_xpixel(GtkSheet *sheet, int col)
  *
  * \returns pixel offset
  */
-int
-_gtk_sheet_column_right_xpixel(GtkSheet *sheet, int col)
+int _gtk_sheet_column_right_xpixel(GtkSheet *sheet, int col)
 {
     int xpixel = _gtk_sheet_column_left_xpixel(sheet, col);
     if (0 <= col && col <= sheet->maxcol) {
