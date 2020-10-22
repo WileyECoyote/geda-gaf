@@ -5005,7 +5005,7 @@ void gtk_sheet_rows_set_resizable(GtkSheet *sheet, int resizable)
   sheet->rows_resizable = resizable;
 }
 
-/**
+/*!
  * gtk_sheet_rows_resizable:
  * \param sheet: a #GtkSheet.
  *
@@ -5021,7 +5021,7 @@ int gtk_sheet_rows_resizable(GtkSheet *sheet)
 }
 
 
-/**
+/*!
  * gtk_sheet_row_visible:
  * \param sheet: a #GtkSheet.
  * \param row: row number
@@ -5042,7 +5042,7 @@ int gtk_sheet_row_visible(GtkSheet *sheet, int row)
   return (GTK_SHEET_ROW_IS_VISIBLE(ROWPTR(sheet, row)));
 }
 
-/**
+/*!
  * gtk_sheet_row_set_visibility:
  * \param sheet: a #GtkSheet.
  * \param row: row number
@@ -5089,7 +5089,7 @@ void gtk_sheet_row_set_visibility(GtkSheet *sheet, int row, int visible)
 }
 
 
-/**
+/*!
  * gtk_sheet_get_tooltip_markup:
  * \param sheet:  a #GtkSheet.
  *
@@ -5105,7 +5105,7 @@ char *gtk_sheet_get_tooltip_markup(GtkSheet *sheet)
     return (gtk_widget_get_tooltip_markup((GtkWidget*)sheet));
 }
 
-/**
+/*!
  * gtk_sheet_set_tooltip_markup:
  * \param sheet:  a #GtkSheet.
  * \param markup:  	the contents of the tooltip for widget, or NULL.
@@ -5121,7 +5121,7 @@ void gtk_sheet_set_tooltip_markup(GtkSheet *sheet,
   gtk_widget_set_tooltip_markup((GtkWidget*)sheet, markup);
 }
 
-/**
+/*!
  * gtk_sheet_get_tooltip_text:
  * \param sheet:  a #GtkSheet.
  *
@@ -5137,7 +5137,7 @@ char *gtk_sheet_get_tooltip_text(GtkSheet *sheet)
   return (gtk_widget_get_tooltip_text((GtkWidget*)sheet));
 }
 
-/**
+/*!
  * gtk_sheet_set_tooltip_text:
  * \param sheet:  a #GtkSheet.
  * \param text:  the contents of the tooltip for widget
@@ -5151,7 +5151,7 @@ void gtk_sheet_set_tooltip_text(GtkSheet *sheet, const char *text)
   gtk_widget_set_tooltip_text((GtkWidget*)sheet, text);
 }
 
-/**
+/*!
  * gtk_sheet_row_get_tooltip_markup:
  * \param sheet:  a #GtkSheet.
  * \param row: row index
@@ -5172,7 +5172,7 @@ char *gtk_sheet_row_get_tooltip_markup(GtkSheet *sheet,
   return (g_strdup(ROWPTR(sheet, row)->tooltip_markup));
 }
 
-/**
+/*!
  * gtk_sheet_row_set_tooltip_markup:
  * \param sheet:  a #GtkSheet.
  * \param row: row index
@@ -5195,7 +5195,7 @@ void gtk_sheet_row_set_tooltip_markup(GtkSheet *sheet,
   sheet->row[row].tooltip_markup = g_strdup(markup);
 }
 
-/**
+/*!
  * gtk_sheet_row_get_tooltip_text:
  * \param sheet:  a #GtkSheet.
  * \param row: row index
@@ -5215,7 +5215,7 @@ char *gtk_sheet_row_get_tooltip_text(GtkSheet *sheet, const int row)
   return (g_strdup(ROWPTR(sheet, row)->tooltip_text));
 }
 
-/**
+/*!
  * gtk_sheet_row_set_tooltip_text:
  * \param sheet:  a #GtkSheet.
  * \param row: row index
@@ -5237,7 +5237,7 @@ void gtk_sheet_row_set_tooltip_text(GtkSheet *sheet,
   sheet->row[row].tooltip_text = g_strdup(text);
 }
 
-/**
+/*!
  * gtk_sheet_cell_get_tooltip_markup:
  * \param sheet:  a #GtkSheet.
  * \param row: row index
@@ -5270,7 +5270,7 @@ char *gtk_sheet_cell_get_tooltip_markup(GtkSheet *sheet, const int row, const in
   return (g_strdup(sheet->data[row][col]->tooltip_markup));
 }
 
-/**
+/*!
  * gtk_sheet_cell_set_tooltip_markup:
  * \param sheet:  a #GtkSheet.
  * \param row: row index
@@ -5305,7 +5305,7 @@ void gtk_sheet_cell_set_tooltip_markup(GtkSheet *sheet,
   cell->tooltip_markup = g_strdup(markup);
 }
 
-/**
+/*!
  * gtk_sheet_cell_get_tooltip_text:
  * \param sheet:  a #GtkSheet.
  * \param row: row index
@@ -5338,7 +5338,7 @@ char *gtk_sheet_cell_get_tooltip_text(GtkSheet *sheet, const int row, const int 
   return (g_strdup(sheet->data[row][col]->tooltip_text));
 }
 
-/**
+/*!
  * gtk_sheet_cell_set_tooltip_text:
  * \param sheet:  a #GtkSheet.
  * \param row: row index
@@ -5372,7 +5372,7 @@ void gtk_sheet_cell_set_tooltip_text(GtkSheet *sheet,
 }
 
 
-/**
+/*!
  * gtk_sheet_select_row:
  * \param sheet: a #GtkSheet.
  * \param row: row number
@@ -5410,7 +5410,7 @@ void gtk_sheet_select_row(GtkSheet *sheet, int row)
   gtk_sheet_real_select_range(sheet, NULL);
 }
 
-/**
+/*!
  * gtk_sheet_select_column:
  * \param sheet: a #GtkSheet.
  * \param column: column number
@@ -5449,7 +5449,7 @@ void gtk_sheet_select_column(GtkSheet *sheet, int column)
   gtk_sheet_real_select_range(sheet, NULL);
 }
 
-/**
+/*!
  * gtk_sheet_clip_range:
  * \param sheet: a #GtkSheet.
  * \param clip_range: #GtkSheetRange to be saved
@@ -5476,7 +5476,7 @@ void gtk_sheet_clip_range(GtkSheet *sheet, const GtkSheetRange *clip_range)
   g_signal_emit(G_OBJECT(sheet), sheet_signals[CLIP_RANGE], 0, &sheet->clip_range);
 }
 
-/**
+/*!
  * gtk_sheet_unclip_range:
  * \param sheet: a #GtkSheet.
  *
@@ -5499,7 +5499,7 @@ void gtk_sheet_unclip_range(GtkSheet *sheet)
   }
 }
 
-/**
+/*!
  * gtk_sheet_in_clip:
  * \param sheet: a #GtkSheet.
  *
@@ -5692,7 +5692,7 @@ static int gtk_sheet_cell_isvisible(GtkSheet *sheet, int row, int column)
   return (gtk_sheet_range_isvisible(sheet, range));
 }
 
-/**
+/*!
  * gtk_sheet_get_visible_range:
  * \param sheet: a #GtkSheet.
  * \param range: a selected #GtkSheetRange
@@ -5712,7 +5712,7 @@ void gtk_sheet_get_visible_range(GtkSheet *sheet, GtkSheetRange *range)
   range->coli = MAX_VIEW_COLUMN(sheet);
 }
 
-/**
+/*!
  * gtk_sheet_get_vadjustment:
  * \param sheet: a #GtkSheet.
  *
@@ -5728,7 +5728,7 @@ gtk_sheet_get_vadjustment(GtkSheet *sheet)
   return (sheet->vadjustment);
 }
 
-/**
+/*!
  * gtk_sheet_get_hadjustment:
  * \param sheet: a #GtkSheet.
  *
@@ -5743,7 +5743,7 @@ GtkAdjustment *gtk_sheet_get_hadjustment(GtkSheet *sheet)
   return (sheet->hadjustment);
 }
 
-/**
+/*!
  * gtk_sheet_set_vadjustment:
  * \param sheet: a #GtkSheet.
  * \param adjustment: a #GtkAdjustment
@@ -5796,7 +5796,7 @@ void gtk_sheet_set_vadjustment(GtkSheet *sheet, GtkAdjustment *adjustment)
   sheet->old_vadjustment = gtk_adjustment_get_value(sheet->vadjustment);
 }
 
-/**
+/*!
  * gtk_sheet_set_hadjustment:
  * \param sheet: a #GtkSheet.
  * \param adjustment: a #GtkAdjustment
@@ -5850,7 +5850,7 @@ void gtk_sheet_set_hadjustment(GtkSheet *sheet, GtkAdjustment *adjustment)
   sheet->old_hadjustment = gtk_adjustment_get_value(sheet->hadjustment);
 }
 
-/**
+/*!
  * gtk_sheet_set_scroll_adjustments:
  * \param sheet: a #GtkSheet.
  * \param hadjustment: a #GtkAdjustment
@@ -7129,7 +7129,7 @@ static void _cell_draw_label(GtkSheet *sheet, int row, int col)
 
 
 
-/**
+/*!
  * _gtk_sheet_range_draw:
  * \param sheet:  the #GtkSheet
  * \param range:  the #GtkSheetRange or NULL
@@ -7658,7 +7658,7 @@ gtk_sheet_cell_new(void)
     return (cell);
 }
 
-/**
+/*!
  * gtk_sheet_set_cell_text:
  * \param sheet: a #GtkSheet.
  * \param row: row_number
@@ -7684,7 +7684,7 @@ gtk_sheet_set_cell_text(GtkSheet *sheet, int row, int col, const char *text)
     gtk_sheet_set_cell(sheet, row, col, attributes.justification, text);
 }
 
-/**
+/*!
  * gtk_sheet_set_cell:
  * \param sheet: a #GtkSheet.
  * \param row: row_number
@@ -7835,7 +7835,7 @@ void gtk_sheet_set_cell(GtkSheet *sheet, int row, int col,
 #endif
 }
 
-/**
+/*!
  * gtk_sheet_cell_clear:
  * \param sheet: a #GtkSheet.
  * \param row: row_number
@@ -7872,7 +7872,7 @@ gtk_sheet_cell_clear(GtkSheet *sheet, int row, int column)
   }
 }
 
-/**
+/*!
  * gtk_sheet_cell_delete:
  * \param sheet: a #GtkSheet.
  * \param row: row_number
@@ -7959,7 +7959,7 @@ gtk_sheet_real_cell_clear(GtkSheet *sheet, int row, int column, int delete)
   }
 }
 
-/**
+/*!
  * gtk_sheet_range_clear:
  * \param sheet: a #GtkSheet.
  * \param range: a #GtkSheetRange
@@ -7974,7 +7974,7 @@ gtk_sheet_range_clear(GtkSheet *sheet, const GtkSheetRange *range)
     gtk_sheet_real_range_clear(sheet, range, FALSE);
 }
 
-/**
+/*!
  * gtk_sheet_range_delete:
  * \param sheet: a #GtkSheet.
  * \param range: a #GtkSheetRange
@@ -8025,7 +8025,7 @@ gtk_sheet_real_range_clear(GtkSheet *sheet, const GtkSheetRange *range,
   _gtk_sheet_range_draw(sheet, NULL, TRUE);
 }
 
-/**
+/*!
  * gtk_sheet_cell_get_text:
  * \param sheet: a #GtkSheet
  * \param row: row number
@@ -8065,7 +8065,7 @@ gtk_sheet_cell_get_text (GtkSheet *sheet, int row, int col)
   return (sheet->data[row][col]->text);
 }
 
-/**
+/*!
  * gtk_sheet_link_cell:
  * \param sheet: a #GtkSheet
  * \param row: row number
@@ -8089,7 +8089,7 @@ void gtk_sheet_link_cell(GtkSheet *sheet, int row, int col, void *link)
     sheet->data[row][col]->link = link;
 }
 
-/**
+/*!
  * gtk_sheet_get_link:
  * \param sheet: a #GtkSheet
  * \param row: row number
@@ -8119,7 +8119,7 @@ gtk_sheet_get_link(GtkSheet *sheet, int row, int col)
     return (sheet->data[row][col]->link);
 }
 
-/**
+/*!
  * gtk_sheet_remove_link:
  * \param sheet: a #GtkSheet
  * \param row: row number
@@ -8145,7 +8145,7 @@ gtk_sheet_remove_link(GtkSheet *sheet, int row, int col)
 	sheet->data[row][col]->link = NULL;
 }
 
-/**
+/*!
  * gtk_sheet_cell_get_state:
  * \param sheet: a #GtkSheet
  * \param row: row number
@@ -8194,7 +8194,7 @@ gtk_sheet_cell_get_state(GtkSheet *sheet, int row, int col)
     return (GTK_STATE_NORMAL);
 }
 
-/**
+/*!
  * gtk_sheet_get_pixel_info:
  * \param sheet: a #GtkSheet
  * \param window: base window for coordinates (null)
@@ -8313,7 +8313,7 @@ gtk_sheet_get_pixel_info(GtkSheet *sheet,
     return (TRUE);
 }
 
-/**
+/*!
  * gtk_sheet_get_cell_area:
  * \param sheet: a #GtkSheet
  * \param row: row number
@@ -8342,7 +8342,7 @@ gtk_sheet_get_cell_area(GtkSheet *sheet, int row, int col, GdkRectangle *area)
     return (TRUE);
 }
 
-/**
+/*!
  * gtk_sheet_set_active_cell:
  * \param sheet: a #GtkSheet
  * \param row: row number
@@ -8440,7 +8440,7 @@ gtk_sheet_set_active_cell(GtkSheet *sheet, int row, int col)
     return (TRUE);
 }
 
-/**
+/*!
  * gtk_sheet_get_active_cell:
  * \param sheet: a #GtkSheet
  * \param row: row number
@@ -8458,7 +8458,7 @@ void gtk_sheet_get_active_cell(GtkSheet *sheet, int *row, int *column)
     *column = sheet->active_cell.col;
 }
 
-/**
+/*!
  * gtk_sheet_set_tab_direction:
  * \param sheet: a #GtkSheet
  * \param dir: the primary tab direction
@@ -8610,7 +8610,7 @@ gtk_sheet_deactivate_cell(GtkSheet *sheet)
     return (TRUE);
 }
 
-/**
+/*!
  * gtk_sheet_hide_active_cell:
  *
  * \param sheet  the #GtkSheet
@@ -8807,7 +8807,7 @@ static void _gtk_sheet_entry_preselect(GtkSheet *sheet)
   }
 }
 
-/**
+/*!
  * _gtk_sheet_entry_setup:
  * \param sheet:  the #GtkSheet
  * \param row:    row index
@@ -9600,7 +9600,7 @@ static void gtk_sheet_real_select_range(GtkSheet *sheet, GtkSheetRange *range)
     g_signal_emit(G_OBJECT(sheet), sheet_signals[SELECT_RANGE], 0, range);
 }
 
-/**
+/*!
  * gtk_sheet_select_range:
  * \param sheet: a #GtkSheet
  * \param range: a #GtkSheetRange
@@ -9652,7 +9652,7 @@ void gtk_sheet_select_range(GtkSheet *sheet, const GtkSheetRange *range)
     gtk_sheet_real_select_range(sheet, NULL);
 
 }
-/**
+/*!
  * gtk_sheet_unselect_range:
  * \param sheet: a #GtkSheet
  *
@@ -11298,7 +11298,7 @@ gtk_sheet_key_press_handler(GtkWidget *widget, GdkEventKey *key)
 }
 
 
-/**
+/*!
  * _gtk_sheet_move_cursor:
  * \param sheet:  the sheet
  * \param step:   type of movement
@@ -11915,7 +11915,7 @@ size_allocate_row_title_buttons(GtkSheet *sheet)
     _gtk_sheet_draw_button(sheet, i, -1);
 }
 
-/**
+/*!
  * gtk_sheet_recalc_top_ypixels:
  * \param sheet:  the #GtkSheet
  *
@@ -11939,7 +11939,7 @@ _gtk_sheet_recalc_top_ypixels(GtkSheet *sheet)
     }
 }
 
-/**
+/*!
  * _gtk_sheet_recalc_left_xpixels:
  * \param sheet:  the #GtkSheet
  *
@@ -11963,7 +11963,7 @@ _gtk_sheet_recalc_left_xpixels(GtkSheet *sheet)
     }
 }
 
-/**
+/*!
  * _gtk_sheet_reset_text_column:
  * \param sheet:  the #GtkSheet
  * \param start_column: left most column to start from
@@ -12045,7 +12045,7 @@ _get_entry_window_size(GtkEntry *entry,
 
 
 
-/**
+/*!
  * _gtk_sheet_entry_size_allocate:
  * \param sheet:  the #GtkSheet
  *
@@ -12428,7 +12428,7 @@ static void create_sheet_entry(GtkSheet *sheet, GType new_entry_type)
 }
 
 
-/**
+/*!
  * gtk_sheet_get_entry_type:
  * \param sheet: a #GtkSheet
  *
@@ -12444,7 +12444,7 @@ GType gtk_sheet_get_entry_type(GtkSheet *sheet)
     return (sheet->entry_type);
 }
 
-/**
+/*!
  * gtk_sheet_get_entry:
  * \param sheet: a #GtkSheet
  *
@@ -12522,7 +12522,7 @@ GtkWidget *gtk_sheet_get_entry(GtkSheet *sheet)
     return (NULL);
 }
 
-/**
+/*!
  * gtk_sheet_get_entry_widget:
  * \param sheet: a #GtkSheet
  *
@@ -12542,7 +12542,7 @@ GtkWidget *gtk_sheet_get_entry_widget(GtkSheet *sheet)
     return (sheet->sheet_entry);
 }
 
-/**
+/*!
  * gtk_sheet_get_entry_text:
  * \param sheet: a #GtkSheet
  *
@@ -12588,7 +12588,7 @@ char *gtk_sheet_get_entry_text(GtkSheet *sheet)
   return (text);
 }
 
-/**
+/*!
  * gtk_sheet_set_entry_text:
  * \param sheet: a #GtkSheet
  * \param text: the text to be set or NULL
@@ -12636,7 +12636,7 @@ void gtk_sheet_set_entry_text(GtkSheet *sheet, const char *text)
     }
 }
 
-/**
+/*!
  * gtk_sheet_set_entry_editable:
  * \param sheet: a #GtkSheet
  * \param editable: editable flag
@@ -12676,7 +12676,7 @@ void gtk_sheet_set_entry_editable(GtkSheet *sheet, const int editable)
     }
 }
 
-/**
+/*!
  * gtk_sheet_entry_select_region:
  * \param sheet: a #GtkSheet
  * \param start_pos: start of region
@@ -12716,7 +12716,7 @@ void gtk_sheet_entry_select_region(GtkSheet *sheet, int start_pos, int end_pos)
     }
 }
 
-/**
+/*!
  * gtk_sheet_entry_signal_connect_changed:
  * \param sheet: a #GtkSheet
  * \param handler: (scope notified) the signal handler
@@ -12762,7 +12762,7 @@ unsigned long gtk_sheet_entry_signal_connect_changed(GtkSheet *sheet, GCallback 
     return (handler_id);
 }
 
-/**
+/*!
  * gtk_sheet_entry_signal_disconnect_by_func:
  * \param sheet: a #GtkSheet
  * \param handler: (scope call) the signal handler
@@ -12829,7 +12829,7 @@ row_button_release(GtkSheet *sheet, int row)
     _gtk_sheet_draw_button(sheet, row, -1);
 }
 
-/**
+/*!
  * _gtk_sheet_draw_button:
  * \param sheet:  the #GtkSheet
  * \param row:    row index
@@ -13076,7 +13076,7 @@ _gtk_sheet_draw_button(GtkSheet *sheet, int row, int col)
  *   vadjustment_value_changed
  *   hadjustment_value_changed */
 
-/**
+/*!
  * _gtk_sheet_scrollbar_adjust:
  *
  * \param sheet  the #GtkSheet
@@ -13734,7 +13734,7 @@ new_row_height(GtkSheet *sheet, int row, int *y)
 }
 
 
-/**
+/*!
  * gtk_sheet_set_row_height:
  * \param sheet: a #GtkSheet.
  * \param row: row number.
@@ -13770,7 +13770,7 @@ void gtk_sheet_set_row_height(GtkSheet *sheet, int row, unsigned int height)
     g_signal_emit(G_OBJECT(sheet), sheet_signals[NEW_ROW_HEIGHT], 0, row, height);
 }
 
-/**
+/*!
  * gtk_sheet_add_column:
  * \param sheet: a #GtkSheet.
  * \param ncols: number of columns to be appended.
@@ -13794,7 +13794,7 @@ void gtk_sheet_add_column(GtkSheet *sheet, unsigned int ncols)
     _gtk_sheet_redraw_internal(sheet, TRUE, FALSE);
 }
 
-/**
+/*!
  * gtk_sheet_add_row:
  * \param sheet: a #GtkSheet.
  * \param nrows: number of rows to be appended.
@@ -13818,7 +13818,7 @@ void gtk_sheet_add_row(GtkSheet *sheet, unsigned int nrows)
     _gtk_sheet_redraw_internal(sheet, FALSE, TRUE);
 }
 
-/**
+/*!
  * gtk_sheet_insert_rows:
  * \param sheet: a #GtkSheet.
  * \param row: row number.
@@ -13859,7 +13859,7 @@ void gtk_sheet_insert_rows(GtkSheet *sheet, unsigned int row, unsigned int nrows
     _gtk_sheet_redraw_internal(sheet, FALSE, TRUE);
 }
 
-/**
+/*!
  * gtk_sheet_insert_columns:
  * \param sheet: a #GtkSheet.
  * \param col: column number.
@@ -13900,7 +13900,7 @@ void gtk_sheet_insert_columns(GtkSheet *sheet, unsigned int col, unsigned int nc
     _gtk_sheet_redraw_internal(sheet, TRUE, FALSE);
 }
 
-/**
+/*!
  * gtk_sheet_delete_rows:
  * \param sheet: a #GtkSheet.
  * \param row: row number.
@@ -13972,7 +13972,7 @@ void gtk_sheet_delete_rows(GtkSheet *sheet, unsigned int row, unsigned int nrows
   gtk_sheet_activate_cell(sheet, sheet->active_cell.row, sheet->active_cell.col);
 }
 
-/**
+/*!
  * gtk_sheet_delete_columns:
  * \param sheet: a #GtkSheet.
  * \param col: column number.
@@ -14036,7 +14036,7 @@ void gtk_sheet_delete_columns(GtkSheet *sheet, unsigned int col, unsigned int nc
     gtk_sheet_activate_cell(sheet, sheet->active_cell.row, sheet->active_cell.col);
 }
 
-/**
+/*!
  * gtk_sheet_range_set_background:
  * \param sheet: a #GtkSheet.
  * \param urange: a #GtkSheetRange.
@@ -14086,7 +14086,7 @@ void gtk_sheet_range_set_background(GtkSheet *sheet,
     }
 }
 
-/**
+/*!
  * gtk_sheet_range_set_foreground:
  * \param sheet: a #GtkSheet.
  * \param urange: a #GtkSheetRange.
@@ -14132,7 +14132,7 @@ void gtk_sheet_range_set_foreground(GtkSheet            *sheet,
 	_gtk_sheet_range_draw(sheet, &range, TRUE);
 }
 
-/**
+/*!
  * gtk_sheet_range_set_justification:
  * \param sheet: a #GtkSheet.
  * \param urange: a #GtkSheetRange.
@@ -14174,7 +14174,7 @@ void gtk_sheet_range_set_justification(GtkSheet            *sheet,
 }
 
 
-/**
+/*!
  * gtk_sheet_range_set_editable:
  * \param sheet: a #GtkSheet.
  * \param urange: a #GtkSheetRange
@@ -14209,7 +14209,7 @@ void gtk_sheet_range_set_editable(GtkSheet *sheet, const GtkSheetRange *urange, 
 	_gtk_sheet_range_draw(sheet, &range, TRUE);
 }
 
-/**
+/*!
  * gtk_sheet_range_set_visible:
  * \param sheet: a #GtkSheet.
  * \param urange: a #GtkSheetRange.
@@ -14244,7 +14244,7 @@ void gtk_sheet_range_set_visible(GtkSheet *sheet, const GtkSheetRange *urange, i
 	_gtk_sheet_range_draw(sheet, &range, TRUE);
 }
 
-/**
+/*!
  * gtk_sheet_range_set_border:
  * \param sheet: a #GtkSheet.
  * \param urange: a #GtkSheetRange where we set border style.
@@ -14292,7 +14292,7 @@ void gtk_sheet_range_set_border(GtkSheet *sheet, const GtkSheetRange *urange,
     }
 }
 
-/**
+/*!
  * gtk_sheet_range_set_border_color:
  * \param sheet: a #GtkSheet.
  * \param urange: a #GtkSheetRange where we set border color.
@@ -14330,7 +14330,7 @@ void gtk_sheet_range_set_border_color(GtkSheet            *sheet,
     }
 }
 
-/**
+/*!
  * gtk_sheet_range_set_font:
  * \param sheet: a #GtkSheet.
  * \param urange: a #GtkSheetRange where we set font_desc.
@@ -14413,7 +14413,7 @@ static void gtk_sheet_set_cell_attributes(GtkSheet *sheet, int row, int col,
     *(cell->attributes) = attributes;
 }
 
-/**
+/*!
  * gtk_sheet_get_attributes:
  * \param sheet: a #GtkSheet.
  * \param row: row number
@@ -14960,7 +14960,7 @@ static void CheckCellData(GtkSheet *sheet, const int row, const int col)
  * gtk_sheet_get_child_at
  ********************************************************************/
 
-/**
+/*!
  * gtk_sheet_put:
  * \param sheet: a #GtkSheet.
  * \param child: GtkWidget to be put
@@ -15035,7 +15035,7 @@ GtkSheetChild *gtk_sheet_put(GtkSheet *sheet, GtkWidget *child, int x, int y)
     return (child_info);
 }
 
-/**
+/*!
  * gtk_sheet_attach_floating:
  * \param sheet: a #GtkSheet.
  * \param widget: GtkWidget to be put
@@ -15064,7 +15064,7 @@ gtk_sheet_attach_floating(GtkSheet *sheet, GtkWidget *widget, int row, int col)
     child->col = col;
 }
 
-/**
+/*!
  * gtk_sheet_attach_default:
  * \param sheet: a #GtkSheet.
  * \param widget: GtkWidget to be put
@@ -15093,7 +15093,7 @@ gtk_sheet_attach_default(GtkSheet *sheet,
     gtk_sheet_attach(sheet, widget, row, col, GTK_EXPAND | GTK_FILL, GTK_EXPAND | GTK_FILL, 0, 0);
 }
 
-/**
+/*!
  * gtk_sheet_attach:
  * \param sheet: a #GtkSheet.
  * \param widget: GtkWidget to be put
@@ -15181,7 +15181,7 @@ void gtk_sheet_attach(GtkSheet *sheet, GtkWidget *widget, int row,
     }
 }
 
-/**
+/*!
  * gtk_sheet_button_attach:
  * \param sheet: a #GtkSheet.
  * \param widget: GtkWidget to be put
@@ -15308,7 +15308,7 @@ label_size_request(GtkSheet *sheet, char *label, GtkRequisition *req)
     req->height -= 2;
 }
 
-/**
+/*!
  * _gtk_sheet_button_size_request:
  * \param sheet:  the #GtkSheet
  * \param button: the #GtkSheetButton requested
@@ -15382,7 +15382,7 @@ gtk_sheet_row_size_request(GtkSheet *sheet,
     sheet->row[row].requisition = *requisition;
 }
 
-/**
+/*!
  * gtk_sheet_move_child:
  * \param sheet: a #GtkSheet.
  * \param widget: GtkWidget to be put.
@@ -15755,7 +15755,7 @@ gtk_sheet_realize_child(GtkSheet *sheet, GtkSheetChild *child)
 }
 
 
-/**
+/*!
  * gtk_sheet_get_child_at:
  * \param sheet: a #GtkSheet.
  * \param row: row number
@@ -15789,7 +15789,7 @@ gtk_sheet_get_child_at(GtkSheet *sheet, int row, int col)
     return (NULL);
 }
 
-/**
+/*!
  * _gtk_sheet_child_hide:
  * \param child:  the child
  *
@@ -15802,7 +15802,7 @@ _gtk_sheet_child_hide(GtkSheetChild *child)
     gtk_widget_hide(child->widget);
 }
 
-/**
+/*!
  * _gtk_sheet_child_show:
  * \param child:  the child
  *
