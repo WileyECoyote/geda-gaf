@@ -852,16 +852,19 @@ GtkSheetColumn *gtk_sheet_column_get(GtkSheet *sheet, int col)
  */
 int gtk_sheet_column_get_index(GtkSheetColumn *colobj)
 {
-    GtkSheet *sheet = colobj->sheet;
-    int i;
+  GtkSheet *sheet = colobj->sheet;
+  int i;
 
-    if (!sheet) return (-1);
+  if (sheet) {
 
-    for (i = 0; i <= sheet->maxcol; i++)
-    {
-        if (COLPTR(sheet, i) == colobj) return (i);
+    for (i = 0; i <= sheet->maxcol; i++) {
+      if (COLPTR(sheet, i) == colobj) {
+        return (i);
+      }
     }
-    return (-1);
+  }
+
+  return (-1);
 }
 
 
@@ -943,8 +946,9 @@ void _gtk_sheet_column_size_request(GtkSheet *sheet, int col, unsigned int *requ
     *requisition = button_requisition.width;
 
     children = sheet->children;
-    while (children)
-    {
+
+    while (children) {
+
         GtkSheetChild *child = (GtkSheetChild *)children->data;
         GtkRequisition child_requisition;
 

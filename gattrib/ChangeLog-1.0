@@ -4,7 +4,8 @@
 
     * gtksheet/gtksheetcolumn.c: Use static cast in property handler; glib
       has already established the type of object and reformat switch case
-      style.
+      style. Reverse conditional logic in gtk_sheet_column_get_index and
+      eliminate early return.
 
 2020-10-22 Wiley E. Hill <wileyhill@gmail.com>
 
