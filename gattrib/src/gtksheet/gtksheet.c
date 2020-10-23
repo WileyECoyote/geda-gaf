@@ -10310,13 +10310,13 @@ static int
 gtk_sheet_button_release_handler(GtkWidget *widget, GdkEventButton *event)
 {
     GtkSheet *sheet;
-    int x, y;
 
     sheet = (GtkSheet*)widget;
 
     /* release on resize windows */
     if (GTK_SHEET_IN_XDRAG(sheet)) {
 
+      unsigned int x;
       GTK_SHEET_UNSET_FLAGS(sheet, GTK_SHEET_IN_XDRAG);
       GTK_SHEET_UNSET_FLAGS(sheet, GTK_SHEET_IN_SELECTION);
       gtk_widget_get_pointer(widget, &x, NULL);
@@ -10340,6 +10340,7 @@ gtk_sheet_button_release_handler(GtkWidget *widget, GdkEventButton *event)
 
     if (GTK_SHEET_IN_YDRAG(sheet)) {
 
+      unsigned int y;
       GTK_SHEET_UNSET_FLAGS(sheet, GTK_SHEET_IN_YDRAG);
       GTK_SHEET_UNSET_FLAGS(sheet, GTK_SHEET_IN_SELECTION);
       gtk_widget_get_pointer(widget, NULL, &y);

@@ -3,7 +3,8 @@
     * include/gtksheet/gtksheetcolumn.h: Align argument columns.
 
     * src/gtksheet/gtksheet.c: Revise some debug outputs to utilize __func__
-      macro.
+      macro. Reduce the scope of X and Y in gtk_sheet_button_release_handler
+      use type unsigned integers for pointer cursor coordinates.
 
     * gtksheet/gtksheetcolumn.c: Use static cast in property handler; glib
       has already established the type of object and reformat switch case
