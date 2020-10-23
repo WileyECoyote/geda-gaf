@@ -226,7 +226,7 @@ void x_toolbars_init(GtkWidget *parent_container) {
    * 5pxl spaces between items and put it into our handlebox */
   Standard_Toolbar = geda_toolbar_new (GTK_ORIENTATION_HORIZONTAL);
 
-  geda_toolbar_set_style (GTK_TOOLBAR (Standard_Toolbar), GTK_TOOLBAR_BOTH);
+  geda_toolbar_set_style (GEDA_TOOLBAR (Standard_Toolbar), GTK_TOOLBAR_BOTH);
   geda_set_container_border_width (Standard_Toolbar, 0);
   geda_container_add (Standard_handlebox, Standard_Toolbar);
 
@@ -272,7 +272,7 @@ void x_toolbars_init(GtkWidget *parent_container) {
    * 5pxl spaces between items and put it into our handlebox */
   Attribute_Toolbar = geda_toolbar_new (GTK_ORIENTATION_HORIZONTAL);
 
-  geda_toolbar_set_style (GTK_TOOLBAR (Attribute_Toolbar), GTK_TOOLBAR_BOTH);
+  geda_toolbar_set_style (GEDA_TOOLBAR (Attribute_Toolbar), GTK_TOOLBAR_BOTH);
   geda_set_container_border_width (Attribute_Toolbar, 0);
   geda_container_add (Attribute_handlebox, Attribute_Toolbar);
 

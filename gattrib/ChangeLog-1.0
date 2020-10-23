@@ -11,6 +11,8 @@
       style. Reverse conditional logic in gtk_sheet_column_get_index and
       eliminate early return.
 
+    * src/x_toolbars.c: Fix cast; GTK_TOOLBAR -> GEDA_TOOLBAR.
+
 2020-10-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gtksheet/gtksheet.c: Add ancillary GdkWindow pointer in function
