@@ -113,10 +113,10 @@ static void gtk_sheet_column_set_property(GObject      *object,
        if the column was not yet added (col < 0), we cannot use public interface functions.
        */
 
-    switch(property_id)
-    {
-      case PROP_SHEET_COLUMN_POSITION:
-      {
+    switch(property_id) {
+
+      case PROP_SHEET_COLUMN_POSITION: {
+
         GtkSheetColumn *swapcol;
         int newcol = g_value_get_int(value);
 
@@ -142,8 +142,8 @@ static void gtk_sheet_column_set_property(GObject      *object,
       }
       break;
 
-      case PROP_SHEET_COLUMN_LABEL:
-      {
+      case PROP_SHEET_COLUMN_LABEL: {
+
         const char *label = g_value_get_string(value);
 
         if ((col < 0) || !gtk_widget_get_realized(GTK_WIDGET(sheet)))
@@ -160,8 +160,8 @@ static void gtk_sheet_column_set_property(GObject      *object,
       }
       break;
 
-      case PROP_SHEET_COLUMN_WIDTH:
-      {
+      case PROP_SHEET_COLUMN_WIDTH: {
+
         int width = g_value_get_int(value);
 
         if (width < 0) return;
@@ -180,8 +180,8 @@ static void gtk_sheet_column_set_property(GObject      *object,
       }
       break;
 
-      case PROP_SHEET_COLUMN_JUSTIFICATION:
-      {
+      case PROP_SHEET_COLUMN_JUSTIFICATION: {
+
         int justification = g_value_get_enum(value);
 
         if ((col < 0) || !gtk_widget_get_realized(GTK_WIDGET(sheet))) {
@@ -193,8 +193,8 @@ static void gtk_sheet_column_set_property(GObject      *object,
       }
       break;
 
-      case PROP_SHEET_COLUMN_ISKEY:
-      {
+      case PROP_SHEET_COLUMN_ISKEY: {
+
         int is_key = g_value_get_boolean(value);
 
         if ((col < 0) || !gtk_widget_get_realized(GTK_WIDGET(sheet))) {
@@ -206,8 +206,8 @@ static void gtk_sheet_column_set_property(GObject      *object,
       }
       break;
 
-      case PROP_SHEET_COLUMN_READONLY:
-      {
+      case PROP_SHEET_COLUMN_READONLY: {
+
         int is_readonly = g_value_get_boolean(value);
 
         if ((col < 0) || !gtk_widget_get_realized(GTK_WIDGET(sheet))) {
@@ -219,8 +219,8 @@ static void gtk_sheet_column_set_property(GObject      *object,
       }
       break;
 
-      case PROP_SHEET_COLUMN_DATATYPE:
-      {
+      case PROP_SHEET_COLUMN_DATATYPE: {
+
         const char *data_type = g_value_get_string(value);
 
         if ((col < 0) || !gtk_widget_get_realized(GTK_WIDGET(sheet))) {
@@ -233,8 +233,8 @@ static void gtk_sheet_column_set_property(GObject      *object,
       }
       break;
 
-      case PROP_SHEET_COLUMN_DATAFMT:
-      {
+      case PROP_SHEET_COLUMN_DATAFMT: {
+
         const char *data_format = g_value_get_string(value);
 
         if ((col < 0) || !gtk_widget_get_realized(GTK_WIDGET(sheet))) {
@@ -250,8 +250,8 @@ static void gtk_sheet_column_set_property(GObject      *object,
       }
       break;
 
-      case PROP_SHEET_COLUMN_DESCRIPTION:
-      {
+      case PROP_SHEET_COLUMN_DESCRIPTION: {
+
         const char *description = g_value_get_string(value);
 
         if ((col < 0) || !gtk_widget_get_realized(GTK_WIDGET(sheet))) {
@@ -266,8 +266,8 @@ static void gtk_sheet_column_set_property(GObject      *object,
       }
       break;
 
-      case PROP_SHEET_COLUMN_ENTRY_TYPE:
-      {
+      case PROP_SHEET_COLUMN_ENTRY_TYPE: {
+
         GType entry_type = _gtk_sheet_entry_type_to_gtype(g_value_get_enum(value));
 
         if ((col < 0) || !gtk_widget_get_realized(GTK_WIDGET(sheet))) {
@@ -279,8 +279,8 @@ static void gtk_sheet_column_set_property(GObject      *object,
       }
       break;
 
-      case PROP_SHEET_COLUMN_VJUST:
-      {
+      case PROP_SHEET_COLUMN_VJUST: {
+
         GtkSheetVerticalJustification vjust = g_value_get_enum(value);
 
         if ((col < 0) || !gtk_widget_get_realized(GTK_WIDGET(sheet))) {
@@ -292,8 +292,8 @@ static void gtk_sheet_column_set_property(GObject      *object,
       }
       break;
 
-      case PROP_SHEET_COLUMN_VISIBLE:
-      {
+      case PROP_SHEET_COLUMN_VISIBLE: {
+
         int visible = g_value_get_boolean(value);
 
 #if GTK_SHEET_COL_DEBUG_PROPERTIES > 0
@@ -310,26 +310,31 @@ static void gtk_sheet_column_set_property(GObject      *object,
       }
       break;
 
-      case PROP_SHEET_COLUMN_MAX_LENGTH:
+      case PROP_SHEET_COLUMN_MAX_LENGTH: {
         colobj->max_length = g_value_get_int(value);
-        break;
+      }
+      break;
 
-      case PROP_SHEET_COLUMN_MAX_LENGTH_BYTES:
+      case PROP_SHEET_COLUMN_MAX_LENGTH_BYTES: {
         colobj->max_length = g_value_get_int(value);
-        break;
+      }
+      break;
 
-      case PROP_SHEET_COLUMN_WRAP_MODE:
+      case PROP_SHEET_COLUMN_WRAP_MODE: {
         colobj->wrap_mode = g_value_get_enum(value);
-        break;
+      }
+      break;
 
-      default:
+      default: {
         /* We don't have any other property... */
         G_OBJECT_WARN_INVALID_PROPERTY_ID(object, property_id, pspec);
-        break;
+      }
+      break;
     }
 
-    if (G_IS_OBJECT(sheet) && gtk_widget_get_realized(GTK_WIDGET(sheet))
-        && !gtk_sheet_is_frozen(sheet))
+    if (G_IS_OBJECT(sheet) &&
+        gtk_widget_get_realized(GTK_WIDGET(sheet)) &&
+        !gtk_sheet_is_frozen(sheet))
     {
         _gtk_sheet_range_draw(sheet, NULL, TRUE);
     }
@@ -345,76 +350,88 @@ static void gtk_sheet_column_get_property(GObject      *object,
     int col = gtk_sheet_column_get_index(colobj);
 
     switch(property_id) {
-      case PROP_SHEET_COLUMN_POSITION:
-      {
+      case PROP_SHEET_COLUMN_POSITION: {
         if (!sheet) return;
         if (col >= 0) g_value_set_int(value, col);
       }
       break;
 
-      case PROP_SHEET_COLUMN_LABEL:
+      case PROP_SHEET_COLUMN_LABEL: {
         g_value_set_string(value, colobj->button.label);
-        break;
+      }
+      break;
 
-      case PROP_SHEET_COLUMN_WIDTH:
+      case PROP_SHEET_COLUMN_WIDTH: {
         g_value_set_int(value, colobj->width);
-        break;
+      }
+      break;
 
-      case PROP_SHEET_COLUMN_JUSTIFICATION:
+      case PROP_SHEET_COLUMN_JUSTIFICATION: {
         g_value_set_enum(value, colobj->justification);
-        break;
+      }
+      break;
 
-      case PROP_SHEET_COLUMN_ISKEY:
+      case PROP_SHEET_COLUMN_ISKEY: {
         g_value_set_boolean(value, colobj->is_key);
-        break;
+      }
+      break;
 
-      case PROP_SHEET_COLUMN_READONLY:
+      case PROP_SHEET_COLUMN_READONLY: {
         g_value_set_boolean(value, colobj->is_readonly);
-        break;
+      }
+      break;
 
-      case PROP_SHEET_COLUMN_DATATYPE:
+      case PROP_SHEET_COLUMN_DATATYPE: {
         g_value_set_string(value, colobj->data_type);
-        break;
+      }
+      break;
 
-      case PROP_SHEET_COLUMN_DATAFMT:
+      case PROP_SHEET_COLUMN_DATAFMT: {
         g_value_set_string(value, colobj->data_format);
-        break;
+      }
+      break;
 
-      case PROP_SHEET_COLUMN_DESCRIPTION:
+      case PROP_SHEET_COLUMN_DESCRIPTION: {
         g_value_set_string(value, colobj->description);
-        break;
+      }
+      break;
 
-      case PROP_SHEET_COLUMN_ENTRY_TYPE:
-      {
+      case PROP_SHEET_COLUMN_ENTRY_TYPE: {
         GtkSheetEntryType et = _gtk_sheet_entry_type_from_gtype(colobj->entry_type);
         g_value_set_enum(value, et);
       }
       break;
 
-      case PROP_SHEET_COLUMN_VJUST:
+      case PROP_SHEET_COLUMN_VJUST: {
         g_value_set_enum(value, colobj->vjust);
-        break;
+      }
+      break;
 
-      case PROP_SHEET_COLUMN_VISIBLE:
+      case PROP_SHEET_COLUMN_VISIBLE: {
         g_value_set_boolean(value, GTK_SHEET_COLUMN_IS_VISIBLE(colobj));
-        break;
+      }
+      break;
 
-      case PROP_SHEET_COLUMN_MAX_LENGTH:
+      case PROP_SHEET_COLUMN_MAX_LENGTH: {
         g_value_set_int(value, colobj->max_length);
-        break;
+      }
+      break;
 
-      case PROP_SHEET_COLUMN_MAX_LENGTH_BYTES:
+      case PROP_SHEET_COLUMN_MAX_LENGTH_BYTES: {
         g_value_set_int(value, colobj->max_length_bytes);
-        break;
+      }
+      break;
 
-      case PROP_SHEET_COLUMN_WRAP_MODE:
+      case PROP_SHEET_COLUMN_WRAP_MODE: {
         g_value_set_enum(value, colobj->wrap_mode);
-        break;
+      }
+      break;
 
-      default:
+      default: {
         /* We don't have any other property... */
         G_OBJECT_WARN_INVALID_PROPERTY_ID(object, property_id, pspec);
-        break;
+      }
+      break;
     }
 }
 
