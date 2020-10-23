@@ -100,7 +100,7 @@ static void gtk_sheet_column_set_property(GObject      *object,
                                           const GValue *value,
                                           GParamSpec   *pspec)
 {
-    GtkSheetColumn *colobj = GTK_SHEET_COLUMN(object);
+    GtkSheetColumn *colobj = (GtkSheetColumn*)object;
     GtkSheet *sheet = colobj->sheet;
     int col = gtk_sheet_column_get_index(colobj);
 
@@ -340,7 +340,7 @@ static void gtk_sheet_column_get_property(GObject      *object,
                                           GValue       *value,
                                           GParamSpec   *pspec)
 {
-    GtkSheetColumn *colobj = GTK_SHEET_COLUMN(object);
+    GtkSheetColumn *colobj = (GtkSheetColumn*)object;
     GtkSheet *sheet = colobj->sheet;
     int col = gtk_sheet_column_get_index(colobj);
 

@@ -2,6 +2,9 @@
 
     * include/gtksheet/gtksheetcolumn.h: Align argument columns.
 
+    * gtksheet/gtksheetcolumn.c: Use static cast in property handler; glib
+      has already established the type of object.
+
 2020-10-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gtksheet/gtksheet.c: Add ancillary GdkWindow pointer in function
