@@ -1,3 +1,7 @@
+2020-10-23 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/gtksheet/gtksheetcolumn.h: Align argument columns.
+
 2020-10-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gtksheet/gtksheet.c: Add ancillary GdkWindow pointer in function
