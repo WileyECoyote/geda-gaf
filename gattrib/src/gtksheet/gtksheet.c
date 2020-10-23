@@ -229,14 +229,14 @@ typedef enum _GtkSheetArea
 #define GTK_SHEET_ROW_CAN_FOCUS(rowptr) GTK_SHEET_ROW_IS_SENSITIVE(rowptr)
 
 #define MIN_VIEW_ROW(sheet)  (sheet->view.row0)
-#define MAX_VIEW_ROW(sheet)  (sheet->view.rowi)  /* beware: MAX_VISIBLE_ROW() can be maxrow+1 */
+#define MAX_VIEW_ROW(sheet)  (sheet->view.rowi)     /* beware: MAX_VISIBLE_ROW() can be maxrow+1 */
 #define MIN_VIEW_COLUMN(sheet)  (sheet->view.col0)
 #define MAX_VIEW_COLUMN(sheet)  (sheet->view.coli)  /* beware: MAX_VISIBLE_COLUMN() can be maxcol+1 */
 
 #define COLUMN_UNREALIZED_MAX_WIDTH 512  /* unrealized maximum width */
-#define COLUMN_REMNANT_PIXELS  32   /* maximized: free space left for others */
-#define ROW_UNREALIZED_MAX_HEIGHT 128  /* unrealized maximum height */
-#define ROW_REMNANT_PIXELS  32   /* maximized: free space left for others */
+#define COLUMN_REMNANT_PIXELS  32        /* maximized: free space left for others */
+#define ROW_UNREALIZED_MAX_HEIGHT 128    /* unrealized maximum height */
+#define ROW_REMNANT_PIXELS  32           /* maximized: free space left for others */
 
 #define COLUMN_MAX_WIDTH(sheet) \
     (sheet->sheet_window_width < COLUMN_REMNANT_PIXELS ? \
