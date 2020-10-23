@@ -4006,10 +4006,10 @@ static void _gtk_sheet_autoresize_row_internal(GtkSheet *sheet, int row)
   new_height = ROW_EXTENT_TO_HEIGHT(rowptr->max_extent_height);
 
 #if 0 && GTK_SHEET_DEBUG_SIZE > 0
-  fprintf(stderr,"_gtk_sheet_autoresize_row_internal[%d]: win_h %d ext_h %d row_max_h %d",
+  fprintf(stderr,"%s [%d]: win_h %d ext_h %d row_max_h %d", __func__,
           row, sheet->sheet_window_height, rowptr->max_extent_height,
           ROW_MAX_HEIGHT(sheet));
-  fprintf(stderr,"_gtk_sheet_autoresize_row_internal[%d]: called row h %d new h %d",
+  fprintf(stderr,"%s [%d]: called row h %d new h %d", __func__,
           row, rowptr->height, new_height);
 #endif
 
@@ -10324,8 +10324,8 @@ gtk_sheet_button_release_handler(GtkWidget *widget, GdkEventButton *event)
       draw_xor_vline(sheet);
 
 #if GTK_SHEET_DEBUG_SIZE > 0
-      fprintf(stderr,"gtk_sheet_button_release_handler[%d]: set width %d",
-              sheet->drag_cell.col, new_column_width(sheet, sheet->drag_cell.col, &x));
+      fprintf(stderr,"%s[%d]: set width %d", __func__,
+              sheet->drag_cell.col, new_width);
 #endif
       gtk_sheet_set_column_width(sheet,
                                  sheet->drag_cell.col, new_column_width(sheet, sheet->drag_cell.col, &x));

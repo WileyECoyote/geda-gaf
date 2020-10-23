@@ -2,6 +2,9 @@
 
     * include/gtksheet/gtksheetcolumn.h: Align argument columns.
 
+    * src/gtksheet/gtksheet.c: Revise some debug outputs to utilize __func__
+      macro.
+
     * gtksheet/gtksheetcolumn.c: Use static cast in property handler; glib
       has already established the type of object and reformat switch case
       style. Reverse conditional logic in gtk_sheet_column_get_index and
