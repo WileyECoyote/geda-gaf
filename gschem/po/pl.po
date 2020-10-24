@@ -799,40 +799,34 @@ msgid "Mesh grid activated\n"
 msgstr "Oczka siatki aktywna\n"
 
 #: gschem/src/iface/i_command.c:4679
-#, fuzzy
 msgid "Snap OFF (CAUTION!)"
-msgstr "Przyciąganie do siatki: wyłączone (OSTROŻNIE!)\n"
+msgstr "Przyciąganie do siatki: wyłączone (OSTROŻNIE!)"
 
 #: gschem/src/iface/i_command.c:4685
-#, fuzzy
 msgid "Snap ON"
-msgstr "Przyciąganie do siatki: włączone\n"
+msgstr "Przyciąganie do siatki: włączone"
 
 #: gschem/src/iface/i_command.c:4690
-#, fuzzy
 msgid "Snap back to the grid (CAUTION!)"
-msgstr "Przyciąganie do siatki: wyłączone (OSTROŻNIE!)\n"
+msgstr "Przyciąganie do siatki: wyłączone (OSTROŻNIE!)"
 
 #: gschem/src/iface/i_command.c:4716
-#, fuzzy
 msgid "Rubber band mode is OFF"
-msgstr "Uzupełnianie połączeń przy przesuwaniu: Wyłączone\n"
+msgstr "Uzupełnianie połączeń przy przesuwaniu: Wyłączone"
 
 #: gschem/src/iface/i_command.c:4720
-#, fuzzy
 msgid "Rubber band mode is ON"
-msgstr "Uzupełnianie połączeń przy przesuwaniu: Włączona\n"
+msgstr "Uzupełnianie połączeń przy przesuwaniu: Włączona"
 
 # Magnetic net mode is O
 #: gschem/src/iface/i_command.c:4731
-#, fuzzy
 msgid "Magnetic net mode is ON"
-msgstr "Tryb sieci magnetycznej jest włączony\n"
+msgstr "Tryb sieci magnetycznej jest włączony"
 
+# Magnetic Grid Mode is turned off
 #: gschem/src/iface/i_command.c:4734
-#, fuzzy
 msgid "Magnetic net mode is OFF"
-msgstr "Magnetyczny tryb siatki jest wyłączony\n"
+msgstr "Magnetyczny tryb siatki jest wyłączony"
 
 #: gschem/src/iface/i_command.c:4751 gschem/src/iface/i_command.c:4794
 #: gschem/src/x/x_compselect.c:135 gschem/src/x/x_toolbars.c:261
