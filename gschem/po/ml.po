@@ -1859,10 +1859,10 @@ msgstr ""
 msgid "Cancel closing and return to editor"
 msgstr ""
 
+# Save changes; māṟṟaṅṅaḷ sūkṣikkuka
 #: gschem/src/x/x_confirm_close.c:581
-#, fuzzy
 msgid "Save changes"
-msgstr "പേജ് സേവ് ചെയുക"
+msgstr "മാറ്റങ്ങൾ സൂക്ഷിക്കുക"
 
 #: gschem/src/x/x_confirm_close.c:631
 msgid "unsaved page"
@@ -4567,10 +4567,10 @@ msgstr ""
 msgid "Pick"
 msgstr ""
 
+# New; putiyat
 #: gschem/src/x/x_toolbars.c:149 gschem/src/x/x_toolbars.c:195
-#, fuzzy
 msgid "New"
-msgstr "നെറ്റ്"
+msgstr "പുതിയത്"
 
 #: gschem/src/x/x_toolbars.c:151 gschem/scheme/gschem/builtins.scm:56
 msgid "Save"
@@ -4666,34 +4666,30 @@ msgstr "മുമ്പത്തെ"
 msgid "Next"
 msgstr "അടുത്തത്"
 
-# Move Down
+# Down; tāḻēkk
 #: gschem/src/x/x_toolbars.c:193 gschem/src/x/x_toolbars.c:198
 #: gschem/src/x/x_toolbars.c:199 gschem/src/x/x_toolbars.c:264
-#, fuzzy
 msgid "Down"
-msgstr "താഴേക്ക് നീക്കുക"
+msgstr "താഴേക്ക്"
 
-# Last Page
+# Last; avasānatte
 #: gschem/src/x/x_toolbars.c:194
-#, fuzzy
 msgid "Last"
-msgstr "അവസാന പേജ്"
+msgstr "അവസാനത്തെ"
 
-# Manage
+# Manage; niyantrikkuka
 #: gschem/src/x/x_toolbars.c:196
-#, fuzzy
 msgid "Manage"
-msgstr "നിയന്ത്രിക്കുക..."
+msgstr "നിയന്ത്രിക്കുക"
 
 #: gschem/src/x/x_toolbars.c:202
 msgid "Spec"
 msgstr ""
 
-# Filename
+# Netnames; neṟṟnāmaṅṅaḷ
 #: gschem/src/x/x_toolbars.c:203
-#, fuzzy
 msgid "Netnames"
-msgstr "ഫയലിന്റെ പേര്"
+msgstr "നെറ്റ്നാമങ്ങൾ"
 
 #: gschem/src/x/x_toolbars.c:206 gschem/scheme/gschem/builtins.scm:209
 msgid "Redraw"
@@ -4781,10 +4777,10 @@ msgstr ""
 msgid "Show"
 msgstr ""
 
+# Automatic #
 #: gschem/src/x/x_toolbars.c:257
-#, fuzzy
 msgid "Auto #"
-msgstr "ഓട്ടോ സമീപകാല ലോഡ്"
+msgstr "ഓട്ടോമാറ്റിക് #"
 
 #: gschem/src/x/x_toolbars.c:259
 msgid "Dots"
@@ -4794,11 +4790,10 @@ msgstr ""
 msgid "UP"
 msgstr ""
 
-# disable snap
+# Snap On; s‌nāpp ōṇāṇ
 #: gschem/src/x/x_toolbars.c:267
-#, fuzzy
 msgid "Snap On"
-msgstr "സ്നാപ്പ് അപ്രാപ്തമാക്കുകയോ"
+msgstr "സ്‌നാപ്പ് ഓണാണ്"
 
 #: gschem/src/x/x_toolbars.c:269
 msgid "Config"
@@ -4954,11 +4949,10 @@ msgstr ""
 msgid "_New"
 msgstr ""
 
-# Creating new file
+# Create a new file; oru putiya phayal sr̥ṣṭikkuka
 #: gschem/etc/system-gschemrc.scm:2091
-#, fuzzy
 msgid "Create a new file"
-msgstr "പുതിയ ഫയൽ സൃഷ്ടിക്കുന്നു"
+msgstr "ഒരു പുതിയ ഫയൽ സൃഷ്ടിക്കുക"
 
 #: gschem/etc/system-gschemrc.scm:2092 gschem/etc/system-gschemrc.scm:2301
 msgid "_Open..."
@@ -5018,11 +5012,10 @@ msgstr ""
 msgid "_Print..."
 msgstr ""
 
-# Open Pin Type Dialog box
+# Open the Print Dialog; prinṟ ḍayalēāg tuṟakkuka
 #: gschem/etc/system-gschemrc.scm:2105
-#, fuzzy
 msgid "Open the Print Dialog"
-msgstr "തുറക്കുക പിൻ ഇനം ഡയലോഗ് ബോക്സ്"
+msgstr "പ്രിന്റ് ഡയലോഗ് തുറക്കുക"
 
 #: gschem/etc/system-gschemrc.scm:2106
 msgid "Export options"
