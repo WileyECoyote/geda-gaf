@@ -12,6 +12,8 @@
 
     * po/ru.po: Update Russian translations.
 
+    * po/sl.po: Update Slovenian translations.
+
 2020-10-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/gschem_page_view.h: Remove GdkGC member.

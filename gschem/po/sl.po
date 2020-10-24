@@ -861,49 +861,44 @@ msgid "Mesh grid activated\n"
 msgstr "Mrežna mreža je aktivirana\n"
 
 #: gschem/src/iface/i_command.c:4679
-#, fuzzy
 msgid "Snap OFF (CAUTION!)"
-msgstr "Kratek izklop (POZOR!)\n"
+msgstr "Kratek izklop (POZOR!)"
 
 #: gschem/src/iface/i_command.c:4685
-#, fuzzy
 msgid "Snap ON"
-msgstr "Snap ON\n"
+msgstr "Snap ON"
 
 #: gschem/src/iface/i_command.c:4690
-#, fuzzy
 msgid "Snap back to the grid (CAUTION!)"
-msgstr "Vrnite se nazaj na mrežo (POZOR!)\n"
+msgstr "Vrnite se nazaj na mrežo (POZOR!)"
 
 #: gschem/src/iface/i_command.c:4716
-#, fuzzy
 msgid "Rubber band mode is OFF"
-msgstr "Način gumijastega traku je izklopljen\n"
+msgstr "Način gumijastega traku je IZKLOPLJEN"
 
 #: gschem/src/iface/i_command.c:4720
-#, fuzzy
 msgid "Rubber band mode is ON"
-msgstr "Način gumijastega traku je ON\n"
+msgstr "Način gumijastega traku je VKLJUČEN"
 
+# Magnetic grid mode is ON
 #: gschem/src/iface/i_command.c:4731
-#, fuzzy
 msgid "Magnetic net mode is ON"
-msgstr "Način magnetne mreže je VKLJUČEN\n"
+msgstr "Način magnetne mreže je VKLJUČEN"
 
+# Magnetic grid mode is OFF
 #: gschem/src/iface/i_command.c:4734
-#, fuzzy
 msgid "Magnetic net mode is OFF"
-msgstr "Način magnetne mreže je izklopljen\n"
+msgstr "Način magnetne mreže je IZKLOPLJEN"
 
 #: gschem/src/iface/i_command.c:4751 gschem/src/iface/i_command.c:4794
 #: gschem/src/x/x_compselect.c:135 gschem/src/x/x_toolbars.c:261
 msgid "Off"
-msgstr ""
+msgstr "Izklopljen"
 
 #: gschem/src/iface/i_command.c:4755 gschem/src/iface/i_command.c:4798
 #: gschem/src/x/x_compselect.c:134
 msgid "On"
-msgstr ""
+msgstr "Vklopljen"
 
 #: gschem/src/iface/i_command.c:4757
 msgid "Drag-Can-Move is now"
