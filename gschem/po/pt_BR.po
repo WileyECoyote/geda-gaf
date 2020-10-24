@@ -813,43 +813,36 @@ msgid "Mesh grid activated\n"
 msgstr "Usar grade em malha\n"
 
 #: gschem/src/iface/i_command.c:4679
-#, fuzzy
 msgid "Snap OFF (CAUTION!)"
-msgstr "Ajuste desligado (CUIDADO!)\n"
+msgstr "Ajuste desligado (CUIDADO!)"
 
 #: gschem/src/iface/i_command.c:4685
-#, fuzzy
 msgid "Snap ON"
-msgstr "Ajuste ligado\n"
+msgstr "Ajuste ligado"
 
 #: gschem/src/iface/i_command.c:4690
-#, fuzzy
 msgid "Snap back to the grid (CAUTION!)"
-msgstr "Reajuste à grade (CUIDADO!)\n"
+msgstr "Reajuste à grade (CUIDADO!)"
 
 # Rubberband mode is OFF
 #: gschem/src/iface/i_command.c:4716
-#, fuzzy
 msgid "Rubber band mode is OFF"
-msgstr "O modo Rubberband está desativado\n"
+msgstr "O modo Rubberband está desativado"
 
 # Rubber band mode is ON
 #: gschem/src/iface/i_command.c:4720
-#, fuzzy
 msgid "Rubber band mode is ON"
-msgstr "O modo de banda de borracha está ligado\n"
+msgstr "O modo de banda de borracha está ligado"
 
 # Magnetic net mode is ON
 #: gschem/src/iface/i_command.c:4731
-#, fuzzy
 msgid "Magnetic net mode is ON"
-msgstr "Modo conexão magnética É LIGADA\n"
+msgstr "Modo conexão magnética É LIGADA"
 
 # Magnetic net mode is OFF
 #: gschem/src/iface/i_command.c:4734
-#, fuzzy
 msgid "Magnetic net mode is OFF"
-msgstr "Modo conexão magnética É DESLIGADA\n"
+msgstr "Modo conexão magnética É DESLIGADA"
 
 # Off
 #: gschem/src/iface/i_command.c:4751 gschem/src/iface/i_command.c:4794
