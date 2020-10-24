@@ -889,45 +889,38 @@ msgstr "Месх Грид активира\n"
 
 # Snap is OFF (CAUTION!)
 #: gschem/src/iface/i_command.c:4679
-#, fuzzy
 msgid "Snap OFF (CAUTION!)"
-msgstr "Снап ис ОФФ (ОПРЕЗ!)\n"
+msgstr "Снап ис ОФФ (ОПРЕЗ!)"
 
 # Snap ON
 #: gschem/src/iface/i_command.c:4685
-#, fuzzy
 msgid "Snap ON"
-msgstr "snap Он\n"
+msgstr "snap Он"
 
 # Snap back to the grid (CAUTION!)
 #: gschem/src/iface/i_command.c:4690
-#, fuzzy
 msgid "Snap back to the grid (CAUTION!)"
-msgstr "Снап назад на мрежу (ОПРЕЗ!)\n"
+msgstr "Снап назад на мрежу (ОПРЕЗ!)"
 
 # Rubber mode connections is disabled
 #: gschem/src/iface/i_command.c:4716
-#, fuzzy
 msgid "Rubber band mode is OFF"
-msgstr "Гума режим везе је онемогућено\n"
+msgstr "Гума режим везе је онемогућено"
 
 # "Rubber" mode connections enabled
 #: gschem/src/iface/i_command.c:4720
-#, fuzzy
 msgid "Rubber band mode is ON"
-msgstr "Гума режим везе омогућено\n"
+msgstr "Гума режим везе омогућено"
 
 # "Magnetic" mode connections enabled
 #: gschem/src/iface/i_command.c:4731
-#, fuzzy
 msgid "Magnetic net mode is ON"
-msgstr "Магнетиц режим везе омогућено\n"
+msgstr "Магнетиц режим везе омогућено"
 
 # "Magnetic" mode connections is disabled
 #: gschem/src/iface/i_command.c:4734
-#, fuzzy
 msgid "Magnetic net mode is OFF"
-msgstr "Магнетиц режим везе је онемогућено\n"
+msgstr "Магнетиц режим везе је онемогућено"
 
 # Off
 #: gschem/src/iface/i_command.c:4751 gschem/src/iface/i_command.c:4794

@@ -14,6 +14,8 @@
 
     * po/sl.po: Update Slovenian translations.
 
+    * po/sr.po: Update Serbian translations.
+
 2020-10-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/gschem_page_view.h: Remove GdkGC member.
