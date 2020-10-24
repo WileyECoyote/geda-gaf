@@ -909,43 +909,36 @@ msgid "Mesh grid activated\n"
 msgstr "Сетчатая сетка активирована\n"
 
 #: gschem/src/iface/i_command.c:4679
-#, fuzzy
 msgid "Snap OFF (CAUTION!)"
-msgstr "ВНИМАНИЕ! Привязка отключена!\n"
+msgstr "ВНИМАНИЕ! Привязка отключена!"
 
 #: gschem/src/iface/i_command.c:4685
-#, fuzzy
 msgid "Snap ON"
-msgstr "Привязка включена\n"
+msgstr "Привязка включена"
 
 #: gschem/src/iface/i_command.c:4690
-#, fuzzy
 msgid "Snap back to the grid (CAUTION!)"
-msgstr "ВНИМАНИЕ! Включите привязку к сетке!\n"
+msgstr "ВНИМАНИЕ! Включите привязку к сетке!"
 
 # "Rubber" mode connections is disabled
 #: gschem/src/iface/i_command.c:4716
-#, fuzzy
 msgid "Rubber band mode is OFF"
-msgstr "Режим «резиновых» соединений отключён\n"
+msgstr "Режим «резиновых» соединений отключён"
 
 # "Rubber" mode connections enabled
 #: gschem/src/iface/i_command.c:4720
-#, fuzzy
 msgid "Rubber band mode is ON"
-msgstr "Режим «резиновых» соединений включён\n"
+msgstr "Режим «резиновых» соединений включён"
 
 # "Magnetic" mode connections enabled
 #: gschem/src/iface/i_command.c:4731
-#, fuzzy
 msgid "Magnetic net mode is ON"
-msgstr "Режим «магнитных» соединений включён\n"
+msgstr "Режим «магнитных» соединений включён"
 
 # "Magnetic" mode connections is disabled
 #: gschem/src/iface/i_command.c:4734
-#, fuzzy
 msgid "Magnetic net mode is OFF"
-msgstr "Режим «магнитных» соединений отключён\n"
+msgstr "Режим «магнитных» соединений отключён"
 
 # Off
 #: gschem/src/iface/i_command.c:4751 gschem/src/iface/i_command.c:4794
