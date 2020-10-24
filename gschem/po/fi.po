@@ -884,45 +884,38 @@ msgid "Mesh grid activated\n"
 msgstr "Mesh-verkko on aktivoitu\n"
 
 #: gschem/src/iface/i_command.c:4679
-#, fuzzy
 msgid "Snap OFF (CAUTION!)"
-msgstr "Kohdistus POIS (VARO!)\n"
+msgstr "Kohdistus POIS (VARO!)"
 
 # Snap ON => Alignment ON
 #: gschem/src/iface/i_command.c:4685
-#, fuzzy
 msgid "Snap ON"
-msgstr "Kohdistus päällä\n"
+msgstr "Kohdistus päällä"
 
 # Snap back to the grid (CAUTION!)
 #: gschem/src/iface/i_command.c:4690
-#, fuzzy
 msgid "Snap back to the grid (CAUTION!)"
-msgstr "Napsauta takaisin ruudukkoon (VARO!)\n"
+msgstr "Napsauta takaisin ruudukkoon (VARO!)"
 
 # Rubber band mode is OFF
 #: gschem/src/iface/i_command.c:4716
-#, fuzzy
 msgid "Rubber band mode is OFF"
-msgstr "Kuminauhatila on POIS\n"
+msgstr "Kuminauhatila on POIS"
 
 # Rubber band mode is ON
 #: gschem/src/iface/i_command.c:4720
-#, fuzzy
 msgid "Rubber band mode is ON"
-msgstr "Kuminauhatila on päällä\n"
+msgstr "Kuminauhatila on päällä"
 
-# Magnetic Net
+# Magnetic network mode is ON
 #: gschem/src/iface/i_command.c:4731
-#, fuzzy
 msgid "Magnetic net mode is ON"
-msgstr "_Magneettinen verkko"
+msgstr "Magneettiverkkotila on PÄÄLLÄ"
 
-# Rubber band mode is OFF
+# Magnetic network mode is off
 #: gschem/src/iface/i_command.c:4734
-#, fuzzy
 msgid "Magnetic net mode is OFF"
-msgstr "Kuminauhatila on POIS\n"
+msgstr "Magneettiverkkotila on pois päältä"
 
 #: gschem/src/iface/i_command.c:4751 gschem/src/iface/i_command.c:4794
 #: gschem/src/x/x_compselect.c:135 gschem/src/x/x_toolbars.c:261
@@ -4624,11 +4617,10 @@ msgstr ""
 msgid "Show"
 msgstr ""
 
-# Auto Load
+# Auto #
 #: gschem/src/x/x_toolbars.c:257
-#, fuzzy
 msgid "Auto #"
-msgstr "Automaattinen lataus"
+msgstr "Automaattinen #"
 
 #: gschem/src/x/x_toolbars.c:259
 msgid "Dots"
