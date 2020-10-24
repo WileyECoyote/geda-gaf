@@ -6,6 +6,8 @@
 
     * po/pl.po: Update Polish translations.
 
+    * po/pt.po: Update Portuguese translations.
+
 2020-10-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/gschem_page_view.h: Remove GdkGC member.
