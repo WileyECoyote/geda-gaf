@@ -16,6 +16,8 @@
 
     * po/sr.po: Update Serbian translations.
 
+    * po/tr.po: Update Turkish translations.
+
 2020-10-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/gschem_page_view.h: Remove GdkGC member.
