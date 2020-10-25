@@ -1,3 +1,14 @@
+2020-10-26 Wiley E. Hill <wileyhill@gmail.com>
+
+    * transistor/npn-bjt/npn-ebc-?.sym: Fix date version codes:
+
+            * transistor/npn-bjt/npn-ebc-1.sym
+            * transistor/npn-bjt/npn-ebc-2.sym
+            * transistor/npn-bjt/npn-ebc-3.sym
+            * transistor/npn-bjt/npn-ebc-4.sym
+            * transistor/npn-bjt/npn-ebc-5.sym
+            * transistor/npn-bjt/npn-ebc-6.sym
+
 2020-10-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * cypress/CYW20704-1.sym: Add symbol; 802.11 b,g,n, bluetooth 5.0
