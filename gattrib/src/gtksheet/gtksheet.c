@@ -10132,8 +10132,7 @@ static int _gtk_sheet_scroll_to_pointer(void *data)
     return (TRUE);
 }
 
-static void
-gtk_sheet_click_cell(GtkSheet *sheet, int row, int col, int *veto)
+static void gtk_sheet_click_cell(GtkSheet *sheet, int row, int col, int *veto)
 {
     *veto = TRUE;
 
@@ -11955,8 +11954,7 @@ size_allocate_row_title_buttons(GtkSheet *sheet)
  *
  * recalculate topmost pixel of all rows
  */
-void
-_gtk_sheet_recalc_top_ypixels(GtkSheet *sheet)
+void _gtk_sheet_recalc_top_ypixels(GtkSheet *sheet)
 {
     int i, cy;
 
@@ -12857,8 +12855,7 @@ row_button_set(GtkSheet *sheet, int row)
     _gtk_sheet_draw_button(sheet, row, -1);
 }
 
-static void
-row_button_release(GtkSheet *sheet, int row)
+static void row_button_release(GtkSheet *sheet, int row)
 {
     if (row < 0 || row > sheet->maxrow)
 	return;
@@ -12881,8 +12878,7 @@ row_button_release(GtkSheet *sheet, int row)
  * if both == -1 draw the sheet button
  *
  */
-void
-_gtk_sheet_draw_button(GtkSheet *sheet, int row, int col)
+void _gtk_sheet_draw_button(GtkSheet *sheet, int row, int col)
 {
     GdkWindow *window = NULL;
     GtkShadowType shadow_type;
@@ -15399,9 +15395,7 @@ _gtk_sheet_button_size_request(GtkSheet       *sheet,
 }
 
 static void
-gtk_sheet_row_size_request(GtkSheet *sheet,
-    int row,
-    unsigned int *requisition)
+gtk_sheet_row_size_request(GtkSheet *sheet, int row, unsigned int *requisition)
 {
     GtkRequisition button_requisition;
     GList *children;
