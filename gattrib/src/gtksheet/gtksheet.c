@@ -4772,14 +4772,14 @@ void gtk_sheet_row_button_justify(GtkSheet *sheet, int row,
 
   g_return_if_fail(GTK_IS_SHEET(sheet));
 
-  if (row < 0 || row > sheet->maxrow)
+  if (row < 0 || row > sheet->maxrow) {
     return;
+  }
 
   button = &sheet->row[row].button;
   button->justification = justification;
 
-  if (!GTK_SHEET_IS_FROZEN(sheet))
-  {
+  if (!GTK_SHEET_IS_FROZEN(sheet)) {
     _gtk_sheet_draw_button(sheet, row, -1);
   }
 }
@@ -9795,8 +9795,8 @@ gtk_sheet_expose_handler(GtkWidget *widget, GdkEventExpose *event)
 
         gtk_sheet_draw_backing_pixmap(sheet, range);
 
-        if (sheet->state != GTK_SHEET_NORMAL)
-        {
+        if (sheet->state != GTK_SHEET_NORMAL) {
+
           if (gtk_sheet_range_isvisible(sheet, sheet->range))
             gtk_sheet_draw_backing_pixmap(sheet, sheet->range);
           if (GTK_SHEET_IN_RESIZE(sheet) || GTK_SHEET_IN_DRAG(sheet))
@@ -9808,20 +9808,23 @@ gtk_sheet_expose_handler(GtkWidget *widget, GdkEventExpose *event)
             draw_xor_rectangle(sheet, sheet->drag_range);
         }
 
-        if ((!GTK_SHEET_IN_XDRAG(sheet)) && (!GTK_SHEET_IN_YDRAG(sheet)))
-        {
-          if (sheet->state == GTK_SHEET_NORMAL)
-          {
+        if ((!GTK_SHEET_IN_XDRAG(sheet)) && (!GTK_SHEET_IN_YDRAG(sheet))) {
+
+          if (sheet->state == GTK_SHEET_NORMAL) {
+
             gtk_sheet_draw_active_cell(sheet);
-            if (!GTK_SHEET_IN_SELECTION(sheet))
+
+            if (!GTK_SHEET_IN_SELECTION(sheet)) {
               gtk_widget_queue_draw(sheet->sheet_entry);
+            }
           }
         }
       }
     }
 
-    if (sheet->state != GTK_SHEET_NORMAL && GTK_SHEET_IN_SELECTION(sheet))
-	gtk_widget_grab_focus((GtkWidget*)sheet);
+    if (sheet->state != GTK_SHEET_NORMAL && GTK_SHEET_IN_SELECTION(sheet)) {
+      gtk_widget_grab_focus((GtkWidget*)sheet);
+    }
 
     (*GTK_WIDGET_CLASS(sheet_parent_class)->expose_event)(widget, event);
 
@@ -12145,16 +12148,15 @@ _gtk_sheet_entry_size_allocate(GtkSheet *sheet)
     text_width = 0;
     text_height = 0;
     {
-	char *text = gtk_sheet_get_entry_text(sheet);
+      char *text = gtk_sheet_get_entry_text(sheet);
 
-	if (text && text[0])
-	{
-	    _get_string_extent(sheet,
-		 (0 <= col && col <= sheet->maxcol) ? COLPTR(sheet, col) : NULL,
-		attributes.font_desc, text, &text_width, &text_height);
-	}
+      if (text && text[0]) {
+        _get_string_extent(sheet,
+                           (0 <= col && col <= sheet->maxcol) ? COLPTR(sheet, col) : NULL,
+                           attributes.font_desc, text, &text_width, &text_height);
+      }
 
-	g_free(text);
+      g_free(text);
     }
 
     if (0 <= col && col <= sheet->maxcol)
@@ -12175,22 +12177,24 @@ _gtk_sheet_entry_size_allocate(GtkSheet *sheet)
     shentry_allocation.width = column_width;
     shentry_allocation.height = row_height;
 
-    if (GTK_IS_ITEM_ENTRY(sheet->sheet_entry))
-    {
+    if (GTK_IS_ITEM_ENTRY(sheet->sheet_entry)) {
+
 #if GTK_SHEET_DEBUG_SIZE > 0
 	fprintf(stderr,"_gtk_sheet_entry_size_allocate: is_item_entry");
 #endif
 
-	shentry_allocation.height -= 2 * CELLOFFSET;
-	shentry_allocation.y += CELLOFFSET;
+    shentry_allocation.height -= 2 * CELLOFFSET;
+    shentry_allocation.y += CELLOFFSET;
 
-	if (gtk_sheet_clip_text(sheet))
-	    shentry_allocation.width = column_width - 2 * CELLOFFSET;
-	else  /* text extends multiple cells */
-	    shentry_allocation.width = size;
+    if (gtk_sheet_clip_text(sheet)) {
+      shentry_allocation.width = column_width - 2 * CELLOFFSET;
+    }
+    else  { /* text extends multiple cells */
+      shentry_allocation.width = size;
+    }
 
-	switch(GTK_ITEM_ENTRY(entry_widget)->justification)
-	{
+	switch(GTK_ITEM_ENTRY(entry_widget)->justification) {
+
 	    case GTK_JUSTIFY_CENTER:
 		shentry_allocation.x += (column_width) / 2 - size / 2;
 		break;
@@ -12857,13 +12861,17 @@ row_button_set(GtkSheet *sheet, int row)
 
 static void row_button_release(GtkSheet *sheet, int row)
 {
-    if (row < 0 || row > sheet->maxrow)
-	return;
-    if (sheet->row[row].button.state == GTK_STATE_NORMAL)
-	return;
+  if (row < 0 || row > sheet->maxrow) {
+    return;
+  }
 
-    sheet->row[row].button.state = GTK_STATE_NORMAL;
-    _gtk_sheet_draw_button(sheet, row, -1);
+  if (sheet->row[row].button.state == GTK_STATE_NORMAL) {
+    return;
+  }
+
+  sheet->row[row].button.state = GTK_STATE_NORMAL;
+
+  _gtk_sheet_draw_button(sheet, row, -1);
 }
 
 /*!
@@ -12898,11 +12906,13 @@ void _gtk_sheet_draw_button(GtkSheet *sheet, int row, int col)
 	gtk_widget_get_style((GtkWidget*)sheet)->font_desc;
     PangoRectangle extent;
 
-    if (!gtk_widget_get_realized((GtkWidget*)sheet))
-	return;
+    if (!gtk_widget_get_realized((GtkWidget*)sheet)) {
+      return;
+    }
 
-    if ((row == -1) && (col == -1))
-	return;
+    if ((row == -1) && (col == -1)) {
+      return;
+    }
 
 #if GTK_SHEET_DEBUG_DRAW_BUTTON > 0
     fprintf(stderr,"_gtk_sheet_draw_button: row %d col %d", row, col);
@@ -12958,8 +12968,9 @@ void _gtk_sheet_draw_button(GtkSheet *sheet, int row, int col)
       x = 0;
       y = _gtk_sheet_row_top_ypixel(sheet, row) + CELL_SPACING;
 
-      if (sheet->column_titles_visible)
+      if (sheet->column_titles_visible) {
         y -= sheet->column_title_area.height;
+      }
 
       width = sheet->row_title_area.width;
       height = sheet->row[row].height;
@@ -13032,8 +13043,7 @@ void _gtk_sheet_draw_button(GtkSheet *sheet, int row, int col)
       pango_layout_get_pixel_extents(layout, NULL, &extent);
       text_width = extent.width;
 
-      switch(button->justification)
-      {
+      switch(button->justification) {
         case GTK_JUSTIFY_LEFT:
           real_x = x + CELLOFFSET;
           pango_alignment = PANGO_ALIGN_LEFT;
