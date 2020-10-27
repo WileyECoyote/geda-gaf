@@ -4019,6 +4019,7 @@ static void _gtk_sheet_autoresize_row_internal(GtkSheet *sheet, int row)
     fprintf(stderr,"_gtk_sheet_autoresize_row_internal[%d]: set height %d",
             row, new_height);
 #endif
+
     gtk_sheet_set_row_height(sheet, row, new_height);
     GTK_SHEET_SET_FLAGS(sheet, GTK_SHEET_IN_REDRAW_PENDING);
   }
@@ -10335,6 +10336,7 @@ gtk_sheet_button_release_handler(GtkWidget *widget, GdkEventButton *event)
       if (sheet->hadjustment) {
         g_signal_emit_by_name(G_OBJECT(sheet->hadjustment),  "value_changed");
       }
+
       return (TRUE);
     }
 
@@ -10355,9 +10357,9 @@ gtk_sheet_button_release_handler(GtkWidget *widget, GdkEventButton *event)
       if (sheet->vadjustment) {
         g_signal_emit_by_name(G_OBJECT(sheet->vadjustment), "value_changed");
       }
+
       return (TRUE);
     }
-
 
     if (GTK_SHEET_IN_DRAG(sheet)) {
 
@@ -12045,8 +12047,6 @@ _get_entry_window_size(GtkEntry *entry,
 	    *height = requisition.height;
     }
 }
-
-
 
 /*!
  * _gtk_sheet_entry_size_allocate:
