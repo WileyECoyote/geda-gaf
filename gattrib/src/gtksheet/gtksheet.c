@@ -6920,7 +6920,7 @@ static void _cell_draw_label(GtkSheet *sheet, int row, int col)
     }
 
     /* Vertical justification is quantisized, so that all text lines using the
-     *      s *ame font appear vertically aligned, even if adjacent columns have
+     *      same font appear vertically aligned, even if adjacent columns have
      *      different vjust settings.
      */
     switch(vjust) {
