@@ -15236,18 +15236,24 @@ void gtk_sheet_button_attach(GtkSheet *sheet, GtkWidget *widget, int row, int co
 
     if (row == -1) {
 
-      if (button_requisition.height > sheet->column_title_area.height)
+      if (button_requisition.height > sheet->column_title_area.height) {
         sheet->column_title_area.height = button_requisition.height;
-      if (button_requisition.width > COLPTR(sheet, col)->width)
+      }
+
+      if (button_requisition.width > COLPTR(sheet, col)->width) {
         COLPTR(sheet, col)->width = button_requisition.width;
+      }
     }
 
     if (col == -1) {
 
-      if (button_requisition.width > sheet->row_title_area.width)
+      if (button_requisition.width > sheet->row_title_area.width) {
         sheet->row_title_area.width = button_requisition.width;
-      if (button_requisition.height > sheet->row[row].height)
+      }
+
+      if (button_requisition.height > sheet->row[row].height) {
         sheet->row[row].height = button_requisition.height;
+      }
     }
 
     if (gtk_widget_get_visible((GtkWidget*)sheet)) {
@@ -15258,8 +15264,9 @@ void gtk_sheet_button_attach(GtkSheet *sheet, GtkWidget *widget, int row, int co
         gtk_sheet_realize_child(sheet, child);
 
       if (gtk_widget_get_mapped((GtkWidget*)sheet) &&
-        !gtk_widget_get_mapped(widget))
+         !gtk_widget_get_mapped(widget)) {
         gtk_widget_map(widget);
+      }
     }
 
     if (row == -1) {
