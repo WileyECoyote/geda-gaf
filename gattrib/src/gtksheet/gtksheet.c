@@ -10310,26 +10310,28 @@ gtk_sheet_click_cell(GtkSheet *sheet, int row, int col, int *veto)
 static int
 gtk_sheet_button_release_handler(GtkWidget *widget, GdkEventButton *event)
 {
-    GtkSheet *sheet;
-
-    sheet = (GtkSheet*)widget;
+    GtkSheet *sheet = (GtkSheet*)widget;
 
     /* release on resize windows */
     if (GTK_SHEET_IN_XDRAG(sheet)) {
 
       unsigned int x;
+      unsigned int new_width;
+
       GTK_SHEET_UNSET_FLAGS(sheet, GTK_SHEET_IN_XDRAG);
       GTK_SHEET_UNSET_FLAGS(sheet, GTK_SHEET_IN_SELECTION);
       gtk_widget_get_pointer(widget, &x, NULL);
       gdk_pointer_ungrab(event->time);
       draw_xor_vline(sheet);
 
+      new_width = new_column_width(sheet, sheet->drag_cell.col, &x);
+
 #if GTK_SHEET_DEBUG_SIZE > 0
       fprintf(stderr,"%s[%d]: set width %d", __func__,
               sheet->drag_cell.col, new_width);
 #endif
-      gtk_sheet_set_column_width(sheet,
-                                 sheet->drag_cell.col, new_column_width(sheet, sheet->drag_cell.col, &x));
+
+      gtk_sheet_set_column_width(sheet, sheet->drag_cell.col, new_width);
 
       sheet->old_hadjustment = -1.;
 
