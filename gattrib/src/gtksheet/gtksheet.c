@@ -6785,7 +6785,6 @@ _cell_draw_border(GtkSheet *sheet, int row, int col, int mask)
 
 }
 
-
 static void _cell_draw_label(GtkSheet *sheet, int row, int col)
 {
   int i;
@@ -9799,11 +9798,13 @@ gtk_sheet_expose_handler(GtkWidget *widget, GdkEventExpose *event)
 
           if (gtk_sheet_range_isvisible(sheet, sheet->range))
             gtk_sheet_draw_backing_pixmap(sheet, sheet->range);
+
           if (GTK_SHEET_IN_RESIZE(sheet) || GTK_SHEET_IN_DRAG(sheet))
             gtk_sheet_draw_backing_pixmap(sheet, sheet->drag_range);
 
           if (gtk_sheet_range_isvisible(sheet, sheet->range))
             gtk_sheet_range_draw_selection(sheet, sheet->range);
+
           if (GTK_SHEET_IN_RESIZE(sheet) || GTK_SHEET_IN_DRAG(sheet))
             draw_xor_rectangle(sheet, sheet->drag_range);
         }
@@ -10177,6 +10178,7 @@ static void gtk_sheet_click_cell(GtkSheet *sheet, int row, int col, int *veto)
       row = sheet->active_cell.row;
       col = sheet->active_cell.col;
       gtk_sheet_activate_cell(sheet, row, col);
+
       return;
     }
 
@@ -10187,6 +10189,7 @@ static void gtk_sheet_click_cell(GtkSheet *sheet, int row, int col, int *veto)
       }
 
       gtk_sheet_select_column(sheet, col);
+
       return;
     }
 
@@ -10197,6 +10200,7 @@ static void gtk_sheet_click_cell(GtkSheet *sheet, int row, int col, int *veto)
       }
 
       gtk_sheet_select_row(sheet, row);
+
       return;
     }
 
@@ -13771,6 +13775,7 @@ new_row_height(GtkSheet *sheet, int row, int *y)
 	height = requisition.height;
 
     sheet->row[row].height = height;
+
     _gtk_sheet_recalc_top_ypixels(sheet);
     _gtk_sheet_recalc_view_range(sheet);
 
