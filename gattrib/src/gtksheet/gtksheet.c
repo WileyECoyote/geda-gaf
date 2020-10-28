@@ -1997,8 +1997,7 @@ static void gtk_sheet_get_property(GObject     *object,
     }
 }
 
-static void
-gtk_sheet_class_init_properties(GObjectClass *gobject_class)
+static void gtk_sheet_class_init_properties(GObjectClass *gobject_class)
 {
     GParamSpec *pspec;
 
@@ -9735,8 +9734,7 @@ static void gtk_sheet_real_unselect_range(GtkSheet *sheet, GtkSheetRange *range)
  *
  * \param return TRUE to stop other handlers from being invoked for the event. FALSE to propagate the event further.
  */
-static int
-gtk_sheet_expose_handler(GtkWidget *widget, GdkEventExpose *event)
+static int gtk_sheet_expose_handler(GtkWidget *widget, GdkEventExpose *event)
 {
     GtkSheet *sheet;
 
@@ -10492,8 +10490,7 @@ gtk_sheet_button_release_handler(GtkWidget *widget, GdkEventButton *event)
  * \return TRUE to stop other handlers from being invoked for
  *         the event. FALSE to propagate the event further.
  */
-static int
-gtk_sheet_motion_handler(GtkWidget *widget, GdkEventMotion *event)
+static int gtk_sheet_motion_handler(GtkWidget *widget, GdkEventMotion *event)
 {
   GtkSheet *sheet;
   GdkModifierType mods;
@@ -11297,8 +11294,7 @@ gtk_sheet_entry_key_press_handler(GtkWidget *widget, GdkEventKey *key, void *use
  *
  * \param return TRUE to stop other handlers from being invoked for the event. FALSE to propagate the event further.
  */
-static int
-gtk_sheet_key_press_handler(GtkWidget *widget, GdkEventKey *key)
+static int gtk_sheet_key_press_handler(GtkWidget *widget, GdkEventKey *key)
 {
     GtkSheet *sheet;
     //int state;
@@ -12132,9 +12128,8 @@ _gtk_sheet_entry_size_allocate(GtkSheet *sheet)
 #endif
 
     GtkSheetCellAttr attributes;
-    gtk_sheet_get_attributes(sheet,
-	sheet->active_cell.row, sheet->active_cell.col,
-	&attributes);
+    gtk_sheet_get_attributes(sheet, sheet->active_cell.row,
+                                    sheet->active_cell.col, &attributes);
 
     if (gtk_widget_get_realized(sheet->sheet_entry)) {
       gtk_widget_size_request(sheet->sheet_entry, NULL);
