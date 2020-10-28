@@ -6362,7 +6362,7 @@ static void gtk_sheet_unrealize_handler(GtkWidget *widget)
 {
     GtkSheet *sheet;
 
-    g_return_if_fail(GTK_IS_SHEET(widget));
+    //g_return_if_fail(GTK_IS_SHEET(widget));
 
     sheet = (GtkSheet*)widget;
 

@@ -8,6 +8,7 @@
           * widget_class->motion_notify_event
           * widget_class->size_allocate
           * widget_class->size_request
+          * widget_class->unrealize
 
 2020-10-27 Wiley E. Hill <wileyhill@gmail.com>
 
