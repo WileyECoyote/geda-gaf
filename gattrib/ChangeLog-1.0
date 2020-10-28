@@ -1,3 +1,7 @@
+2020-10-28 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/gtksheet/gtksheet.c: Remove validations in widget_class->size_allocate.
+
 2020-10-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gtksheet/gtksheet.c: Add ancillary unsigned new_width in function

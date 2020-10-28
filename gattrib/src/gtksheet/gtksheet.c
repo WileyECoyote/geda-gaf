@@ -11751,8 +11751,8 @@ gtk_sheet_size_allocate_handler(GtkWidget *widget, GtkAllocation *allocation)
     int border_width;
     int modified;
 
-    g_return_if_fail(GTK_IS_SHEET(widget));
-    g_return_if_fail(allocation != NULL);
+    //g_return_if_fail(GTK_IS_SHEET(widget));
+    //g_return_if_fail(allocation != NULL);
 
 #if GTK_SHEET_DEBUG_SIZE > 0
     fprintf(stderr,"gtk_sheet_size_allocate_handler: called (%d, %d, %d, %d)",
