@@ -11865,7 +11865,7 @@ gtk_sheet_size_allocate_handler(GtkWidget *widget, GtkAllocation *allocation)
 
 static int gtk_sheet_focus(GtkWidget *widget, GtkDirectionType direction)
 {
-    g_return_val_if_fail(GTK_IS_SHEET(widget), FALSE);
+    //g_return_val_if_fail(GTK_IS_SHEET(widget), FALSE);
 
     GtkSheet *sheet = GTK_SHEET(widget);
 
