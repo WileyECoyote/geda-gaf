@@ -2,6 +2,7 @@
 
     * src/gtksheet/gtksheet.c: Remove validations in:
 
+          * widget_class->expose_event
           * widget_class->focus
           * widget_class->size_allocate
           * widget_class->size_request

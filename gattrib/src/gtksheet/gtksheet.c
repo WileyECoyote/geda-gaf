@@ -9740,9 +9740,9 @@ gtk_sheet_expose_handler(GtkWidget *widget, GdkEventExpose *event)
 {
     GtkSheet *sheet;
 
-    g_return_val_if_fail(widget != NULL, FALSE);
-    g_return_val_if_fail(GTK_IS_SHEET(widget), FALSE);
-    g_return_val_if_fail(event != NULL, FALSE);
+    //g_return_val_if_fail(widget != NULL, FALSE);
+    //g_return_val_if_fail(GTK_IS_SHEET(widget), FALSE);
+    //g_return_val_if_fail(event != NULL, FALSE);
 
     sheet = GTK_SHEET(widget);
 
