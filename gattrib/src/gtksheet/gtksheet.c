@@ -10499,9 +10499,9 @@ gtk_sheet_motion_handler(GtkWidget *widget, GdkEventMotion *event)
   GdkCursorType new_cursor;
   int x, y, row, column;
 
-  g_return_val_if_fail(widget != NULL, FALSE);
-  g_return_val_if_fail(GTK_IS_SHEET(widget), FALSE);
-  g_return_val_if_fail(event != NULL, FALSE);
+  //g_return_val_if_fail(widget != NULL, FALSE);
+  //g_return_val_if_fail(GTK_IS_SHEET(widget), FALSE);
+  //g_return_val_if_fail(event != NULL, FALSE);
 
   sheet = GTK_SHEET(widget);
 

@@ -4,6 +4,7 @@
 
           * widget_class->expose_event
           * widget_class->focus
+          * widget_class->motion_notify_event
           * widget_class->size_allocate
           * widget_class->size_request
 
