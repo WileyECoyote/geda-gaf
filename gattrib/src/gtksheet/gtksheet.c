@@ -9855,9 +9855,10 @@ gtk_sheet_button_press_handler(GtkWidget *widget, GdkEventButton *event)
   int x, y, row, column;
   int veto;
 
-  g_return_val_if_fail(widget != NULL, FALSE);
-  g_return_val_if_fail(GTK_IS_SHEET(widget), FALSE);
-  g_return_val_if_fail(event != NULL, FALSE);
+  //g_return_val_if_fail(widget != NULL, FALSE);
+  //g_return_val_if_fail(GTK_IS_SHEET(widget), FALSE);
+  //g_return_val_if_fail(event != NULL, FALSE);
+
   /*
    *   if(event->type != GDK_BUTTON_PRESS) return (TRUE);
    */

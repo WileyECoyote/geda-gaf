@@ -2,6 +2,7 @@
 
     * src/gtksheet/gtksheet.c: Remove validations in:
 
+          * widget_class->button_press_event
           * widget_class->expose_event
           * widget_class->focus
           * widget_class->motion_notify_event
