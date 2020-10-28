@@ -1,6 +1,7 @@
 2020-10-28 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/gtksheet/gtksheet.c: Remove validations in:
+    * src/gtksheet/gtksheet.c: Alphabetize widget_class assignments and
+      remove validations in:
 
           * widget_class->button_press_event
           * widget_class->expose_event

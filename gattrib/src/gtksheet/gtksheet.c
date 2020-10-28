@@ -3038,21 +3038,21 @@ static void gtk_sheet_class_init(GtkSheetClass *klass)
 
     gtk_sheet_class_init_properties(gobject_class);
 
-    widget_class->realize              = gtk_sheet_realize_handler;
-    widget_class->unrealize            = gtk_sheet_unrealize_handler;
-    widget_class->map                  = gtk_sheet_map_handler;
-    widget_class->unmap                = gtk_sheet_unmap_handler;
-    widget_class->style_set            = gtk_sheet_style_set_handler;
     widget_class->button_press_event   = gtk_sheet_button_press_handler;
     widget_class->button_release_event = gtk_sheet_button_release_handler;
-    widget_class->motion_notify_event  = gtk_sheet_motion_handler;
-    widget_class->key_press_event      = gtk_sheet_key_press_handler;
     widget_class->expose_event         = gtk_sheet_expose_handler;
-    widget_class->size_request         = gtk_sheet_size_request_handler;
-    widget_class->size_allocate        = gtk_sheet_size_allocate_handler;
     widget_class->focus                = gtk_sheet_focus;
     widget_class->focus_in_event       = NULL;
     widget_class->focus_out_event      = NULL;
+    widget_class->key_press_event      = gtk_sheet_key_press_handler;
+    widget_class->map                  = gtk_sheet_map_handler;
+    widget_class->motion_notify_event  = gtk_sheet_motion_handler;
+    widget_class->realize              = gtk_sheet_realize_handler;
+    widget_class->size_allocate        = gtk_sheet_size_allocate_handler;
+    widget_class->size_request         = gtk_sheet_size_request_handler;
+    widget_class->style_set            = gtk_sheet_style_set_handler;
+    widget_class->unmap                = gtk_sheet_unmap_handler;
+    widget_class->unrealize            = gtk_sheet_unrealize_handler;
 
     klass->select_row       = NULL;
     klass->select_column    = NULL;
