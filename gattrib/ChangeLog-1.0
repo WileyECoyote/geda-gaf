@@ -4,6 +4,7 @@
 
           * widget_class->focus
           * widget_class->size_allocate
+          * widget_class->size_request
 
 2020-10-27 Wiley E. Hill <wileyhill@gmail.com>
 

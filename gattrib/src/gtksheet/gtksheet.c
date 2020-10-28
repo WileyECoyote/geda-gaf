@@ -11699,8 +11699,8 @@ gtk_sheet_size_request_handler(GtkWidget *widget, GtkRequisition *requisition)
   GList    *children;
   GtkRequisition child_requisition;
 
-  g_return_if_fail(GTK_IS_SHEET(widget));
-  g_return_if_fail(requisition != NULL);
+  //g_return_if_fail(GTK_IS_SHEET(widget));
+  //g_return_if_fail(requisition != NULL);
 
 #if GTK_SHEET_DEBUG_SIZE > 0
   fprintf(stderr,"gtk_sheet_size_request_handler: called");
