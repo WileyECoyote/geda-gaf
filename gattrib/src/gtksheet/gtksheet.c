@@ -4608,9 +4608,7 @@ int gtk_sheet_row_titles_visible(GtkSheet *sheet)
  * \param row    row number
  * \param title  row title
  */
-void gtk_sheet_set_row_title(GtkSheet *sheet,
-    int row,
-    const char *title)
+void gtk_sheet_set_row_title(GtkSheet *sheet, int row, const char *title)
 {
   g_return_if_fail(GTK_IS_SHEET(sheet));
 
