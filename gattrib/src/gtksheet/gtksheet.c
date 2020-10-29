@@ -14472,7 +14472,7 @@ static void gtk_sheet_set_cell_attributes(GtkSheet *sheet, int row, int col,
  *
  * Gett cell attributes of the given cell.
  *
- * Returns: TRUE means that the cell is currently allocated.
+ * \returns TRUE means that the cell is currently allocated.
  */
 int gtk_sheet_get_attributes(GtkSheet *sheet,
                              int row, int col,
@@ -15011,11 +15011,11 @@ static void CheckCellData(GtkSheet *sheet, const int row, const int col)
  ********************************************************************/
 
 /*!
- * gtk_sheet_put:
- * \param sheet: a #GtkSheet.
- * \param child: GtkWidget to be put
- * \param x: x coordinate where we put the widget
- * \param y: y coordinate where we put the widget
+ * gtk_sheet_put
+ * \param sheet  a #GtkSheet
+ * \param child  GtkWidget to be put
+ * \param x      x coordinate where we put the widget
+ * \param y      y coordinate where we put the widget
  *
  * Add widgets to the sheet.
  * The widget is floating in one given position (x,y) regardless of the
@@ -15086,11 +15086,12 @@ GtkSheetChild *gtk_sheet_put(GtkSheet *sheet, GtkWidget *child, int x, int y)
 }
 
 /*!
- * gtk_sheet_attach_floating:
- * \param sheet: a #GtkSheet.
- * \param widget: GtkWidget to be put
- * \param row: row number
- * \param col: column number
+ * gtk_sheet_attach_floating
+ *
+ * \param sheet   a #GtkSheet
+ * \param widget  GtkWidget to be put
+ * \param row     row number
+ * \param col     column number
  *
  * The widget is attached to the top-left corner of a cell (row,column)
  * and moves with it when you change width, height, or you delete of add
@@ -15115,11 +15116,12 @@ gtk_sheet_attach_floating(GtkSheet *sheet, GtkWidget *widget, int row, int col)
 }
 
 /*!
- * gtk_sheet_attach_default:
- * \param sheet: a #GtkSheet.
- * \param widget: GtkWidget to be put
- * \param row: row number
- * \param col: column number
+ * gtk_sheet_attach_default
+ *
+ * \param sheet   a #GtkSheet
+ * \param widget  GtkWidget to be put
+ * \param row     row number
+ * \param col     column number
  *
  * Attaches a child widget to the given cell with the 0,0 alignments.
  * Works basically like gtk_table_attach, with the same options, the
@@ -15144,15 +15146,16 @@ gtk_sheet_attach_default(GtkSheet *sheet,
 }
 
 /*!
- * gtk_sheet_attach:
- * \param sheet: a #GtkSheet.
- * \param widget: GtkWidget to be put
- * \param row: row number
- * \param col: column number
- * \param xoptions: if set GTK_EXPAND cell will expand/shrink on x direction
- * \param yoptions: if set GTK_EXPAND cell will expand/shrink on y direction
- * \param xpadding: x coordinate of the alignment
- * \param ypadding: y coordinate of the alignment
+ * gtk_sheet_attach
+ *
+ * \param sheet     a #GtkSheet
+ * \param widget    GtkWidget to be put
+ * \param row       row number
+ * \param col       column number
+ * \param xoptions  if set GTK_EXPAND cell will expand/shrink on x direction
+ * \param yoptions  if set GTK_EXPAND cell will expand/shrink on y direction
+ * \param xpadding  x coordinate of the alignment
+ * \param ypadding  y coordinate of the alignment
  *
  * Attaches a child widget to the given cell with the given alignments.
  * Works basically like gtk_table_attach, with the same options, the widget
@@ -15232,11 +15235,12 @@ void gtk_sheet_attach(GtkSheet *sheet, GtkWidget *widget, int row,
 }
 
 /*!
- * gtk_sheet_button_attach:
- * \param sheet: a #GtkSheet.
- * \param widget: GtkWidget to be put
- * \param row: row number
- * \param col: column number
+ * gtk_sheet_button_attach
+ *
+ * \param sheet   a #GtkSheet
+ * \param widget  GtkWidget to be put
+ * \param row     row number
+ * \param col     column number
  *
  * Button attach works like cell attach but for the buttons.
  */
@@ -15366,10 +15370,11 @@ label_size_request(GtkSheet *sheet, char *label, GtkRequisition *req)
 }
 
 /*!
- * _gtk_sheet_button_size_request:
- * \param sheet:  the #GtkSheet
- * \param button: the #GtkSheetButton requested
- * \param button_requisition: the requisition
+ * _gtk_sheet_button_size_request
+ *
+ * \param sheet               the #GtkSheet
+ * \param button              the #GtkSheetButton requested
+ * \param button_requisition  the requisition
  *
  * size request handler for all sheet buttons
  */
@@ -15438,11 +15443,12 @@ gtk_sheet_row_size_request(GtkSheet *sheet, int row, unsigned int *requisition)
 }
 
 /*!
- * gtk_sheet_move_child:
- * \param sheet: a #GtkSheet.
- * \param widget: GtkWidget to be put.
- * \param x: x coord at which we move the widget.
- * \param y: y coord at which we move the widget.
+ * gtk_sheet_move_child
+ *
+ * \param sheet   a #GtkSheet
+ * \param widget  GtkWidget to be put
+ * \param x       x coord at which we move the widget
+ * \param y       y coord at which we move the widget
  *
  * Move widgets added with gtk_sheet_put() in the sheet.
  */
@@ -15604,17 +15610,15 @@ static void gtk_sheet_position_child(GtkSheet *sheet, GtkSheetChild *child)
   gtk_widget_queue_draw(child->widget);
 }
 
-/*
- * gtk_sheet_forall_handler:
+/*!
+ * gtk_sheet_forall_handler
  *
  * this is the #GtkSheet container child enumeration handler
  *
- * \param container the #GtkSheet
- * \param include_internals
- *                  Flag whether to include internal childs
- * \param callback  a callback function
- * \param callback_data
- *                  callback user data
+ * \param container          the #GtkSheet
+ * \param include_internals  Flag whether to include internal childs
+ * \param callback           a callback function
+ * \param callback_data      callback user data
  */
 static void
 gtk_sheet_forall_handler(GtkContainer *container,
@@ -15804,16 +15808,15 @@ static void gtk_sheet_realize_child(GtkSheet *sheet, GtkSheetChild *child)
   gtk_widget_set_parent(child->widget, widget);
 }
 
-
 /*!
- * gtk_sheet_get_child_at:
- * \param sheet: a #GtkSheet.
- * \param row: row number
- * \param col: column number
+ * gtk_sheet_get_child_at
+ * \param sheet  a #GtkSheet
+ * \param row    row number
+ * \param col    column number
  *
- * Get the child attached at @row,@col.
+ * Get the child attached at @row,@col
  *
- * returns: the #GtkSheetChild attached to @row,@col or NULL
+ * \returns the #GtkSheetChild attached to @row,@col or NULL
  */
 const GtkSheetChild *gtk_sheet_get_child_at(GtkSheet *sheet, int row, int col)
 {
@@ -15840,8 +15843,9 @@ const GtkSheetChild *gtk_sheet_get_child_at(GtkSheet *sheet, int row, int col)
 }
 
 /*!
- * _gtk_sheet_child_hide:
- * \param child:  the child
+ * _gtk_sheet_child_hide
+ *
+ * \param child  the child
  *
  * gtk_widget_hide(child)
  */
@@ -15853,7 +15857,8 @@ void _gtk_sheet_child_hide(GtkSheetChild *child)
 
 /*!
  * _gtk_sheet_child_show:
- * \param child:  the child
+ *
+ * \param child  the child
  *
  * gtk_widget_show(child)
  */
