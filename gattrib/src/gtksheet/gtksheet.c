@@ -4612,8 +4612,9 @@ void gtk_sheet_set_row_title(GtkSheet *sheet, int row, const char *title)
 {
   g_return_if_fail(GTK_IS_SHEET(sheet));
 
-  if (sheet->row[row].name)
+  if (sheet->row[row].name) {
     g_free(sheet->row[row].name);
+  }
 
   sheet->row[row].name = g_strdup(title);
 }
