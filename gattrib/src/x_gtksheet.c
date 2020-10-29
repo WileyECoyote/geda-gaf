@@ -845,10 +845,12 @@ void x_gtksheet_add_row_labels(GtkSheet *sheet, int count, STRING_LIST *list_hea
   style =  gtk_widget_get_style((GtkWidget*)sheet);
 
   /* Get character width based upon "X", which is a large char. */
-  if (style->private_font)
+  if (style->private_font) {
     char_width = gdk_char_width (style->private_font, (char)'X');
-  else
+  }
+  else {
     char_width = DEFAULT_FONT_WIDTH;
+  }
 
   string_list_item = list_head;
 
