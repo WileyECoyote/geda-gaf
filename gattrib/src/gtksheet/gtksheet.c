@@ -6131,7 +6131,7 @@ gtk_sheet_realize_handler(GtkWidget *widget)
     attributes.y = sheet->column_title_area.height;
   }
 
-  attributes.width = sheet->row_title_area.width;
+  attributes.width  = sheet->row_title_area.width;
   attributes.height = sheet->row_title_area.height;
 
   /* row-title window */
@@ -10153,7 +10153,7 @@ static void gtk_sheet_click_cell(GtkSheet *sheet, int row, int col, int *veto)
     if (col >= 0 && row >= 0) {
 
       if (!GTK_SHEET_COLUMN_IS_VISIBLE(COLPTR(sheet, col)) ||
-        !GTK_SHEET_ROW_IS_VISIBLE(ROWPTR(sheet, row)))
+          !GTK_SHEET_ROW_IS_VISIBLE(ROWPTR(sheet, row)))
       {
         *veto = FALSE;
         return;
@@ -11846,11 +11846,11 @@ gtk_sheet_size_allocate_handler(GtkWidget *widget, GtkAllocation *allocation)
     size_allocate_row_title_buttons(sheet);
 
     if (gtk_sheet_autoresize(sheet) &&
-	(modified || (GTK_SHEET_FLAGS(sheet) & GTK_SHEET_IN_AUTORESIZE_PENDING)))
+       (modified || (GTK_SHEET_FLAGS(sheet) & GTK_SHEET_IN_AUTORESIZE_PENDING)))
     {
-	/* autoresize here, because window was changed -> max col_width */
-	gtk_sheet_autoresize_all(sheet);
-	GTK_SHEET_UNSET_FLAGS(sheet, GTK_SHEET_IN_AUTORESIZE_PENDING);
+      /* autoresize here, because window was changed -> max col_width */
+      gtk_sheet_autoresize_all(sheet);
+      GTK_SHEET_UNSET_FLAGS(sheet, GTK_SHEET_IN_AUTORESIZE_PENDING);
     }
 
     _gtk_sheet_recalc_view_range(sheet);
@@ -12148,7 +12148,7 @@ _gtk_sheet_entry_size_allocate(GtkSheet *sheet)
     row = sheet->active_cell.row;
     col = sheet->active_cell.col;
 
-    text_width = 0;
+    text_width  = 0;
     text_height = 0;
 
     {
@@ -12904,10 +12904,9 @@ void _gtk_sheet_draw_button(GtkSheet *sheet, int row, int col)
     int state = 0;
     char label_buf[10];
 
-    PangoAlignment pango_alignment = PANGO_ALIGN_LEFT;
-    GtkSheetArea area = ON_SHEET_BUTTON_AREA;
-    PangoFontDescription *font_desc =
-	gtk_widget_get_style((GtkWidget*)sheet)->font_desc;
+    PangoAlignment pango_alignment  = PANGO_ALIGN_LEFT;      /* Maybe center columns? */
+    GtkSheetArea area               = ON_SHEET_BUTTON_AREA;
+    PangoFontDescription *font_desc = gtk_widget_get_style((GtkWidget*)sheet)->font_desc;
     PangoRectangle extent;
 
     if (!gtk_widget_get_realized((GtkWidget*)sheet)) {
@@ -12968,9 +12967,9 @@ void _gtk_sheet_draw_button(GtkSheet *sheet, int row, int col)
 
       window = sheet->row_title_window;
       button = &sheet->row[row].button;
-      index = row;
-      x = 0;
-      y = _gtk_sheet_row_top_ypixel(sheet, row) + CELL_SPACING;
+      index  = row;
+      x      = 0;
+      y      = _gtk_sheet_row_top_ypixel(sheet, row) + CELL_SPACING;
 
       if (sheet->column_titles_visible) {
         y -= sheet->column_title_area.height;
@@ -15397,41 +15396,43 @@ _gtk_sheet_button_size_request(GtkSheet       *sheet,
   }
   else {
     requisition.height = _gtk_sheet_row_default_height((GtkWidget*)sheet);
-    requisition.width = GTK_SHEET_COLUMN_MIN_WIDTH;
+    requisition.width  = GTK_SHEET_COLUMN_MIN_WIDTH;
   }
 
-  *button_requisition = requisition;
-  button_requisition->width = MAX(requisition.width, label_requisition.width);
+ *button_requisition         = requisition;
+  button_requisition->width  = MAX(requisition.width, label_requisition.width);
   button_requisition->height = MAX(requisition.height, label_requisition.height);
 }
 
 static void
 gtk_sheet_row_size_request(GtkSheet *sheet, int row, unsigned int *requisition)
 {
-    GtkRequisition button_requisition;
-    GList *children;
+  GtkRequisition button_requisition;
+  GList *children;
 
-    _gtk_sheet_button_size_request(sheet, &sheet->row[row].button, &button_requisition);
+  _gtk_sheet_button_size_request(sheet, &sheet->row[row].button, &button_requisition);
 
-    *requisition = button_requisition.height;
+  *requisition = button_requisition.height;
 
-    children = sheet->children;
-    while (children)
+  children = sheet->children;
+
+  while (children) {
+
+    GtkSheetChild *child = (GtkSheetChild *)children->data;
+    GtkRequisition child_requisition;
+
+    if (child->attached_to_cell && child->row == row &&
+        child->col != -1 && !child->floating && !child->yshrink)
     {
-	GtkSheetChild *child = (GtkSheetChild *)children->data;
-	GtkRequisition child_requisition;
+      gtk_widget_get_child_requisition(child->widget, &child_requisition);
 
-	if (child->attached_to_cell && child->row == row && child->col != -1 && !child->floating && !child->yshrink)
-	{
-	    gtk_widget_get_child_requisition(child->widget, &child_requisition);
-
-	    if (child_requisition.height + 2 * child->ypadding > *requisition)
-		*requisition = child_requisition.height + 2 * child->ypadding;
-	}
-	children = children->next;
+      if (child_requisition.height + 2 * child->ypadding > *requisition)
+        *requisition = child_requisition.height + 2 * child->ypadding;
     }
+    children = children->next;
+  }
 
-    sheet->row[row].requisition = *requisition;
+  sheet->row[row].requisition = *requisition;
 }
 
 /*!
