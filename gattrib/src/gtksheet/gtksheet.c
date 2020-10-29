@@ -14562,8 +14562,7 @@ static void init_attributes(GtkSheet *sheet, int col, GtkSheetCellAttr *attribut
  * If not, it calls to GrowSheet.
  **********************************************************************/
 
-static void
-AddColumns(GtkSheet *sheet, int position, int ncols)
+static void AddColumns(GtkSheet *sheet, int position, int ncols)
 {
     GtkSheetColumn *newobj;
 
@@ -14613,8 +14612,7 @@ AddColumns(GtkSheet *sheet, int position, int ncols)
     }
 }
 
-static void
-InsertColumn(GtkSheet *sheet, int position, int ncols)
+static void InsertColumn(GtkSheet *sheet, int position, int ncols)
 {
 
 
@@ -14646,8 +14644,7 @@ InsertColumn(GtkSheet *sheet, int position, int ncols)
     }
 }
 
-static void
-DeleteColumn(GtkSheet *sheet, int position, int ncols)
+static void DeleteColumn(GtkSheet *sheet, int position, int ncols)
 {
     int c;
 
@@ -14734,8 +14731,7 @@ DeleteColumn(GtkSheet *sheet, int position, int ncols)
     _gtk_sheet_recalc_left_xpixels(sheet);
 }
 
-static void
-AddRows(GtkSheet *sheet, int position, int nrows)
+static void AddRows(GtkSheet *sheet, int position, int nrows)
 {
   g_assert(nrows >= 0);
   g_assert(position >= 0 && position <= sheet->maxrow + 1);
@@ -14767,8 +14763,7 @@ AddRows(GtkSheet *sheet, int position, int nrows)
   }
 }
 
-static void
-InsertRow(GtkSheet *sheet, int row, int nrows)
+static void InsertRow(GtkSheet *sheet, int row, int nrows)
 {
   AddRows(sheet, row, nrows);
 
@@ -14802,8 +14797,7 @@ InsertRow(GtkSheet *sheet, int row, int nrows)
   }
 }
 
-static void
-DeleteRow(GtkSheet *sheet, int position, int nrows)
+static void DeleteRow(GtkSheet *sheet, int position, int nrows)
 {
   int r;
 
@@ -14902,8 +14896,7 @@ DeleteRow(GtkSheet *sheet, int position, int nrows)
   _gtk_sheet_recalc_top_ypixels(sheet);
 }
 
-static int
-GrowSheet(GtkSheet *tbl, int newrows, int newcols)
+static int GrowSheet(GtkSheet *tbl, int newrows, int newcols)
 {
   int r, c;
   int inirow, inicol;
@@ -14951,8 +14944,7 @@ GrowSheet(GtkSheet *tbl, int newrows, int newcols)
   return (0);
 }
 
-static void
-CheckBounds(GtkSheet *sheet, int row, int col)
+static void CheckBounds(GtkSheet *sheet, int row, int col)
 {
   int newrows = 0, newcols = 0;
 
@@ -15131,8 +15123,7 @@ gtk_sheet_attach_floating(GtkSheet *sheet, GtkWidget *widget, int row, int col)
  * keeping attached to the same cell. It's in fact gtk_sheet_attach()
  * with GTK_EXPAND set.
  */
-void
-gtk_sheet_attach_default(GtkSheet *sheet,
+void gtk_sheet_attach_default(GtkSheet *sheet,
     GtkWidget *widget,
     int row, int col)
 {
