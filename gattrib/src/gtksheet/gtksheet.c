@@ -4672,7 +4672,9 @@ void gtk_sheet_row_button_add_label(GtkSheet *sheet, int row, const char *label)
 
   gtk_sheet_set_autoresize(sheet, FALSE);
   gtk_sheet_set_autoresize_rows(sheet, TRUE);
+
   _gtk_sheet_button_size_request(sheet, button, &req);
+
   gtk_sheet_set_autoresize_columns(sheet, aux_c);
   gtk_sheet_set_autoresize_rows(sheet, aux_r);
 
@@ -10263,9 +10265,11 @@ static void gtk_sheet_click_cell(GtkSheet *sheet, int row, int col, int *veto)
           *veto = FALSE;
           return;
         }
+
 #if GTK_SHEET_DEBUG_CLICK > 0
         fprintf(stderr,"%s: row %d col %d back from deactivate\n", __func__, row, col);
 #endif
+
       }
 
       /* auto switch column entry_type, not sure whether to move this
@@ -12147,6 +12151,7 @@ _gtk_sheet_entry_size_allocate(GtkSheet *sheet)
 
     text_width = 0;
     text_height = 0;
+
     {
       char *text = gtk_sheet_get_entry_text(sheet);
 
