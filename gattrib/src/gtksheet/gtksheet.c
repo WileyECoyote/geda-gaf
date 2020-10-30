@@ -7937,13 +7937,14 @@ void gtk_sheet_range_clear(GtkSheet *sheet, const GtkSheetRange *range)
  * \param range  a #GtkSheetRange
  *
  * Clear range contents and remove links.
- * FIXME:: if range==NULL whole sheet is deleted?
  */
 void gtk_sheet_range_delete(GtkSheet *sheet, const GtkSheetRange *range)
 {
-    g_return_if_fail(GTK_IS_SHEET(sheet));
+  g_return_if_fail(GTK_IS_SHEET(sheet));
 
+  if (range) {
     gtk_sheet_real_range_clear(sheet, range, TRUE);
+  }
 }
 
 static void

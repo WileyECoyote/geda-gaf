@@ -1,3 +1,8 @@
+2020-10-30 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/gtksheet/gtksheet.c: Revise function gtk_sheet_range_delete to
+      check for NULL range.
+
 2020-10-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gtksheet/gtksheet.c: Alphabetize widget_class assignments and
