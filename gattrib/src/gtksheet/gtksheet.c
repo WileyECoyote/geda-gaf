@@ -453,7 +453,6 @@ static void _get_string_extent(GtkSheet *sheet, GtkSheetColumn *colptr,
     }
   }
 
-
   pango_layout_get_pixel_extents(layout, NULL, &extent);
 
 #if GTK_SHEET_DEBUG_FONT_METRICS > 0
@@ -7131,8 +7130,6 @@ static void _cell_draw_label(GtkSheet *sheet, int row, int col)
     gdk_gc_set_clip_rectangle(gc, NULL);
 }
 
-
-
 /*!
  * _gtk_sheet_range_draw:
  * \param sheet                 the #GtkSheet
@@ -13033,7 +13030,6 @@ void _gtk_sheet_draw_button(GtkSheet *sheet, int row, int col)
 
       layout = gtk_widget_create_pango_layout((GtkWidget*)sheet, label);
       pango_layout_set_font_description(layout, font_desc);
-
       pango_layout_get_pixel_extents(layout, NULL, &extent);
       text_width = extent.width;
 
@@ -14605,8 +14601,6 @@ static void AddColumns(GtkSheet *sheet, int position, int ncols)
 
 static void InsertColumn(GtkSheet *sheet, int position, int ncols)
 {
-
-
     g_assert(ncols >= 0);
     g_assert(position >= 0);
 
@@ -14948,7 +14942,6 @@ static void CheckBounds(GtkSheet *sheet, int row, int col)
   if (newrows > 0 || newcols > 0)
     GrowSheet(sheet, newrows, newcols);
 }
-
 
 /*
  * CheckCellData - verify existance of cell data, allocate if necessary
