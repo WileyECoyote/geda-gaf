@@ -7535,8 +7535,7 @@ gtk_sheet_range_draw_selection(GtkSheet *sheet, GtkSheetRange range)
   gtk_sheet_draw_border(sheet, sheet->range);
 }
 
-static void
-gtk_sheet_draw_backing_pixmap(GtkSheet *sheet, GtkSheetRange range)
+static void gtk_sheet_draw_backing_pixmap(GtkSheet *sheet, GtkSheetRange range)
 {
     int x, y, width, height;
 
@@ -7597,8 +7596,7 @@ gtk_sheet_draw_backing_pixmap(GtkSheet *sheet, GtkSheetRange range)
                            height + 1);
 }
 
-static inline void
-gtk_sheet_cell_init(GtkSheetCell *cell)
+static inline void gtk_sheet_cell_init(GtkSheetCell *cell)
 {
     cell->extent.x = cell->extent.y = 0;
     cell->extent.width = cell->extent.height = 0;
@@ -7611,8 +7609,7 @@ gtk_sheet_cell_init(GtkSheetCell *cell)
     cell->tooltip_markup = cell->tooltip_text = NULL;
 }
 
-static void
-gtk_sheet_cell_finalize(GtkSheet *sheet, GtkSheetCell *cell)
+static void gtk_sheet_cell_finalize(GtkSheet *sheet, GtkSheetCell *cell)
 {
   g_return_if_fail(cell != NULL);
 
@@ -7654,8 +7651,7 @@ gtk_sheet_cell_finalize(GtkSheet *sheet, GtkSheetCell *cell)
   }
 }
 
-static GtkSheetCell *
-gtk_sheet_cell_new(void)
+static GtkSheetCell *gtk_sheet_cell_new(void)
 {
     GtkSheetCell *cell = g_malloc(sizeof(GtkSheetCell));
     gtk_sheet_cell_init(cell);
@@ -7847,8 +7843,7 @@ void gtk_sheet_set_cell(GtkSheet *sheet, int row, int col,
  *
  * Clear cell contents.
  */
-void
-gtk_sheet_cell_clear(GtkSheet *sheet, int row, int column)
+void gtk_sheet_cell_clear(GtkSheet *sheet, int row, int column)
 {
   GtkSheetRange range;
 
@@ -7884,8 +7879,7 @@ gtk_sheet_cell_clear(GtkSheet *sheet, int row, int column)
  *
  * Clear cell contents and remove links.
  */
-void
-gtk_sheet_cell_delete(GtkSheet *sheet, int row, int column)
+void gtk_sheet_cell_delete(GtkSheet *sheet, int row, int column)
 {
   GtkSheetRange range;
 
@@ -7970,8 +7964,7 @@ gtk_sheet_real_cell_clear(GtkSheet *sheet, int row, int column, int delete)
  *
  * Clear range contents. If range==NULL the whole sheet will be cleared.
  */
-void
-gtk_sheet_range_clear(GtkSheet *sheet, const GtkSheetRange *range)
+void gtk_sheet_range_clear(GtkSheet *sheet, const GtkSheetRange *range)
 {
     g_return_if_fail(GTK_IS_SHEET(sheet));
 
@@ -7986,8 +7979,7 @@ gtk_sheet_range_clear(GtkSheet *sheet, const GtkSheetRange *range)
  * Clear range contents and remove links.
  * FIXME:: if range==NULL whole sheet is deleted?
  */
-void
-gtk_sheet_range_delete(GtkSheet *sheet, const GtkSheetRange *range)
+void gtk_sheet_range_delete(GtkSheet *sheet, const GtkSheetRange *range)
 {
     g_return_if_fail(GTK_IS_SHEET(sheet));
 
@@ -8040,8 +8032,7 @@ gtk_sheet_real_range_clear(GtkSheet *sheet, const GtkSheetRange *range,
  * Returns: a pointer to the cell text, or NULL.
  * Do not modify or free it.
  */
-char *
-gtk_sheet_cell_get_text (GtkSheet *sheet, int row, int col)
+char *gtk_sheet_cell_get_text (GtkSheet *sheet, int row, int col)
 {
   g_return_val_if_fail(GTK_IS_SHEET(sheet), NULL);
 
@@ -8160,8 +8151,7 @@ gtk_sheet_remove_link(GtkSheet *sheet, int row, int col)
  * Returns: a #GtkStateType:
  * GTK_SHEET_NORMAL,GTK_SHEET_ROW_SELECTED,GTK_SHEET_COLUMN_SELECTED,GTK_SHEET_RANGE_SELECTED
  */
-GtkStateType
-gtk_sheet_cell_get_state(GtkSheet *sheet, int row, int col)
+GtkStateType gtk_sheet_cell_get_state(GtkSheet *sheet, int row, int col)
 {
     int state;
     GtkSheetRange *range;
