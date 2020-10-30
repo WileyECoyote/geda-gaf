@@ -7215,6 +7215,7 @@ _gtk_sheet_range_draw(GtkSheet *sheet,
         if (sheet->row_titles_visible)
           area.x += sheet->row_title_area.width;
       }
+
       area.width = sheet->sheet_window_width - area.x;
       area.y = 0;
       area.height = sheet->sheet_window_height;
@@ -7389,9 +7390,11 @@ gtk_sheet_range_draw_selection(GtkSheet *sheet, GtkSheetRange range)
   if (range.col0 > sheet->range.coli || range.coli < sheet->range.col0 ||
     range.row0 > sheet->range.rowi || range.rowi < sheet->range.row0)
   {
+
 #if GTK_SHEET_DEBUG_SELECTION > 0
     fprintf(stderr,"gtk_sheet_range_draw_selection: range outside");
 #endif
+
     return;
   }
 
@@ -7400,6 +7403,7 @@ gtk_sheet_range_draw_selection(GtkSheet *sheet, GtkSheetRange range)
 #if GTK_SHEET_DEBUG_SELECTION > 0
     fprintf(stderr,"gtk_sheet_range_draw_selection: range invisible");
 #endif
+
     return;
   }
 
