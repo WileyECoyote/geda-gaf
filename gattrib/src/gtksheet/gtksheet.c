@@ -7355,64 +7355,7 @@ _gtk_sheet_range_draw(GtkSheet *sheet,
         }
       }
     }
-#if 0
-    /* draw text left outside range (2) */
 
-    if (0 <= drawing_range.col0 && drawing_range.col0 <= sheet->maxcol)
-    {
-#if GTK_SHEET_DEBUG_DRAW > 0
-	fprintf(stderr,"_gtk_sheet_range_draw: (2) row %d - %d col %d - %d",
-	    drawing_range.row0, drawing_range.rowi,
-	    COLPTR(sheet, drawing_range.col0)->left_text_column, drawing_range.col0 - 1);
-#endif
-
-	for (row = drawing_range.row0; row <= drawing_range.rowi; row++)
-	{
-	    for (col = COLPTR(sheet, drawing_range.col0)->left_text_column;
-		col < drawing_range.col0; col++)
-	    {
-#if GTK_SHEET_DEBUG_DRAW > 0
-		fprintf(stderr,"_gtk_sheet_range_draw: (2) %d %d", row, col);
-#endif
-		if (row <= sheet->maxallocrow && col <= sheet->maxalloccol &&
-		    sheet->data[row] && sheet->data[row][col])
-		{
-		    _cell_draw_background(sheet, row, col);
-		    _cell_draw_label(sheet, row, col);
-		}
-	    }
-	}
-    }
-
-    /* draw text right outside range (3) */
-
-    if (0 <= drawing_range.coli && drawing_range.coli <= sheet->maxcol)
-    {
-#if GTK_SHEET_DEBUG_DRAW > 0
-	fprintf(stderr,"_gtk_sheet_range_draw: (3) row %d - %d col %d - %d",
-	    drawing_range.row0, drawing_range.rowi,
-	    drawing_range.coli + 1, COLPTR(sheet, drawing_range.coli)->right_text_column);
-#endif
-
-	for (row = drawing_range.row0; row <= drawing_range.rowi; row++)
-	{
-	    for (col = drawing_range.coli + 1;
-		col <= COLPTR(sheet, drawing_range.coli)->right_text_column; col++)
-	    {
-#if GTK_SHEET_DEBUG_DRAW > 0
-		fprintf(stderr,"_gtk_sheet_range_draw: (3) %d %d", row, col);
-#endif
-		_cell_draw_background(sheet, row, col);
-
-		if (row <= sheet->maxallocrow && col <= sheet->maxalloccol &&
-		    sheet->data[row] && sheet->data[row][col])
-		{
-		    _cell_draw_label(sheet, row, col);
-		}
-	    }
-	}
-    }
-#endif
     gtk_sheet_draw_backing_pixmap(sheet, drawing_range);
 
     if (sheet->state != GTK_SHEET_NORMAL &&
