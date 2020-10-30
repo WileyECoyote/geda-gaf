@@ -7135,14 +7135,12 @@ static void _cell_draw_label(GtkSheet *sheet, int row, int col)
 
 /*!
  * _gtk_sheet_range_draw:
- * \param sheet:  the #GtkSheet
- * \param range:  the #GtkSheetRange or NULL
- * \param activate_active_cell: TRUE to activate active cell after
- *                      drawing
+ * \param sheet                 the #GtkSheet
+ * \param range                 the #GtkSheetRange or NULL
+ * \param activate_active_cell  TRUE to activate active cell after drawing
  *
  * draw visible part of range.
  * If @range == NULL then draw the whole screen.
- *
  */
 void
 _gtk_sheet_range_draw(GtkSheet *sheet,
@@ -7686,11 +7684,11 @@ gtk_sheet_set_cell_text(GtkSheet *sheet, int row, int col, const char *text)
 
 /*!
  * gtk_sheet_set_cell:
- * \param sheet: a #GtkSheet.
- * \param row: row_number
- * \param col: column number
- * \param justification: a #GtkJustification; GTK_JUSTIFY_LEFT, RIGHT, CENTER
- * \param text: cell text
+ * \param sheet          a #GtkSheet.
+ * \param row            row_number
+ * \param col            column number
+ * \param justification  a #GtkJustification; GTK_JUSTIFY_LEFT, RIGHT, CENTER
+ * \param text           cell text
  *
  * Set cell contents and allocate memory if needed.
  */
@@ -7837,9 +7835,9 @@ void gtk_sheet_set_cell(GtkSheet *sheet, int row, int col,
 
 /*!
  * gtk_sheet_cell_clear:
- * \param sheet: a #GtkSheet.
- * \param row: row_number
- * \param column: column number
+ * \param sheet   a #GtkSheet.
+ * \param row     row_number
+ * \param column  column number
  *
  * Clear cell contents.
  */
@@ -7873,9 +7871,9 @@ void gtk_sheet_cell_clear(GtkSheet *sheet, int row, int column)
 
 /*!
  * gtk_sheet_cell_delete:
- * \param sheet: a #GtkSheet.
- * \param row: row_number
- * \param column: column number
+ * \param sheet   a #GtkSheet.
+ * \param row     row_number
+ * \param column  column number
  *
  * Clear cell contents and remove links.
  */
@@ -7959,8 +7957,8 @@ gtk_sheet_real_cell_clear(GtkSheet *sheet, int row, int column, int delete)
 
 /*!
  * gtk_sheet_range_clear:
- * \param sheet: a #GtkSheet.
- * \param range: a #GtkSheetRange
+ * \param sheet  a #GtkSheet.
+ * \param range  a #GtkSheetRange
  *
  * Clear range contents. If range==NULL the whole sheet will be cleared.
  */
@@ -7973,8 +7971,8 @@ void gtk_sheet_range_clear(GtkSheet *sheet, const GtkSheetRange *range)
 
 /*!
  * gtk_sheet_range_delete:
- * \param sheet: a #GtkSheet.
- * \param range: a #GtkSheetRange
+ * \param sheet  a #GtkSheet.
+ * \param range  a #GtkSheetRange
  *
  * Clear range contents and remove links.
  * FIXME:: if range==NULL whole sheet is deleted?
@@ -8023,14 +8021,13 @@ gtk_sheet_real_range_clear(GtkSheet *sheet, const GtkSheetRange *range,
 
 /*!
  * gtk_sheet_cell_get_text:
- * \param sheet: a #GtkSheet
- * \param row: row number
- * \param col: column number
+ * \param sheet  a #GtkSheet
+ * \param row    row number
+ * \param col    column number
  *
  * Get cell text.
  *
- * Returns: a pointer to the cell text, or NULL.
- * Do not modify or free it.
+ * \returns a pointer to the cell text, or NULL. Do not modify or free it.
  */
 char *gtk_sheet_cell_get_text (GtkSheet *sheet, int row, int col)
 {
@@ -8062,10 +8059,10 @@ char *gtk_sheet_cell_get_text (GtkSheet *sheet, int row, int col)
 
 /*!
  * gtk_sheet_link_cell:
- * \param sheet: a #GtkSheet
- * \param row: row number
- * \param col: column number
- * \param link: pointer linked to the cell
+ * \param sheet  a #GtkSheet
+ * \param row    row number
+ * \param col    column number
+ * \param link   pointer linked to the cell
  *
  * Link pointer to a cell.
  */
@@ -8116,9 +8113,9 @@ gtk_sheet_get_link(GtkSheet *sheet, int row, int col)
 
 /*!
  * gtk_sheet_remove_link:
- * \param sheet: a #GtkSheet
- * \param row: row number
- * \param col: column number
+ * \param sheet  a #GtkSheet
+ * \param row    row number
+ * \param col    column number
  *
  * Remove link pointer from a cell.
  */
@@ -8142,14 +8139,18 @@ gtk_sheet_remove_link(GtkSheet *sheet, int row, int col)
 
 /*!
  * gtk_sheet_cell_get_state:
- * \param sheet: a #GtkSheet
- * \param row: row number
- * \param col: column number
+ * \param sheet a #GtkSheet
+ * \param row   row number
+ * \param col   column number
  *
  * Get status of a cell.
  *
- * Returns: a #GtkStateType:
- * GTK_SHEET_NORMAL,GTK_SHEET_ROW_SELECTED,GTK_SHEET_COLUMN_SELECTED,GTK_SHEET_RANGE_SELECTED
+ * \returns a #GtkStateType:
+ *
+ *              GTK_SHEET_NORMAL,
+ *              GTK_SHEET_ROW_SELECTED
+ *              GTK_SHEET_COLUMN_SELECTED,
+ *              GTK_SHEET_RANGE_SELECTED
  */
 GtkStateType gtk_sheet_cell_get_state(GtkSheet *sheet, int row, int col)
 {
