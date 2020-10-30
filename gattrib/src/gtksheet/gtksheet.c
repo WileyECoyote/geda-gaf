@@ -7292,17 +7292,21 @@ _gtk_sheet_range_draw(GtkSheet *sheet,
 
     /* extend the drawing range to include all text sources */
 
-    if (drawing_range.col0 < 0)
-	drawing_range.col0 = 0;
+    if (drawing_range.col0 < 0) {
+      drawing_range.col0 = 0;
+    }
 
-    if (drawing_range.col0 > sheet->maxcol)
-	drawing_range.col0 = sheet->maxcol;
+    if (drawing_range.col0 > sheet->maxcol) {
+      drawing_range.col0 = sheet->maxcol;
+    }
 
-    if (drawing_range.coli < 0)
-	drawing_range.coli = 0;
+    if (drawing_range.coli < 0) {
+      drawing_range.coli = 0;
+    }
 
-    if (drawing_range.coli > sheet->maxcol)
-	drawing_range.coli = sheet->maxcol;
+    if (drawing_range.coli > sheet->maxcol) {
+      drawing_range.coli = sheet->maxcol;
+    }
 
     if (!gtk_sheet_clip_text(sheet)) { /* text extends multiple cells */
 
@@ -7399,8 +7403,9 @@ gtk_sheet_range_draw_selection(GtkSheet *sheet, GtkSheetRange range)
     return;
   }
 
-  if (!gtk_widget_get_realized((GtkWidget*)sheet))
+  if (!gtk_widget_get_realized((GtkWidget*)sheet)) {
     return;
+  }
 
   //aux = range;
 
@@ -7421,13 +7426,15 @@ gtk_sheet_range_draw_selection(GtkSheet *sheet, GtkSheetRange range)
 
   for (i = range.row0; i <= range.rowi; i++) {
 
-    if (i > sheet->maxrow)
+    if (i > sheet->maxrow) {
       break;
+    }
 
     for (j = range.col0; j <= range.coli; j++) {
 
-      if (j > sheet->maxcol)
+      if (j > sheet->maxcol) {
         break;
+      }
 
       if (gtk_sheet_cell_get_state(sheet, i, j) == GTK_STATE_SELECTED &&
           GTK_SHEET_COLUMN_IS_VISIBLE(COLPTR(sheet, j)) &&
@@ -7454,9 +7461,9 @@ gtk_sheet_range_draw_selection(GtkSheet *sheet, GtkSheetRange range)
           area.width = area.width - 2;
         }
 
-        if (j == sheet->range.coli)
+        if (j == sheet->range.coli) {
           area.width = area.width - 3;
-
+        }
 
         if (i != sheet->active_cell.row || j != sheet->active_cell.col)
         {
