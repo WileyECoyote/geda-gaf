@@ -15562,8 +15562,8 @@ static void gtk_sheet_position_child(GtkSheet *sheet, GtkSheetChild *child)
         }
         else {
 
-          if (child->yexpand)
-          {
+          if (child->yexpand) {
+
             child->y = area.y + sheet->row[child->row].height / 2 -
             child_requisition.height / 2;
           }
@@ -15572,8 +15572,8 @@ static void gtk_sheet_position_child(GtkSheet *sheet, GtkSheetChild *child)
       }
       else {
 
-        if (!child->yshrink)
-        {
+        if (!child->yshrink) {
+
           gtk_sheet_set_row_height(sheet, child->row,
                                    child_requisition.height + 2 * child->ypadding);
         }
