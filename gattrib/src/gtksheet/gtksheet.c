@@ -7316,18 +7316,18 @@ _gtk_sheet_range_draw(GtkSheet *sheet,
     }
 
     /* draw grid and cells */
-    for (row = drawing_range.row0; row <= drawing_range.rowi; row++)
-    {
-      for (col = drawing_range.col0; col <= drawing_range.coli; col++)
-      {
+    for (row = drawing_range.row0; row <= drawing_range.rowi; row++) {
+
+      for (col = drawing_range.col0; col <= drawing_range.coli; col++) {
+
         _cell_draw_background(sheet, row, col);
       }
     }
 
-    for (row = drawing_range.row0; row <= drawing_range.rowi; row++)
-    {
-      for (col = drawing_range.col0; col <= drawing_range.coli; col++)
-      {
+    for (row = drawing_range.row0; row <= drawing_range.rowi; row++) {
+
+      for (col = drawing_range.col0; col <= drawing_range.coli; col++) {
+
         _cell_draw_border(sheet, row - 1, col, GTK_SHEET_BOTTOM_BORDER);
         _cell_draw_border(sheet, row + 1, col, GTK_SHEET_TOP_BORDER);
         _cell_draw_border(sheet, row, col - 1, GTK_SHEET_RIGHT_BORDER);
@@ -7344,10 +7344,10 @@ _gtk_sheet_range_draw(GtkSheet *sheet,
 	drawing_range.col0, drawing_range.coli);
 #endif
 
-    for (row = drawing_range.row0; row <= drawing_range.rowi; row++)
-    {
-      for (col = drawing_range.col0; col <= drawing_range.coli; col++)
-      {
+    for (row = drawing_range.row0; row <= drawing_range.rowi; row++) {
+
+      for (col = drawing_range.col0; col <= drawing_range.coli; col++) {
+
         if (row <= sheet->maxallocrow && col <= sheet->maxalloccol &&
           sheet->data[row] && sheet->data[row][col])
         {
@@ -7475,55 +7475,66 @@ gtk_sheet_range_draw_selection(GtkSheet *sheet, GtkSheetRange range)
 
 static void gtk_sheet_draw_backing_pixmap(GtkSheet *sheet, GtkSheetRange range)
 {
-    int x, y, width, height;
+  int x, y, width, height;
 
-    if (!gtk_widget_get_realized((GtkWidget*)sheet))
-	return;
+  if (!gtk_widget_get_realized((GtkWidget*)sheet)) {
+    return;
+  }
 
-    x = _gtk_sheet_column_left_xpixel(sheet, range.col0);
-    y = _gtk_sheet_row_top_ypixel(sheet, range.row0);
-    width = _gtk_sheet_column_left_xpixel(sheet, range.coli) - x;
-    if (0 <= range.coli && range.coli <= sheet->maxcol)
-	width += COLPTR(sheet, range.coli)->width;
-    height = _gtk_sheet_row_top_ypixel(sheet, range.rowi) - y;
-    if (0 <= range.rowi && range.rowi <= sheet->maxrow)
-	height += sheet->row[range.rowi].height;
+  x     = _gtk_sheet_column_left_xpixel(sheet, range.col0);
+  y     = _gtk_sheet_row_top_ypixel(sheet, range.row0);
+  width = _gtk_sheet_column_left_xpixel(sheet, range.coli) - x;
 
-    if (range.row0 == sheet->range.row0)
-    {
-	y = y - 5;
-	height = height + 5;
-    }
-    if (range.rowi == sheet->range.rowi)
-	height = height + 5;
+  if (0 <= range.coli && range.coli <= sheet->maxcol) {
+    width += COLPTR(sheet, range.coli)->width;
+  }
 
-    if (range.col0 == sheet->range.col0)
-    {
-	x = x - 5;
-	width = width + 5;
-    }
-    if (range.coli == sheet->range.coli)
-	width = width + 5;
+  height = _gtk_sheet_row_top_ypixel(sheet, range.rowi) - y;
 
-    width = MIN(width, sheet->sheet_window_width - x);
-    height = MIN(height, sheet->sheet_window_height - y);
+  if (0 <= range.rowi && range.rowi <= sheet->maxrow) {
+    height += sheet->row[range.rowi].height;
+  }
 
-    x--;
-    y--;
-    width += 2;
-    height += 2;
+  if (range.row0 == sheet->range.row0) {
+    y = y - 5;
+    height = height + 5;
+  }
 
-    x = (sheet->row_titles_visible) ? MAX(x, sheet->row_title_area.width) : MAX(x, 0);
-    y = (sheet->column_titles_visible) ? MAX(y, sheet->column_title_area.height) : MAX(y, 0);
+  if (range.rowi == sheet->range.rowi) {
+    height = height + 5;
+  }
 
-    if (range.coli >= sheet->maxcol)
-	width = sheet->sheet_window_width - x;
-    if (range.rowi >= sheet->maxrow)
-	height = sheet->sheet_window_height - y;
+  if (range.col0 == sheet->range.col0) {
+    x = x - 5;
+    width = width + 5;
+  }
+
+  if (range.coli == sheet->range.coli) {
+    width = width + 5;
+  }
+
+  width = MIN(width, sheet->sheet_window_width - x);
+  height = MIN(height, sheet->sheet_window_height - y);
+
+  x--;
+  y--;
+  width += 2;
+  height += 2;
+
+  x = (sheet->row_titles_visible) ? MAX(x, sheet->row_title_area.width) : MAX(x, 0);
+  y = (sheet->column_titles_visible) ? MAX(y, sheet->column_title_area.height) : MAX(y, 0);
+
+  if (range.coli >= sheet->maxcol) {
+    width = sheet->sheet_window_width - x;
+  }
+
+  if (range.rowi >= sheet->maxrow) {
+    height = sheet->sheet_window_height - y;
+  }
 
 #if GTK_SHEET_DEBUG_EXPOSE > 0
     fprintf(stderr,"gtk_sheet_draw_backing_pixmap: x %d y %d w %d h %d",
-	x, y, width + 1, height + 1);
+            x, y, width + 1, height + 1);
 #endif
 
     _gtk_sheet_draw_pixmap(sheet->sheet_window,
