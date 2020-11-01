@@ -4824,10 +4824,10 @@ msgstr ""
 msgid "_Print..."
 msgstr "_Drucken..."
 
+# Open the Print Dialog
 #: gschem/etc/system-gschemrc.scm:2105
-#, fuzzy
 msgid "Open the Print Dialog"
-msgstr "Öffnen Sie den Dialog Attributes Editor"
+msgstr "Öffnen Sie den Druckdialog"
 
 #: gschem/etc/system-gschemrc.scm:2106
 msgid "Export options"
@@ -4881,19 +4881,19 @@ msgstr "_Beenden"
 msgid "_Undo"
 msgstr "_Rückgängig"
 
+# Undo the last operation
 #: gschem/etc/system-gschemrc.scm:2124
-#, fuzzy
 msgid "Undo the last operation"
-msgstr "Letzte Aktion rückgängig machen"
+msgstr "Machen Sie den letzten Vorgang rückgängig"
 
 #: gschem/etc/system-gschemrc.scm:2125
 msgid "_Redo"
 msgstr "_Wiederherstellen"
 
+# Redo the last undo
 #: gschem/etc/system-gschemrc.scm:2125
-#, fuzzy
 msgid "Redo the last undo"
-msgstr "Letzte Aktion rückgängig machen"
+msgstr "Wiederholen Sie das letzte Rückgängigmachen"
 
 #: gschem/etc/system-gschemrc.scm:2128
 msgid "Cu_t clipboard"
@@ -5296,6 +5296,7 @@ msgstr "Seitenverwaltung"
 msgid "_First"
 msgstr ""
 
+# Go to the first page
 #: gschem/etc/system-gschemrc.scm:2254
 #, fuzzy
 msgid "Go to the first page"
