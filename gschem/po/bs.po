@@ -4960,11 +4960,10 @@ msgstr "odbacite promjene i vratiti sve dokumente"
 msgid "_Print..."
 msgstr "_Štampaj..."
 
-# Open the Color Editor Dialog
+# Open the Print Dialog
 #: gschem/etc/system-gschemrc.scm:2105
-#, fuzzy
 msgid "Open the Print Dialog"
-msgstr "Otvorite dijalog urednik boja"
+msgstr "Otvorite dijalog za ispis"
 
 #: gschem/etc/system-gschemrc.scm:2106
 msgid "Export options"
@@ -5022,21 +5021,19 @@ msgstr "_Izlaz"
 msgid "_Undo"
 msgstr "_Poništi"
 
-# Undo the last action
+# Undo the last operation
 #: gschem/etc/system-gschemrc.scm:2124
-#, fuzzy
 msgid "Undo the last operation"
-msgstr "Poništiti posljednje akcije"
+msgstr "Poništite posljednju operaciju"
 
 #: gschem/etc/system-gschemrc.scm:2125
 msgid "_Redo"
 msgstr "_Vrati"
 
-# Undo the last action
+# Redo the last undo
 #: gschem/etc/system-gschemrc.scm:2125
-#, fuzzy
 msgid "Redo the last undo"
-msgstr "Poništiti posljednje akcije"
+msgstr "Ponovi posljednje poništavanje"
 
 # move objects to the clipboard
 #: gschem/etc/system-gschemrc.scm:2128
@@ -5449,9 +5446,10 @@ msgstr ""
 msgid "_First"
 msgstr ""
 
+# Go to the first page
 #: gschem/etc/system-gschemrc.scm:2254
 msgid "Go to the first page"
-msgstr ""
+msgstr "Idite na prvu stranicu"
 
 #: gschem/etc/system-gschemrc.scm:2255
 msgid "_Previous"
