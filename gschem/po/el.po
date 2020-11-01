@@ -4836,10 +4836,10 @@ msgstr ""
 msgid "_Print..."
 msgstr "Ε_κτύπωση..."
 
+# Open the Print Dialog; Anoíxte to Diálogo ektýposis
 #: gschem/etc/system-gschemrc.scm:2105
-#, fuzzy
 msgid "Open the Print Dialog"
-msgstr "Ανοίξτε το παράθυρο διαλόγου Ιδιότητες συντάκτη"
+msgstr "Ανοίξτε το Διάλογο εκτύπωσης"
 
 #: gschem/etc/system-gschemrc.scm:2106
 msgid "Export options"
@@ -4893,19 +4893,19 @@ msgstr "Έ_ξοδος"
 msgid "_Undo"
 msgstr "_Αναίρεση"
 
+# Undo the last operation; Anaíresi tis teleftaías leitourgías
 #: gschem/etc/system-gschemrc.scm:2124
-#, fuzzy
 msgid "Undo the last operation"
-msgstr "Αναίρεση τελευταίας ενέργειας"
+msgstr "Αναίρεση της τελευταίας λειτουργίας"
 
 #: gschem/etc/system-gschemrc.scm:2125
 msgid "_Redo"
 msgstr "Ε_παναφορά"
 
+# Redo the last undo; Epanálipsi tis teleftaías anaíresis
 #: gschem/etc/system-gschemrc.scm:2125
-#, fuzzy
 msgid "Redo the last undo"
-msgstr "Αναίρεση τελευταίας ενέργειας"
+msgstr "Επανάληψη της τελευταίας αναίρεσης"
 
 #: gschem/etc/system-gschemrc.scm:2128
 msgid "Cu_t clipboard"
@@ -5307,6 +5307,7 @@ msgstr "Διαχειριστής σελίδων"
 msgid "_First"
 msgstr ""
 
+# Go to the first page
 #: gschem/etc/system-gschemrc.scm:2254
 #, fuzzy
 msgid "Go to the first page"
