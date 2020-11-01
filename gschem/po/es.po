@@ -4759,9 +4759,8 @@ msgid "_New"
 msgstr "_Nuevo"
 
 #: gschem/etc/system-gschemrc.scm:2091
-#, fuzzy
 msgid "Create a new file"
-msgstr "Crear una nueva página"
+msgstr "Crea un archivo nuevo"
 
 #: gschem/etc/system-gschemrc.scm:2092 gschem/etc/system-gschemrc.scm:2301
 msgid "_Open..."
@@ -4820,10 +4819,10 @@ msgstr "Descartar los cambios y volver a cargar todos los documentos abiertos"
 msgid "_Print..."
 msgstr "Im_primir..."
 
+# Open the Print Dialog
 #: gschem/etc/system-gschemrc.scm:2105
-#, fuzzy
 msgid "Open the Print Dialog"
-msgstr "Abrir el cuadro de diálogo Editor de líneas"
+msgstr "Abra el cuadro de diálogo Imprimir"
 
 #: gschem/etc/system-gschemrc.scm:2106
 msgid "Export options"
@@ -4877,19 +4876,19 @@ msgstr "_Salir"
 msgid "_Undo"
 msgstr "_Deshacer"
 
+# Undo the last operation
 #: gschem/etc/system-gschemrc.scm:2124
-#, fuzzy
 msgid "Undo the last operation"
-msgstr "Deshacer última operación"
+msgstr "Deshacer la última operación"
 
 #: gschem/etc/system-gschemrc.scm:2125
 msgid "_Redo"
 msgstr "_Rehacer"
 
+# Redo the last undo
 #: gschem/etc/system-gschemrc.scm:2125
-#, fuzzy
 msgid "Redo the last undo"
-msgstr "Deshacer última operación"
+msgstr "Rehacer el último deshacer"
 
 #: gschem/etc/system-gschemrc.scm:2128
 msgid "Cu_t clipboard"
