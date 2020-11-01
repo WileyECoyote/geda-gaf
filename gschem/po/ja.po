@@ -4727,8 +4727,8 @@ msgstr ""
 msgid "_New"
 msgstr "新規(_N)"
 
+# Create a new file; Atarashī fairu o sakusei suru
 #: gschem/etc/system-gschemrc.scm:2091
-#, fuzzy
 msgid "Create a new file"
 msgstr "新しいファイルを作成する"
 
@@ -4788,11 +4788,10 @@ msgstr ""
 msgid "_Print..."
 msgstr "印刷(_P)..."
 
-# Open the Attributes Editor Dialog
+# Open the Print Dialog; Insatsu daiarogu o hiraku
 #: gschem/etc/system-gschemrc.scm:2105
-#, fuzzy
 msgid "Open the Print Dialog"
-msgstr "アトリビュートエディタダイアログを開く"
+msgstr "印刷ダイアログを開く"
 
 #: gschem/etc/system-gschemrc.scm:2106
 msgid "Export options"
@@ -4846,19 +4845,19 @@ msgstr "終了(_Q)"
 msgid "_Undo"
 msgstr "元に戻す(_U)"
 
+# Undo the last operation; Saigo no sōsa o motonimodosu
 #: gschem/etc/system-gschemrc.scm:2124
-#, fuzzy
 msgid "Undo the last operation"
-msgstr "アンドゥ"
+msgstr "最後の操作を元に戻す"
 
 #: gschem/etc/system-gschemrc.scm:2125
 msgid "_Redo"
 msgstr "やり直す(_R)"
 
+# Redo the last undo; Saigo no torikeshi o yarinaosu
 #: gschem/etc/system-gschemrc.scm:2125
-#, fuzzy
 msgid "Redo the last undo"
-msgstr "アンドゥ"
+msgstr "最後の取り消しをやり直す"
 
 #: gschem/etc/system-gschemrc.scm:2128
 msgid "Cu_t clipboard"
@@ -5258,6 +5257,7 @@ msgstr "ページマネージャ"
 msgid "_First"
 msgstr ""
 
+# Go to the first page
 #: gschem/etc/system-gschemrc.scm:2254
 #, fuzzy
 msgid "Go to the first page"
