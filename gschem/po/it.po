@@ -4809,10 +4809,10 @@ msgstr ""
 msgid "_Print..."
 msgstr "_Stampa..."
 
+# Open the Print Dialog
 #: gschem/etc/system-gschemrc.scm:2105
-#, fuzzy
 msgid "Open the Print Dialog"
-msgstr "Aprire la finestra di dialogo Tipo Pin"
+msgstr "Apri la finestra di dialogo Stampa"
 
 #: gschem/etc/system-gschemrc.scm:2106
 msgid "Export options"
@@ -4866,8 +4866,8 @@ msgstr "_Esci"
 msgid "_Undo"
 msgstr "Ann_ulla"
 
+# Undo the last operation
 #: gschem/etc/system-gschemrc.scm:2124
-#, fuzzy
 msgid "Undo the last operation"
 msgstr "Annulla l'ultima operazione"
 
@@ -4875,10 +4875,10 @@ msgstr "Annulla l'ultima operazione"
 msgid "_Redo"
 msgstr "_Ripeti"
 
+# Redo the last undo
 #: gschem/etc/system-gschemrc.scm:2125
-#, fuzzy
 msgid "Redo the last undo"
-msgstr "Annulla l'ultima operazione"
+msgstr "Ripeti l'ultimo annullamento"
 
 #: gschem/etc/system-gschemrc.scm:2128
 msgid "Cu_t clipboard"
@@ -5277,6 +5277,7 @@ msgstr "Gestore Pagina"
 msgid "_First"
 msgstr ""
 
+# Go to the first page
 #: gschem/etc/system-gschemrc.scm:2254
 #, fuzzy
 msgid "Go to the first page"
