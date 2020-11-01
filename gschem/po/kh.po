@@ -4899,11 +4899,10 @@ msgstr ""
 msgid "_New"
 msgstr "Thmei"
 
-# Create a new empty file
+# Create a new file
 #: gschem/etc/system-gschemrc.scm:2091
-#, fuzzy
 msgid "Create a new file"
-msgstr "bangkeut eksar tte thmei"
+msgstr "Bangkeut eksar thmei"
 
 # Open
 #: gschem/etc/system-gschemrc.scm:2092 gschem/etc/system-gschemrc.scm:2301
@@ -4969,10 +4968,10 @@ msgstr "baohbng kar phlasa btau r ning phtok eksar del ban baek teangoasa"
 msgid "_Print..."
 msgstr "baohpoum..."
 
+# Open the Print Dialog
 #: gschem/etc/system-gschemrc.scm:2105
-#, fuzzy
 msgid "Open the Print Dialog"
-msgstr "baek braab braphet mchoul"
+msgstr "Baek braab baohpoum"
 
 # Export options
 #: gschem/etc/system-gschemrc.scm:2106
@@ -5029,20 +5028,19 @@ msgstr ""
 msgid "_Undo"
 msgstr ""
 
+# Undo the last operation
 #: gschem/etc/system-gschemrc.scm:2124
-#, fuzzy
 msgid "Undo the last operation"
-msgstr "min thveu phnek phlauv chongokraoy"
+msgstr "min thveu bratebatte kar chongokraoy vinh"
 
 #: gschem/etc/system-gschemrc.scm:2125
 msgid "_Redo"
 msgstr ""
 
-# Redraw the current window
+# Redo the last undo
 #: gschem/etc/system-gschemrc.scm:2125
-#, fuzzy
 msgid "Redo the last undo"
-msgstr "romlng bangauoch bachchobban"
+msgstr "thveu vinh minothveuvinh chongokraoy"
 
 #: gschem/etc/system-gschemrc.scm:2128
 msgid "Cu_t clipboard"
@@ -5441,6 +5439,7 @@ msgstr ""
 msgid "_First"
 msgstr ""
 
+# Go to the first page
 #: gschem/etc/system-gschemrc.scm:2254
 msgid "Go to the first page"
 msgstr ""
