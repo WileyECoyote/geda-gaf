@@ -4875,11 +4875,10 @@ msgstr ""
 msgid "_Print..."
 msgstr "ا_طبع..."
 
-# Open dialog features editor
+# Open the Print Dialog
 #: gschem/etc/system-gschemrc.scm:2105
-#, fuzzy
 msgid "Open the Print Dialog"
-msgstr "فتح سمات الحوار محرر"
+msgstr "افتح مربع حوار الطباعة"
 
 #: gschem/etc/system-gschemrc.scm:2106
 msgid "Export options"
@@ -4933,8 +4932,8 @@ msgstr "أ_خرج"
 msgid "_Undo"
 msgstr "ت_راجع"
 
+# Undo the last operation; tarajue ean aleamaliat al'akhira
 #: gschem/etc/system-gschemrc.scm:2124
-#, fuzzy
 msgid "Undo the last operation"
 msgstr "تراجع عن العملية الأخيرة"
 
@@ -4942,10 +4941,10 @@ msgstr "تراجع عن العملية الأخيرة"
 msgid "_Redo"
 msgstr "_كرّر"
 
+# Redo the last undo; 'aeadun akhar tarajue
 #: gschem/etc/system-gschemrc.scm:2125
-#, fuzzy
 msgid "Redo the last undo"
-msgstr "تراجع عن العملية الأخيرة"
+msgstr "أعد آخر تراجع"
 
 #: gschem/etc/system-gschemrc.scm:2128
 msgid "Cu_t clipboard"
@@ -5345,8 +5344,8 @@ msgstr "مدير الصفحات"
 msgid "_First"
 msgstr ""
 
+# Go to the first page
 #: gschem/etc/system-gschemrc.scm:2254
-#, fuzzy
 msgid "Go to the first page"
 msgstr "الصفحة الحالية"
 
