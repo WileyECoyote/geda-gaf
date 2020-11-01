@@ -1,12 +1,4 @@
 v 20140729 3
-T 0 2300 5 10 0 0 0 0 1
-author=AutoTron
-T 0 2150 5 10 0 0 0 0 1
-dist-license=GPL3
-T 0 2000 5 10 0 0 0 0 1
-use-license=unrestricted
-T 0 1850 5 10 0 0 0 0 1
-symversion=1.0
 T 0 1700 5 10 0 0 0 0 1
 description=NPN Transistor
 T 0 1550 9 10 0 0 0 0 1
@@ -65,3 +57,11 @@ spice-type=BJT NPN
 L 575 225 500 250 3 0 0 0 -1 -1
 L 575 225 550 300 3 0 0 0 -1 -1
 L 500 250 550 300 3 0 0 0 -1 -1
+T 0 2300 5 10 0 0 0 0 1
+author=AutoTron
+T 0 2150 5 10 0 0 0 0 1
+dist-license=GPL3
+T 0 2000 5 10 0 0 0 0 1
+use-license=unrestricted
+T 0 1850 5 10 0 0 0 0 1
+symversion=1.0
