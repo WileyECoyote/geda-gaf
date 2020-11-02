@@ -20,7 +20,7 @@
  * Boston, MA 02111-1307, USA.
  */
 
-/**
+/*!
  * \section gtksheetcolumn
  * \brief short_description: A spreadsheet column widget for #GtkSheet
  *
@@ -890,7 +890,7 @@ static inline int gtk_sheet_column_rightmost_visible(GtkSheet *sheet)
     return (res);
 }
 
-/**
+/*!
  * _gtk_sheet_column_left_xpixel:
  * \param sheet  the #GtkSheet
  * \param col    column index
@@ -1035,7 +1035,7 @@ _gtk_sheet_column_buttons_size_allocate(GtkSheet *sheet)
     }
 }
 
-/**
+/*!
  * gtk_sheet_set_column_width:
  * \param sheet  a #GtkSheet.
  * \param column column number.
@@ -1074,7 +1074,7 @@ void gtk_sheet_set_column_width(GtkSheet *sheet, int col, unsigned int width)
     g_signal_emit_by_name(GTK_OBJECT(sheet), "new-column-width", col, width);
 }
 
-/**
+/*!
  * gtk_sheet_get_column_width:
  * \param sheet a #GtkSheet
  * \param column column number
@@ -1091,7 +1091,7 @@ gtk_sheet_get_column_width(GtkSheet *sheet, int col)
     return (COLPTR(sheet, col)->width);
 }
 
-/**
+/*!
  * gtk_sheet_column_button_add_label:
  * \param sheet a #GtkSheet
  * \param col   column number
@@ -1149,7 +1149,7 @@ gtk_sheet_column_button_add_label(GtkSheet *sheet, int col, const char *label)
     g_signal_emit_by_name(GTK_OBJECT(sheet), "changed", -1, col);
 }
 
-/**
+/*!
  * gtk_sheet_column_set_justification:
  * \param sheet a #GtkSheet.
  * \param col   column number
@@ -1179,7 +1179,7 @@ gtk_sheet_column_set_justification(GtkSheet *sheet, int col,
     }
 }
 
-/**
+/*!
  * gtk_sheet_column_get_justification:
  * \param sheet a #GtkSheet.
  * \param col column number
@@ -1200,7 +1200,7 @@ gtk_sheet_column_get_justification(GtkSheet *sheet, int col)
     return (COLPTR(sheet, col)->justification);
 }
 
-/**
+/*!
  * gtk_sheet_column_set_vjustification:
  * \param sheet a #GtkSheet.
  * \param col   column number
@@ -1227,7 +1227,7 @@ gtk_sheet_column_set_vjustification(GtkSheet *sheet, int col,
     }
 }
 
-/**
+/*!
  * gtk_sheet_column_get_vjustification:
  * \param sheet a #GtkSheet.
  * \param col column number
@@ -1249,7 +1249,7 @@ gtk_sheet_column_get_vjustification(GtkSheet *sheet, int col)
     return (COLPTR(sheet, col)->vjust);
 }
 
-/**
+/*!
  * gtk_sheet_column_get_iskey:
  * \param sheet  a #GtkSheet.
  * \param col column index
@@ -1267,7 +1267,7 @@ int gtk_sheet_column_get_iskey(GtkSheet *sheet, const int col)
     return (COLPTR(sheet, col)->is_key);
 }
 
-/**
+/*!
  * gtk_sheet_column_set_iskey:
  * \param sheet   a #GtkSheet.
  * \param col     column index
@@ -1287,7 +1287,7 @@ void gtk_sheet_column_set_iskey(GtkSheet *sheet, const int col,
     COLPTR(sheet, col)->is_key = is_key;
 }
 
-/**
+/*!
  * gtk_sheet_column_get_readonly:
  * \param sheet  a #GtkSheet.
  * \param col column index
@@ -1305,7 +1305,7 @@ int gtk_sheet_column_get_readonly(GtkSheet *sheet, const int col)
     return (COLPTR(sheet, col)->is_readonly);
 }
 
-/**
+/*!
  * gtk_sheet_column_set_readonly:
  * \param sheet        a #GtkSheet.
  * \param col          column index
@@ -1325,7 +1325,7 @@ void gtk_sheet_column_set_readonly(GtkSheet *sheet, const int col,
     COLPTR(sheet, col)->is_readonly = is_readonly;
 }
 
-/**
+/*!
  * gtk_sheet_column_get_format:
  * \param sheet  a #GtkSheet.
  * \param col column index
@@ -1344,7 +1344,7 @@ char *gtk_sheet_column_get_format(GtkSheet *sheet, const int col)
     return (g_strdup(COLPTR(sheet, col)->data_format));
 }
 
-/**
+/*!
  * gtk_sheet_column_set_format:
  * \param sheet   a #GtkSheet.
  * \param col     column index
@@ -1368,7 +1368,7 @@ void gtk_sheet_column_set_format(GtkSheet   *sheet,
     colp->data_format = g_strdup(data_format);
 }
 
-/**
+/*!
  * gtk_sheet_column_get_datatype:
  * \param sheet  a #GtkSheet.
  * \param col    column index
@@ -1386,7 +1386,7 @@ char *gtk_sheet_column_get_datatype(GtkSheet *sheet, const int col)
     return (g_strdup(COLPTR(sheet, col)->data_type));
 }
 
-/**
+/*!
  * gtk_sheet_column_set_datatype:
  * \param sheet      a #GtkSheet.
  * \param col        column index
@@ -1410,7 +1410,7 @@ void gtk_sheet_column_set_datatype(GtkSheet   *sheet,
     colp->data_type = g_strdup(data_type);
 }
 
-/**
+/*!
  * gtk_sheet_column_get_description:
  * \param sheet  a #GtkSheet.
  * \param col column index
@@ -1429,7 +1429,7 @@ char *gtk_sheet_column_get_description(GtkSheet *sheet, const int col)
     return (g_strdup(COLPTR(sheet, col)->description));
 }
 
-/**
+/*!
  * gtk_sheet_column_set_description:
  * \param sheet        a #GtkSheet.
  * \param col          column index
@@ -1453,7 +1453,7 @@ void gtk_sheet_column_set_description(GtkSheet   *sheet,
     colp->description = g_strdup(description);
 }
 
-/**
+/*!
  * gtk_sheet_column_get_entry_type:
  * \param sheet  a #GtkSheet.
  * \param col    column index
@@ -1471,7 +1471,7 @@ GType gtk_sheet_column_get_entry_type(GtkSheet *sheet, const int col)
     return (COLPTR(sheet, col)->entry_type);
 }
 
-/**
+/*!
  * gtk_sheet_column_set_entry_type:
  * \param sheet       a #GtkSheet.
  * \param col         column index
@@ -1490,7 +1490,7 @@ void gtk_sheet_column_set_entry_type(GtkSheet *sheet, const int col,
     COLPTR(sheet, col)->entry_type = entry_type ? entry_type : G_TYPE_NONE;
 }
 
-/**
+/*!
  * gtk_sheet_column_get_tooltip_markup:
  * \param sheet  a #GtkSheet.
  * \param col column index
@@ -1510,7 +1510,7 @@ char *gtk_sheet_column_get_tooltip_markup(GtkSheet *sheet,
     return (gtk_widget_get_tooltip_markup(GTK_WIDGET(COLPTR(sheet, col))));
 }
 
-/**
+/*!
  * gtk_sheet_column_set_tooltip_markup:
  * \param sheet  a #GtkSheet.
  * \param col    column index
@@ -1530,7 +1530,7 @@ void gtk_sheet_column_set_tooltip_markup(GtkSheet   *sheet,
     gtk_widget_set_tooltip_markup(GTK_WIDGET(COLPTR(sheet, col)), markup);
 }
 
-/**
+/*!
  * gtk_sheet_column_get_tooltip_text:
  * \param sheet  a #GtkSheet.
  * \param col column index
@@ -1550,7 +1550,7 @@ char *gtk_sheet_column_get_tooltip_text(GtkSheet *sheet,
     return (gtk_widget_get_tooltip_text(GTK_WIDGET(COLPTR(sheet, col))));
 }
 
-/**
+/*!
  * gtk_sheet_column_set_tooltip_text:
  * \param sheet a #GtkSheet.
  * \param col   column index
@@ -1570,7 +1570,7 @@ void gtk_sheet_column_set_tooltip_text(GtkSheet   *sheet,
 }
 
 
-/**
+/*!
  * gtk_sheet_column_sensitive:
  * \param sheet a #GtkSheet.
  * \param column column number
@@ -1589,7 +1589,7 @@ int gtk_sheet_column_sensitive(GtkSheet *sheet, int column)
     return (GTK_SHEET_COLUMN_IS_SENSITIVE(COLPTR(sheet, column)));
 }
 
-/**
+/*!
  * gtk_sheet_column_set_sensitivity:
  * \param sheet a #GtkSheet.
  * \param column column number
@@ -1623,7 +1623,7 @@ void gtk_sheet_column_set_sensitivity(GtkSheet *sheet, int col, int sensitive)
     }
 }
 
-/**
+/*!
  * gtk_sheet_columns_set_sensitivity:
  * \param sheet a #GtkSheet.
  * \param sensitive TRUE or FALSE
@@ -1644,7 +1644,7 @@ void gtk_sheet_columns_set_sensitivity(GtkSheet *sheet, int sensitive)
     }
 }
 
-/**
+/*!
  * gtk_sheet_columns_set_resizable:
  * \param sheet a #GtkSheet.
  * \param resizable TRUE or FALSE
@@ -1658,7 +1658,7 @@ void gtk_sheet_columns_set_resizable(GtkSheet *sheet, int resizable)
     sheet->columns_resizable = resizable;
 }
 
-/**
+/*!
  * gtk_sheet_columns_resizable:
  * \param sheet a #GtkSheet.
  *
@@ -1673,7 +1673,7 @@ int gtk_sheet_columns_resizable(GtkSheet *sheet)
     return (sheet->columns_resizable);
 }
 
-/**
+/*!
  * _gtk_sheet_column_button_set:
  * \param sheet  the #GtkSheet
  * \param col    column index
@@ -1693,7 +1693,7 @@ void _gtk_sheet_column_button_set(GtkSheet *sheet, int col)
     _gtk_sheet_draw_button(sheet, -1, col);
 }
 
-/**
+/*!
  * _gtk_sheet_column_button_release:
  * \param sheet  the #GtkSheet
  * \param col    column index
@@ -1716,7 +1716,7 @@ void _gtk_sheet_column_button_release(GtkSheet *sheet, int col)
     _gtk_sheet_draw_button(sheet, -1, col);
 }
 
-/**
+/*!
  * gtk_sheet_column_visible:
  * \param sheet a #GtkSheet.
  * \param column column number
@@ -1735,7 +1735,7 @@ int gtk_sheet_column_visible(GtkSheet *sheet, int column)
     return (GTK_SHEET_COLUMN_IS_VISIBLE(COLPTR(sheet, column)));
 }
 
-/**
+/*!
  * gtk_sheet_column_set_visibility:
  * \param sheet   a #GtkSheet.
  * \param column  column number
@@ -1797,7 +1797,7 @@ void gtk_sheet_column_set_visibility(GtkSheet *sheet, int col, int visible)
     _gtk_sheet_redraw_internal(sheet, TRUE, FALSE);
 }
 
-/**
+/*!
  * gtk_sheet_column_button_justify:
  * \param sheet         a #GtkSheet.
  * \param col           column number
@@ -1826,7 +1826,7 @@ void gtk_sheet_column_button_justify(GtkSheet *sheet, int col,
     }
 }
 
-/**
+/*!
  * gtk_sheet_column_button_get_label:
  * \param sheet a #GtkSheet.
  * \param col column number.
@@ -1844,7 +1844,7 @@ const char *gtk_sheet_column_button_get_label(GtkSheet *sheet, int col)
     return (COLPTR(sheet, col)->button.label);
 }
 
-/**
+/*!
  * gtk_sheet_column_label_set_visibility:
  * \param sheet   a #GtkSheet.
  * \param col     column number.
@@ -1869,7 +1869,7 @@ void gtk_sheet_column_label_set_visibility(GtkSheet *sheet, int col, int visible
     }
 }
 
-/**
+/*!
  * gtk_sheet_columns_labels_set_visibility:
  * \param sheet a #GtkSheet.
  * \param visible TRUE or FALSE
@@ -1890,7 +1890,7 @@ void gtk_sheet_columns_labels_set_visibility(GtkSheet *sheet, int visible)
     }
 }
 
-/**
+/*!
  * gtk_sheet_set_column_titles_height:
  * \param sheet  a #GtkSheet
  * \param height column title height.
@@ -1911,7 +1911,7 @@ void gtk_sheet_set_column_titles_height(GtkSheet *sheet, unsigned int height)
     _gtk_sheet_redraw_internal(sheet, FALSE, TRUE);
 }
 
-/**
+/*!
  * gtk_sheet_show_column_titles:
  * \param sheet a #GtkSheet
  *
@@ -1950,7 +1950,7 @@ void gtk_sheet_show_column_titles(GtkSheet *sheet)
     _gtk_sheet_redraw_internal(sheet, FALSE, TRUE);
 }
 
-/**
+/*!
  * gtk_sheet_hide_column_titles:
  * \param sheet a #GtkSheet
  *
@@ -1986,7 +1986,7 @@ void gtk_sheet_hide_column_titles(GtkSheet *sheet)
     _gtk_sheet_redraw_internal(sheet, FALSE, TRUE);
 }
 
-/**
+/*!
  * gtk_sheet_set_column_title:
  * \param sheet  a #GtkSheet
  * \param column column number
@@ -2005,7 +2005,7 @@ void gtk_sheet_set_column_title(GtkSheet *sheet, int col, const char *title)
     COLPTR(sheet, col)->title = g_strdup(title);
 }
 
-/**
+/*!
  * gtk_sheet_get_column_title:
  * \param sheet  a #GtkSheet
  * \param column column number
@@ -2021,7 +2021,7 @@ const char *gtk_sheet_get_column_title(GtkSheet *sheet, int col)
     return (COLPTR(sheet, col)->title);
 }
 
-/**
+/*!
  * gtk_sheet_column_titles_visible:
  * \param sheet a #GtkSheet
  *

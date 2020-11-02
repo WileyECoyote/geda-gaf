@@ -3,6 +3,8 @@
     * src/gtksheet/gtksheet.c: Remove NULL validation and redundant conditional
       check of GTK_SHEET_DEBUG_DRAW_LABEL in _cell_draw_label.
 
+    * src/gtksheet/gtksheetcolumn.c: Replace double asterisk Doxygen tags.
+
     * src/s_table.c: Replace realloc with GEDA_MEM_REALLOC macro.
 
     * src/x_gtksheet.c: Replace realloc with GEDA_MEM_REALLOC macro.
