@@ -1,6 +1,7 @@
 2020-11-02 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/gtksheet/gtksheet.c: Remove NULL validation in _cell_draw_label.
+    * src/gtksheet/gtksheet.c: Remove NULL validation and redundant conditional
+      check of GTK_SHEET_DEBUG_DRAW_LABEL in _cell_draw_label.
 
     * src/s_table.c: Replace realloc with GEDA_MEM_REALLOC macro.
 

@@ -7101,9 +7101,7 @@ static void _cell_draw_label(GtkSheet *sheet, int row, int col)
     fprintf(stderr,"_cell_draw_label(%d,%d): clip x %d y %d w %d h %d",
               row, col,
               clip_area.x, clip_area.y, clip_area.width, clip_area.height);
-#endif
 
-#if GTK_SHEET_DEBUG_DRAW_LABEL>0
     fprintf(stderr,"_cell_draw_label(%d,%d): x %d y %d fg %s bg %s",
             row, col,
             area.x + xoffset + CELLOFFSET, y,
