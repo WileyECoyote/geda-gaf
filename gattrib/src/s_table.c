@@ -117,7 +117,7 @@ TABLE **s_table_add_column(TABLE **table, int rows, int Xa, int Xt)
   }
 
   /* resize the 2 dimensional array of structs */
-  new_table = (TABLE**)realloc(table, (Xt + 1) * sizeof(TABLE *));
+  new_table = (TABLE**)GEDA_MEM_REALLOC(table, (Xt + 1) * sizeof(TABLE *));
 
   if (new_table == NULL) {
     return NULL;  /* die if failed to realloc new memory */

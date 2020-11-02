@@ -1,3 +1,7 @@
+2020-11-02 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/s_table.c: Replace realloc with GEDA_MEM_REALLOC macro.
+
 2020-10-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gtksheet/gtksheet.c: Revise function gtk_sheet_range_delete to
