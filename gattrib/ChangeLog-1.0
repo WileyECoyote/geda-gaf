@@ -1,5 +1,7 @@
 2020-11-02 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/gtksheet/gtksheet.c: Remove NULL validation in _cell_draw_label.
+
     * src/s_table.c: Replace realloc with GEDA_MEM_REALLOC macro.
 
     * src/x_gtksheet.c: Replace realloc with GEDA_MEM_REALLOC macro.

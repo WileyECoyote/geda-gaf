@@ -6805,8 +6805,6 @@ static void _cell_draw_label(GtkSheet *sheet, int row, int col)
   GdkRectangle      area, clip_area;
   GtkSheetVerticalJustification vjust;
 
-  //g_return_if_fail(sheet != NULL);
-
   /* bail now if we aren't drawable yet */
   if (!gtk_widget_is_drawable((GtkWidget*)sheet))
     return;
