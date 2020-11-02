@@ -25,8 +25,9 @@
  * which is subsidiary to PageDataSet.  TABLE is a 2 dimensional array
  * of structs; each struct corresponds to the data about an element
  * in a single cell of the spreadsheet.
- * \todo TABLE should also store its dimensions in its own data
- *       structure to save carrying the dimensions around separately.
+ *
+ * \todo TABLE should also store its dimensions in its own data structure
+ *       to save carrying the dimensions around separately.
  */
 
 #include "../include/gattrib.h"
@@ -200,6 +201,7 @@ void s_table_destroy(TABLE **table, int row_count, int col_count)
  *
  * \param local_list
  * \param local_string
+ *
  * \returns the index of the string
  */
 int s_table_get_index(STRING_LIST *local_list, char *local_string) {
@@ -240,6 +242,7 @@ int s_table_get_index(STRING_LIST *local_list, char *local_string) {
  * \param table Table to be searched
  * \param row_list list of rows
  * \param num_attribs
+ *
  * \returns STRING_LIST of name=value pairs
  */
 STRING_LIST *s_table_create_attrib_pair(char        *row_name,
@@ -291,12 +294,12 @@ STRING_LIST *s_table_create_attrib_pair(char        *row_name,
 /*!
  * \brief Add components to the component table
  * \par Function Description
-*  This fcn iterates over a list of objects looking for components.
-*  When a component is found, all attributes of the commponent are
-*  added in the TABLE.
-*
-* \param obj_list pointer to GList containing objects
-*/
+ *  This fcn iterates over a list of objects looking for components.
+ *  When a component is found, all attributes of the commponent are
+ *  added in the TABLE.
+ *
+ * \param obj_list pointer to GList containing objects
+ */
 void s_table_add_items_to_comp_table (const GList *obj_list) {
 
   char *temp_uref;
