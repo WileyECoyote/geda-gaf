@@ -10461,7 +10461,7 @@ static int gtk_sheet_motion_handler(GtkWidget *widget, GdkEventMotion *event)
   y = event->y;
 
 #if GTK_SHEET_DEBUG_MOTION > 0
-  fprintf(stderr,"gtk_sheet_motion_handler: (%d,%d) inSel %s", x, y,
+  fprintf(stderr,"%s: (%d,%d) inSel %s", __func__, x, y,
           GTK_SHEET_IN_SELECTION(sheet) ? "Yes" : "No" );
 #endif
 
@@ -11266,8 +11266,8 @@ static int gtk_sheet_key_press_handler(GtkWidget *widget, GdkEventKey *key)
 */
 
 #if GTK_SHEET_DEBUG_KEYPRESS > 0
-    fprintf(stderr,"gtk_sheet_key_press_handler: key %s",
-	gtk_accelerator_name(key->keyval, key->state));
+    fprintf(stderr,"%s: key %s", __func__,
+            gtk_accelerator_name(key->keyval, key->state));
 #endif
 
     /* if there is a key_binding, use implementation from _gtk_sheet_move_cursor() */
@@ -11276,8 +11276,8 @@ static int gtk_sheet_key_press_handler(GtkWidget *widget, GdkEventKey *key)
       && gtk_bindings_activate_event(GTK_OBJECT(sheet), key))
     {
 #if GTK_SHEET_DEBUG_KEYPRESS > 0
-      fprintf(stderr,"gtk_sheet_key_press_handler: done %s (binding)",
-      gtk_accelerator_name(key->keyval, key->state));
+      fprintf(stderr,"%s: done %s (binding)", __func__,
+              gtk_accelerator_name(key->keyval, key->state));
 #endif
       return (TRUE);
     }
