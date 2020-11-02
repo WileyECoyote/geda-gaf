@@ -1609,9 +1609,12 @@ void gtk_sheet_column_set_sensitivity(GtkSheet *sheet, int col, int sensitive)
 
     GTK_SHEET_COLUMN_SET_SENSITIVE(COLPTR(sheet, col), sensitive);
 
-    if (!sensitive) COLPTR(sheet, col)->button.state = GTK_STATE_INSENSITIVE;
-    else
+    if (!sensitive) {
+      COLPTR(sheet, col)->button.state = GTK_STATE_INSENSITIVE;
+    }
+    else {
         COLPTR(sheet, col)->button.state = GTK_STATE_NORMAL;
+    }
 
     if (gtk_widget_get_realized(GTK_WIDGET(sheet)) &&
        !gtk_sheet_is_frozen(sheet))
@@ -1636,7 +1639,9 @@ void gtk_sheet_columns_set_sensitivity(GtkSheet *sheet, int sensitive)
 
     g_return_if_fail(GTK_IS_SHEET(sheet));
 
-    for (i = 0; i <= sheet->maxcol; i++) gtk_sheet_column_set_sensitivity(sheet, i, sensitive);
+    for (i = 0; i <= sheet->maxcol; i++) {
+      gtk_sheet_column_set_sensitivity(sheet, i, sensitive);
+    }
 }
 
 /**
@@ -1880,7 +1885,9 @@ void gtk_sheet_columns_labels_set_visibility(GtkSheet *sheet, int visible)
 
     g_return_if_fail(GTK_IS_SHEET(sheet));
 
-    for (i = 0; i <= sheet->maxcol; i++) gtk_sheet_column_label_set_visibility(sheet, i, visible);
+    for (i = 0; i <= sheet->maxcol; i++) {
+      gtk_sheet_column_label_set_visibility(sheet, i, visible);
+    }
 }
 
 /**
@@ -1991,7 +1998,10 @@ void gtk_sheet_set_column_title(GtkSheet *sheet, int col, const char *title)
 {
     g_return_if_fail(GTK_IS_SHEET(sheet));
 
-    if (COLPTR(sheet, col)->title) g_free(COLPTR(sheet, col)->title);
+    if (COLPTR(sheet, col)->title) {
+      g_free(COLPTR(sheet, col)->title);
+    }
+
     COLPTR(sheet, col)->title = g_strdup(title);
 }
 
