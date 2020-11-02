@@ -465,7 +465,7 @@ static void _get_string_extent(GtkSheet *sheet, GtkSheetColumn *colptr,
     language = pango_context_get_language(context);
     metrics  = pango_context_get_metrics(context, font_desc, language);
 
-    int ascent = pango_font_metrics_get_ascent(metrics) / PANGO_SCALE;
+    int ascent  = pango_font_metrics_get_ascent(metrics) / PANGO_SCALE;
     int descent = pango_font_metrics_get_descent(metrics) / PANGO_SCALE;
     int spacing = pango_layout_get_spacing(layout) / PANGO_SCALE;
 
@@ -7221,21 +7221,21 @@ _gtk_sheet_range_draw(GtkSheet *sheet,
 #if 0
         gdk_gc_set_foreground(sheet->fg_gc, &sheet->bg_color);
 #else
-      gdk_gc_set_foreground(sheet->fg_gc,
-                            &gtk_widget_get_style((GtkWidget*)sheet)->bg[GTK_STATE_NORMAL]);
+        gdk_gc_set_foreground(sheet->fg_gc,
+                              &gtk_widget_get_style((GtkWidget*)sheet)->bg[GTK_STATE_NORMAL]);
 #endif
 
-      gdk_draw_rectangle(sheet->pixmap,
-                         sheet->fg_gc,
-                         TRUE,  /* filled */
-                         area.x, area.y,
-                         area.width, area.height);
+        gdk_draw_rectangle(sheet->pixmap,
+                           sheet->fg_gc,
+                           TRUE,  /* filled */
+                           area.x, area.y,
+                           area.width, area.height);
 
-      _gtk_sheet_draw_pixmap(sheet->sheet_window,
-                             sheet->pixmap,
-                             area.x, area.y,
-                             area.x, area.y,
-                             area.width, area.height);
+        _gtk_sheet_draw_pixmap(sheet->sheet_window,
+                               sheet->pixmap,
+                               area.x, area.y,
+                               area.x, area.y,
+                               area.width, area.height);
       }
     }
 
