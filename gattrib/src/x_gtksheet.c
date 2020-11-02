@@ -756,7 +756,7 @@ void x_gtksheet_init(PageDataSet *PageData)
     /* this prevents us from segfaulting on empty nets sheet. */
     if (sheets[i] != NULL) {
 
-      scrolled_windows = (GtkWidget**)realloc(scrolled_windows, (i+1)*sizeof(GtkWidget*));
+      scrolled_windows = GEDA_MEM_REALLOC(scrolled_windows, (i+1)*sizeof(GtkWidget*));
       scrolled_windows[i] = gtk_scrolled_window_new(NULL, NULL);
 
       geda_container_add (scrolled_windows[i], (GtkWidget*)sheets[i]);
