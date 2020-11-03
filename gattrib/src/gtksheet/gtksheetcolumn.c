@@ -818,6 +818,7 @@ GType gtk_sheet_column_get_type(void)
                                     GTK_TYPE_BUILDABLE,
                                     &interface_info);
     }
+
     return (sheet_column_type);
 }
 
@@ -904,6 +905,7 @@ int _gtk_sheet_column_left_xpixel(GtkSheet *sheet, int col)
     if (col < 0 || col > sheet->maxcol) {
       return (sheet->hoffset);
     }
+
     return (sheet->hoffset + COLPTR(sheet, col)->left_xpixel);
 }
 
@@ -921,9 +923,11 @@ int _gtk_sheet_column_left_xpixel(GtkSheet *sheet, int col)
 int _gtk_sheet_column_right_xpixel(GtkSheet *sheet, int col)
 {
     int xpixel = _gtk_sheet_column_left_xpixel(sheet, col);
+
     if (0 <= col && col <= sheet->maxcol) {
       xpixel += COLPTR(sheet, col)->width;
     }
+
     return (xpixel);
 }
 
@@ -983,6 +987,7 @@ _gtk_sheet_column_buttons_size_allocate(GtkSheet *sheet)
     GdkRectangle *cta = &sheet->column_title_area;
 
     if (!sheet->column_titles_visible) return;
+
     if (!gtk_widget_get_realized(GTK_WIDGET(sheet))) return;
 
 #if GTK_SHEET_COL_DEBUG_SIZE > 0
@@ -1683,6 +1688,7 @@ int gtk_sheet_columns_resizable(GtkSheet *sheet)
 void _gtk_sheet_column_button_set(GtkSheet *sheet, int col)
 {
     if (col < 0 || col > sheet->maxcol) return;
+
     if (COLPTR(sheet, col)->button.state == GTK_STATE_ACTIVE) return;
 
 #if GTK_SHEET_COL_DEBUG_DRAW > 0
@@ -1925,6 +1931,7 @@ void gtk_sheet_show_column_titles(GtkSheet *sheet)
     _gtk_sheet_recalc_left_xpixels(sheet);
 
     if (!gtk_widget_get_realized(GTK_WIDGET(sheet))) return;
+
     if (gtk_sheet_is_frozen(sheet)) return;
 
     gdk_window_show(sheet->column_title_window);
@@ -1943,6 +1950,7 @@ void gtk_sheet_show_column_titles(GtkSheet *sheet)
         child = COLPTR(sheet, col)->button.child;
         if (child) _gtk_sheet_child_show(child);
     }
+
     _gtk_sheet_scrollbar_adjust(sheet);
     _gtk_sheet_redraw_internal(sheet, FALSE, TRUE);
 }
@@ -1965,6 +1973,7 @@ void gtk_sheet_hide_column_titles(GtkSheet *sheet)
     _gtk_sheet_recalc_left_xpixels(sheet);
 
     if (!gtk_widget_get_realized(GTK_WIDGET(sheet))) return;
+
     if (gtk_sheet_is_frozen(sheet)) return;
 
     if (sheet->column_title_window) gdk_window_hide(sheet->column_title_window);
@@ -1979,6 +1988,7 @@ void gtk_sheet_hide_column_titles(GtkSheet *sheet)
         child = COLPTR(sheet, col)->button.child;
         if (child) _gtk_sheet_child_hide(child);
     }
+
     _gtk_sheet_scrollbar_adjust(sheet);
     _gtk_sheet_redraw_internal(sheet, FALSE, TRUE);
 }
