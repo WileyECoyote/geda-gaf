@@ -1,3 +1,10 @@
+2020-11-03 Wiley E. Hill <wileyhill@gmail.com>
+
+    * Remove references to generated data (by glib-mkenums) as the files are now
+      static, add generic GPL License header.
+
+          * include/gtksheet/gtksheettypebuiltins.h
+
 2020-11-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gtksheet/gtksheet.c: Remove NULL validation and redundant conditional
