@@ -75,25 +75,24 @@ static GtkObjectClass *sheet_column_parent_class = NULL;
 
 enum _GtkSheetColumnProperties
 {
-    PROP_0,
-    PROP_SHEET_COLUMN_0,               /* dummy */
-    PROP_SHEET_COLUMN_POSITION,        /* position of the column */
-    PROP_SHEET_COLUMN_LABEL,           /* gtk_sheet_column_button_add_label() */
-    PROP_SHEET_COLUMN_WIDTH,           /* gtk_sheet_set_column_width() */
-    PROP_SHEET_COLUMN_JUSTIFICATION,   /* gtk_sheet_column_set_justification() */
-    PROP_SHEET_COLUMN_ISKEY,           /* gtk_sheet_column_set_iskey() */
-    PROP_SHEET_COLUMN_READONLY,        /* gtk_sheet_column_set_readonly() */
-    PROP_SHEET_COLUMN_DATATYPE,        /* gtk_sheet_column_set_datatype() */
-    PROP_SHEET_COLUMN_DATAFMT,         /* gtk_sheet_column_set_format() */
-    PROP_SHEET_COLUMN_DESCRIPTION,     /* gtk_sheet_column_set_description() */
-    PROP_SHEET_COLUMN_ENTRY_TYPE,      /* gtk_sheet_column_set_entry_type() */
-    PROP_SHEET_COLUMN_VJUST,           /* gtk_sheet_column_set_vjustification() */
-    PROP_SHEET_COLUMN_VISIBLE,         /* gtk_sheet_column_set_visibility() */
-    PROP_SHEET_COLUMN_MAX_LENGTH,        /* max char length */
-    PROP_SHEET_COLUMN_MAX_LENGTH_BYTES,  /* max byte length  */
-    PROP_SHEET_COLUMN_WRAP_MODE,         /* wrap_mode */
+  PROP_0,
+  PROP_SHEET_COLUMN_0,                /* dummy */
+  PROP_SHEET_COLUMN_POSITION,         /* position of the column */
+  PROP_SHEET_COLUMN_LABEL,            /* gtk_sheet_column_button_add_label*/
+  PROP_SHEET_COLUMN_WIDTH,            /* gtk_sheet_set_column_width */
+  PROP_SHEET_COLUMN_JUSTIFICATION,    /* gtk_sheet_column_set_justification */
+  PROP_SHEET_COLUMN_ISKEY,            /* gtk_sheet_column_set_iskey */
+  PROP_SHEET_COLUMN_READONLY,         /* gtk_sheet_column_set_readonly */
+  PROP_SHEET_COLUMN_DATATYPE,         /* gtk_sheet_column_set_datatype */
+  PROP_SHEET_COLUMN_DATAFMT,          /* gtk_sheet_column_set_format */
+  PROP_SHEET_COLUMN_DESCRIPTION,      /* gtk_sheet_column_set_description */
+  PROP_SHEET_COLUMN_ENTRY_TYPE,       /* gtk_sheet_column_set_entry_type */
+  PROP_SHEET_COLUMN_VJUST,            /* gtk_sheet_column_set_vjustification*/
+  PROP_SHEET_COLUMN_VISIBLE,          /* gtk_sheet_column_set_visibility */
+  PROP_SHEET_COLUMN_MAX_LENGTH,       /* max char length */
+  PROP_SHEET_COLUMN_MAX_LENGTH_BYTES, /* max byte length */
+  PROP_SHEET_COLUMN_WRAP_MODE,        /* wrap_mode */
 };
-
 
 static void gtk_sheet_column_set_property(GObject      *object,
                                           unsigned int  property_id,
