@@ -15489,10 +15489,10 @@ static void gtk_sheet_position_child(GtkSheet *sheet, GtkSheetChild *child)
 
         if (!child->xshrink) {
 
-          #if GTK_SHEET_DEBUG_SIZE > 0
+#if GTK_SHEET_DEBUG_SIZE > 0
           fprintf(stderr,"gtk_sheet_position_child[%d]: set width %d",
                   child->col, child_requisition.width + 2 * child->xpadding);
-          #endif
+#endif
           gtk_sheet_set_column_width(sheet,
                                      child->col, child_requisition.width + 2 * child->xpadding);
         }
