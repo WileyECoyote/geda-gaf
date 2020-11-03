@@ -4,6 +4,7 @@
       static, add generic GPL License header.
 
           * include/gtksheet/gtksheettypebuiltins.h
+          * src/gtksheet/gtksheettypebuiltins.c
 
 2020-11-02 Wiley E. Hill <wileyhill@gmail.com>
 
