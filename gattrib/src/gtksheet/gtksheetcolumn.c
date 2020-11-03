@@ -1752,13 +1752,11 @@ void gtk_sheet_column_set_visibility(GtkSheet *sheet, int col, int visible)
 
     g_return_if_fail(GTK_IS_SHEET(sheet));
 
-    if (col < 0 || col > sheet->maxcol)
-      return;
+    if (col < 0 || col > sheet->maxcol) return;
 
     colobj = COLPTR(sheet, col);
 
-    if (GTK_SHEET_COLUMN_IS_VISIBLE(colobj) == visible)
-      return;
+    if (GTK_SHEET_COLUMN_IS_VISIBLE(colobj) == visible) return;
 
     act_col = sheet->active_cell.col;
 
@@ -1777,8 +1775,7 @@ void gtk_sheet_column_set_visibility(GtkSheet *sheet, int col, int visible)
             gtk_widget_get_mapped(GTK_WIDGET(colobj)),
             gtk_widget_get_realized(GTK_WIDGET(colobj)),
             gtk_widget_get_visible(GTK_WIDGET(colobj)),
-            gtk_widget_get_parent(GTK_WIDGET(colobj))
-            );
+            gtk_widget_get_parent(GTK_WIDGET(colobj)));
 #endif
 
     /* the following is a hack, to get rid of:
