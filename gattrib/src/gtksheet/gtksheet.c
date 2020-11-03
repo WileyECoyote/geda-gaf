@@ -7381,7 +7381,6 @@ gtk_sheet_range_draw_selection(GtkSheet *sheet, GtkSheetRange range)
 {
   GdkRectangle area;
   int i, j;
-  //GtkSheetRange aux;
 
   if (range.col0 > sheet->range.coli || range.coli < sheet->range.col0 ||
     range.row0 > sheet->range.rowi || range.rowi < sheet->range.row0)
@@ -7406,8 +7405,6 @@ gtk_sheet_range_draw_selection(GtkSheet *sheet, GtkSheetRange range)
   if (!gtk_widget_get_realized((GtkWidget*)sheet)) {
     return;
   }
-
-  //aux = range;
 
   range.col0 = MAX(sheet->range.col0, range.col0);
   range.coli = MIN(sheet->range.coli, range.coli);
