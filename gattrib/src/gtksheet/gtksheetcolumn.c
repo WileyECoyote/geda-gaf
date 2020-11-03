@@ -770,7 +770,6 @@ gtk_sheet_column_set_buildable_property(GtkBuildable  *buildable,
     g_object_set_property(G_OBJECT(buildable), name, value);
 }
 
-
 static void gtk_sheet_column_buildable_init(GtkBuildableIface *iface)
 {
 #if GTK_SHEET_COL_DEBUG_BUILDER > 0
@@ -778,8 +777,6 @@ static void gtk_sheet_column_buildable_init(GtkBuildableIface *iface)
 #endif
     iface->set_buildable_property = gtk_sheet_column_set_buildable_property;
 }
-
-
 
 /* Type initialization */
 
