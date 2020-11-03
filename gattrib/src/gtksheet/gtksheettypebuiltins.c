@@ -25,8 +25,7 @@
 #include <gtksheet/gtksheet.h>
 
 /* enumerations from "gtksheet.h" */
-GType
-gtk_sheet_attr_type_get_type (void)
+GType gtk_sheet_attr_type_get_type (void)
 {
   static GType etype = 0;
   if (etype == 0) {
@@ -46,8 +45,7 @@ gtk_sheet_attr_type_get_type (void)
   return etype;
 }
 
-GType
-gtk_sheet_state_get_type (void)
+GType gtk_sheet_state_get_type (void)
 {
   static GType etype = 0;
   if (etype == 0) {
@@ -63,8 +61,7 @@ gtk_sheet_state_get_type (void)
   return etype;
 }
 
-GType
-gtk_sheet_entry_type_get_type (void)
+GType gtk_sheet_entry_type_get_type (void)
 {
   static GType etype = 0;
   if (etype == 0) {
@@ -84,8 +81,7 @@ gtk_sheet_entry_type_get_type (void)
   return etype;
 }
 
-GType
-gtk_sheet_vertical_justification_get_type (void)
+GType gtk_sheet_vertical_justification_get_type (void)
 {
   static GType etype = 0;
   if (etype == 0) {
