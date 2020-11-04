@@ -284,8 +284,7 @@ gschem_page_view_class_init (void *g_class, void *g_class_data)
  * \param [in] view The view
  * \return The horizontal adjustment for this view
  */
-GtkAdjustment*
-gschem_page_view_get_hadjustment (GschemPageView *view)
+GtkAdjustment *gschem_page_view_get_hadjustment (GschemPageView *view)
 {
   g_return_val_if_fail (view != NULL, NULL);
 
@@ -298,8 +297,7 @@ gschem_page_view_get_hadjustment (GschemPageView *view)
  * \param [in] view The view
  * \return The page for the view
  */
-Page*
-gschem_page_view_get_page (GschemPageView *view)
+Page *gschem_page_view_get_page (GschemPageView *view)
 {
   g_return_val_if_fail (view != NULL, NULL);
 
@@ -312,8 +310,7 @@ gschem_page_view_get_page (GschemPageView *view)
  * \param [in] view The view
  * \return The page geometry for the view
  */
-GschemPageGeometry*
-gschem_page_view_get_page_geometry (GschemPageView *view)
+GschemPageGeometry *gschem_page_view_get_page_geometry (GschemPageView *view)
 {
   typedef void (*NotifyFunction) (void*,void*);
 
@@ -389,8 +386,7 @@ gschem_page_view_get_page_geometry (GschemPageView *view)
  * \brief Get/register GschemPageView type.
  * \par Function Description
  */
-GType
-gschem_page_view_get_type ()
+GType gschem_page_view_get_type ()
 {
   static GType type = 0;
 
@@ -420,8 +416,7 @@ gschem_page_view_get_type ()
  *  to gschem page view type.
  * \return TRUE if \a view is a valid GschemPageView
  */
-bool
-is_a_gschem_page_view (GschemPageView *view)
+bool is_a_gschem_page_view (GschemPageView *view)
 {
   if (G_IS_OBJECT(view)) {
     return (gschem_page_view_get_type() == view->instance_type);
@@ -435,8 +430,7 @@ is_a_gschem_page_view (GschemPageView *view)
  * \param [in] view The view
  * \return The vertical adjustment for this view
  */
-GtkAdjustment*
-gschem_page_view_get_vadjustment (GschemPageView *view)
+GtkAdjustment *gschem_page_view_get_vadjustment (GschemPageView *view)
 {
   g_return_val_if_fail (view != NULL, NULL);
 
@@ -449,8 +443,7 @@ gschem_page_view_get_vadjustment (GschemPageView *view)
  * \par Function Description
  * \param [in,out] view The Gschem page view to redraw
  */
-void
-gschem_page_view_invalidate_all (GschemPageView *view)
+void gschem_page_view_invalidate_all (GschemPageView *view)
 {
   GdkWindow *window;
 
@@ -631,8 +624,7 @@ gschem_page_view_instance_init (GTypeInstance *instance, void *g_class)
  * \par Function Description
  * \return A new instanceof the GschemPageView
 */
-GschemPageView*
-gschem_page_view_new ()
+GschemPageView *gschem_page_view_new ()
 {
   return g_object_new (GSCHEM_TYPE_PAGE_VIEW, NULL);
 }
@@ -642,8 +634,7 @@ gschem_page_view_new ()
  * \par Function Description
  * \return A new instance of the GschemPageView
  */
-GschemPageView*
-gschem_page_view_new_with_page (Page *page)
+GschemPageView *gschem_page_view_new_with_page (Page *page)
 {
   return g_object_new (GSCHEM_TYPE_PAGE_VIEW, "page", page, NULL);
 }
@@ -684,8 +675,7 @@ gschem_page_view_pan_general (GschemPageView *view, int w_x, int w_y, double rel
  * \param [in]     w_x  The world x coordinate of the new center
  * \param [in]     w_y  The world y coordinate of the new center
  */
-void
-gschem_page_view_pan (GschemPageView *view, int w_x, int w_y)
+void gschem_page_view_pan (GschemPageView *view, int w_x, int w_y)
 {
   gschem_page_view_pan_general (view, w_x, w_y, 1);
   /* Trigger a motion event to update the objects being drawn */
@@ -701,8 +691,7 @@ gschem_page_view_pan (GschemPageView *view, int w_x, int w_y)
  * \param [in]     diff_x    The screen x coordinate displacement
  * \param [in]     diff_y    The screen y coordinate displacement
  */
-void
-gschem_page_view_pan_mouse (GschemPageView *view, int diff_x, int diff_y)
+void gschem_page_view_pan_mouse (GschemPageView *view, int diff_x, int diff_y)
 {
   GschemPageGeometry *geometry = NULL;
   double world_cx, world_cy;
@@ -806,8 +795,7 @@ gschem_page_view_pan_motion (GschemPageView *view, int mousepan_gain, int x, int
  *
  * \returns TRUE if panning was completed, FALSE if there was no panning
  */
-bool
-gschem_page_view_pan_end (GschemPageView *view)
+bool gschem_page_view_pan_end (GschemPageView *view)
 {
   if (view->doing_pan) {
 
@@ -896,8 +884,7 @@ gschem_page_view_set_hadjustment (GschemPageView *view, GtkAdjustment *hadjustme
  * \param [in,out] view The view
  * \param [in]     page The page
  */
-void
-gschem_page_view_set_page (GschemPageView *view, Page *page)
+void gschem_page_view_set_page (GschemPageView *view, Page *page)
 {
   g_return_if_fail (view != NULL);
 
@@ -1020,8 +1007,7 @@ set_property (GObject *object, unsigned int param_id, const GValue *value, GPara
  *
  * \return converted value in SCREEN pixels
 */
-int
-gschem_page_view_SCREENabs(GschemPageView *view, int val)
+int gschem_page_view_SCREENabs(GschemPageView *view, int val)
 {
   double f0,f1;
   double i;
@@ -1049,8 +1035,7 @@ gschem_page_view_SCREENabs(GschemPageView *view, int val)
  * \brief Update the horizontal scroll adjustment
  * \par Function Description
  */
-static void
-gschem_page_view_update_hadjustment (GschemPageView *view)
+static void gschem_page_view_update_hadjustment (GschemPageView *view)
 {
   g_return_if_fail (view != NULL);
 
@@ -1082,8 +1067,7 @@ gschem_page_view_update_hadjustment (GschemPageView *view)
  * \brief Update the scroll adjustments
  * \par Function Description
  */
-void
-gschem_page_view_update_scroll_adjustments (GschemPageView *view)
+void gschem_page_view_update_scroll_adjustments (GschemPageView *view)
 {
   g_return_if_fail (view != NULL);
 
@@ -1095,8 +1079,7 @@ gschem_page_view_update_scroll_adjustments (GschemPageView *view)
  * \brief Update the vertical scroll adjustment
  * \par Function Description
  */
-static void
-gschem_page_view_update_vadjustment (GschemPageView *view)
+static void gschem_page_view_update_vadjustment (GschemPageView *view)
 {
   g_return_if_fail (view != NULL);
 
@@ -1135,8 +1118,7 @@ gschem_page_view_update_vadjustment (GschemPageView *view)
  *
  * \return The converted WORLD coordinate.
  */
-int
-gschem_page_view_WORLDabs(GschemPageView *view, int val)
+int gschem_page_view_WORLDabs(GschemPageView *view, int val)
 {
   GtkAllocation *allocation;
   double fw0,fw1,fw,fval;
@@ -1181,8 +1163,7 @@ remove_page_weak_reference (Page *page, void *geometry, GschemPageView *view)
  * \brief
  * \par Function Description
  */
-static void
-page_deleted (Page *page, GschemPageView *view)
+static void page_deleted (Page *page, GschemPageView *view)
 {
   g_return_if_fail (page != NULL);
   g_return_if_fail (view != NULL);
@@ -1296,8 +1277,7 @@ gschem_page_view_zoom_extents (GschemPageView *view, const GList *objects)
  * \param [in] view      This GschemPageView
  * \param [in] object    The text object
  */
-void
-gschem_page_view_zoom_text (GschemPageView *view, GedaObject *object)
+void gschem_page_view_zoom_text (GschemPageView *view, GedaObject *object)
 {
   int x[2];
   int y[2];
