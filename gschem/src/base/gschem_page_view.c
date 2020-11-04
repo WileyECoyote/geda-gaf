@@ -437,7 +437,6 @@ GtkAdjustment *gschem_page_view_get_vadjustment (GschemPageView *view)
   return view->vadjustment;
 }
 
-
 /*!
  * \brief Schedule redraw for the entire window
  * \par Function Description
@@ -501,7 +500,6 @@ gschem_page_view_invalidate_object (GschemToplevel *w_current, GedaObject *objec
     }
   }
 }
-
 
 /*!
  * \brief Schedule redraw of the given rectange
@@ -578,7 +576,6 @@ gschem_page_view_invalidate_world_rect (GschemToplevel *w_current, int left, int
                                            screen_bottom);
 }
 
-
 /*!
  * \brief Initialize GschemPageView instance
  * \par Function Description
@@ -617,7 +614,6 @@ gschem_page_view_instance_init (GTypeInstance *instance, void *g_class)
                    G_CALLBACK (event_realize),
                    NULL);
 }
-
 
 /*!
  * \brief Create a new instance of GschemPageView
@@ -727,8 +723,6 @@ void gschem_page_view_pan_mouse (GschemPageView *view, int diff_x, int diff_y)
   */
 }
 
-
-
 /*!
  * \brief Start mouse panning in the view
  * \par Function Description
@@ -746,8 +740,6 @@ void gschem_page_view_pan_start (GschemPageView *view, int x, int y)
   view->pan_y = y;
   view->throttle = 0;
 }
-
-
 
 /*!
  * \brief Continue mouse panning in the view
@@ -784,7 +776,6 @@ gschem_page_view_pan_motion (GschemPageView *view, int mousepan_gain, int x, int
   }
 }
 
-
 /*!
  * \brief End mouse panning in the view
  * \par Function Description
@@ -809,7 +800,6 @@ bool gschem_page_view_pan_end (GschemPageView *view)
     return FALSE;
   }
 }
-
 
 /*!
  * \brief Transform SCREEN coordinates to WORLD coordinates
@@ -836,7 +826,6 @@ gschem_page_view_SCREENtoWORLD (GschemPageView *view, int mx, int my, int *x, in
   *x = gschem_page_geometry_mil_x (geometry, mx);
   *y = gschem_page_geometry_mil_y (geometry, my);
 }
-
 
 /*!
  * \brief Set the horizontal scroll adjustment for this view
@@ -872,8 +861,6 @@ gschem_page_view_set_hadjustment (GschemPageView *view, GtkAdjustment *hadjustme
   GEDA_OBJECT_NOTIFY (view, "hadjustment");
 }
 
-
-
 /*!
  * \brief Set the page for this view
  * \par Function Description
@@ -899,7 +886,6 @@ void gschem_page_view_set_page (GschemPageView *view, Page *page)
   GEDA_OBJECT_NOTIFY (view, "page-geometry");
   g_signal_emit_by_name (view, "update-grid-info");
 }
-
 
 /*!
  * \brief Set the vertical scroll adjustment for this view
