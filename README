@@ -30,7 +30,7 @@ Installation
 ============
 
 The information in this section is intended to supplement the
-information in the `INSTALL' file.
+information in the 'INSTALL' file.
 
 Dependencies
 ------------
@@ -40,7 +40,7 @@ In order to compile gEDA from the distributed source archives, you
 
  - A C/C++ compiler and standard library (GCC/glibc are recommended).
 
- - The `pkg-config' tool for managing shared libraries.
+ - The 'pkg-config' tool for managing shared libraries.
    <http://pkgconfig.freedesktop.org/>
 
  - Guile ("GNU's Ubiquitous Intelligent Language for Extensions"),
@@ -49,10 +49,10 @@ In order to compile gEDA from the distributed source archives, you
  - GTK+ (the Gimp Toolkit), version 2.16.0 or later.
    <http://www.gtk.org/>
 
- - The `lex' tool for generating lexical scanners.  The `flex'
+ - The 'lex' tool for generating lexical scanners.  The 'flex'
    implementation recommended.  <https://github.com/westes/flex/releases/>
 
- - The `awk' tool for data processing.  GNU Awk (`gawk') is
+ - The 'awk' tool for data processing.  GNU Awk ('gawk') is
    recommended.  <http://www.gnu.org/software/gawk/>
 
  - The CPython interpreter, version 2.7, including the development
@@ -60,10 +60,10 @@ In order to compile gEDA from the distributed source archives, you
 
 The following tools and libraries are *highly recommended*:
 
- - GNU `gettext', version 0.18 or newer.
+ - GNU 'gettext', version 0.18 or newer.
    <http://www.gnu.org/software/gettext/>
 
- - GNU `troff' (`groff'). <http://www.gnu.org/software/groff/>
+ - GNU 'troff' ('groff'). <http://www.gnu.org/software/groff/>
 
  - The freedesktop.org MIME info database.
    <http://freedesktop.org/Software/shared-mime-info>
@@ -73,11 +73,11 @@ The following tools and libraries are *highly recommended*:
 
 The following tools and libraries are optional:
 
- - `libstroke', a stroke and gesture recognition library.  If this is
+ - 'libstroke', a stroke and gesture recognition library.  If this is
    available, gschem will support mouse gesture recognition.
    <http://www.etla.net/libstroke/>
 
- - The `doxygen' API documentation tool.  This is required for building
+ - The 'doxygen' API documentation tool.  This is required for building
    the gEDA developer API documentation, not for the regular user
    documentation.  <http://www.stack.nl/~dimitri/doxygen/>
 
@@ -89,20 +89,20 @@ Graphviz, and pdflatex be installed.
 Troubleshooting dependencies
 ----------------------------
 
-  "I've installed the `libfoo' library, but `./configure' isn't
+  "I've installed the 'libfoo' library, but './configure' isn't
   picking it up!"
 
 Many modern operating system distributions split a library into two
 packages:
 
-1. a `libfoo' package, which contains the files necessary to
-   *run* programs which use `libfoo'.
+1. a 'libfoo' package, which contains the files necessary to
+   *run* programs which use 'libfoo'.
 
-2. a `libfoo-dev' or `libfoo-devel' package, which contains the files
-   necessary to *compile* programs which use `libfoo'.
+2. a 'libfoo-dev' or 'libfoo-devel' package, which contains the files
+   necessary to *compile* programs which use 'libfoo'.
 
 If you're having problems, make sure that you have all of the
-necessary `dev' or `devel' packages installed.
+necessary 'dev' or 'devel' packages installed.
 
 Installation from a source archive
 ----------------------------------
@@ -120,21 +120,21 @@ You can then compile gEDA:
 
   make
 
-And install it (if you used a `--prefix' outside your $HOME directory,
+And install it (if you used a '--prefix' outside your $HOME directory,
 you may need to run this as root):
 
   make install
 
-For more information on installing gEDA, see the `INSTALL' document.
+For more information on installing gEDA, see the 'INSTALL' document.
 
 Installation from the git repository
 ------------------------------------
 
-gEDA uses the `git' version control system.  If you wish to try out
+gEDA uses the 'git' version control system.  If you wish to try out
 the very latest version of gEDA, you will need to install some extra
 tools *in addition to* the ones listed above:
 
-  - The `git' version control tool, version 1.6 or newer.
+  - The 'git' version control tool, version 1.6 or newer.
     <http://git-scm.com/>
 
   - GNU Automake, version 1.9.6 or newer.
@@ -151,7 +151,7 @@ tools *in addition to* the ones listed above:
     Note that on some distributions the TeX support for Texinfo is
     packaged separately.
 
-Once you have these installed, you need to clone the gEDA `git'
+Once you have these installed, you need to clone the gEDA 'git'
 repository:
 
   git clone git://git.geda-project.org/geda-gaf.git
@@ -161,7 +161,7 @@ To generate the configure script, run:
   ./autogen.sh
 
 You can then procede to configure and build gEDA as described above.
-For more information on working with the gEDA `git' repository, see
+For more information on working with the gEDA 'git' repository, see
 <http://wiki.geda-project.org/geda:scm>.
 
 Tools in the gEDA suite
@@ -169,42 +169,42 @@ Tools in the gEDA suite
 
 The major components of the gEDA suite are:
 
-`libgeda'
+'libgeda'
   A library of functions for manipulating gEDA schematics and symbols.
 
-`libgedacolor'
+'libgedacolor'
   A library of functions for translating color code found in gEDA
   schematics and symbols files to RGB.
 
-`libgedacairo'
+'libgedacairo'
   A library of functions for rendering graphics using Cairo and Pango.
 
-`libgedathon'
+'libgedathon'
   A Python extension library for accessing libgeda using the Python
   language.
 
-`gschem'
+'gschem'
   A schematic editor.
 
-`gattrib'
+'gattrib'
   A spreadsheet-like program for bulk editing of component attributes.
 
-`gnetlist'
+'gnetlist'
   A highly-flexible, hierarchy-aware utility which parses schematics
   to generate a number of outputs, including netlists for a wide
   variety of PCB layout tools.  It can also generate bills of
   materials and DRC reports for your schematics.
 
-`gaf'
+'gaf'
   A command-line utility for editing gEDA configuration files and
   exporting gEDA documents. gaf also provides a Scheme REPL for
   command-line batch processing of schematic data.
 
-`gsch2pcb'
-  A command-line utility for streamlining the workflow where `PCB'
-  <http://pcb.geda-project.org/> and `gschem' are used together.
+'gsch2pcb'
+  A command-line utility for streamlining the workflow where 'PCB'
+  <http://pcb.geda-project.org/> and 'gschem' are used together.
 
-`gsymcheck'
+'gsymcheck'
   A utility for checking for common errors in schematic symbol files.
 
 Getting help
@@ -218,13 +218,13 @@ There are several ways to get help with installing and using gEDA:
 
  - The gEDA documentation wiki contains a large amount of helpful
    information.  A static copy is included with this distribution; see
-   the `docs/wiki/index.html' file.  The wiki is accessible online at
+   the 'docs/wiki/index.html' file.  The wiki is accessible online at
    <http://wiki.geda-project.org/>.
 
  - If the resources above didn't help you resolve your problem, or you
    are having a *design* problem that you want to get help with,
    consider subscribing to and posting your question to the
-   `geda-user' mailing list.
+   'geda-user' mailing list.
    <http://wiki.geda-project.org/geda:mailinglists>
 
  - Alternatively, you can add your question to the gEDA Answers page
@@ -239,8 +239,8 @@ Building gEDA developer API documentation
 
 Several of the gEDA libraries and applications have doxygen API
 documentation available.  To generate the API documentation from the
-source code, install doxygen (see `Dependencies' above).  Next, add
-`--enable-doxygen' to your configure command line, i.e.:
+source code, install doxygen (see 'Dependencies' above).  Next, add
+'--enable-doxygen' to your configure command line, i.e.:
 
   ./configure --enable-doxygen
 
@@ -250,7 +250,7 @@ a different target for Doxygen, use :
 
   ./configure --enable-doxygen-out=../../../example/path/out/of/tree
 
-It is not required to use specify both options, using `--enable-doxygen-out'
+It is not required to use specify both options, using '--enable-doxygen-out'
 enables doxygen.
 
 To compile the documentation, which can be quite a slow process, run:
@@ -291,7 +291,7 @@ generate the documentation.
 
 If you see an error like:
 
-! LaTeX Error: File `float.sty' not found.
+! LaTeX Error: File 'float.sty' not found.
 
 The mostly like cause is that style files are missing from the latex/live package.
 A distributor (aka Debian) likely divided up the latex package for distribution
@@ -309,14 +309,14 @@ License
 
 gEDA/gaf (this package) is freely distributable under the GNU Public
 License (GPL) version 2.0 or (at your option) any later version.  See
-the `COPYING' file for the full text of the license.
+the 'COPYING' file for the full text of the license.
 
 The programs and associated files are:
 
   Copyright (C) 1998-2013 by Ales Hvezda and the respective original
   authors.
 
-See the `AUTHORS' file for a more extensive list of contributors to
+See the 'AUTHORS' file for a more extensive list of contributors to
 gEDA.
 
 ..
