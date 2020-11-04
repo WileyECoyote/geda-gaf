@@ -100,10 +100,9 @@ static GtkTextViewClass *parent_class = NULL;
  *
  * Retrieves the #GtkDataTextView description.
  *
- * Returns: a pointer to the contents of the widget as a
- *      string. This string points to internally allocated
- *      storage in the widget and must not be freed, modified or
- *      stored.
+ * \returns: a pointer to the contents of the widget as a string. This
+ *           string points to internally allocated storage in the widget
+ *           and must not be freed, modified or stored.
  *
  * Since: 3.0.6
  **/

@@ -2,6 +2,8 @@
 
     * include/gtksheet/*.h": Update FSF address in header files.
 
+    * src/gtksheet/*.c: Update FSF address in file header.
+
 2020-11-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * Remove references to generated data (by glib-mkenums) as the files are now
