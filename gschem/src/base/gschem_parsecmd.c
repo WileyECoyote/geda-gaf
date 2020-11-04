@@ -79,8 +79,7 @@ SCM s_post_load_expr = SCM_EOL;
  *
  * \param cmd First element of argv (name of program as run).
  */
-static void
-usage(char *cmd)
+static void usage(char *cmd)
 {
   printf(_(
     "Usage: %s [OPTION ...] [--] [FILE ...]\n"
