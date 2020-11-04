@@ -7135,10 +7135,9 @@ static void _cell_draw_label(GtkSheet *sheet, int row, int col)
  * draw visible part of range.
  * If @range == NULL then draw the whole screen.
  */
-void
-_gtk_sheet_range_draw(GtkSheet *sheet,
-    const GtkSheetRange *range,
-    int activate_active_cell)
+void _gtk_sheet_range_draw(GtkSheet *sheet,
+                           const GtkSheetRange *range,
+                           int activate_active_cell)
 {
     int row, col;
     GtkSheetRange drawing_range;
