@@ -1,3 +1,7 @@
+2020-11-04 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/gtksheet/*.h": Update FSF address in header files.
+
 2020-11-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * Remove references to generated data (by glib-mkenums) as the files are now
