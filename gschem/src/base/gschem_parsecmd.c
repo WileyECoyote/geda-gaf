@@ -36,6 +36,7 @@ extern int   optind;
 #endif
 
 #ifdef HAVE_GETOPT_LONG
+
 struct option long_options[] =
   {
     {"render-adaptor", 1, 0, 'a'},
@@ -58,6 +59,7 @@ struct option long_options[] =
     {"minimized",      0, 0, 'z'},
     {0, 0, 0, 0}
   };
+
 #endif
 
 /*! Contains a Scheme expression arising from command-line arguments.
@@ -307,6 +309,7 @@ int gschem_parse_commandline(int argc, char *argv[])
 
           fprintf (stderr, "%s: %s `\\x%x'.\n\n", _ERROR, err_ukn, optopt);
         }
+
 #endif
 
         const char *err_info = _("help for more information");
