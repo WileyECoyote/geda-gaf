@@ -21,6 +21,7 @@
 #include <gtk/gtk.h>
 #include <gattrib.h>
 #include <geda_container.h>
+#include <geda_toolbar.h>     /* geda_toolbar_set_style */
 #include <geda/geda_help.h>   /* Include file names for HTML files */
 #include <geda_debug.h>
 
