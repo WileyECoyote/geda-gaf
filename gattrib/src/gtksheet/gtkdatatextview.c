@@ -235,7 +235,7 @@ gtk_data_text_view_get_type(void)
 	static const GInterfaceInfo interface_info = {
 	    (GInterfaceInitFunc)NULL,
 	    (GInterfaceFinalizeFunc)NULL,
-	    (gpointer)NULL
+	    (void*)NULL
 	};
 
 	data_text_view_type = g_type_register_static_simple(
