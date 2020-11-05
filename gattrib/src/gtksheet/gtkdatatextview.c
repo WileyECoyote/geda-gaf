@@ -489,7 +489,6 @@ static void _gtk_data_text_view_insert_text_handler(GtkTextBuffer *textbuffer,
   }
 }
 
-
 static void
 gtk_data_text_view_init(GtkDataTextView *data_text_view)
 {

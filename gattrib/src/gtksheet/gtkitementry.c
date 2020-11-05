@@ -1377,6 +1377,7 @@ static void _item_entry_append_char(GString *str, gunichar ch, int count)
   char_len = g_unichar_to_utf8(ch, buf);
 
   i = 0;
+
   while (i < count) {
     g_string_append_len(str, buf, char_len);
     ++i;
@@ -1410,7 +1411,6 @@ gtk_item_entry_create_layout(GtkEntry *entry, _Bool  include_preedit)
     int cursor_index = g_utf8_offset_to_pointer(entry->text, entry->current_pos) - entry->text;
 
     if (entry->visible) {
-
 
       g_string_prepend_len(tmp_string, entry->text, gtk_entry_buffer_get_bytes(buffer));
       g_string_insert(tmp_string, cursor_index, preedit_string);
