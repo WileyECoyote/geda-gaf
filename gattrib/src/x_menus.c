@@ -278,8 +278,8 @@ static void menu_help_glossary()
 /* View->Toolbar */
 static void toolbar_icons_only( void )
 {
-  geda_toolbar_set_style (GTK_TOOLBAR (Standard_Toolbar), GTK_TOOLBAR_ICONS);
-  geda_toolbar_set_style (GTK_TOOLBAR (Attribute_Toolbar), GTK_TOOLBAR_ICONS);
+  geda_toolbar_set_style (GEDA_TOOLBAR (Standard_Toolbar), GTK_TOOLBAR_ICONS);
+  geda_toolbar_set_style (GEDA_TOOLBAR (Attribute_Toolbar), GTK_TOOLBAR_ICONS);
 }
 
 /*!
