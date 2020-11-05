@@ -300,8 +300,8 @@ static void toolbar_text_only( void )
  */
 static void toolbar_display_both( void )
 {
-  geda_toolbar_set_style (GTK_TOOLBAR (Standard_Toolbar), GTK_TOOLBAR_BOTH);
-  geda_toolbar_set_style (GTK_TOOLBAR (Attribute_Toolbar), GTK_TOOLBAR_BOTH);
+  geda_toolbar_set_style (GEDA_TOOLBAR (Standard_Toolbar), GTK_TOOLBAR_BOTH);
+  geda_toolbar_set_style (GEDA_TOOLBAR (Attribute_Toolbar), GTK_TOOLBAR_BOTH);
 }
 
 /* ----------- Recent Files Menu Stuff ----------- */
