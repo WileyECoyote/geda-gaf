@@ -406,7 +406,7 @@ gtk_data_text_view_class_init(GtkDataTextViewClass *klass)
 
 static void _gtk_data_text_view_insert_text_handler(GtkTextBuffer *textbuffer,
     GtkTextIter *location, char *new_text, int new_text_len_bytes,
-    gpointer user_data)
+    void *user_data)
 {
   GtkDataTextView *data_text_view = GTK_DATA_TEXT_VIEW(user_data);
   GtkTextView *text_view = GTK_TEXT_VIEW(user_data);
