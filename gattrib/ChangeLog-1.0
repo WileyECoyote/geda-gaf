@@ -3,6 +3,7 @@
     * Add generic GPL License header:
 
           * include/gtksheet/gtksheet-marshal.h
+          * src/gtksheet/gtksheet-marshal.c
 
 2020-11-04 Wiley E. Hill <wileyhill@gmail.com>
 
