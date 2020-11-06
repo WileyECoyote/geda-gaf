@@ -1,3 +1,8 @@
+2020-11-06 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/gtksheet/gtksheet.c: Revise gtk_sheet_button_release_handler to utilize
+      an ancillary integer; new_height.
+
 2020-11-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * Add generic GPL License header:

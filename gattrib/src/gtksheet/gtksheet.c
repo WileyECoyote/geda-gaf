@@ -10325,14 +10325,17 @@ gtk_sheet_button_release_handler(GtkWidget *widget, GdkEventButton *event)
     if (GTK_SHEET_IN_YDRAG(sheet)) {
 
       unsigned int y;
+      unsigned int new_height;
+
       GTK_SHEET_UNSET_FLAGS(sheet, GTK_SHEET_IN_YDRAG);
       GTK_SHEET_UNSET_FLAGS(sheet, GTK_SHEET_IN_SELECTION);
       gtk_widget_get_pointer(widget, NULL, &y);
       gdk_pointer_ungrab(event->time);
       draw_xor_hline(sheet);
 
-      gtk_sheet_set_row_height(sheet, sheet->drag_cell.row,
-                               new_row_height(sheet, sheet->drag_cell.row, &y));
+      new_height = new_row_height(sheet, sheet->drag_cell.row, &y);
+
+      gtk_sheet_set_row_height(sheet, sheet->drag_cell.row, new_height);
 
       sheet->old_vadjustment = -1.;
 
