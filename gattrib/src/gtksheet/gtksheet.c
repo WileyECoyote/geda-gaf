@@ -8046,8 +8046,7 @@ void gtk_sheet_link_cell(GtkSheet *sheet, int row, int col, void *link)
  *
  * Returns: (transfer none) pointer linked to the cell
  */
-gpointer
-gtk_sheet_get_link(GtkSheet *sheet, int row, int col)
+void *gtk_sheet_get_link(GtkSheet *sheet, int row, int col)
 {
     g_return_val_if_fail(GTK_IS_SHEET(sheet), NULL);
 
