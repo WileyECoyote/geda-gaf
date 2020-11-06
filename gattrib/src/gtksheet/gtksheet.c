@@ -1581,7 +1581,7 @@ gtk_sheet_get_type(void)
 	static const GInterfaceInfo interface_info = {
 	    (GInterfaceInitFunc)gtk_sheet_buildable_init,
 	    (GInterfaceFinalizeFunc)NULL,
-	    (gpointer)NULL
+	    (void*)NULL
 	};
 
 	sheet_type = g_type_register_static(gtk_container_get_type(),
