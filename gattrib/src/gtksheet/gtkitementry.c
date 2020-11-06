@@ -1441,15 +1441,12 @@ gtk_item_entry_create_layout(GtkEntry *entry, _Bool  include_preedit)
       cursor_index =
       g_utf8_offset_to_pointer(tmp_string->str, entry->current_pos) -
       tmp_string->str;
-      preedit_length =
-      preedit_len_chars *
-      g_unichar_to_utf8(invisible_char, NULL);
+      preedit_length = preedit_len_chars * g_unichar_to_utf8(invisible_char, NULL);
     }
 
     pango_layout_set_text(layout, tmp_string->str, tmp_string->len);
 
-    pango_attr_list_splice(tmp_attrs, preedit_attrs,
-                           cursor_index, preedit_length);
+    pango_attr_list_splice(tmp_attrs, preedit_attrs, cursor_index, preedit_length);
 
     g_string_free(tmp_string, TRUE);
   }
