@@ -1387,12 +1387,14 @@ static void _item_entry_append_char(GString *str, gunichar ch, int count)
 static PangoLayout *
 gtk_item_entry_create_layout(GtkEntry *entry, _Bool  include_preedit)
 {
-  PangoLayout *layout = gtk_widget_create_pango_layout(GTK_WIDGET(entry), NULL);
-  PangoAttrList *tmp_attrs = pango_attr_list_new();
+  PangoLayout   *layout;
+  PangoAttrList *tmp_attrs;
+  PangoAttrList *preedit_attrs  = NULL;
+  char          *preedit_string = NULL;
+  int            preedit_length = 0;
 
-  char *preedit_string = NULL;
-  int preedit_length = 0;
-  PangoAttrList *preedit_attrs = NULL;
+  layout    = gtk_widget_create_pango_layout(GTK_WIDGET(entry), NULL);
+  tmp_attrs = pango_attr_list_new();
 
   pango_layout_set_single_paragraph_mode(layout, TRUE);
 
@@ -1432,7 +1434,7 @@ gtk_item_entry_create_layout(GtkEntry *entry, _Bool  include_preedit)
         invisible_char = ' '; /* just pick a char */
       }
 
-        _item_entry_append_char(tmp_string, invisible_char, ch_len);
+      _item_entry_append_char(tmp_string, invisible_char, ch_len);
 
       /* Fix cursor index to point to invisible char corresponding
        * to the preedit, fix preedit_length to be the length of
