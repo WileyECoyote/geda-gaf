@@ -1422,6 +1422,7 @@ gtk_item_entry_create_layout(GtkEntry *entry, _Bool  include_preedit)
       int ch_len;
       int preedit_len_chars;
       gunichar invisible_char;
+      const char *char_offset;
 
       ch_len = g_utf8_strlen(entry->text, gtk_entry_buffer_get_bytes(buffer));
       preedit_len_chars = g_utf8_strlen(preedit_string, -1);
@@ -1440,9 +1441,8 @@ gtk_item_entry_create_layout(GtkEntry *entry, _Bool  include_preedit)
        * to the preedit, fix preedit_length to be the length of
        * the invisible chars representing the preedit
        */
-      cursor_index =
-      g_utf8_offset_to_pointer(tmp_string->str, entry->current_pos) -
-      tmp_string->str;
+      char_offset = g_utf8_offset_to_pointer(tmp_string->str, entry->current_pos);
+      cursor_index = char_offset - tmp_string->str;
       preedit_length = preedit_len_chars * g_unichar_to_utf8(invisible_char, NULL);
     }
 

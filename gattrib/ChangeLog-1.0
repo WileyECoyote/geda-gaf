@@ -1,5 +1,8 @@
 2020-11-06 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/gtksheet/gtkitementry.c: Revise gtk_item_entry_create_layout to utilize
+      an ancillary integer; char_offset.
+
     * src/gtksheet/gtksheet.c: Revise gtk_sheet_button_release_handler to utilize
       an ancillary integer; new_height.
 
