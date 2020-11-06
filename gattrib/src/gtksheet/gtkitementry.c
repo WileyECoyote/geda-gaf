@@ -1336,7 +1336,7 @@ static void _item_entry_update_im_cursor_location(GtkEntry *entry)
   gtk_im_context_set_cursor_location(entry->im_context, &area);
 }
 
-static int _item_entry_recompute_idle_func(gpointer data)
+static int _item_entry_recompute_idle_func(void *data)
 {
   GtkEntry *entry;
 
