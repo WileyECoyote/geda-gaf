@@ -1466,10 +1466,12 @@ gtk_item_entry_create_layout(GtkEntry *entry, _Bool  include_preedit)
 
       gunichar invisible_char;
 
-      if (entry->invisible_char != 0)
+      if (entry->invisible_char != 0) {
         invisible_char = entry->invisible_char;
-      else
+      }
+      else {
         invisible_char = ' '; /* just pick a char */
+      }
 
         _item_entry_append_char(str, invisible_char, entry->text_length);
       pango_layout_set_text(layout, str->str, str->len);
