@@ -8048,21 +8048,24 @@ void gtk_sheet_link_cell(GtkSheet *sheet, int row, int col, void *link)
  */
 void *gtk_sheet_get_link(GtkSheet *sheet, int row, int col)
 {
-    g_return_val_if_fail(GTK_IS_SHEET(sheet), NULL);
+  g_return_val_if_fail(GTK_IS_SHEET(sheet), NULL);
 
-    if (col > sheet->maxcol || row > sheet->maxrow)
-	return (NULL);
-    if (col < 0 || row < 0)
-	return (NULL);
+  if (col > sheet->maxcol || row > sheet->maxrow)
+    return (NULL);
 
-    if (row > sheet->maxallocrow || col > sheet->maxalloccol)
-	return (NULL);
-    if (!sheet->data[row])
-	return (NULL); /* Added by Chris Howell */
-    if (!sheet->data[row][col])
-	return (NULL); /* Added by Bob Lissner */
+  if (col < 0 || row < 0)
+    return (NULL);
 
-    return (sheet->data[row][col]->link);
+  if (row > sheet->maxallocrow || col > sheet->maxalloccol)
+    return (NULL);
+
+  if (!sheet->data[row])
+    return (NULL); /* Added by Chris Howell */
+
+  if (!sheet->data[row][col])
+    return (NULL); /* Added by Bob Lissner */
+
+  return (sheet->data[row][col]->link);
 }
 
 /*!
