@@ -5487,11 +5487,10 @@ msgstr ""
 msgid "_Last"
 msgstr ""
 
-# Undo the last path segmen
+# Go to the last page
 #: gschem/etc/system-gschemrc.scm:2259
-#, fuzzy
 msgid "Go to the last page"
-msgstr "Otkažite posljednji odsječak put"
+msgstr "Idite na zadnju stranicu"
 
 #: gschem/etc/system-gschemrc.scm:2260
 msgid "Ne_w"
@@ -5606,11 +5605,10 @@ msgstr ""
 msgid "Pictu_re..."
 msgstr "Sli_ka..."
 
-# Invert image
+# Insert an image
 #: gschem/etc/system-gschemrc.scm:2291
-#, fuzzy
 msgid "Insert an image"
-msgstr "Invert slika"
+msgstr "Umetnite sliku"
 
 #: gschem/etc/system-gschemrc.scm:2292
 msgid "_Pin"
@@ -5665,11 +5663,10 @@ msgstr ""
 msgid "_Detach"
 msgstr ""
 
-# Detached attribute
+# Detach selected attributes from symbol
 #: gschem/etc/system-gschemrc.scm:2316
-#, fuzzy
 msgid "Detach selected attributes from symbol"
-msgstr "samostojeća atribut"
+msgstr "Odvojite odabrane atribute od simbola"
 
 #: gschem/etc/system-gschemrc.scm:2317
 msgid "Show _Value"
@@ -6328,10 +6325,10 @@ msgstr "Dodaj Krug"
 msgid "Add Arc"
 msgstr "Dodaj Arc"
 
+# Add Path
 #: gschem/scheme/gschem/builtins.scm:371
-#, fuzzy
 msgid "Add Path"
-msgstr "Dodaj igla"
+msgstr "Dodaj Putanju"
 
 # Add Photo
 #: gschem/scheme/gschem/builtins.scm:374
@@ -6656,20 +6653,19 @@ msgstr ""
 msgid "hierarchy Verilog"
 msgstr "hijerarhija Verilog"
 
+# Translate Symbol
 #: gschem/scheme/gschem/gschem-tools-menu.scm:276
-#, fuzzy
 msgid "Symbol _Translate..."
-msgstr "Translacija"
+msgstr "Prevedi simbol..."
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:276
 msgid "Reset the X-Y Zero point"
 msgstr ""
 
-# Symbol
+# Check Symbol
 #: gschem/scheme/gschem/gschem-tools-menu.scm:277
-#, fuzzy
 msgid "Check Symbol"
-msgstr "Simbol"
+msgstr "Označite Simbol"
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:277
 msgid "Run gsymcheck"
