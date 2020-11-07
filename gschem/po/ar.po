@@ -786,10 +786,10 @@ msgstr "السمة مرفقة بالفعل\n"
 msgid "WARNING: Do not translate with snap off!\n"
 msgstr "تحذير: لا تسحب مع جذب موقف!\n"
 
+# thdhyr: tashghil alkhatif wamutabaeat altarjima
 #: gschem/src/iface/i_command.c:4379
-#, fuzzy
 msgid "WARNING: Turning snap on and continuing with translation.\n"
-msgstr "تحذير: تشغيل الجذب و المتابعة مع السحب.\n"
+msgstr "تحذير: تشغيل الخاطف ومتابعة الترجمة.\n"
 
 #: gschem/src/iface/i_command.c:4385
 msgid "WARNING: Snap grid size is not equal to 100!\n"
@@ -5385,10 +5385,10 @@ msgstr ""
 msgid "_Last"
 msgstr ""
 
+# Go to the last page; 'adhhab 'iilaa alsafhat al'akhira
 #: gschem/etc/system-gschemrc.scm:2259
-#, fuzzy
 msgid "Go to the last page"
-msgstr "تراجع عن العملية الأخيرة"
+msgstr "اذهب إلى الصفحة الأخيرة"
 
 #: gschem/etc/system-gschemrc.scm:2260
 msgid "Ne_w"
@@ -5498,11 +5498,10 @@ msgstr "أضف شبكة"
 msgid "Pictu_re..."
 msgstr "_صورة..."
 
-# Invert Image
+# Insert an image; udkhul suratan
 #: gschem/etc/system-gschemrc.scm:2291
-#, fuzzy
 msgid "Insert an image"
-msgstr "عكس الصورة"
+msgstr "أدخل صورة"
 
 #: gschem/etc/system-gschemrc.scm:2292
 msgid "_Pin"
@@ -5556,10 +5555,11 @@ msgstr ""
 msgid "_Detach"
 msgstr "ا_فصل"
 
+# Detach selected attributes from symbol
+# afsil alsmat almuhadadat ean alramz
 #: gschem/etc/system-gschemrc.scm:2316
-#, fuzzy
 msgid "Detach selected attributes from symbol"
-msgstr "سمة مفصولة"
+msgstr "افصل السمات المحددة عن الرمز"
 
 #: gschem/etc/system-gschemrc.scm:2317
 msgid "Show _Value"
@@ -6171,10 +6171,10 @@ msgstr "دائرة"
 msgid "Add Arc"
 msgstr "أضف سمة"
 
+# Add Path; 'iidafat masar
 #: gschem/scheme/gschem/builtins.scm:371
-#, fuzzy
 msgid "Add Path"
-msgstr "أضف شبكة"
+msgstr "إضافة مسار"
 
 #: gschem/scheme/gschem/builtins.scm:374
 msgid "Add Picture"
@@ -6469,19 +6469,19 @@ msgstr ""
 msgid "hierarchy Verilog"
 msgstr "التسلسل الهرمي فيريلوج"
 
+# Translate Symbol; tarjamat alramz
 #: gschem/scheme/gschem/gschem-tools-menu.scm:276
-#, fuzzy
 msgid "Symbol _Translate..."
-msgstr "اسحب"
+msgstr "ترجمة الرمز..."
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:276
 msgid "Reset the X-Y Zero point"
 msgstr ""
 
+# Check Symbol; tuhaqiq min alramz
 #: gschem/scheme/gschem/gschem-tools-menu.scm:277
-#, fuzzy
 msgid "Check Symbol"
-msgstr "رموز"
+msgstr "تحقق من الرمز"
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:277
 msgid "Run gsymcheck"
