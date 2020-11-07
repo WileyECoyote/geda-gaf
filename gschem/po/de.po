@@ -765,11 +765,9 @@ msgstr ""
 "ACHTUNG: Keine Transformation mit ausgeschalteter Ausrichtung am Raster!\n"
 
 #: gschem/src/iface/i_command.c:4379
-#, fuzzy
 msgid "WARNING: Turning snap on and continuing with translation.\n"
-msgstr ""
-"ACHTUNG:\"am Raster ausrichten\" wird aktiviert und mit der Transformation "
-"fortgefahren.\n"
+msgstr "WARNUNG: Schalten Sie den Snap ein und fahren Sie mit der "
+"Übersetzung fort.\n"
 
 #: gschem/src/iface/i_command.c:4385
 msgid "WARNING: Snap grid size is not equal to 100!\n"
@@ -5298,7 +5296,6 @@ msgstr ""
 
 # Go to the first page
 #: gschem/etc/system-gschemrc.scm:2254
-#, fuzzy
 msgid "Go to the first page"
 msgstr "Aktuelle Seite"
 
@@ -5338,10 +5335,10 @@ msgstr ""
 msgid "_Last"
 msgstr ""
 
+# Go to the last page
 #: gschem/etc/system-gschemrc.scm:2259
-#, fuzzy
 msgid "Go to the last page"
-msgstr "Letzte Aktion rückgängig machen"
+msgstr "Gehen Sie zur letzten Seite"
 
 #: gschem/etc/system-gschemrc.scm:2260
 msgid "Ne_w"
@@ -5453,11 +5450,10 @@ msgstr "Netz einfügen"
 msgid "Pictu_re..."
 msgstr "B_ild..."
 
-# Invert Image
+# Insert an image
 #: gschem/etc/system-gschemrc.scm:2291
-#, fuzzy
 msgid "Insert an image"
-msgstr "Bild umkehren"
+msgstr "Fügen Sie ein Bild ein"
 
 #: gschem/etc/system-gschemrc.scm:2292
 msgid "_Pin"
@@ -5512,10 +5508,10 @@ msgstr "Anhängen ausgewählter Attribute an Symbol"
 msgid "_Detach"
 msgstr "_Loslösen"
 
+# Detach selected attributes from symbol
 #: gschem/etc/system-gschemrc.scm:2316
-#, fuzzy
 msgid "Detach selected attributes from symbol"
-msgstr "Attribut ablösen"
+msgstr "Trennen Sie ausgewählte Attribute vom Symbol"
 
 #: gschem/etc/system-gschemrc.scm:2317
 msgid "Show _Value"
@@ -6130,10 +6126,10 @@ msgstr "Kreis"
 msgid "Add Arc"
 msgstr "Attribut hinzufügen"
 
+# Add Path
 #: gschem/scheme/gschem/builtins.scm:371
-#, fuzzy
 msgid "Add Path"
-msgstr "Netz einfügen"
+msgstr "Pfad Hinzufügen"
 
 #: gschem/scheme/gschem/builtins.scm:374
 msgid "Add Picture"
@@ -6425,19 +6421,19 @@ msgstr ""
 msgid "hierarchy Verilog"
 msgstr "Hierarchie Verilog"
 
+# Translate Symbol
 #: gschem/scheme/gschem/gschem-tools-menu.scm:276
-#, fuzzy
 msgid "Symbol _Translate..."
-msgstr "Verschieben nach"
+msgstr "Symbol übersetzen..."
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:276
 msgid "Reset the X-Y Zero point"
 msgstr ""
 
+# Check Symbol
 #: gschem/scheme/gschem/gschem-tools-menu.scm:277
-#, fuzzy
 msgid "Check Symbol"
-msgstr "Symbole"
+msgstr "Symbol überprüfen"
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:277
 msgid "Run gsymcheck"
