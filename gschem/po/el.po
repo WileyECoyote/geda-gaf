@@ -601,13 +601,15 @@ msgstr ""
 "Μη έγκυρη αντιστοίχιση τύπου, ελέγξτε την καταχώρηση μεγέθους bus-ripper σε "
 "αρχείο rc\n"
 
+# Den eínai dynatí i kýlisi 0 vimáton, mi énkyron vimáton kýlisis, elénxte tin
+# katachórisi sto archeío rc
 #: gschem/src/guile/g_rc.c:2030
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Can not scroll 0 steps, invalid scrollpan-steps, check entry in rc file\n"
 msgstr ""
-"Δεν είναι δυνατή η κύλιση 0 βημάτων, μη έγκυρων βημάτων κύλισης, ελέγξτε την "
-"καταχώριση στο αρχείο rc"
+"Δεν είναι δυνατή η κύλιση 0 βημάτων, μη έγκυρων βημάτων κύλισης, ελέγξτε "
+"την καταχώριση στο αρχείο rc"
 
 #: gschem/src/guile/g_rc.c:2035
 #, c-format
@@ -5349,10 +5351,10 @@ msgstr ""
 msgid "_Last"
 msgstr ""
 
+# Go to the last page; Metávasi stin teleftaía selída
 #: gschem/etc/system-gschemrc.scm:2259
-#, fuzzy
 msgid "Go to the last page"
-msgstr "Αναίρεση τελευταίας ενέργειας"
+msgstr "Μετάβαση στην τελευταία σελίδα"
 
 #: gschem/etc/system-gschemrc.scm:2260
 msgid "Ne_w"
@@ -5462,11 +5464,10 @@ msgstr "Προσθήκη δικτύου"
 msgid "Pictu_re..."
 msgstr "_Εικόνα..."
 
-# Invert Image
+# Insert an image; Eisagogí eikónas
 #: gschem/etc/system-gschemrc.scm:2291
-#, fuzzy
 msgid "Insert an image"
-msgstr "Επαναφορά εικόνας"
+msgstr "Εισαγωγή εικόνας"
 
 #: gschem/etc/system-gschemrc.scm:2292
 msgid "_Pin"
@@ -5520,10 +5521,11 @@ msgstr ""
 msgid "_Detach"
 msgstr "_Αποσύνδεση"
 
+# Detach selected attributes from symbol
+# Aposýndesi epilegménon charaktiristikón apó to sýmvolo
 #: gschem/etc/system-gschemrc.scm:2316
-#, fuzzy
 msgid "Detach selected attributes from symbol"
-msgstr "Αποσυνδεδεμένο γνώρισμα"
+msgstr "Αποσύνδεση επιλεγμένων χαρακτηριστικών από το σύμβολο"
 
 #: gschem/etc/system-gschemrc.scm:2317
 msgid "Show _Value"
@@ -6131,10 +6133,10 @@ msgstr "Κύκλος"
 msgid "Add Arc"
 msgstr "Προσθήκη γνωρίσματος"
 
+# Add Path; Prosthíki diadromís
 #: gschem/scheme/gschem/builtins.scm:371
-#, fuzzy
 msgid "Add Path"
-msgstr "Προσθήκη δικτύου"
+msgstr "Προσθήκη διαδρομής"
 
 #: gschem/scheme/gschem/builtins.scm:374
 msgid "Add Picture"
@@ -6428,19 +6430,19 @@ msgstr ""
 msgid "hierarchy Verilog"
 msgstr "ιεραρχία Verilog"
 
+# Translate Symbol; Sýmvolo metáfrasis
 #: gschem/scheme/gschem/gschem-tools-menu.scm:276
-#, fuzzy
 msgid "Symbol _Translate..."
-msgstr "Μετάφραση"
+msgstr "Σύμβολο μετάφρασης..."
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:276
 msgid "Reset the X-Y Zero point"
 msgstr ""
 
+# Check Symbol; Elénxte to sýmvolo
 #: gschem/scheme/gschem/gschem-tools-menu.scm:277
-#, fuzzy
 msgid "Check Symbol"
-msgstr "Σύμβολα"
+msgstr "Ελέγξτε το σύμβολο"
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:277
 msgid "Run gsymcheck"
