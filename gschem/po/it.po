@@ -5279,7 +5279,6 @@ msgstr ""
 
 # Go to the first page
 #: gschem/etc/system-gschemrc.scm:2254
-#, fuzzy
 msgid "Go to the first page"
 msgstr "Pagina corrente"
 
@@ -5319,10 +5318,10 @@ msgstr ""
 msgid "_Last"
 msgstr ""
 
+# Go to the last page
 #: gschem/etc/system-gschemrc.scm:2259
-#, fuzzy
 msgid "Go to the last page"
-msgstr "Annulla l'ultima operazione"
+msgstr "Vai all'ultima pagina"
 
 #: gschem/etc/system-gschemrc.scm:2260
 msgid "Ne_w"
@@ -5416,10 +5415,10 @@ msgstr "Aggiungi cerchio"
 msgid "_Line"
 msgstr "_Linea"
 
+# Add a line
 #: gschem/etc/system-gschemrc.scm:2289
-#, fuzzy
 msgid "Add a line"
-msgstr "Aggiungi linea"
+msgstr "Aggiungi una linea"
 
 #: gschem/etc/system-gschemrc.scm:2290
 msgid "Pat_h"
@@ -5433,11 +5432,10 @@ msgstr "Aggiungi percorso"
 msgid "Pictu_re..."
 msgstr "Dise_gno..."
 
-# Invert Image
+# Insert an image
 #: gschem/etc/system-gschemrc.scm:2291
-#, fuzzy
 msgid "Insert an image"
-msgstr "Inverti l'immagine"
+msgstr "Inserisci un'immagine"
 
 #: gschem/etc/system-gschemrc.scm:2292
 msgid "_Pin"
@@ -5491,10 +5489,10 @@ msgstr "Collega attributi"
 msgid "_Detach"
 msgstr "_Scollega"
 
+# Detach selected attributes from symbol
 #: gschem/etc/system-gschemrc.scm:2316
-#, fuzzy
 msgid "Detach selected attributes from symbol"
-msgstr "Collega attributi"
+msgstr "Scollega gli attributi selezionati dal simbolo"
 
 #: gschem/etc/system-gschemrc.scm:2317
 msgid "Show _Value"
@@ -6100,10 +6098,10 @@ msgstr "Aggiungi cerchio"
 msgid "Add Arc"
 msgstr "Aggiungi arco"
 
+# Add Path
 #: gschem/scheme/gschem/builtins.scm:371
-#, fuzzy
 msgid "Add Path"
-msgstr "Aggiungi percorso"
+msgstr "Aggiungi Percorso"
 
 #: gschem/scheme/gschem/builtins.scm:374
 msgid "Add Picture"
@@ -6397,19 +6395,19 @@ msgstr "Elenco dei nodi Verilog"
 msgid "hierarchy Verilog"
 msgstr "gerarchia Verilog"
 
+# Translate Symbol
 #: gschem/scheme/gschem/gschem-tools-menu.scm:276
-#, fuzzy
 msgid "Symbol _Translate..."
-msgstr "Converti"
+msgstr "Traduci simbolo..."
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:276
 msgid "Reset the X-Y Zero point"
 msgstr ""
 
+# Check Symbol
 #: gschem/scheme/gschem/gschem-tools-menu.scm:277
-#, fuzzy
 msgid "Check Symbol"
-msgstr "Simbolo"
+msgstr "Controllare il Simbolo"
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:277
 msgid "Run gsymcheck"
