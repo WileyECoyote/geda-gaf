@@ -5510,9 +5510,8 @@ msgstr ""
 msgid "_Last"
 msgstr ""
 
-# Goto the last page
+# Go to the last page
 #: gschem/etc/system-gschemrc.scm:2259
-#, fuzzy
 msgid "Go to the last page"
 msgstr "Ontdoen de laatste bewerking"
 
@@ -5635,11 +5634,10 @@ msgstr "Voeg Pad Toe"
 msgid "Pictu_re..."
 msgstr "Afbeelding..."
 
-# Invert Image
+# Insert an image
 #: gschem/etc/system-gschemrc.scm:2291
-#, fuzzy
 msgid "Insert an image"
-msgstr "Omkeer afbeelding"
+msgstr "Voeg een afbeelding in"
 
 #: gschem/etc/system-gschemrc.scm:2292
 msgid "_Pin"
@@ -5696,11 +5694,10 @@ msgstr "Bevestig geselecteerde attributen aan symbool"
 msgid "_Detach"
 msgstr "_Losmaken"
 
-# Attach selected attributes to symbol
+# Detach selected attributes from symbol
 #: gschem/etc/system-gschemrc.scm:2316
-#, fuzzy
 msgid "Detach selected attributes from symbol"
-msgstr "Bevestig geselecteerde attributen aan symbool"
+msgstr "Maak geselecteerde attributen los van het symbool"
 
 #: gschem/etc/system-gschemrc.scm:2317
 msgid "Show _Value"
@@ -6339,10 +6336,10 @@ msgstr "Voeg Cirkel Toe"
 msgid "Add Arc"
 msgstr "Voeg Boog Toe"
 
+# Add Path
 #: gschem/scheme/gschem/builtins.scm:371
-#, fuzzy
 msgid "Add Path"
-msgstr "Voeg Pad Toe"
+msgstr "Pad toevoegen"
 
 #: gschem/scheme/gschem/builtins.scm:374
 msgid "Add Picture"
@@ -6639,19 +6636,19 @@ msgstr ""
 msgid "hierarchy Verilog"
 msgstr "hiërarchie Verilog"
 
+# Translate Symbol
 #: gschem/scheme/gschem/gschem-tools-menu.scm:276
-#, fuzzy
 msgid "Symbol _Translate..."
-msgstr "Verplaats"
+msgstr "Vertaal symbool..."
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:276
 msgid "Reset the X-Y Zero point"
 msgstr ""
 
+# Check Symbol
 #: gschem/scheme/gschem/gschem-tools-menu.scm:277
-#, fuzzy
 msgid "Check Symbol"
-msgstr "Symbool"
+msgstr "Controleer het Symbool"
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:277
 msgid "Run gsymcheck"
