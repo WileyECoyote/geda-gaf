@@ -5259,7 +5259,6 @@ msgstr ""
 
 # Go to the first page
 #: gschem/etc/system-gschemrc.scm:2254
-#, fuzzy
 msgid "Go to the first page"
 msgstr "アンドゥ"
 
@@ -5299,10 +5298,10 @@ msgstr ""
 msgid "_Last"
 msgstr ""
 
+# Go to the last page; Saigo no pēji ni idō
 #: gschem/etc/system-gschemrc.scm:2259
-#, fuzzy
 msgid "Go to the last page"
-msgstr "アンドゥ"
+msgstr "最後のページに移動"
 
 #: gschem/etc/system-gschemrc.scm:2260
 msgid "Ne_w"
@@ -5372,10 +5371,10 @@ msgstr "テキスト (T)..."
 msgid "A_rc"
 msgstr "円弧(_R)"
 
+# Create an arc; Enko o sakusei suru
 #: gschem/etc/system-gschemrc.scm:2286
-#, fuzzy
 msgid "Create an arc"
-msgstr "新しいファイルを作成する"
+msgstr "円弧を作成する"
 
 #: gschem/etc/system-gschemrc.scm:2287
 msgid "_Box"
@@ -5397,10 +5396,10 @@ msgstr "円"
 msgid "_Line"
 msgstr "直線(_L)"
 
+# Add a line; Gyō o tsuika shimasu
 #: gschem/etc/system-gschemrc.scm:2289
-#, fuzzy
 msgid "Add a line"
-msgstr "線"
+msgstr "行を追加します"
 
 #: gschem/etc/system-gschemrc.scm:2290
 msgid "Pat_h"
@@ -5414,11 +5413,10 @@ msgstr ""
 msgid "Pictu_re..."
 msgstr "画像..."
 
-# Invert Image
+# Insert an image; Gazō o sōnyū suru
 #: gschem/etc/system-gschemrc.scm:2291
-#, fuzzy
 msgid "Insert an image"
-msgstr "画像反転"
+msgstr "画像を挿入する"
 
 #: gschem/etc/system-gschemrc.scm:2292
 msgid "_Pin"
@@ -5473,11 +5471,11 @@ msgstr "選択した属性をシンボルにアタッチする"
 msgid "_Detach"
 msgstr "切断する"
 
-# Disconnect selected attributes from a symbol
+# Detach selected attributes from symbol
+# Sentaku shita zokusei o shinboru kara kirihanashimasu
 #: gschem/etc/system-gschemrc.scm:2316
-#, fuzzy
 msgid "Detach selected attributes from symbol"
-msgstr "選択した属性をシンボルから切断する"
+msgstr "選択した属性をシンボルから切り離します"
 
 # Show Value
 #: gschem/etc/system-gschemrc.scm:2317
@@ -6096,10 +6094,10 @@ msgstr "円"
 msgid "Add Arc"
 msgstr ""
 
+# Add Path; Pasu o tsuika
 #: gschem/scheme/gschem/builtins.scm:371
-#, fuzzy
 msgid "Add Path"
-msgstr "ネットを追加"
+msgstr "パスを追加"
 
 #: gschem/scheme/gschem/builtins.scm:374
 msgid "Add Picture"
@@ -6400,20 +6398,19 @@ msgstr "Verilogノードリスト"
 msgid "hierarchy Verilog"
 msgstr "階層Verilog"
 
+# Translate Symbol; Hon'yaku kigō
 #: gschem/scheme/gschem/gschem-tools-menu.scm:276
-#, fuzzy
 msgid "Symbol _Translate..."
-msgstr "転送"
+msgstr "翻訳記号..."
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:276
 msgid "Reset the X-Y Zero point"
 msgstr ""
 
-# Symbol
+# Check Symbol; Chekku kigō
 #: gschem/scheme/gschem/gschem-tools-menu.scm:277
-#, fuzzy
 msgid "Check Symbol"
-msgstr "シンボル"
+msgstr "チェック記号"
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:277
 msgid "Run gsymcheck"
