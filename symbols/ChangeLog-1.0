@@ -1,3 +1,10 @@
+2020-11-08 Wiley E. Hill <wileyhill@gmail.com>
+
+    * transistor/npn-smt/2N2222A_npn_40V_1P_SOT-23-2?.sym: Fix date version
+      codes:
+
+            * transistor/npn-smt/2N2222A_npn_40V_1P_SOT-23-2.sym
+
 2020-10-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * transistor/npn-bjt/npn-ecb-?.sym: Fix date version codes:
