@@ -703,6 +703,7 @@ static inline int _gtk_sheet_get_visible_range(GtkSheet *sheet,
   return (TRUE);
 }
 
+#if 0
 /*!
  * \brief _gtk_sheet_count_visible
  * \par Function Description
@@ -732,6 +733,8 @@ static inline void _gtk_sheet_count_visible(GtkSheet *sheet,
     }
   }
 }
+
+#endif
 
 /*!
  * \brief _gtk_sheet_height

@@ -4,6 +4,7 @@
 
           * _default_font_ascent
           * _default_font_descent
+          * _gtk_sheet_count_visible
 
 2020-11-06 Wiley E. Hill <wileyhill@gmail.com>
 
