@@ -529,9 +529,8 @@ void x_menu_fix_gtk_recent_submenu(void) {
 
   geda_container_foreach (old_submenu, destroy_defective_child, NULL);
 
-  recent_chooser = gtk_recent_chooser_menu_new_for_manager (recent_manager);
-
-  recent_filter = x_menu_geda_filter ();
+  recent_chooser      = gtk_recent_chooser_menu_new_for_manager (recent_manager);
+  recent_filter       = x_menu_geda_filter ();
   recent_file_chooser = (GtkRecentChooser*)recent_chooser;
   gtk_recent_chooser_add_filter (recent_file_chooser, recent_filter);
   gtk_recent_chooser_set_show_tips (recent_file_chooser, TRUE);
