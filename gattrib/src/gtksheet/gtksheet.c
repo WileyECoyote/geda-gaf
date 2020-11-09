@@ -15299,8 +15299,9 @@ label_size_request(GtkSheet *sheet, char *label, GtkRequisition *req)
     words++;
   }
 
-  if (n > 0)
+  if (n > 0) {
     req->height -= 2;
+  }
 }
 
 /*!
