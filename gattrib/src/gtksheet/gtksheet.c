@@ -7145,10 +7145,6 @@ void _gtk_sheet_range_draw(GtkSheet *sheet,
 
     g_return_if_fail(GTK_SHEET(sheet));
 
-#if GTK_SHEET_DEBUG_DRAW > 0
-    fprintf(stderr,"_gtk_sheet_range_draw: called");
-#endif
-
     if (!gtk_widget_is_drawable((GtkWidget*)sheet))
       return;
 
