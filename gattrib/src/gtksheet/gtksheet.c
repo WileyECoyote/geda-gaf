@@ -7332,12 +7332,12 @@ void _gtk_sheet_range_draw(GtkSheet *sheet,
       }
     }
 
-    /* draw text within range (1) */
+    /* Draw text within range (1) */
 
 #if GTK_SHEET_DEBUG_DRAW > 0
     fprintf(stderr,"_gtk_sheet_range_draw: (1) row %d - %d col %d - %d",
-	drawing_range.row0, drawing_range.rowi,
-	drawing_range.col0, drawing_range.coli);
+            drawing_range.row0, drawing_range.rowi,
+            drawing_range.col0, drawing_range.coli);
 #endif
 
     for (row = drawing_range.row0; row <= drawing_range.rowi; row++) {
