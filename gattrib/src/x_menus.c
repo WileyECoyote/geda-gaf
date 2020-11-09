@@ -490,8 +490,7 @@ GtkRecentChooser *GetRecentMenuChooser(GtkRecentManager *rm )  {
  * label associated the item and these will not be destroy by Gtk because
  * the entire sub-menu is replaced by x_menu_fix_gtk_recent_submenu.
  */
-static void
-destroy_defective_child(GtkWidget *menu_item, void *nothing)
+static void destroy_defective_child(GtkWidget *menu_item, void *nothing)
 {
   if (GTK_IS_ACTIVATABLE(menu_item)) {
     gtk_activatable_do_set_related_action (GTK_ACTIVATABLE(menu_item), NULL);
@@ -556,8 +555,7 @@ void x_menu_fix_gtk_recent_submenu(void) {
  *  Called from x_menu_create_menu function to attach the Open
  *  Recent option under the File menu.
  */
-static
-GtkActionGroup *x_menu_create_recent_action_group(void) {
+static GtkActionGroup *x_menu_create_recent_action_group(void) {
 
   GtkRecentAction *recent_action;
   GtkActionGroup  *recent_action_group;
