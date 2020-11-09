@@ -1,3 +1,9 @@
+2020-11-08 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/gtksheet/gtksheet.c: Remove unused function:
+
+          * _default_font_ascent
+
 2020-11-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gtksheet/gtkitementry.c: Revise gtk_item_entry_create_layout to utilize

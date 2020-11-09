@@ -394,31 +394,6 @@ unsigned int _gtk_sheet_row_default_height(GtkWidget *widget)
   return (PANGO_PIXELS(val) + 2 * CELLOFFSET);
 }
 
-static inline unsigned int _default_font_ascent(GtkWidget *widget)
-{
-  PangoFontDescription *font_desc = gtk_widget_get_style(widget)->font_desc;
-
-  if (!font_desc) {
-    return (GTK_SHEET_DEFAULT_FONT_ASCENT);
-  }
-
-  PangoContext     *context;
-  PangoLanguage    *language;
-  PangoFontMetrics *metrics;
-
-  unsigned int      val;
-
-  context  = gtk_widget_get_pango_context(widget);
-  language = pango_context_get_language(context);
-  metrics  = pango_context_get_metrics(context, font_desc, language);
-
-  val = pango_font_metrics_get_ascent(metrics);
-
-  pango_font_metrics_unref(metrics);
-
-  return (PANGO_PIXELS(val));
-}
-
 static void _get_string_extent(GtkSheet *sheet, GtkSheetColumn *colptr,
                                PangoFontDescription *font_desc, const char *text,
                                unsigned int *width, unsigned int *height)
