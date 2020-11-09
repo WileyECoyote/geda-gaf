@@ -3,6 +3,7 @@
     * src/gtksheet/gtksheet.c: Remove unused function:
 
           * _default_font_ascent
+          * _default_font_descent
 
 2020-11-06 Wiley E. Hill <wileyhill@gmail.com>
 

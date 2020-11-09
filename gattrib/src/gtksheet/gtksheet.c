@@ -463,31 +463,6 @@ static void _get_string_extent(GtkSheet *sheet, GtkSheetColumn *colptr,
     *height = extent.height;
 }
 
-static inline unsigned int _default_font_descent(GtkWidget *widget)
-{
-  PangoFontDescription *font_desc;
-  PangoContext         *context;
-  PangoFontMetrics     *metrics;
-  PangoLanguage        *language;
-
-  unsigned int val;
-
-  font_desc = gtk_widget_get_style(widget)->font_desc;
-
-  if (!font_desc) {
-    return (GTK_SHEET_DEFAULT_FONT_DESCENT);
-  }
-
-  context  = gtk_widget_get_pango_context(widget);
-  language = pango_context_get_language(context);
-  metrics  = pango_context_get_metrics(context, font_desc, language);
-  val      =  pango_font_metrics_get_descent(metrics);
-
-  pango_font_metrics_unref(metrics);
-
-  return (PANGO_PIXELS(val));
-}
-
 /*!
  * \brief _gtk_sheet_row_top_ypixel
  * \par Function Description
