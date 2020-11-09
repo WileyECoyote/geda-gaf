@@ -501,7 +501,7 @@ static void destroy_defective_child(GtkWidget *menu_item, void *nothing)
 /*!
  * \brief Fix the GTK 'Open Recent' Menu Option
  * \par Function Description
- *  gtk_ui_manager deliberately setups up the Recent Menu, in the presents
+ *  gtk_ui_manager deliberately sets up the Recent Menu, in the presents
  *  of a recent manager with chooser when XML menu data is used. The setup
  *  is a generic one without filters and ALL of the GTK functions intended
  *  to setup the recent chooser become unresponsive and ignore settings.
