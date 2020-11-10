@@ -70,17 +70,21 @@ static char *insert_thousands_seps(const char *cp)
   int thousands_len = strlen(thousands_c);
 
   radix_cp = strstr(cp, radix_c);
-  if (radix_cp)
+
+  if (radix_cp) {
     pos = radix_cp - cp;
-  else
+  }
+  else {
     pos = strlen(cp);
+  }
 
   for(radix_cp=buf;;) { /* copy inserting thousands_c on the fly */
 
     char c;
 
-    if (!*cp)
+    if (!*cp) {
       break;
+    }
 
     c = *radix_cp++ = *cp++;
     --pos;
