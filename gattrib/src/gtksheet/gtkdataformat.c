@@ -147,10 +147,11 @@ static char *remove_thousands_seps(const char *src)
 
     *dst = '\0';
 
-    if (found)
+    if (found) {
       return(buf);
+    }
 
-    return((char *) src);
+    return((char*) src);
   }
 
   return NULL;
@@ -160,10 +161,12 @@ static char *format_double(double d, int comma_digits, int do_numseps)
 {
     static char str_buf[MAX_NUM_STRLEN], *cp;
 
-    if (comma_digits >= 0)
+    if (comma_digits >= 0) {
         sprintf(str_buf, "%.*f", comma_digits, d);
-    else
+    }
+    else {
         sprintf(str_buf, "%.*g", SIGNIFICANT_DIGITS, d);
+    }
 
     cp = str_buf;
 
