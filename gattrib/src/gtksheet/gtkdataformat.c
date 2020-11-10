@@ -221,8 +221,8 @@ char *gtk_data_format(const char *str, const char *dataformat)
 {
     if (!str || !str[0] || !dataformat || !dataformat[0]) return (char*)str;
 
-    switch (dataformat[0])
-    {
+    switch (dataformat[0]) {
+
         case 'i':
             if (strcmp(dataformat, "int8") == 0) {
 
@@ -312,8 +312,8 @@ char *gtk_data_format_remove(const char *str, const char *dataformat)
 {
     if (!str || !dataformat || !dataformat[0]) return (char*)str;
 
-    switch (dataformat[0])
-    {
+    switch (dataformat[0]) {
+
         case 'i':
             if (strcmp(dataformat, "int8") == 0) {
 
