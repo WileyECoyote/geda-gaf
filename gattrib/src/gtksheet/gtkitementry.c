@@ -1574,7 +1574,7 @@ static void gtk_item_entry_draw_text(GtkEntry *entry)
 
 
     gdk_draw_layout(entry->text_area,
-                    gtk_widget_get_style(widget)->text_gc[gtk_widget_get_state(widget)],
+                    gtk_widget_get_style(widget)->text_gc[GTK_STATE_NORMAL],
                     x, y,
                     layout);
 
