@@ -1534,20 +1534,21 @@ static void _item_entry_get_layout_position(GtkEntry *entry, int *x, int *y)
 
     /* Now see if we need to adjust to fit in actual drawn string */
 
-    if (logical_rect.height > area_height)
+    if (logical_rect.height > area_height) {
       y_pos = (area_height - logical_rect.height) / 2;
-    else if (y_pos < 0)
+    }
+    else if (y_pos < 0) {
       y_pos = 0;
-    else if (y_pos + logical_rect.height > area_height)
+    }
+    else if (y_pos + logical_rect.height > area_height) {
       y_pos = area_height - logical_rect.height;
+    }
 
     y_pos = y_pos / PANGO_SCALE;
 
-    if (x)
-      *x = -entry->scroll_offset;
+    if (x) *x = -entry->scroll_offset;
 
-    if (y)
-      *y = y_pos;
+    if (y) *y = y_pos;
 }
 
 static void gtk_item_entry_draw_text(GtkEntry *entry)
