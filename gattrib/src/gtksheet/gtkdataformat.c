@@ -151,7 +151,7 @@ static char *remove_thousands_seps(const char *src)
       return(buf);
     }
 
-    return((char*) src);
+    return (char*)src;
   }
 
   return NULL;
@@ -219,7 +219,7 @@ static char *format_int(int i, int num_bytes)
  */
 char *gtk_data_format(const char *str, const char *dataformat)
 {
-    if (!str || !str[0] || !dataformat || !dataformat[0]) return((char *) str);
+    if (!str || !str[0] || !dataformat || !dataformat[0]) return (char*)str;
 
     switch (dataformat[0])
     {
@@ -294,7 +294,7 @@ char *gtk_data_format(const char *str, const char *dataformat)
         default: break;
     }
 
-    return((char *) str);
+    return (char*)str;
 }
 
 /**
@@ -310,7 +310,7 @@ char *gtk_data_format(const char *str, const char *dataformat)
  */
 char *gtk_data_format_remove(const char *str, const char *dataformat)
 {
-    if (!str || !dataformat || !dataformat[0]) return((char *) str);
+    if (!str || !dataformat || !dataformat[0]) return (char*)str;
 
     switch (dataformat[0])
     {
@@ -351,5 +351,5 @@ char *gtk_data_format_remove(const char *str, const char *dataformat)
         default: break;
     }
 
-    return((char *) str);
+    return (char*)str;
 }
