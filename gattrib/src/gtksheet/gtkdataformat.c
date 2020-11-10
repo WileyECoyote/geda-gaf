@@ -85,7 +85,9 @@ static char *insert_thousands_seps(const char *cp)
     char c;
 
     c = *radix_cp++ = *cp++;
+
     --pos;
+
     if ((pos > 0) && !(pos % 3) && (c != '-') && (c != '+')) {
       strcpy(radix_cp, thousands_c);
       radix_cp += thousands_len;
@@ -173,7 +175,9 @@ static char *format_double(double d, int comma_digits, int do_numseps)
 static char *format_int(int i, int num_bytes)
 {
     static char str_buf[MAX_NUM_STRLEN];
+
     sprintf(str_buf, "%d", i);
+
     return(str_buf);
 }
 
@@ -286,6 +290,7 @@ char *gtk_data_format(const char *str, const char *dataformat)
 
         default: break;
     }
+
     return((char *) str);
 }
 
@@ -342,5 +347,6 @@ char *gtk_data_format_remove(const char *str, const char *dataformat)
 
         default: break;
     }
+
     return((char *) str);
 }
