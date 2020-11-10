@@ -462,6 +462,7 @@ GtkRecentFilter *x_menu_geda_filter() {
   GtkRecentFilter *geda_filter;
 
   geda_filter = gtk_recent_filter_new();
+
   gtk_recent_filter_add_mime_type(geda_filter, "application/x-geda-schematic");
   gtk_recent_filter_add_mime_type(geda_filter, "application/x-geda-symbol");
   gtk_recent_filter_add_pattern(geda_filter, "*.sch");
@@ -532,6 +533,7 @@ void x_menu_fix_gtk_recent_submenu(void) {
   recent_chooser      = gtk_recent_chooser_menu_new_for_manager (recent_manager);
   recent_filter       = x_menu_geda_filter ();
   recent_file_chooser = (GtkRecentChooser*)recent_chooser;
+
   gtk_recent_chooser_add_filter (recent_file_chooser, recent_filter);
   gtk_recent_chooser_set_show_tips (recent_file_chooser, TRUE);
   gtk_recent_chooser_set_sort_type (recent_file_chooser, GTK_RECENT_SORT_MRU);
