@@ -78,13 +78,11 @@ static char *insert_thousands_seps(const char *cp)
     pos = strlen(cp);
   }
 
-  for(radix_cp=buf;;) { /* copy inserting thousands_c on the fly */
+  radix_cp = buf;
+
+  while (*cp) { /* copy inserting thousands_c on the fly */
 
     char c;
-
-    if (!*cp) {
-      break;
-    }
 
     c = *radix_cp++ = *cp++;
     --pos;

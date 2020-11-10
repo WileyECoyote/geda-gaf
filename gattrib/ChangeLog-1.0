@@ -2,7 +2,8 @@
 
     * src/gtksheet/gtkitementry.c: Revise gtk_item_entry_draw_text to just use
       GTK_STATE_NORMAL rather than calling gtk_widget_get_state on the stack,
-      the entry should always be NORMAL.
+      the entry should always be NORMAL. Replace lame FOR loop in function
+      insert_thousands_seps with WHILE loop.
 
 2020-11-08 Wiley E. Hill <wileyhill@gmail.com>
 
