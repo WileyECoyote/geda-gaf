@@ -109,6 +109,7 @@ static GtkTextViewClass *parent_class = NULL;
 const char *gtk_data_text_view_get_description(GtkDataTextView *data_text_view)
 {
     g_return_val_if_fail(GTK_IS_DATA_TEXT_VIEW(data_text_view), NULL);
+
     return data_text_view->description;
 }
 
@@ -131,6 +132,7 @@ gtk_data_text_view_set_description(GtkDataTextView *data_text_view,
   if (data_text_view->description) {
     g_free(data_text_view->description);
   }
+
   data_text_view->description = g_strdup(description);
 }
 
@@ -148,6 +150,7 @@ gtk_data_text_view_set_description(GtkDataTextView *data_text_view,
 int gtk_data_text_view_get_max_length(GtkDataTextView *data_text_view)
 {
     g_return_val_if_fail(GTK_IS_DATA_TEXT_VIEW(data_text_view), 0);
+
     return data_text_view->max_length;
 }
 
@@ -175,6 +178,7 @@ gtk_data_text_view_set_max_length(GtkDataTextView *data_text_view,
   if (max_length > GTK_DATA_TEXT_VIEW_BUFFER_MAX_SIZE) {
     max_length = GTK_DATA_TEXT_VIEW_BUFFER_MAX_SIZE;
   }
+
   data_text_view->max_length = max_length;
 }
 
@@ -192,6 +196,7 @@ gtk_data_text_view_set_max_length(GtkDataTextView *data_text_view,
 int gtk_data_text_view_get_max_length_bytes(GtkDataTextView *data_text_view)
 {
   g_return_val_if_fail(GTK_IS_DATA_TEXT_VIEW(data_text_view), 0);
+
   return data_text_view->max_length_bytes;
 }
 
@@ -248,9 +253,9 @@ GType gtk_data_text_view_get_type(void)
                                 GTK_TYPE_BUILDABLE,
                                 &interface_info);
     }
+
     return (data_text_view_type);
 }
-
 
 static void
 gtk_data_text_view_set_property(GObject      *object,
