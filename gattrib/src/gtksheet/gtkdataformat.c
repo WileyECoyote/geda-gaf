@@ -184,7 +184,7 @@ static char *format_int(int i, int num_bytes)
     return(str_buf);
 }
 
-/**
+/*!
  * gtk_data_format:
  * @str:        the string to be formatted
  * @dataformat: formatting instructions
@@ -296,7 +296,7 @@ char *gtk_data_format(const char *str, const char *dataformat)
     return (char*)str;
 }
 
-/**
+/*!
  * gtk_data_format_remove:
  * @str:        the string to be unformatted
  * @dataformat: formatting instructions
