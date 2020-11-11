@@ -129,8 +129,9 @@ gtk_data_text_view_set_description(GtkDataTextView *data_text_view,
   g_return_if_fail(data_text_view != NULL);
   g_return_if_fail(GTK_IS_DATA_TEXT_VIEW(data_text_view));
 
-  if (data_text_view->description)
+  if (data_text_view->description) {
     g_free(data_text_view->description);
+  }
   data_text_view->description = g_strdup(description);
 }
 
