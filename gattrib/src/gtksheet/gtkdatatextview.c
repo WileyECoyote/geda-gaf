@@ -106,8 +106,7 @@ static GtkTextViewClass *parent_class = NULL;
  *
  * Since: 3.0.6
  **/
-const char *
-gtk_data_text_view_get_description(GtkDataTextView *data_text_view)
+const char *gtk_data_text_view_get_description(GtkDataTextView *data_text_view)
 {
     g_return_val_if_fail(GTK_IS_DATA_TEXT_VIEW(data_text_view), NULL);
     return data_text_view->description;
@@ -146,8 +145,7 @@ gtk_data_text_view_set_description(GtkDataTextView *data_text_view,
  *
  * Since: 3.0.6
  **/
-int
-gtk_data_text_view_get_max_length(GtkDataTextView *data_text_view)
+int gtk_data_text_view_get_max_length(GtkDataTextView *data_text_view)
 {
     g_return_val_if_fail(GTK_IS_DATA_TEXT_VIEW(data_text_view), 0);
     return data_text_view->max_length;
@@ -191,8 +189,7 @@ gtk_data_text_view_set_max_length(GtkDataTextView *data_text_view,
  *
  * Since: 3.0.6
  **/
-int
-gtk_data_text_view_get_max_length_bytes(GtkDataTextView *data_text_view)
+int gtk_data_text_view_get_max_length_bytes(GtkDataTextView *data_text_view)
 {
   g_return_val_if_fail(GTK_IS_DATA_TEXT_VIEW(data_text_view), 0);
   return data_text_view->max_length_bytes;
@@ -226,8 +223,7 @@ void gtk_data_text_view_set_max_length_bytes(GtkDataTextView *data_text_view,
 }
 
 
-GType
-gtk_data_text_view_get_type(void)
+GType gtk_data_text_view_get_type(void)
 {
     static GType data_text_view_type = 0;
 
