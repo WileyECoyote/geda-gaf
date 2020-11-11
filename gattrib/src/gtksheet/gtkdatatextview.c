@@ -373,7 +373,6 @@ gtk_data_text_view_class_init(GtkDataTextViewClass *klass)
 	g_param_spec_int("max-length",
 	    "Maximum character length",
 	    "The maximum number of characters for this textview. Zero if no maximum",
-
 	    0, GTK_DATA_TEXT_VIEW_BUFFER_MAX_SIZE,
 	    0 /* default value */,
 	    G_PARAM_READWRITE));
@@ -396,7 +395,6 @@ gtk_data_text_view_class_init(GtkDataTextViewClass *klass)
 	g_param_spec_int("max-length-bytes",
 	    "Maximum bytes length",
 	    "The maximum number of bytes for this textview. Zero if no maximum",
-
 	    0, GTK_DATA_TEXT_VIEW_BUFFER_MAX_SIZE,
 	    0 /* default value */,
 	    G_PARAM_READWRITE));
