@@ -184,7 +184,6 @@ static char *format_int(int i, int num_bytes)
     return(str_buf);
 }
 
-
 /**
  * gtk_data_format:
  * @str:        the string to be formatted
