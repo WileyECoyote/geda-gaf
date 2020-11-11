@@ -94,7 +94,7 @@ static void gtk_data_text_view_init(GtkDataTextView *data);
 
 static GtkTextViewClass *parent_class = NULL;
 
-/**
+/*!
  * gtk_data_text_view_get_description:
  * @data_text_view: a #GtkDataTextView
  *
@@ -135,7 +135,7 @@ gtk_data_text_view_set_description(GtkDataTextView *data_text_view,
   data_text_view->description = g_strdup(description);
 }
 
-/**
+/*!
  * gtk_data_text_view_get_max_length:
  * @data_text_view: a #GtkDataTextView
  *
@@ -153,7 +153,7 @@ gtk_data_text_view_get_max_length(GtkDataTextView *data_text_view)
     return data_text_view->max_length;
 }
 
-/**
+/*!
  * gtk_data_text_view_set_max_length:
  * @data_text_view:  a #GtkDataTextView
  * @max_length:  maximum character length or 0
@@ -180,7 +180,7 @@ gtk_data_text_view_set_max_length(GtkDataTextView *data_text_view,
   data_text_view->max_length = max_length;
 }
 
-/**
+/*!
  * gtk_data_text_view_get_max_length_bytes:
  * @data_text_view: a #GtkDataTextView
  *
@@ -198,7 +198,7 @@ gtk_data_text_view_get_max_length_bytes(GtkDataTextView *data_text_view)
   return data_text_view->max_length_bytes;
 }
 
-/**
+/*!
  * gtk_data_text_view_set_max_length_bytes:
  * @data_text_view:  a #GtkDataTextView
  * @max_length_bytes:  maximum byte length or 0
