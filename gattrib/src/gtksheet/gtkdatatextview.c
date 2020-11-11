@@ -264,10 +264,10 @@ gtk_data_text_view_set_property(GObject      *object,
 {
   GtkDataTextView *data_text_view = GTK_DATA_TEXT_VIEW(object);
 
-  switch(prop_id)
-  {
-    case PROP_DATA_TEXT_VIEW_DESCRIPTION:
-    {
+  switch(prop_id) {
+
+    case PROP_DATA_TEXT_VIEW_DESCRIPTION: {
+
       const char *description = g_value_get_string(value);
 
       if (!gtk_widget_get_realized(GTK_WIDGET(data_text_view))) {
@@ -276,8 +276,7 @@ gtk_data_text_view_set_property(GObject      *object,
           g_free(data_text_view->description);
         data_text_view->description = g_strdup(description);
       }
-      else
-      {
+      else {
         gtk_data_text_view_set_description(data_text_view, description);
       }
     }
@@ -305,8 +304,8 @@ gtk_data_text_view_get_property(GObject      *object,
 {
   GtkDataTextView *data_text_view = GTK_DATA_TEXT_VIEW(object);
 
-  switch(prop_id)
-  {
+  switch(prop_id) {
+
     case PROP_DATA_TEXT_VIEW_DESCRIPTION:
       g_value_set_string(value, data_text_view->description);
       break;
