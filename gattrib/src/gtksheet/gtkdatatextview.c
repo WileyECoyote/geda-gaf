@@ -232,24 +232,24 @@ gtk_data_text_view_get_type(void)
 
     if (!data_text_view_type) {
 
-	static const GInterfaceInfo interface_info = {
-	    (GInterfaceInitFunc)NULL,
-	    (GInterfaceFinalizeFunc)NULL,
-	    (void*)NULL
-	};
+    static const GInterfaceInfo interface_info = {
+        (GInterfaceInitFunc)NULL,
+        (GInterfaceFinalizeFunc)NULL,
+        (void*)NULL
+    };
 
-	data_text_view_type = g_type_register_static_simple(
-	    gtk_text_view_get_type(),
-	    "GtkDataTextView",
-	    sizeof(GtkDataTextViewClass),
-	    (GClassInitFunc)gtk_data_text_view_class_init,
-	    sizeof(GtkDataTextView),
-	    (GInstanceInitFunc)gtk_data_text_view_init,
-	    0);
+    data_text_view_type =
+      g_type_register_static_simple(gtk_text_view_get_type(),
+                                    "GtkDataTextView",
+                                    sizeof(GtkDataTextViewClass),
+                                    (GClassInitFunc)gtk_data_text_view_class_init,
+                                    sizeof(GtkDataTextView),
+                                    (GInstanceInitFunc)gtk_data_text_view_init,
+                                    0);
 
-	g_type_add_interface_static(data_text_view_type,
-	    GTK_TYPE_BUILDABLE,
-	    &interface_info);
+    g_type_add_interface_static(data_text_view_type,
+                                GTK_TYPE_BUILDABLE,
+                                &interface_info);
     }
     return (data_text_view_type);
 }
@@ -348,12 +348,12 @@ gtk_data_text_view_class_init(GtkDataTextViewClass *klass)
     * Since: 3.0.6
      */
     g_object_class_install_property(gobject_class,
-	PROP_DATA_TEXT_VIEW_DESCRIPTION,
-	g_param_spec_string("description",
-	    "Description",
-	    "Description of textview contents",
-	    "" /* default value */,
-	    G_PARAM_READWRITE));
+                                    PROP_DATA_TEXT_VIEW_DESCRIPTION,
+                                    g_param_spec_string("description",
+                                                        "Description",
+                                                        "Description of textview contents",
+                                                        "" /* default value */,
+                                                        G_PARAM_READWRITE));
 
     /**
      * GtkDataTextView:max-length:
@@ -369,13 +369,13 @@ gtk_data_text_view_class_init(GtkDataTextViewClass *klass)
      * Since: 3.0.6
      */
     g_object_class_install_property(gobject_class,
-	PROP_DATA_TEXT_VIEW_MAX_LENGTH,
-	g_param_spec_int("max-length",
-	    "Maximum character length",
-	    "The maximum number of characters for this textview. Zero if no maximum",
-	    0, GTK_DATA_TEXT_VIEW_BUFFER_MAX_SIZE,
-	    0 /* default value */,
-	    G_PARAM_READWRITE));
+                                    PROP_DATA_TEXT_VIEW_MAX_LENGTH,
+                                    g_param_spec_int("max-length",
+                                                     "Maximum character length",
+                                                     "The maximum number of characters for this textview. Zero if no maximum",
+                                                     0, GTK_DATA_TEXT_VIEW_BUFFER_MAX_SIZE,
+                                                     0 /* default value */,
+                                                     G_PARAM_READWRITE));
 
     /**
      * GtkDataTextView:max-length-bytes:
@@ -391,13 +391,13 @@ gtk_data_text_view_class_init(GtkDataTextViewClass *klass)
      * Since: 3.0.6
      */
     g_object_class_install_property(gobject_class,
-	PROP_DATA_TEXT_VIEW_MAX_LENGTH_BYTES,
-	g_param_spec_int("max-length-bytes",
-	    "Maximum bytes length",
-	    "The maximum number of bytes for this textview. Zero if no maximum",
-	    0, GTK_DATA_TEXT_VIEW_BUFFER_MAX_SIZE,
-	    0 /* default value */,
-	    G_PARAM_READWRITE));
+                                    PROP_DATA_TEXT_VIEW_MAX_LENGTH_BYTES,
+                                    g_param_spec_int("max-length-bytes",
+                                                     "Maximum bytes length",
+                                                     "The maximum number of bytes for this textview. Zero if no maximum",
+                                                     0, GTK_DATA_TEXT_VIEW_BUFFER_MAX_SIZE,
+                                                     0 /* default value */,
+                                                     G_PARAM_READWRITE));
 }
 
 /* Signal interception */
