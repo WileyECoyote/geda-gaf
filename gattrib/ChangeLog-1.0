@@ -10,6 +10,7 @@
 
           * src/gattrib_dialog.c
           * src/i_basic.c
+          * src/s_rename.c
 
 2020-11-10 Wiley E. Hill <wileyhill@gmail.com>
 
