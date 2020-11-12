@@ -1,6 +1,9 @@
 2020-11-12 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/gtksheet/gtkdatatextview.c: Replace g_strdup -> strdup.
+    * src/gtksheet: Replace g_strdup -> strdup.
+
+          * src/gtksheet/gtkdatatextview.c
+          * src/gtksheet/gtksheet.c
 
 2020-11-10 Wiley E. Hill <wileyhill@gmail.com>
 

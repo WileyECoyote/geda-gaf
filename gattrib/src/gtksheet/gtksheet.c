@@ -3291,7 +3291,7 @@ void gtk_sheet_construct(GtkSheet *sheet, unsigned int rows, unsigned int column
       if (sheet->title) {
         g_free(sheet->title);
       }
-      sheet->title = g_strdup(title);
+      sheet->title = strdup(title);
     }
 }
 
@@ -4211,7 +4211,7 @@ void gtk_sheet_set_title(GtkSheet *sheet, const char *title)
     }
 
     if (title) {
-      sheet->title = g_strdup(title);
+      sheet->title = strdup(title);
     }
 
     if (!gtk_widget_get_realized((GtkWidget*)sheet) || !title)
@@ -4236,7 +4236,7 @@ void gtk_sheet_set_description(GtkSheet *sheet, const char *description)
     g_free(sheet->description);
   }
 
-  sheet->description = g_strdup(description);
+  sheet->description = strdup(description);
 }
 
 /*!
@@ -4568,7 +4568,7 @@ void gtk_sheet_set_row_title(GtkSheet *sheet, int row, const char *title)
     g_free(sheet->row[row].name);
   }
 
-  sheet->row[row].name = g_strdup(title);
+  sheet->row[row].name = strdup(title);
 }
 
 /*!
@@ -4616,7 +4616,7 @@ void gtk_sheet_row_button_add_label(GtkSheet *sheet, int row, const char *label)
     g_free(button->label);
   }
 
-  button->label = g_strdup(label);
+  button->label = strdup(label);
 
   aux_c = gtk_sheet_autoresize_columns(sheet);
   aux_r = gtk_sheet_autoresize_rows(sheet);
@@ -5122,7 +5122,7 @@ char *gtk_sheet_row_get_tooltip_markup(GtkSheet *sheet,
   if (row < 0 || row > sheet->maxrow)
     return (NULL);
 
-  return (g_strdup(ROWPTR(sheet, row)->tooltip_markup));
+  return (strdup(ROWPTR(sheet, row)->tooltip_markup));
 }
 
 /*!
@@ -5145,7 +5145,7 @@ void gtk_sheet_row_set_tooltip_markup(GtkSheet *sheet,
 
   if (sheet->row[row].tooltip_markup)
     g_free(sheet->row[row].tooltip_markup);
-  sheet->row[row].tooltip_markup = g_strdup(markup);
+  sheet->row[row].tooltip_markup = strdup(markup);
 }
 
 /*!
@@ -5165,7 +5165,7 @@ char *gtk_sheet_row_get_tooltip_text(GtkSheet *sheet, const int row)
   if (row < 0 || row > sheet->maxrow)
     return (NULL);
 
-  return (g_strdup(ROWPTR(sheet, row)->tooltip_text));
+  return strdup(ROWPTR(sheet, row)->tooltip_text);
 }
 
 /*!
@@ -5187,7 +5187,7 @@ void gtk_sheet_row_set_tooltip_text(GtkSheet *sheet,
 
   if (sheet->row[row].tooltip_text)
     g_free(sheet->row[row].tooltip_text);
-  sheet->row[row].tooltip_text = g_strdup(text);
+  sheet->row[row].tooltip_text = strdup(text);
 }
 
 /*!
@@ -5220,7 +5220,7 @@ char *gtk_sheet_cell_get_tooltip_markup(GtkSheet *sheet, const int row, const in
   if (!sheet->data[row][col])
     return (NULL);
 
-  return (g_strdup(sheet->data[row][col]->tooltip_markup));
+  return strdup(sheet->data[row][col]->tooltip_markup);
 }
 
 /*!
@@ -5255,7 +5255,7 @@ void gtk_sheet_cell_set_tooltip_markup(GtkSheet *sheet,
     cell->tooltip_markup = NULL;
   }
 
-  cell->tooltip_markup = g_strdup(markup);
+  cell->tooltip_markup = strdup(markup);
 }
 
 /*!
@@ -5288,7 +5288,7 @@ char *gtk_sheet_cell_get_tooltip_text(GtkSheet *sheet, const int row, const int 
   if (!sheet->data[row][col])
     return (NULL);
 
-  return (g_strdup(sheet->data[row][col]->tooltip_text));
+  return strdup(sheet->data[row][col]->tooltip_text);
 }
 
 /*!
@@ -5321,7 +5321,7 @@ void gtk_sheet_cell_set_tooltip_text(GtkSheet *sheet,
     cell->tooltip_text = NULL;
   }
 
-  cell->tooltip_text = g_strdup(text);
+  cell->tooltip_text = strdup(text);
 }
 
 
@@ -6178,7 +6178,7 @@ gtk_sheet_realize_handler(GtkWidget *widget)
 
   if (sheet->title)  { /* re-initialize title to update GUI */
 
-    char *existing_title = g_strdup(sheet->title);
+    char *existing_title = strdup(sheet->title);
 
     gtk_sheet_set_title(sheet, existing_title);
     g_free(existing_title);
@@ -7643,7 +7643,7 @@ void gtk_sheet_set_cell(GtkSheet *sheet, int row, int col,
               sheet, row, col, sheet->active_cell.row, sheet->active_cell.col, text);
 #endif
 
-      cell->text = g_strdup(text);
+      cell->text = strdup(text);
     }
 
 #if 0 && GTK_SHEET_DEBUG_SET_CELL_TIMER > 0
@@ -8871,7 +8871,7 @@ gtk_sheet_show_active_cell(GtkSheet *sheet)
       if (cell) {
 
         if (cell->text)
-          text = g_strdup(cell->text);
+          text = strdup(cell->text);
         if (cell->attributes)
           is_visible = cell->attributes->is_visible;
       }
@@ -8890,7 +8890,7 @@ gtk_sheet_show_active_cell(GtkSheet *sheet)
     /* update text  */
 
     if (!text) {
-      text = g_strdup("");
+      text = strdup("");
     }
 
     old_text = gtk_sheet_get_entry_text(sheet);
