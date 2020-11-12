@@ -6,7 +6,10 @@
           * src/gtksheet/gtksheet.c
           * src/gtksheet/gtksheetcolumn.c
 
-    * src/gattrib_dialog.c: Utilize geda_strdup macro.
+    * src: Utilize geda_strdup macro.
+
+          * src/gattrib_dialog.c
+          * src/i_basic.c
 
 2020-11-10 Wiley E. Hill <wileyhill@gmail.com>
 
