@@ -273,8 +273,10 @@ gtk_data_text_view_set_property(GObject      *object,
 
       if (!gtk_widget_get_realized(GTK_WIDGET(data_text_view))) {
 
-        if (data_text_view->description)
+        if (data_text_view->description) {
           g_free(data_text_view->description);
+        }
+
         data_text_view->description = strdup(description);
       }
       else {
@@ -429,8 +431,9 @@ static void _gtk_data_text_view_insert_text_handler(GtkTextBuffer *textbuffer,
 
 #if GTK_DATA_TEXT_VIEW_CUT_INSERTED_TEXT > 0
       int remaining_chars = max_len_chars - old_length_chars;
-      if (remaining_chars > 0)
-      {
+
+      if (remaining_chars > 0) {
+
         char *cp = g_malloc0(new_text_len_bytes);
         g_utf8_strncpy(cp, new_text, remaining_chars);
         gtk_text_buffer_insert(textbuffer, location, cp, -1);
@@ -473,7 +476,10 @@ static void _gtk_data_text_view_insert_text_handler(GtkTextBuffer *textbuffer,
         if (cpe)
         {
           char *cpn = g_utf8_find_next_char(cpe, NULL);
-          if (cpn && cpn <= bpxx) cpe = bpxx;
+
+          if (cpn && cpn <= bpxx) {
+            cpe = bpxx;
+          }
 
           char *cp = g_malloc0(new_text_len_bytes);
           strncpy(cp, new_text, cpe-new_text);
