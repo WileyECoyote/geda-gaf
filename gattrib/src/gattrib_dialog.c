@@ -338,7 +338,7 @@ static void gattrib_dialog_set_property (GObject *object, guint property_id, con
   switch(property_id) {
     case PROP_SETTINGS_NAME:
       GEDA_FREE (dialog->settings_name);
-      dialog->settings_name = geda_utility_string_strdup (g_value_get_string (value));
+      dialog->settings_name = geda_strdup (g_value_get_string (value));
       break;
     case PROP_GATTRIB_GedaToplevel:
       dialog->pr_current = (GedaToplevel*)g_value_get_pointer (value);
