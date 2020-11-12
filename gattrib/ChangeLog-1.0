@@ -4,6 +4,7 @@
 
           * src/gtksheet/gtkdatatextview.c
           * src/gtksheet/gtksheet.c
+          * src/gtksheet/gtksheetcolumn.c
 
 2020-11-10 Wiley E. Hill <wileyhill@gmail.com>
 

@@ -151,7 +151,7 @@ static void gtk_sheet_column_set_property(GObject      *object,
           if (button->label) {
             g_free(button->label);
           }
-          button->label = g_strdup(label);
+          button->label = strdup(label);
         }
         else {
           gtk_sheet_column_button_add_label(sheet, col, label);
@@ -224,7 +224,7 @@ static void gtk_sheet_column_set_property(GObject      *object,
 
         if ((col < 0) || !gtk_widget_get_realized(GTK_WIDGET(sheet))) {
           if (colobj->data_type) g_free(colobj->data_type);
-          colobj->data_type = g_strdup(data_type);
+          colobj->data_type = strdup(data_type);
         }
         else {
           gtk_sheet_column_set_datatype(sheet, col, data_type);
@@ -241,7 +241,7 @@ static void gtk_sheet_column_set_property(GObject      *object,
           if (colobj->data_format) {
             g_free(colobj->data_format);
           }
-          colobj->data_format = g_strdup(data_format);
+          colobj->data_format = strdup(data_format);
         }
         else {
           gtk_sheet_column_set_format(sheet, col, data_format);
@@ -257,7 +257,7 @@ static void gtk_sheet_column_set_property(GObject      *object,
           if (colobj->description) {
             g_free(colobj->description);
           }
-          colobj->description = g_strdup(description);
+          colobj->description = strdup(description);
         }
         else {
           gtk_sheet_column_set_description(sheet, col, description);
@@ -1121,7 +1121,7 @@ gtk_sheet_column_button_add_label(GtkSheet *sheet, int col, const char *label)
       g_free(button->label);
     }
 
-    button->label = g_strdup(label);
+    button->label = strdup(label);
 
     aux_c = gtk_sheet_autoresize_columns(sheet);
     aux_r = gtk_sheet_autoresize_rows(sheet);
@@ -1342,7 +1342,7 @@ char *gtk_sheet_column_get_format(GtkSheet *sheet, const int col)
 
     if (col < 0 || col > sheet->maxcol) return (NULL);
 
-    return (g_strdup(COLPTR(sheet, col)->data_format));
+    return strdup(COLPTR(sheet, col)->data_format);
 }
 
 /*!
@@ -1366,7 +1366,7 @@ void gtk_sheet_column_set_format(GtkSheet   *sheet,
     colp = COLPTR(sheet, col);
 
     if (colp->data_format) g_free(colp->data_format);
-    colp->data_format = g_strdup(data_format);
+    colp->data_format = strdup(data_format);
 }
 
 /*!
@@ -1384,7 +1384,7 @@ char *gtk_sheet_column_get_datatype(GtkSheet *sheet, const int col)
 
     if (col < 0 || col > sheet->maxcol) return (NULL);
 
-    return (g_strdup(COLPTR(sheet, col)->data_type));
+    return (strdup(COLPTR(sheet, col)->data_type));
 }
 
 /*!
@@ -1408,7 +1408,7 @@ void gtk_sheet_column_set_datatype(GtkSheet   *sheet,
     colp = COLPTR(sheet, col);
 
     if (colp->data_type) g_free(colp->data_type);
-    colp->data_type = g_strdup(data_type);
+    colp->data_type = strdup(data_type);
 }
 
 /*!
@@ -1427,7 +1427,7 @@ char *gtk_sheet_column_get_description(GtkSheet *sheet, const int col)
 
     if (col < 0 || col > sheet->maxcol) return (NULL);
 
-    return (g_strdup(COLPTR(sheet, col)->description));
+    return strdup(COLPTR(sheet, col)->description);
 }
 
 /*!
@@ -1451,7 +1451,7 @@ void gtk_sheet_column_set_description(GtkSheet   *sheet,
     colp = COLPTR(sheet, col);
 
     if (colp->description) g_free(colp->description);
-    colp->description = g_strdup(description);
+    colp->description = strdup(description);
 }
 
 /*!
@@ -2005,7 +2005,7 @@ void gtk_sheet_set_column_title(GtkSheet *sheet, int col, const char *title)
       g_free(COLPTR(sheet, col)->title);
     }
 
-    COLPTR(sheet, col)->title = g_strdup(title);
+    COLPTR(sheet, col)->title = strdup(title);
 }
 
 /*!
