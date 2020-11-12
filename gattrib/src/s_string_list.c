@@ -182,8 +182,8 @@ void s_string_list_add_item(STRING_LIST *list, int *count, const char *item)
   /* If we are here, it's 'cause we didn't find the item pre-existing in the list. */
   /* In this case, we insert it. */
 
-  local_list = (STRING_LIST *)GEDA_MEM_ALLOC(sizeof(STRING_LIST));  /* allocate space for this list entry */
-  local_list->data = geda_utility_string_strdup(item);   /* copy data into list */
+  local_list = (STRING_LIST*)GEDA_MEM_ALLOC(sizeof(STRING_LIST));  /* allocate space for this list entry */
+  local_list->data = geda_strdup(item);   /* copy data into list */
   local_list->next = NULL;
   local_list->prev = prev;  /* point this item to last entry in old list */
   prev->next = local_list;  /* make last item in old list point to this one. */
