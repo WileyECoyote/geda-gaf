@@ -133,7 +133,7 @@ gtk_data_text_view_set_description(GtkDataTextView *data_text_view,
     g_free(data_text_view->description);
   }
 
-  data_text_view->description = g_strdup(description);
+  data_text_view->description = strdup(description);
 }
 
 /*!
@@ -275,7 +275,7 @@ gtk_data_text_view_set_property(GObject      *object,
 
         if (data_text_view->description)
           g_free(data_text_view->description);
-        data_text_view->description = g_strdup(description);
+        data_text_view->description = strdup(description);
       }
       else {
         gtk_data_text_view_set_description(data_text_view, description);

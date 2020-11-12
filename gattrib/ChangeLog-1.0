@@ -1,3 +1,7 @@
+2020-11-12 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/gtksheet/gtkdatatextview.c: Replace g_strdup -> strdup.
+
 2020-11-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gtksheet/gtkitementry.c: Revise gtk_item_entry_draw_text to just use
