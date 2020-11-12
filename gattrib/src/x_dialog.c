@@ -751,7 +751,7 @@ static void search_replace_dialog_response(GtkWidget    *ThisDialog,
   void add_search_history(char *new_text) {
     /*! \note: String added to search_history is freed at program exit */
     if (!geda_utility_glist_stri_inlist(search_history, new_text)) {
-      search_history = g_list_prepend(search_history, geda_utility_string_strdup(new_text));
+      search_history = g_list_prepend(search_history, geda_strdup(new_text));
     }
   }
 

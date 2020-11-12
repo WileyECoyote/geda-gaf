@@ -12,6 +12,7 @@
           * src/i_basic.c
           * src/s_rename.c
           * src/s_string_list.c
+          * src/x_dialog.c
 
 2020-11-10 Wiley E. Hill <wileyhill@gmail.com>
 
