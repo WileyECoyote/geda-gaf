@@ -680,9 +680,11 @@ static void switch_responder(GtkWidget *widget, ControlID *Control)
   case EnableColor: /* Has it's own callback, should not get here! */
   case InvertImage: /* Has it's own callback, should not get here! */
     break;
+
   default:
-    geda_log("toggle_switch(): UKNOWN SWITCH ID: %d\n", WhichOne);
+    geda_log("toggle_switch(): UNKNOWN SWITCH ID: %d\n", WhichOne);
   }
+
   return;
 }
 
