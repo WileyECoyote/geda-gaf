@@ -1239,11 +1239,9 @@ static GList *autonumber_add_history(GList *history, char *text)
   /* Search for this text in history and delete it (so we don't have
    * duplicate entries) */
 
-  GList *current;
+  GList *current = history;
 
-  current = history;
-
-  while(current !=NULL ) {
+  while (current !=NULL ) {
 
     if(!strcmp(text, current->data)) {
 
@@ -1260,7 +1258,7 @@ static GList *autonumber_add_history(GList *history, char *text)
   history = g_list_prepend(history, text);
 
   /* Truncate history */
-  while(g_list_length(history) > AUTONUM_HISTORY_LENGTH) {
+  while (g_list_length(history) > AUTONUM_HISTORY_LENGTH) {
 
     GList *last = g_list_last(history);
 
