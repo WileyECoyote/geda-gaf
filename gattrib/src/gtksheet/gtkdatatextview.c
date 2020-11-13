@@ -103,7 +103,7 @@ static GtkTextViewClass *parent_class = NULL;
  *           and must not be freed, modified or stored.
  *
  * Since: 3.0.6
- **/
+ */
 const char *gtk_data_text_view_get_description(GtkDataTextView *data_text_view)
 {
     g_return_val_if_fail(GTK_IS_DATA_TEXT_VIEW(data_text_view), NULL);
@@ -111,7 +111,7 @@ const char *gtk_data_text_view_get_description(GtkDataTextView *data_text_view)
     return data_text_view->description;
 }
 
-/**
+/*!
  * gtk_data_text_view_set_description:
  * @data_text_view:  a #GtkDataTextView
  * @description:  the description or NULL
