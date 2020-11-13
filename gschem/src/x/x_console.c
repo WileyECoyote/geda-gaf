@@ -803,9 +803,9 @@ static void console_instance_init (GTypeInstance *instance, void *class)
 /*!
  * \brief Get the Console class type
  * \par Function Description
- *  On first call, registers the Console class with the GedaType dynamic
- *  type system. On subsequent calls, returns the saved value from first
- *  execution.
+ *  On first call, registers the Console class with the GType type
+ *  system. On subsequent calls, returns the saved value from the
+ *  first execution.
  *
  * \returns GedaType identifier for the Console class
  */
