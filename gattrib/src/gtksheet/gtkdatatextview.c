@@ -76,16 +76,14 @@
 
 #define GTK_DATA_TEXT_VIEW_CUT_INSERTED_TEXT 1  /* 1=cut pasted text to max len, 0=refuse */
 
-enum
-{
+enum {
     PROP_0,
     PROP_DATA_TEXT_VIEW_DESCRIPTION,
     PROP_DATA_TEXT_VIEW_MAX_LENGTH,
     PROP_DATA_TEXT_VIEW_MAX_LENGTH_BYTES,
 } GTK_DATA_TEXT_VIEW_PROPERTIES;
 
-enum
-{
+enum {
     LAST_SIGNAL
 } GTK_DATA_TEXT_VIEW_SIGNALS;
 
@@ -469,12 +467,12 @@ static void _gtk_data_text_view_insert_text_handler(GtkTextBuffer *textbuffer,
 
 #if GTK_DATA_TEXT_VIEW_CUT_INSERTED_TEXT > 0
       int remaining_bytes = max_len_bytes - old_length_bytes;
-      if (remaining_bytes > 0)
-      {
+      if (remaining_bytes > 0) {
+
         char *bpxx = &new_text[remaining_bytes];  /* byte position, may be invalid */
         char *cpe = g_utf8_find_prev_char(new_text, bpxx);
-        if (cpe)
-        {
+        if (cpe) {
+
           char *cpn = g_utf8_find_next_char(cpe, NULL);
 
           if (cpn && cpn <= bpxx) {
