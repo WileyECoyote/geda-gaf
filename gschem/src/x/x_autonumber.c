@@ -1221,7 +1221,7 @@ static void autonumber_sortorder_create(GschemToplevel *w_current)
 /*!
  * \brief Adds a line to the search text history list
  * \par Function Description
- *  This function prepends \a text to the list \a history and removes
+ *  This function prepends \a text to the \a history list and removes
  *  AND releases \a text from any other position in the \a history if
  *  present. The length of the list is checked and truncated if longer
  *  than #AUTONUM_HISTORY_LENGTH.
