@@ -223,7 +223,9 @@ static void gtk_sheet_column_set_property(GObject      *object,
         const char *data_type = g_value_get_string(value);
 
         if ((col < 0) || !gtk_widget_get_realized(GTK_WIDGET(sheet))) {
-          if (colobj->data_type) g_free(colobj->data_type);
+          if (colobj->data_type) {
+            g_free(colobj->data_type);
+          }
           colobj->data_type = strdup(data_type);
         }
         else {
@@ -1365,7 +1367,10 @@ void gtk_sheet_column_set_format(GtkSheet   *sheet,
 
     colp = COLPTR(sheet, col);
 
-    if (colp->data_format) g_free(colp->data_format);
+    if (colp->data_format) {
+      g_free(colp->data_format);
+    }
+
     colp->data_format = strdup(data_format);
 }
 
@@ -1450,7 +1455,10 @@ void gtk_sheet_column_set_description(GtkSheet   *sheet,
 
     colp = COLPTR(sheet, col);
 
-    if (colp->description) g_free(colp->description);
+    if (colp->description) {
+      g_free(colp->description);
+    }
+
     colp->description = strdup(description);
 }
 
