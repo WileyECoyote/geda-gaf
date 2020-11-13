@@ -739,9 +739,9 @@ static void console_instance_init (GTypeInstance *instance, void *class)
     gschem_atexit(x_console_destroy_command_buffer, NULL);
   }
 
-/*! \note:command list is an extended version of the action list, and
- * includes all the RC variables, the glist list is passed to our
- * custom entry widget for the command completion feature
+/*! \note: command list is an extended version of the action list, and
+ *         includes all the RC variables, the command list is passed to
+ *         our custom entry widget for the command completion feature.
  */
   i_command_get_command_list(&command_list);
 
