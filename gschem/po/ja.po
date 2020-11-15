@@ -796,40 +796,34 @@ msgstr ""
 msgid "Mesh grid activated\n"
 msgstr ""
 
+# Snap OFF (CAUTION!)
 #: gschem/src/iface/i_command.c:4679
-#, fuzzy
 msgid "Snap OFF (CAUTION!)"
-msgstr "スナップ・オフ(注意!)\n"
+msgstr "スナップ・オフ(注意!)"
 
 #: gschem/src/iface/i_command.c:4685
-#, fuzzy
 msgid "Snap ON"
-msgstr "スナップ・オン\n"
+msgstr "スナップ・オン"
 
 #: gschem/src/iface/i_command.c:4690
-#, fuzzy
 msgid "Snap back to the grid (CAUTION!)"
-msgstr "スナップ・オフ(注意!)\n"
+msgstr "スナップ・オフ(注意!)"
 
 #: gschem/src/iface/i_command.c:4716
-#, fuzzy
 msgid "Rubber band mode is OFF"
-msgstr "ラバーバンド・オフ \n"
+msgstr "ラバーバンド・オフ"
 
 #: gschem/src/iface/i_command.c:4720
-#, fuzzy
 msgid "Rubber band mode is ON"
-msgstr "ラバーバンド・オン\n"
+msgstr "ラバーバンド・オン"
 
 #: gschem/src/iface/i_command.c:4731
-#, fuzzy
 msgid "Magnetic net mode is ON"
-msgstr "ラバーバンド・オン\n"
+msgstr "ラバーバンド・オン"
 
 #: gschem/src/iface/i_command.c:4734
-#, fuzzy
 msgid "Magnetic net mode is OFF"
-msgstr "ラバーバンド・オフ \n"
+msgstr "ラバーバンド・オフ"
 
 #: gschem/src/iface/i_command.c:4751 gschem/src/iface/i_command.c:4794
 #: gschem/src/x/x_compselect.c:135 gschem/src/x/x_toolbars.c:261
@@ -1744,10 +1738,10 @@ msgstr ""
 msgid "Cancel closing and return to editor"
 msgstr ""
 
+# Save changes; Henkō naiyō o hozon
 #: gschem/src/x/x_confirm_close.c:581
-#, fuzzy
 msgid "Save changes"
-msgstr "保存"
+msgstr "変更内容を保存"
 
 # unsaved page
 #: gschem/src/x/x_confirm_close.c:631
@@ -4351,10 +4345,10 @@ msgstr "繰り返し/なし"
 msgid "Pick"
 msgstr "ピック"
 
+# New; Shinchaku
 #: gschem/src/x/x_toolbars.c:149 gschem/src/x/x_toolbars.c:195
-#, fuzzy
 msgid "New"
-msgstr "新規(_N)"
+msgstr "新着"
 
 #: gschem/src/x/x_toolbars.c:151 gschem/scheme/gschem/builtins.scm:56
 msgid "Save"
