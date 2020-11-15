@@ -880,20 +880,17 @@ msgstr "Mrežna mreža aktivirana\n"
 
 # Snap OFF (CAUTION!)
 #: gschem/src/iface/i_command.c:4679
-#, fuzzy
 msgid "Snap OFF (CAUTION!)"
-msgstr "Snap OFF (OPREZ!)\n"
+msgstr "Iskopčajte (OPREZ!)"
 
 # Snap ON
 #: gschem/src/iface/i_command.c:4685
-#, fuzzy
 msgid "Snap ON"
-msgstr "Snap ON\n"
+msgstr "Snap ON"
 
 #: gschem/src/iface/i_command.c:4690
-#, fuzzy
 msgid "Snap back to the grid (CAUTION!)"
-msgstr "Vratite se na mrežu (OPREZ!)\n"
+msgstr "Vratite se na mrežu (OPREZ!)"
 
 #: gschem/src/iface/i_command.c:4716
 msgid "Rubber band mode is OFF"
@@ -905,7 +902,6 @@ msgstr ""
 
 # Switch Magnetic Nets
 #: gschem/src/iface/i_command.c:4731
-#, fuzzy
 msgid "Magnetic net mode is ON"
 msgstr "_Magnetski Nets"
 
@@ -1849,11 +1845,10 @@ msgstr "Zatvori bez čuvanja"
 msgid "Cancel closing and return to editor"
 msgstr ""
 
-# Saved as
+# Save changes
 #: gschem/src/x/x_confirm_close.c:581
-#, fuzzy
 msgid "Save changes"
-msgstr "Snimi kao"
+msgstr "Sačuvaj promjene"
 
 # Saved as
 #: gschem/src/x/x_confirm_close.c:631
@@ -1953,12 +1948,11 @@ msgid "Guile"
 msgstr "Guile"
 
 #: gschem/src/x/x_dialog.c:526
-#, fuzzy
 msgid ""
 "Copyright © 1998-2010 Ales Hvezda <ahvezda@geda.seul.org>\n"
 "Copyright © 1998-2017 gEDA Contributors (see ChangeLog for details)"
 msgstr ""
-"autorsko pravo © 1998-2017 Ales Hvezda <ahvezda@geda.seul.org>\n"
+"autorsko pravo © 1998-2010 Ales Hvezda <ahvezda@geda.seul.org>\n"
 "autorsko pravo © 1998-2017 gEDA saradnici (vidi ChangeLog za detalje)"
 
 #: gschem/src/x/x_dialog.c:534 gschem/scheme/gschem/builtins.scm:565
