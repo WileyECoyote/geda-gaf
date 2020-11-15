@@ -802,40 +802,34 @@ msgstr "Selezionata griglia a punti\n"
 msgid "Mesh grid activated\n"
 msgstr "Selezionata griglia a maglie\n"
 
+# Snap OFF (CAUTION!)
 #: gschem/src/iface/i_command.c:4679
-#, fuzzy
 msgid "Snap OFF (CAUTION!)"
-msgstr "Snap OFF (ATTENZIONE!)\n"
+msgstr "Snap OFF (ATTENZIONE!)"
 
 #: gschem/src/iface/i_command.c:4685
-#, fuzzy
 msgid "Snap ON"
-msgstr "Snap ON\n"
+msgstr "Snap ON"
 
 #: gschem/src/iface/i_command.c:4690
-#, fuzzy
 msgid "Snap back to the grid (CAUTION!)"
-msgstr "Snap alla griglia (ATTENZIONE)!\n"
+msgstr "Snap alla griglia (ATTENZIONE)!"
 
 #: gschem/src/iface/i_command.c:4716
-#, fuzzy
 msgid "Rubber band mode is OFF"
-msgstr "Rubber band OFF \n"
+msgstr "Rubber band OFF"
 
 #: gschem/src/iface/i_command.c:4720
-#, fuzzy
 msgid "Rubber band mode is ON"
-msgstr "Rubber band ON\n"
+msgstr "Rubber band ON"
 
 #: gschem/src/iface/i_command.c:4731
-#, fuzzy
 msgid "Magnetic net mode is ON"
-msgstr "modalià net magnetiche: ON\n"
+msgstr "modalià net magnetiche ON"
 
 #: gschem/src/iface/i_command.c:4734
-#, fuzzy
 msgid "Magnetic net mode is OFF"
-msgstr "modalià net magnetiche: OFF\n"
+msgstr "modalià net magnetiche: OFF"
 
 #: gschem/src/iface/i_command.c:4751 gschem/src/iface/i_command.c:4794
 #: gschem/src/x/x_compselect.c:135 gschem/src/x/x_toolbars.c:261
@@ -852,14 +846,12 @@ msgid "Drag-Can-Move is now"
 msgstr ""
 
 #: gschem/src/iface/i_command.c:4769
-#, fuzzy
 msgid "Action feedback mode set to OUTLINE"
-msgstr "Controllo azioni in modalità CONTORNO\n"
+msgstr "Controllo azioni in modalità CONTORNO"
 
 #: gschem/src/iface/i_command.c:4773
-#, fuzzy
 msgid "Action feedback mode set to BOUNDINGBOX"
-msgstr "Controllo azioni in modalità PERIMETRO\n"
+msgstr "Controllo azioni in modalità PERIMETRO"
 
 #: gschem/src/iface/i_command.c:4800
 msgid "Auto-Pan is now"
@@ -1872,12 +1864,11 @@ msgid "Guile"
 msgstr "Guile"
 
 #: gschem/src/x/x_dialog.c:526
-#, fuzzy
 msgid ""
 "Copyright © 1998-2010 Ales Hvezda <ahvezda@geda.seul.org>\n"
 "Copyright © 1998-2017 gEDA Contributors (see ChangeLog for details)"
 msgstr ""
-"Copyright © 1998-2017 Ales Hvezda <ahvezda@geda.seul.org>\n"
+"Copyright © 1998-2010 Ales Hvezda <ahvezda@geda.seul.org>\n"
 "Copyright © 1998-2017 collaboratori di gEDA (vedere il ChangeLog per i "
 "dettagli)"
 
