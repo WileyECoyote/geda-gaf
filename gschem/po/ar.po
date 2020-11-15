@@ -815,39 +815,32 @@ msgid "Mesh grid activated\n"
 msgstr "انتقيت شبيكة الشرط\n"
 
 #: gschem/src/iface/i_command.c:4679
-#, fuzzy
 msgid "Snap OFF (CAUTION!)"
-msgstr "الجذب موقف (تنبيه)\n"
+msgstr "التقط (تنبيه!)"
 
 #: gschem/src/iface/i_command.c:4685
-#, fuzzy
 msgid "Snap ON"
-msgstr "الجذب مشغّل\n"
+msgstr "الجذب مشغّل"
 
 #: gschem/src/iface/i_command.c:4690
-#, fuzzy
 msgid "Snap back to the grid (CAUTION!)"
-msgstr "جذب نحو الشبيكة (تنبيه!)\n"
+msgstr "جذب نحو الشبيكة (تنبيه!)"
 
 #: gschem/src/iface/i_command.c:4716
-#, fuzzy
 msgid "Rubber band mode is OFF"
-msgstr "الشريط المطاطي موقف \n"
+msgstr "الشريط المطاطي موقف"
 
 #: gschem/src/iface/i_command.c:4720
-#, fuzzy
 msgid "Rubber band mode is ON"
-msgstr "الشريط المطاطي مشغل\n"
+msgstr "الشريط المطاطي مشغل"
 
 #: gschem/src/iface/i_command.c:4731
-#, fuzzy
 msgid "Magnetic net mode is ON"
-msgstr "وضع الشبكة المغناطيسية: مشغل\n"
+msgstr "وضع الشبكة المغناطيسية: مشغل"
 
 #: gschem/src/iface/i_command.c:4734
-#, fuzzy
 msgid "Magnetic net mode is OFF"
-msgstr "وضع الشبكة المغناطيسية: موقف\n"
+msgstr "وضع الشبكة المغناطيسية: موقف"
 
 #: gschem/src/iface/i_command.c:4751 gschem/src/iface/i_command.c:4794
 #: gschem/src/x/x_compselect.c:135 gschem/src/x/x_toolbars.c:261
@@ -864,15 +857,14 @@ msgstr "افتح"
 msgid "Drag-Can-Move is now"
 msgstr "يمكن السحب- يمكن نقل الآن"
 
+# Putting action responses mapped out
 #: gschem/src/iface/i_command.c:4769
-#, fuzzy
 msgid "Action feedback mode set to OUTLINE"
-msgstr "وضع ردود الإجراء معيّن إلى حد الخارجي\n"
+msgstr "وضع ردود الإجراء معيّن إلى حد الخارجي"
 
 #: gschem/src/iface/i_command.c:4773
-#, fuzzy
 msgid "Action feedback mode set to BOUNDINGBOX"
-msgstr "وضع ردود الإجراء معيّن إلى الإطار المحيط\n"
+msgstr "وضع ردود الإجراء معيّن إلى الإطار المحيط"
 
 #: gschem/src/iface/i_command.c:4800
 msgid "Auto-Pan is now"
@@ -4595,10 +4587,10 @@ msgstr ""
 msgid "Color"
 msgstr "لون"
 
+# Slots => Elements; eanasir
 #: gschem/src/x/x_toolbars.c:238
-#, fuzzy
 msgid "Slots"
-msgstr "شقّ..."
+msgstr "عناصر"
 
 #: gschem/src/x/x_toolbars.c:239
 msgid "Pins"
