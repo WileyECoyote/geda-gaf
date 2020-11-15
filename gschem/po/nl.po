@@ -823,42 +823,36 @@ msgstr "Punt raster geselecteerd\n"
 msgid "Mesh grid activated\n"
 msgstr "Maas raster geselecteerd\n"
 
+# Snap OFF (CAUTION!)
 #: gschem/src/iface/i_command.c:4679
-#, fuzzy
 msgid "Snap OFF (CAUTION!)"
-msgstr "Snap UIT (PAS OP!)\n"
+msgstr "Snap UIT (PAS OP!)"
 
 #: gschem/src/iface/i_command.c:4685
-#, fuzzy
 msgid "Snap ON"
-msgstr "Snap AAN\n"
+msgstr "Snap AAN"
 
 #: gschem/src/iface/i_command.c:4690
-#, fuzzy
 msgid "Snap back to the grid (CAUTION!)"
-msgstr "Snap terug op raster (PAS OP!)\n"
+msgstr "Snap terug op raster (PAS OP!)"
 
 # Elastic band OFF
 #: gschem/src/iface/i_command.c:4716
-#, fuzzy
 msgid "Rubber band mode is OFF"
-msgstr "Elastiek band UIT\n"
+msgstr "Elastiek band UIT"
 
 # Elastic band ON
 #: gschem/src/iface/i_command.c:4720
-#, fuzzy
 msgid "Rubber band mode is ON"
-msgstr "Elastiek band AAN\n"
+msgstr "Elastiek band AAN"
 
 #: gschem/src/iface/i_command.c:4731
-#, fuzzy
 msgid "Magnetic net mode is ON"
-msgstr "magnetische draad mode: AAN\n"
+msgstr "magnetische draad mode: AAN"
 
 #: gschem/src/iface/i_command.c:4734
-#, fuzzy
 msgid "Magnetic net mode is OFF"
-msgstr "magnetische draad mode: UIT\n"
+msgstr "magnetische draad mode: UIT"
 
 #: gschem/src/iface/i_command.c:4751 gschem/src/iface/i_command.c:4794
 #: gschem/src/x/x_compselect.c:135 gschem/src/x/x_toolbars.c:261
@@ -875,14 +869,12 @@ msgid "Drag-Can-Move is now"
 msgstr ""
 
 #: gschem/src/iface/i_command.c:4769
-#, fuzzy
 msgid "Action feedback mode set to OUTLINE"
-msgstr "Aktie terugkoppel mode is ingesteld op OUTLINE\n"
+msgstr "Aktie terugkoppel mode is ingesteld op OUTLINE"
 
 #: gschem/src/iface/i_command.c:4773
-#, fuzzy
 msgid "Action feedback mode set to BOUNDINGBOX"
-msgstr "Aktie terugkoppel mode is ingesteld op BOUNDINGBOX.\n"
+msgstr "Aktie terugkoppel mode is ingesteld op BOUNDINGBOX."
 
 #: gschem/src/iface/i_command.c:4800
 msgid "Auto-Pan is now"
@@ -1824,10 +1816,10 @@ msgstr "Sluit de huidige pagina zonder op te slaan"
 msgid "Cancel closing and return to editor"
 msgstr ""
 
+# Save changes
 #: gschem/src/x/x_confirm_close.c:581
-#, fuzzy
 msgid "Save changes"
-msgstr "Opslaan Pagina"
+msgstr "Wijzigingen opslaan"
 
 # unsaved page
 #: gschem/src/x/x_confirm_close.c:631
@@ -1932,12 +1924,11 @@ msgid "Guile"
 msgstr "Guile"
 
 #: gschem/src/x/x_dialog.c:526
-#, fuzzy
 msgid ""
 "Copyright © 1998-2010 Ales Hvezda <ahvezda@geda.seul.org>\n"
 "Copyright © 1998-2017 gEDA Contributors (see ChangeLog for details)"
 msgstr ""
-"Copyright © 1998-2017 Ales Hvezda <ahvezda@geda.seul.org>\n"
+"Copyright © 1998-2010 Ales Hvezda <ahvezda@geda.seul.org>\n"
 "Copyright © 1998-2017 gEDA Contributors (zie het ChangeLog voor details)"
 
 #: gschem/src/x/x_dialog.c:534 gschem/scheme/gschem/builtins.scm:565
