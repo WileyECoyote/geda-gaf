@@ -808,40 +808,34 @@ msgstr "kraleachatrangk chamnoch thveu aoy sakam\n"
 msgid "Mesh grid activated\n"
 msgstr "kraleachatrangk saamnanh ban thveu aoy sakam\n"
 
+# Snap OFF (CAUTION!)
 #: gschem/src/iface/i_command.c:4679
-#, fuzzy
 msgid "Snap OFF (CAUTION!)"
-msgstr "khtasa bet (braytn !)\n"
+msgstr "khtasa bet (braytn!)"
 
 #: gschem/src/iface/i_command.c:4685
-#, fuzzy
 msgid "Snap ON"
-msgstr "khtasa now leu\n"
+msgstr "khtasa now leu"
 
 #: gschem/src/iface/i_command.c:4690
-#, fuzzy
 msgid "Snap back to the grid (CAUTION!)"
-msgstr "khtasa tralbtow kraleachatrangk (braytn!)\n"
+msgstr "khtasa tralbtow kraleachatrangk (braytn!)"
 
 #: gschem/src/iface/i_command.c:4716
-#, fuzzy
 msgid "Rubber band mode is OFF"
-msgstr "rbieb bet kawsaou robsa krom t nrti\n"
+msgstr "rbieb bet kawsaou robsa krom t nrti"
 
 #: gschem/src/iface/i_command.c:4720
-#, fuzzy
 msgid "Rubber band mode is ON"
-msgstr "rbieb del krom tantrei kawsaou ku now thngai\n"
+msgstr "rbieb del krom tantrei kawsaou ku now thngai"
 
 #: gschem/src/iface/i_command.c:4731
-#, fuzzy
 msgid "Magnetic net mode is ON"
-msgstr "rbieb sotth meanhetich del mean now leu\n"
+msgstr "rbieb sotth meanhetich del mean now leu"
 
 #: gschem/src/iface/i_command.c:4734
-#, fuzzy
 msgid "Magnetic net mode is OFF"
-msgstr "rbieb bet sotth meanhetich ku\n"
+msgstr "rbieb bet sotth meanhetich ku"
 
 #: gschem/src/iface/i_command.c:4751 gschem/src/iface/i_command.c:4794
 #: gschem/src/x/x_compselect.c:135 gschem/src/x/x_toolbars.c:261
@@ -859,14 +853,12 @@ msgid "Drag-Can-Move is now"
 msgstr "ausa ach phlasati ku ilauv"
 
 #: gschem/src/iface/i_command.c:4769
-#, fuzzy
 msgid "Action feedback mode set to OUTLINE"
-msgstr "rbieb mte anak ban kamnt daembi krong sakammopheap\n"
+msgstr "rbieb mte anak ban kamnt daembi krong sakammopheap"
 
 #: gschem/src/iface/i_command.c:4773
-#, fuzzy
 msgid "Action feedback mode set to BOUNDINGBOX"
-msgstr "rbieb mte anak ban kamnt daembi chtokaon sakammopheap chang\n"
+msgstr "rbieb mte anak ban kamnt daembi chtokaon sakammopheap chang"
 
 # Auto-Pan is now
 #: gschem/src/iface/i_command.c:4800
@@ -1798,10 +1790,10 @@ msgstr "bet daoy min roksaatouk"
 msgid "Cancel closing and return to editor"
 msgstr ""
 
+# Save changes
 #: gschem/src/x/x_confirm_close.c:581
-#, fuzzy
 msgid "Save changes"
-msgstr "del ban roksaatouk"
+msgstr "roksaatouk kar phlasa btau r"
 
 # unsaved page
 #: gschem/src/x/x_confirm_close.c:631
@@ -1852,9 +1844,8 @@ msgstr ""
 "gschem.log.\n"
 
 #: gschem/src/x/x_console.c:491
-#, fuzzy
 msgid "Console"
-msgstr "gEDA kongsaul"
+msgstr "Kongsaul"
 
 #: gschem/src/x/x_console.c:657
 msgid "gEDA Console"
@@ -1907,12 +1898,11 @@ msgid "Guile"
 msgstr "Guile"
 
 #: gschem/src/x/x_dialog.c:526
-#, fuzzy
 msgid ""
 "Copyright © 1998-2010 Ales Hvezda <ahvezda@geda.seul.org>\n"
 "Copyright © 1998-2017 gEDA Contributors (see ChangeLog for details)"
 msgstr ""
-"roksaa setth krobyeang © 1998-2017 Ales Hvezda <ahvezda@geda.seul.org>\n"
+"roksaa setth krobyeang © 1998-2010 Ales Hvezda <ahvezda@geda.seul.org>\n"
 "roksaa setth krobyeang © 1998-2017 gEDA anak chaulruom chamnek (meulkheunh "
 "kar phlasa btaur kamntheto samreab sechakdei lomait)"
 
