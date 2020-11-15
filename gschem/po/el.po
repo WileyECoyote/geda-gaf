@@ -814,12 +814,12 @@ msgstr ""
 msgid "Mesh grid activated\n"
 msgstr ""
 
+# Snap OFF (CAUTION!)
 #: gschem/src/iface/i_command.c:4679
 msgid "Snap OFF (CAUTION!)"
-msgstr ""
+msgstr "ΑΠΕΝΕΡΓΟΠΟΙΗΣΗ (ΠΡΟΣΟΧΗ!)"
 
 #: gschem/src/iface/i_command.c:4685
-#, fuzzy
 msgid "Snap ON"
 msgstr "Λειτουργία ακροδεκτών"
 
@@ -828,24 +828,20 @@ msgid "Snap back to the grid (CAUTION!)"
 msgstr ""
 
 #: gschem/src/iface/i_command.c:4716
-#, fuzzy
 msgid "Rubber band mode is OFF"
-msgstr "Λειτουργία μαγνητικού δικτύου ανάπηρος\n"
+msgstr "Λειτουργία μαγνητικού δικτύου ανάπηρος"
 
 #: gschem/src/iface/i_command.c:4720
-#, fuzzy
 msgid "Rubber band mode is ON"
-msgstr "Λειτουργία μαγνητικού δικτύου ενεργοποιημένη\n"
+msgstr "Λειτουργία μαγνητικού δικτύου ενεργοποιημένη"
 
 #: gschem/src/iface/i_command.c:4731
-#, fuzzy
 msgid "Magnetic net mode is ON"
-msgstr "Λειτουργία μαγνητικού δικτύου ενεργοποιημένη\n"
+msgstr "Λειτουργία μαγνητικού δικτύου ενεργοποιημένη"
 
 #: gschem/src/iface/i_command.c:4734
-#, fuzzy
 msgid "Magnetic net mode is OFF"
-msgstr "Λειτουργία μαγνητικού δικτύου ανάπηρος\n"
+msgstr "Λειτουργία μαγνητικού δικτύου ανάπηρος"
 
 #: gschem/src/iface/i_command.c:4751 gschem/src/iface/i_command.c:4794
 #: gschem/src/x/x_compselect.c:135 gschem/src/x/x_toolbars.c:261
@@ -1879,12 +1875,11 @@ msgid "Guile"
 msgstr "Guile"
 
 #: gschem/src/x/x_dialog.c:526
-#, fuzzy
 msgid ""
 "Copyright © 1998-2010 Ales Hvezda <ahvezda@geda.seul.org>\n"
 "Copyright © 1998-2017 gEDA Contributors (see ChangeLog for details)"
 msgstr ""
-"Πνευματικά δικαιώματα © 1998-2017 Ales Hvezda <ahvezda@geda.seul.org>\n"
+"Πνευματικά δικαιώματα © 1998-2010 Ales Hvezda <ahvezda@geda.seul.org>\n"
 "Πνευματικά δικαιώματα © 1998-2017 προγραμματιστές του gEDA (δείτε το "
 "ChangeLog για λεπτομέρειες)"
 
