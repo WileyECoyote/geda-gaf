@@ -67,7 +67,7 @@ SCM_DEFINE (show_uri, "%show-uri", 1, 0, 0, (SCM uri_s),
   uri = scm_to_utf8_string (uri_s);
 
   if (!x_show_uri (uri)) {
-    u_log_message( "%s <%s>\n", _("Could not launch URI"), uri);
+     geda_log( "%s <%s>\n", _("Could not launch URI"), uri);
   }
 
   free (uri);

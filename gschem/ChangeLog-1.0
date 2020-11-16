@@ -4,6 +4,7 @@
 
         * base/gschem_parsecmd.c
         * src/guile/g_funcs.c
+        * src/guile/g_util.c
 
 2020-11-14 Wiley E. Hill <wileyhill@gmail.com>
 
