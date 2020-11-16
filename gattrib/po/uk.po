@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2020-07-02 11:09-0500\n"
+"POT-Creation-Date: 2020-11-16 07:21-0600\n"
 "PO-Revision-Date: 2012-01-27 14:17+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
@@ -26,7 +26,7 @@ msgstr "gEDA Attribute Editor"
 msgid "Manipulate component attributes with gattrib"
 msgstr "Керувати властивостями компонентів за допомогою gattrib"
 
-#: gattrib/src/f_export.c:77
+#: gattrib/src/f_export.c:76
 msgid "Could not open"
 msgstr ""
 
@@ -186,23 +186,23 @@ msgstr ""
 msgid "could not delete item"
 msgstr ""
 
-#: gattrib/src/s_table.c:369 gattrib/src/s_table.c:432
+#: gattrib/src/s_table.c:372 gattrib/src/s_table.c:435
 msgid "Component Error looking for row ref"
 msgstr ""
 
-#: gattrib/src/s_table.c:373 gattrib/src/s_table.c:437
+#: gattrib/src/s_table.c:376 gattrib/src/s_table.c:440
 msgid "Component Error looking for column"
 msgstr ""
 
-#: gattrib/src/s_table.c:590
+#: gattrib/src/s_table.c:593
 msgid "Creating pin table"
 msgstr ""
 
-#: gattrib/src/s_table.c:661
+#: gattrib/src/s_table.c:664
 msgid "Pin Error looking for row ref"
 msgstr ""
 
-#: gattrib/src/s_table.c:666
+#: gattrib/src/s_table.c:669
 msgid "Pin Error looking for column"
 msgstr ""
 
@@ -330,7 +330,7 @@ msgstr ""
 msgid "About..."
 msgstr ""
 
-#: gattrib/src/x_dialog.c:565 gattrib/src/x_menus.c:390
+#: gattrib/src/x_dialog.c:565 gattrib/src/x_menus.c:391
 msgid "Export CSV"
 msgstr ""
 
@@ -482,260 +482,260 @@ msgstr ""
 msgid "Pins"
 msgstr ""
 
-#: gattrib/src/x_gtksheet.c:970 gattrib/src/x_gtksheet.c:1010
+#: gattrib/src/x_gtksheet.c:973 gattrib/src/x_gtksheet.c:1013
 msgid "could not allocate color"
 msgstr ""
 
-#: gattrib/src/x_menus.c:386
+#: gattrib/src/x_menus.c:387
 msgid "_File"
 msgstr ""
 
-#: gattrib/src/x_menus.c:387
+#: gattrib/src/x_menus.c:388
 msgid "_Open"
 msgstr ""
 
-#: gattrib/src/x_menus.c:388
+#: gattrib/src/x_menus.c:389
 msgid "_Save"
 msgstr ""
 
-#: gattrib/src/x_menus.c:389
+#: gattrib/src/x_menus.c:390
 msgid "Save _As"
 msgstr ""
 
-#: gattrib/src/x_menus.c:392
+#: gattrib/src/x_menus.c:393
 msgid "Quit"
 msgstr ""
 
-#: gattrib/src/x_menus.c:396 gattrib/src/x_toolbars.c:37
+#: gattrib/src/x_menus.c:397 gattrib/src/x_toolbars.c:37
 msgid "Cut"
 msgstr ""
 
-#: gattrib/src/x_menus.c:397 gattrib/src/x_toolbars.c:38
+#: gattrib/src/x_menus.c:398 gattrib/src/x_toolbars.c:38
 msgid "Copy"
 msgstr ""
 
-#: gattrib/src/x_menus.c:398 gattrib/src/x_toolbars.c:39
+#: gattrib/src/x_menus.c:399 gattrib/src/x_toolbars.c:39
 msgid "Paste"
 msgstr ""
 
 # Add new Attribute
-#: gattrib/src/x_menus.c:400
+#: gattrib/src/x_menus.c:401
 msgid "_Add new Attribute"
 msgstr "Додати новий атрибут"
 
 # Delete Attribute
-#: gattrib/src/x_menus.c:401
+#: gattrib/src/x_menus.c:402
 msgid "D_elete Attribute"
 msgstr "Видалити атрибут"
 
 # Promote Attribute
-#: gattrib/src/x_menus.c:402
+#: gattrib/src/x_menus.c:403
 msgid "_Promote Attribute"
 msgstr "Пропагувати атрибут"
 
 # Attach the selected attribute
-#: gattrib/src/x_menus.c:402 gattrib/src/x_toolbars.c:50
+#: gattrib/src/x_menus.c:403 gattrib/src/x_toolbars.c:50
 msgid "Attach the selected attribute"
 msgstr "Прикріпити виділений атрибут"
 
 # Demote Attribute
-#: gattrib/src/x_menus.c:403
+#: gattrib/src/x_menus.c:404
 msgid "_Demote Attribute"
 msgstr "Атрибут зниження"
 
 # Detach the selected attribute => Disconnect selected attribute
-#: gattrib/src/x_menus.c:403 gattrib/src/x_toolbars.c:51
+#: gattrib/src/x_menus.c:404 gattrib/src/x_toolbars.c:51
 msgid "Detach the selected attribute"
 msgstr "Від'єднати вибраний атрибут"
 
-#: gattrib/src/x_menus.c:405
+#: gattrib/src/x_menus.c:406
 msgid "Find Value"
 msgstr ""
 
-#: gattrib/src/x_menus.c:405
+#: gattrib/src/x_menus.c:406
 msgid "Find attribute value"
 msgstr ""
 
-#: gattrib/src/x_menus.c:406
+#: gattrib/src/x_menus.c:407
 msgid "Replace value"
 msgstr ""
 
-#: gattrib/src/x_menus.c:406
+#: gattrib/src/x_menus.c:407
 msgid "Search and Replace Attribute value"
 msgstr ""
 
 # Locate Attribute
-#: gattrib/src/x_menus.c:407
+#: gattrib/src/x_menus.c:408
 msgid "Locate Attribute"
 msgstr "Знайдіть атрибут"
 
 # Search for an attribute
-#: gattrib/src/x_menus.c:407
+#: gattrib/src/x_menus.c:408
 msgid "Search for an attribute"
 msgstr "Шукати атрибут"
 
-#: gattrib/src/x_menus.c:408
+#: gattrib/src/x_menus.c:409
 msgid "Locate Reference"
 msgstr ""
 
-#: gattrib/src/x_menus.c:408
+#: gattrib/src/x_menus.c:409
 msgid "Search for reference designator"
 msgstr ""
 
-#: gattrib/src/x_menus.c:411
+#: gattrib/src/x_menus.c:412
 msgid "_View"
 msgstr ""
 
-#: gattrib/src/x_menus.c:412
+#: gattrib/src/x_menus.c:413
 msgid "_Toolbar"
 msgstr ""
 
-#: gattrib/src/x_menus.c:413
+#: gattrib/src/x_menus.c:414
 msgid "_Icons"
 msgstr ""
 
-#: gattrib/src/x_menus.c:413
+#: gattrib/src/x_menus.c:414
 msgid "Display Icons on the toolbar"
 msgstr ""
 
-#: gattrib/src/x_menus.c:414
+#: gattrib/src/x_menus.c:415
 msgid "_Text"
 msgstr ""
 
-#: gattrib/src/x_menus.c:414
+#: gattrib/src/x_menus.c:415
 msgid "Display Text on the toolbar"
 msgstr ""
 
-#: gattrib/src/x_menus.c:415
+#: gattrib/src/x_menus.c:416
 msgid "_Both"
 msgstr ""
 
-#: gattrib/src/x_menus.c:415
+#: gattrib/src/x_menus.c:416
 msgid "Display Icons and Text on the toolbar"
 msgstr ""
 
-#: gattrib/src/x_menus.c:418
+#: gattrib/src/x_menus.c:419
 msgid "_Visibility"
 msgstr ""
 
-#: gattrib/src/x_menus.c:419 gattrib/src/x_toolbars.c:46
+#: gattrib/src/x_menus.c:420 gattrib/src/x_toolbars.c:46
 msgid "Set selected invisible"
 msgstr ""
 
-#: gattrib/src/x_menus.c:420 gattrib/src/x_toolbars.c:47
+#: gattrib/src/x_menus.c:421 gattrib/src/x_toolbars.c:47
 msgid "Set selected visible"
 msgstr ""
 
-#: gattrib/src/x_menus.c:421 gattrib/src/x_toolbars.c:52
+#: gattrib/src/x_menus.c:422 gattrib/src/x_toolbars.c:52
 msgid "Set selected name visible only"
 msgstr ""
 
-#: gattrib/src/x_menus.c:422 gattrib/src/x_toolbars.c:53
+#: gattrib/src/x_menus.c:423 gattrib/src/x_toolbars.c:53
 msgid "Set selected value visible only"
 msgstr ""
 
-#: gattrib/src/x_menus.c:423 gattrib/src/x_toolbars.c:54
+#: gattrib/src/x_menus.c:424 gattrib/src/x_toolbars.c:54
 msgid "Set selected name and value visible"
 msgstr ""
 
-#: gattrib/src/x_menus.c:425
+#: gattrib/src/x_menus.c:426
 msgid "_Window"
 msgstr ""
 
-#: gattrib/src/x_menus.c:427
+#: gattrib/src/x_menus.c:428
 msgid "_Help"
 msgstr ""
 
-#: gattrib/src/x_menus.c:428
+#: gattrib/src/x_menus.c:429
 msgid "Gattrib Guide"
 msgstr "Gattrib Guide"
 
-#: gattrib/src/x_menus.c:429
+#: gattrib/src/x_menus.c:430
 msgid "Gattrib FAQ"
 msgstr ""
 
-#: gattrib/src/x_menus.c:430
+#: gattrib/src/x_menus.c:431
 msgid "gEDA Docu_mentation..."
 msgstr ""
 
-#: gattrib/src/x_menus.c:431
+#: gattrib/src/x_menus.c:432
 msgid "gEDA _Wiki..."
 msgstr ""
 
-#: gattrib/src/x_menus.c:433
+#: gattrib/src/x_menus.c:434
 msgid "gEDA Attributes"
 msgstr "gEDA Атрибути"
 
-#: gattrib/src/x_menus.c:434
+#: gattrib/src/x_menus.c:435
 msgid "gEDA Glossary"
 msgstr ""
 
-#: gattrib/src/x_menus.c:435
+#: gattrib/src/x_menus.c:436
 msgid "About"
 msgstr ""
 
-#: gattrib/src/x_menus.c:442
+#: gattrib/src/x_menus.c:443
 msgid "_Edit bar"
 msgstr ""
 
-#: gattrib/src/x_menus.c:442
+#: gattrib/src/x_menus.c:443
 msgid "Display the Edit Status bar"
 msgstr ""
 
-#: gattrib/src/x_menus.c:443
+#: gattrib/src/x_menus.c:444
 msgid "_Standard"
 msgstr ""
 
-#: gattrib/src/x_menus.c:443
+#: gattrib/src/x_menus.c:444
 msgid "Display Standard Toolbar"
 msgstr ""
 
-#: gattrib/src/x_menus.c:444
+#: gattrib/src/x_menus.c:445
 msgid "A_ttribute"
 msgstr "Атрибут"
 
 # Display Attribute Toolbar
-#: gattrib/src/x_menus.c:444
+#: gattrib/src/x_menus.c:445
 msgid "Display Attribute Toolbar"
 msgstr "Панель інструментів Атрибут"
 
-#: gattrib/src/x_menus.c:445
+#: gattrib/src/x_menus.c:446
 msgid "_Attached"
 msgstr ""
 
-#: gattrib/src/x_menus.c:445
+#: gattrib/src/x_menus.c:446
 msgid "Hide or unhide non-attached attributes"
 msgstr ""
 
-#: gattrib/src/x_menus.c:446
+#: gattrib/src/x_menus.c:447
 msgid "_Inherited"
 msgstr ""
 
-#: gattrib/src/x_menus.c:446
+#: gattrib/src/x_menus.c:447
 msgid "Hide or unhide inherited attributes"
 msgstr ""
 
-#: gattrib/src/x_menus.c:448
+#: gattrib/src/x_menus.c:449
 msgid "_Autoresize"
 msgstr ""
 
-#: gattrib/src/x_menus.c:448
+#: gattrib/src/x_menus.c:449
 msgid "Enable/Disable Auto resize columns"
 msgstr ""
 
-#: gattrib/src/x_menus.c:449
+#: gattrib/src/x_menus.c:450
 msgid "Auto_Scroll"
 msgstr ""
 
-#: gattrib/src/x_menus.c:449
+#: gattrib/src/x_menus.c:450
 msgid "Enable/Disable AutoScroll"
 msgstr ""
 
-#: gattrib/src/x_menus.c:450
+#: gattrib/src/x_menus.c:451
 msgid "Show _Grid"
 msgstr ""
 
-#: gattrib/src/x_menus.c:450
+#: gattrib/src/x_menus.c:451
 msgid "Toggle grid visibility"
 msgstr ""
 
