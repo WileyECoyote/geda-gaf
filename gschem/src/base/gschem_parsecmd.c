@@ -253,7 +253,7 @@ int gschem_parse_commandline(int argc, char *argv[])
         err = NULL;
         str = geda_normalize_filename (optarg, &err);
         if (str == NULL) {
-          u_log_message("%s <%s>: %s\n", _("error parsing"), optarg, err->message);
+           geda_log("%s <%s>: %s\n", _("error parsing"), optarg, err->message);
           g_clear_error(&err);
         }
         else {

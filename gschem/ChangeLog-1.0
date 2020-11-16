@@ -1,3 +1,9 @@
+2020-11-16 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/*/*.c: Replace u_log_message macro with geda_log:
+
+        * base/gschem_parsecmd.c
+
 2020-11-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/af.po: Update Arabic translations.
