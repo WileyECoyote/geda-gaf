@@ -5,6 +5,7 @@
         * base/gschem_parsecmd.c
         * src/guile/g_funcs.c
         * src/guile/g_util.c
+        * src/object/o_complex.c
 
 2020-11-14 Wiley E. Hill <wileyhill@gmail.com>
 
