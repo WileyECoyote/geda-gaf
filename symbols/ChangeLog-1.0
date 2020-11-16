@@ -1,6 +1,6 @@
 2020-11-15 Wiley E. Hill <wileyhill@gmail.com>
 
-    * transistor/basic/npn-?.sym: Revamp symbol:
+    * transistor/basic/*-?.sym: Revamp symbol:
 
             * transistor/basic/npn-1.sym
             * transistor/basic/npn-2.sym
@@ -10,6 +10,8 @@
             * transistor/basic/pnp-3.sym
 
     * transistor/basic/npn-4.sym: Add new symbol for basic npn transistor.
+
+    * transistor/basic/pnp-4.sym: Add new symbol for basic pnp transistor.
 
 2020-11-08 Wiley E. Hill <wileyhill@gmail.com>
 
