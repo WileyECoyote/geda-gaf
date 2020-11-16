@@ -682,7 +682,7 @@ static void switch_responder(GtkWidget *widget, ControlID *Control)
     break;
 
   default:
-    geda_log("toggle_switch(): UNKNOWN SWITCH ID: %d\n", WhichOne);
+    geda_log ("%s: UNKNOWN SWITCH ID: %d\n", __func__, WhichOne);
   }
 
   return;
