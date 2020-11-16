@@ -428,16 +428,22 @@ static void _gtk_data_text_view_insert_text_handler(GtkTextBuffer *textbuffer,
     if (old_length_chars + new_text_length_chars > max_len_chars) {
 
 #if GTK_DATA_TEXT_VIEW_CUT_INSERTED_TEXT > 0
+
       int remaining_chars = max_len_chars - old_length_chars;
 
       if (remaining_chars > 0) {
 
         char *cp = g_malloc0(new_text_len_bytes);
+
         g_utf8_strncpy(cp, new_text, remaining_chars);
+
         gtk_text_buffer_insert(textbuffer, location, cp, -1);
+
         g_free(cp);
       }
+
 #endif
+
       gdk_beep();
       g_signal_stop_emission_by_name(textbuffer, "insert-text");
     }
@@ -466,11 +472,14 @@ static void _gtk_data_text_view_insert_text_handler(GtkTextBuffer *textbuffer,
     if (old_length_bytes + new_text_len_bytes > max_len_bytes) {
 
 #if GTK_DATA_TEXT_VIEW_CUT_INSERTED_TEXT > 0
+
       int remaining_bytes = max_len_bytes - old_length_bytes;
+
       if (remaining_bytes > 0) {
 
         char *bpxx = &new_text[remaining_bytes];  /* byte position, may be invalid */
         char *cpe = g_utf8_find_prev_char(new_text, bpxx);
+
         if (cpe) {
 
           char *cpn = g_utf8_find_next_char(cpe, NULL);
@@ -480,13 +489,19 @@ static void _gtk_data_text_view_insert_text_handler(GtkTextBuffer *textbuffer,
           }
 
           char *cp = g_malloc0(new_text_len_bytes);
+
           strncpy(cp, new_text, cpe-new_text);
+
           gtk_text_buffer_insert(textbuffer, location, cp, -1);
+
           g_free(cp);
         }
       }
+
 #endif
+
       gdk_beep();
+
       g_signal_stop_emission_by_name(textbuffer, "insert-text");
     }
   }
