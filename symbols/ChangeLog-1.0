@@ -13,6 +13,8 @@
 
     * transistor/basic/pnp-4.sym: Add new symbol for basic pnp transistor.
 
+    * transistor/pnp-power/pnp-1.sym: Remove duplicate symbol name.
+
 2020-11-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * transistor/npn-smt/2N2222A_npn_40V_1P_SOT-23-2?.sym: Fix date version
