@@ -107,15 +107,15 @@ void o_slot_end(GschemToplevel *w_current, GedaObject *object, const char *strin
 
   /* Retrieve the attribute value or abort */
   if (!geda_attrib_string_get_name_value (string, NULL, &value)) {
-    u_log_message (_("Slot attribute malformed\n"));
+     geda_log (_("Slot attribute malformed\n"));
     return;
   }
 
   numslots_value = geda_attrib_search_object_by_name (object, "numslots", 0);
 
   if (!numslots_value) {
-    u_log_message (_("numslots attribute missing\n"));
-    u_log_message (_("Slotting not allowed for this component\n"));
+     geda_log (_("numslots attribute missing\n"));
+     geda_log (_("Slotting not allowed for this component\n"));
     GEDA_FREE (value);
     return;
   }
