@@ -298,7 +298,7 @@ SCM g_funcs_log(SCM scm_msg)
   SCM_ASSERT (scm_is_string (scm_msg), scm_msg, SCM_ARG1, "gschem-log");
 
   msg = scm_to_utf8_string (scm_msg);
-  u_log_message ("%s", msg);
+   geda_log ("%s", msg);
   free(msg);
 
   return SCM_BOOL_T;

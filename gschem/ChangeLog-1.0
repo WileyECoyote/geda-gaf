@@ -3,6 +3,7 @@
     * src/*/*.c: Replace u_log_message macro with geda_log:
 
         * base/gschem_parsecmd.c
+        * src/guile/g_funcs.c
 
 2020-11-14 Wiley E. Hill <wileyhill@gmail.com>
 
