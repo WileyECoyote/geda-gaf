@@ -1,3 +1,9 @@
+2020-11-15 Wiley E. Hill <wileyhill@gmail.com>
+
+    * transistor/basic/npn-?.sym: Revamp symbol:
+
+            * transistor/basic/npn-1.sym
+
 2020-11-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * transistor/npn-smt/2N2222A_npn_40V_1P_SOT-23-2?.sym: Fix date version
