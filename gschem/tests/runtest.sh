@@ -269,6 +269,7 @@ do_process_input()
       (./${TEST} ${file})
       if [ $? -ne 0 ] ; then
         FAILCOUNT=$(($FAILCOUNT + 1))
+        echo $(basename ${file}) " Failed: ${TEST}"
       else
         PASSCOUNT=$(($PASSCOUNT + 1))
       fi
