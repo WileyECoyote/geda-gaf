@@ -815,10 +815,10 @@ void x_image_setup (GschemToplevel *w_current, IMAGE_TYPES default_type)
 
   gtk_widget_show_all(switch_vbox); /* set every widget in container visible */
 
-  /* setup callback for EnableColorSwitch passing ptr to use_print check button */
+  /* Setup callback for EnableColorSwitch passing ptr to use_print check button */
   GEDA_CALLBACK_SWITCH (EnableColor, x_image_enable_color, widget_list)
 
-  /* setup callback for InvertImageSwitch passing ptr to use_print check button */
+  /* Setup callback for InvertImageSwitch passing ptr to use_print check button */
   GEDA_CALLBACK_SWITCH (InvertImage, x_image_enable_color_bw_invert, invert_bw)
 
   /* Add the extra widgets to the dialog*/
