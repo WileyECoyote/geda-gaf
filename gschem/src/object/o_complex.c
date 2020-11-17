@@ -318,11 +318,11 @@ o_complex_translate_all(GschemToplevel *w_current, int offset, const GList  *obj
     x = snap_grid (w_current, left);
     y = snap_grid (w_current, top);
 
-    u_log_message("%s [%d %d]\n", _("Translating objects"), -x, -y);
+     geda_log("%s [%d %d]\n", _("Translating objects"), -x, -y);
     geda_translate_list (object_list, -x, -y);
   }
   else {
-    u_log_message("%s [%d %d]\n", _("Translating schematic"), offset, offset);
+     geda_log("%s [%d %d]\n", _("Translating schematic"), offset, offset);
     geda_translate_list (object_list, offset, offset);
   }
 

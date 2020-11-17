@@ -2,6 +2,7 @@
 
     * src/*/*.c: Replace u_log_message macro with geda_log:
 
+        * src/object/o_complex.c
         * src/object/o_undo.c
         * src/x/x_autonumber.c
         * src/x/x_rc.c
