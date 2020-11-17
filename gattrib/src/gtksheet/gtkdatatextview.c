@@ -122,7 +122,7 @@ const char *gtk_data_text_view_get_description(GtkDataTextView *data_text_view)
  */
 void
 gtk_data_text_view_set_description(GtkDataTextView *data_text_view,
-                                   const char *description)
+                                   const char      *description)
 {
   g_return_if_fail(data_text_view != NULL);
   g_return_if_fail(GTK_IS_DATA_TEXT_VIEW(data_text_view));
@@ -404,8 +404,10 @@ gtk_data_text_view_class_init(GtkDataTextViewClass *klass)
 /* Signal interception */
 
 static void _gtk_data_text_view_insert_text_handler(GtkTextBuffer *textbuffer,
-    GtkTextIter *location, char *new_text, int new_text_len_bytes,
-    void *user_data)
+                                                    GtkTextIter   *location,
+                                                    char          *new_text,
+                                                    int new_text_len_bytes,
+                                                    void *user_data)
 {
   GtkDataTextView *data_text_view = GTK_DATA_TEXT_VIEW(user_data);
   GtkTextView *text_view = GTK_TEXT_VIEW(user_data);
