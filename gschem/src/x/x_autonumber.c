@@ -609,7 +609,7 @@ static void autonumber_get_used(GschemToplevel *w_current, AUTONUMBER_TEXT *auto
             slot_str = geda_attrib_search_object_by_name (o_parent, "slot", 0);
 
             if (slot_str == NULL) {
-              u_log_message(_("slotted object without slot attribute may cause "
+               geda_log(_("slotted object without slot attribute may cause "
                               "problems when autonumbering slots\n"));
             }
             else {
@@ -625,7 +625,7 @@ static void autonumber_get_used(GschemToplevel *w_current, AUTONUMBER_TEXT *auto
                                              slot,
                                              (GCompareFunc) freeslot_compare);
               if (slot_item != NULL) { /* duplicate slot in used_slots */
-                u_log_message(_("duplicate slot may cause problems: "
+                 geda_log(_("duplicate slot may cause problems: "
                                 "[symbol name=%s, number=%d, slot=%d]\n"),
                                 slot->symbolname, slot->number, slot->slotnr);
                 GEDA_FREE(slot);
@@ -933,7 +933,7 @@ static void autonumber_text_autonumber(AUTONUMBER_TEXT *autotext)
   scope_len = strlen(scope_text);
 
   if (scope_len == 0) {
-    u_log_message(_("No search string given in autonumber text.\n"));
+     geda_log(_("No search string given in autonumber text.\n"));
     return; /* error */
   }
   else if (g_str_has_suffix(scope_text,"?") == TRUE) {
