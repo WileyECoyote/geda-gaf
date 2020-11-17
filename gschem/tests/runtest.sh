@@ -255,7 +255,7 @@ do_process_input()
 
   TESTS=$(grep TEST= ${file} | cut -d= -f2 )
 
-  # Exexute each of the "values" passing the file name
+  # Execute each of the "values" passing the file name
 
   for TEST in ${TESTS[@]} ; do
 
