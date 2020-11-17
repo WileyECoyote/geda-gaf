@@ -269,8 +269,8 @@ void o_undo_savestate(GschemToplevel *w_current, int flag)
           /* Error recovery sequence, the last disk operation failed
            * so log the event and switched to type Memory. We do not,
            * and likely can not, remove any existing undo files.*/
-          u_log_message("%s=<%s> %s\n", file_err_msg, filename, err->message);
-          u_log_message("%s: <%d>, %s\n", sys_err_msg1, err->code, sys_err_msg2);
+           geda_log("%s=<%s> %s\n", file_err_msg, filename, err->message);
+           geda_log("%s: <%d>, %s\n", sys_err_msg1, err->code, sys_err_msg2);
           g_clear_error (&err);
           w_current->undo_type = UNDO_MEMORY;
           geda_struct_undo_free_all (p_current);
