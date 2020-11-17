@@ -5,6 +5,9 @@
         * src/object/o_undo.c
         * src/x/x_autonumber.c
 
+    * src/x/x_settings_dialog.c: Update on_change_renderer to work with
+      GedaComboBox instead of GtkComboBox.
+
 2020-11-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/*/*.c: Replace u_log_message macro with geda_log:

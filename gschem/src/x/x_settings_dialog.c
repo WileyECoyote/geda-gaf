@@ -1744,7 +1744,7 @@ void setup_font_name_combo(GschemToplevel *w_current, char *cur_font) {
 static void
 on_change_renderer (GtkWidget *widget, void *user_data)
 {
-  GtkComboBox      *combo      = (GtkComboBox*) widget; // callee */
+  GedaComboBox     *combo      = (GedaComboBox*) widget; // callee */
   GedaComboBoxText *font_combo = (GedaComboBoxText*) FontNameCombo;
   GschemToplevel   *w_current  = user_data;
   EdaConfig        *cfg        = eda_config_get_user_context ();
@@ -1753,7 +1753,7 @@ on_change_renderer (GtkWidget *widget, void *user_data)
   char             *prev_name;
 
   /* Set which render is to be used in the temporary block */
-  rc_options.render_adaptor = gtk_combo_box_get_active(combo);
+  rc_options.render_adaptor = geda_combo_box_get_active(combo);
 
   /* Don't free the font name, the string belongs to the dialog control */
   name_now = geda_combo_box_text_get_active_text (font_combo);
