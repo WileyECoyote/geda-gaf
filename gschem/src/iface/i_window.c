@@ -330,11 +330,15 @@ void i_window_revert_page (GschemToplevel *w_current)
 
     if (geda_open_file(toplevel, page, filename, &err)) {
 
-    /* make sure we maintain the hierarchy info */
+      const char *msg = _("Reverted document");
+
+      /* make sure we maintain the hierarchy info */
       page->page_control    = page_control;
       page->hierarchy_up    = up;
 
       geda_page_set_changed (page, FALSE);
+
+      geda_log ("%s <%s>", msg, filename);
 
       GEDA_FREE (filename);
     }
