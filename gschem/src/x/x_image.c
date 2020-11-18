@@ -895,7 +895,7 @@ void x_image_setup (GschemToplevel *w_current, IMAGE_TYPES default_type)
     w_current->toplevel->image_color   = GET_SWITCH_STATE(EnableColorSwitch);
     w_current->toplevel->invert_images = GET_SWITCH_STATE(InvertImageSwitch);
 
-    /* these are restored between sessions */
+    /* These are restored between sessions */
     w_current->image_width  = width;
     w_current->image_height = height;
 
@@ -922,7 +922,7 @@ void x_image_setup (GschemToplevel *w_current, IMAGE_TYPES default_type)
     file_path = geda_get_dirname(filename);
     gschem_toplevel_set_last_image_path(w_current, file_path);
 
-    /* file_path is not free here, pointer stored in toplevel */
+    /* file_path is not freed here, pointer stored in toplevel */
     GEDA_FREE(image_type);
     GEDA_FREE(filename);
   }
