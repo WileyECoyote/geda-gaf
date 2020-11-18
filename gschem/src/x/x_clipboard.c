@@ -337,7 +337,7 @@ GList *x_clipboard_get (GschemToplevel *w_current)
     char *bold_msg;
     char *err_msg;
 
-    u_log_message("%s. %s\n", inv_clip, err->message);
+     geda_log("%s. %s\n", inv_clip, err->message);
 
     bold_msg = geda_sprintf ("<b>%s.</b>", inv_clip);
     err_msg  = geda_sprintf ("%s: %s.", err_ins, err->message);
