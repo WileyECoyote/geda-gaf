@@ -130,7 +130,7 @@ void o_slot_end(GschemToplevel *w_current, GedaObject *object, const char *strin
 #endif
 
   if (new_slot_number > numslots || new_slot_number <=0 ) {
-    u_log_message (_("New slot number [%d], is out of range\n"), new_slot_number);
+     geda_log (_("New slot number [%d], is out of range\n"), new_slot_number);
     GEDA_FREE (value);
     return;
   }

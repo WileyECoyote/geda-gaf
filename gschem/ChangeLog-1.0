@@ -3,6 +3,7 @@
     * src/*/*.c: Replace u_log_message macro with geda_log:
 
         * src/object/o_net.c
+        * src/object/o_slot.c
 
 2020-11-17 Wiley E. Hill <wileyhill@gmail.com>
 
