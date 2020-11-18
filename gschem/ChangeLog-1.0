@@ -5,6 +5,7 @@
         * src/object/o_net.c
         * src/object/o_slot.c
         * src/x/x_clipboard.c
+        * src/x/x_console.c
 
     * src/iface/i_command.c: Revise cmd_do_page_revert_all; add subfunction
       revert_command_finalizer to log the event.

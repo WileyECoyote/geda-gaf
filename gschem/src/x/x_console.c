@@ -98,7 +98,7 @@ void q_log_message(const char *format, ...)
     va_start (args, format);
       vsnprintf (buffer, MESSAGE_BUFFER_SIZE, format, args);
     va_end (args);
-    u_log_message("%s", buffer);
+     geda_log("%s", buffer);
     if (buffer) free(buffer);
   }
 }
@@ -114,7 +114,7 @@ void v_log_message(const char *format, ...)
     va_start (args, format);
       vsnprintf (buffer, MESSAGE_BUFFER_SIZE, format, args);
     va_end (args);
-    u_log_message("gschem: %s", buffer);
+     geda_log("gschem: %s", buffer);
     if (buffer) free(buffer);
   }
 }
