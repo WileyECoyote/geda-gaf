@@ -3035,6 +3035,16 @@ COMMAND (do_page_revert_all)
   bool          revert;
   bool          unsaved = FALSE;
 
+  void revert_command_finalizer (void *data) {
+
+    const char *msg = _("Reverted document");
+
+    geda_log ("%s <%s>", msg, (char*)data);
+
+    /* free the filename */
+    g_free (data);
+  }
+
   void revert_command_idle_notify (void *data) {
 
     IdleTaskData *packet = data;
@@ -3058,7 +3068,7 @@ COMMAND (do_page_revert_all)
     }
 
     /* free the list of filenames */
-    g_slist_foreach (files, (GFunc)g_free, NULL);
+    g_slist_foreach (files, (GFunc)revert_command_finalizer, NULL);
 
     /* free the list that held pointers to filenames */
     g_slist_free (files);

@@ -5,6 +5,9 @@
         * src/object/o_net.c
         * src/object/o_slot.c
 
+    * src/iface/i_command.c: Revise cmd_do_page_revert_all; add subfunction
+      revert_command_finalizer to log the event.
+
 2020-11-17 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/*/*.c: Replace u_log_message macro with geda_log:
