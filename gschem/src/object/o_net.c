@@ -74,7 +74,7 @@ static void o_net_continue(GschemToplevel *w_current, int w_x, int w_y)
 
   if (w_current->first_wx != snap_grid (w_current, w_current->first_wx) ||
       w_current->first_wy != snap_grid (w_current, w_current->first_wy))
-      u_log_message(_("Warning: Starting net off grid coordinate\n"));
+       geda_log(_("Warning: Starting net off grid coordinate\n"));
 
   if (w_current->net_direction_mode) {
     o_net_guess_direction(w_current, w_current->first_wx, w_current->first_wy);
@@ -497,7 +497,7 @@ static void o_net_end(GschemToplevel *w_current, int w_x, int w_y)
 
   if (w_current->third_wx != snap_grid (w_current, w_current->third_wx) ||
       w_current->third_wy != snap_grid (w_current, w_current->third_wy))
-      u_log_message(_("Warning: Ending net off grid coordinate\n"));
+       geda_log(_("Warning: Ending net off grid coordinate\n"));
 
   if (!primary_zero_length ) {
 
@@ -1108,7 +1108,7 @@ int o_net_add_busrippers(GschemToplevel *w_current,
           geda_struct_page_append_object (toplevel->page_current, new_obj);
         }
         else {
-          u_log_message("%s \"%s\"\n",
+           geda_log("%s \"%s\"\n",
                       _("Bus ripper symbol was not found in any component library"),
                          name);
         }
