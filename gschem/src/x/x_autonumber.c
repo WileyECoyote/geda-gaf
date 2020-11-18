@@ -1645,7 +1645,7 @@ static void switch_responder(GtkWidget *widget, ControlID *Control)
       break;
 
     default:
-      u_log_message("%s: UNKNOWN SWITCH ID: %d\n", __func__, WhichOne);
+      geda_log ("%s: UNKNOWN SWITCH ID: %d\n", __func__, WhichOne);
   }
 
   return;
