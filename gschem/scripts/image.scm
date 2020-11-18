@@ -18,7 +18,7 @@
 ;(image-color "disabled")
 
 ;(invert-images "enabled")
-;(invert-images "disabled")
+(invert-images "disabled")
 
 (anti-aliasing "subpixel")
 
