@@ -498,7 +498,7 @@ void x_console_eval_command (GedaEntry *entry, int arg1, void * user_data)
     }
     else {
       if (strlen(command)) {
-        u_log_message("Unknown command: \"%s\"\n", command);
+         geda_log("Unknown command: \"%s\"\n", command);
       }
     }
     GEDA_FREE (command);
