@@ -279,6 +279,10 @@ void x_console_open (GschemToplevel *w_current)
   }
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ */
 void x_console_update_decorated (GschemToplevel *w_current)
 {
   if (IS_CONSOLE (console_dialog)) {
@@ -834,6 +838,10 @@ GedaType console_get_type ()
   return console_type;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ */
 bool is_a_console (Console *console)
 {
   if (G_IS_OBJECT(console)) {
