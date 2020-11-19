@@ -767,7 +767,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
         fprintf(stderr, "%s <%d>: %s\n", err_msg, i, bad_str);
       }
       else {
-        u_log_message("%s <%d>: %s\n", err_msg, i, bad_str);
+         geda_log("%s <%d>: %s\n", err_msg, i, bad_str);
       }
       menus_broken = TRUE;
       menu_item    = NULL;
@@ -1721,7 +1721,7 @@ void x_menu_sensitivity (GschemToplevel *w_current, const char *buf, int flag)
     const char *log_msg = _("Tried to set the sensitivity on non-existent menu item");
 
     if (verbose_mode) {
-      u_log_message("%s '%s'\n", log_msg, buf);
+       geda_log("%s '%s'\n", log_msg, buf);
     }
     else {
       if (sensitivity_errors < SENSITIVITY_ERROR_LIMIT) {
