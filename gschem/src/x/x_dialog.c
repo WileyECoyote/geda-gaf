@@ -2750,7 +2750,7 @@ void x_dialog_hide_text_response(GtkWidget *Dialog, int response,
  *
  * \param [in] w_current Pointer to a GschemToplevel object
  */
-void x_dialog_hide_text(GschemToplevel * w_current)
+void x_dialog_hide_text(GschemToplevel *w_current)
 {
   GtkWidget *ThisDialog = w_current->htwindow;
   GtkWidget *textentry;
@@ -2867,7 +2867,7 @@ void x_dialog_show_text_response(GtkWidget *Dialog, int response,
  *
  * \param [in] w_current Pointer to a GschemToplevel object
  */
-void x_dialog_show_text(GschemToplevel * w_current)
+void x_dialog_show_text(GschemToplevel *w_current)
 {
   GtkWidget *ThisDialog = w_current->stwindow;
   GtkWidget *textentry;
