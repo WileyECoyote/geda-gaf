@@ -127,7 +127,7 @@ x_show_uri (const char *uri)
   if (!show_uri__win32 (uri, &error)) {
     if (verbose_mode) {
       const char *log_msg = _("Failed to open");
-      u_log_message("%s <%s>, %s\n", log_msg, uri, error->message);
+       geda_log("%s <%s>, %s\n", log_msg, uri, error->message);
     }
     g_error_free (error);
     error = NULL;
@@ -145,7 +145,7 @@ x_show_uri (const char *uri)
   if (!gtk_show_uri (screen, uri, GDK_CURRENT_TIME, &error)) {
     if (verbose_mode) {
       const char *log_msg = _("Failed to open");
-      u_log_message("Gtk %s <%s>, %s\n", log_msg, uri, error->message);
+       geda_log("Gtk %s <%s>, %s\n", log_msg, uri, error->message);
     }
     g_error_free (error);
     error = NULL;
