@@ -15239,16 +15239,18 @@ label_size_request(GtkSheet *sheet, char *label, GtkRequisition *req)
 
       word[n] = '\0';
 
-        _get_string_extent(sheet, NULL,
-                           gtk_widget_get_style((GtkWidget*)sheet)->font_desc,
-                           word, &text_width, &text_height);
-        req->width = MAX(req->width, text_width);
-        n = 0;
+      _get_string_extent(sheet, NULL,
+                         gtk_widget_get_style((GtkWidget*)sheet)->font_desc,
+                         word, &text_width, &text_height);
+
+      req->width = MAX(req->width, text_width);
+      n = 0;
     }
     else {
 
       word[n++] = *words;
     }
+
     words++;
   }
 
