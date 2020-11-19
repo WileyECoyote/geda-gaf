@@ -2743,11 +2743,12 @@ void x_dialog_hide_text_response(GtkWidget *Dialog, int response,
   }
 }
 
-/*! \brief Creates the hide text dialog
- *  \par Function Description
+/*!
+ * \brief Creates the hide text dialog
+ * \par Function Description
  *  This function creates the hide text dialog.
  *
- *  \param [in] w_current Pointer to a GschemToplevel object
+ * \param [in] w_current Pointer to a GschemToplevel object
  */
 void x_dialog_hide_text(GschemToplevel * w_current)
 {
@@ -2821,8 +2822,9 @@ void x_dialog_patch_text(GschemToplevel *w_current)
 
 /*********** Start of show text dialog box *******/
 
-/*! \brief Response function for the show text dialog
- *  \par Function Description
+/*!
+ * \brief Response function for the show text dialog
+ * \par Function Description
  *  This function takes the users input and searches all strings starting with
  *  the given search text and hides those text objects.
  */
@@ -2858,11 +2860,12 @@ void x_dialog_show_text_response(GtkWidget *Dialog, int response,
   }
 }
 
-/*! \brief Create the show text dialog.
- *  \par Function Description
+/*!
+ * \brief Create the show text dialog.
+ * \par Function Description
  *  This function creates the show text dialog.
  *
- *  \param [in] w_current Pointer to a GschemToplevel object
+ * \param [in] w_current Pointer to a GschemToplevel object
  */
 void x_dialog_show_text(GschemToplevel * w_current)
 {
@@ -2929,8 +2932,9 @@ void x_dialog_show_text(GschemToplevel * w_current)
  *  @{ \memberof Editing-Dialogs
  */
 
-/*! \brief Apply function for the text entry dialog
- *  \par Function Description
+/*!
+ * \brief Apply function for the text entry dialog
+ * \par Function Description
  *  This function applies the text from the text entry dialog.
  */
 void x_dialog_text_input_apply(GtkWidget *Dialog, GschemToplevel *w_current)
@@ -2976,8 +2980,9 @@ void x_dialog_text_input_apply(GtkWidget *Dialog, GschemToplevel *w_current)
   }
 }
 
-/*! \brief Response Function for the Text Entry dialog
- *  \par Function Description
+/*!
+ * \brief Response Function for the Text Entry dialog
+ * \par Function Description
  *  Callback function for the text entry dialog.
  */
 void x_dialog_text_input_response(GtkWidget *Dialog, int response,
@@ -2998,11 +3003,12 @@ void x_dialog_text_input_response(GtkWidget *Dialog, int response,
   }
 }
 
-/*! \brief create or present the text entry dialog
- *  \par Function Description
+/*!
+ * \brief create or present the text entry dialog
+ * \par Function Description
  *  This function creates or raises the modeless text entry dialog
  *
- *  \param [in] w_current Pointer to a GschemToplevel object
+ * \param [in] w_current Pointer to a GschemToplevel object
  */
 void x_dialog_text_input (GschemToplevel *w_current)
 {
@@ -3105,10 +3111,11 @@ void x_dialog_text_input (GschemToplevel *w_current)
  *  @{ \memberof Editing-Dialogs
  */
 
-/*! \brief response function for the translate dialog
- *  \par Function Description
+/*!
+ * \brief response function for the translate dialog
+ * \par Function Description
  *  This function takes the user action and applies it.
- *  \todo improve error detection / use a spin button?
+ * \todo improve error detection / use a spin button?
  */
 void x_dialog_translate_response(GtkWidget      *Dialog,
                                  int             response,
@@ -3219,8 +3226,9 @@ GtkWidget *x_dialog_translate_add_scope (GschemToplevel *w_current,
   return alignment;
 }
 
-/*! \brief Create the translate dialog
- *  \par Function Description
+/*!
+ * \brief Create the translate dialog
+ * \par Function Description
  *  Create the dialog to translate symbols.
  */
 void x_dialog_translate (GschemToplevel *w_current)
@@ -3318,8 +3326,9 @@ void x_dialog_translate (GschemToplevel *w_current)
  *     \brief Functions to create and support the Hotkeys Dialog
 */
 
-/*! \brief Response function for the hotkey dialog
- *  \par Function Description
+/*!
+ * \brief Response function for the hotkey dialog
+ * \par Function Description
  *  This function destroys the hotkey dialog and does some cleanup.
  */
 void x_dialog_hotkeys_response(GtkWidget *Dialog, int response,
@@ -3345,7 +3354,8 @@ void x_dialog_hotkeys_response(GtkWidget *Dialog, int response,
   gtk_widget_destroy(Dialog);
 }
 
-/*! \brief Fix up displaying icons in list of hotkeys.
+/*!
+ * \brief Fix up displaying icons in list of hotkeys.
  * gschem incorporates both GTK's stock and theme icons. Each is identified
  * by a single icon name, which could be either a GTK stock icon or a theme
  * icon.  To determine which icon to show, we first check if there is a
@@ -3402,12 +3412,13 @@ x_dialog_hotkeys_cell_stock_id_notify (GObject    *gobject,
   }
 }
 
-/*! \brief Regenerate attribute list when the visibility
- *         setting  changes and toggle switch image
- *  \par Function Description: This function changes images for
- *       show_inherited switch to the opposite state, i.e. if ON
- *       use OFF image and if OFF use ON image. The function then
- *       calls multiattrib_update to update the attribute list.
+/*!
+ * \brief Regenerate attribute list when the visibility
+ *        setting  changes and toggle switch image
+ * \par Function Description: This function changes images for
+ *      show_inherited switch to the opposite state, i.e. if ON
+ *      use OFF image and if OFF use ON image. The function then
+ *      calls multiattrib_update to update the attribute list.
  */
 static void hotkey_show_binding_toggled (GtkToggleButton *widget,
                                          void            *user_data)
@@ -3435,12 +3446,13 @@ hotkey_callback_close_clicked (GtkButton *CloseButt, void *user_data)
 
 #define Sortable GtkTreeSortable
 
-/*! \brief Creates the hotkeys dialog
- *  \par Function Description
+/*!
+ * \brief Creates the hotkeys dialog
+ * \par Function Description
  *  This function creates the hotkey dialog and displays the list of
  *  hotkeys in a list tree-view.
  *
- *  \param [in] w_current Pointer to a GschemToplevel object
+ * \param [in] w_current Pointer to a GschemToplevel object
  */
 void x_dialog_hotkeys (GschemToplevel *w_current)
 {
