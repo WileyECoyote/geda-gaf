@@ -3115,6 +3115,7 @@ void x_dialog_text_input (GschemToplevel *w_current)
  * \brief response function for the translate dialog
  * \par Function Description
  *  This function takes the user action and applies it.
+ *
  * \todo improve error detection / use a spin button?
  */
 void x_dialog_translate_response(GtkWidget      *Dialog,
@@ -3356,19 +3357,19 @@ void x_dialog_hotkeys_response(GtkWidget *Dialog, int response,
 
 /*!
  * \brief Fix up displaying icons in list of hotkeys.
- * gschem incorporates both GTK's stock and theme icons. Each is identified
- * by a single icon name, which could be either a GTK stock icon or a theme
- * icon.  To determine which icon to show, we first check if there is a
- * matching stock icon, and if one does not exist, we fall back to looking
- * in the theme.
+ *  gschem incorporates both GTK's stock and theme icons. Each is identified
+ *  by a single icon name, which could be either a GTK stock icon or a theme
+ *  icon. To determine which icon to show, we first check if there is a
+ *  matching stock icon, and if one does not exist, we fall back to looking
+ *  in the theme.
  *
- * The GtkCellRendererPixbuf does not provide this capability.  If its
- * "icon-name" property is set, it does not look at stock items, but if
- * its "stock-id" property is set, it ignores the "icon-name" even if
- * no matching stock item exists.
+ *  The GtkCellRendererPixbuf does not provide this capability.  If its
+ *  "icon-name" property is set, it does not look at stock items, but if
+ *  its "stock-id" property is set, it ignores the "icon-name" even if
+ *  no matching stock item exists.
  *
- * This handler hooks into the "notify::stock-id" signal in order to
- * implement the desired fallback behaviour.
+ *  This handler hooks into the "notify::stock-id" signal in order to
+ *  implement the desired fallback behaviour.
  */
 static void
 x_dialog_hotkeys_cell_stock_id_notify (GObject    *gobject,
@@ -3700,14 +3701,15 @@ void x_dialog_hotkeys (GschemToplevel *w_current)
 
 /***************** Start of misc helper dialog boxes **************/
 
-/*! \brief Raise All Dialogs
- *  \par Function Description
+/*!
+ * \brief Raise All Dialogs
+ * \par Function Description
  *  This is a generic function called by x_event_expose if
- * w_current->raise_dialog_boxes is TRUE. This routine is
- * used to request that any open gschem dialog be raised
- * /brought to the foreground. Since the main window is
- * continuously being sent expose events, this could have
- * a dramatic impact on slower machines.
+ *  w_current->raise_dialog_boxes is TRUE. This routine is
+ *  used to request that any open gschem dialog be raised
+ *  brought to the foreground. Since the main window is
+ *  continuously being sent expose events, this could have
+ *  a dramatic impact on slower machines.
  */
 void x_dialog_raise_all(GschemToplevel *w_current)
 {
@@ -3786,8 +3788,9 @@ void x_dialog_raise_all(GschemToplevel *w_current)
  *     \brief Functions to create and support the Symbol Changed Dialog
 */
 
-/*! \brief Populate the the Symbol Change Dialog
- *  \par Function Description
+/*!
+ * \brief Populate the the Symbol Change Dialog
+ * \par Function Description
  *  Called by x_dialog_symbol_changed to add a list of out-dated symbols
  *  to the message area of the Symbol Changed dialog. The function creates
  *  widgets as nessasary to present the listing.
@@ -3909,15 +3912,16 @@ static void xd_add_changed_symbol_list (GschemToplevel   *w_current,
   gtk_widget_show_all (mess_area);
 }
 
-/*! \brief Annoyance Dialog
- *  \par Function Description
+/*!
+ * \brief Annoyance Dialog
+ * \par Function Description
  *  Called when a symbol in a drawing being loaded is an older version
  *  than the same symbol in the library, based on the symversion in the
  *  symbol definition, to creates a message dialog notifying the user of
  *  such. This function only sets up the basic dialog, see the preceding
  *  function xd_add_changed_symbol_list.
  *
- *  \param [in] w_current Pointer to a GschemToplevel object
+ * \param [in] w_current Pointer to a GschemToplevel object
  */
 void x_dialog_symbol_changed(GschemToplevel *w_current)
 {
@@ -3972,16 +3976,18 @@ void x_dialog_symbol_changed(GschemToplevel *w_current)
  *     \brief Creates the Invalid attribute Dialog
 */
 
-/*! \brief Validate the input attribute
- *  \par Function Description
+/*!
+ * \brief Validate the input attribute
+ * \par Function Description
  *  This function validates the attribute and if it is not valid
  *  pops up an error message box. The function is used by both
  *  the single and the multi-attribute editors to validate text
  *  input.
  *
- *  \param parent The parent window which spawned this dialog box.
- *  \param attribute The attribute to be validated.
- *  \returns TRUE if the attribute is valid, FALSE otherwise.
+ * \param parent The parent window which spawned this dialog box.
+ * \param attribute The attribute to be validated.
+ *
+ * \returns TRUE if the attribute is valid, FALSE otherwise.
  */
 int x_dialog_validate_attribute(GtkWindow *parent, char *attribute)
 {
@@ -4022,10 +4028,11 @@ int x_dialog_validate_attribute(GtkWindow *parent, char *attribute)
  *  @{ \memberof Gschem-General-Dialogs
 */
 
-/*! \brief General Purpose Confirmation Dialog
- *  \image html generic_confirmation_dialog.png
- *  \image latex generic_confirmation_dialog.png
- *  \todo: derive this from gschem dialog class
+/*!
+ * \brief General Purpose Confirmation Dialog
+ * \image html generic_confirmation_dialog.png
+ * \image latex generic_confirmation_dialog.png
+ * \todo: derive this from gschem dialog class
  */
 int x_dialog_confirmation (const char *msg, IDE_MESSAGE_TYPE context, bool thread)
 {
@@ -4068,8 +4075,9 @@ int x_dialog_confirmation (const char *msg, IDE_MESSAGE_TYPE context, bool threa
   return response;
 }
 
-/*! \brief General Purpose Confirmation Dialog with Cancel Option
- *  \remarks TODO: derive this from gschem dialog class
+/*!
+ * \brief General Purpose Confirmation Dialog with Cancel Option
+ * \remarks TODO: derive this from gschem dialog class
  */
 int x_dialog_confirm_with_cancel (const char *msg, IDE_MESSAGE_TYPE context, bool thread)
 {
@@ -4122,15 +4130,15 @@ int x_dialog_confirm_with_cancel (const char *msg, IDE_MESSAGE_TYPE context, boo
  *  @{ \memberof Gschem-General-Dialogs
 */
 
-/*! \brief  Multi-Purpose File Dialog
- *  \par Function Description
+/*!
+ * \brief  Multi-Purpose File Dialog
+ * \par Function Description
  *  The function creates a generic file open or save files.
  *
- *  \note \a w_current can be NULL, theGschemToplevel is used
- *        to store and retrive the last path member.
+ * \note \a w_current can be NULL, theGschemToplevel is used
+ *       to store and retrive the last path member.
  *
- *  \warning
- *   Caller must GEDA_FREE returned character string.
+ * \warning Caller must GEDA_FREE returned character string.
  */
 char *x_dialog_select_file (GschemToplevel *w_current,
                             const char     *msg,

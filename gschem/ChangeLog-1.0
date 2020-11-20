@@ -3,7 +3,9 @@
     * src/object/o_net.c: Add function o_net_add_busrippers documentation.
 
     * src/x/x_console.c: Make x_console_eval_command static, add function
-    * documentation for is_a_console.
+      documentation for is_a_console.
+
+    * src/x/x_dialog.c: Update documentation format.
 
 2020-11-19 Wiley E. Hill <wileyhill@gmail.com>
 
