@@ -1448,7 +1448,9 @@ o_grips_end_net(GschemToplevel *w_current, GedaObject *o_current)
 
   /* add bus rippers if necessary */
   connected_objects = geda_struct_conn_return_others (NULL, o_current);
+
   o_net_add_busrippers (w_current, o_current, connected_objects);
+
   g_list_free (connected_objects);
 }
 

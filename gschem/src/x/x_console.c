@@ -849,4 +849,5 @@ bool is_a_console (Console *console)
   }
   return FALSE;
 }
+
 /** @} end group Console-Dialog-Class */

@@ -1482,7 +1482,6 @@ static void restore_dialog_values(AUTONUMBER_TEXT *autotext)
   SetSwitch (DoRemoveNumber, autotext->removenum);
 
   SetSwitch (DoSlotting, autotext->slotting);
-
 }
 
 /*!
