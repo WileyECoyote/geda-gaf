@@ -356,7 +356,10 @@ EDA_SCM_DEFINE (object_bounds, "%object-bounds", 0, 0, 1,
 EDA_SCM_DEFINE (object_stroke, "%object-stroke", 1, 0, 0,
                (SCM obj_s), "Get the stroke properties of an object.")
 {
-  SCM_ASSERT ((edascm_is_object_type (obj_s, OBJ_LINE)   ||
+  SCM_ASSERT ((edascm_is_object_type (obj_s, OBJ_NET)    ||
+               edascm_is_object_type (obj_s, OBJ_BUS)    ||
+               edascm_is_object_type (obj_s, OBJ_PIN)    ||
+               edascm_is_object_type (obj_s, OBJ_LINE)   ||
                edascm_is_object_type (obj_s, OBJ_BOX)    ||
                edascm_is_object_type (obj_s, OBJ_CIRCLE) ||
                edascm_is_object_type (obj_s, OBJ_ARC)    ||

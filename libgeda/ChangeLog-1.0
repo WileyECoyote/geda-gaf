@@ -1,3 +1,10 @@
+2020-11-20 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/scheme/scheme_object.c: Revise object_stroke to accept types
+      Nets, Buses and Pins because these are derived from lines and
+      although they have line options each will return solid continuous
+      lines without spaces.
+
 2020-10-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/test_arc_object.c: Output conditions when failures occur.
