@@ -838,10 +838,7 @@ GedaType console_get_type ()
   return console_type;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- */
+/*! \brief Returns True if console is a GschemConsole */
 bool is_a_console (Console *console)
 {
   if (G_IS_OBJECT(console)) {
