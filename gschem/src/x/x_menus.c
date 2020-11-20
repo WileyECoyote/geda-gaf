@@ -371,9 +371,11 @@ GtkWidget *x_menu_get_main_menu(GschemToplevel *w_current)
   return MENU_BAR;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Retrieve List of User Interfaces
+ * \par Function Description
+ *  Returns the list of user interfaces which is statically
+ *  maintained within this module.
  */
 GSList *x_menu_get_ui_list (void)
 {

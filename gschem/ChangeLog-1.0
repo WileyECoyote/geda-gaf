@@ -7,6 +7,8 @@
 
     * src/x/x_dialog.c: Update documentation format.
 
+    * src/x/x_menus.c: Add function documentation for x_menu_get_ui_list.
+
 2020-11-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_console.c: Add todo documentations templates.
