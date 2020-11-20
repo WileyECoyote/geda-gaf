@@ -1,3 +1,7 @@
+2020-11-20 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_net.c: Add function o_net_add_busrippers documentation.
+
 2020-11-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_console.c: Add todo documentations templates.

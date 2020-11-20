@@ -755,10 +755,11 @@ void o_net_invalidate_rubber (GschemToplevel *w_current)
 }
 
 
-/*! \todo Finish function documentation!!!
- *  \brief Add Buss Ripper
- *  \par Function Description
- *  \returns TRUE if something was added, otherwise FALSE
+/*!
+ * \brief Add Bus Rippers to a Net Object
+ * \par Function Description
+ *
+ * \returns TRUE if something was added, otherwise FALSE
  */
 int o_net_add_busrippers(GschemToplevel *w_current,
                          GedaObject     *net_obj,
