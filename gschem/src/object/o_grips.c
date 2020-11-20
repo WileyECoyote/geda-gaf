@@ -1432,9 +1432,8 @@ o_grips_end_net(GschemToplevel *w_current, GedaObject *o_current)
 {
   GList *connected_objects;
 
-  /* don't allow zero length net
-   * this ends the net drawing behavior
-   * we want this? hack */
+  /* Don't allow zero length net, this ends the net
+   * drawing behavior we want this? hack */
   if ((w_current->first_wx == w_current->second_wx) &&
       (w_current->first_wy == w_current->second_wy)) {
     o_invalidate_object (w_current, o_current);
