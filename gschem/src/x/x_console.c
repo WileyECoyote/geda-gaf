@@ -452,7 +452,7 @@ void x_log_message (const char *log_domain, GLogLevelFlags log_level, const char
  *  derived from #GschemDialogClass.
  */
 
-void x_console_eval_command (GedaEntry *entry, int arg1, void * user_data)
+static void x_console_eval_command (GedaEntry *entry, int arg1, void * user_data)
 {
   GschemToplevel *w_current = GSCHEM_DIALOG (console_dialog)->w_current;
 
