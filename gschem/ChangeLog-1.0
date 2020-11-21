@@ -2,6 +2,8 @@
 
     * po/af.po: Update Afrikaans translations.
 
+    * po/bg.po: Update Bulgarian translations.
+
 2020-11-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_net.c: Add function o_net_add_busrippers documentation.

@@ -1850,10 +1850,10 @@ msgstr "Затваряне без запаметяване"
 msgid "Cancel closing and return to editor"
 msgstr ""
 
+# Save changes; Zapazite promenite
 #: gschem/src/x/x_confirm_close.c:581
-#, fuzzy
 msgid "Save changes"
-msgstr "Съхрани Страницата"
+msgstr "Запазите промените"
 
 # unsaved page
 #: gschem/src/x/x_confirm_close.c:631
@@ -4467,15 +4467,13 @@ msgstr "Направи отново"
 
 # Deselect
 #: gschem/src/x/x_toolbars.c:167
-#, fuzzy
 msgid "Unselect"
 msgstr "Отмяна на избора"
 
-# Invert Image
+# Invert; Obrŭshtane
 #: gschem/src/x/x_toolbars.c:172
-#, fuzzy
 msgid "Invert"
-msgstr "Обърнете изображението"
+msgstr "Обръщане"
 
 #: gschem/src/x/x_toolbars.c:173
 msgid "Library"
@@ -4485,16 +4483,15 @@ msgstr ""
 msgid "Nets"
 msgstr ""
 
-# Attributes
+# Attributes; Atribut
 #: gschem/src/x/x_toolbars.c:176
-#, fuzzy
 msgid "Attrib"
-msgstr "Aтрибутите:"
+msgstr "Атрибут"
 
+# Line; Liniya
 #: gschem/src/x/x_toolbars.c:180 gschem/src/x/x_toolbars.c:240
-#, fuzzy
 msgid "Line"
-msgstr "линия"
+msgstr "Линия"
 
 # Circle
 #: gschem/src/x/x_toolbars.c:182
@@ -4883,11 +4880,10 @@ msgstr "Отхвърляне на промените и презареди вс�
 msgid "_Print..."
 msgstr "Печат..."
 
-# Open the Text Editor dialog
+# Open the Print Dialog; Otvorete dialogoviya prozorets za pechat
 #: gschem/etc/system-gschemrc.scm:2105
-#, fuzzy
 msgid "Open the Print Dialog"
-msgstr "Отворете текстов редактор диалоговия"
+msgstr "Отворете диалоговия прозорец за печат"
 
 # Export options
 #: gschem/etc/system-gschemrc.scm:2106
@@ -4953,21 +4949,20 @@ msgstr "откажат"
 msgid "_Undo"
 msgstr "обратен"
 
+# Undo the last operation; Otmyana na poslednata operatsiya
 #: gschem/etc/system-gschemrc.scm:2124
-#, fuzzy
 msgid "Undo the last operation"
-msgstr "отмените последното действие"
+msgstr "Отмяна на последната операция"
 
 # Redo
 #: gschem/etc/system-gschemrc.scm:2125
 msgid "_Redo"
 msgstr "Направи отново"
 
-# redo the last un-done action
+# Redo the last undo; Vŭzstanovete poslednoto otmenenie
 #: gschem/etc/system-gschemrc.scm:2125
-#, fuzzy
 msgid "Redo the last undo"
-msgstr "Възстановяване на последната ООН направено действие"
+msgstr "Възстановете последното отменение"
 
 # Cut to clipboard
 #: gschem/etc/system-gschemrc.scm:2128
@@ -5530,11 +5525,10 @@ msgstr ""
 msgid "Pictu_re..."
 msgstr ""
 
-# Invert Image
+# Insert an image; Postavete izobrazhenie
 #: gschem/etc/system-gschemrc.scm:2291
-#, fuzzy
 msgid "Insert an image"
-msgstr "Обърнете изображението"
+msgstr "Поставете изображение"
 
 #: gschem/etc/system-gschemrc.scm:2292
 msgid "_Pin"
@@ -6217,10 +6211,10 @@ msgstr ""
 msgid "Add Arc"
 msgstr ""
 
+# Add Path; Dobavyane na pŭt
 #: gschem/scheme/gschem/builtins.scm:371
-#, fuzzy
 msgid "Add Path"
-msgstr "Добави мрежи"
+msgstr "Добавяне на път"
 
 #: gschem/scheme/gschem/builtins.scm:374
 msgid "Add Picture"
