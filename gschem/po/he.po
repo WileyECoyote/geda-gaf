@@ -832,7 +832,7 @@ msgstr ""
 msgid "Snap OFF (CAUTION!)"
 msgstr ""
 
-# auto-align
+# Snap ON
 #: gschem/src/iface/i_command.c:4714
 #, fuzzy
 msgid "Snap ON"
@@ -4592,15 +4592,13 @@ msgid "Multi"
 msgstr ""
 
 #: gschem/src/x/x_toolbars.c:236
-#, fuzzy
 msgid "Color"
-msgstr "צבע:"
+msgstr "צֶבַע"
 
-# Slot
+# Slots
 #: gschem/src/x/x_toolbars.c:238
-#, fuzzy
 msgid "Slots"
-msgstr "חָרִיץ..."
+msgstr "חריצים"
 
 #: gschem/src/x/x_toolbars.c:239
 msgid "Pins"
@@ -4626,11 +4624,10 @@ msgstr ""
 msgid "Hidden"
 msgstr ""
 
-# Show/Hide Inherited
+# Inherited
 #: gschem/src/x/x_toolbars.c:252
-#, fuzzy
 msgid "Inherited"
-msgstr "הצג/הסתר בירושה"
+msgstr "ירש"
 
 #: gschem/src/x/x_toolbars.c:253
 msgid "Find"
@@ -4644,11 +4641,10 @@ msgstr ""
 msgid "Show"
 msgstr ""
 
-# Reload automatically
+# Automatically Number
 #: gschem/src/x/x_toolbars.c:257
-#, fuzzy
 msgid "Auto #"
-msgstr "טען מחדש באופן אוטומטי"
+msgstr "מספר אוטומטי"
 
 #: gschem/src/x/x_toolbars.c:259
 msgid "Dots"
@@ -4660,9 +4656,8 @@ msgstr ""
 
 # auto-align
 #: gschem/src/x/x_toolbars.c:267
-#, fuzzy
 msgid "Snap On"
-msgstr "ישר באופן אוטומטי"
+msgstr "יישור אוטומטי"
 
 #: gschem/src/x/x_toolbars.c:269
 msgid "Config"
@@ -4884,11 +4879,10 @@ msgstr "בטל שינויים וטען מחדש כל המסמכים הפתוחי
 msgid "_Print..."
 msgstr "הדפס..."
 
-# Open the Line Editor Dialog
+# Open the Print Dialog
 #: gschem/etc/system-gschemrc.scm:2105
-#, fuzzy
 msgid "Open the Print Dialog"
-msgstr "פתח את תיבת הדו-שיח קו עורך"
+msgstr "פתח את שיח ההדפסה"
 
 # Export options
 #: gschem/etc/system-gschemrc.scm:2106
@@ -4955,9 +4949,8 @@ msgstr "לְהַפְסִיק"
 msgid "_Undo"
 msgstr "לבטל"
 
-# Undo the last action
+# Undo the last operation
 #: gschem/etc/system-gschemrc.scm:2124
-#, fuzzy
 msgid "Undo the last operation"
 msgstr "בטל את הפעולה האחרונה"
 
@@ -4966,11 +4959,10 @@ msgstr "בטל את הפעולה האחרונה"
 msgid "_Redo"
 msgstr "לַעֲשׂוֹת שׁוּב"
 
-# redo the last un-done action
+# Redo the last undo"
 #: gschem/etc/system-gschemrc.scm:2125
-#, fuzzy
 msgid "Redo the last undo"
-msgstr "לעשות שוב את לבטל פעולה זו הפעולה האחרונה"
+msgstr "בצע את הביטול האחרון"
 
 # Cut clipboard => Send Clipboard
 #: gschem/etc/system-gschemrc.scm:2128
@@ -5430,11 +5422,10 @@ msgstr ""
 msgid "_Last"
 msgstr ""
 
-# Undo the last path segment => Undo the last polygon segment
+# Go to the last page
 #: gschem/etc/system-gschemrc.scm:2259
-#, fuzzy
 msgid "Go to the last page"
-msgstr "בטל את קטע הפוליגון האחרון"
+msgstr "עבור לדף האחרון"
 
 #: gschem/etc/system-gschemrc.scm:2260
 msgid "Ne_w"
