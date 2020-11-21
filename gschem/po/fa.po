@@ -885,11 +885,10 @@ msgstr ""
 msgid "Snap OFF (CAUTION!)"
 msgstr ""
 
-# Snap On-Off
+# Snap ON
 #: gschem/src/iface/i_command.c:4714
-#, fuzzy
 msgid "Snap ON"
-msgstr "ضربه محکم و ناگهانی روشن"
+msgstr "ضربه محکم و ناگهانی در"
 
 #: gschem/src/iface/i_command.c:4719
 msgid "Snap back to the grid (CAUTION!)"
@@ -4614,10 +4613,10 @@ msgstr ""
 msgid "Color"
 msgstr "رنگ"
 
+# Slots => Elements
 #: gschem/src/x/x_toolbars.c:238
-#, fuzzy
 msgid "Slots"
-msgstr "Slot..."
+msgstr "عناصر"
 
 #: gschem/src/x/x_toolbars.c:239
 msgid "Pins"
@@ -4889,11 +4888,10 @@ msgstr ""
 msgid "_Print..."
 msgstr ""
 
-# Characteristics editor box opens
+# Open the Print Dialog
 #: gschem/etc/system-gschemrc.scm:2105
-#, fuzzy
 msgid "Open the Print Dialog"
-msgstr "کادر ویرایشگر صفات باز شود"
+msgstr "گفتگوی چاپ را باز کنید"
 
 #: gschem/etc/system-gschemrc.scm:2106
 msgid "Export options"
@@ -4947,20 +4945,19 @@ msgstr "ترک"
 msgid "_Undo"
 msgstr ""
 
+# Undo the last operation
 #: gschem/etc/system-gschemrc.scm:2124
-#, fuzzy
 msgid "Undo the last operation"
-msgstr "Update Component"
+msgstr "آخرین عملیات را واگرد کنید"
 
 #: gschem/etc/system-gschemrc.scm:2125
 msgid "_Redo"
 msgstr ""
 
-# Redraw the current window
+# Redo the last undo
 #: gschem/etc/system-gschemrc.scm:2125
-#, fuzzy
 msgid "Redo the last undo"
-msgstr "پنجره فعلی را بازنویسی کنید"
+msgstr "آخرین لغو را دوباره انجام دهید"
 
 #: gschem/etc/system-gschemrc.scm:2128
 msgid "Cu_t clipboard"
@@ -5479,38 +5476,36 @@ msgstr ""
 msgid "A_rc"
 msgstr ""
 
-# Create a new file
+# Create an arc
 #: gschem/etc/system-gschemrc.scm:2286
-#, fuzzy
 msgid "Create an arc"
-msgstr "یک پرونده جدید ایجاد کنید"
+msgstr "قوس ایجاد کنید"
 
 #: gschem/etc/system-gschemrc.scm:2287
 msgid "_Box"
 msgstr ""
 
+# Add a box
 #: gschem/etc/system-gschemrc.scm:2287
-#, fuzzy
 msgid "Add a box"
-msgstr "Edit Text..."
+msgstr "یک جعبه اضافه کنید"
 
 #: gschem/etc/system-gschemrc.scm:2288
 msgid "C_ircle"
 msgstr ""
 
+# Add a circle
 #: gschem/etc/system-gschemrc.scm:2288
-#, fuzzy
 msgid "Add a circle"
-msgstr "Circle"
+msgstr "یک حلقه اضافه کنید"
 
 #: gschem/etc/system-gschemrc.scm:2289
 msgid "_Line"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2289
-#, fuzzy
 msgid "Add a line"
-msgstr "Line"
+msgstr "یک خط اضافه کنید"
 
 #: gschem/etc/system-gschemrc.scm:2290
 msgid "Pat_h"
