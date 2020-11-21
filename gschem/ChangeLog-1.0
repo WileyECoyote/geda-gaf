@@ -14,6 +14,8 @@
 
     * po/pl.po: Update Polish translations.
 
+    * po/zh_CN.po: Update Chinese simplified translations.
+
 2020-11-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_net.c: Add function o_net_add_busrippers documentation.
