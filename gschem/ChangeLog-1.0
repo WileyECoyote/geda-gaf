@@ -16,6 +16,8 @@
 
     * po/zh_CN.po: Update Chinese simplified translations.
 
+    * po/zh_TW.po: Update Chinese traditional translations.
+
 2020-11-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_net.c: Add function o_net_add_busrippers documentation.
@@ -72,7 +74,7 @@
 
 2020-11-14 Wiley E. Hill <wileyhill@gmail.com>
 
-    * po/af.po: Update Arabic translations.
+    * po/ar.po: Update Arabic translations.
     * po/bs.po: Update Bosnian translations.
     * po/de.po: Update German translations.
     * po/el.po: Update Greek translations.
@@ -84,7 +86,7 @@
 
 2020-11-07 Wiley E. Hill <wileyhill@gmail.com>
 
-    * po/af.po: Update Arabic translations.
+    * po/ar.po: Update Arabic translations.
     * po/bs.po: Update Bosnian translations.
     * po/de.po: Update German translations.
     * po/el.po: Update Greek translations.
@@ -96,7 +98,7 @@
 
 2020-10-31 Wiley E. Hill <wileyhill@gmail.com>
 
-    * po/af.po: Update Arabic translations.
+    * po/ar.po: Update Arabic translations.
     * po/bs.po: Update Bosnian translations.
     * po/de.po: Update German translations.
     * po/el.po: Update Greek translations.
@@ -127,7 +129,7 @@
 
 2020-10-17 Wiley E. Hill <wileyhill@gmail.com>
 
-    * po/af.po: Update Arabic translations.
+    * po/ar.po: Update Arabic translations.
     * po/bg.po: Update Bulgarian translations.
     * po/de.po: Update German translations.
     * po/el.po: Update Greek translations
@@ -192,7 +194,7 @@
 
 2020-10-10 Wiley E. Hill <wileyhill@gmail.com>
 
-    * po/af.po: Update Arabic translations.
+    * po/ar.po: Update Arabic translations.
     * po/bg.po: Update Bulgarian translations.
     * po/bs.po: Update Bosnian translations.
     * po/es.po: Update Spanish translations.

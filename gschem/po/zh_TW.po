@@ -778,11 +778,10 @@ msgstr ""
 msgid "Snap OFF (CAUTION!)"
 msgstr ""
 
-# Capture
+# Snap ON; Kòu shàng
 #: gschem/src/iface/i_command.c:4714
-#, fuzzy
 msgid "Snap ON"
-msgstr "捕獲"
+msgstr "扣上"
 
 #: gschem/src/iface/i_command.c:4719
 msgid "Snap back to the grid (CAUTION!)"
@@ -796,11 +795,10 @@ msgstr ""
 msgid "Rubber band mode is ON"
 msgstr ""
 
-# Magnetic Nets
+# Magnetic Nets; Cí wǎng móshì yǐ kāiqǐ
 #: gschem/src/iface/i_command.c:4761
-#, fuzzy
 msgid "Magnetic net mode is ON"
-msgstr "磁網"
+msgstr "磁網模式已開啟"
 
 #: gschem/src/iface/i_command.c:4764
 msgid "Magnetic net mode is OFF"
@@ -1759,10 +1757,10 @@ msgstr "關閉而不保存"
 msgid "Cancel closing and return to editor"
 msgstr ""
 
+# Save changes; Bǎocún gēnggǎi
 #: gschem/src/x/x_confirm_close.c:581
-#, fuzzy
 msgid "Save changes"
-msgstr "儲存檔案"
+msgstr "保存更改"
 
 # unsaved page
 #: gschem/src/x/x_confirm_close.c:631
@@ -1869,12 +1867,11 @@ msgid "Guile"
 msgstr "Guile"
 
 #: gschem/src/x/x_dialog.c:526
-#, fuzzy
 msgid ""
 "Copyright © 1998-2010 Ales Hvezda <ahvezda@geda.seul.org>\n"
 "Copyright © 1998-2017 gEDA Contributors (see ChangeLog for details)"
 msgstr ""
-"版權 © 1998-2017 Ales Hvezda <ahvezda@geda.seul.org>\n"
+"版權 © 1998-2010 Ales Hvezda <ahvezda@geda.seul.org>\n"
 "版權 © 1998-2017 gEDA 貢獻者 (有關詳細信息，請參閱ChangeLog)"
 
 #: gschem/src/x/x_dialog.c:534 gschem/scheme/gschem/builtins.scm:565
@@ -4692,11 +4689,10 @@ msgstr ""
 msgid "Show"
 msgstr ""
 
-# Auto Load => Automatically Load
+# Auto # => Automatically Number; Zìdòng biānhào
 #: gschem/src/x/x_toolbars.c:257
-#, fuzzy
 msgid "Auto #"
-msgstr "自動加載"
+msgstr "自動編號"
 
 #: gschem/src/x/x_toolbars.c:259
 msgid "Dots"
@@ -4706,11 +4702,10 @@ msgstr ""
 msgid "UP"
 msgstr ""
 
-# Capture
+# Snap On; Kòu shàng
 #: gschem/src/x/x_toolbars.c:267
-#, fuzzy
 msgid "Snap On"
-msgstr "捕獲"
+msgstr "扣上"
 
 #: gschem/src/x/x_toolbars.c:269
 msgid "Config"
@@ -4884,11 +4879,10 @@ msgstr "用 gschem 建立並編輯電子電路圖表及符號"
 msgid "_New"
 msgstr "新"
 
-# Create a new file
+# Create a new file; Chuàngjiàn yīgè xīn wénjiàn
 #: gschem/etc/system-gschemrc.scm:2091
-#, fuzzy
 msgid "Create a new file"
-msgstr "創建新文件"
+msgstr "創建一個新文件"
 
 # Open a page
 #: gschem/etc/system-gschemrc.scm:2092 gschem/etc/system-gschemrc.scm:2301
@@ -5017,9 +5011,8 @@ msgstr "結束程式"
 msgid "_Undo"
 msgstr "還原"
 
-# Undo the last action
+# Undo the last operation; Chèxiāo shàng yīgè cāozuò
 #: gschem/etc/system-gschemrc.scm:2124
-#, fuzzy
 msgid "Undo the last operation"
 msgstr "撤消上一個操作"
 
@@ -5027,11 +5020,10 @@ msgstr "撤消上一個操作"
 msgid "_Redo"
 msgstr "取消還原"
 
-# redo the last un-done action
+# Redo the last undo; Chóng zuò zuìhòu yīcì chèxiāo
 #: gschem/etc/system-gschemrc.scm:2125
-#, fuzzy
 msgid "Redo the last undo"
-msgstr "重做最後一個不完整的動作"
+msgstr "重做最後一次撤消"
 
 # Cut clipboard
 #: gschem/etc/system-gschemrc.scm:2128
