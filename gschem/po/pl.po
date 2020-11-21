@@ -845,14 +845,12 @@ msgid "Drag-Can-Move is now"
 msgstr "Drag-Can-Move jest teraz"
 
 #: gschem/src/iface/i_command.c:4800
-#, fuzzy
 msgid "Action feedback mode set to OUTLINE"
-msgstr "Tryb wyświetlania przemieszczanych elementów\n"
+msgstr "Tryb wyświetlania przemieszczanych elementów"
 
 #: gschem/src/iface/i_command.c:4804
-#, fuzzy
 msgid "Action feedback mode set to BOUNDINGBOX"
-msgstr "Tryb wyświetlania obwiedni przemieszczanych elementów\n"
+msgstr "Tryb wyświetlania obwiedni przemieszczanych elementów"
 
 #: gschem/src/iface/i_command.c:4832
 msgid "Auto-Pan is now"
@@ -1810,10 +1808,10 @@ msgstr "Zamknij bieżącą stronę bez zapisywania"
 msgid "Cancel closing and return to editor"
 msgstr ""
 
+# Save changes
 #: gschem/src/x/x_confirm_close.c:581
-#, fuzzy
 msgid "Save changes"
-msgstr "Zapisz arkusz"
+msgstr "Zapisz zmiany"
 
 # unsaved page
 #: gschem/src/x/x_confirm_close.c:631
@@ -1920,12 +1918,11 @@ msgid "Guile"
 msgstr "Guile"
 
 #: gschem/src/x/x_dialog.c:526
-#, fuzzy
 msgid ""
 "Copyright © 1998-2010 Ales Hvezda <ahvezda@geda.seul.org>\n"
 "Copyright © 1998-2017 gEDA Contributors (see ChangeLog for details)"
 msgstr ""
-"Copyright © 1998-2017 Ales Hvezda <ahvezda@geda.seul.org>\n"
+"Copyright © 1998-2010 Ales Hvezda <ahvezda@geda.seul.org>\n"
 "Copyright © 1998-2017 Kontrybutorzy gEDA (szczegóły w pliku ChangeLog)"
 
 #: gschem/src/x/x_dialog.c:534 gschem/scheme/gschem/builtins.scm:565
@@ -5034,10 +5031,10 @@ msgstr ""
 msgid "_Print..."
 msgstr "_Drukuj..."
 
+# Open the Print Dialog
 #: gschem/etc/system-gschemrc.scm:2105
-#, fuzzy
 msgid "Open the Print Dialog"
-msgstr "Otwórz Element dialogowym Edytor"
+msgstr "Otwórz okno dialogowe drukowania"
 
 #: gschem/etc/system-gschemrc.scm:2106
 msgid "Export options"
@@ -5097,7 +5094,6 @@ msgstr "_Cofnij"
 
 # Undo the last operation
 #: gschem/etc/system-gschemrc.scm:2124
-#, fuzzy
 msgid "Undo the last operation"
 msgstr "Cofnij ostatnią operację"
 
@@ -5105,11 +5101,10 @@ msgstr "Cofnij ostatnią operację"
 msgid "_Redo"
 msgstr "_Ponów"
 
-# redo the last un-done action => redo the last un-done action
+# Redo the last undo
 #: gschem/etc/system-gschemrc.scm:2125
-#, fuzzy
 msgid "Redo the last undo"
-msgstr "przerobić ostatni un-done działania"
+msgstr "Ponów ostatnie cofnięcie"
 
 # Cut clipboard"
 #: gschem/etc/system-gschemrc.scm:2128
@@ -5583,9 +5578,8 @@ msgstr ""
 msgid "_Last"
 msgstr ""
 
-# Goto the last page => Goto the last sheet
+# Go to the last page => Go to the last sheet
 #: gschem/etc/system-gschemrc.scm:2259
-#, fuzzy
 msgid "Go to the last page"
 msgstr "Przejdź do ostatniego arkusza"
 
@@ -5664,10 +5658,10 @@ msgstr "_Tekst..."
 msgid "A_rc"
 msgstr "Ł_uk"
 
+# Create an arc
 #: gschem/etc/system-gschemrc.scm:2286
-#, fuzzy
 msgid "Create an arc"
-msgstr "Tworzenie nowego pliku"
+msgstr "Utwórz łuk"
 
 #: gschem/etc/system-gschemrc.scm:2287
 msgid "_Box"
@@ -5700,9 +5694,8 @@ msgstr "Dodaj Linię"
 msgid "Pat_h"
 msgstr ""
 
-# Add Path => Add Polygon
+# Add a Path => Add a Polygon
 #: gschem/etc/system-gschemrc.scm:2290
-#, fuzzy
 msgid "Add a path"
 msgstr "Dodaj Wielokąt"
 
@@ -5710,11 +5703,10 @@ msgstr "Dodaj Wielokąt"
 msgid "Pictu_re..."
 msgstr "Ob_raz..."
 
-# Invert Image
+# Insert an image
 #: gschem/etc/system-gschemrc.scm:2291
-#, fuzzy
 msgid "Insert an image"
-msgstr "Odwróć obraz"
+msgstr "Wstaw obraz"
 
 #: gschem/etc/system-gschemrc.scm:2292
 msgid "_Pin"
