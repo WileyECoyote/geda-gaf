@@ -1862,12 +1862,11 @@ msgid "Guile"
 msgstr "Guile"
 
 #: gschem/src/x/x_dialog.c:526
-#, fuzzy
 msgid ""
 "Copyright © 1998-2010 Ales Hvezda <ahvezda@geda.seul.org>\n"
 "Copyright © 1998-2017 gEDA Contributors (see ChangeLog for details)"
 msgstr ""
-"Kopiereg © 1998-2017 Ales Hvezda <ahvezda@geda.seul.org>\n"
+"Kopiereg © 1998-2010 Ales Hvezda <ahvezda@geda.seul.org>\n"
 "Kopiereg © 1998-2017 gEDA Bydraers (sien ChangeLog vir meer inligting)"
 
 #: gschem/src/x/x_dialog.c:534 gschem/scheme/gschem/builtins.scm:565
@@ -4521,9 +4520,8 @@ msgid "Color"
 msgstr "Kleur"
 
 #: gschem/src/x/x_toolbars.c:238
-#, fuzzy
 msgid "Slots"
-msgstr "Gleuf..."
+msgstr "Slots"
 
 #: gschem/src/x/x_toolbars.c:239
 msgid "Pins"
@@ -4800,10 +4798,10 @@ msgstr "Gooi veranderinge en herlaai al die oop dokumente"
 msgid "_Print..."
 msgstr "Print..."
 
+# Open the Print Dialog
 #: gschem/etc/system-gschemrc.scm:2105
-#, fuzzy
 msgid "Open the Print Dialog"
-msgstr "Maak die Pin Tipe Dialog"
+msgstr "Open die gedrukte dialoog"
 
 #: gschem/etc/system-gschemrc.scm:2106
 msgid "Export options"
@@ -4857,19 +4855,19 @@ msgstr "afsluit"
 msgid "_Undo"
 msgstr "ongedaan"
 
+# Undo the last operation
 #: gschem/etc/system-gschemrc.scm:2124
-#, fuzzy
 msgid "Undo the last operation"
-msgstr "Maak laaste handeling ongedaan"
+msgstr "Ontdoen die laaste bewerking"
 
 #: gschem/etc/system-gschemrc.scm:2125
 msgid "_Redo"
 msgstr "oordoen"
 
+# Redo the last undo
 #: gschem/etc/system-gschemrc.scm:2125
-#, fuzzy
 msgid "Redo the last undo"
-msgstr "Maak laaste handeling ongedaan"
+msgstr "Herhaal die laaste ongedaanmaking"
 
 #: gschem/etc/system-gschemrc.scm:2128
 msgid "Cu_t clipboard"
@@ -5312,9 +5310,8 @@ msgid "_Last"
 msgstr "_Laaste"
 
 #: gschem/etc/system-gschemrc.scm:2259
-#, fuzzy
 msgid "Go to the last page"
-msgstr "Maak laaste handeling ongedaan"
+msgstr "Gaan na die laaste bladsy"
 
 #: gschem/etc/system-gschemrc.scm:2260
 msgid "Ne_w"
@@ -5424,11 +5421,10 @@ msgstr "Voeg Net By"
 msgid "Pictu_re..."
 msgstr ""
 
-# Invert Image
+# Insert an image
 #: gschem/etc/system-gschemrc.scm:2291
-#, fuzzy
 msgid "Insert an image"
-msgstr "Omkeer prentjie"
+msgstr "Voeg 'n prentjie in"
 
 #: gschem/etc/system-gschemrc.scm:2292
 msgid "_Pin"
@@ -6098,10 +6094,10 @@ msgstr "Sirkel"
 msgid "Add Arc"
 msgstr "Voeg Eienskap By"
 
+# Add Path
 #: gschem/scheme/gschem/builtins.scm:371
-#, fuzzy
 msgid "Add Path"
-msgstr "Voeg Net By"
+msgstr "Voeg pad by"
 
 #: gschem/scheme/gschem/builtins.scm:374
 msgid "Add Picture"
@@ -6395,18 +6391,16 @@ msgid "hierarchy Verilog"
 msgstr "hiërargie Verilog"
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:276
-#, fuzzy
 msgid "Symbol _Translate..."
-msgstr "Verskuif"
+msgstr "Simbool Ver_taal..."
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:276
 msgid "Reset the X-Y Zero point"
 msgstr ""
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:277
-#, fuzzy
 msgid "Check Symbol"
-msgstr "Simbole"
+msgstr "Kontroleer die simbool"
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:277
 msgid "Run gsymcheck"
@@ -6434,10 +6428,3 @@ msgstr ""
 #, scheme-format
 msgid "~S is not a prefix key sequence."
 msgstr ""
-
-#~ msgid "Break a linear object into separate objects"
-#~ msgstr "Breek 'n lineêre voorwerp in aparte voorwerpe"
-
-# Close all has been Canceled
-#~ msgid "Canceled Close all\n"
-#~ msgstr "Sluit al gekanselleer\n"
