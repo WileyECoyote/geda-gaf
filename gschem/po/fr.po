@@ -841,14 +841,12 @@ msgid "Drag-Can-Move is now"
 msgstr "Drag-can-move est maintenant"
 
 #: gschem/src/iface/i_command.c:4800
-#, fuzzy
 msgid "Action feedback mode set to OUTLINE"
-msgstr "Mode de retour utilisateur positionné à OUTLINE\n"
+msgstr "Mode de retour utilisateur positionné à OUTLINE"
 
 #: gschem/src/iface/i_command.c:4804
-#, fuzzy
 msgid "Action feedback mode set to BOUNDINGBOX"
-msgstr "Mode de retour utilisateur positionné à BOUNDINGBOX\n"
+msgstr "Mode de retour utilisateur positionné à BOUNDINGBOX"
 
 # Auto Pan is now
 #: gschem/src/iface/i_command.c:4832
@@ -1865,12 +1863,11 @@ msgid "Guile"
 msgstr ""
 
 #: gschem/src/x/x_dialog.c:526
-#, fuzzy
 msgid ""
 "Copyright © 1998-2010 Ales Hvezda <ahvezda@geda.seul.org>\n"
 "Copyright © 1998-2017 gEDA Contributors (see ChangeLog for details)"
 msgstr ""
-"Copyright © 1998-2017 Ales Hvezda <ahvezda@geda.seul.org>\n"
+"Copyright © 1998-2010 Ales Hvezda <ahvezda@geda.seul.org>\n"
 "Copyright © 1998-2017 gEDA Contributors (reportez-vous au fichier CHANGELOG "
 "pour plus de détails)"
 
@@ -4817,10 +4814,10 @@ msgstr ""
 msgid "_Print..."
 msgstr "_Imprimer..."
 
+# Open the Print Dialog
 #: gschem/etc/system-gschemrc.scm:2105
-#, fuzzy
 msgid "Open the Print Dialog"
-msgstr "Ouvrez la boîte de dialogue Préférences"
+msgstr "Ouvrez la boîte de dialogue d'impression"
 
 #: gschem/etc/system-gschemrc.scm:2106
 msgid "Export options"
@@ -4874,19 +4871,19 @@ msgstr "_Quitter"
 msgid "_Undo"
 msgstr "A_nnuler"
 
+# Undo the last operation
 #: gschem/etc/system-gschemrc.scm:2124
-#, fuzzy
 msgid "Undo the last operation"
-msgstr "Défaire la dernière opération"
+msgstr "Annuler la dernière opération"
 
 #: gschem/etc/system-gschemrc.scm:2125
 msgid "_Redo"
 msgstr "_Rétablir"
 
+# Redo the last undo
 #: gschem/etc/system-gschemrc.scm:2125
-#, fuzzy
 msgid "Redo the last undo"
-msgstr "Défaire la dernière opération"
+msgstr "Refaire la dernière annulation"
 
 #: gschem/etc/system-gschemrc.scm:2128
 msgid "Cu_t clipboard"
