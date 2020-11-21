@@ -787,6 +787,7 @@ msgstr ""
 msgid "Snap OFF (CAUTION!)"
 msgstr ""
 
+# Snap ON
 #: gschem/src/iface/i_command.c:4714
 #, fuzzy
 msgid "Snap ON"
@@ -1737,10 +1738,10 @@ msgstr "Bezárás mentés nélkül"
 msgid "Cancel closing and return to editor"
 msgstr ""
 
+# Save changes
 #: gschem/src/x/x_confirm_close.c:581
-#, fuzzy
 msgid "Save changes"
-msgstr "Mentés"
+msgstr "Változtatások mentése"
 
 # unsaved page
 #: gschem/src/x/x_confirm_close.c:631
@@ -4489,7 +4490,6 @@ msgid "Unlock"
 msgstr "Zárolás feloldása"
 
 #: gschem/src/x/x_toolbars.c:221
-#, fuzzy
 msgid "Update"
 msgstr "Frissítés"
 
@@ -4539,24 +4539,20 @@ msgid "Inherited"
 msgstr "Örökölt"
 
 #: gschem/src/x/x_toolbars.c:253
-#, fuzzy
 msgid "Find"
-msgstr "Szöveg keresése"
+msgstr "Keresése"
 
 #: gschem/src/x/x_toolbars.c:254
-#, fuzzy
 msgid "Hide"
-msgstr "Szöveg elrejtése"
+msgstr "Elrejtése"
 
 #: gschem/src/x/x_toolbars.c:255
-#, fuzzy
 msgid "Show"
-msgstr "Szöveg mutatása"
+msgstr "Mutatása"
 
 #: gschem/src/x/x_toolbars.c:257
-#, fuzzy
 msgid "Auto #"
-msgstr "Automatikus betöltése"
+msgstr "Automatikus #"
 
 #: gschem/src/x/x_toolbars.c:259
 msgid "Dots"
@@ -4567,9 +4563,8 @@ msgid "UP"
 msgstr ""
 
 #: gschem/src/x/x_toolbars.c:267
-#, fuzzy
 msgid "Snap On"
-msgstr "lepattinthatóvá"
+msgstr "Pattintsa be"
 
 #: gschem/src/x/x_toolbars.c:269
 msgid "Config"
@@ -4783,10 +4778,10 @@ msgstr ""
 msgid "_Print..."
 msgstr "_Nyomtatás..."
 
+# Open the Print Dialog
 #: gschem/etc/system-gschemrc.scm:2105
-#, fuzzy
 msgid "Open the Print Dialog"
-msgstr "Nyissa meg a Pin Típus Dialog"
+msgstr "Nyissa meg a Nyomtatás párbeszédpanelt"
 
 #: gschem/etc/system-gschemrc.scm:2106
 msgid "Export options"
@@ -4840,19 +4835,19 @@ msgstr "Kilépés"
 msgid "_Undo"
 msgstr "_Visszavonás"
 
+# Open the Print Dialog
 #: gschem/etc/system-gschemrc.scm:2124
-#, fuzzy
 msgid "Undo the last operation"
-msgstr "Utolsó művelet visszavonása"
+msgstr "Nyissa meg a Nyomtatás párbeszédpanelt"
 
 #: gschem/etc/system-gschemrc.scm:2125
 msgid "_Redo"
 msgstr "Új_ra"
 
+# Redo the last undo
 #: gschem/etc/system-gschemrc.scm:2125
-#, fuzzy
 msgid "Redo the last undo"
-msgstr "Utolsó művelet visszavonása"
+msgstr "Ismételje meg az utolsó visszavonást"
 
 #: gschem/etc/system-gschemrc.scm:2128
 msgid "Cu_t clipboard"
