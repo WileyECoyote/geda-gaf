@@ -507,7 +507,7 @@ void about_dialog (GschemToplevel *w_current)
 
     const char *logo_err = _("Could not load image file");
 
-    u_log_message ("%s: %s\n%s\n", logo_err, logo_file, error->message);
+     geda_log ("%s: %s\n%s\n", logo_err, logo_file, error->message);
     g_error_free (error);
   }
 
