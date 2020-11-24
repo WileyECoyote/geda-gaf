@@ -1243,7 +1243,7 @@ void x_print (GschemToplevel *w_current)
     char *bold_msg;
 
     /* Log the error */
-    u_log_message("%s:\n%s", _("Error printing file"), err->message);
+     geda_log("%s:\n%s", _("Error printing file"), err->message);
 
     bold_msg = geda_sprintf ("<b>%s.</b>", _("An error occurred while printing"));
 
