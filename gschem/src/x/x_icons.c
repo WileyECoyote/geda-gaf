@@ -362,7 +362,7 @@ static void x_icons_setup_factory()
       else
       {
         /* file non existence or not accessible */
-        u_log_message("%s: %s\n", err_warn_access, pathname);
+         geda_log("%s: %s\n", err_warn_access, pathname);
       }
       GEDA_FREE(pathname);
     }
