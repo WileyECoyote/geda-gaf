@@ -64,31 +64,31 @@ pintype=pwr
 }
 T 800 950 8 10 1 1 0 0 1
 refdes=U?
-T 0 2200 5 10 0 0 0 0 1
+T 800 1150 5 10 0 1 0 0 1
 description=Quad Operational Amplifier
-T 0 2000 5 10 0 0 0 0 1
+T 800 2300 5 10 0 0 0 0 1
 numslots=4
-T 0 2600 5 10 0 0 0 0 1
+T 800 1350 5 10 0 0 0 0 1
 symversion=0.2
 T 0 1000 5 10 0 0 0 0 1
 slot=1
-T 0 1200 5 10 1 1 0 0 1
+T 800 1500 5 10 0 1 0 0 1
 slotdef=1:1,6,14,7,5
-T 0 1400 5 10 1 1 0 0 1
+T 800 1700 5 10 0 1 0 0 1
 slotdef=2:2,3,14,7,4
-T 0 1600 5 10 1 1 0 0 1
+T 800 1900 5 10 0 1 0 0 1
 slotdef=3:13,8,14,7,9
-T 0 1800 5 10 1 1 0 0 1
+T 800 2100 5 10 0 1 0 0 1
 slotdef=4:12,11,14,7,10
-T 0 2400 5 10 1 0 0 0 1
+T 800 2500 5 10 0 1 0 0 1
 documentation=http://www.ti.com/product/LM3900
-T 0 3000 5 10 0 0 0 0 1
-use-license=GPLv2
-T 0 2800 5 10 0 0 0 0 1
+T 800 2700 5 10 0 0 0 0 1
+use-license=unlimited
+T 800 2900 5 10 0 0 0 0 1
 dist-license=GPLv2
-T 0 3200 5 10 0 0 0 0 1
+T 800 3100 5 10 0 0 0 0 1
 author=AutoTron
 T 800 600 9 10 1 1 0 0 1
-footprint=DIP14
+footprint=SOIC14
 T 750 100 5 10 0 0 0 0 1
-footprints=SOIC14, SO14
+footprints=DIP14, SO14

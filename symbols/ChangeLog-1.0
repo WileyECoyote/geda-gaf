@@ -1,3 +1,7 @@
+2020-11-24 Wiley E. Hill <wileyhill@gmail.com>
+
+    * linear/opamps/LM3900-1.sym: Clean symbol, hide slotdef's.
+
 2020-11-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * transistor/npn-medium: Fix pin sequence:
