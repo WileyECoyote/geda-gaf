@@ -136,7 +136,7 @@ GtkWidget *create_pixmap (const char *filename)
   pathname = geda_file_get_bitmap_filespec (filename);
 
   if (!pathname) {
-      u_log_message("Could not find image file: %s.\n", filename);
+       geda_log("Could not find image file: %s.\n", filename);
       return gtk_image_new_from_stock(GTK_STOCK_MISSING_IMAGE,
                                       GTK_ICON_SIZE_INVALID);
   }
