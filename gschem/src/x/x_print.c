@@ -812,7 +812,7 @@ void x_print_setup (GschemToplevel *w_current, char *filename)
     }
     else {
 
-      u_log_message ("%s \"%s\"\n", _("Printed current schematic to"), destination);
+       geda_log ("%s \"%s\"\n", _("Printed current schematic to"), destination);
     }
   }
 
