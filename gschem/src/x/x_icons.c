@@ -354,7 +354,7 @@ static void x_icons_setup_factory()
           GEDA_UNREF(pixbuf);
         }
         else {
-          u_log_message("%s: %s\n", err_warn_read, err->message);
+           geda_log("%s: %s\n", err_warn_read, err->message);
           g_clear_error (&err);
           err = NULL;
         }
