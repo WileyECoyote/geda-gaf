@@ -128,7 +128,7 @@ GtkWidget *create_pixmap (const char *filename)
   GtkWidget *pixmap;
 
   if (!filename || !filename[0]) {
-      u_log_message("Bad image file name.\n");
+       geda_log("Bad image file name.\n");
       return gtk_image_new_from_stock(GTK_STOCK_MISSING_IMAGE ,
                                       GTK_ICON_SIZE_INVALID);
   }
