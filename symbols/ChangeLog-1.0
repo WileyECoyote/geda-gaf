@@ -1,9 +1,11 @@
 2020-11-24 Wiley E. Hill <wileyhill@gmail.com>
 
-    * linear/opamps/LM3900-?.sym: Clean symbol, hide slotdef's:
+    * linear/opamps/LM3900-?.sym: Clean symbol; hide slotdef's:
 
             * linear/opamps/LM3900-1.sym
             * linear/opamps/LM3900-2.sym
+
+    * maxim/MAX19538-1.sym: Clean symbol; reposition attributes.
 
 2020-11-22 Wiley E. Hill <wileyhill@gmail.com>
 
