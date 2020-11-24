@@ -3962,7 +3962,7 @@ void x_dialog_symbol_changed(GschemToplevel *w_current)
     }
   }
   else {
-    u_log_message("Null reference to Current Page\n");
+     geda_log("Null reference to Current Page\n");
   }
 }
 
