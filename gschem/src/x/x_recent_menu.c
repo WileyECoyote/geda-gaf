@@ -108,7 +108,7 @@ static void x_recent_menu_file_clicked (GedaMenuItem *menuitem, void *menu_data)
 
    if (fp == NULL) {
       /* Remove this entry from all menus */
-      u_log_message("%s \"%s\"\n", _("Could not open file"), filename);
+       geda_log("%s \"%s\"\n", _("Could not open file"), filename);
       recent_files = g_list_remove(recent_files, filename);
       x_recent_menu_update_files();
       return;
