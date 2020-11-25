@@ -34,8 +34,7 @@
  * \par Function Description
  *
  */
-void
-geda_struct_print_forw (GList *list)
+void geda_struct_print_forw (GList *list)
 {
   GList *iter = list;
 
@@ -66,8 +65,7 @@ geda_struct_print_forw (GList *list)
  * \par Function Description
  *
  */
-void
-geda_struct_print(GedaObject *ptr)
+void geda_struct_print(GedaObject *ptr)
 {
   GedaObject *o_current=NULL;
 
