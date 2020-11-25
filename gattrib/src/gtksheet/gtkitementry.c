@@ -332,7 +332,7 @@ gtk_item_entry_realize(GtkWidget *widget)
 
     gtk_widget_set_window(widget,
 	gdk_window_new(gtk_widget_get_parent_window(widget),
-	    &attributes, attributes_mask));
+                   &attributes, attributes_mask));
     gdk_window_set_user_data(gtk_widget_get_window(widget), entry);
 
     _item_entry_get_text_area_size(entry, &attributes.x, &attributes.y, &attributes.width, &attributes.height);
@@ -340,9 +340,24 @@ gtk_item_entry_realize(GtkWidget *widget)
     attributes.cursor = gdk_cursor_new(GDK_XTERM);
     attributes_mask |= GDK_WA_CURSOR;
 
+#if (GTK_MAJOR_VERSION < 3) && !defined GSEAL_ENABLE
+
     entry->text_area = gdk_window_new(gtk_widget_get_window(widget),
-	&attributes, attributes_mask);
+                                      &attributes, attributes_mask);
+
     gdk_window_set_user_data(entry->text_area, entry);
+
+#else
+
+    GdkWindow *window;
+
+    window = gtk_entry_get_text_window (entry);
+
+    gdk_window_set_colormap (window, attributes.colormap);
+
+    gdk_window_set_events (window, attributes.event_mask);
+
+#endif
 
     gdk_cursor_unref(attributes.cursor);
 
