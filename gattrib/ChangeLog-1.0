@@ -5,7 +5,7 @@
       for gtk_entry_set_has_frame when not defined.
 
     * src/gtksheet/gtkitementry.c: Revise gtk_item_entry_init to utilize
-      gtk_entry_set_has_frame macro.
+      gtk_entry_set_has_frame macro and conditionaly handle Gtk > 2 better.
 
 2020-11-12 Wiley E. Hill <wileyhill@gmail.com>
 

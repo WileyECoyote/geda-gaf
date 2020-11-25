@@ -274,6 +274,9 @@ gtk_item_entry_init(GtkItemEntry *item_entry)
 
     gtk_entry_set_has_frame (entry, FALSE);
 
+
+#if (GTK_MAJOR_VERSION < 3) && !defined GSEAL_ENABLE
+
     g_object_unref(entry->im_context);
 
     entry->im_context = gtk_im_multicontext_new();
@@ -289,7 +292,11 @@ gtk_item_entry_init(GtkItemEntry *item_entry)
 
     g_signal_connect(entry->im_context, "delete_surrounding",
                      G_CALLBACK(gtk_item_entry_delete_surrounding_cb), entry);
+#else
 
+    gtk_entry_reset_im_context (entry);
+
+#endif
 }
 
 static void
