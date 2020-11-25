@@ -174,7 +174,7 @@ x_show_uri (const char *uri)
 
   if (verbose_mode) {
     const char *log_msg = _("falling back to");
-    u_log_message("%s: %s %s\n", __func__, log_msg, SHOW_URI_COMMAND);
+     geda_log("%s: %s %s\n", __func__, log_msg, SHOW_URI_COMMAND);
   }
 
   bool spawn_status;
