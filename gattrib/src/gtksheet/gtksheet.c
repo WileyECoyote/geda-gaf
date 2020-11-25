@@ -13701,12 +13701,15 @@ void gtk_sheet_set_row_height(GtkSheet *sheet, int row, unsigned int height)
 
     g_return_if_fail(GTK_IS_SHEET(sheet));
 
-    if (row < 0 || row > sheet->maxrow)
+    if (row < 0 || row > sheet->maxrow) {
         return;
+    }
 
     gtk_sheet_row_size_request(sheet, row, &min_height);
-    if (height < min_height)
+
+    if (height < min_height) {
         return;
+    }
 
     sheet->row[row].height = height;
 
@@ -13736,13 +13739,15 @@ void gtk_sheet_add_column(GtkSheet *sheet, unsigned int ncols)
 
     AddColumns(sheet, sheet->maxcol + 1, ncols);
 
-    if (!gtk_widget_get_realized((GtkWidget*)sheet))
+    if (!gtk_widget_get_realized((GtkWidget*)sheet)) {
       return;
+    }
 
     _gtk_sheet_scrollbar_adjust(sheet);
 
-    if (sheet->state == GTK_SHEET_ROW_SELECTED)
-	sheet->range.coli += ncols;
+    if (sheet->state == GTK_SHEET_ROW_SELECTED) {
+      sheet->range.coli += ncols;
+    }
 
     _gtk_sheet_redraw_internal(sheet, TRUE, FALSE);
 }
@@ -13760,11 +13765,13 @@ void gtk_sheet_add_row(GtkSheet *sheet, unsigned int nrows)
 
     AddRows(sheet, sheet->maxrow + 1, nrows);
 
-    if (!gtk_widget_get_realized((GtkWidget*)sheet))
+    if (!gtk_widget_get_realized((GtkWidget*)sheet)) {
       return;
+    }
 
-    if (sheet->state == GTK_SHEET_COLUMN_SELECTED)
+    if (sheet->state == GTK_SHEET_COLUMN_SELECTED) {
       sheet->range.rowi += nrows;
+    }
 
     _gtk_sheet_scrollbar_adjust(sheet);
 
@@ -13791,22 +13798,27 @@ void gtk_sheet_insert_rows(GtkSheet *sheet, unsigned int row, unsigned int nrows
     InsertRow(sheet, row, nrows);
 
     children = sheet->children;
-    while (children)
-    {
-	child = (GtkSheetChild *)children->data;
 
-	if (child->attached_to_cell)
-	    if (child->row >= row)
-		child->row += nrows;
+    while (children) {
 
-	children = children->next;
+      child = (GtkSheetChild *)children->data;
+
+      if (child->attached_to_cell) {
+        if (child->row >= row) {
+          child->row += nrows;
+        }
+      }
+
+      children = children->next;
     }
 
-    if (!gtk_widget_get_realized((GtkWidget*)sheet))
-	return;
+    if (!gtk_widget_get_realized((GtkWidget*)sheet)) {
+      return;
+    }
 
-    if (sheet->state == GTK_SHEET_COLUMN_SELECTED)
-	sheet->range.rowi += nrows;
+    if (sheet->state == GTK_SHEET_COLUMN_SELECTED) {
+      sheet->range.rowi += nrows;
+    }
 
     _gtk_sheet_scrollbar_adjust(sheet);
     _gtk_sheet_redraw_internal(sheet, FALSE, TRUE);
