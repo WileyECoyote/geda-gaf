@@ -4,6 +4,9 @@
       case GTK_MAJOR_VERSION < 3 & !defined GSEAL_ENABLE and include a macro
       for gtk_entry_set_has_frame when not defined.
 
+    * src/gtksheet/gtkitementry.c: Revise gtk_item_entry_init to utilize
+      gtk_entry_set_has_frame macro.
+
 2020-11-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gtksheet: Replace g_strdup -> strdup.

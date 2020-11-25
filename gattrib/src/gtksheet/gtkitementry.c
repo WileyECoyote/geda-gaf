@@ -272,7 +272,7 @@ gtk_item_entry_init(GtkItemEntry *item_entry)
 
     GtkEntry *entry = (GtkEntry*)item_entry;
 
-    entry->has_frame = FALSE;
+    gtk_entry_set_has_frame (entry, FALSE);
 
     g_object_unref(entry->im_context);
 
