@@ -5143,8 +5143,10 @@ void gtk_sheet_row_set_tooltip_markup(GtkSheet *sheet,
   if (row < 0 || row > sheet->maxrow)
     return;
 
-  if (sheet->row[row].tooltip_markup)
+  if (sheet->row[row].tooltip_markup) {
     g_free(sheet->row[row].tooltip_markup);
+  }
+
   sheet->row[row].tooltip_markup = strdup(markup);
 }
 
@@ -13669,8 +13671,10 @@ new_row_height(GtkSheet *sheet, int row, int *y)
     /* calculate new row height making sure it doesn't end up
      * less than the minimum height */
     height = (cy - _gtk_sheet_row_top_ypixel(sheet, row));
-    if (height < requisition.height)
-	height = requisition.height;
+
+    if (height < requisition.height) {
+      height = requisition.height;
+    }
 
     sheet->row[row].height = height;
 
