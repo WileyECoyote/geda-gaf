@@ -30,6 +30,8 @@
 #define gdk_gc_destroy g_object_unref
 #endif
 
+#if (GTK_MAJOR_VERSION < 3) && !defined GSEAL_ENABLE
+
 #if !GTK_CHECK_VERSION(2,20,0)
 
     /* before V2.20 */
@@ -90,6 +92,14 @@
 #   define  GDK_KEY_Control_R   GDK_Control_R
 #   define  GDK_KEY_Shift_L   GDK_Shift_L
 #   define  GDK_KEY_Shift_R   GDK_Shift_R
+
+#else /* GTK >= 3 */
+
+#ifndef gtk_entry_set_has_frame
+#   define  gtk_entry_set_has_frame(e, b) e->has_frame = b
+#endif
+
+#endif
 
 #endif
 

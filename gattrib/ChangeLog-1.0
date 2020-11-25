@@ -1,3 +1,9 @@
+2020-11-25 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/gtksheet/gtkcompat.h: Add conditional compiler directives for
+      case GTK_MAJOR_VERSION < 3 & !defined GSEAL_ENABLE and include a macro
+      for gtk_entry_set_has_frame when not defined.
+
 2020-11-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gtksheet: Replace g_strdup -> strdup.
