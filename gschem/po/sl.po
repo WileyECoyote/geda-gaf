@@ -1815,11 +1815,10 @@ msgstr "Zapri brez shranjevanja"
 msgid "Cancel closing and return to editor"
 msgstr ""
 
-# Saved as
+# Saved changes
 #: gschem/src/x/x_confirm_close.c:581
-#, fuzzy
 msgid "Save changes"
-msgstr "Shranjena kot"
+msgstr "Shrani spremembe"
 
 # unsaved page
 #: gschem/src/x/x_confirm_close.c:631
