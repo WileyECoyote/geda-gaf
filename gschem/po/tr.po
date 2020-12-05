@@ -1849,10 +1849,10 @@ msgstr ""
 msgid "Cancel closing and return to editor"
 msgstr ""
 
+# Save changes
 #: gschem/src/x/x_confirm_close.c:581
-#, fuzzy
 msgid "Save changes"
-msgstr "Sayfayı Kaydet"
+msgstr "Değişiklikleri Kaydet"
 
 # unsaved page
 #: gschem/src/x/x_confirm_close.c:631
@@ -1899,9 +1899,8 @@ msgid "** Invalid UTF-8 in log message. See stderr or gschem.log.\n"
 msgstr ""
 
 #: gschem/src/x/x_console.c:491
-#, fuzzy
 msgid "Console"
-msgstr "gEDA Konsol"
+msgstr "Konsol"
 
 #: gschem/src/x/x_console.c:657
 msgid "gEDA Console"
