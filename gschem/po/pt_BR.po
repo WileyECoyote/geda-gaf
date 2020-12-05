@@ -862,14 +862,12 @@ msgid "Drag-Can-Move is now"
 msgstr "Drag-Can-mover agora está"
 
 #: gschem/src/iface/i_command.c:4800
-#, fuzzy
 msgid "Action feedback mode set to OUTLINE"
-msgstr "Retorno de ação ajustado para silhueta\n"
+msgstr "Retorno de ação ajustado para silhueta"
 
 #: gschem/src/iface/i_command.c:4804
-#, fuzzy
 msgid "Action feedback mode set to BOUNDINGBOX"
-msgstr "Retorno de ação ajustado para caixa completa\n"
+msgstr "Retorno de ação ajustado para caixa completa"
 
 #: gschem/src/iface/i_command.c:4832
 msgid "Auto-Pan is now"
@@ -1812,9 +1810,8 @@ msgid "Cancel closing and return to editor"
 msgstr ""
 
 #: gschem/src/x/x_confirm_close.c:581
-#, fuzzy
 msgid "Save changes"
-msgstr "Salvar página"
+msgstr "Salvar alterações"
 
 # unsaved page
 #: gschem/src/x/x_confirm_close.c:631
@@ -1920,12 +1917,11 @@ msgid "Guile"
 msgstr "Guile"
 
 #: gschem/src/x/x_dialog.c:526
-#, fuzzy
 msgid ""
 "Copyright © 1998-2010 Ales Hvezda <ahvezda@geda.seul.org>\n"
 "Copyright © 1998-2017 gEDA Contributors (see ChangeLog for details)"
 msgstr ""
-"Copyright © 1998-2017 Ales Hvezda <ahvezda@geda.seul.org>\n"
+"Copyright © 1998-2010 Ales Hvezda <ahvezda@geda.seul.org>\n"
 "Copyright © 1998-2017 Contribuidores gEDA  (veja ChangeLog para detalhes)"
 
 #: gschem/src/x/x_dialog.c:534 gschem/scheme/gschem/builtins.scm:565
@@ -4919,11 +4915,10 @@ msgstr "Crie e edite esquemas elétricos e símbolos com o gschem"
 msgid "_New"
 msgstr "_Novo"
 
-# Creating new file
+# Create a new file
 #: gschem/etc/system-gschemrc.scm:2091
-#, fuzzy
 msgid "Create a new file"
-msgstr "Criar novo arquivo"
+msgstr "Crie um novo arquivo"
 
 #: gschem/etc/system-gschemrc.scm:2092 gschem/etc/system-gschemrc.scm:2301
 msgid "_Open..."
