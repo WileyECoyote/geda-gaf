@@ -4571,9 +4571,8 @@ msgid "Color"
 msgstr "Väri"
 
 #: gschem/src/x/x_toolbars.c:238
-#, fuzzy
 msgid "Slots"
-msgstr "_Tietoja..."
+msgstr "Segmentti"
 
 #: gschem/src/x/x_toolbars.c:239
 msgid "Pins"
@@ -4599,11 +4598,10 @@ msgstr ""
 msgid "Hidden"
 msgstr ""
 
-# Show/Hide Inherited
+# Inherited
 #: gschem/src/x/x_toolbars.c:252
-#, fuzzy
 msgid "Inherited"
-msgstr "Näytä/piilota peritty"
+msgstr "Peritty"
 
 #: gschem/src/x/x_toolbars.c:253
 msgid "Find"
@@ -4632,9 +4630,8 @@ msgstr ""
 
 # Snap ON => Alignment ON
 #: gschem/src/x/x_toolbars.c:267
-#, fuzzy
 msgid "Snap On"
-msgstr "Kohdistus päällä\n"
+msgstr "Kohdistus päällä"
 
 #: gschem/src/x/x_toolbars.c:269
 msgid "Config"
@@ -4784,10 +4781,10 @@ msgstr ""
 msgid "_New"
 msgstr "_Uusi"
 
+# Create a new file
 #: gschem/etc/system-gschemrc.scm:2091
-#, fuzzy
 msgid "Create a new file"
-msgstr "Luodaan uusi tiedosto"
+msgstr "Luo uusi tiedosto"
 
 #: gschem/etc/system-gschemrc.scm:2092 gschem/etc/system-gschemrc.scm:2301
 msgid "_Open..."
