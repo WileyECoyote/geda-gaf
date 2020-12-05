@@ -865,14 +865,12 @@ msgid "Drag-Can-Move is now"
 msgstr "Drag-Can-Move é agora"
 
 #: gschem/src/iface/i_command.c:4800
-#, fuzzy
 msgid "Action feedback mode set to OUTLINE"
-msgstr "Acção modo de retorno definida para OUTLINE\n"
+msgstr "Acção modo de retorno definida para OUTLINE"
 
 #: gschem/src/iface/i_command.c:4804
-#, fuzzy
 msgid "Action feedback mode set to BOUNDINGBOX"
-msgstr "Acção modo de retorno definida para BOUNDINGBOX\n"
+msgstr "Acção modo de retorno definida para CAIXA DE LIMITAÇÃO"
 
 #: gschem/src/iface/i_command.c:4832
 msgid "Auto-Pan is now"
@@ -1820,9 +1818,8 @@ msgid "Cancel closing and return to editor"
 msgstr ""
 
 #: gschem/src/x/x_confirm_close.c:581
-#, fuzzy
 msgid "Save changes"
-msgstr "Guardar Página"
+msgstr "Guardar alterações"
 
 # unsaved page
 #: gschem/src/x/x_confirm_close.c:631
@@ -4919,11 +4916,10 @@ msgstr "Crie e edite esquemas e símbolos eléctricos e electrónicos com gschem
 msgid "_New"
 msgstr "_Novo"
 
-# Create new file
+# Create a new file
 #: gschem/etc/system-gschemrc.scm:2091
-#, fuzzy
 msgid "Create a new file"
-msgstr "Criar novo ficheiro"
+msgstr "Crie um novo arquivo"
 
 #: gschem/etc/system-gschemrc.scm:2092 gschem/etc/system-gschemrc.scm:2301
 msgid "_Open..."
