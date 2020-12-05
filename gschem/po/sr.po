@@ -941,15 +941,13 @@ msgstr "Драг режим је сада"
 
 # Action feedback mode is OUT-LINE
 #: gschem/src/iface/i_command.c:4800
-#, fuzzy
 msgid "Action feedback mode set to OUTLINE"
-msgstr "Ацтион повратна информација Моде је ОУТ-ЛИНЕ\n"
+msgstr "Ацтион повратна информација Моде је ОУТ-ЛИНЕ"
 
-# Action feedback mode is BOUNDING-BOX =>BORDER FRAME
+# Action feedback mode is BOUNDING-BOX => BORDER FRAME
 #: gschem/src/iface/i_command.c:4804
-#, fuzzy
 msgid "Action feedback mode set to BOUNDINGBOX"
-msgstr "Ацтион повратна информација Моде је ГРАНИЧНИ ОКВИР\n"
+msgstr "Ацтион повратна информација Моде је ГРАНИЧНИ ОКВИР"
 
 # Auto-Pan is now
 #: gschem/src/iface/i_command.c:4832
@@ -1931,11 +1929,10 @@ msgstr "Затвори без чувања"
 msgid "Cancel closing and return to editor"
 msgstr ""
 
-# Saved as
+# Saved changes
 #: gschem/src/x/x_confirm_close.c:581
-#, fuzzy
 msgid "Save changes"
-msgstr "Сачувај као"
+msgstr "Сачувај промене"
 
 # unsaved page
 #: gschem/src/x/x_confirm_close.c:631
