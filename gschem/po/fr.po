@@ -5282,10 +5282,10 @@ msgstr "Gestionnaire de pages"
 msgid "_First"
 msgstr ""
 
+# Go to the first page
 #: gschem/etc/system-gschemrc.scm:2254
-#, fuzzy
 msgid "Go to the first page"
-msgstr "la page en cours"
+msgstr "Aller à la première page"
 
 #: gschem/etc/system-gschemrc.scm:2255
 msgid "_Previous"
@@ -5396,66 +5396,60 @@ msgstr "_Texte..."
 msgid "A_rc"
 msgstr "A_rc de cercle"
 
-# Creating a new file
+# Create an arc
 #: gschem/etc/system-gschemrc.scm:2286
-#, fuzzy
+
 msgid "Create an arc"
-msgstr "Créer un nouveau fichier"
+msgstr "Créer un arc"
 
 #: gschem/etc/system-gschemrc.scm:2287
 msgid "_Box"
 msgstr "_Cadre"
 
 #: gschem/etc/system-gschemrc.scm:2287
-#, fuzzy
 msgid "Add a box"
-msgstr "/Ajouter un bus"
+msgstr "Ajouter une boîte"
 
 #: gschem/etc/system-gschemrc.scm:2288
 msgid "C_ircle"
 msgstr "C_ercle"
 
 #: gschem/etc/system-gschemrc.scm:2288
-#, fuzzy
 msgid "Add a circle"
-msgstr "Cercle"
+msgstr "Ajouter un cercle"
 
 #: gschem/etc/system-gschemrc.scm:2289
 msgid "_Line"
 msgstr "_Ligne"
 
 #: gschem/etc/system-gschemrc.scm:2289
-#, fuzzy
 msgid "Add a line"
-msgstr "Ligne"
+msgstr "Ajouter un Ligne"
 
 #: gschem/etc/system-gschemrc.scm:2290
 msgid "Pat_h"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2290
-#, fuzzy
 msgid "Add a path"
-msgstr "/Ajouter une piste"
+msgstr "Ajouter un chemin"
 
 #: gschem/etc/system-gschemrc.scm:2291
 msgid "Pictu_re..."
 msgstr "_Image..."
 
-# Invert Image
+# Insert an image
 #: gschem/etc/system-gschemrc.scm:2291
-#, fuzzy
 msgid "Insert an image"
-msgstr "Inverser l'image"
+msgstr "Insérer une image"
 
 #: gschem/etc/system-gschemrc.scm:2292
 msgid "_Pin"
 msgstr "_Broche"
 
 #: gschem/etc/system-gschemrc.scm:2292
-#, fuzzy
 msgid "Add a pin"
-msgstr "Ligne"
+msgstr "Ajouter une épingle"
 
 #: gschem/etc/system-gschemrc.scm:2300
 msgid "Create a new session"
