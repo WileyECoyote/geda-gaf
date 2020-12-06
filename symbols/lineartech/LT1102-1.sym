@@ -1,0 +1,115 @@
+v 20150101 2
+L 300 1100 300 300 3 0 0 0 -1 -1
+L 300 1100 1000 700 3 0 0 0 -1 -1
+L 1000 700 300 300 3 0 0 0 -1 -1
+L 400 950 400 850 3 0 0 0 -1 -1
+L 350 900 450 900 3 0 0 0 -1 -1
+L 350 500 450 500 3 0 0 0 -1 -1
+P 500 400 500 200 1 0 1
+{
+T 350 175 5 8 1 1 0 0 1
+pinnumber=1
+T 275 175 5 8 0 1 0 0 1
+pinseq=1
+T 475 450 9 6 0 1 0 0 1
+pinlabel=GND
+T 600 275 5 6 0 1 90 6 1
+pintype=pwr
+}
+P 700 500 700 300 1 0 1
+{
+T 575 325 5 8 1 1 0 0 1
+pinnumber=2
+T 750 150 5 8 0 1 0 0 1
+pinseq=2
+T 525 550 9 6 0 1 0 0 1
+pinlabel=G1
+T 800 400 5 6 0 1 90 6 1
+pintype=pas
+}
+P 100 500 300 500 1 0 0
+{
+T 125 550 5 8 1 1 0 0 1
+pinnumber=3
+T 200 550 5 8 0 1 0 0 1
+pinseq=3
+T 325 375 9 8 0 1 0 0 1
+pinlabel=IN-
+T 250 450 5 8 0 1 0 8 1
+pintype=in
+}
+P 900 600 900 400 1 0 1
+{
+T 775 450 5 8 1 1 0 0 1
+pinnumber=4
+T 950 200 5 8 0 1 0 0 1
+pinseq=4
+T 750 625 9 6 0 1 0 0 1
+pinlabel=V-
+T 1000 450 5 6 0 1 90 6 1
+pintype=pas
+}
+P 500 1000 500 1200 1 0 1
+{
+T 550 1225 5 8 1 1 0 0 1
+pinnumber=5
+T 550 1100 5 8 0 1 0 0 1
+pinseq=5
+T 400 1250 9 8 0 1 0 6 1
+pinlabel=V+
+T 400 1200 5 6 0 1 180 0 1
+pintype=pwr
+}
+P 100 900 300 900 1 0 0
+{
+T 125 950 5 8 1 1 0 0 1
+pinnumber=6
+T 200 950 5 8 0 1 0 0 1
+pinseq=6
+T 325 950 9 8 0 1 0 0 1
+pinlabel=IN+
+T 250 850 5 8 0 1 0 8 1
+pintype=in
+}
+P 700 900 700 1100 1 0 1
+{
+T 750 1025 5 8 1 1 0 0 1
+pinnumber=7
+T 825 1025 5 8 0 1 0 0 1
+pinseq=7
+T 750 900 9 8 0 1 0 0 1
+pinlabel=G2
+T 650 950 5 6 0 1 90 0 1
+pintype=pas
+}
+P 1000 700 1200 700 1 0 1
+{
+T 1050 550 5 8 1 1 0 0 1
+pinnumber=8
+T 1125 550 5 8 0 1 0 0 1
+pinseq=8
+T 1000 750 9 8 0 1 0 0 1
+pinlabel=OUT
+T 1000 750 9 8 0 1 0 0 1
+pintype=out
+}
+T 1050 1300 8 10 1 1 0 0 1
+refdes=U?
+T 1050 1675 5 10 0 0 0 0 1
+device=LT1102
+T 1050 1500 5 10 0 0 0 0 1
+description=Instrumentation Amplifier, J-FET
+T 1050 1900 5 10 0 0 0 0 1
+numslots=0
+T 1050 1125 9 10 1 1 0 0 1
+value=LT1102N8
+T 1050 950 9 10 1 1 0 0 1
+footprint=SOIC8
+T 1200 400 5 10 0 0 0 0 1
+symversion=0.3
+T 1050 2295 5 10 0 0 0 0 1
+use-license=unlimited
+T 1050 2095 5 10 0 0 0 0 1
+dist-license=GPLv2
+T 1050 2495 5 10 0 0 0 0 1
+author=AutoTron

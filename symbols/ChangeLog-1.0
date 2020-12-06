@@ -1,3 +1,8 @@
+2020-12-06 Wiley E. Hill <wileyhill@gmail.com>
+
+    * lineartech/LT1102-1.sym: Add new symbol; J-FET instrumentation
+      amplifier.
+
 2020-11-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * linear/opamps/LM3900-?.sym: Clean symbol; hide slotdef's:
