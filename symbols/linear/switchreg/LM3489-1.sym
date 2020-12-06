@@ -3,8 +3,6 @@ T 2100 1450 8 10 1 1 0 6 1
 refdes=U?
 T 0 1800 8 10 0 0 0 0 1
 device=LM3489
-T 0 2200 5 10 0 0 0 0 1
-footprint=VSSOP-8
 T 0 2000 8 10 0 0 0 0 1
 description=LM3489 Hysteretic PFET Buck Controller
 B 300 300 1800 1100 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
@@ -96,3 +94,5 @@ pinlabel=Vin
 T 0 800 5 10 0 1 0 2 1
 pintype=pas
 }
+T 0 2200 5 10 0 0 0 0 1
+footprint=VSSOP-8-65P

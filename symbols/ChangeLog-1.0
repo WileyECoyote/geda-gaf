@@ -1,5 +1,7 @@
 2020-12-06 Wiley E. Hill <wileyhill@gmail.com>
 
+    * linear/switchreg/LM3489-1.sym: Update footprint=VSSOP-8-65P.
+
     * lineartech/LT1102-1.sym: Add new symbol; J-FET instrumentation
       amplifier.
 
