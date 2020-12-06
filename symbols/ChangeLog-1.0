@@ -11,6 +11,9 @@
     * lineartech/opamps/LT1006.sym: Add new symbol; precision operational
       amplifier.
 
+    * maxim/DS4412-1.sym: Add new symbol; dual-channel I²C adjustable
+      sink/source current DAC.
+
 2020-11-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * linear/opamps/LM3900-?.sym: Clean symbol; hide slotdef's:
