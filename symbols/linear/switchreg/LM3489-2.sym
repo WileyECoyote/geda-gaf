@@ -3,8 +3,6 @@ T 300 2050 5 10 0 1 0 0 1
 device=LM3489
 T 1800 1650 8 10 1 1 0 6 1
 refdes=U?
-T 1350 2250 5 10 0 0 0 0 1
-numslots=0
 T 300 2450 5 10 0 1 0 0 1
 description=Hysteretic PFET Buck Controller
 B 300 0 1700 1600 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
@@ -99,9 +97,11 @@ pintype=pwr
 T 300 1650 9 10 1 1 0 0 1
 value=LM3489MM
 T 300 1850 5 10 0 1 0 0 1
-footprint=VSSOP-8
+footprint=VSSOP-8-65P
 T 300 2650 5 10 0 1 0 0 1
 documentation=http://www.ti.com/product/lm3489
+T 1350 2250 5 10 0 0 0 0 1
+numslots=0
 T 300 2250 5 8 0 0 0 0 1
 symversion=0.1
 T 300 2850 5 10 0 0 0 0 1
