@@ -1,0 +1,117 @@
+v 20150101 2
+L 300 1100 300 300 3 0 0 0 -1 -1
+L 300 1100 1000 700 3 0 0 0 -1 -1
+L 1000 700 300 300 3 0 0 0 -1 -1
+L 400 950 400 850 3 0 0 0 -1 -1
+L 350 900 450 900 3 0 0 0 -1 -1
+L 350 500 450 500 3 0 0 0 -1 -1
+P 700 500 700 300 1 0 1
+{
+T 575 325 5 8 1 1 0 0 1
+pinnumber=1
+T 750 150 5 8 0 1 0 0 1
+pinseq=6
+T 700 550 9 6 0 1 0 6 1
+pinlabel=BAL-
+T 800 400 5 6 0 1 90 6 1
+pintype=pas
+}
+P 100 500 300 500 1 0 0
+{
+T 125 550 5 8 1 1 0 0 1
+pinnumber=2
+T 200 550 5 8 0 1 0 0 1
+pinseq=2
+T 325 575 9 8 0 1 0 0 1
+pinlabel=in-
+T 325 575 5 8 0 1 0 0 1
+pintype=in
+}
+P 100 900 300 900 1 0 0
+{
+T 125 950 5 8 1 1 0 0 1
+pinnumber=3
+T 200 950 5 8 0 1 0 0 1
+pinseq=1
+T 325 750 9 8 0 1 0 0 1
+pinlabel=in+
+T 325 750 5 8 0 1 0 0 1
+pintype=in
+}
+P 500 400 500 200 1 0 1
+{
+T 350 175 5 8 1 1 0 0 1
+pinnumber=4
+T 275 175 5 8 0 1 0 0 1
+pinseq=4
+T 375 400 9 6 0 1 0 0 1
+pinlabel=V-
+T 600 275 5 6 0 1 90 6 1
+pintype=pwr
+}
+P 900 600 900 400 1 0 1
+{
+T 775 450 5 8 1 1 0 0 1
+pinnumber=5
+T 950 200 5 8 0 1 0 0 1
+pinseq=7
+T 875 650 9 6 0 1 0 6 1
+pinlabel=BAL+
+T 1000 450 5 6 0 1 90 6 1
+pintype=pas
+}
+P 1000 700 1200 700 1 0 1
+{
+T 1050 550 5 8 1 1 0 0 1
+pinnumber=6
+T 1125 550 5 8 0 1 0 0 1
+pinseq=5
+T 1000 750 9 8 0 1 0 0 1
+pinlabel=out
+T 1000 750 9 8 0 1 0 0 1
+pintype=out
+}
+P 700 900 700 1100 1 0 1
+{
+T 750 1025 5 8 1 1 0 0 1
+pinnumber=7
+T 825 1025 5 8 0 1 0 0 1
+pinseq=3
+T 750 900 9 8 0 1 0 0 1
+pinlabel=V+
+T 650 1000 5 6 0 1 90 0 1
+pintype=pwr
+}
+P 500 1000 500 1200 1 0 1
+{
+T 550 1225 5 8 1 1 0 0 1
+pinnumber=8
+T 550 1225 5 8 0 1 0 0 1
+pinseq=8
+T 400 1250 9 8 0 1 0 6 1
+pinlabel=ISY
+T 400 1200 5 6 0 1 180 0 1
+pintype=pas
+}
+T 1000 1075 5 10 1 1 0 0 1
+device=LT1006
+T 1000 1250 8 10 1 1 0 0 1
+refdes=U?
+T 1000 1450 5 10 0 1 0 0 1
+description=Operational Amplifier, Precision, Single Supply
+T 1000 1650 5 10 0 1 0 0 1
+documentation=https://www.analog.com/media/en/technical-documentation/data-sheets/LT1006.pdf
+T 1250 100 9 10 0 0 0 0 1
+numslots=0
+T 1250 475 5 10 0 1 0 0 1
+value=LT1006S8
+T 1000 900 9 10 1 1 0 0 1
+footprint=SOIC8
+T 1250 300 5 10 0 0 0 0 1
+symversion=0.2
+T 1000 1845 5 10 0 0 0 0 1
+dist-license=GPLv2
+T 1000 2045 5 10 0 0 0 0 1
+use-license=unlimited
+T 1000 2245 5 10 0 0 0 0 1
+author=AutoTron
