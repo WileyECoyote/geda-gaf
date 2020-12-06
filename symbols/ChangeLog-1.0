@@ -20,6 +20,8 @@
 
     * maxim/MAX5385-1.sym: Add new symbol; 8-bit DAC, SPI.
 
+    * maxim/MAX6103-1.sym: Add new symbol; Precision low-dropout 3V reference.
+
 2020-11-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * linear/opamps/LM3900-?.sym: Clean symbol; hide slotdef's:

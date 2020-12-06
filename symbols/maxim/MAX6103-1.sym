@@ -1,0 +1,49 @@
+v 20041228 1
+B 0 300 1500 1100 3 0 0 0 -1 -1 0 0 -1 -1 -1 -1
+T 1300 1700 5 10 0 0 0 0 1
+device=MAX6103
+P 700 1700 700 1400 1 0 0
+{
+T 750 1500 5 8 1 1 0 0 1
+pinnumber=1
+T 750 1500 5 8 0 1 0 2 1
+pinseq=1
+T 700 1350 9 8 1 1 0 5 1
+pinlabel=Vcc
+T 700 1200 5 8 0 1 0 5 1
+pintype=pwr
+}
+P 1500 800 1800 800 1 0 1
+{
+T 1600 850 5 8 1 1 0 0 1
+pinnumber=2
+T 1600 750 5 8 0 1 0 2 1
+pinseq=2
+T 1450 800 9 8 1 1 0 6 1
+pinlabel=OUT
+T 1450 800 5 8 0 1 0 8 1
+pintype=out
+}
+P 700 0 700 300 1 0 0
+{
+T 750 100 5 8 1 1 0 0 1
+pinnumber=3
+T 750 100 5 8 0 1 0 2 1
+pinseq=3
+T 700 350 9 8 1 1 0 3 1
+pinlabel=GND
+T 700 500 5 8 0 1 0 3 1
+pintype=pwr
+}
+T 1300 1900 5 10 0 1 0 0 1
+footprint=SOT23
+T 1500 1500 8 10 1 1 0 6 1
+refdes=U?
+T 1300 2350 5 10 0 1 0 0 1
+description=precision, micropower, low-dropout, 3.0V voltage reference
+T 1300 2150 5 10 0 0 0 0 1
+numslots=0
+T 1300 2550 5 10 0 1 0 0 1
+documentation=http://datasheets.maximintegrated.com/en/ds/MAX6100-MAX6107.pdf
+T 300 800 9 10 1 1 0 0 1
+value=MAX6103
