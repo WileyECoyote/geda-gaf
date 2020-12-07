@@ -1,3 +1,10 @@
+2020-12-07 Wiley E. Hill <wileyhill@gmail.com>
+
+    * source/gnd-?.sym: Remove cluttering attributes; author, dist-license
+      and use-license:
+
+            * source/gnd-1.sym
+
 2020-12-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * linear/switchreg/LM3489-?.sym: Update footprint=VSSOP-8-65P:
