@@ -8,6 +8,10 @@
             * source/gnd-3.sym
             * source/gnd-4.sym
 
+    * ti/ADS8860-1.sym: Update footprint=VSSOP-10-50P:
+
+            * ti/ADS8860-1.sym
+
 2020-12-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * linear/switchreg/LM3489-?.sym: Update footprint=VSSOP-8-65P:
