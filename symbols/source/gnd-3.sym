@@ -25,9 +25,3 @@ T 200 800 8 10 0 0 0 0 1
 numslots=0
 T 200 650 8 10 0 0 0 0 1
 net=SGND:1
-T 200 1250 8 10 0 0 0 0 1
-author=AutoTron
-T 200 1100 8 10 0 0 0 0 1
-dist-license=GPLv2
-T 200 950 8 10 0 0 0 0 1
-use-license=unlimited
