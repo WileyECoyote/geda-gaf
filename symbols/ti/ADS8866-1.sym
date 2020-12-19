@@ -121,7 +121,7 @@ documentation=http://www.ti.com/lit/ds/symlink/ads8866.pdf
 T 400 2400 9 10 1 1 0 0 1
 value=ADS8866
 T 400 2200 5 10 1 1 0 0 1
-footprint=VSSOP-10
+footprint=VSSOP-10-50P
 T 400 3200 5 10 0 0 0 0 1
 numslots=0
 T 400 3600 5 10 0 0 0 0 1
