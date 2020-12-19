@@ -99,7 +99,7 @@ pintype=pwr
 T 300 1650 9 10 1 1 0 0 1
 value=LM3485MM
 T 300 1850 5 10 0 1 0 0 1
-footprint=VSSOP-8
+footprint=VSSOP-8-65P
 T 300 2650 5 10 0 1 0 0 1
 documentation=http://www.ti.com/product/lm3485
 T 300 2250 5 8 0 0 0 0 1
