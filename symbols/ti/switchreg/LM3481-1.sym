@@ -1,6 +1,6 @@
 v 20150401 2
 T 300 2050 5 10 0 1 0 0 1
-footprint=VSSOP-10
+footprint=VSSOP-10-50P
 T 300 3050 5 10 0 0 0 0 1
 author=AutoTron
 T 300 2850 5 10 0 1 0 0 1
