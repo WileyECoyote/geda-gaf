@@ -123,7 +123,7 @@ pintype=pwr
 T 300 1850 9 10 1 1 0 0 1
 value=LM5022
 T 300 2050 5 10 0 1 0 0 1
-footprint=VSSOP-10
+footprint=VSSOP-10-50P
 T 300 2450 5 8 0 0 0 0 1
 symversion=0.1
 T 300 3050 5 10 0 0 0 0 1
