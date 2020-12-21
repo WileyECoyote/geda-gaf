@@ -125,6 +125,6 @@ symversion=0.1
 T 300 1850 9 10 1 1 0 0 1
 value=LM5022
 T 300 2000 9 10 0 1 0 0 1
-footprint=VSSOP-10
+footprint=VSSOP-10-50P
 T 300 3000 5 10 0 0 0 0 1
 author=AutoTron
