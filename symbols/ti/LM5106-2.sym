@@ -113,7 +113,7 @@ pintype=out
 T 400 3000 5 10 0 0 0 0 1
 device=LM5106
 T 400 2200 5 10 0 1 0 0 1
-footprint=VSSOP-10
+footprint=VSSOP-10-50P
 T 400 3600 5 10 0 0 0 0 1
 author=AutoTron
 T 400 2800 5 10 0 0 0 0 1
