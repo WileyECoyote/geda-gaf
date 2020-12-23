@@ -58,8 +58,6 @@ T 900 100 9 10 0 1 0 0 1
 value=60V, 115W
 T 900 300 9 10 0 1 0 0 1
 footprint=TO-3
-T 0 1400 5 10 0 0 0 0 1
-footprints=SOT-23, SOT-323
 T 0 1250 5 10 0 0 0 0 1
 spice-type=BJT NPN
 L 575 225 500 250 3 0 0 0 -1 -1
