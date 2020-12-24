@@ -1,3 +1,10 @@
+2020-12-24 Wiley E. Hill <wileyhill@gmail.com>
+
+    * diode/schottky/MBR140-?.sym: Update footprint attribute; DO-214AA ->
+      SOD123FL.
+
+            * diode/schottky/MBR140-1.sym
+
 2020-12-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * source/gnd-?.sym: Remove cluttering attributes; author, dist-license
