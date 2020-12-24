@@ -34,7 +34,7 @@ T 650 250 5 6 0 1 0 0 1
 pintype=pas
 }
 T 300 900 9 10 0 1 0 0 1
-footprint=DO-214AA
+footprint=SOD123FL
 T 600 550 9 10 0 0 0 0 1
 symversion=0.5
 T 850 0 5 10 1 1 0 0 1
