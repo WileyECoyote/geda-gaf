@@ -6,6 +6,11 @@
             * diode/schottky/MBR140-1.sym
             * diode/schottky/MBR140-2.sym
 
+    * diode/transil/SMM4F*.sym: Update footprint attribute; DO-222AA ->
+      DO-216AA.
+
+            * diode/transil/SMM4F10A-1.sym
+
 2020-12-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * source/gnd-?.sym: Remove cluttering attributes; author, dist-license
