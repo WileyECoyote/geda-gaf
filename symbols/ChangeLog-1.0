@@ -1,3 +1,7 @@
+2020-12-25 Wiley E. Hill <wileyhill@gmail.com>
+
+    * ti/ldo/TPS7A1601-1.sym: Add new symbol; Low drop-out voltage regulator.
+
 2020-12-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * diode/schottky/MBR140-?.sym: Update footprint attribute; DO-214AA ->
