@@ -1,0 +1,66 @@
+v 20140729 2
+L 600 200 400 400 3 0 0 0 -1 -1
+L 600 800 400 600 3 0 0 0 -1 -1
+L 400 700 400 300 3 12 0 0 -1 -1
+L 400 500 184 500 3 0 0 0 -1 -1
+P 0 500 200 500 1 0 0
+{
+T 75 350 5 8 0 1 0 0 1
+pinnumber=1
+T 175 350 5 8 0 1 0 0 1
+pinseq=2
+T 100 600 9 8 0 1 0 4 1
+pinlabel=b
+T 200 525 5 8 0 1 0 0 1
+pintype=in
+}
+P 600 200 600 0 1 0 1
+{
+T 475 0 5 8 0 1 0 0 1
+pinnumber=2
+T 475 125 5 8 0 1 0 0 1
+pinseq=3
+T 700 75 9 8 0 1 0 4 1
+pinlabel=e
+T 625 175 5 8 0 1 0 0 1
+pintype=pas
+}
+P 600 1000 600 800 1 0 0
+{
+T 475 925 5 8 0 1 0 0 1
+pinnumber=3
+T 475 800 5 8 0 1 0 0 1
+pinseq=1
+T 700 925 9 8 0 1 0 4 1
+pinlabel=c
+T 600 800 5 8 0 1 0 2 1
+pintype=pas
+}
+H 3 0 0 0 -1 -1 1 -1 -1 -1 -1 -1 5
+M 425,375
+L 500,350
+L 450,300
+L 425,375
+z
+T 900 700 8 10 1 1 0 0 1
+device=2N2955
+T 200 900 8 10 1 1 0 4 1
+refdes=Q?
+T 900 500 8 10 0 1 0 0 1
+footprint=TO-3
+T 900 700 8 10 0 1 0 0 1
+value=2N2955
+T 900 1200 9 8 0 0 0 0 1
+numslots=0
+T 900 1050 5 8 0 0 0 0 1
+spice-type=BJT PNP
+T 900 900 5 8 0 1 0 0 1
+description=PNP Transistor, 60V, 115W
+T 900 1350 5 8 0 0 0 0 1
+symversion=1.0
+T 900 1800 5 8 0 0 0 0 1
+author=AutoTron
+T 900 1650 5 8 0 0 0 0 1
+dist-license=GPLv2
+T 900 1500 5 8 0 0 0 0 1
+use-license=unlimited
