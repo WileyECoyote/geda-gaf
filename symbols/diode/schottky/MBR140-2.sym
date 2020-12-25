@@ -44,4 +44,4 @@ numslots=0
 T 300 1100 5 10 0 1 0 0 1
 description=Diode,Schottky,40V,1A
 T 300 1300 5 10 0 1 0 0 1
-documentation=http://wikipedia.org/wiki/Schottky_diode
+documentation=http://www.onsemi.com/pub/Collateral/MBR140SFT1-D.PDF
