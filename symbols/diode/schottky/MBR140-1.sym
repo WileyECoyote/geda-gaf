@@ -38,7 +38,7 @@ pintype=pas
 T 200 500 9 10 1 1 0 0 1
 footprint=SOD123FL
 T 200 1400 5 10 0 1 0 0 1
-documentation=www.onsemi.com
+documentation=http://www.onsemi.com/pub/Collateral/MBR140SFT1-D.PDF
 T 200 1200 5 10 0 1 0 0 1
 description=Diode,Schottky,40V,1A
 T 900 100 5 10 0 1 0 0 1
