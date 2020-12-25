@@ -2,6 +2,11 @@
 
     * ti/ldo/TPS7A1601-1.sym: Add new symbol; Low drop-out voltage regulator.
 
+    * transistor/pnp-power/2N2955_pnp_60V_115W_TO-3-bec-?.sym: Add new symbol;
+      PNP transistor, 60V, 115W.
+
+            * transistor/pnp-power/2N2955_pnp_60V_115W_TO-3-bec-1.sym
+
 2020-12-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * diode/schottky/MBR140-?.sym: Update footprint attribute; DO-214AA ->
