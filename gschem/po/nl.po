@@ -6667,31 +6667,3 @@ msgstr "~S is geen geldige toetsencombinatie."
 #, scheme-format
 msgid "~S is not a prefix key sequence."
 msgstr "~S is geen voorafgaande toetsen combinatie."
-
-# Input attribute is invalid
-#~ msgid "Input attribute is invalid"
-#~ msgstr "Input kenmerk is ongeldig"
-
-#~ msgid "<b>Scope</b>"
-#~ msgstr "<b>Omvang</b>"
-
-#~ msgid "<b>Add Attribute</b>"
-#~ msgstr "<b>Plaats Attribuut</b>"
-
-#~ msgid "<b>Edit Attribute</b>"
-#~ msgstr "<b>Bewerk Attribuut</b>"
-
-#~ msgid "<b>Selection</b>"
-#~ msgstr "Selectie"
-
-#~ msgid "<b>Array</b>"
-#~ msgstr "<b>reeks</b>"
-
-#~ msgid "Toggle _Magnetic Net"
-#~ msgstr "_Magnetische Draad"
-
-#~ msgid "Toggle _Snap On-Off"
-#~ msgstr "_Snap Aan/Uit"
-
-#~ msgid "New page created [%s]\n"
-#~ msgstr "Nieuwe pagina gemaakt [%s]\n"
