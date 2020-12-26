@@ -6740,7 +6740,3 @@ msgstr ""
 #, scheme-format
 msgid "~S is not a prefix key sequence."
 msgstr ""
-
-# Input attribute is invalid
-#~ msgid "Input attribute is invalid"
-#~ msgstr "Girdi niteliği geçersiz"
