@@ -6754,7 +6754,3 @@ msgstr "~S 不是有效的组合键."
 #, scheme-format
 msgid "~S is not a prefix key sequence."
 msgstr "~S 不是前缀键序列."
-
-# Input attribute is invalid
-#~ msgid "Input attribute is invalid"
-#~ msgstr "输入属性无效"
