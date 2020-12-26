@@ -6742,7 +6742,3 @@ msgstr "~S 不是有效的組合鍵."
 #, scheme-format
 msgid "~S is not a prefix key sequence."
 msgstr "~S 不是前綴密鑰序列."
-
-# Input attribute is invalid
-#~ msgid "Input attribute is invalid"
-#~ msgstr "輸入屬性無效"
