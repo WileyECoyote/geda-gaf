@@ -6766,7 +6766,3 @@ msgstr "~S não é uma combinação de chave válido."
 #, scheme-format
 msgid "~S is not a prefix key sequence."
 msgstr "~S não é uma seqüência de chave de prefixo."
-
-# Input attribute is invalid
-#~ msgid "Input attribute is invalid"
-#~ msgstr "Atributo de entrada é inválido"
