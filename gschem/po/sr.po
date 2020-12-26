@@ -6686,7 +6686,3 @@ msgstr "~S није валидна комбинација тастера."
 #, scheme-format
 msgid "~S is not a prefix key sequence."
 msgstr "~S није секвенца префикса."
-
-# Canceled Close all
-#~ msgid "Canceled Close all\n"
-#~ msgstr "Отказано Затвори све\n"
