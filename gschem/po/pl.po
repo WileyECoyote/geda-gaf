@@ -6802,7 +6802,3 @@ msgstr ""
 #, scheme-format
 msgid "~S is not a prefix key sequence."
 msgstr ""
-
-# attribute input is incorrect
-#~ msgid "Input attribute is invalid"
-#~ msgstr "atrybut wejściowy jest nieprawidłowy"
