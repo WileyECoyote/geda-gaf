@@ -6610,6 +6610,3 @@ msgstr ""
 #, scheme-format
 msgid "~S is not a prefix key sequence."
 msgstr ""
-
-#~ msgid "Canceled Close all\n"
-#~ msgstr "loubchaol kar bet teangoasa\n"
