@@ -37,7 +37,7 @@ device=SMM4F6.0A
 T 550 800 8 10 1 1 0 0 1
 refdes=D?
 T 550 200 9 10 0 1 0 0 1
-footprint=DO-222AA
+footprint=DO-216AA
 T 550 600 5 10 1 1 0 0 1
 value=6.0V
 T 543 985 5 10 0 1 0 0 1
