@@ -5,6 +5,8 @@
             * diode/schottky/B160-1.sym
             * diode/schottky/B160-2.sym
 
+    * transistor/npn-smt/BC847CM_npn_50V_D6_*.sym: Remove BC847CM transistors.
+
 2020-12-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * ti/ldo/TPS7A1601-1.sym: Add new symbol; Low drop-out voltage regulator.
