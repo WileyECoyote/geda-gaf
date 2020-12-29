@@ -1,3 +1,9 @@
+2020-12-29 Wiley E. Hill <wileyhill@gmail.com>
+
+    * diode/schottky/B160-?.sym: Add new symbol; 60V 1.0A Schottky diode:
+
+            * diode/schottky/B160-1.sym
+
 2020-12-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * ti/ldo/TPS7A1601-1.sym: Add new symbol; Low drop-out voltage regulator.
