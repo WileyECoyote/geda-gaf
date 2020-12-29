@@ -3,6 +3,7 @@
     * diode/schottky/B160-?.sym: Add new symbol; 60V 1.0A Schottky diode:
 
             * diode/schottky/B160-1.sym
+            * diode/schottky/B160-2.sym
 
 2020-12-25 Wiley E. Hill <wileyhill@gmail.com>
 
