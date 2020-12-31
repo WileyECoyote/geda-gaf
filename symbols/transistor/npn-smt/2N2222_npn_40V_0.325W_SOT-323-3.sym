@@ -62,6 +62,6 @@ author=AutoTron
 T 0 2150 5 10 0 0 0 0 1
 dist-license=GPLv2
 T 0 2000 5 10 0 0 0 0 1
-use-license=unrestricted
+use-license=unlimited
 T 0 1850 5 10 0 0 0 0 1
 symversion=1.0
