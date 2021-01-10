@@ -8,10 +8,11 @@
             * linear/switchreg/LM2596-12-TO263-1.sym
             * linear/switchreg/LM2596-ADJ-TO263-1.sym
 
-    * transistor/npn-smt/BC847CM_npn_50V_D6_SOT-883-*.sym: Add symbol for
+    * transistor/npn-smt/BC847CM_npn_50V_D6_SOT-883-*.sym: Add symbols for
       BC847CM in SOT-883 package:
 
             *transistor/npn-smt/BC847CM_npn_50V_D6_SOT-883-1.sym
+            *transistor/npn-smt/BC847CM_npn_50V_D6_SOT-883-2.sym
 
 2020-12-29 Wiley E. Hill <wileyhill@gmail.com>
 
