@@ -1,3 +1,10 @@
+2021-01-10 Wiley E. Hill <wileyhill@gmail.com>
+
+    * linear/switchreg/LM2596-3-TO263-*.sym: Add new symbol; Bucking Voltage
+      Regulator.
+
+            * linear/switchreg/LM2596-3-TO263-1.sym
+
 2020-12-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * diode/schottky/B160-?.sym: Add new symbol; 60V 1.0A Schottky diode:
