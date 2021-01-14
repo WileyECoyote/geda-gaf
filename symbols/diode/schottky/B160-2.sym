@@ -40,7 +40,7 @@ value=B160-E3
 T 300 1300 9 10 0 0 0 0 1
 numslots=0
 T 300 1100 5 10 0 1 0 0 1
-description=Diode,Schottky,30V,2.0A
+description=Diode,Schottky,60V,1.0A
 T 300 1600 5 10 0 1 0 0 1
 documentation=www.vishay.com
 T 300 1450 9 10 0 0 0 0 1
