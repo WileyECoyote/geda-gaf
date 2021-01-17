@@ -1,0 +1,69 @@
+v 20140729 3
+T 0 2300 5 10 0 0 0 0 1
+author=AutoTron
+T 0 2150 5 10 0 0 0 0 1
+dist-license=GPLv2
+T 0 2000 5 10 0 0 0 0 1
+use-license=unlimited
+T 0 1850 5 10 0 0 0 0 1
+symversion=1.0
+T 0 1700 5 10 0 0 0 0 1
+description=NPN Transistor
+T 0 1550 9 10 0 0 0 0 1
+numslots=0
+P 0 500 200 500 1 0 0
+{
+T 100 550 5 6 0 1 0 0 1
+pinnumber=1
+T 100 550 5 6 0 1 0 0 1
+pinseq=2
+T 100 375 5 6 0 1 0 0 1
+pinlabel=b
+T 0 500 5 6 0 1 0 0 1
+pintype=in
+}
+P 600 1000 600 800 1 0 0
+{
+T 500 850 5 6 0 1 0 0 1
+pinnumber=2
+T 500 850 5 6 0 1 0 0 1
+pinseq=1
+T 650 800 5 6 0 1 0 0 1
+pinlabel=c
+T 600 1000 5 6 0 1 0 0 1
+pintype=pas
+}
+P 600 200 600 0 1 0 1
+{
+T 500 50 5 6 0 1 0 0 1
+pinnumber=3
+T 500 50 5 6 0 1 0 0 1
+pinseq=3
+T 650 175 5 6 0 1 0 0 1
+pinlabel=e
+T 600 0 5 6 0 1 0 0 1
+pintype=pas
+}
+V 500 501 300 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
+T 900 700 8 10 1 1 0 0 1
+device=2N3904
+L 600 200 400 400 3 0 0 0 -1 -1
+L 600 800 400 600 3 0 0 0 -1 -1
+L 400 700 400 300 3 12 0 0 -1 -1
+L 400 500 184 500 3 0 0 0 -1 -1
+T 900 500 8 10 1 1 0 0 1
+refdes=Q?
+T 900 300 9 10 0 1 0 0 1
+value=40V, 300mW
+T 900 100 9 10 0 1 0 0 1
+footprint=SOT223
+T 0 1400 5 10 0 0 0 0 1
+footprints=TO-92
+T 0 1250 5 10 0 0 0 0 1
+spice-type=BJT NPN
+H 3 0 0 0 -1 -1 1 -1 -1 -1 -1 -1 5
+M 575,225
+L 500,250
+L 550,300
+L 575,225
+z
