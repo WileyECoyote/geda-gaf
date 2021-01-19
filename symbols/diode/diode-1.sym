@@ -44,6 +44,6 @@ author=Amand Tihon amand.tihon@alrj.org
 T 500 2000 5 10 0 0 0 0 1
 dist-license=GPLv2
 T 500 1800 5 10 0 0 0 0 1
-use-license=unrestricted
+use-license=unlimited
 T 500 1600 5 10 0 1 0 0 1
 documentation=http://wikipedia.org/wiki/Diode
