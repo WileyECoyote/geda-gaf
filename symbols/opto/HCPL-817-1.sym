@@ -88,6 +88,6 @@ symversion=0.3
 T 300 2850 5 8 0 0 0 0 1
 dist-license=GPLv2
 T 300 2700 5 8 0 0 0 0 1
-use-license=unrestricted
+use-license=unlimited
 T 300 3000 5 8 0 0 0 0 1
 author=AutoTron
