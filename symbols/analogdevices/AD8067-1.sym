@@ -65,7 +65,7 @@ refdes=U?
 T 1050 1950 5 10 0 0 0 0 1
 author=Thomas Reinemann
 T 1050 1750 5 10 0 0 0 0 1
-dist-license=public domain
+dist-license=GPLv2
 T 1050 1550 5 10 0 0 0 0 1
 use-license=unlimited
 T 1050 1350 5 10 0 0 0 0 1
