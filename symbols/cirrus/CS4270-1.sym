@@ -279,7 +279,7 @@ description=105dB, 24-Bit, 192 kHz Stereo Audio CODEC
 T 400 5100 5 10 0 0 0 0 1
 numslots=0
 T 400 5500 5 10 0 0 0 0 1
-dist-license=public domain
+dist-license=GPLv2
 T 400 5300 5 10 0 0 0 0 1
 use-license=public domain
 T 400 4100 9 10 1 1 0 0 1
