@@ -114,6 +114,6 @@ pintype=pas
 T 2310 3600 5 10 0 0 0 0 1
 author=AutoTron
 T 2300 3200 9 10 0 0 0 0 1
-use-license=unrestricted
+use-license=unlimited
 T 2300 3400 9 10 0 0 0 0 1
 dist-license=GPLv2
