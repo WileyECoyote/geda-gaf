@@ -96,7 +96,7 @@ pintype=out
 T 2710 3500 5 10 0 0 0 0 1
 author=AutoTron
 T 2700 3100 9 10 0 0 0 0 1
-use-license=unrestricted
+use-license=unlimited
 T 2700 3300 9 10 0 0 0 0 1
 dist-license=GPLv2
 V 1500 1500 1000 3 0 0 0 100 100 0 0 45 50 135 50
