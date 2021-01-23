@@ -149,7 +149,7 @@ pintype=pas
 T 4210 3900 5 10 0 0 0 0 1
 author=AutoTron
 T 4200 3500 9 10 0 0 0 0 1
-use-license=unrestricted
+use-license=unlimited
 T 4200 3700 9 10 0 0 0 0 1
 dist-license=GPLv2
 T 4200 3300 9 10 0 1 0 0 1
