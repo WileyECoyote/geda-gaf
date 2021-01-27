@@ -1,3 +1,9 @@
+2021-01-27 Wiley E. Hill <wileyhill@gmail.com>
+
+    * diode/schottky/B320A-?.sym: Add new symbol; 20V 3.0A Schottky diode:
+
+            * diode/schottky/B320A-1.sym
+
 2021-01-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * linear/switchreg/LM2596-3-TO263-*.sym: Add new symbol; Bucking Voltage
