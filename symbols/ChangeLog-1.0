@@ -1,8 +1,9 @@
 2021-01-27 Wiley E. Hill <wileyhill@gmail.com>
 
-    * diode/schottky/B320A-?.sym: Add new symbol; 20V 3.0A Schottky diode:
+    * diode/schottky/B320A-?.sym: Add new symbols; 20V 3.0A Schottky diode:
 
             * diode/schottky/B320A-1.sym
+            * diode/schottky/B320A-2.sym
 
 2021-01-10 Wiley E. Hill <wileyhill@gmail.com>
 
