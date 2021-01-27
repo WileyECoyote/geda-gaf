@@ -5,6 +5,9 @@
             * diode/schottky/B320A-1.sym
             * diode/schottky/B320A-2.sym
 
+    * transistor/npn-smt/BC847CM_npn_50V_D6_SOT-883-6.sym: Add symbols for
+      BC847CM in SOT-883 package:
+
 2021-01-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * linear/switchreg/LM2596-3-TO263-*.sym: Add new symbol; Bucking Voltage
