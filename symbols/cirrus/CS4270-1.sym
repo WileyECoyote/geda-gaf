@@ -281,7 +281,7 @@ numslots=0
 T 400 5500 5 10 0 0 0 0 1
 dist-license=GPLv2
 T 400 5300 5 10 0 0 0 0 1
-use-license=public domain
+use-license=unlimited
 T 400 4100 9 10 1 1 0 0 1
 value=CS4270
 T 750 150 5 8 0 0 0 0 1
