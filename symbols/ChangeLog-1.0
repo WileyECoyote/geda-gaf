@@ -6,6 +6,8 @@
 
     * tube/6L6GC-1.sym: Add new symbol; Popular 6V Tube, Beam-Power Pentode, 30W.
 
+    * tube/6L6WGB-1.sym: Add new symbol; 6V Tube, Beam-Power Pentode, 30W.
+
 2021-01-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * diode/schottky/B320A-?.sym: Add new symbols; 20V 3.0A Schottky diode:
