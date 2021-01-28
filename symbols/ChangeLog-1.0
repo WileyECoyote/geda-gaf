@@ -12,6 +12,8 @@
 
     * vishay/pmosfet/SQJ459EP_pmosfet_60V_83W-8.sym: Add new symbol; PMOSFET, 60V, 83W.
 
+    * vishay/pmosfet/SQJ461EP_pmosfet_60V_83W-8.sym: Add new symbol; PMOSFET, 60V, 83W.
+
 2021-01-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * diode/schottky/B320A-?.sym: Add new symbols; 20V 3.0A Schottky diode:
