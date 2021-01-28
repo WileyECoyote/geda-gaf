@@ -1,3 +1,7 @@
+2021-01-28 Wiley E. Hill <wileyhill@gmail.com>
+
+    * ti/ldo/TPS7A4700-1.sym: Add new symbol; low drop-out voltage regulator.
+
 2021-01-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * diode/schottky/B320A-?.sym: Add new symbols; 20V 3.0A Schottky diode:
