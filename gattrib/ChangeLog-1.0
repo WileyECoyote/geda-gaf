@@ -1,3 +1,7 @@
+2021-01-29 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/gtksheet/gtkdataformat.c: Reformat source documentation.
+
 2020-11-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/gtksheet/gtkcompat.h: Add conditional compiler directives for

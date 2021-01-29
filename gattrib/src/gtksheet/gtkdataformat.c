@@ -185,11 +185,9 @@ static char *format_int(int i, int num_bytes)
 }
 
 /*!
- * gtk_data_format:
- * @str:        the string to be formatted
- * @dataformat: formatting instructions
- *
- * format @str according to @dataformat.
+ * \brief gtk_data_format
+ * \par Function Description
+ *  Format @str according to @dataformat.
  *
  * formatting instructions:
  *
@@ -212,9 +210,10 @@ static char *format_int(int i, int num_bytes)
  *
  * 'bit' is formatted as a boolean value [0,1].
  *
+ * \param [in] str         The string to be formatted
+ * \param [in] dataformat  Formatting instructions
  *
- * Returns: a pointer to an internal static buffer, with the
- * formatted data
+ * \returns a pointer to an internal static buffer, with the formatted data
  */
 char *gtk_data_format(const char *str, const char *dataformat)
 {
