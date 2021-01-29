@@ -185,13 +185,14 @@ gtk_data_text_view_set_max_length(GtkDataTextView *data_text_view,
 }
 
 /*!
- * gtk_data_text_view_get_max_length_bytes:
- * @data_text_view: a #GtkDataTextView
- *
- * Retrieves the maximum byte length for the contents of
+ * \brief gtk_data_text_view_get_max_length_bytes
+ * \par Function Description
+ *  Retrieves the maximum byte length for the contents of
  * #GtkDataTextView data_format.
  *
- * Returns: maximum byte length or 0.
+ * \param [in] data_text_view  A #GtkDataTextView
+ *
+ * \returns  maximum byte length or 0.
  *
  * Since: 3.0.6
  **/
