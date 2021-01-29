@@ -537,12 +537,12 @@ gtk_data_text_view_init(GtkDataTextView *data_text_view)
 	data_text_view);
 }
 
-/**
- * gtk_data_text_view_new:
+/*!
+ * \brief gtk_data_text_view_new
+ * \par Function Description
+ *  Creates a new GtkDataTextView Widget.
  *
- * Creates a new GtkDataTextView Widget.
- *
- * Returns: the new GtkDataTextView Widget
+ * \returns the new GtkDataTextView Widget
  *
  * Since: 3.0.6
  */
