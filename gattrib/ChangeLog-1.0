@@ -1,6 +1,9 @@
 2021-01-29 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/gtksheet/gtkdataformat.c: Reformat source documentation.
+    * src/gtksheet/gtkdatatextview.c: Reformat source documentation:
+
+          * src/gtksheet/gtkdataformat.c
+          * src/gtksheet/gtkdatatextview.c
 
 2020-11-25 Wiley E. Hill <wileyhill@gmail.com>
 

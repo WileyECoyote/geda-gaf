@@ -93,14 +93,15 @@ static void gtk_data_text_view_init(GtkDataTextView *data);
 static GtkTextViewClass *parent_class = NULL;
 
 /*!
- * gtk_data_text_view_get_description:
- * @data_text_view: a #GtkDataTextView
+ * \brief gtk_data_text_view_get_description
+ * \par Function Description
+ *  Retrieves the #GtkDataTextView description.
  *
- * Retrieves the #GtkDataTextView description.
+ * \param [in] data_text_view a #GtkDataTextView
  *
- * \returns: a pointer to the contents of the widget as a string. This
- *           string points to internally allocated storage in the widget
- *           and must not be freed, modified or stored.
+ * \returns a pointer to the contents of the widget as a string. This
+ *          string points to internally allocated storage in the widget
+ *          and must not be freed, modified or stored.
  *
  * Since: 3.0.6
  */
