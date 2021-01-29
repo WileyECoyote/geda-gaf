@@ -156,12 +156,13 @@ int gtk_data_text_view_get_max_length(GtkDataTextView *data_text_view)
 }
 
 /*!
- * gtk_data_text_view_set_max_length:
- * @data_text_view:  a #GtkDataTextView
- * @max_length:  maximum character length or 0
+ * \brief gtk_data_text_view_set_max_length
+ * \par Function Description
+ *  Sets the maximum character length for the contents of the
+ *  #GtkDataTextView. Existing content will not be truncted.
  *
- * Sets the maximum character length for the contents of the
- * #GtkDataTextView. Existing content will not be truncted.
+ * \param [in] data_text_view  A #GtkDataTextView
+ * \param [in] max_length      Maximum character length or 0
  *
  * Since: 3.0.6
  */
