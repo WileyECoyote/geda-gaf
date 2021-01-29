@@ -296,14 +296,15 @@ char *gtk_data_format(const char *str, const char *dataformat)
 }
 
 /*!
- * gtk_data_format_remove:
- * @str:        the string to be unformatted
- * @dataformat: formatting instructions
+ * \brief gtk_data_format_remove
+ * \par Function Description
+ *  Reverse the effect of #gtk_data_format, i.e. remove all
+ *  formatting characters, apply trailing dash
  *
- * reverse the effect of #gtk_data_format, i.e. remove all
- * formatting characters, apply trailing dash
+ * \param [in] str         The string to be unformatted
+ * \param [in] dataformat  Formatting instructions
  *
- * Returns: a pointer to an internal static buffer, with the
+ * \returns a pointer to an internal static buffer, with the
  * unformatted data
  */
 char *gtk_data_format_remove(const char *str, const char *dataformat)
