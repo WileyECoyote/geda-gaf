@@ -113,11 +113,12 @@ const char *gtk_data_text_view_get_description(GtkDataTextView *data_text_view)
 }
 
 /*!
- * gtk_data_text_view_set_description:
- * @data_text_view:  a #GtkDataTextView
- * @description:  the description or NULL
+ * \brief gtk_data_text_view_set_description
+ * \par Function Description
+ *  Sets the GtkDataTextView description.
  *
- * Sets the GtkDataTextView description.
+ * \param [in] data_text_view  A #GtkDataTextView
+ * \param [in] description     The description or NULL
  *
  * Since: 3.0.6
  */
