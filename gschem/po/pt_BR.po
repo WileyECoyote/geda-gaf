@@ -4979,11 +4979,10 @@ msgstr ""
 msgid "_Print..."
 msgstr "Im_primir..."
 
-# Open the Line Editor Dialog
+# Open the Print Dialog
 #: gschem/etc/system-gschemrc.scm:2105
-#, fuzzy
 msgid "Open the Print Dialog"
-msgstr "Abra a caixa de diálogo Editor de Linha"
+msgstr "Abra a janela de impressão"
 
 #: gschem/etc/system-gschemrc.scm:2106
 msgid "Export options"
@@ -5046,19 +5045,17 @@ msgstr "_Desfazer"
 
 # Undo the last operation
 #: gschem/etc/system-gschemrc.scm:2124
-#, fuzzy
 msgid "Undo the last operation"
-msgstr "Desfazer última operação"
+msgstr "Desfazer a última operação"
 
 #: gschem/etc/system-gschemrc.scm:2125
 msgid "_Redo"
 msgstr "_Refazer"
 
-# redo the last un-done action
+# Redo the last undo
 #: gschem/etc/system-gschemrc.scm:2125
-#, fuzzy
 msgid "Redo the last undo"
-msgstr "Refazer a última acção das Nações Unidas-feito"
+msgstr "Refazer o último desfazer"
 
 # Cut clipboard
 #: gschem/etc/system-gschemrc.scm:2128
@@ -5492,9 +5489,8 @@ msgstr "Abra o Gerenciador de páginas"
 msgid "_First"
 msgstr ""
 
-# Goto the first page
+# Go to the first page
 #: gschem/etc/system-gschemrc.scm:2254
-#, fuzzy
 msgid "Go to the first page"
 msgstr "Ir para a primeira página"
 
@@ -5535,9 +5531,8 @@ msgstr ""
 msgid "_Last"
 msgstr ""
 
-# Goto the last page
+# Go to the last page
 #: gschem/etc/system-gschemrc.scm:2259
-#, fuzzy
 msgid "Go to the last page"
 msgstr "Ir para a última página"
 
@@ -5613,17 +5608,16 @@ msgstr "_Texto..."
 msgid "A_rc"
 msgstr "A_rco"
 
-# Creating new file
+# Create an arc
 #: gschem/etc/system-gschemrc.scm:2286
-#, fuzzy
 msgid "Create an arc"
-msgstr "Criar novo arquivo"
+msgstr "Crie um arco"
 
 #: gschem/etc/system-gschemrc.scm:2287
 msgid "_Box"
 msgstr "_Caixa"
 
-# Add box
+# Add a box
 #: gschem/etc/system-gschemrc.scm:2287
 msgid "Add a box"
 msgstr "Adicionar caixa"
