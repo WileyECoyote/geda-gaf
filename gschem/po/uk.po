@@ -974,45 +974,38 @@ msgstr "Сітчаста сітка активована\n"
 
 # Vyrivnyuvannya vymkneno (OBEREZHNO!)
 #: gschem/src/iface/i_command.c:4708
-#, fuzzy
 msgid "Snap OFF (CAUTION!)"
-msgstr "Вирівнювання вимкнено (ОБЕРЕЖНО!)\n"
+msgstr "Вирівнювання вимкнено (ОБЕРЕЖНО!)"
 
 # Snap ON => Alignment ON; Vyrivnyuvannya VKL
 #: gschem/src/iface/i_command.c:4714
-#, fuzzy
 msgid "Snap ON"
-msgstr "Вирівнювання ВКЛ\n"
+msgstr "Вирівнювання ВКЛ"
 
 # Snap back to the grid (CAUTION!); Povernitʹsya do sitky (OBEREZHNO!)
 #: gschem/src/iface/i_command.c:4719
-#, fuzzy
 msgid "Snap back to the grid (CAUTION!)"
-msgstr "Поверніться до сітки (ОБЕРЕЖНО!)\n"
+msgstr "Поверніться до сітки (ОБЕРЕЖНО!)"
 
 # Rubber band mode is OFF; Rezhym humky vymkneno
 #: gschem/src/iface/i_command.c:4746
-#, fuzzy
 msgid "Rubber band mode is OFF"
-msgstr "Режим гумки вимкнено\n"
+msgstr "Режим гумки вимкнено"
 
 # Rubber band mode is ON; Rezhym humy vvimkneno
 #: gschem/src/iface/i_command.c:4750
-#, fuzzy
 msgid "Rubber band mode is ON"
-msgstr "Режим гуми ввімкнено\n"
+msgstr "Режим гуми ввімкнено"
 
-# Rubber band mode is ON; Rezhym humy vvimkneno
+# Magnetic net mode is ON; Rezhym mahnitnoyi merezhi vklyuchenyy
 #: gschem/src/iface/i_command.c:4761
-#, fuzzy
 msgid "Magnetic net mode is ON"
-msgstr "Режим гуми ввімкнено\n"
+msgstr "Режим магнітної мережі включений"
 
-# Rubber band mode is OFF; Rezhym humky vymkneno
+# Magnetic net mode is OFF; Rezhym mahnitnoyi merezhi vymkneno
 #: gschem/src/iface/i_command.c:4764
-#, fuzzy
 msgid "Magnetic net mode is OFF"
-msgstr "Режим гумки вимкнено\n"
+msgstr "Режим магнітної мережі вимкнено"
 
 #: gschem/src/iface/i_command.c:4782 gschem/src/iface/i_command.c:4826
 #: gschem/src/x/x_compselect.c:135 gschem/src/x/x_toolbars.c:261
@@ -4517,11 +4510,10 @@ msgstr ""
 msgid "Path"
 msgstr ""
 
-# Write image; Napysaty zobrazhennya
+# Image; Zobrazhennya
 #: gschem/src/x/x_toolbars.c:186
-#, fuzzy
 msgid "Image"
-msgstr "Написати зображення"
+msgstr "Зображення"
 
 #: gschem/src/x/x_toolbars.c:189
 msgid "First"
@@ -4552,11 +4544,10 @@ msgstr ""
 msgid "Spec"
 msgstr ""
 
-# Filename; Im'ya faylu
+# Netnames; Merezhi
 #: gschem/src/x/x_toolbars.c:203
-#, fuzzy
 msgid "Netnames"
-msgstr "Ім'я файлу"
+msgstr "Мережі"
 
 #: gschem/src/x/x_toolbars.c:206 gschem/scheme/gschem/builtins.scm:209
 msgid "Redraw"
@@ -4566,11 +4557,11 @@ msgstr ""
 msgid "Pan"
 msgstr ""
 
-# Parent Window; Batʹkivsʹke vikno
+# Window; Vikno
 #: gschem/src/x/x_toolbars.c:208
 #, fuzzy
 msgid "Window"
-msgstr "Батьківське вікно"
+msgstr "Вікно"
 
 #: gschem/src/x/x_toolbars.c:209
 msgid "Selected"
