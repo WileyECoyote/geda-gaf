@@ -1979,9 +1979,8 @@ msgid "** Invalid UTF-8 in log message. See stderr or gschem.log.\n"
 msgstr ""
 
 #: gschem/src/x/x_console.c:491
-#, fuzzy
 msgid "Console"
-msgstr "gEDA конзола"
+msgstr "конзола"
 
 #: gschem/src/x/x_console.c:657
 msgid "gEDA Console"
@@ -4579,15 +4578,13 @@ msgstr "преправити"
 
 # Deselect
 #: gschem/src/x/x_toolbars.c:167
-#, fuzzy
 msgid "Unselect"
-msgstr "Деселецт"
+msgstr "Опозовите избор"
 
-# Invert Image
+# Invert
 #: gschem/src/x/x_toolbars.c:172
-#, fuzzy
 msgid "Invert"
-msgstr "Инверт Имаге"
+msgstr "Инверт"
 
 #: gschem/src/x/x_toolbars.c:173
 msgid "Library"
@@ -4597,18 +4594,15 @@ msgstr ""
 msgid "Nets"
 msgstr ""
 
-# Attribute is
-# Atribut je
+# Attribute
 #: gschem/src/x/x_toolbars.c:176
-#, fuzzy
 msgid "Attrib"
-msgstr "Атрибут је"
+msgstr "Атрибут"
 
-# Line Mode
+# Line
 #: gschem/src/x/x_toolbars.c:180 gschem/src/x/x_toolbars.c:240
-#, fuzzy
 msgid "Line"
-msgstr "Линијски режим"
+msgstr "Линија"
 
 #: gschem/src/x/x_toolbars.c:182
 msgid "Circle"
@@ -4659,10 +4653,10 @@ msgstr ""
 msgid "Spec"
 msgstr ""
 
+# Network name; Ime mreža
 #: gschem/src/x/x_toolbars.c:203
-#, fuzzy
 msgid "Netnames"
-msgstr "Naziv dokumenta"
+msgstr "Име мрежа"
 
 #: gschem/src/x/x_toolbars.c:206 gschem/scheme/gschem/builtins.scm:209
 msgid "Redraw"
@@ -4672,17 +4666,15 @@ msgstr "Редрав"
 msgid "Pan"
 msgstr "пан"
 
-# New Window
+# Window; Prozor
 #: gschem/src/x/x_toolbars.c:208
-#, fuzzy
 msgid "Window"
-msgstr "Нови прозор"
+msgstr "Прозор"
 
-# Select Mode
+# Selected; Odabrano
 #: gschem/src/x/x_toolbars.c:209
-#, fuzzy
 msgid "Selected"
-msgstr "Изаберите режим"
+msgstr "Одабрано"
 
 #: gschem/src/x/x_toolbars.c:216
 msgid "Properties"
