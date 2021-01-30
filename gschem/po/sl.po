@@ -4487,17 +4487,15 @@ msgstr "Paste"
 msgid "Redo"
 msgstr "redo"
 
-# Deselect => unselect
+# Deselect => unselect; Odstrani
 #: gschem/src/x/x_toolbars.c:167
-#, fuzzy
 msgid "Unselect"
-msgstr "Odstrani"
+msgstr "Prekličite izbiro"
 
-# Invert Image
+# Invert
 #: gschem/src/x/x_toolbars.c:172
-#, fuzzy
 msgid "Invert"
-msgstr "Obrni sliko"
+msgstr "Obrniti"
 
 #: gschem/src/x/x_toolbars.c:173
 msgid "Library"
@@ -4507,11 +4505,10 @@ msgstr ""
 msgid "Nets"
 msgstr ""
 
-# Features
+# Features, Properties
 #: gschem/src/x/x_toolbars.c:176
-#, fuzzy
 msgid "Attrib"
-msgstr "Lastnosti:"
+msgstr "Lastnosti"
 
 #: gschem/src/x/x_toolbars.c:180 gschem/src/x/x_toolbars.c:240
 msgid "Line"
@@ -4530,17 +4527,15 @@ msgstr ""
 msgid "Path"
 msgstr "Pot"
 
-# Write Image
+# Image
 #: gschem/src/x/x_toolbars.c:186
-#, fuzzy
 msgid "Image"
-msgstr "Napišite sliko"
+msgstr "Sliko"
 
-# First Page
+# First
 #: gschem/src/x/x_toolbars.c:189
-#, fuzzy
 msgid "First"
-msgstr "prva stran"
+msgstr "Prva"
 
 #: gschem/src/x/x_toolbars.c:190
 msgid "Prev"
@@ -4612,9 +4607,8 @@ msgid "Multi"
 msgstr ""
 
 #: gschem/src/x/x_toolbars.c:236
-#, fuzzy
 msgid "Color"
-msgstr "Barva:"
+msgstr "Barva"
 
 #: gschem/src/x/x_toolbars.c:238
 msgid "Slots"
@@ -4661,9 +4655,8 @@ msgid "Show"
 msgstr ""
 
 #: gschem/src/x/x_toolbars.c:257
-#, fuzzy
 msgid "Auto #"
-msgstr "samodejno naložite"
+msgstr "samodejno številči"
 
 #: gschem/src/x/x_toolbars.c:259
 msgid "Dots"
@@ -4673,10 +4666,10 @@ msgstr ""
 msgid "UP"
 msgstr ""
 
+# Snap ON => Alignment ON
 #: gschem/src/x/x_toolbars.c:267
-#, fuzzy
 msgid "Snap On"
-msgstr "Snap ON\n"
+msgstr "Poravnava vklopljena"
 
 #: gschem/src/x/x_toolbars.c:269
 msgid "Config"
