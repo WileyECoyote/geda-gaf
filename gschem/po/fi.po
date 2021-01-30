@@ -4842,11 +4842,10 @@ msgstr ""
 msgid "_Print..."
 msgstr "T_ulosta..."
 
-# Open the attributes editor dialog
+# Open the Print Dialog
 #: gschem/etc/system-gschemrc.scm:2105
-#, fuzzy
 msgid "Open the Print Dialog"
-msgstr "Avaa määritteet toimittaja dialogi"
+msgstr "Avaa Tulosta-valintaikkuna"
 
 #: gschem/etc/system-gschemrc.scm:2106
 msgid "Export options"
@@ -4901,19 +4900,17 @@ msgid "_Undo"
 msgstr "K_umoa"
 
 #: gschem/etc/system-gschemrc.scm:2124
-#, fuzzy
 msgid "Undo the last operation"
-msgstr "Päivitä komponentti"
+msgstr "Kumoa viimeinen toiminto"
 
 #: gschem/etc/system-gschemrc.scm:2125
 msgid "_Redo"
 msgstr "_Tee uudelleen"
 
-# Redraw the current window
+# Redo the last undo
 #: gschem/etc/system-gschemrc.scm:2125
-#, fuzzy
 msgid "Redo the last undo"
-msgstr "Piirrä nykyinen ikkuna uudelleen"
+msgstr "Tee viimeinen kumoaminen uudelleen"
 
 #: gschem/etc/system-gschemrc.scm:2128
 msgid "Cu_t clipboard"
@@ -5313,9 +5310,10 @@ msgstr ""
 msgid "_First"
 msgstr ""
 
+# Go to the first page
 #: gschem/etc/system-gschemrc.scm:2254
 msgid "Go to the first page"
-msgstr ""
+msgstr "Siirry ensimmäiselle sivulle"
 
 #: gschem/etc/system-gschemrc.scm:2255
 msgid "_Previous"
@@ -5353,9 +5351,10 @@ msgstr ""
 msgid "_Last"
 msgstr ""
 
+# Go to the last page
 #: gschem/etc/system-gschemrc.scm:2259
 msgid "Go to the last page"
-msgstr ""
+msgstr "Siirry viimeiselle sivulle"
 
 #: gschem/etc/system-gschemrc.scm:2260
 msgid "Ne_w"
@@ -5425,37 +5424,37 @@ msgstr "_Teksti..."
 msgid "A_rc"
 msgstr "Kaa_ri"
 
+# Create an arc
 #: gschem/etc/system-gschemrc.scm:2286
-#, fuzzy
 msgid "Create an arc"
-msgstr "Luodaan uusi tiedosto"
+msgstr "Luo kaari"
 
 #: gschem/etc/system-gschemrc.scm:2287
 msgid "_Box"
 msgstr ""
 
+# Add a box
 #: gschem/etc/system-gschemrc.scm:2287
-#, fuzzy
 msgid "Add a box"
-msgstr "Muokkaa tekstiä..."
+msgstr "Lisää laatikko"
 
 #: gschem/etc/system-gschemrc.scm:2288
 msgid "C_ircle"
 msgstr "Ympyrä"
 
+# Add a circle
 #: gschem/etc/system-gschemrc.scm:2288
-#, fuzzy
 msgid "Add a circle"
-msgstr "Ympyrä"
+msgstr "Lisää Ympyrä"
 
 #: gschem/etc/system-gschemrc.scm:2289
 msgid "_Line"
-msgstr "_Viiva"
+msgstr "Viiva"
 
+# Add a line
 #: gschem/etc/system-gschemrc.scm:2289
-#, fuzzy
 msgid "Add a line"
-msgstr "_Viiva"
+msgstr "Lisää viiva"
 
 #: gschem/etc/system-gschemrc.scm:2290
 msgid "Pat_h"
@@ -5696,10 +5695,10 @@ msgstr "Nosta Ruudukon Tiheyttä..."
 msgid "Adjust snap size"
 msgstr ""
 
-# Snap On-Off
+# Snap adjustment On-Off
 #: gschem/etc/system-gschemrc.scm:2361
 msgid "_Snap On-Off"
-msgstr "Snap On-Off"
+msgstr "_Snap-säätö päälle/pois"
 
 #: gschem/etc/system-gschemrc.scm:2361
 msgid "Toggle the object snap mode"
