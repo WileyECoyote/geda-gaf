@@ -4684,22 +4684,20 @@ msgstr ""
 msgid "Pan"
 msgstr "Kaydırma"
 
+# Window
 #: gschem/src/x/x_toolbars.c:208
-#, fuzzy
 msgid "Window"
-msgstr "Yeni pencere"
+msgstr "Pencere"
 
-# Select
+# Selected
 #: gschem/src/x/x_toolbars.c:209
-#, fuzzy
 msgid "Selected"
-msgstr "_Seç"
+msgstr "Seçildi"
 
 # Pin Properties
 #: gschem/src/x/x_toolbars.c:216
-#, fuzzy
 msgid "Properties"
-msgstr "Pin Özellikleri"
+msgstr "Özellikleri"
 
 #: gschem/src/x/x_toolbars.c:220 gschem/etc/system-gschemrc.scm:2185
 #: gschem/scheme/gschem/builtins.scm:191
@@ -4938,11 +4936,10 @@ msgstr ""
 msgid "_New"
 msgstr ""
 
-# Create New Session
+# Create a new file
 #: gschem/etc/system-gschemrc.scm:2091
-#, fuzzy
 msgid "Create a new file"
-msgstr "Yeni Oturum Oluştur"
+msgstr "Yeni bir dosya oluştur"
 
 #: gschem/etc/system-gschemrc.scm:2092 gschem/etc/system-gschemrc.scm:2301
 msgid "_Open..."
@@ -5003,11 +5000,10 @@ msgstr ""
 msgid "_Print..."
 msgstr ""
 
-# Open the attributes editor dialog
+# Open the Print Dialog
 #: gschem/etc/system-gschemrc.scm:2105
-#, fuzzy
 msgid "Open the Print Dialog"
-msgstr "Öznitelikler düzenleyici iletişim kutusunu açın"
+msgstr "Yazdır İletişim Kutusunu açın"
 
 #: gschem/etc/system-gschemrc.scm:2106
 msgid "Export options"
@@ -5065,21 +5061,19 @@ msgstr ""
 msgid "_Undo"
 msgstr ""
 
-# Edit operations
+# Undo the last operation
 #: gschem/etc/system-gschemrc.scm:2124
-#, fuzzy
 msgid "Undo the last operation"
-msgstr "operasyonlar düzenle"
+msgstr "Son işlemi geri al"
 
 #: gschem/etc/system-gschemrc.scm:2125
 msgid "_Redo"
 msgstr ""
 
-# No current window
+# Redo the last undo
 #: gschem/etc/system-gschemrc.scm:2125
-#, fuzzy
 msgid "Redo the last undo"
-msgstr "Geçerli pencereyi yeniden çiz"
+msgstr "Son geri almayı yeniden yap"
 
 # Cut clipboard
 #: gschem/etc/system-gschemrc.scm:2128
@@ -5608,9 +5602,8 @@ msgstr ""
 
 # Create New Session
 #: gschem/etc/system-gschemrc.scm:2286
-#, fuzzy
 msgid "Create an arc"
-msgstr "Yeni Oturum Oluştur"
+msgstr "Bir yay oluşturun"
 
 #: gschem/etc/system-gschemrc.scm:2287
 msgid "_Box"
