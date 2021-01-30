@@ -1926,12 +1926,11 @@ msgid "Guile"
 msgstr ""
 
 #: gschem/src/x/x_dialog.c:526
-#, fuzzy
 msgid ""
 "Copyright © 1998-2010 Ales Hvezda <ahvezda@geda.seul.org>\n"
 "Copyright © 1998-2017 gEDA Contributors (see ChangeLog for details)"
 msgstr ""
-"Copyright © 1998-2017 Ales Hvezda <ahvezda@geda.seul.org>\n"
+"Copyright © 1998-2010 Ales Hvezda <ahvezda@geda.seul.org>\n"
 "Copyright © 1998-2017 Contribuidores gEDA  (Consulte para obter detalhes de "
 "changelogs)"
 
@@ -4980,11 +4979,10 @@ msgstr ""
 msgid "_Print..."
 msgstr "Im_primir..."
 
-# Open the Line Editor Dialog
+# Open the Print Dialog
 #: gschem/etc/system-gschemrc.scm:2105
-#, fuzzy
 msgid "Open the Print Dialog"
-msgstr "Abra a caixa de diálogo Editor de Linha"
+msgstr "Abra a janela de impressão"
 
 #: gschem/etc/system-gschemrc.scm:2106
 msgid "Export options"
@@ -5045,19 +5043,17 @@ msgstr "_Desfazer"
 
 # Undo the last operation
 #: gschem/etc/system-gschemrc.scm:2124
-#, fuzzy
 msgid "Undo the last operation"
-msgstr "Desfazer a ultima operação"
+msgstr "Desfazer a última operação"
 
 #: gschem/etc/system-gschemrc.scm:2125
 msgid "_Redo"
 msgstr "_Refazer"
 
-# redo the last un-done action
+# Redo the last undo
 #: gschem/etc/system-gschemrc.scm:2125
-#, fuzzy
 msgid "Redo the last undo"
-msgstr "Desfazer a ultima operação"
+msgstr "Refazer o último desfazer"
 
 # Cut clipboard
 #: gschem/etc/system-gschemrc.scm:2128
@@ -5491,9 +5487,8 @@ msgstr "Abra a página Manager"
 msgid "_First"
 msgstr ""
 
-# Goto the first page
+# Go to the first page
 #: gschem/etc/system-gschemrc.scm:2254
-#, fuzzy
 msgid "Go to the first page"
 msgstr "Ir para a primeira página"
 
@@ -5534,9 +5529,8 @@ msgstr ""
 msgid "_Last"
 msgstr ""
 
-# Goto the last page
+# Go to the last page
 #: gschem/etc/system-gschemrc.scm:2259
-#, fuzzy
 msgid "Go to the last page"
 msgstr "Ir para a última página"
 
@@ -5614,17 +5608,16 @@ msgstr "_Texto..."
 msgid "A_rc"
 msgstr "A_rco"
 
-# Create new file
+# Create an arc
 #: gschem/etc/system-gschemrc.scm:2286
-#, fuzzy
 msgid "Create an arc"
-msgstr "Criar novo ficheiro"
+msgstr "Crie um arco"
 
 #: gschem/etc/system-gschemrc.scm:2287
 msgid "_Box"
 msgstr "Rectân_gulo"
 
-# Add box
+# Add a box
 #: gschem/etc/system-gschemrc.scm:2287
 msgid "Add a box"
 msgstr "Adicionar rectângulo"
