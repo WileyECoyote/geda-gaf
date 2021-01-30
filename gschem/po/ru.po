@@ -5176,11 +5176,10 @@ msgstr ""
 msgid "_Print..."
 msgstr "_Печать..."
 
-# Open the Slot Editor Dialog
+# Open the Print Dialog;Otkroyte dialogovoye okno pechati
 #: gschem/etc/system-gschemrc.scm:2105
-#, fuzzy
 msgid "Open the Print Dialog"
-msgstr "Откройте Редактор слот для диалога"
+msgstr "Откройте диалоговое окно печати"
 
 #: gschem/etc/system-gschemrc.scm:2106
 msgid "Export options"
@@ -5238,20 +5237,19 @@ msgstr "В_ыход"
 msgid "_Undo"
 msgstr "_Отменить"
 
-# Undo the last action
+# Undo the last action; Otmenit' poslednyuyu operatsiyu
 #: gschem/etc/system-gschemrc.scm:2124
-#, fuzzy
 msgid "Undo the last operation"
-msgstr "Отменить последнее действие"
+msgstr "Отменить последнюю операцию"
 
 #: gschem/etc/system-gschemrc.scm:2125
 msgid "_Redo"
 msgstr "_Повторить"
 
+# Redo the last undo; Povtorit' poslednyuyu otmenu
 #: gschem/etc/system-gschemrc.scm:2125
-#, fuzzy
 msgid "Redo the last undo"
-msgstr "Повторить отменённое действие"
+msgstr "Повторить последнюю отмену"
 
 # Cutting to clipboard
 #: gschem/etc/system-gschemrc.scm:2128
@@ -5678,11 +5676,10 @@ msgstr "Открой Менеджер страниц"
 msgid "_First"
 msgstr ""
 
-# Close the current page
+# Go to the first page; Pereyti na pervuyu stranitsu
 #: gschem/etc/system-gschemrc.scm:2254
-#, fuzzy
 msgid "Go to the first page"
-msgstr "Закрыть текущую страницу"
+msgstr "Перейти на первую страницу"
 
 #: gschem/etc/system-gschemrc.scm:2255
 msgid "_Previous"
@@ -5721,11 +5718,10 @@ msgstr ""
 msgid "_Last"
 msgstr ""
 
-# Undo the last action
+# Go to the last page; Pereyti na poslednyuyu stranitsu
 #: gschem/etc/system-gschemrc.scm:2259
-#, fuzzy
 msgid "Go to the last page"
-msgstr "Отменить последний сегмент пути"
+msgstr "Перейти на последнюю страницу"
 
 #: gschem/etc/system-gschemrc.scm:2260
 msgid "Ne_w"
@@ -5803,17 +5799,16 @@ msgstr "_Текст..."
 msgid "A_rc"
 msgstr "_Дугу"
 
-# Creating new file
+# Create an arc; Sozdat' dugu
 #: gschem/etc/system-gschemrc.scm:2286
-#, fuzzy
 msgid "Create an arc"
-msgstr "Создание нового файла"
+msgstr "Создать дугу"
 
 #: gschem/etc/system-gschemrc.scm:2287
 msgid "_Box"
 msgstr "_Прямоугольник"
 
-# Add box
+# Add a box
 #: gschem/etc/system-gschemrc.scm:2287
 msgid "Add a box"
 msgstr "Добавить поле"
@@ -5849,11 +5844,10 @@ msgstr "Добавить контур"
 msgid "Pictu_re..."
 msgstr "_Изображение..."
 
-# Invert Image
+# Insert an image; Vstavit' izobrazheniye
 #: gschem/etc/system-gschemrc.scm:2291
-#, fuzzy
 msgid "Insert an image"
-msgstr "Инвертировать изображение"
+msgstr "Вставить изображение"
 
 #: gschem/etc/system-gschemrc.scm:2292
 msgid "_Pin"
