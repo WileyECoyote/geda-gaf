@@ -57,7 +57,7 @@ refdes=Q?
 T 900 300 9 10 0 1 0 0 1
 value=50V, D5
 T 900 100 9 10 0 1 0 0 1
-footprint=SOT323
+footprint=SOT883
 T 0 1400 5 10 0 0 0 0 1
 footprints=SOT-23, SOT-323
 T 0 1250 5 10 0 0 0 0 1
