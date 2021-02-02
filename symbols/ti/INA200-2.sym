@@ -1,0 +1,113 @@
+v 20150315 2
+T 1900 1700 8 10 1 1 0 6 1
+refdes=U?
+T 400 2900 5 10 0 0 0 0 1
+device=INA200
+T 400 2500 5 10 0 1 0 0 1
+description=High-side current-shunt monitor,A=20
+T 400 2300 5 10 0 0 0 0 1
+numslots=0
+T 400 2700 5 10 0 1 0 0 1
+documentation=http://focus.ti.com/docs/prod/folders/print/ina202.html
+P 100 1300 400 1300 1 0 0
+{
+T 400 1250 5 8 0 1 0 8 1
+pintype=pwr
+T 500 1250 9 10 1 1 0 0 1
+pinlabel=V+
+T 200 1350 5 8 1 1 0 6 1
+pinnumber=1
+T 200 1350 5 8 0 1 0 6 1
+pinseq=1
+}
+P 2200 1300 1900 1300 1 0 0
+{
+T 1925 1275 5 8 0 1 180 6 1
+pintype=out
+T 1850 1300 9 10 1 1 0 6 1
+pinlabel=out
+T 2150 1350 5 8 1 1 0 0 1
+pinnumber=2
+T 2150 1350 5 8 0 1 0 0 1
+pinseq=2
+}
+P 100 400 400 400 1 0 0
+{
+T 350 350 5 8 0 1 0 8 1
+pintype=in
+T 450 400 9 10 1 1 0 0 1
+pinlabel=CMPin
+T 200 450 5 8 1 1 0 6 1
+pinnumber=3
+T 200 450 5 8 0 1 0 6 1
+pinseq=3
+}
+P 2200 400 1900 400 1 0 0
+{
+T 1925 375 5 8 0 1 180 6 1
+pintype=pwr
+T 1850 350 9 10 1 1 0 6 1
+pinlabel=GND
+T 2150 450 5 8 1 1 0 0 1
+pinnumber=4
+T 2150 450 5 8 0 1 0 0 1
+pinseq=4
+}
+P 2200 700 1900 700 1 0 0
+{
+T 1925 675 5 8 0 1 180 6 1
+pintype=in
+T 1850 700 9 10 1 1 0 6 1
+pinlabel=reset
+T 2150 750 5 8 1 1 0 0 1
+pinnumber=5
+T 2150 750 5 8 0 1 0 0 1
+pinseq=5
+}
+P 2200 1000 1900 1000 1 0 0
+{
+T 1925 975 5 8 0 1 180 6 1
+pintype=out
+T 1850 1000 9 10 1 1 0 6 1
+pinlabel=cmpout
+T 2150 1050 5 8 1 1 0 0 1
+pinnumber=6
+T 2150 1050 5 8 0 1 0 0 1
+pinseq=6
+}
+P 100 700 400 700 1 0 0
+{
+T 350 650 5 9 0 1 0 8 1
+pintype=in
+T 450 700 9 10 1 1 0 0 1
+pinlabel=Vin-
+T 200 750 5 8 1 1 0 6 1
+pinnumber=7
+T 200 750 5 8 0 1 0 6 1
+pinseq=7
+}
+P 100 1000 400 1000 1 0 0
+{
+T 375 975 5 8 0 1 0 8 1
+pintype=in
+T 450 950 9 10 1 1 0 0 1
+pinlabel=Vin+
+T 200 1050 5 8 1 1 0 6 1
+pinnumber=8
+T 200 1050 5 8 0 1 0 6 1
+pinseq=8
+}
+B 400 100 1500 1500 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
+T 400 1900 9 10 0 1 0 0 1
+footprint=SSOP8
+T 400 2100 5 10 0 0 0 0 1
+symversion=0.1
+T 400 1700 9 10 1 1 0 0 1
+value=INA200
+T 400 3500 5 10 0 0 0 0 1
+author=Sam Fladung
+T 400 3100 5 10 0 0 0 0 1
+dist-license=GPLv2
+T 400 3300 5 10 0 0 0 0 1
+use-license=unlimited
+

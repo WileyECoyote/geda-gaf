@@ -1,3 +1,9 @@
+2021-02-02 Wiley E. Hill <wileyhill@gmail.com>
+
+    * ti/INA20?-2.sym: Add dash 2 pin layout:
+
+            * ti/INA200-2.sym
+
 2021-02-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * transistor/npn-smt/BC847W_npn_50V_1H_SOT-323-[1-6].sym: Add new symbols;
