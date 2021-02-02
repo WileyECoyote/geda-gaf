@@ -6,6 +6,11 @@
             * ti/INA201-2.sym
             * ti/INA202-2.sym
 
+    * transistor/npn-smt/MMBT3906_pnp_40V_0.225W_SOT-23-[1-6].sym: Add new symbols;
+      40V, 225 mW BJT:
+
+            * transistor/pnp-smt/MMBT3906_pnp_40V_0.225W_SOT-23-1.sym
+
 2021-02-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * transistor/npn-smt/BC847W_npn_50V_1H_SOT-323-[1-6].sym: Add new symbols;
