@@ -1,6 +1,6 @@
 2021-02-03 Wiley E. Hill <wileyhill@gmail.com>
 
-    * transistor/pnp-thru/2B2906_pnp_40V_0.3W_TO-18-[1-6].sym: Update pin sequence,
+    * transistor/pnp-thru/2B290?_pnp_40V*[1-6].sym: Update pin sequence,
       reposition atributes:
 
             * transistor/pnp-thru/2B2906_pnp_40V_0.3W_TO-18-1.sym
@@ -10,6 +10,7 @@
             * transistor/pnp-thru/2B2906_pnp_40V_0.3W_TO-18-5.sym
             * transistor/pnp-thru/2B2906_pnp_40V_0.3W_TO-18-6.sym
             * transistor/pnp-thru/2N2904_pnp_40V_0.6W_TO-18-1.sym
+            * transistor/pnp-thru/2N2904_pnp_40V_0.6W_TO-18-2.sym
 
 2021-02-02 Wiley E. Hill <wileyhill@gmail.com>
 
