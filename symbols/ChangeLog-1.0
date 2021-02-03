@@ -1,3 +1,10 @@
+2021-02-03 Wiley E. Hill <wileyhill@gmail.com>
+
+    * transistor/pnp-thru/2B2906_pnp_40V_0.3W_TO-18-[1-6].sym: Update pin sequence,
+      reposition atributes:
+
+            * transistor/pnp-thru/2B2906_pnp_40V_0.3W_TO-18-1.sym
+
 2021-02-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * ti/INA20?-2.sym: Add dash 2 pin layout:
