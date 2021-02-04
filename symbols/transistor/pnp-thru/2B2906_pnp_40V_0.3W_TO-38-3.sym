@@ -48,7 +48,7 @@ device=2B2906
 T 950 850 5 10 0 1 0 0 1
 description=PNP Transistor
 T 950 250 9 10 0 1 0 0 1
-footprint=TO-58
+footprint=TO-38
 T 950 450 8 10 0 1 0 0 1
 value=40V, 0.3W
 T 950 2250 5 10 0 0 0 0 1
