@@ -1,13 +1,13 @@
 v 20140729 3
 P 600 200 600 0 1 0 1
 {
-T 450 50 5 8 0 1 0 0 1
+T 550 0 5 8 0 1 0 6 1
 pinnumber=1
-T 450 50 5 8 0 1 0 0 1
-pinseq=1
+T 550 125 5 8 0 1 0 6 1
+pinseq=3
 T 700 100 9 8 0 1 0 4 1
 pinlabel=e
-T 600 200 5 8 0 1 0 0 1
+T 625 200 5 8 0 1 0 0 1
 pintype=pas
 }
 P 0 500 200 500 1 0 0
@@ -23,13 +23,13 @@ pintype=in
 }
 P 600 1000 600 800 1 0 0
 {
-T 475 900 5 8 0 1 0 0 1
+T 550 925 5 8 0 1 0 6 1
 pinnumber=3
-T 475 900 5 8 0 1 0 0 1
-pinseq=3
+T 550 800 5 8 0 1 0 6 1
+pinseq=1
 T 700 900 9 8 0 1 0 4 1
 pinlabel=c
-T 600 800 5 8 0 1 0 2 1
+T 625 800 5 8 0 1 0 2 1
 pintype=pas
 }
 L 400 400 600 200 3 10 0 0 -1 -1
@@ -41,25 +41,25 @@ L 425 375 497 339 3 10 0 0 -1 -1
 L 497 339 461 303 3 10 0 0 -1 -1
 T 200 900 8 10 1 1 0 4 1
 refdes=Q?
-T 925 225 9 10 0 1 0 0 1
-footprint=TO-58
-T 920 370 8 10 0 1 0 0 1
-value=40V, 0.6W
-T 0 2100 5 10 0 0 0 0 1
-author=AutoTron
-T 0 1950 5 10 0 0 0 0 1
-dist-license=GPLv2
-T 0 1800 5 10 0 0 0 0 1
-use-license=unlimited
-T 0 1650 5 10 0 0 0 0 1
-symversion=1.0
-T 0 1350 9 10 0 0 0 0 1
-numslots=0
-T 0 1200 5 10 0 0 0 0 1
-footprints=SOT23
-T 0 1050 5 10 0 0 0 0 1
-spice-type=BJT PNP
-T 0 1475 5 10 0 0 0 0 1
-description=PNP Transistor
-T 900 625 8 10 1 1 0 0 1
+T 850 650 5 10 1 1 0 0 1
 device=2N2904
+T 850 850 5 10 0 1 0 0 1
+description=PNP Transistor
+T 850 250 9 10 0 1 0 0 1
+footprint=TO-58
+T 850 450 8 10 0 1 0 0 1
+value=40V, 0.6W
+T 850 2250 5 10 0 0 0 0 1
+author=AutoTron
+T 850 2050 5 10 0 0 0 0 1
+dist-license=GPLv2
+T 850 1850 5 10 0 0 0 0 1
+use-license=unlimited
+T 850 1650 5 10 0 0 0 0 1
+symversion=0.5
+T 850 1450 9 10 0 0 0 0 1
+numslots=0
+T 850 1250 5 10 0 0 0 0 1
+footprints=SOT23
+T 850 1050 5 10 0 0 0 0 1
+spice-type=BJT PNP
