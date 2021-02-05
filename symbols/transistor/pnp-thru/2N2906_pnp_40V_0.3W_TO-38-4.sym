@@ -43,7 +43,7 @@ L 500 350 450 300 3 0 0 0 -1 -1
 T 200 900 8 10 1 1 0 4 1
 refdes=Q?
 T 950 650 5 10 1 1 0 0 1
-device=2B2906
+device=2N2906
 T 950 850 5 10 0 1 0 0 1
 description=PNP Transistor
 T 950 250 9 10 0 1 0 0 1
