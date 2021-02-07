@@ -1,5 +1,9 @@
 2021-02-07 Wiley E. Hill <wileyhill@gmail.com>
 
+    * diode/schottky/: Add new symbols; 3A schottky diodes:
+
+            * diode/schottky/B330A-1.sym
+
     * transistor/pnp-thru/2N3906_pnp_40V_0.625W_TO-92-[3-6].sym: Update
       pin sequence, reposition attributes:
 
