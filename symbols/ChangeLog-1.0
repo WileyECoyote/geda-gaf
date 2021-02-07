@@ -7,6 +7,9 @@
             * diode/schottky/B340A-1.sym
             * diode/schottky/B340A-2.sym
 
+    * linear/switchreg/LM2596-ADJ-TO220-1.sym: Add new symbol; adjustable
+      buck regulator.
+
     * transistor/pnp-thru/2N3906_pnp_40V_0.625W_TO-92-[3-6].sym: Update
       pin sequence, reposition attributes:
 
