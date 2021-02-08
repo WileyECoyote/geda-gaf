@@ -146,7 +146,7 @@ char *x_dialog_new_attrib(void)
 
   switch (gtk_dialog_run(dialog)) {
     case GEDA_RESPONSE_OK:
-      entry_text = geda_utility_string_strdup(GetEntryText(attrib_entry) );
+      entry_text = geda_utility_string_strdup(GetEntryText(attrib_entry));
       break;
 
     case GEDA_RESPONSE_CANCEL:
