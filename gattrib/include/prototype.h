@@ -226,8 +226,8 @@ void  x_gtksheet_init(PageDataSet *PageData);
 void  x_gtksheet_reinititialize(PageDataSet *PageData);
 void  x_gtksheet_add_row_labels(GtkSheet *sheet, int count, STRING_LIST *list_head);
 void  x_gtksheet_add_col_labels(GtkSheet *sheet, int count, STRING_LIST *list_head);
-void  x_gtksheet_set_cell_fgcolor(GtkSheet *sheet, int row, int col, ColorId Color );
-void  x_gtksheet_set_cell_bgcolor(GtkSheet *sheet, int row, int col, ColorId Color );
+void  x_gtksheet_set_cell_fgcolor(GtkSheet *sheet, int row, int col, ColorId Color);
+void  x_gtksheet_set_cell_bgcolor(GtkSheet *sheet, int row, int col, ColorId Color);
 void  x_gtksheet_add_cell_item(GtkSheet *sheet, int i, int j, char *text,
                               int visibility, int show_name_value, int is_inherited);
 bool  x_gtksheet_get_is_empty(GtkSheet *sheet, int row, int col);
