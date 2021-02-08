@@ -2,7 +2,7 @@ wikidir = $(docdir)/wiki
 
 # Copy wiki into distribution
 dist-hook:
-	@for dir in $$(cd $(srcdir) && find . -type d -print | sed -e's:^\./::' ); do \
+	@for dir in $$(cd $(srcdir) && find . -type d -print | sed -e's:^\./::'); do \
 	  $(MKDIR_P) $(distdir)/$$dir; \
 	  list=`(cd $(srcdir)/$$dir && find . -maxdepth 1 -type f \! -name 'Makefile*' \! -name '.gitignore' -print | sed -e 's:^\./::')`; \
 	  for file in $$list; do \
@@ -12,7 +12,7 @@ dist-hook:
 
 # Install wiki
 install-data-local:
-	@for dir in $$(cd $(srcdir) && find . -type d -print | sed -e's:^\./::' ); do \
+	@for dir in $$(cd $(srcdir) && find . -type d -print | sed -e's:^\./::'); do \
 	  d="$(DESTDIR)$(wikidir)/$$dir"; \
 	  $(MKDIR_P) $$d; \
 	  list=`(cd $(srcdir)/$$dir && find . -maxdepth 1 -type f \! -name 'Makefile*' \! -name '.gitignore' -print | sed -e 's:^\./::')`; \
@@ -24,7 +24,7 @@ install-data-local:
 
 # Uninstall wiki
 uninstall-local:
-	@for dir in $$(cd $(srcdir) && find . -type d -print | sed -e's:^\./::' ); do \
+	@for dir in $$(cd $(srcdir) && find . -type d -print | sed -e's:^\./::'); do \
 	  d="$(DESTDIR)$(wikidir)/$$dir"; \
 	  list=`(cd $(srcdir)/$$dir && find . -maxdepth 1 -type f \! -name 'Makefile*' \! -name '.gitignore' -print | sed -e 's:^\./::')`; \
 	  if test -n "$$list"; then \
