@@ -668,7 +668,7 @@ do_unattached_attribute(FILE *fp)
   }
 
   attribute_object( x, y, color, size, visibility, show_name_value, angle,
-                name, value, origin );
+                name, value, origin);
 
 }
 
