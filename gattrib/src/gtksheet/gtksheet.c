@@ -9842,8 +9842,7 @@ gtk_sheet_button_press_handler(GtkWidget *widget, GdkEventButton *event)
 
 #if GTK_SHEET_DEBUG_MOUSE > 0
     fprintf(stderr,"%s: pointer grab (%d,%d) r %d c %d mr %d mc %d\n", __func__,
-            x, y, row, column, sheet->maxrow, sheet->maxcol
-    );
+            x, y, row, column, sheet->maxrow, sheet->maxcol);
 #endif
 
     gdk_pointer_grab(sheet->sheet_window, FALSE,
