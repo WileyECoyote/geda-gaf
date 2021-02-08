@@ -118,7 +118,7 @@ void f_export_components(const char *filename)
       if (str) { /* found a string */
 
         /* make a copy of the text, escaping any special chars, like " */
-        text = (char*)g_strescape(str, "" );
+        text = (char*)g_strescape(str, "");
 
         print_quote_if_comma(fp, text);
         fprintf(fp, ", ");
