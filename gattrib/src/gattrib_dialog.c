@@ -173,7 +173,7 @@ static void geometry_save (GattribDialog *dialog, GedaKeyFile *key_file, char *g
 
   geda_keyfile_set_integer (key_file, group_name, "x", x);
   geda_keyfile_set_integer (key_file, group_name, "y", y);
-  geda_keyfile_set_integer (key_file, group_name, "width",  width );
+  geda_keyfile_set_integer (key_file, group_name, "width",  width);
   geda_keyfile_set_integer (key_file, group_name, "height", height);
 }
 
