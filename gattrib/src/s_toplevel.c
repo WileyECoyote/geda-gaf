@@ -164,7 +164,7 @@ void s_toplevel_gtksheet_to_toplevel(GedaToplevel *toplevel)
       strcat(msg_buffer, " <");
       strcat(msg_buffer, p_current->filename);
       strcat(msg_buffer, ">, \n!");
-      generic_msg_dialog( msg_buffer );
+      generic_msg_dialog(msg_buffer);
     }
   }
   return;
