@@ -135,7 +135,7 @@ void f_export_components(const char *filename)
     if ((sheet_head->component_table)[i][j].attrib_value ) { /* found a string */
 
       /* make a copy of the text, escaping any special chars, like " */
-      text = (char*)g_strescape((sheet_head->component_table)[i][j].attrib_value, "" );
+      text = (char*)g_strescape((sheet_head->component_table)[i][j].attrib_value, "");
 
       print_quote_if_comma(fp, text);
       fprintf(fp, "\n");
