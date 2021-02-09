@@ -237,7 +237,7 @@ void  x_gtksheet_range_copy(GtkSheetRange *s_range, GtkSheetRange *t_range);
 void  x_gtksheet_set_max_range(GtkSheet *sheet, GtkSheetRange *range);
 
 /* ------------- x_fileselect.c ------------- */
-bool  x_fileselect ( char* filename );
+bool  x_fileselect (char * filename);
 bool  x_fileselect_load_file (char *filename);
 bool  x_fileselect_load_files (GSList *filenames);
 
