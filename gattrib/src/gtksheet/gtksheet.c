@@ -9930,8 +9930,7 @@ gtk_sheet_button_press_handler(GtkWidget *widget, GdkEventButton *event)
               sheet->drag_cell.row, sheet->drag_cell.col,
               sheet->drag_range.row0, sheet->drag_range.rowi,
               sheet->drag_range.col0, sheet->drag_range.coli,
-              sheet->maxrow, sheet->maxcol
-      );
+              sheet->maxrow, sheet->maxcol);
 #endif
       draw_xor_rectangle(sheet, sheet->drag_range);
       GTK_SHEET_SET_FLAGS(sheet, GTK_SHEET_IN_DRAG);
@@ -10413,7 +10412,7 @@ static int gtk_sheet_motion_handler(GtkWidget *widget, GdkEventMotion *event)
 
 #if GTK_SHEET_DEBUG_MOTION > 0
   fprintf(stderr,"%s: (%d,%d) inSel %s", __func__, x, y,
-          GTK_SHEET_IN_SELECTION(sheet) ? "Yes" : "No" );
+          GTK_SHEET_IN_SELECTION(sheet) ? "Yes" : "No");
 #endif
 
   if (event->window == sheet->column_title_window &&
@@ -13051,9 +13050,8 @@ _gtk_sheet_scrollbar_adjust(GtkSheet *sheet)
 	    0.0,  /* lower */
 	    upper,  /* upper */
 	    _gtk_sheet_row_default_height((GtkWidget*)sheet), /* step_increment */
-	    sheet->sheet_window_height / 2, /* page_increment */
-	    page_size  /* page_size */
-	    );
+	    sheet->sheet_window_height / 2,                   /* page_increment */
+	    page_size);                                       /* page_size */
 
 #if GTK_SHEET_DEBUG_ADJUSTMENT > 0
 	fprintf(stderr,"_gtk_sheet_scrollbar_adjust: va PS %d PI %g SI %g L %g U %d V %g VO %d",
@@ -13102,9 +13100,8 @@ _gtk_sheet_scrollbar_adjust(GtkSheet *sheet)
 	    0.0,  /* lower */
 	    upper,  /* upper */
 	    GTK_SHEET_COLUMN_DEFAULT_WIDTH, /* step_increment */
-	    sheet->sheet_window_width / 2, /* page_increment */
-	    page_size  /* page_size */
-	    );
+	    sheet->sheet_window_width / 2,  /* page_increment */
+	    page_size);                     /* page_size */
 
 #if GTK_SHEET_DEBUG_ADJUSTMENT > 0
 	fprintf(stderr,"_gtk_sheet_scrollbar_adjust: ha PS %d PI %g SI %g L %g U %d V %g HO %d",
