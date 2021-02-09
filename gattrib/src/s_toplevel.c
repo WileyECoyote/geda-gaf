@@ -536,7 +536,7 @@ STRING_LIST *s_toplevel_get_component_attribs_in_sheet(char *refdes)
     new_attrib_name = geda_strdup(local_attrib_list->data);
 
     if ( ((sheet_head->component_table)[i][row]).attrib_value ) {
-      new_attrib_value = geda_strdup( ((sheet_head->component_table)[i][row]).attrib_value );
+      new_attrib_value = geda_strdup(((sheet_head->component_table)[i][row]).attrib_value);
       name_value_pair = geda_strconcat(new_attrib_name, "=", new_attrib_value, NULL);
       GEDA_FREE(new_attrib_value);
     }
@@ -900,8 +900,8 @@ STRING_LIST *s_toplevel_get_pin_attribs_in_sheet(char *refdes, GedaObject *pin)
     /* Get a copy of attrib name from column headings */
     char *new_attrib_name = geda_strdup(local_attrib_list->data);
 
-    if ( ((sheet_head->pin_table)[i][row]).attrib_value ) {
-      new_attrib_value = geda_strdup( ((sheet_head->pin_table)[i][row]).attrib_value );
+    if (((sheet_head->pin_table)[i][row]).attrib_value) {
+      new_attrib_value = geda_strdup(((sheet_head->pin_table)[i][row]).attrib_value);
       name_value_pair = geda_strconcat(new_attrib_name, "=", new_attrib_value, NULL);
       GEDA_FREE(new_attrib_value);
     }
