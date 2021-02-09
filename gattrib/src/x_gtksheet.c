@@ -668,7 +668,7 @@ void x_gtksheet_reinititialize(PageDataSet *PageData)
 
     if (nRows > 0) {
       if ( nRows > cRows) {
-        gtk_sheet_add_row(sheet, nRows - cRows );
+        gtk_sheet_add_row(sheet, nRows - cRows);
       }
       else {
         if (  cRows > nRows) {
@@ -680,7 +680,7 @@ void x_gtksheet_reinititialize(PageDataSet *PageData)
 
     if (nCols > 0) {
       if ( nCols > cCols) {
-        gtk_sheet_add_column(sheet, nCols - cCols );
+        gtk_sheet_add_column(sheet, nCols - cCols);
       }
       else {
         if ( cCols > nCols) {
