@@ -667,7 +667,7 @@ do_unattached_attribute(FILE *fp)
     value = NULL;
   }
 
-  attribute_object( x, y, color, size, visibility, show_name_value, angle,
+  attribute_object(x, y, color, size, visibility, show_name_value, angle,
                 name, value, origin);
 
 }
@@ -823,8 +823,8 @@ do_attached_attribute(FILE *fp)
       index = strindex(text,'=');
       text[index] = 0;
       value = &text[index+1];
-      attribute_object( x, y, color, size, visibility, show_name_value,
-                        angle, name, value, origin );
+      attribute_object(x, y, color, size, visibility, show_name_value,
+                       angle, name, value, origin);
 
       /* done attaching pin attributes */
       return;
@@ -847,8 +847,8 @@ do_attached_attribute(FILE *fp)
       index = strindex(text,'=');
       text[index] = 0;
       value = &text[index+1];
-      attribute_object( x, y, color, size, visibility, show_name_value,
-                        angle, name, value, origin );
+      attribute_object(x, y, color, size, visibility, show_name_value,
+                       angle, name, value, origin);
 
 #ifdef HAVE_SNPRINTF
       snprintf(text, MAX_TEXTLEN, "pinnumber=%s", &text2[2]);
@@ -864,7 +864,7 @@ do_attached_attribute(FILE *fp)
       text[index] = 0;
       value = &text[index+1];
       attribute_object( x, y, color, size, visibility, show_name_value,
-                        angle, name, value, origin );
+                        angle, name, value, origin);
 
       /* done attaching pin attributes */
       return;
@@ -883,8 +883,8 @@ do_attached_attribute(FILE *fp)
     value = NULL;
   }
 
-  attribute_object( x, y, color, size, visibility, show_name_value, angle,
-                    name, value, origin );
+  attribute_object(x, y, color, size, visibility, show_name_value, angle,
+                   name, value, origin);
 }
 
 void
@@ -1260,7 +1260,7 @@ do_arc(FILE *fp)
       return;
     }
 
-  yop = ((x2p * ( x3p*x3p + y3p*y3p ) - x3p * ( x2p*x2p + y2p*y2p )) /
+  yop = ((x2p * (x3p*x3p + y3p*y3p) - x3p * (x2p*x2p + y2p*y2p)) /
        (2 * (x2p * y3p - y2p * x3p)));
 
   xop = (x2p*x2p - 2*y2p*yop) / (2 * x2p);
@@ -1785,8 +1785,8 @@ text_object(int x, int y, unsigned int color, unsigned int size,
   /* always 1 */
   numlines = 1;
 
-  printf( "T %d %d %u %u %u %u %d %u %u\n%s\n", x, y, color, text_size,
-        visibility, show_name_value, angle, origin, numlines, text);
+  printf("T %d %d %u %u %u %u %d %u %u\n%s\n", x, y, color, text_size,
+         visibility, show_name_value, angle, origin, numlines, text);
 
 }
 
@@ -1941,8 +1941,8 @@ attribute_object(int x, int y, unsigned int color, unsigned int  size,
   sprintf(text, "%s=%s", tmpName, tmpValue);
 #endif
 
-  text_object( x, y, color, size, visibility, show_name_value, \
-             angle, text, origin);
+  text_object(x, y, color, size, visibility, show_name_value, \
+              angle, text, origin);
 
 }
 
