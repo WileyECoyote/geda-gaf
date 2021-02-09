@@ -25,9 +25,9 @@
 #include <geda/geda_help.h>   /* Include file names for HTML files */
 #include <geda_debug.h>
 
-static void toolbar_icons_only( void );
-static void toolbar_text_only( void );
-static void toolbar_display_both( void );
+static void toolbar_icons_only(void);
+static void toolbar_text_only(void);
+static void toolbar_display_both(void);
 
 /*!------------------------ Menus And Toolbars ---------------------*/
 /*!
@@ -479,7 +479,7 @@ GtkRecentFilter *x_menu_geda_filter() {
  */
 GtkRecentChooser *GetRecentMenuChooser(GtkRecentManager *rm )  {
 
-  GtkWidget *rc = gtk_recent_chooser_menu_new_for_manager(rm );
+  GtkWidget *rc = gtk_recent_chooser_menu_new_for_manager(rm);
 
   return (GtkRecentChooser*) rc;
 }
@@ -567,7 +567,7 @@ static GtkActionGroup *x_menu_create_recent_action_group(void) {
  *  Filtering here does not work, maybe someday
  *
   recent_filter = x_menu_geda_filter();
-  gtk_recent_filter_add_group (recent_filter, "OpenRecentAction" );
+  gtk_recent_filter_add_group (recent_filter, "OpenRecentAction");
 
   recent_file_chooser = GetRecentMenuChooser(recent_manager);
   gtk_recent_chooser_add_filter(recent_file_chooser, recent_filter);
