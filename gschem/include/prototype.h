@@ -539,7 +539,7 @@ void       o_move_start_drag            (GschemToplevel *w_current, int w_x, int
 
 /* o_net.c */
 int        o_net_add_busrippers         (GschemToplevel *w_current, GedaObject *net_obj, GList *other_objects);
-void       o_net_draw_rubber            (GschemToplevel *w_current );
+void       o_net_draw_rubber            (GschemToplevel *w_current);
 void       o_net_guess_direction        (GschemToplevel *w_current, int x, int y);
 void       o_net_motion                 (GschemToplevel *w_current, int x, int y);
 void       o_net_invalidate_rubber      (GschemToplevel *w_current);
@@ -826,7 +826,7 @@ void       x_image_init                     (void);
 void       x_image_lowlevel                 (GschemToplevel *w_current, const char* filename,
                                              int desired_width, int desired_height,
                                              const char *filetype, ImageExtent extent,
-                                             bool use_print_map, bool invert_color_bw );
+                                             bool use_print_map, bool invert_color_bw);
 
 void       x_image_setup                    (GschemToplevel *w_current, IMAGE_TYPES default_type);
 GdkPixbuf *x_image_get_pixbuf               (GschemToplevel *w_current, ImageExtent extent,
@@ -901,7 +901,7 @@ void       x_sessions_save_settings         (GschemToplevel *w_current);
 /* x_settings.c */
 void       x_configure_settings             (GschemToplevel *w_current);
 void       x_settings_save_settings         (GschemToplevel *w_current);
-bool       x_settings_set_scm_int           (char *symbol_name, int value );
+bool       x_settings_set_scm_int           (char *symbol_name, int value);
 
 /* x_settings_dialog.c */
 int        x_settings_lookup_cursor         (int offset);
