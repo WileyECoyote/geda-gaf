@@ -69,7 +69,7 @@ tests:
 	                -L$(top_builddir)/libgeda/scheme \
 	                -g drc2 \
 	                -o $(BUILDDIR)/new_$$file_basename.drc2 \
-	                $$file ); \
+	                $$file); \
           diff $(SRCDIR)/$$file_basename.drc2 \
                $(BUILDDIR)/new_$$file_basename.drc2; \
           if [ $$? -ne 0 ]; then \
