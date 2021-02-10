@@ -134,7 +134,7 @@
 ;;************  Program housekeeping, handling calling flags, etc.  ****************
 ;;**********************************************************************************
 
-(define spice-anise-version "2015.08.08")
+(define spice-anise-version "2018.11.04")
 
 ;; The following is needed to make guile 1.8.x happy.
 (use-modules (ice-9 rdelim) (srfi srfi-1))
