@@ -559,8 +559,7 @@ static void gschem_dialog_class_init (void *class, void *class_data)
                   G_TYPE_NONE,
                   2,    /* n_params */
                   G_TYPE_POINTER,
-                  G_TYPE_STRING
-                 );
+                  G_TYPE_STRING);
 
   gschem_dialog_signals[ GEOMETRY_RESTORE ] =
     g_signal_new ("geometry-restore",
@@ -573,8 +572,7 @@ static void gschem_dialog_class_init (void *class, void *class_data)
                   G_TYPE_NONE,
                   2,    /* n_params */
                   G_TYPE_POINTER,
-                  G_TYPE_STRING
-                 );
+                  G_TYPE_STRING);
 
   g_object_class_install_property (
     gobject_class, PROP_SETTINGS_NAME,
