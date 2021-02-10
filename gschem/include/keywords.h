@@ -304,7 +304,7 @@ enum {
 /*! Write out entry for ENABLED Bool keyword
  * \warning INTERNAL Do not use directly */
 #define RC_BOOLEAN_ENABLED(variable)              \
-  strcpy(output_buffer, (state) ? "(" : ";(" );   \
+  strcpy(output_buffer, (state) ? "(" : ";(");    \
   strcat(output_buffer, KEY_NAME(variable));      \
   strcat(output_buffer, " \""); /* open quote */  \
   strcat(output_buffer, RC_BOOL_STRINGS (TRUE));  \
