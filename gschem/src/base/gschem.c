@@ -302,13 +302,13 @@ load_documents(GschemToplevel *w_current, int argv_index, int argc, char *argv[]
         else {
 
           /* No page has been loaded, start with blank page */
-          x_window_open_page( w_current, NULL );
+          x_window_open_page(w_current, NULL);
         }
       }
       else {
 
         /* Still no page has been loaded, start with blank page */
-        x_window_open_page( w_current, NULL );
+        x_window_open_page(w_current, NULL);
       }
     }
   }
