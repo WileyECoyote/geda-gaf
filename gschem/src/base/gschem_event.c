@@ -77,7 +77,7 @@ static void gschem_event_finalize( GObject *object )
 {
   //GschemEvent *handler = GSCHEM_EVENT(object);
 
-  G_OBJECT_CLASS( gschem_event_parent_class )->finalize( object );
+  G_OBJECT_CLASS( gschem_event_parent_class )->finalize( object);
 }
 
 /*! \brief Type instance initialiser for GschemEvent
