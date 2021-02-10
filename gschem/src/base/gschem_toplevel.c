@@ -361,7 +361,7 @@ static void gschem_toplevel_finalize( GObject *object )
     w_current->cr = NULL;
   }
 
-  G_OBJECT_CLASS( gschem_toplevel_parent_class )->finalize( object );
+  G_OBJECT_CLASS(gschem_toplevel_parent_class)->finalize(object);
 }
 
 /*!
@@ -375,9 +375,9 @@ static void gschem_toplevel_finalize( GObject *object )
  */
 static void gschem_toplevel_class_init( void *g_class, void *g_class_data )
 {
-  GschemToplevelClass *klass = GSCHEM_TOPLEVEL_CLASS( g_class );
-  GObjectClass *gobject_class = G_OBJECT_CLASS( klass );
-  gschem_toplevel_parent_class = g_type_class_peek_parent( klass );
+  GschemToplevelClass *klass = GSCHEM_TOPLEVEL_CLASS(g_class);
+  GObjectClass *gobject_class = G_OBJECT_CLASS(klass);
+  gschem_toplevel_parent_class = g_type_class_peek_parent(klass);
 
   gobject_class->finalize = gschem_toplevel_finalize;
 
