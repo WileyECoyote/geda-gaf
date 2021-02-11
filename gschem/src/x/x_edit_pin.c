@@ -193,10 +193,10 @@ x_dialog_edit_pin_type_set_values(pin_type_data *pin_data, const char *label, co
   geda_check_menu_item_set_active(GEDA_CHECK_MENU_ITEM(menuitem), TRUE);
 
   if (number == NULL) {
-    SetEntryText( pin_data->number_entry, _("*missing*") );
+    SetEntryText( pin_data->number_entry, _("*missing*"));
   }
   else {
-    SetEntryText( pin_data->number_entry, number );
+    SetEntryText( pin_data->number_entry, number);
   }
 
   if (sequence == -1) {
@@ -956,23 +956,23 @@ GtkWidget *x_dialog_pin_type_create_dialog(GschemToplevel *w_current)
 
   if ( atk_type_obj ) {
     atk_object_set_name        ( atk_type_obj,   _("Attribute Type List"));
-    atk_object_set_description ( atk_type_obj,      type_combo_tip );
+    atk_object_set_description ( atk_type_obj,      type_combo_tip);
   }
   if ( atk_attrib_obj ) {
     atk_object_set_name        ( atk_attrib_obj, _("Text Alignment Option"));
-    atk_object_set_description ( atk_attrib_obj,    attrib_combo_tip );
+    atk_object_set_description ( atk_attrib_obj,    attrib_combo_tip);
   }
   if ( atk_num_obj ) {
     atk_object_set_name        ( atk_num_obj,    _("Pin Number"));
-    atk_object_set_description ( atk_num_obj,       num_entry_tip );
+    atk_object_set_description ( atk_num_obj,       num_entry_tip);
   }
   if ( atk_seq_obj ) {
     atk_object_set_name        ( atk_seq_obj,    _("Sequence Number"));
-    atk_object_set_description ( atk_seq_obj,       seq_spin_tip );
+    atk_object_set_description ( atk_seq_obj,       seq_spin_tip);
   }
   if ( atk_label_obj ) {
     atk_object_set_name        ( atk_label_obj,  _("Pin Label"));
-    atk_object_set_description ( atk_label_obj,     label_entry_tip );
+    atk_object_set_description ( atk_label_obj,     label_entry_tip);
   }
 
   /* Allocate memory for a structure to hold pointers to our Widgets */
