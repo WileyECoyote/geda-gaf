@@ -293,7 +293,7 @@ bool x_dialog_coord_drag_drop (GtkWidget      *widget,
     gtk_drag_get_data (widget,           /* will receive 'drag-data-received' signal */
                        context,          /* represents the current state of the DnD */
                        target_type,      /* the target type we want */
-                       time );           /* time stamp */
+                       time);            /* time stamp */
 
 #if DEBUG || DEBUG_DND_EVENTS
     printf (" Valid\n");
