@@ -1769,7 +1769,7 @@ GtkWidget *autonumber_create_dialog(GschemToplevel  *w_current,
                                               w_current,
                                               GTK_STOCK_CLOSE, GEDA_RESPONSE_CLOSE,
                                               GTK_STOCK_APPLY, GEDA_RESPONSE_ACCEPT,
-                                              NULL );
+                                              NULL);
 
   /* Set the alternative button order (ok, cancel, help) for other systems */
   gtk_dialog_set_alternative_button_order((GtkDialog*)ThisDialog,
