@@ -466,7 +466,7 @@ static void x_console_eval_command (GedaEntry *entry, int arg1, void * user_data
     while ( *e_ptr != ASCII_NUL) ++e_ptr;
     while (  s_ptr != e_ptr) if (*s_ptr == ASCII_SPACE) break; else ++s_ptr;
     if (s_ptr == e_ptr) return geda_utility_string_strdup(cl);
-    return geda_strndup(cl, s_ptr - cl );
+    return geda_strndup(cl, s_ptr - cl);
   }
 
   ptr = strcpy (command_line, GetEntryText(entry));
@@ -527,7 +527,7 @@ static const char *x_console_get_input_data(void) {
   gtk_widget_grab_focus(console_entry);
 
   /* reset the console to command mode*/
-  SetEntryText ( console_entry, "" );
+  SetEntryText ( console_entry, "");
   geda_entry_set_valid_input((GedaEntry*)console_entry, ACCEPT_ALL_ASCII);
 
   console_input_mode = CONSOLE_COMMAND_MODE;

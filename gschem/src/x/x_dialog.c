@@ -259,7 +259,7 @@ GtkWidget *x_dialog_get_bulb_image (bool WhichState)
    GtkWidget *image;
 
    if (WhichState)
-     image = create_pixmap (GEDA_BITMAP_BULB_ON );
+     image = create_pixmap (GEDA_BITMAP_BULB_ON);
    else
      image = create_pixmap (GEDA_BITMAP_BULB_OFF);
 
@@ -1423,17 +1423,17 @@ static void x_dialog_edit_fill_type_set_values(fill_type_data *fill_data,
   else
     text = geda_sprintf ("%d", width);
 
-  SetEntryText   ( fill_data->width_entry, text );
-  EntrySelectAll ( fill_data->width_entry );
+  SetEntryText   (fill_data->width_entry, text);
+  EntrySelectAll (fill_data->width_entry);
   GEDA_FREE(text);
 
   if (pitch1 == LEAVE_ALONE)
-    text = geda_strdup(_("*varies*"));
+    text = geda_strdup (_("*varies*"));
   else
     text = geda_sprintf ("%d", pitch1);
 
-  SetEntryText   ( fill_data->pitch1_entry, text );
-  EntrySelectAll ( fill_data->pitch1_entry );
+  SetEntryText   (fill_data->pitch1_entry, text);
+  EntrySelectAll (fill_data->pitch1_entry);
   GEDA_FREE(text);
 
   if (angle1 == LEAVE_ALONE)
@@ -1441,8 +1441,8 @@ static void x_dialog_edit_fill_type_set_values(fill_type_data *fill_data,
   else
     text = geda_sprintf ("%d", angle1);
 
-  SetEntryText   ( fill_data->angle1_entry, text );
-  EntrySelectAll ( fill_data->angle1_entry );
+  SetEntryText   (fill_data->angle1_entry, text);
+  EntrySelectAll (fill_data->angle1_entry);
   GEDA_FREE(text);
 
   if (pitch2 == LEAVE_ALONE)
@@ -1450,8 +1450,8 @@ static void x_dialog_edit_fill_type_set_values(fill_type_data *fill_data,
   else
     text = geda_sprintf ("%d", pitch2);
 
-  SetEntryText   ( fill_data->pitch2_entry, text );
-  EntrySelectAll ( fill_data->pitch2_entry );
+  SetEntryText   ( fill_data->pitch2_entry, text);
+  EntrySelectAll ( fill_data->pitch2_entry);
   GEDA_FREE(text);
 
   if (angle2 == LEAVE_ALONE)
@@ -1459,8 +1459,8 @@ static void x_dialog_edit_fill_type_set_values(fill_type_data *fill_data,
   else
     text = geda_sprintf ("%d", angle2);
 
-  SetEntryText   ( fill_data->angle2_entry, text );
-  EntrySelectAll ( fill_data->angle2_entry );
+  SetEntryText   ( fill_data->angle2_entry, text);
+  EntrySelectAll ( fill_data->angle2_entry);
   GEDA_FREE(text);
 }
 
