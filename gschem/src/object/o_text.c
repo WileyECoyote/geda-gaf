@@ -211,7 +211,7 @@ o_text_edit_end(GschemToplevel *w_current, char *string, int text_align,
   bool    invalidated;
 
   /* skip over head */
-  s_current = geda_list_get_glist( toplevel->page_current->selection_list );
+  s_current = geda_list_get_glist(toplevel->page_current->selection_list);
 
   changed_something = FALSE;
 
