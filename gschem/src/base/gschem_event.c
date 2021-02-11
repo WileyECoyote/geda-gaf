@@ -118,9 +118,9 @@ static void gschem_event_instance_init(GTypeInstance *instance, void *g_class)
  */
 static void gschem_event_class_init( void *g_class, void *g_class_data )
 {
-  GschemEventClass *klass      = GSCHEM_EVENT_CLASS( g_class );
-  GObjectClass *gobject_class  = G_OBJECT_CLASS( klass );
-  gschem_event_parent_class    = g_type_class_peek_parent( klass );
+  GschemEventClass *klass      = GSCHEM_EVENT_CLASS(g_class);
+  GObjectClass *gobject_class  = G_OBJECT_CLASS(klass );
+  gschem_event_parent_class    = g_type_class_peek_parent(klass);
 
   gobject_class->finalize      = gschem_event_finalize;
 }
