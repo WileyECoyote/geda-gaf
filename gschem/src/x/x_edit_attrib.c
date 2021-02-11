@@ -546,8 +546,8 @@ attrib_edit_dialog (GschemToplevel *w_current, GedaObject *object, int flag)
     geda_label_set_mnemonic_widget (GEDA_LABEL (name_label),  attrib_name_entry);
     geda_label_set_mnemonic_widget (GEDA_LABEL (value_label), value_entry);
 
-    atk_name_obj  = atk_widget_linked_label_new (name_label,  attrib_name_entry );
-    atk_value_obj = atk_widget_linked_label_new (value_label, value_entry );
+    atk_name_obj  = atk_widget_linked_label_new (name_label,  attrib_name_entry);
+    atk_value_obj = atk_widget_linked_label_new (value_label, value_entry);
 
     if ( atk_name_obj ) {
       atk_object_set_name        (atk_name_obj,  _("Attribute Name List"));
