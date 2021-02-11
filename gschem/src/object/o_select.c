@@ -806,8 +806,8 @@ o_select_move_to_place_list(GschemToplevel *w_current)
   toplevel->page_current->place_list = NULL;
 
   /* get selection list and copy to the place list */
-  selection      = geda_list_get_glist( toplevel->page_current->selection_list );
-  selection_copy = g_list_copy( selection );
+  selection      = geda_list_get_glist(toplevel->page_current->selection_list);
+  selection_copy = g_list_copy(selection);
 
   toplevel->page_current->place_list = selection_copy;
 }
