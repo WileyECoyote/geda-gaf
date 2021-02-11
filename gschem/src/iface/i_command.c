@@ -2059,7 +2059,7 @@ COMMAND (do_edit_text)
 
   GList *s_current;
 
-  s_current = geda_list_get_glist( Current_Selection );
+  s_current = geda_list_get_glist(Current_Selection);
 
   if (s_current) {
 
