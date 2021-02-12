@@ -217,7 +217,7 @@ o_text_edit_end(GschemToplevel *w_current, char *string, int text_align,
 
   while(s_current != NULL) {
 
-    GedaObject *object = (GedaObject*) s_current->data;
+    GedaObject *object = (GedaObject*)s_current->data;
 
     if (object) {
 
