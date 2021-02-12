@@ -153,7 +153,6 @@
                (newline)))
         (spice:write-netlist (cdr ls)) ))))
 
-
 ;;
 ;; Spice netlist header
 ;;
