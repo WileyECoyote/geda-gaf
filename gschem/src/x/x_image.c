@@ -542,7 +542,7 @@ void x_image_lowlevel(GschemToplevel *w_current, const char *filename,
                                                                  filename,
                                                                  err->message);
           /* Warn the user */
-          titled_pango_error_dialog ( _("<b>Error Writing Imaging.</b>"), errmsg, _("Write Image") );
+          titled_pango_error_dialog ( _("<b>Error Writing Imaging.</b>"), errmsg, _("Write Image"));
 
           /* Free the message string and clear error */
           GEDA_FREE(errmsg);
@@ -725,7 +725,7 @@ void x_image_setup (GschemToplevel *w_current, IMAGE_TYPES default_type)
   bool  invert_images_save = w_current->toplevel->invert_images;
 
   /* de-select everything first */
-  o_select_unselect_all( w_current );
+  o_select_unselect_all (w_current);
 
   /* Create the dialog */
   ThisDialog = geda_image_chooser_dialog_new_full (_("Write image..."),
