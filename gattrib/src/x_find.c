@@ -200,7 +200,7 @@ bool x_find_main_search(char *text, char *replacement) {
     new = malloc(strlen (cell_text) - strlen (text) + strlen (replacement) +2);
 
     if (Search.Whole) {
-        strcpy(new, replacement);
+      strcpy(new, replacement);
     }
     else {
 
