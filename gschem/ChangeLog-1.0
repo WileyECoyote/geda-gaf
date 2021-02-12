@@ -4,6 +4,7 @@
 
         * src/x/x_icons.c
         * src/x/x_menus.c
+        * src/x/x_misc.c
 
 2021-01-30 Wiley E. Hill <wileyhill@gmail.com>
 

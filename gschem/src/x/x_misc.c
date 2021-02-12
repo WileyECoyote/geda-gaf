@@ -159,7 +159,7 @@ x_show_uri (const char *uri)
   if (!g_app_info_launch_default_for_uri(uri, NULL, &error)) {
     if (verbose_mode) {
       const char *log_msg = _("Failed to open");
-      u_log_message("glib %s <%s>, %s\n", log_msg, uri, error->message);
+       geda_log("glib %s <%s>, %s\n", log_msg, uri, error->message);
     }
     g_error_free (error);
     error = NULL;
