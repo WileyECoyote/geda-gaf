@@ -430,7 +430,7 @@ static void co_on_entry_activate (GedaEntry *entry, GschemDialog *Dialog)
               o_move_end(w_current);
             }
             else {
-              geda_struct_place_set_place_list(toplevel, object_buffer[DND_BUFFER] );
+              geda_struct_place_set_place_list(toplevel, object_buffer[DND_BUFFER]);
               o_place_end(w_current, 0, 0, 0); /* Not passing a Hook Id */
               o_undo_savestate (w_current, UNDO_ALL);
             }
