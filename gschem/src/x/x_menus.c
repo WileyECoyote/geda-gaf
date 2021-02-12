@@ -2116,12 +2116,12 @@ static void x_menu_set_toggler(ToggleMenuData *toggler_data, bool state)
        }
        else {
          const char *log_msg = _("Action not found");
-         u_log_message("%s: %s, \"%s\" \n", __func__, log_msg, menu_path);
+          geda_log("%s: %s, \"%s\" \n", __func__, log_msg, menu_path);
        }
      }
      else {
        const char *log_msg = _("Menu path not found");
-       u_log_message("%s: %s, \"%s\" \n", __func__, log_msg, menu_path);
+        geda_log("%s: %s, \"%s\" \n", __func__, log_msg, menu_path);
      }
   }
   else {
@@ -2209,7 +2209,7 @@ void x_menu_set_toolbar_toggle(GschemToplevel *w_current, int toggle_id, bool st
     geda_check_menu_item_set_state (menu_item, state);
   }
   else {
-    u_log_message("%s \"%s\"\n", _("Error: did not find path"), menu_path);
+     geda_log("%s \"%s\"\n", _("Error: did not find path"), menu_path);
   }
 
   GEDA_FREE(menu_path);
@@ -2243,7 +2243,7 @@ void x_menu_set_toolbar_toggle_tips(GschemToplevel *w_current, bool state)
     geda_check_menu_item_set_state (menu_item, state);
   }
   else {
-    u_log_message("%s \"%s\"\n", _("Error: did not find path"), menu_path);
+     geda_log("%s \"%s\"\n", _("Error: did not find path"), menu_path);
   }
 
   return;

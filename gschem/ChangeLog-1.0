@@ -3,6 +3,7 @@
     * src/*/*.c: Replace u_log_message macro with geda_log:
 
         * src/x/x_icons.c
+        * src/x/x_menus.c
 
 2021-01-30 Wiley E. Hill <wileyhill@gmail.com>
 
