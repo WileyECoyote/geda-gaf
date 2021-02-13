@@ -1244,49 +1244,49 @@ static GtkWidget *x_dialog_array_edit_constructor (GschemToplevel *w_current)
 
   if ( atk_obj ) {
     atk_object_set_name        ( atk_obj,   _("Read only count of objects currently selected"));
-    atk_object_set_description ( atk_obj,      cnt_sel_tip );
+    atk_object_set_description ( atk_obj,      cnt_sel_tip);
   }
 
   atk_obj = atk_widget_linked_label_new (x_size_label, dialog_data->x_size_entry);
 
   if ( atk_obj ) {
     atk_object_set_name        ( atk_obj,   _("Read only x bounds displacement of selected object"));
-    atk_object_set_description ( atk_obj,      x_size_tip );
+    atk_object_set_description ( atk_obj,      x_size_tip);
   }
 
   atk_obj = atk_widget_linked_label_new (y_size_label, dialog_data->y_size_entry);
 
   if ( atk_obj ) {
     atk_object_set_name        ( atk_obj,   _("Read only y bounds displacement of selected object"));
-    atk_object_set_description ( atk_obj,      y_size_tip );
+    atk_object_set_description ( atk_obj,      y_size_tip);
   }
 
   atk_obj = atk_widget_linked_label_new (row_cnt_label, dialog_data->row_spin);
 
   if ( atk_obj ) {
     atk_object_set_name        ( atk_obj,   _("Spinner entry number of rows to create"));
-    atk_object_set_description ( atk_obj,      row_cnt_tip );
+    atk_object_set_description ( atk_obj,      row_cnt_tip);
   }
 
   atk_obj = atk_widget_linked_label_new (col_cnt_label, dialog_data->col_spin);
 
   if ( atk_obj ) {
     atk_object_set_name        ( atk_obj,   _("Spinner entry number of columns to create"));
-    atk_object_set_description ( atk_obj,      col_cnt_tip );
+    atk_object_set_description ( atk_obj,      col_cnt_tip);
   }
 
   atk_obj = atk_widget_linked_label_new (row_off_label, dialog_data->row_off_entry);
 
   if ( atk_obj ) {
     atk_object_set_name        ( atk_obj,   _("Entry for array horizontal pitch"));
-    atk_object_set_description ( atk_obj,      row_off_tip );
+    atk_object_set_description ( atk_obj,      row_off_tip);
   }
 
   atk_obj = atk_widget_linked_label_new (col_off_label, dialog_data->col_off_entry);
 
   if ( atk_obj ) {
     atk_object_set_name        ( atk_obj,   _("entry for array vertical pitch"));
-    atk_object_set_description ( atk_obj,      col_off_tip );
+    atk_object_set_description ( atk_obj,      col_off_tip);
   }
 
   gtk_widget_show_all (vbox);
