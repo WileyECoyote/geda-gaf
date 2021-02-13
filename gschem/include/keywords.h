@@ -397,7 +397,7 @@ enum {
   strcpy(output_buffer, "(" ); \
   strcat(output_buffer, KEY_NAME(variable)); \
   strcat(output_buffer, " "); \
-  strcat(output_buffer, geda_utility_string_int2str( number, s_val, 10 )); \
+  strcat(output_buffer, geda_utility_string_int2str(number, s_val, 10)); \
   strcat(output_buffer, ")\n"); \
   fputs(output_buffer, output);
 
