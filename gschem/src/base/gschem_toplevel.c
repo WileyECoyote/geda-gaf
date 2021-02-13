@@ -421,7 +421,7 @@ GedaType gschem_toplevel_get_type(void)
  * \return pointer to the new GschemToplevel object.
  */
 GschemToplevel *gschem_toplevel_new( void ) {
-  return g_object_new( GSCHEM_TYPE_TOPLEVEL, NULL );
+  return g_object_new( GSCHEM_TYPE_TOPLEVEL, NULL);
 }
 
 void gschem_toplevel_free(GschemToplevel *w_current)
