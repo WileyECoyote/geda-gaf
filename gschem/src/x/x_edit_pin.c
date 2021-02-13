@@ -207,10 +207,10 @@ x_dialog_edit_pin_type_set_values(pin_type_data *pin_data, const char *label, co
   }
 
   if (label == NULL) {
-    SetEntryText( pin_data->label_entry, _("*missing*") );
+    SetEntryText( pin_data->label_entry, _("*missing*"));
   }
   else {
-    SetEntryText( pin_data->label_entry, label );
+    SetEntryText( pin_data->label_entry, label);
   }
 
   geda_option_widget_set_history(pin_data->pin_electrical, elect_type);
