@@ -1553,11 +1553,11 @@ x_dialog_edit_fill_type_ok(GtkWidget *Dialog, fill_type_data *fill_data)
   selection = geda_list_get_glist(Current_Selection);
 
   /* get the new values from the text entries of the dialog */
-  width_str  = GetEntryText ( fill_data->width_entry );
-  angle1_str = GetEntryText ( fill_data->angle1_entry );
-  pitch1_str = GetEntryText ( fill_data->pitch1_entry );
-  angle2_str = GetEntryText ( fill_data->angle2_entry );
-  pitch2_str = GetEntryText ( fill_data->pitch2_entry );
+  width_str  = GetEntryText (fill_data->width_entry);
+  angle1_str = GetEntryText (fill_data->angle1_entry);
+  pitch1_str = GetEntryText (fill_data->pitch1_entry);
+  angle2_str = GetEntryText (fill_data->angle2_entry);
+  pitch2_str = GetEntryText (fill_data->pitch2_entry);
 
   type = (int)(long)(
     GEDA_OBJECT_GET_DATA (
