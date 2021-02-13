@@ -888,10 +888,10 @@ x_dnd_drag_drop (GtkWidget *widget, GdkDragContext *context, int x, int y, unsig
     }
 
     /* Request the data from the source. */
-    gtk_drag_get_data ( widget,          /* will receive 'drag-data-received' signal */
-                        context,         /* represents the current state of the DnD */
-                        target_type,     /* the target type we want */
-                        time );          /* time stamp */
+    gtk_drag_get_data (widget,          /* will receive 'drag-data-received' signal */
+                       context,         /* represents the current state of the DnD */
+                       target_type,     /* the target type we want */
+                       time);           /* time stamp */
 
 #if DEBUG || DEBUG_DND_EVENTS
     printf ("<%s> Site is Valid target\n", __func__);
