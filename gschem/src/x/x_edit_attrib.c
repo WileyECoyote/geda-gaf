@@ -551,11 +551,11 @@ attrib_edit_dialog (GschemToplevel *w_current, GedaObject *object, int flag)
 
     if ( atk_name_obj ) {
       atk_object_set_name        (atk_name_obj,  _("Attribute Name List"));
-      atk_object_set_description (atk_name_obj,     name_list_tip );
+      atk_object_set_description (atk_name_obj,     name_list_tip);
     }
     if ( atk_value_obj ) {
       atk_object_set_name        (atk_value_obj, _("Attribute Value Entry"));
-      atk_object_set_description (atk_value_obj,    value_entry_tip );
+      atk_object_set_description (atk_value_obj,    value_entry_tip);
     }
 
     if (!object) {
