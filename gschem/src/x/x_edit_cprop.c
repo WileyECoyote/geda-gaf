@@ -208,22 +208,22 @@ static bool x_dialog_ep_revise_elect_attribs(GschemToplevel *w_current,
 
     const char *str_val;
 
-    str_val  = GetEntryText ( properties->refdes_entry );
+    str_val  = GetEntryText ( properties->refdes_entry);
     result   = x_dialog_ep_check_update_attribs (w_current, object, "refdes", str_val);
 
-    str_val  = GetEntryText ( properties->slots_spin );
+    str_val  = GetEntryText ( properties->slots_spin);
     result  += x_dialog_ep_check_update_attribs (w_current, object, "numslots", str_val);
 
-    str_val  = GetEntryText ( properties->value_entry );
+    str_val  = GetEntryText ( properties->value_entry);
     result  += x_dialog_ep_check_update_attribs (w_current, object, "value", str_val);
 
-    str_val  = GetEntryText ( properties->foot_entry );
+    str_val  = GetEntryText ( properties->foot_entry);
     result  += x_dialog_ep_check_update_attribs (w_current, object, "footprint", str_val);
 
-    str_val  = GetEntryText ( properties->spice_entry );
+    str_val  = GetEntryText ( properties->spice_entry);
     result  += x_dialog_ep_check_update_attribs (w_current, object, "spice-type", str_val);
 
-    str_val  = GetEntryText ( properties->mname_entry );
+    str_val  = GetEntryText ( properties->mname_entry);
     result  += x_dialog_ep_check_update_attribs (w_current, object, "model-name", str_val);
 
   }
