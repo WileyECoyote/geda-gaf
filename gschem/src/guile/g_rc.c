@@ -1003,7 +1003,7 @@ SCM g_rc_attribute_placement_grid(SCM offset)
                                      DEFAULT_ATTRIB_PLACE_GRID,
                                      "attribute-placement-grid");
 
-   x_settings_set_scm_int("autoplace-attributes-grid", default_attribute_placement_grid );
+   x_settings_set_scm_int("autoplace-attributes-grid", default_attribute_placement_grid);
 
   return SCM_BOOL_T;
 }
