@@ -9,6 +9,11 @@
     * linear/switchreg/LM2596-12-TO220-1.sym: Add new symbol; simple fixed
       12 Volt buck regulator.
 
+    * transistor/pnp-smt/BC856_pnp_80V_3D_SOT-23-?.sym: Add new symbols;
+      80V BJT:
+
+            * transistor/pnp-smt/BC856_pnp_80V_3D_SOT-23-1.sym
+
 2021-02-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * diode/schottky/: Add new symbols; 3A schottky diodes:
