@@ -6,6 +6,8 @@
     * linear/switchreg/LM2596-5-TO220-1.sym: Add new symbol; simple fixed
       5.0 Volt buck regulator.
 
+    * linear/switchreg/LM2596-12-TO220-1.sym: Add new symbol; simple fixed
+      12 Volt buck regulator.
 
 2021-02-07 Wiley E. Hill <wileyhill@gmail.com>
 
