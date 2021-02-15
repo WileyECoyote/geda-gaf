@@ -4,7 +4,7 @@ refdes=U?
 T 700 2550 5 10 0 0 0 0 1
 device=CNY17
 T 700 2350 5 10 0 1 0 0 1
-description=Phototransistor optocoupler
+description=Phototransistor Optoisolator with base
 T 700 1950 5 10 0 1 0 0 1
 footprint=DIP6
 T 700 2150 5 10 0 0 0 0 1
