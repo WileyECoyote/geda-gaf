@@ -22,11 +22,11 @@ pintype=pas
 P 500 400 700 400 1 0 1
 {
 T 600 500 5 10 0 1 0 0 1
-pinnumber=B
+pinnumber=G
 T 600 500 5 10 0 0 0 0 1
 pinseq=2
 T 600 500 5 10 0 1 0 0 1 
-pinlabel=B
+pinlabel=G
 T 600 500 5 10 0 1 0 0 1 
 pintype=pas
 }
