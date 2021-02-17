@@ -40,8 +40,6 @@ L 275 500 184 500 3 10 0 0 -1 -1
 L 400 375 364 447 3 10 0 0 -1 -1
 L 400 375 328 411 3 10 0 0 -1 -1
 L 328 411 364 447 3 10 0 0 -1 -1
-T 100 1700 5 10 0 0 0 0 1
-description=Generic NPN darlington transistor
 L 275 500 400 625 3 10 0 0 -1 -1
 L 400 625 600 625 3 10 0 0 -1 -1
 L 475 475 475 275 3 25 0 0 -1 -1
@@ -60,6 +58,8 @@ T 100 1100 8 10 0 0 0 0 1
 footprint=TO126S-op
 T 100 1500 5 10 0 0 0 0 1
 numslots=0
+T 100 1700 5 10 0 0 0 0 1
+description=NPN Darlington Transistor
 T 100 2300 5 10 0 0 0 0 1
 author=Amand Tihon amand.tihon@alrj.org
 T 100 2100 5 10 0 0 0 0 1
