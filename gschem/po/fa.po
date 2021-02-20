@@ -898,19 +898,20 @@ msgstr ""
 msgid "Rubber band mode is OFF"
 msgstr ""
 
-# Rubberband
+# Rubber band mode is ON
 #: gschem/src/iface/i_command.c:4750
-#, fuzzy
 msgid "Rubber band mode is ON"
-msgstr "کشیدن"
+msgstr "حالت باند لاستیکی روشن است"
 
+# Magnetic net mode is ON
 #: gschem/src/iface/i_command.c:4761
 msgid "Magnetic net mode is ON"
-msgstr ""
+msgstr "حالت شبکه مغناطیسی روشن است"
 
+# Magnetic net mode is OFF
 #: gschem/src/iface/i_command.c:4764
 msgid "Magnetic net mode is OFF"
-msgstr ""
+msgstr "حالت مغناطیسی خاموش است"
 
 #: gschem/src/iface/i_command.c:4782 gschem/src/iface/i_command.c:4826
 #: gschem/src/x/x_compselect.c:135 gschem/src/x/x_toolbars.c:261
@@ -4642,11 +4643,10 @@ msgstr ""
 msgid "Hidden"
 msgstr ""
 
-# Show/Hide Inherited
+# Inherited
 #: gschem/src/x/x_toolbars.c:252
-#, fuzzy
 msgid "Inherited"
-msgstr "نمایش/مخفی کردن وراثت"
+msgstr "به ارث برده"
 
 #: gschem/src/x/x_toolbars.c:253
 msgid "Find"
@@ -4660,11 +4660,10 @@ msgstr ""
 msgid "Show"
 msgstr ""
 
-# Auto Load
+# Auto Number
 #: gschem/src/x/x_toolbars.c:257
-#, fuzzy
 msgid "Auto #"
-msgstr "بار خودکار"
+msgstr "عدد خودکار"
 
 #: gschem/src/x/x_toolbars.c:259
 msgid "Dots"
@@ -4674,11 +4673,10 @@ msgstr ""
 msgid "UP"
 msgstr ""
 
-# Snap On-Off
+# Snap On
 #: gschem/src/x/x_toolbars.c:267
-#, fuzzy
 msgid "Snap On"
-msgstr "ضربه محکم و ناگهانی روشن"
+msgstr "ضربه محکم و ناگهانی در"
 
 #: gschem/src/x/x_toolbars.c:269
 msgid "Config"
@@ -5519,19 +5517,19 @@ msgstr ""
 msgid "Pictu_re..."
 msgstr ""
 
+# Insert an image
 #: gschem/etc/system-gschemrc.scm:2291
-#, fuzzy
 msgid "Insert an image"
-msgstr "تبدیل تصویر"
+msgstr "یک تصویر وارد کنید"
 
 #: gschem/etc/system-gschemrc.scm:2292
 msgid "_Pin"
 msgstr ""
 
+# Add a pin
 #: gschem/etc/system-gschemrc.scm:2292
-#, fuzzy
 msgid "Add a pin"
-msgstr "Line"
+msgstr "یک سنجاق اضافه کنید"
 
 #: gschem/etc/system-gschemrc.scm:2300
 msgid "Create a new session"
@@ -5577,10 +5575,10 @@ msgstr ""
 msgid "_Detach"
 msgstr ""
 
+# Detach selected attributes from symbol
 #: gschem/etc/system-gschemrc.scm:2316
-#, fuzzy
 msgid "Detach selected attributes from symbol"
-msgstr "خصوصیات جداگانه"
+msgstr "ویژگی های انتخاب شده را از نماد جدا کنید"
 
 #: gschem/etc/system-gschemrc.scm:2317
 msgid "Show _Value"
@@ -6198,9 +6196,10 @@ msgstr ""
 msgid "Add Text"
 msgstr "Edit Text..."
 
+# Add Line
 #: gschem/scheme/gschem/builtins.scm:356
 msgid "Add Line"
-msgstr "Line"
+msgstr "خط اضافه کنید"
 
 #: gschem/scheme/gschem/builtins.scm:359
 msgid "Add Pin"
@@ -6523,11 +6522,10 @@ msgstr ""
 msgid "Reset the X-Y Zero point"
 msgstr ""
 
-# Symbol
+# Check Symbol
 #: gschem/scheme/gschem/gschem-tools-menu.scm:277
-#, fuzzy
 msgid "Check Symbol"
-msgstr "نماد"
+msgstr "نماد را علامت بزنید"
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:277
 msgid "Run gsymcheck"
