@@ -832,9 +832,8 @@ msgstr ""
 msgid "Snap OFF (CAUTION!)"
 msgstr ""
 
-# Snap ON
+# Snap ON => Straight automatically
 #: gschem/src/iface/i_command.c:4714
-#, fuzzy
 msgid "Snap ON"
 msgstr "ישר באופן אוטומטי"
 
@@ -1791,10 +1790,10 @@ msgstr "סגור מבלי לשמור"
 msgid "Cancel closing and return to editor"
 msgstr ""
 
+# Save changes
 #: gschem/src/x/x_confirm_close.c:581
-#, fuzzy
 msgid "Save changes"
-msgstr "שמור דף"
+msgstr "שמור שינויים"
 
 # unsaved page
 #: gschem/src/x/x_confirm_close.c:631
@@ -5497,19 +5496,17 @@ msgstr ""
 msgid "A_rc"
 msgstr ""
 
-# Create a new file
+# Create an arc
 #: gschem/etc/system-gschemrc.scm:2286
-#, fuzzy
 msgid "Create an arc"
-msgstr "צור קובץ חדש"
+msgstr "צור קשת"
 
 #: gschem/etc/system-gschemrc.scm:2287
 msgid "_Box"
 msgstr ""
 
-# Add box
+# Add a box
 #: gschem/etc/system-gschemrc.scm:2287
-#, fuzzy
 msgid "Add a box"
 msgstr "להוסיף תיבה"
 
@@ -5517,9 +5514,8 @@ msgstr "להוסיף תיבה"
 msgid "C_ircle"
 msgstr ""
 
-# Add circle
+# Add a circle
 #: gschem/etc/system-gschemrc.scm:2288
-#, fuzzy
 msgid "Add a circle"
 msgstr "הוסף מעגל"
 
@@ -5527,9 +5523,8 @@ msgstr "הוסף מעגל"
 msgid "_Line"
 msgstr ""
 
-# Add line
+# Add a line
 #: gschem/etc/system-gschemrc.scm:2289
-#, fuzzy
 msgid "Add a line"
 msgstr "הוספת קו"
 
@@ -5545,19 +5540,17 @@ msgstr ""
 msgid "Pictu_re..."
 msgstr ""
 
-# Invert Image
+# Insert an image
 #: gschem/etc/system-gschemrc.scm:2291
-#, fuzzy
 msgid "Insert an image"
-msgstr "הפוך את התמונה"
+msgstr "הכנס תמונה"
 
 #: gschem/etc/system-gschemrc.scm:2292
 msgid "_Pin"
 msgstr ""
 
-# Add pin
+# Add a pin
 #: gschem/etc/system-gschemrc.scm:2292
-#, fuzzy
 msgid "Add a pin"
 msgstr "להוסיף סיכה"
 
