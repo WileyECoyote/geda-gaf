@@ -850,9 +850,8 @@ msgid "WARNING: Do not translate with snap off!\n"
 msgstr "ADVARSEL: Oversæt ikke med snap fra!\n"
 
 #: gschem/src/iface/i_command.c:4408
-#, fuzzy
 msgid "WARNING: Turning snap on and continuing with translation.\n"
-msgstr "ADVARSEL: Tænd snap og fortsæt med oversættelse.\n"
+msgstr "ADVARSEL: Aktivering af snap og fortsættelse med oversættelse.\n"
 
 # WARNING: Snap grid size is not equal to 100
 #: gschem/src/iface/i_command.c:4414
@@ -883,45 +882,38 @@ msgid "Mesh grid activated\n"
 msgstr "Mesh-net aktiveret\n"
 
 #: gschem/src/iface/i_command.c:4708
-#, fuzzy
 msgid "Snap OFF (CAUTION!)"
-msgstr "Justering FRA (FORSIGTIG!)\n"
+msgstr "Justering FRA (FORSIGTIG!)"
 
 # Snap ON => Alignment ON
 #: gschem/src/iface/i_command.c:4714
-#, fuzzy
 msgid "Snap ON"
-msgstr "Justering TIL\n"
+msgstr "Justering TIL"
 
 # Snap back to the grid (CAUTION!)
 #: gschem/src/iface/i_command.c:4719
-#, fuzzy
 msgid "Snap back to the grid (CAUTION!)"
-msgstr "Snap tilbage til gitteret (FORSIGTIG!)\n"
+msgstr "Snap tilbage til gitteret (FORSIGTIG!)"
 
 # Rubber band mode is OFF
 #: gschem/src/iface/i_command.c:4746
-#, fuzzy
 msgid "Rubber band mode is OFF"
-msgstr "Gummibåndtilstand er slået fra\n"
+msgstr "Gummibåndtilstand er slået fra"
 
 # Rubber band mode is ON
 #: gschem/src/iface/i_command.c:4750
-#, fuzzy
 msgid "Rubber band mode is ON"
-msgstr "Gummibåndtilstand er TIL\n"
+msgstr "Gummibåndtilstand er TIL"
 
-# Rubber band mode is ON
+# Magnetic net mode is ON
 #: gschem/src/iface/i_command.c:4761
-#, fuzzy
 msgid "Magnetic net mode is ON"
-msgstr "Gummibåndtilstand er TIL\n"
+msgstr "Magnetisk nettilstand er TIL"
 
-# Rubber band mode is OFF
+# Magnetic net mode is OFF
 #: gschem/src/iface/i_command.c:4764
-#, fuzzy
 msgid "Magnetic net mode is OFF"
-msgstr "Gummibåndtilstand er slået fra\n"
+msgstr "Magnetisk nettilstand er FRA"
 
 #: gschem/src/iface/i_command.c:4782 gschem/src/iface/i_command.c:4826
 #: gschem/src/x/x_compselect.c:135 gschem/src/x/x_toolbars.c:261

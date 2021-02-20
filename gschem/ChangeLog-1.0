@@ -6,6 +6,8 @@
 
     * po/ca.po: Update Catalan translations.
 
+    * po/da.po: Update Danish translations.
+
 2021-02-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/*/*.c: Replace u_log_message macro with geda_log:
