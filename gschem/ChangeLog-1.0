@@ -1,3 +1,7 @@
+2021-02-20 Wiley E. Hill <wileyhill@gmail.com>
+
+    * po/af.po: Update Afrikaans translations.
+
 2021-02-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/*/*.c: Replace u_log_message macro with geda_log:

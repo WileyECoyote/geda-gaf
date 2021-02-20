@@ -4527,54 +4527,52 @@ msgstr "Slots"
 msgid "Pins"
 msgstr ""
 
+# Fill
 #: gschem/src/x/x_toolbars.c:241
-#, fuzzy
 msgid "Fill"
-msgstr "Gevul"
+msgstr "Vul in"
 
 #: gschem/src/x/x_toolbars.c:242
 msgid "Arcs"
 msgstr ""
 
+# Demote
 #: gschem/src/x/x_toolbars.c:246
-#, fuzzy
 msgid "Demote"
-msgstr "Bevorder"
+msgstr "Verlaag"
 
 #: gschem/src/x/x_toolbars.c:249
 msgid "Both"
 msgstr ""
 
+# Hidden
 #: gschem/src/x/x_toolbars.c:251
-#, fuzzy
 msgid "Hidden"
-msgstr "Toon Verskuilde"
+msgstr "Versteek"
 
-# Show/Hide Inherited
+# Inherited
 #: gschem/src/x/x_toolbars.c:252
-#, fuzzy
 msgid "Inherited"
-msgstr "Wys/verberg geërf"
+msgstr "Geërf"
 
+# Find
 #: gschem/src/x/x_toolbars.c:253
-#, fuzzy
 msgid "Find"
-msgstr "Vind Teks"
+msgstr "Vind"
 
+# Hide
 #: gschem/src/x/x_toolbars.c:254
-#, fuzzy
 msgid "Hide"
-msgstr "Verskuil Teks"
+msgstr "Steek weg"
 
+# Show
 #: gschem/src/x/x_toolbars.c:255
-#, fuzzy
 msgid "Show"
-msgstr "Toon Teks"
+msgstr "Wys"
 
 #: gschem/src/x/x_toolbars.c:257
-#, fuzzy
 msgid "Auto #"
-msgstr "outomaties laai"
+msgstr "Outomaties #"
 
 #: gschem/src/x/x_toolbars.c:259
 msgid "Dots"
@@ -5269,9 +5267,8 @@ msgid "_First"
 msgstr "_Eerste"
 
 #: gschem/etc/system-gschemrc.scm:2254
-#, fuzzy
 msgid "Go to the first page"
-msgstr "Gaan na eerste bladsy"
+msgstr "Gaan na die eerste bladsy"
 
 #: gschem/etc/system-gschemrc.scm:2255
 msgid "_Previous"
@@ -5479,9 +5476,8 @@ msgid "_Detach"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2316
-#, fuzzy
 msgid "Detach selected attributes from symbol"
-msgstr "Voeg Eienskap By"
+msgstr "Maak geselekteerde eienskappe van die simbool los"
 
 #: gschem/etc/system-gschemrc.scm:2317
 msgid "Show _Value"
