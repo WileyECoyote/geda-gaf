@@ -787,11 +787,10 @@ msgstr ""
 msgid "Snap OFF (CAUTION!)"
 msgstr ""
 
-# Snap ON
+# Snap ON => Alignment ON
 #: gschem/src/iface/i_command.c:4714
-#, fuzzy
 msgid "Snap ON"
-msgstr "lepattinthatóvá"
+msgstr "Igazítás BE"
 
 #: gschem/src/iface/i_command.c:4719
 msgid "Snap back to the grid (CAUTION!)"
@@ -4343,10 +4342,10 @@ msgstr "Ismétlés/semmi"
 msgid "Pick"
 msgstr "Kijelöl"
 
+# New
 #: gschem/src/x/x_toolbars.c:149 gschem/src/x/x_toolbars.c:195
-#, fuzzy
 msgid "New"
-msgstr "_Új"
+msgstr "Új"
 
 #: gschem/src/x/x_toolbars.c:151 gschem/scheme/gschem/builtins.scm:56
 msgid "Save"
@@ -5247,10 +5246,10 @@ msgstr "Oldalkiválasztó"
 msgid "_First"
 msgstr ""
 
+# Go to the first page
 #: gschem/etc/system-gschemrc.scm:2254
-#, fuzzy
 msgid "Go to the first page"
-msgstr "Jelenlegi oldal"
+msgstr "Menj az első oldalra"
 
 #: gschem/etc/system-gschemrc.scm:2255
 msgid "_Previous"
@@ -5288,10 +5287,10 @@ msgstr ""
 msgid "_Last"
 msgstr ""
 
+# Go to the last page
 #: gschem/etc/system-gschemrc.scm:2259
-#, fuzzy
 msgid "Go to the last page"
-msgstr "Utolsó művelet visszavonása"
+msgstr "Ugrás az utolsó oldalra"
 
 #: gschem/etc/system-gschemrc.scm:2260
 msgid "Ne_w"
@@ -5401,11 +5400,10 @@ msgstr "Összeköttetés hozzáadása"
 msgid "Pictu_re..."
 msgstr "Kép..."
 
-# Invert Image
+# Insert an image
 #: gschem/etc/system-gschemrc.scm:2291
-#, fuzzy
 msgid "Insert an image"
-msgstr "Invert kép"
+msgstr "Helyezzen be egy képet"
 
 #: gschem/etc/system-gschemrc.scm:2292
 msgid "_Pin"
@@ -5459,10 +5457,10 @@ msgstr ""
 msgid "_Detach"
 msgstr ""
 
+# Detach selected attributes from symbol
 #: gschem/etc/system-gschemrc.scm:2316
-#, fuzzy
 msgid "Detach selected attributes from symbol"
-msgstr "Attribútum hozzáadása"
+msgstr "Válassza le a kijelölt attribútumokat a szimbólumból"
 
 #: gschem/etc/system-gschemrc.scm:2317
 msgid "Show _Value"
@@ -6057,7 +6055,7 @@ msgstr ""
 
 #: gschem/scheme/gschem/builtins.scm:362
 msgid "Add Box"
-msgstr "/Busz hozzáadása"
+msgstr "Busz hozzáadása"
 
 #: gschem/scheme/gschem/builtins.scm:365
 msgid "Add Circle"
