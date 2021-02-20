@@ -4507,15 +4507,15 @@ msgstr ""
 msgid "Path"
 msgstr "пътека"
 
+# Image; Izobrazhenie
 #: gschem/src/x/x_toolbars.c:186
-#, fuzzy
 msgid "Image"
-msgstr "Запиши Снимката"
+msgstr "Изображение"
 
+# First; Pŭrvo
 #: gschem/src/x/x_toolbars.c:189
-#, fuzzy
 msgid "First"
-msgstr "First Page"
+msgstr "Първо"
 
 #: gschem/src/x/x_toolbars.c:190
 msgid "Prev"
@@ -6135,9 +6135,10 @@ msgstr ""
 msgid "Draw Last"
 msgstr ""
 
+# First Page; Pŭrva stranitsa
 #: gschem/scheme/gschem/builtins.scm:290
 msgid "First Page"
-msgstr "First Page"
+msgstr "Първа страница"
 
 #: gschem/scheme/gschem/builtins.scm:293
 msgid "Previous Page"
@@ -6525,10 +6526,10 @@ msgstr ""
 msgid "Reset the X-Y Zero point"
 msgstr ""
 
+# Check Symbol; Proverete simvola
 #: gschem/scheme/gschem/gschem-tools-menu.scm:277
-#, fuzzy
 msgid "Check Symbol"
-msgstr "символ"
+msgstr "Проверете символа"
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:277
 msgid "Run gsymcheck"
