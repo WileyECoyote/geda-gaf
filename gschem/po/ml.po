@@ -901,11 +901,10 @@ msgstr ""
 msgid "Snap OFF (CAUTION!)"
 msgstr ""
 
-# disable snap
+# Snap ON => Alignment ON; vin'yāsaṁ ōṇāṇ
 #: gschem/src/iface/i_command.c:4714
-#, fuzzy
 msgid "Snap ON"
-msgstr "സ്നാപ്പ് അപ്രാപ്തമാക്കുകയോ"
+msgstr "വിന്യാസം ഓണാണ്"
 
 #: gschem/src/iface/i_command.c:4719
 msgid "Snap back to the grid (CAUTION!)"
@@ -915,21 +914,20 @@ msgstr ""
 msgid "Rubber band mode is OFF"
 msgstr ""
 
-# Rubberband
+# Rubber band mode is ON; ṟabbar bānḍ mēāḍ ōṇāṇ
 #: gschem/src/iface/i_command.c:4750
-#, fuzzy
 msgid "Rubber band mode is ON"
-msgstr "വിസർജ്ജനം"
+msgstr "റബ്ബർ ബാൻഡ് മോഡ് ഓണാണ്"
 
+# Magnetic net mode is ON; māgneṟṟik neṟṟ mēāḍ ōṇāṇ
 #: gschem/src/iface/i_command.c:4761
-#, fuzzy
 msgid "Magnetic net mode is ON"
-msgstr "മാഗ്നറ്റിക് നെറ്റ് മോഡ്"
+msgstr "മാഗ്നെറ്റിക് നെറ്റ് മോഡ് ഓണാണ്"
 
+# Magnetic net mode is OFF; māgneṟṟik neṟṟ mēāḍ ōphāṇ
 #: gschem/src/iface/i_command.c:4764
-#, fuzzy
 msgid "Magnetic net mode is OFF"
-msgstr "മാഗ്നറ്റിക് നെറ്റ് മോഡ്"
+msgstr "മാഗ്നെറ്റിക് നെറ്റ് മോഡ് ഓഫാണ്"
 
 #: gschem/src/iface/i_command.c:4782 gschem/src/iface/i_command.c:4826
 #: gschem/src/x/x_compselect.c:135 gschem/src/x/x_toolbars.c:261
@@ -5073,21 +5071,19 @@ msgstr ""
 msgid "_Undo"
 msgstr ""
 
-# Edit operations
+# Undo the last operation; avasāna pravarttanaṁ paḻayapaṭiyākkuka
 #: gschem/etc/system-gschemrc.scm:2124
-#, fuzzy
 msgid "Undo the last operation"
-msgstr "ഓപ്പറേഷൻസ് എഡിറ്റ്"
+msgstr "അവസാന പ്രവർത്തനം പഴയപടിയാക്കുക"
 
 #: gschem/etc/system-gschemrc.scm:2125
 msgid "_Redo"
 msgstr ""
 
-# Redraw the current window
+# Redo the last undo; avasānatte pūrvāvasthayilākkuka
 #: gschem/etc/system-gschemrc.scm:2125
-#, fuzzy
 msgid "Redo the last undo"
-msgstr "നിലവിലെ വിൻഡോ ശരിയാക്കുക"
+msgstr "അവസാനത്തെ പൂർവാവസ്ഥയിലാക്കുക"
 
 # Cut to clipboard
 #: gschem/etc/system-gschemrc.scm:2128
