@@ -4852,11 +4852,10 @@ msgstr "Ustvarjanje in urejanje električne shematičen in simbole z gschem"
 msgid "_New"
 msgstr "_Nova"
 
-# Create a new blank file
+# Create a new file
 #: gschem/etc/system-gschemrc.scm:2091
-#, fuzzy
 msgid "Create a new file"
-msgstr "Ustvari novo prazno datoteko"
+msgstr "Ustvari novo datoteko"
 
 # Open
 #: gschem/etc/system-gschemrc.scm:2092 gschem/etc/system-gschemrc.scm:2301
@@ -4922,10 +4921,10 @@ msgstr ""
 msgid "_Print..."
 msgstr "Tiskanje..."
 
+# Open the Print Dialog
 #: gschem/etc/system-gschemrc.scm:2105
-#, fuzzy
 msgid "Open the Print Dialog"
-msgstr "Odprite tipa Pin pogovornega okna"
+msgstr "Odprite pogovorno okno Print"
 
 #: gschem/etc/system-gschemrc.scm:2106
 msgid "Export options"
@@ -4980,21 +4979,19 @@ msgstr "_Končaj"
 msgid "_Undo"
 msgstr "_Razveljavi"
 
-# Editing operations
+# Undo the last operation
 #: gschem/etc/system-gschemrc.scm:2124
-#, fuzzy
 msgid "Undo the last operation"
-msgstr "operacije urejanje"
+msgstr "Razveljavi zadnjo operacijo"
 
 #: gschem/etc/system-gschemrc.scm:2125
 msgid "_Redo"
 msgstr ""
 
-# Redraw the current window
+# Redo the last undo
 #: gschem/etc/system-gschemrc.scm:2125
-#, fuzzy
 msgid "Redo the last undo"
-msgstr "Prekreslite aktuálne okno"
+msgstr "Uveljavi zadnjo razveljavitev"
 
 #: gschem/etc/system-gschemrc.scm:2128
 msgid "Cu_t clipboard"
@@ -5505,11 +5502,10 @@ msgstr ""
 msgid "A_rc"
 msgstr ""
 
-# Create a new blank file
+# Create an arc
 #: gschem/etc/system-gschemrc.scm:2286
-#, fuzzy
 msgid "Create an arc"
-msgstr "Ustvari novo prazno datoteko"
+msgstr "Ustvari lok"
 
 #: gschem/etc/system-gschemrc.scm:2287
 msgid "_Box"
@@ -5547,11 +5543,10 @@ msgstr ""
 msgid "Pictu_re..."
 msgstr ""
 
-# Invert Image
+# Insert an image
 #: gschem/etc/system-gschemrc.scm:2291
-#, fuzzy
 msgid "Insert an image"
-msgstr "Obrni sliko"
+msgstr "Vstavite sliko"
 
 #: gschem/etc/system-gschemrc.scm:2292
 msgid "_Pin"
@@ -6570,11 +6565,10 @@ msgstr ""
 msgid "Reset the X-Y Zero point"
 msgstr ""
 
-# Symbol
+# Check Symbol
 #: gschem/scheme/gschem/gschem-tools-menu.scm:277
-#, fuzzy
 msgid "Check Symbol"
-msgstr "_Simbol"
+msgstr "Označite Simbol"
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:277
 msgid "Run gsymcheck"
