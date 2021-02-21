@@ -1,9 +1,10 @@
 2021-02-21 Wiley E. Hill <wileyhill@gmail.com>
 
-    * linear/regulator/LM150-1.sym: Add new symbol; Adjustable voltage
+    * linear/regulator/LM?50*.sym: Add new symbols; Adjustable voltage
       regulator:
 
             * linear/regulator/LM150-1.sym
+            * linear/regulator/LM150A-1.sym
 
 2021-02-14 Wiley E. Hill <wileyhill@gmail.com>
 
