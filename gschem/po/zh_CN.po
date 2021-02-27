@@ -4459,11 +4459,10 @@ msgstr "重复"
 msgid "Pick"
 msgstr "重复/无"
 
-# New
+# New; Xīn de
 #: gschem/src/x/x_toolbars.c:149 gschem/src/x/x_toolbars.c:195
-#, fuzzy
 msgid "New"
-msgstr "新建"
+msgstr "新的"
 
 #: gschem/src/x/x_toolbars.c:151 gschem/scheme/gschem/builtins.scm:56
 msgid "Save"
@@ -4929,11 +4928,10 @@ msgstr ""
 msgid "_Print..."
 msgstr "打印..."
 
-# Open the attributes editor dialog
+# Open the Print Dialog; Dǎkāi dǎyìn duìhuà kuāng
 #: gschem/etc/system-gschemrc.scm:2105
-#, fuzzy
 msgid "Open the Print Dialog"
-msgstr "打开属性编辑器对话框"
+msgstr "打开打印对话框"
 
 #: gschem/etc/system-gschemrc.scm:2106
 msgid "Export options"
@@ -5440,11 +5438,10 @@ msgstr ""
 msgid "_First"
 msgstr ""
 
-# Go to the last page
+# Go to the first page; Zhuǎn dào dì yī yè
 #: gschem/etc/system-gschemrc.scm:2254
-#, fuzzy
 msgid "Go to the first page"
-msgstr "转到最后一页"
+msgstr "转到第一页"
 
 # Previous
 #: gschem/etc/system-gschemrc.scm:2255
@@ -5491,9 +5488,8 @@ msgstr "页往下"
 msgid "_Last"
 msgstr "末"
 
-# Go to the last page
+# Go to the last page; Zhuǎn dào zuìhòu yī yè
 #: gschem/etc/system-gschemrc.scm:2259
-#, fuzzy
 msgid "Go to the last page"
 msgstr "转到最后一页"
 
@@ -5628,11 +5624,10 @@ msgstr ""
 msgid "Pictu_re..."
 msgstr "图片..."
 
-# Invert Image
+# Insert an image; Chārù túpiàn
 #: gschem/etc/system-gschemrc.scm:2291
-#, fuzzy
 msgid "Insert an image"
-msgstr "反转图像"
+msgstr "插入图片"
 
 #: gschem/etc/system-gschemrc.scm:2292
 msgid "_Pin"
