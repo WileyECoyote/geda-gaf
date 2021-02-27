@@ -4521,36 +4521,35 @@ msgstr "Първо"
 msgid "Prev"
 msgstr ""
 
+# Next; Sledvashtiya
 #: gschem/src/x/x_toolbars.c:191
-#, fuzzy
 msgid "Next"
-msgstr "Следваща страница"
+msgstr "Следващия"
 
+# Down; Nadolu
 #: gschem/src/x/x_toolbars.c:193 gschem/src/x/x_toolbars.c:198
 #: gschem/src/x/x_toolbars.c:199 gschem/src/x/x_toolbars.c:264
-#, fuzzy
 msgid "Down"
-msgstr "движат надолу"
+msgstr "Надолу"
 
+# Last; Posledno
 #: gschem/src/x/x_toolbars.c:194
-#, fuzzy
 msgid "Last"
-msgstr "последна страница"
+msgstr "Последно"
 
+# Manage; Upravlenie
 #: gschem/src/x/x_toolbars.c:196
-#, fuzzy
 msgid "Manage"
-msgstr "управлявам..."
+msgstr "Управление"
 
 #: gschem/src/x/x_toolbars.c:202
 msgid "Spec"
 msgstr ""
 
-# Filename
+# Netnames; Mrezhi
 #: gschem/src/x/x_toolbars.c:203
-#, fuzzy
 msgid "Netnames"
-msgstr "Име на файл"
+msgstr "Мрежи"
 
 #: gschem/src/x/x_toolbars.c:206 gschem/scheme/gschem/builtins.scm:209
 msgid "Redraw"
@@ -5409,11 +5408,10 @@ msgstr ""
 msgid "_Last"
 msgstr ""
 
-# Undo the last path segment => Cancel the last segment of the path
+# Go to the last page; Otidete na poslednata stranitsa
 #: gschem/etc/system-gschemrc.scm:2259
-#, fuzzy
 msgid "Go to the last page"
-msgstr "Отменете последния сегмент от пътя"
+msgstr "Отидете на последната страница"
 
 #: gschem/etc/system-gschemrc.scm:2260
 msgid "Ne_w"
@@ -5582,11 +5580,11 @@ msgstr ""
 msgid "_Detach"
 msgstr ""
 
-# Detached attribute => independent attribute
+# Detach selected attributes from symbol
+# Otdelete izbranite atributi ot simvola
 #: gschem/etc/system-gschemrc.scm:2316
-#, fuzzy
 msgid "Detach selected attributes from symbol"
-msgstr "Самостоятелна атрибут"
+msgstr "Отделете избраните атрибути от символа"
 
 #: gschem/etc/system-gschemrc.scm:2317
 msgid "Show _Value"
