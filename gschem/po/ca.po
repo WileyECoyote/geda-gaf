@@ -4440,11 +4440,10 @@ msgstr ""
 msgid "Path"
 msgstr ""
 
-# Write image
+# Image
 #: gschem/src/x/x_toolbars.c:186
-#, fuzzy
 msgid "Image"
-msgstr "Escriure imatge"
+msgstr "Imatge"
 
 #: gschem/src/x/x_toolbars.c:189
 msgid "First"
@@ -4475,11 +4474,10 @@ msgstr ""
 msgid "Spec"
 msgstr ""
 
-# Filename
+# Netnames
 #: gschem/src/x/x_toolbars.c:203
-#, fuzzy
 msgid "Netnames"
-msgstr "Nom de l'arxiu"
+msgstr "Noms de xarxa"
 
 #: gschem/src/x/x_toolbars.c:206 gschem/scheme/gschem/builtins.scm:209
 msgid "Redraw"
@@ -4489,11 +4487,10 @@ msgstr ""
 msgid "Pan"
 msgstr ""
 
-# Parent Window => Primary window
+# Window
 #: gschem/src/x/x_toolbars.c:208
-#, fuzzy
 msgid "Window"
-msgstr "Finestra primària"
+msgstr "Finestra"
 
 #: gschem/src/x/x_toolbars.c:209
 msgid "Selected"
@@ -4565,9 +4562,8 @@ msgid "Show"
 msgstr ""
 
 #: gschem/src/x/x_toolbars.c:257
-#, fuzzy
 msgid "Auto #"
-msgstr "Càrrega automàtica"
+msgstr "# Automàticament"
 
 #: gschem/src/x/x_toolbars.c:259
 msgid "Dots"
@@ -4579,9 +4575,8 @@ msgstr ""
 
 # Snap ON => Alignment ON
 #: gschem/src/x/x_toolbars.c:267
-#, fuzzy
 msgid "Snap On"
-msgstr "Alineació activada\n"
+msgstr "Alineació ACTIVADA"
 
 #: gschem/src/x/x_toolbars.c:269
 msgid "Config"
