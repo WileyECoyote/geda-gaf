@@ -4931,11 +4931,10 @@ msgstr ""
 msgid "_New"
 msgstr "Но_во"
 
-# Creation failed
+# Create a new file; Napravite novu datoteku
 #: gschem/etc/system-gschemrc.scm:2091
-#, fuzzy
 msgid "Create a new file"
-msgstr "цреатион фаилед"
+msgstr "Направите нову датотеку"
 
 #: gschem/etc/system-gschemrc.scm:2092 gschem/etc/system-gschemrc.scm:2301
 msgid "_Open..."
@@ -4998,11 +4997,10 @@ msgstr "Одбаци промене и поново све отворене до
 msgid "_Print..."
 msgstr "_Штампај..."
 
-# Open font selection dialog
+# Open the Print Dialog; Otvorite dijalog za štampanje
 #: gschem/etc/system-gschemrc.scm:2105
-#, fuzzy
 msgid "Open the Print Dialog"
-msgstr "Отворите дијалог за одабир фонта"
+msgstr "Отворите дијалог за штампање"
 
 # # Export options
 #: gschem/etc/system-gschemrc.scm:2106
@@ -5073,11 +5071,10 @@ msgstr ""
 msgid "_Redo"
 msgstr ""
 
-# Redraw the current window
+# Redo the last undo; Ponovi poslednje poništavanje
 #: gschem/etc/system-gschemrc.scm:2125
-#, fuzzy
 msgid "Redo the last undo"
-msgstr "Преправи тренутни прозор"
+msgstr "Понови последње поништавање"
 
 #: gschem/etc/system-gschemrc.scm:2128
 msgid "Cu_t clipboard"
@@ -5585,11 +5582,10 @@ msgstr ""
 msgid "A_rc"
 msgstr ""
 
-# Creation failed
+# Create an arc; Stvorite luk
 #: gschem/etc/system-gschemrc.scm:2286
-#, fuzzy
 msgid "Create an arc"
-msgstr "цреатион фаилед"
+msgstr "Створите лук"
 
 #: gschem/etc/system-gschemrc.scm:2287
 msgid "_Box"
@@ -5627,11 +5623,10 @@ msgstr ""
 msgid "Pictu_re..."
 msgstr ""
 
-# Invert Image
+# Insert an image; Umetnite sliku
 #: gschem/etc/system-gschemrc.scm:2291
-#, fuzzy
 msgid "Insert an image"
-msgstr "Инверт Имаге"
+msgstr "Уметните слику"
 
 #: gschem/etc/system-gschemrc.scm:2292
 msgid "_Pin"
@@ -6644,11 +6639,10 @@ msgstr ""
 msgid "Reset the X-Y Zero point"
 msgstr ""
 
-# Symbol; Simbol
+# Check Symbol; Označite simbol
 #: gschem/scheme/gschem/gschem-tools-menu.scm:277
-#, fuzzy
 msgid "Check Symbol"
-msgstr "Симбол"
+msgstr "Означите симбол"
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:277
 msgid "Run gsymcheck"
