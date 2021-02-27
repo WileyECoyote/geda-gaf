@@ -4582,25 +4582,25 @@ msgstr "Κρυμμένος"
 msgid "Inherited"
 msgstr "Κληρονόμησε"
 
+# Find; Évrima
 #: gschem/src/x/x_toolbars.c:253
-#, fuzzy
 msgid "Find"
-msgstr "Εύρεση κειμένου"
+msgstr "Εύρημα"
 
+# Hide; Krývo
 #: gschem/src/x/x_toolbars.c:254
-#, fuzzy
 msgid "Hide"
-msgstr "Απόκρυψη κειμένου"
+msgstr "Κρύβω"
 
+# Show; provolí
 #: gschem/src/x/x_toolbars.c:255
-#, fuzzy
 msgid "Show"
-msgstr "Εμφάνιση κειμένου"
+msgstr "προβολή"
 
+# Auto #; Aftómato #
 #: gschem/src/x/x_toolbars.c:257
-#, fuzzy
 msgid "Auto #"
-msgstr "Αυτόματη φόρτιση"
+msgstr "Αυτόματο #"
 
 #: gschem/src/x/x_toolbars.c:259
 msgid "Dots"
@@ -4610,10 +4610,10 @@ msgstr ""
 msgid "UP"
 msgstr ""
 
+# Snap On; Energopoiíste
 #: gschem/src/x/x_toolbars.c:267
-#, fuzzy
 msgid "Snap On"
-msgstr "Λειτουργία ακροδεκτών"
+msgstr "Ενεργοποιήστε"
 
 #: gschem/src/x/x_toolbars.c:269
 msgid "Config"
@@ -5304,11 +5304,10 @@ msgstr "Διαχειριστής σελίδων"
 msgid "_First"
 msgstr ""
 
-# Go to the first page
+# Go to the first page; Metaveíte stin próti selída
 #: gschem/etc/system-gschemrc.scm:2254
-#, fuzzy
 msgid "Go to the first page"
-msgstr "Τρέχουσα σελίδα"
+msgstr "Μεταβείτε στην πρώτη σελίδα"
 
 #: gschem/etc/system-gschemrc.scm:2255
 msgid "_Previous"
