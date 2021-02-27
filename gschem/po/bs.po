@@ -4562,7 +4562,6 @@ msgid "Line"
 msgstr "Linija"
 
 #: gschem/src/x/x_toolbars.c:182
-#, fuzzy
 msgid "Circle"
 msgstr "Krug"
 
@@ -4580,34 +4579,29 @@ msgstr "Poligon"
 msgid "Image"
 msgstr "Sliku"
 
-# draw first
+# First
 #: gschem/src/x/x_toolbars.c:189
-#, fuzzy
 msgid "First"
-msgstr "nacrtati prvo"
+msgstr "Prvo"
 
 #: gschem/src/x/x_toolbars.c:190
-#, fuzzy
 msgid "Prev"
-msgstr "Prethodna"
+msgstr "Prethodni"
 
 #: gschem/src/x/x_toolbars.c:191
-#, fuzzy
 msgid "Next"
 msgstr "_Naredna"
 
-# Shift view down
+# Down
 #: gschem/src/x/x_toolbars.c:193 gschem/src/x/x_toolbars.c:198
 #: gschem/src/x/x_toolbars.c:199 gschem/src/x/x_toolbars.c:264
-#, fuzzy
 msgid "Down"
-msgstr "Shift pogled dole"
+msgstr "Dole"
 
-# draw last
+# Last
 #: gschem/src/x/x_toolbars.c:194
-#, fuzzy
 msgid "Last"
-msgstr "izvući posljednji"
+msgstr "Poslednji"
 
 #: gschem/src/x/x_toolbars.c:196
 msgid "Manage"
@@ -4617,10 +4611,10 @@ msgstr ""
 msgid "Spec"
 msgstr ""
 
+# Netnames
 #: gschem/src/x/x_toolbars.c:203
-#, fuzzy
 msgid "Netnames"
-msgstr "Ime dokumenta"
+msgstr "Imena mreža"
 
 # redraw
 #: gschem/src/x/x_toolbars.c:206 gschem/scheme/gschem/builtins.scm:209
