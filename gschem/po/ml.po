@@ -6365,11 +6365,10 @@ msgstr "ചേർക്കുക വലയം"
 msgid "Add Arc"
 msgstr ""
 
-# Add Pin
+# Add Path; pāta cērkkuka
 #: gschem/scheme/gschem/builtins.scm:371
-#, fuzzy
 msgid "Add Path"
-msgstr "പിൻ ചേർക്കുക"
+msgstr "പാത ചേർക്കുക"
 
 #: gschem/scheme/gschem/builtins.scm:374
 msgid "Add Picture"
@@ -6667,11 +6666,10 @@ msgstr ""
 msgid "Reset the X-Y Zero point"
 msgstr ""
 
-# Symbol
+# Check Symbol; cihnaṁ pariśēādhikkuka
 #: gschem/scheme/gschem/gschem-tools-menu.scm:277
-#, fuzzy
 msgid "Check Symbol"
-msgstr "ചിഹ്നം"
+msgstr "ചിഹ്നം പരിശോധിക്കുക"
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:277
 msgid "Run gsymcheck"
