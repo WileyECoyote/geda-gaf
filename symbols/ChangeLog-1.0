@@ -12,6 +12,9 @@
     * transistor/darl-npn/BD675-45V-4A-TO126-1.sym: Rename symbol file:
       BD675-ndarl-1.sym -> BD675-45V-4A-TO126-1.sym.
 
+    * transistor/darl-pnp/BD676-45V-4A-TO126-2.sym: Rename symbol file:
+      BD676-pdarl-2.sym -> BD676-45V-4A-TO126-2.sym.
+
 2021-02-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * linear/regulator/LM?50*.sym: Add new symbols; Adjustable voltage
