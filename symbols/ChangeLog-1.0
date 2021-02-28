@@ -3,6 +3,7 @@
     * linear/regulator/LM2596*-2.sym: Add LM2596 dash 2 symbols:
 
             * linear/switchreg/LM2596-3-TO220-2.sym
+            * linear/switchreg/LM2596-3-TO263-2.sym
 
 2021-02-21 Wiley E. Hill <wileyhill@gmail.com>
 
