@@ -38,13 +38,13 @@ value=1N4148
 T 1900 1300 5 10 0 0 0 0 1
 numslots=0
 T 600 700 9 10 0 1 0 0 1
-footprint=DO-35
+footprint=unknown
 T 600 1500 5 10 0 1 0 0 1
 documentation=http://wikipedia.org/wiki/Diode
 T 600 2100 5 10 0 0 0 0 1
 author=AutoTron
 T 600 1300 9 10 0 0 0 0 1
-symversion=0.4
+symversion=0.6
 T 600 1900 5 10 0 0 0 0 1
 dist-license=GPLv2
 T 600 1700 5 10 0 0 0 0 1
