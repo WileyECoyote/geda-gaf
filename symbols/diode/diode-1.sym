@@ -29,14 +29,14 @@ pinlabel=2
 T 200 175 5 8 0 1 270 0 1
 pintype=pas
 }
-T 500 800 9 10 0 1 0 0 1
-footprint=DO-35
 T 500 1000 5 10 0 1 0 0 1
 description=diode,rectifier,1N4148
 T 700 0 5 10 0 1 0 0 1
 value=1N4148
+T 500 800 9 10 0 1 0 0 1
+footprint=unknown
 T 1100 1200 9 10 0 0 0 0 1
-symversion=0.5
+symversion=0.6
 T 1100 825 5 10 0 0 0 0 1
 numslots=0
 T 500 2000 5 10 0 0 0 0 1
