@@ -28,7 +28,7 @@ T 250 150 5 6 0 1 0 8 1
 pintype=pas
 }
 T 300 500 8 10 1 1 0 0 1
-footprint=SOD80
+footprint=SOD??
 T 300 900 8 10 1 1 0 0 1
 refdes=D?
 T 300 1300 9 10 0 1 0 0 1
