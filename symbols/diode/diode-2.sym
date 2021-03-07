@@ -32,7 +32,7 @@ T 125 150 5 6 0 1 0 2 1
 pintype=pas
 }
 T 600 900 5 10 0 1 0 0 1
-description=diode,rectifier,1N4002
+description=diode,rectifier,1N??
 T 800 0 5 10 1 1 0 0 1
 value=1N4002
 T 1900 1300 5 10 0 0 0 0 1
