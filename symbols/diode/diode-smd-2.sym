@@ -34,9 +34,9 @@ refdes=D?
 T 300 1300 9 10 0 1 0 0 1
 device=DIODE
 T 300 1100 9 10 0 0 0 0 1
-symversion=0.1
+symversion=0.2
 T 300 1500 5 10 0 1 0 0 1
-description=diode,50V,200mW,SMD
+description=diode,??V,??mW,SMD
 T 300 2300 5 10 0 0 0 0 1
 author=Amand Tihon amand.tihon@alrj.org
 T 300 2100 5 10 0 0 0 0 1
