@@ -32,7 +32,7 @@ pintype=pas
 T 500 1000 5 10 0 1 0 0 1
 description=diode,rectifier,1N??
 T 700 0 5 10 0 1 0 0 1
-value=1N4148
+value=1N??
 T 500 800 9 10 0 1 0 0 1
 footprint=unknown
 T 1100 1200 9 10 0 0 0 0 1
