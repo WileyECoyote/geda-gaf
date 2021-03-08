@@ -34,7 +34,7 @@ pintype=pas
 T 600 900 5 10 0 1 0 0 1
 description=diode,1N?
 T 800 0 5 10 1 1 0 0 1
-value=1N4148
+value=1N??
 T 1900 1300 5 10 0 0 0 0 1
 numslots=0
 T 600 700 9 10 0 1 0 0 1
