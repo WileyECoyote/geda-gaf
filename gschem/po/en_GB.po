@@ -4426,9 +4426,8 @@ msgid "Show"
 msgstr "Show"
 
 #: gschem/src/x/x_toolbars.c:257
-#, fuzzy
 msgid "Auto #"
-msgstr "Auto"
+msgstr "Auto #"
 
 #: gschem/src/x/x_toolbars.c:259
 msgid "Dots"
@@ -4707,18 +4706,16 @@ msgid "_Undo"
 msgstr "_Undo"
 
 #: gschem/etc/system-gschemrc.scm:2124
-#, fuzzy
 msgid "Undo the last operation"
-msgstr "Undo last operation"
+msgstr "Undo the last operation"
 
 #: gschem/etc/system-gschemrc.scm:2125
 msgid "_Redo"
 msgstr "_Redo"
 
 #: gschem/etc/system-gschemrc.scm:2125
-#, fuzzy
 msgid "Redo the last undo"
-msgstr "Redraw the current window"
+msgstr "Redo the last undo"
 
 #: gschem/etc/system-gschemrc.scm:2128
 msgid "Cu_t clipboard"
