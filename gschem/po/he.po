@@ -5599,11 +5599,10 @@ msgstr ""
 msgid "_Detach"
 msgstr ""
 
-# Detached attribute => Seperated attribute
+# Detach selected attributes from symbol
 #: gschem/etc/system-gschemrc.scm:2316
-#, fuzzy
 msgid "Detach selected attributes from symbol"
-msgstr "מופרדי תכונה"
+msgstr "נתק את התכונות שנבחרו מסמל"
 
 #: gschem/etc/system-gschemrc.scm:2317
 msgid "Show _Value"
@@ -6582,11 +6581,10 @@ msgstr ""
 msgid "Reset the X-Y Zero point"
 msgstr ""
 
-# Symbol
+# Check Symbol
 #: gschem/scheme/gschem/gschem-tools-menu.scm:277
-#, fuzzy
 msgid "Check Symbol"
-msgstr "סמל"
+msgstr "סמן סימון"
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:277
 msgid "Run gsymcheck"
