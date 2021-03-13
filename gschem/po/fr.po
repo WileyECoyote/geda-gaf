@@ -5323,10 +5323,10 @@ msgstr ""
 msgid "_Last"
 msgstr ""
 
+# Go to the last page
 #: gschem/etc/system-gschemrc.scm:2259
-#, fuzzy
 msgid "Go to the last page"
-msgstr "Défaire la dernière opération"
+msgstr "Aller à la dernière page"
 
 #: gschem/etc/system-gschemrc.scm:2260
 msgid "Ne_w"
@@ -5496,9 +5496,8 @@ msgid "_Detach"
 msgstr "_Détacher"
 
 #: gschem/etc/system-gschemrc.scm:2316
-#, fuzzy
 msgid "Detach selected attributes from symbol"
-msgstr "Attribut détaché"
+msgstr "Détacher les attributs sélectionnés du symbole"
 
 #: gschem/etc/system-gschemrc.scm:2317
 msgid "Show _Value"
@@ -6115,7 +6114,7 @@ msgstr "Ajouter un attribut"
 
 #: gschem/scheme/gschem/builtins.scm:371
 msgid "Add Path"
-msgstr "/Ajouter une piste"
+msgstr "Ajouter un chemin"
 
 #: gschem/scheme/gschem/builtins.scm:374
 msgid "Add Picture"
@@ -6413,18 +6412,16 @@ msgid "hierarchy Verilog"
 msgstr "hiérarchie Verilog"
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:276
-#, fuzzy
 msgid "Symbol _Translate..."
-msgstr "Translater"
+msgstr "_Traduction de symbole..."
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:276
 msgid "Reset the X-Y Zero point"
 msgstr ""
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:277
-#, fuzzy
 msgid "Check Symbol"
-msgstr "sym - Symboles"
+msgstr "Vérifier le symbole"
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:277
 msgid "Run gsymcheck"
