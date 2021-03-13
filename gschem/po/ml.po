@@ -5496,11 +5496,10 @@ msgstr ""
 msgid "_First"
 msgstr ""
 
-# Print the current page
+# Go to the first page; ādya pējilēkk pēākuka
 #: gschem/etc/system-gschemrc.scm:2254
-#, fuzzy
 msgid "Go to the first page"
-msgstr "നിലവിലെ പേജ് പ്രിന്റ്"
+msgstr "ആദ്യ പേജിലേക്ക് പോകുക"
 
 #: gschem/etc/system-gschemrc.scm:2255
 msgid "_Previous"
@@ -5612,21 +5611,19 @@ msgstr ""
 msgid "A_rc"
 msgstr ""
 
-# Creating new file
+# Create an arc; oru ārkk sr̥ṣṭikkuka
 #: gschem/etc/system-gschemrc.scm:2286
-#, fuzzy
 msgid "Create an arc"
-msgstr "പുതിയ ഫയൽ സൃഷ്ടിക്കുന്നു"
+msgstr "ഒരു ആർക്ക് സൃഷ്ടിക്കുക"
 
 #: gschem/etc/system-gschemrc.scm:2287
 msgid "_Box"
 msgstr ""
 
-# Add pin
+# Add a box
 #: gschem/etc/system-gschemrc.scm:2287
-#, fuzzy
 msgid "Add a box"
-msgstr "പിൻ ചേർക്കുക"
+msgstr "ഒരു ബോക്സ് ചേർക്കുക"
 
 #: gschem/etc/system-gschemrc.scm:2288
 msgid "C_ircle"
@@ -5659,11 +5656,10 @@ msgstr ""
 msgid "Pictu_re..."
 msgstr ""
 
-# Invert Image
+# Insert an image; oru citraṁ cērkkuka
 #: gschem/etc/system-gschemrc.scm:2291
-#, fuzzy
 msgid "Insert an image"
-msgstr "വിപരീത ഇമേജ്"
+msgstr "ഒരു ചിത്രം ചേർക്കുക"
 
 #: gschem/etc/system-gschemrc.scm:2292
 msgid "_Pin"
