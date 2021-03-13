@@ -6065,10 +6065,10 @@ msgstr "Kör"
 msgid "Add Arc"
 msgstr "Attribútum hozzáadása"
 
+# Add Path
 #: gschem/scheme/gschem/builtins.scm:371
-#, fuzzy
 msgid "Add Path"
-msgstr "Összeköttetés hozzáadása"
+msgstr "Add sokszöget"
 
 #: gschem/scheme/gschem/builtins.scm:374
 msgid "Add Picture"
@@ -6363,19 +6363,19 @@ msgstr "Verilog csomópontlista"
 msgid "hierarchy Verilog"
 msgstr "Hierarchia Verilog"
 
+# Symbol Translate
 #: gschem/scheme/gschem/gschem-tools-menu.scm:276
-#, fuzzy
 msgid "Symbol _Translate..."
-msgstr "Eltolás"
+msgstr "Jelkép lefordítása..."
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:276
 msgid "Reset the X-Y Zero point"
 msgstr ""
 
+# Check Symbol
 #: gschem/scheme/gschem/gschem-tools-menu.scm:277
-#, fuzzy
 msgid "Check Symbol"
-msgstr "Szimbólum"
+msgstr "Jelölje be a szimbólumot"
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:277
 msgid "Run gsymcheck"
@@ -6403,32 +6403,3 @@ msgstr ""
 #, scheme-format
 msgid "~S is not a prefix key sequence."
 msgstr ""
-
-#~ msgid "Input attribute is invalid"
-#~ msgstr "attribútum hiányzik"
-
-#~ msgid "<b>Scope</b>"
-#~ msgstr "<b>Hatáskör</b>"
-
-#~ msgid "<b>Add Attribute</b>"
-#~ msgstr "<b>Attribútum hozzáadása</b>"
-
-#~ msgid "<b>Edit Attribute</b>"
-#~ msgstr "<b>Attribútum szerkesztése</b>"
-
-# Selection
-#~ msgid "<b>Selection</b>"
-#~ msgstr "Kiválasztás"
-
-# Array
-#~ msgid "<b>Array</b>"
-#~ msgstr "<b>Sor</b>"
-
-#~ msgid "Toggle _Snap On-Off"
-#~ msgstr "_Snap váltása"
-
-#~ msgid "session"
-#~ msgstr "Név mutatása"
-
-#~ msgid "New page created [%s]\n"
-#~ msgstr "[%s] oldal létrehozva\n"
