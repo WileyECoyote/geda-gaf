@@ -5654,11 +5654,10 @@ msgstr "Adicionar Polígono"
 msgid "Pictu_re..."
 msgstr "_Imagem..."
 
-# Invert Image
+# Insert an image
 #: gschem/etc/system-gschemrc.scm:2291
-#, fuzzy
 msgid "Insert an image"
-msgstr "Inverter imagem"
+msgstr "Insira uma imagem"
 
 #: gschem/etc/system-gschemrc.scm:2292
 msgid "_Pin"
@@ -5717,9 +5716,8 @@ msgstr "_Retirar"
 
 # Detach selected attributes from a symbol
 #: gschem/etc/system-gschemrc.scm:2316
-#, fuzzy
 msgid "Detach selected attributes from symbol"
-msgstr "Detach atributos selecionados a partir de um símbolo"
+msgstr "Desanexar atributos selecionados do símbolo"
 
 #: gschem/etc/system-gschemrc.scm:2317
 msgid "Show _Value"
@@ -6388,7 +6386,6 @@ msgstr "Adicionar Arco"
 
 # Add polygon
 #: gschem/scheme/gschem/builtins.scm:371
-#, fuzzy
 msgid "Add Path"
 msgstr "Adicionar Polígono"
 
@@ -6720,18 +6717,16 @@ msgid "hierarchy Verilog"
 msgstr "Hierarquia Verilog"
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:276
-#, fuzzy
 msgid "Symbol _Translate..."
-msgstr "Mover"
+msgstr "Símbolo _Traduzir..."
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:276
 msgid "Reset the X-Y Zero point"
 msgstr ""
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:277
-#, fuzzy
 msgid "Check Symbol"
-msgstr "Símbolo"
+msgstr "Símbolo de verificação"
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:277
 msgid "Run gsymcheck"
