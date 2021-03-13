@@ -4967,10 +4967,10 @@ msgstr "Projektuj i edytuj schematy i symbole elektroniczne za pomocą gschem"
 msgid "_New"
 msgstr "_Nowy"
 
+# Create a new file
 #: gschem/etc/system-gschemrc.scm:2091
-#, fuzzy
 msgid "Create a new file"
-msgstr "Tworzenie nowego pliku"
+msgstr "Utwórz nowy plik"
 
 #: gschem/etc/system-gschemrc.scm:2092 gschem/etc/system-gschemrc.scm:2301
 msgid "_Open..."
@@ -5535,9 +5535,8 @@ msgstr "Otwórz Menedżer arkuszy"
 msgid "_First"
 msgstr ""
 
-# Goto the first page => Goto the first sheet
+# Go to the first page => Go to the first sheet
 #: gschem/etc/system-gschemrc.scm:2254
-#, fuzzy
 msgid "Go to the first page"
 msgstr "Przejdź do pierwszego arkusza"
 
@@ -5764,11 +5763,10 @@ msgstr ""
 msgid "_Detach"
 msgstr "_Odłącz"
 
-# Detach selected attributes from a symbol
+# Detach selected attributes from symbol
 #: gschem/etc/system-gschemrc.scm:2316
-#, fuzzy
 msgid "Detach selected attributes from symbol"
-msgstr "Detekuj wybrane atrybuty z symbolu"
+msgstr "Odłącz wybrane atrybuty od symbolu"
 
 #: gschem/etc/system-gschemrc.scm:2317
 msgid "Show _Value"
@@ -6444,7 +6442,6 @@ msgstr "Dodaj Łuk"
 
 # Add Path => Add Polygon
 #: gschem/scheme/gschem/builtins.scm:371
-#, fuzzy
 msgid "Add Path"
 msgstr "Dodaj Wielokąt"
 
@@ -6763,18 +6760,17 @@ msgid "hierarchy Verilog"
 msgstr "Hierarchia Verilog"
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:276
-#, fuzzy
 msgid "Symbol _Translate..."
-msgstr "Tłumacz"
+msgstr "Symbol Przetłumaczyć..."
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:276
 msgid "Reset the X-Y Zero point"
 msgstr ""
 
+# Check Symbol
 #: gschem/scheme/gschem/gschem-tools-menu.scm:277
-#, fuzzy
 msgid "Check Symbol"
-msgstr "Symbol"
+msgstr "Sprawdź symbol"
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:277
 msgid "Run gsymcheck"
