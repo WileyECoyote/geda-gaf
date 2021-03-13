@@ -5468,20 +5468,19 @@ msgstr ""
 msgid "Pictu_re..."
 msgstr "Kuva..."
 
-# Invert Image
+# Insert an image
 #: gschem/etc/system-gschemrc.scm:2291
-#, fuzzy
 msgid "Insert an image"
-msgstr "Käänteinen kuva"
+msgstr "Lisää kuva"
 
 #: gschem/etc/system-gschemrc.scm:2292
 msgid "_Pin"
 msgstr ""
 
+# Add a pin
 #: gschem/etc/system-gschemrc.scm:2292
-#, fuzzy
 msgid "Add a pin"
-msgstr "_Viiva"
+msgstr "Lisää tappi"
 
 #: gschem/etc/system-gschemrc.scm:2300
 msgid "Create a new session"
@@ -5527,11 +5526,10 @@ msgstr ""
 msgid "_Detach"
 msgstr ""
 
-# Detached attribute
+# Detach selected attributes from symbol
 #: gschem/etc/system-gschemrc.scm:2316
-#, fuzzy
 msgid "Detach selected attributes from symbol"
-msgstr "Omakotitalo attribuutti"
+msgstr "Irrota valitut määritteet symbolista"
 
 #: gschem/etc/system-gschemrc.scm:2317
 msgid "Show _Value"
@@ -6440,16 +6438,16 @@ msgstr "hierarkia Verilog"
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:276
 msgid "Symbol _Translate..."
-msgstr ""
+msgstr "Symboli Käännä..."
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:276
 msgid "Reset the X-Y Zero point"
 msgstr ""
 
+# Check Symbol
 #: gschem/scheme/gschem/gschem-tools-menu.scm:277
-#, fuzzy
 msgid "Check Symbol"
-msgstr "Symboli"
+msgstr "Tarkista symboli"
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:277
 msgid "Run gsymcheck"
