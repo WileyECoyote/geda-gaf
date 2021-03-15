@@ -6,7 +6,7 @@ documentation=http://www.fairchildsemi.com/ds/BS/BSS123.pdf
 T 200 1800 5 8 0 0 0 0 1
 author=Kai-Martin Knaak kmk@lilalaser.de
 T 200 1600 5 8 0 0 0 0 1
-dist-license=GPL 3, see http://www.gnu.org/licenses/gpl-3.0.txt
+dist-license=GPLv2, see http://www.gnu.org/licenses/gpl-2.0.txt
 T 200 1400 5 8 0 0 0 0 1
 use-license=free, no restrictions
 T 600 600 8 10 1 1 0 0 1
