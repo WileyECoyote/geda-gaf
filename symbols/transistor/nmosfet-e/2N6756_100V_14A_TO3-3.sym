@@ -68,7 +68,7 @@ pintype=pas
 T 900 1950 5 8 0 0 0 0 1
 author=AutoTron
 T 900 1800 5 8 0 0 0 0 1
-dist-license=GPL3
+dist-license=GPLv2
 T 900 1650 5 8 0 0 0 0 1
 use-license=unrestricted
 T 900 1500 5 8 0 0 0 0 1
