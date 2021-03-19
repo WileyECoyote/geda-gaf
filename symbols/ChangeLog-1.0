@@ -1,3 +1,8 @@
+2021-03-19 Wiley E. Hill <wileyhill@gmail.com>
+
+    * passive/capacitor/capacitor-1.sym: Remove unneeded symversion attribute
+      static passive symbol.
+
 2021-02-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * linear/regulator/LM2596*-2.sym: Add LM2596 dash 2 symbols:
