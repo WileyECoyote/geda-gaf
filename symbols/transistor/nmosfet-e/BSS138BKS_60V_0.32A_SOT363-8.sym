@@ -66,7 +66,7 @@ documentation=http://www.nxp.com/documents/data_sheet/BSS138BKS.pdf
 T 800 2350 5 8 0 0 0 0 1
 author=AutoTron
 T 800 2200 5 8 0 0 0 0 1
-dist-license=GPL3
+dist-license=GPLv2
 T 800 2050 5 8 0 0 0 0 1
 use-license=unrestricted
 T 800 1900 5 8 0 0 0 0 1
