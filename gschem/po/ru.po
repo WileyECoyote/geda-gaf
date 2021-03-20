@@ -5904,9 +5904,8 @@ msgstr "Прикрепление выбранных атрибутов к сим
 msgid "_Detach"
 msgstr "_Отделить"
 
-# Dettach selected attributes from a symbol
+# Dettach selected attributes from symbol
 #: gschem/etc/system-gschemrc.scm:2316
-#, fuzzy
 msgid "Detach selected attributes from symbol"
 msgstr "Отбирать выбранные атрибуты из символа"
 
@@ -6563,8 +6562,8 @@ msgstr "Добавить окружность"
 msgid "Add Arc"
 msgstr "Добавить дугу"
 
+# Add Path => Add outline; Dobavit' kontur
 #: gschem/scheme/gschem/builtins.scm:371
-#, fuzzy
 msgid "Add Path"
 msgstr "Добавить контур"
 
@@ -6873,19 +6872,19 @@ msgstr ""
 msgid "hierarchy Verilog"
 msgstr "Иерархия Верилог"
 
+# Symbol Translate; Simvol Perevesti
 #: gschem/scheme/gschem/gschem-tools-menu.scm:276
-#, fuzzy
 msgid "Symbol _Translate..."
-msgstr "Сместить"
+msgstr "Символ Перевести..."
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:276
 msgid "Reset the X-Y Zero point"
 msgstr ""
 
+# Check Symbol; Proverit' simvol
 #: gschem/scheme/gschem/gschem-tools-menu.scm:277
-#, fuzzy
 msgid "Check Symbol"
-msgstr "Символ"
+msgstr "Проверить символ"
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:277
 msgid "Run gsymcheck"
