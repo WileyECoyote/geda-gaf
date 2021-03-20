@@ -869,17 +869,20 @@ msgstr ""
 "اخطار: اگر در حال ترجمه یك سمبل از مبدأ هستید ، اندازه ی شبکه اسنپ باید به "
 "100 تنظیم شود\n"
 
+# Grid OFF
 #: gschem/src/iface/i_command.c:4627
 msgid "Grid OFF\n"
-msgstr ""
+msgstr "شبکه خاموش است\n"
 
+# Dot grid activated
 #: gschem/src/iface/i_command.c:4628
 msgid "Dot grid activated\n"
-msgstr ""
+msgstr "شبکه نقطه فعال شده است\n"
 
+# Mesh grid activated
 #: gschem/src/iface/i_command.c:4629
 msgid "Mesh grid activated\n"
-msgstr ""
+msgstr "شبکه مش فعال شده است\n"
 
 #: gschem/src/iface/i_command.c:4708
 msgid "Snap OFF (CAUTION!)"
