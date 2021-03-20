@@ -4559,7 +4559,6 @@ msgstr ""
 
 # Window; Vikno
 #: gschem/src/x/x_toolbars.c:208
-#, fuzzy
 msgid "Window"
 msgstr "Вікно"
 
@@ -4632,11 +4631,10 @@ msgstr ""
 msgid "Show"
 msgstr ""
 
-# Auto Load; Avtozavantazhennya
+# Auto Number; Avtomatychnyy
 #: gschem/src/x/x_toolbars.c:257
-#, fuzzy
 msgid "Auto #"
-msgstr "Автозавантаження"
+msgstr "Автоматичний #"
 
 #: gschem/src/x/x_toolbars.c:259
 msgid "Dots"
@@ -4648,9 +4646,8 @@ msgstr ""
 
 # Snap ON => Alignment ON; Vyrivnyuvannya VKL
 #: gschem/src/x/x_toolbars.c:267
-#, fuzzy
 msgid "Snap On"
-msgstr "Вирівнювання ВКЛ\n"
+msgstr "Вирівнювання ВКЛ"
 
 #: gschem/src/x/x_toolbars.c:269
 msgid "Config"
