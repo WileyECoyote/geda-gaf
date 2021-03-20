@@ -5643,11 +5643,10 @@ msgstr ""
 msgid "Pictu_re..."
 msgstr ""
 
-# Invert Image
+# Image
 #: gschem/etc/system-gschemrc.scm:2291
-#, fuzzy
 msgid "Insert an image"
-msgstr "Görüntüyü Ters Çevir"
+msgstr "Bir resim ekleyin"
 
 #: gschem/etc/system-gschemrc.scm:2292
 msgid "_Pin"
@@ -5709,7 +5708,6 @@ msgstr "özel görevlendirmek"
 
 # Disconnect (seperate) selected attributes from a symbol
 #: gschem/etc/system-gschemrc.scm:2316
-#, fuzzy
 msgid "Detach selected attributes from symbol"
 msgstr "Seçilen nitelikleri bir semboldan ayırın"
 
@@ -6369,10 +6367,10 @@ msgstr "Çevre Ekle"
 msgid "Add Arc"
 msgstr ""
 
+# Add Path
 #: gschem/scheme/gschem/builtins.scm:371
-#, fuzzy
 msgid "Add Path"
-msgstr "Ağı ekle"
+msgstr "Yol Ekle"
 
 #: gschem/scheme/gschem/builtins.scm:374
 msgid "Add Picture"
@@ -6693,20 +6691,19 @@ msgstr "Verilog düğümü listesi"
 msgid "hierarchy Verilog"
 msgstr "hiyerarşi Verilog"
 
+# Symbol Translate
 #: gschem/scheme/gschem/gschem-tools-menu.scm:276
-#, fuzzy
 msgid "Symbol _Translate..."
-msgstr "Çevir"
+msgstr "Sembol Çevirme..."
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:276
 msgid "Reset the X-Y Zero point"
 msgstr ""
 
-# Symbol
+# Check Symbol
 #: gschem/scheme/gschem/gschem-tools-menu.scm:277
-#, fuzzy
 msgid "Check Symbol"
-msgstr "sembol"
+msgstr "Sembolü Kontrol Et"
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:277
 msgid "Run gsymcheck"
