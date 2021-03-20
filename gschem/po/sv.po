@@ -4436,11 +4436,10 @@ msgstr ""
 msgid "Path"
 msgstr ""
 
-# Write image
+# Image
 #: gschem/src/x/x_toolbars.c:186
-#, fuzzy
 msgid "Image"
-msgstr "Skriv bild"
+msgstr "Bild"
 
 #: gschem/src/x/x_toolbars.c:189
 msgid "First"
@@ -4472,9 +4471,8 @@ msgid "Spec"
 msgstr ""
 
 #: gschem/src/x/x_toolbars.c:203
-#, fuzzy
 msgid "Netnames"
-msgstr "Filnamn"
+msgstr "Nätnamn"
 
 #: gschem/src/x/x_toolbars.c:206 gschem/scheme/gschem/builtins.scm:209
 msgid "Redraw"
@@ -4484,11 +4482,10 @@ msgstr ""
 msgid "Pan"
 msgstr ""
 
-# Parent Window
+# Window
 #: gschem/src/x/x_toolbars.c:208
-#, fuzzy
 msgid "Window"
-msgstr "Förälderfönster"
+msgstr "Fönster"
 
 #: gschem/src/x/x_toolbars.c:209
 msgid "Selected"
@@ -4559,11 +4556,10 @@ msgstr ""
 msgid "Show"
 msgstr ""
 
-# Auto Load
+# Auto Siffra
 #: gschem/src/x/x_toolbars.c:257
-#, fuzzy
 msgid "Auto #"
-msgstr "Autolast"
+msgstr "Auto #"
 
 #: gschem/src/x/x_toolbars.c:259
 msgid "Dots"
@@ -4573,11 +4569,10 @@ msgstr ""
 msgid "UP"
 msgstr ""
 
-# Snap ON => Alignment ON
+# Snap ON => Alignment ON; Adjustment ON
 #: gschem/src/x/x_toolbars.c:267
-#, fuzzy
 msgid "Snap On"
-msgstr "Justering PÅ\n"
+msgstr "Justering PÅ"
 
 #: gschem/src/x/x_toolbars.c:269
 msgid "Config"
