@@ -5689,7 +5689,6 @@ msgstr "脱离"
 
 # Disconnect selected attributes from a symbol
 #: gschem/etc/system-gschemrc.scm:2316
-#, fuzzy
 msgid "Detach selected attributes from symbol"
 msgstr "断开符号中选定的属性"
 
@@ -6370,11 +6369,10 @@ msgstr "添加圈子"
 msgid "Add Arc"
 msgstr "添加弧"
 
-# Add contact pin
+# Add Path => Add Polygon; Tiānjiā duōbiānxíng
 #: gschem/scheme/gschem/builtins.scm:371
-#, fuzzy
 msgid "Add Path"
-msgstr "添加接触针"
+msgstr "添加多边形"
 
 # add picture
 #: gschem/scheme/gschem/builtins.scm:374
@@ -6710,19 +6708,19 @@ msgstr ""
 msgid "hierarchy Verilog"
 msgstr "层次Verilog"
 
+# Symbol Translate => Translate Symbol; Fānyì fúhào
 #: gschem/scheme/gschem/gschem-tools-menu.scm:276
 msgid "Symbol _Translate..."
-msgstr ""
+msgstr "翻译符号..."
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:276
 msgid "Reset the X-Y Zero point"
 msgstr ""
 
-# Symbol; Fúhào
+# Check Symbol; Jiǎnyàn fúhào
 #: gschem/scheme/gschem/gschem-tools-menu.scm:277
-#, fuzzy
 msgid "Check Symbol"
-msgstr "符号"
+msgstr "检验符号"
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:277
 msgid "Run gsymcheck"
