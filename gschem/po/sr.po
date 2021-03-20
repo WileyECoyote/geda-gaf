@@ -1443,46 +1443,53 @@ msgstr "Упозорење: Покретање мреже са координа�
 msgid "Warning: Ending net off grid coordinate\n"
 msgstr "Упозорење: Завршетак мреже са координатном мрежом\n"
 
+# Simbol podrivača sabirnice nije pronađen ni u jednoj biblioteci komponenata
 #: gschem/src/object/o_net.c:1112
 msgid "Bus ripper symbol was not found in any component library"
-msgstr ""
+msgstr "Симбол подривача сабирнице није пронађен ни у једној библиотеци компонената"
 
 # Update All
 #: gschem/src/object/o_picture.c:358
 msgid "Update All"
 msgstr "Упдате Алл"
 
+# Ažurirajte sve izabrane slike
 #: gschem/src/object/o_picture.c:360
 msgid "Update all selected Picture images"
-msgstr ""
+msgstr "Ажурирајте све изабране слике"
 
 #: gschem/src/object/o_picture.c:397
 msgid "Failed to replace picture"
-msgstr ""
+msgstr "Замена слике није успела"
 
 #: gschem/src/object/o_picture.c:400
 msgid "<b>Failed to replace picture</b>"
 msgstr ""
 
+# Original size; Originalna veličina
 #: gschem/src/object/o_picture.c:425
 msgid "Original size"
-msgstr ""
+msgstr "Оригинална величина"
 
+# When checked the image size will be exported
+# Kada je označeno, veličina slike će se izvesti
 #: gschem/src/object/o_picture.c:427
 msgid "When checked the image size will be exported"
-msgstr ""
+msgstr "Када је означено, величина слике ће се извести"
 
+# An unknown error occurred; Došlo je do nepoznate greške
 #: gschem/src/object/o_picture.c:619
 msgid "An unknown error occurred"
-msgstr ""
+msgstr "Дошло је до непознате грешке"
 
 #: gschem/src/object/o_picture.c:622
 msgid "<b>Failed to load picture</b>"
 msgstr ""
 
+# Load failed; Učitavanje nije uspelo
 #: gschem/src/object/o_picture.c:623
 msgid "Load failed"
-msgstr ""
+msgstr "Учитавање није успело"
 
 #: gschem/src/object/o_place.c:75
 msgid "Buffer is empty, nothing to place\n"
