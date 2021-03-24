@@ -7,8 +7,6 @@ T 500 1400 5 10 0 0 0 0 1
 use-license=unlimited
 T 500 1250 5 10 0 0 0 0 1
 numslots=0
-T 1000 100 9 10 0 1 0 0 1
-footprint=SMD_POLAR-60-30
 P 200 900 200 700 1 0 0
 {
 T 300 750 5 8 0 1 0 0 1
@@ -45,5 +43,7 @@ L 400 600 300 600 3 12 2 0 -1 -1
 L 350 550 350 650 3 12 2 0 -1 -1
 T 500 500 8 10 1 1 0 0 1
 refdes=C?
-T 500 900 5 10 0 1 0 0 1
-description=electrolytic capacitor,xuF,10V,SM0402
+T 500 900 8 10 0 1 0 0 1
+description=Electrolytic Capacitor,?uF,?V
+T 500 100 9 10 0 1 0 0 1
+footprint=unknown
