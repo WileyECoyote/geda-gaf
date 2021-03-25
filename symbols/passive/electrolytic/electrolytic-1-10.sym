@@ -1,6 +1,4 @@
 v 20151230 2
-T 1000 100 9 10 0 1 0 0 1
-footprint=SMD_POLAR-60-30
 P 200 900 200 700 1 0 0
 {
 T 300 750 5 8 0 1 0 0 1
@@ -38,7 +36,9 @@ L 350 550 350 650 3 12 2 0 -1 -1
 T 500 500 8 10 1 1 0 0 1
 refdes=C?
 T 500 1100 5 10 0 1 0 0 1
-description=capacitor,electrolytic,10uF,10V,SMD0603
+description=capacitor,electrolytic,10uF,10V
+T 1000 100 9 10 0 1 0 0 1
+footprint=unknown
 T 500 1900 5 10 0 0 0 0 1
 author=AutoTron
 T 500 1700 5 10 0 0 0 0 1
