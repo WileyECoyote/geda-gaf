@@ -36,5 +36,5 @@ description=polarized capacitor
 T 900 450 5 10 0 0 90 0 1
 numslots=0
 T 500 450 5 10 0 0 90 0 1
-footprint=RADIAL-CAN-X00
+footprint=unknown
 
