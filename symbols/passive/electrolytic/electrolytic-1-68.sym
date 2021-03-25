@@ -27,8 +27,6 @@ L 200 200 200 400 3 0 0 0 -1 -1
 L 200 500 200 700 3 0 0 0 -1 -1
 L 400 600 300 600 3 12 2 0 -1 -1
 L 350 550 350 650 3 12 2 0 -1 -1
-T 1000 100 9 10 0 1 0 0 1
-footprint=SMD_POLAR-80-50
 T 500 700 5 10 0 1 0 0 1
 device=POLARIZED_CAPACITOR
 T 500 300 8 10 1 1 0 0 1
@@ -38,7 +36,9 @@ value=Volts
 T 500 500 8 10 1 1 0 0 1
 refdes=C?
 T 500 1100 5 10 0 1 0 0 1
-description=capacitor,electrolytic,68uF,?V,SMD0805
+description=capacitor,electrolytic,68uF,?V
+T 1000 100 9 10 0 1 0 0 1
+footprint=unknown
 T 500 1900 5 10 0 0 0 0 1
 author=AutoTron
 T 500 1700 5 10 0 0 0 0 1
