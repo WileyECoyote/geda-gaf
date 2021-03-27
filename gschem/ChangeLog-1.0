@@ -3,6 +3,8 @@
     * src/object/o_picture.c: Revise error message to eliminate font style
       codes in translatable.
 
+    * po/en_GB.po: Update Great Britain.
+
 2021-03-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/fa.po: Update Persian translations.

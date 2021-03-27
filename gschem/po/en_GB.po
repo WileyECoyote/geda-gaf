@@ -691,9 +691,8 @@ msgid "No component selected\n"
 msgstr "Dot grid selected\n"
 
 #: gschem/src/iface/i_command.c:3048 gschem/src/iface/i_window.c:333
-#, fuzzy
 msgid "Reverted document"
-msgstr "Documentation"
+msgstr "Reverted document"
 
 #: gschem/src/iface/i_command.c:3106
 msgid "Confirm revert ALL documents"
@@ -1241,21 +1240,20 @@ msgid "When checked the image size will be exported"
 msgstr ""
 
 #: gschem/src/object/o_picture.c:617
-#, fuzzy
 msgid "Failed to load picture"
-msgstr "<b>Failed to load picture</b>"
+msgstr "Failed to load picture"
 
 #: gschem/src/object/o_picture.c:627
 msgid "An unknown error occurred"
-msgstr ""
+msgstr "An unknown error occurred"
 
 #: gschem/src/object/o_picture.c:632
 msgid "Load failed"
-msgstr ""
+msgstr "Load failed"
 
 #: gschem/src/object/o_place.c:75
 msgid "Buffer is empty, nothing to place\n"
-msgstr ""
+msgstr "Buffer is empty, nothing to place\n"
 
 #: gschem/src/object/o_slot.c:110
 msgid "Slot attribute malformed\n"
@@ -1276,15 +1274,15 @@ msgstr "New slot number [%d], is out of range\n"
 
 #: gschem/src/object/o_undo.c:78
 msgid "Undo: using temporary directory specified on command-line"
-msgstr ""
+msgstr "Undo: using temporary directory specified on command-line"
 
 #: gschem/src/object/o_undo.c:121
 msgid "Directory is not read/writable, check permissions"
-msgstr ""
+msgstr "Directory is not read/writable, check permissions"
 
 #: gschem/src/object/o_undo.c:122
 msgid "Auto switching Undo system to type Memory"
-msgstr ""
+msgstr "Auto switching Undo system to type Memory"
 
 #: gschem/src/object/o_undo.c:127
 msgid "Gschem Undo System"
@@ -1292,15 +1290,15 @@ msgstr "Gschem Undo System"
 
 #: gschem/src/object/o_undo.c:265
 msgid "Undo: encountered an error, file"
-msgstr ""
+msgstr "Undo: encountered an error, file"
 
 #: gschem/src/object/o_undo.c:266
 msgid "Undo: system error"
-msgstr ""
+msgstr "Undo: system error"
 
 #: gschem/src/object/o_undo.c:267
 msgid "switching to MEMORY mode"
-msgstr ""
+msgstr "switching to MEMORY mode"
 
 #: gschem/src/object/o_undo.c:473
 msgid "An error occurred during an UNDO disk operation"
