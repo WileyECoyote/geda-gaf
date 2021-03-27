@@ -828,11 +828,10 @@ msgstr "പിശക്"
 msgid "No component selected\n"
 msgstr "ഘടകങ്ങളൊന്നും തിരഞ്ഞെടുത്തിട്ടില്ല\n"
 
-# Confirm revert ALL documents; ellā pramāṇaṅṅaḷuṁ paḻayapaṭiyākkunnat sthirīkarikkuka
+# Reverted document; paḻayapaṭiyākkiya pramāṇaṁ
 #: gschem/src/iface/i_command.c:3048 gschem/src/iface/i_window.c:333
-#, fuzzy
 msgid "Reverted document"
-msgstr "എല്ലാ പ്രമാണങ്ങളും പഴയപടിയാക്കുന്നത് സ്ഥിരീകരിക്കുക"
+msgstr "പഴയപടിയാക്കിയ പ്രമാണം"
 
 # Confirm revert ALL documents; ellā pramāṇaṅṅaḷuṁ paḻayapaṭiyākkunnat sthirīkarikkuka
 #: gschem/src/iface/i_command.c:3106
@@ -924,22 +923,26 @@ msgstr "ഡോട്ട് ഗ്രിഡ് സജീവമാക്കി\n"
 msgid "Mesh grid activated\n"
 msgstr "മെഷ് ഗ്രിഡ് സജീവമാക്കി\n"
 
+# Snap OFF (CAUTION!); snāpp ōph (munnaṟiyipp!)
 #: gschem/src/iface/i_command.c:4718
 msgid "Snap OFF (CAUTION!)"
-msgstr ""
+msgstr "സ്നാപ്പ് ഓഫ് (മുന്നറിയിപ്പ്!)"
 
 # Snap ON => Alignment ON; vin'yāsaṁ ōṇāṇ
 #: gschem/src/iface/i_command.c:4724
 msgid "Snap ON"
 msgstr "വിന്യാസം ഓണാണ്"
 
+# Snap back to the grid (CAUTION!)
+# griḍilēkk tirike pēākuka (munnaṟiyipp!)
 #: gschem/src/iface/i_command.c:4729
 msgid "Snap back to the grid (CAUTION!)"
-msgstr ""
+msgstr "ഗ്രിഡിലേക്ക് തിരികെ പോകുക (മുന്നറിയിപ്പ്!)"
 
+# Rubber band mode is OFF; ṟabbar bānḍ mēāḍ ōphāṇ
 #: gschem/src/iface/i_command.c:4756
 msgid "Rubber band mode is OFF"
-msgstr ""
+msgstr "റബ്ബർ ബാൻഡ് മോഡ് ഓഫാണ്"
 
 # Rubber band mode is ON; ṟabbar bānḍ mēāḍ ōṇāṇ
 #: gschem/src/iface/i_command.c:4760
@@ -956,19 +959,22 @@ msgstr "മാഗ്നെറ്റിക് നെറ്റ് മോഡ് ഓ
 msgid "Magnetic net mode is OFF"
 msgstr "മാഗ്നെറ്റിക് നെറ്റ് മോഡ് ഓഫാണ്"
 
+# Off; ōphāṇ
 #: gschem/src/iface/i_command.c:4792 gschem/src/iface/i_command.c:4836
 #: gschem/src/x/x_compselect.c:135 gschem/src/x/x_toolbars.c:261
 msgid "Off"
-msgstr ""
+msgstr "ഓഫാണ്"
 
+# On; ōṇāṇ
 #: gschem/src/iface/i_command.c:4796 gschem/src/iface/i_command.c:4840
 #: gschem/src/x/x_compselect.c:134
 msgid "On"
-msgstr ""
+msgstr "ഓണാണ്"
 
+# Drag-Can-Move is now; ḍrāg-kān-mūv ippēāḷ
 #: gschem/src/iface/i_command.c:4798
 msgid "Drag-Can-Move is now"
-msgstr ""
+msgstr "ഡ്രാഗ്-കാൻ-മൂവ് ഇപ്പോൾ"
 
 #: gschem/src/iface/i_command.c:4810
 msgid "Action feedback mode set to OUTLINE"
@@ -1431,7 +1437,6 @@ msgstr ""
 
 # Failed to load file
 #: gschem/src/object/o_picture.c:617
-#, fuzzy
 msgid "Failed to load picture"
 msgstr "ഫയല്ലഭ്യമാക്കുന്നതില്പരാജയം"
 
