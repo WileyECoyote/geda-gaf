@@ -241,6 +241,12 @@ msgid ""
 "for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE, to the extent\n"
 "permitted by law.\n"
 msgstr ""
+"版权 (C) 1998-2017 gEDA 开发商\n"
+"这是免费软件，欢迎您在\n"
+"一定条件下。有关详细信息，请参见文件 “COPYING”, \n"
+"包含在gEDA发行版中。没有保修；甚至不 \n"
+"适销性或特定用途的适用性，在一定程度上\n"
+"法律允许.\n"
 
 #: gschem/src/base/gschem_parsecmd.c:256
 msgid "error parsing"
@@ -703,11 +709,10 @@ msgstr "错误"
 msgid "No component selected\n"
 msgstr ""
 
-# documents
+# Reverted document; Huányuán wénjiàn
 #: gschem/src/iface/i_command.c:3048 gschem/src/iface/i_window.c:333
-#, fuzzy
 msgid "Reverted document"
-msgstr "文件"
+msgstr "还原文件"
 
 #: gschem/src/iface/i_command.c:3106
 msgid "Confirm revert ALL documents"
@@ -1288,11 +1293,10 @@ msgstr ""
 msgid "When checked the image size will be exported"
 msgstr ""
 
-# Failed to load file
+# Failed to load picture; Wúfǎ jiā zǎi túpiàn
 #: gschem/src/object/o_picture.c:617
-#, fuzzy
 msgid "Failed to load picture"
-msgstr "无法加载文件"
+msgstr "无法加载图片"
 
 #: gschem/src/object/o_picture.c:627
 msgid "An unknown error occurred"
