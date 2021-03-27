@@ -615,7 +615,10 @@ o_picture_set_pixbuf(GschemToplevel *w_current, char *filename)
   }
   else {
 
+    const char *message = _("Failed to load picture");
+
     char *errmsg;
+    char *title;
 
     if (error) {
       errmsg = geda_sprintf ( "%s: %s.", _("Error"), error->message);
@@ -625,11 +628,16 @@ o_picture_set_pixbuf(GschemToplevel *w_current, char *filename)
       errmsg = geda_sprintf ("%s: %s\n%s.", _("Error"), filename, _("An unknown error occurred"));
     }
 
-    titled_pango_error_dialog ( _("<b>Failed to load picture</b>"), errmsg,
-                                _("Load failed"));
+    title = geda_sprintf ("<b%s</b>", message);
+
+    titled_pango_error_dialog ( title, errmsg, _("Load failed"));
+
     GEDA_FREE(errmsg);
+    GEDA_FREE(title);
+
     result = FALSE;
   }
+
   return result;
 }
 
