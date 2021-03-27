@@ -803,11 +803,10 @@ msgstr "خطا"
 msgid "No component selected\n"
 msgstr "هیچ مؤلفه ای انتخاب نشده است\n"
 
-# Confirm revert ALL documents
+# Reverted document
 #: gschem/src/iface/i_command.c:3048 gschem/src/iface/i_window.c:333
-#, fuzzy
 msgid "Reverted document"
-msgstr "برگرداندن همه اسناد را تأیید کنید"
+msgstr "سند برگشت خوردهد"
 
 # Confirm revert ALL documents
 #: gschem/src/iface/i_command.c:3106
@@ -890,22 +889,25 @@ msgstr "شبکه نقطه فعال شده است\n"
 msgid "Mesh grid activated\n"
 msgstr "شبکه مش فعال شده است\n"
 
+# Snap OFF (CAUTION!)
 #: gschem/src/iface/i_command.c:4718
 msgid "Snap OFF (CAUTION!)"
-msgstr ""
+msgstr "ضربه محکم و ناگهانی (احتیاط!)"
 
 # Snap ON
 #: gschem/src/iface/i_command.c:4724
 msgid "Snap ON"
 msgstr "ضربه محکم و ناگهانی در"
 
+# Snap back to the grid (CAUTION!)
 #: gschem/src/iface/i_command.c:4729
 msgid "Snap back to the grid (CAUTION!)"
-msgstr ""
+msgstr "سریع به شبکه بازگردید (احتیاط!)"
 
+# Rubber band mode is OFF
 #: gschem/src/iface/i_command.c:4756
 msgid "Rubber band mode is OFF"
-msgstr ""
+msgstr "حالت باند لاستیکی خاموش است"
 
 # Rubber band mode is ON
 #: gschem/src/iface/i_command.c:4760
@@ -922,19 +924,22 @@ msgstr "حالت شبکه مغناطیسی روشن است"
 msgid "Magnetic net mode is OFF"
 msgstr "حالت مغناطیسی خاموش است"
 
+# Off
 #: gschem/src/iface/i_command.c:4792 gschem/src/iface/i_command.c:4836
 #: gschem/src/x/x_compselect.c:135 gschem/src/x/x_toolbars.c:261
 msgid "Off"
-msgstr ""
+msgstr "خاموش"
 
+# On
 #: gschem/src/iface/i_command.c:4796 gschem/src/iface/i_command.c:4840
 #: gschem/src/x/x_compselect.c:134
 msgid "On"
-msgstr ""
+msgstr "بر"
 
+# Drag-Can-Move is now
 #: gschem/src/iface/i_command.c:4798
 msgid "Drag-Can-Move is now"
-msgstr ""
+msgstr "کشیدن-حرکت-حرکت اکنون انجام شده است"
 
 #: gschem/src/iface/i_command.c:4810
 msgid "Action feedback mode set to OUTLINE"
@@ -1391,11 +1396,10 @@ msgstr ""
 msgid "When checked the image size will be exported"
 msgstr ""
 
-# Failed to descend into
+# Failed to load picture
 #: gschem/src/object/o_picture.c:617
-#, fuzzy
 msgid "Failed to load picture"
-msgstr "فرود در نشد"
+msgstr "تصویر بارگیری نشد"
 
 #: gschem/src/object/o_picture.c:627
 msgid "An unknown error occurred"
