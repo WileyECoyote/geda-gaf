@@ -1,21 +1,18 @@
+2021-03-27 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_picture.c: Revise error message to eliminate font style
+      codes in translatable.
+
 2021-03-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/fa.po: Update Persian translations.
-
     * po/ml.po: Updated Malayalam translations.
-
     * po/ru.po: Update Russian translations.
-
     * po/sr.po: Update Serbian translations.
-
     * po/sv.po: Update Swedish translations.
-
     * po/tr.po: Update Turkish translations.
-
     * po/uk.po: Update Ukrainian translations.
-
     * po/zh_CN.po: Update Chinese simplified translations.
-
     * po/zh_TW.po: Update Chinese traditional translations.
 
 2021-03-13 Wiley E. Hill <wileyhill@gmail.com>

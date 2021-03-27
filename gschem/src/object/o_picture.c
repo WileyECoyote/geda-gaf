@@ -391,16 +391,22 @@ o_picture_exchange_file (GschemToplevel *w_current, GedaObject *o_current)
     /* Actually update the pictures */
     if (!o_picture_exchange (w_current, filename, o_current, &err)) {
 
-      const char *message = err->message;
+      const char *mess1 = _("Failed to replace picture");
+      const char *mess2 = err->message;
+            char *title;
 
       /* Log the error */
-      geda_log("%s: %s\n", _("Failed to replace picture"), message);
+      geda_log ("%s: %s\n", mess1, mess2);
+
+      title = geda_sprintf ("<b%s</b>", mess1);
 
       /* inform the user */
-      pango_error_dialog ( _("<b>Failed to replace picture</b>"), message);
+      pango_error_dialog (title, mess2);
 
       /* clear error */
       g_error_free(err);
+
+      GEDA_FREE (title);
     }
 
     GEDA_FREE (filename);
