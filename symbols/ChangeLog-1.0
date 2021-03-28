@@ -2,6 +2,11 @@
 
     * symbols/geda-clib.scm: Add subdirectory onsemi/switchreg.
 
+    * onsemi/switchreg/NCP1010*-1.sym: Add new symbols; Monolithic power
+      switcher offline SMPS:
+
+            * onsemi/switchreg/NCP1010AP065G-1.sym
+
 2021-03-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * passive/*/capacitor-?.sym: Remove unneeded symversion attribute
