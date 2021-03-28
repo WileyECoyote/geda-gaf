@@ -1,0 +1,66 @@
+v 20150315 2
+T 500 1900 8 10 1 1 0 0 1
+refdes=U?
+T 500 1700 9 10 1 1 0 0 1
+device=NCP1010ST130T3G
+T 2000 2500 5 10 0 0 0 0 1
+numslots=0
+T 500 1500 5 10 1 1 0 0 1
+footprint=SOT223
+T 500 2100 5 10 0 1 0 0 1
+description=Monolithic Switcher, 130kHz, 100mA, RDSON 23, SOT223
+T 500 2300 5 10 0 1 0 0 1
+documentation=www.onsemi.com/pdf/datasheet/ncp1010-d.pdf
+T 500 2500 5 10 0 0 0 0 1
+symversion=1.0
+T 500 2700 5 10 0 0 0 0 1
+dist-license=GPL3
+T 500 2900 5 10 0 0 0 0 1
+use-license=unlimited
+T 500 3100 5 10 0 0 0 0 1
+author=AutoTron
+B 500 400 1200 1000 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
+P 500 1100 200 1100 1 0 1
+{
+T 350 1150 5 8 1 1 0 6 1
+pinnumber=1
+T 350 1150 5 8 0 1 0 6 1
+pinseq=1
+T 550 1050 9 10 1 1 0 0 1
+pinlabel=VCC
+T 475 975 5 8 0 1 0 6 1
+pintype=pwr
+}
+P 1100 400 1100 100 1 0 1
+{
+T 1050 150 5 8 1 1 0 6 1
+pinnumber=4
+T 1050 150 5 8 0 1 0 6 1
+pinseq=4
+T 950 450 9 10 1 1 0 0 1
+pinlabel=GND
+T 1225 375 5 8 0 1 90 6 1
+pintype=pwr
+}
+P 1700 1100 2000 1100 1 0 1
+{
+T 1800 1150 5 8 1 1 0 0 1
+pinnumber=3
+T 1800 1150 5 8 0 1 0 0 1
+pinseq=3
+T 1650 1050 9 10 1 1 0 6 1
+pinlabel=DRAIN
+T 1725 1000 5 8 0 1 0 0 1
+pintype=oc
+}
+P 1700 700 2000 700 1 0 1
+{
+T 1800 750 5 8 1 1 0 0 1
+pinnumber=2
+T 1800 750 5 8 0 1 0 0 1
+pinseq=2
+T 1650 650 9 10 1 1 0 6 1
+pinlabel=FB
+T 1725 600 5 8 0 1 0 0 1
+pintype=pas
+}
