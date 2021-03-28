@@ -6,6 +6,7 @@
       switcher offline SMPS:
 
             * onsemi/switchreg/NCP1010AP065G-1.sym
+            * onsemi/switchreg/NCP1010AP100G-1.sym
 
 2021-03-19 Wiley E. Hill <wileyhill@gmail.com>
 
