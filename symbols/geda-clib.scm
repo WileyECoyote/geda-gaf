@@ -238,6 +238,7 @@
                      ("onsemi/ldo"                     "Manufacturers/Low-Dropout Regulators")
                      ("onsemi/regulator"               "Manufacturers/Linear Regulators")
                      ("onsemi/schottky"                "Manufacturers/Schottky")
+                     ("onsemi/switchreg"               "Manufacturers/Switching Regulators")
                   ("panasonic"       "Manufacturers/Panasonic")
                      ("panasonic/fc-electrolytic"      "Manufacturers/FC Series Capacitors")
                      ("panasonic/hd-electrolytic"      "Manufacturers/HD Series Capacitors")
