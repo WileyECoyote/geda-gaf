@@ -1,3 +1,10 @@
+2021-03-29 Wiley E. Hill <wileyhill@gmail.com>
+
+    * onsemi/switchreg/NCP101*-1.sym: Add new symbols; Monolithic power
+      switcher offline SMPS:
+
+            * onsemi/switchreg/NCP1011AP130G-1.sym
+
 2021-03-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * symbols/geda-clib.scm: Add subdirectory onsemi/switchreg.
