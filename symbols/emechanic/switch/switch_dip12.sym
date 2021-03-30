@@ -2,7 +2,7 @@ v 20041228 2
 T 300 4400 5 8 0 0 0 0 1
 device=SWITCH_DIP12
 T 300 4000 8 10 1 1 0 0 1
-refdes=S?
+refdes=SW?
 T 300 4200 5 10 0 1 0 0 1
 footprint=unknown
 T 300 4600 5 10 0 0 0 0 1
