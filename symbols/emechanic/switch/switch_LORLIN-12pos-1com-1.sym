@@ -4,7 +4,7 @@ device=SWITCH
 T 100 3200 5 10 0 0 0 0 1
 description=LORLIN-12pos-1com
 T 100 2400 8 10 1 1 0 0 1
-refdes=S?
+refdes=SW?
 P 300 2200 0 2200 1 0 1
 {
 T 100 2250 5 8 1 1 0 0 1
