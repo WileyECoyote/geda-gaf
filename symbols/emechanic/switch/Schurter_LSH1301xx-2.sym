@@ -22,7 +22,7 @@ T 1200 0 5 8 0 1 0 8 1
 pintype=pas
 }
 T 800 300 8 10 1 1 0 0 1
-refdes=S?
+refdes=SW?
 T 300 2000 5 10 0 0 0 0 1
 device=LSH1301xx
 T 300 1800 5 10 0 0 0 0 1
