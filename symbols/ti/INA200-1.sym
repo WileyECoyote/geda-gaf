@@ -60,7 +60,7 @@ pinnumber=5
 T 2100 450 5 8 0 1 0 0 1
 pinseq=5
 T 1850 400 9 10 1 1 0 6 1
-pinlabel=reset
+pinlabel=\_RESET\_
 T 1925 375 5 8 0 1 180 6 1
 pintype=in
 }
