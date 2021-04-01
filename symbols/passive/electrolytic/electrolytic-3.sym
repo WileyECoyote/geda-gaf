@@ -37,7 +37,5 @@ T 200 1300 5 10 0 1 0 0 1
 description=polarized capacitor
 T 200 1100 5 10 0 0 0 0 1
 numslots=0
-T 200 900 5 10 0 0 0 0 1
-symversion=0.2
 T 900 0 9 10 0 0 0 0 1
 footprint=unknown
