@@ -41,8 +41,6 @@ T 500 100 8 10 1 1 0 0 1
 value=Volts
 T 500 1300 5 10 0 0 0 0 1
 numslots=0
-T 500 900 5 10 0 0 0 0 1
-symversion=0.2
 T 500 1900 5 10 0 0 0 0 1
 author=AutoTron
 T 500 1700 5 10 0 0 0 0 1
