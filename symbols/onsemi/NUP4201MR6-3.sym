@@ -7,7 +7,7 @@ refdes=U?
 T 300 1850 5 10 0 0 0 0 1
 description=Protection Diodes
 T 300 2050 5 10 0 0 0 0 1
-documentation=http://www.onsemi.com/pub_link/Collateral/NUP4201DR2-D.PDF
+documentation=www.onsemi.com/pub_link/Collateral/NUP4201DR2-D.PDF
 T 300 1350 5 10 1 1 0 0 1
 footprint=TSOP6
 T 650 150 9 10 0 0 0 0 1
