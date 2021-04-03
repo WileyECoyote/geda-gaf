@@ -898,9 +898,10 @@ msgstr "Snap ON"
 msgid "Snap back to the grid (CAUTION!)"
 msgstr "Vratite se na mrežu (OPREZ!)"
 
+# Rubber band mode is OFF
 #: gschem/src/iface/i_command.c:4756
 msgid "Rubber band mode is OFF"
-msgstr ""
+msgstr "Način rada sa gumicom je ISKLJUČEN"
 
 #: gschem/src/iface/i_command.c:4760
 msgid "Rubber band mode is ON"
@@ -911,35 +912,42 @@ msgstr ""
 msgid "Magnetic net mode is ON"
 msgstr "_Magnetski Nets"
 
+# Magnetic net mode is OFF
 #: gschem/src/iface/i_command.c:4774
 msgid "Magnetic net mode is OFF"
-msgstr ""
+msgstr "Način magnetske mreže je ISKLJUČEN"
 
+# Off
 #: gschem/src/iface/i_command.c:4792 gschem/src/iface/i_command.c:4836
 #: gschem/src/x/x_compselect.c:135 gschem/src/x/x_toolbars.c:261
 msgid "Off"
-msgstr ""
+msgstr "Isključeno"
 
+# On
 #: gschem/src/iface/i_command.c:4796 gschem/src/iface/i_command.c:4840
 #: gschem/src/x/x_compselect.c:134
 msgid "On"
-msgstr ""
+msgstr "Uključeno"
 
+# Drag-Can-Move is now
 #: gschem/src/iface/i_command.c:4798
 msgid "Drag-Can-Move is now"
-msgstr ""
+msgstr "Drag-Can-Move je sada"
 
+# Action feedback mode set to OUTLINE
 #: gschem/src/iface/i_command.c:4810
 msgid "Action feedback mode set to OUTLINE"
-msgstr ""
+msgstr "Režim povratne informacije o radnji postavljen je u okvir"
 
+# Action feedback mode set to bounding box
 #: gschem/src/iface/i_command.c:4814
 msgid "Action feedback mode set to BOUNDINGBOX"
-msgstr ""
+msgstr "Režim povratne informacije o radnji postavljen je na granični okvir"
 
+# Auto-Pan is now => Automatic view is now
 #: gschem/src/iface/i_command.c:4842
 msgid "Auto-Pan is now"
-msgstr ""
+msgstr "Sada je automatski prikaz"
 
 #: gschem/src/iface/i_command.c:5064
 #, c-format
