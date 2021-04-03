@@ -8,6 +8,8 @@
 
     * po/ca.po: Update Catalan translations.
 
+    * po/da.po: Update Danish translations.
+
 2021-03-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_picture.c: Revise error message to eliminate font style

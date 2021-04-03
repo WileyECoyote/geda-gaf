@@ -921,31 +921,37 @@ msgstr "Magnetisk nettilstand er TIL"
 msgid "Magnetic net mode is OFF"
 msgstr "Magnetisk nettilstand er FRA"
 
+# Off
 #: gschem/src/iface/i_command.c:4792 gschem/src/iface/i_command.c:4836
 #: gschem/src/x/x_compselect.c:135 gschem/src/x/x_toolbars.c:261
 msgid "Off"
-msgstr ""
+msgstr "Af"
 
+# On
 #: gschem/src/iface/i_command.c:4796 gschem/src/iface/i_command.c:4840
 #: gschem/src/x/x_compselect.c:134
 msgid "On"
-msgstr ""
+msgstr "På"
 
+# Drag-Can-Move is now
 #: gschem/src/iface/i_command.c:4798
 msgid "Drag-Can-Move is now"
-msgstr ""
+msgstr "træk-kan-flytte er nu"
 
+# Action feedback mode set to OUTLINE
 #: gschem/src/iface/i_command.c:4810
 msgid "Action feedback mode set to OUTLINE"
-msgstr ""
+msgstr "Handlingsfeedback-tilstand indstillet til at skitsere"
 
+# Action feedback mode set to bounding box
 #: gschem/src/iface/i_command.c:4814
 msgid "Action feedback mode set to BOUNDINGBOX"
-msgstr ""
+msgstr "Handlingsfeedback-tilstand indstillet til afgrænsningsfelt"
 
+# Auto-Pan is now => Automatic view is now
 #: gschem/src/iface/i_command.c:4842
 msgid "Auto-Pan is now"
-msgstr ""
+msgstr "Automatisk visning er nu"
 
 #: gschem/src/iface/i_command.c:5064
 #, c-format
