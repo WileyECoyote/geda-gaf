@@ -976,17 +976,22 @@ msgstr "ഓണാണ്"
 msgid "Drag-Can-Move is now"
 msgstr "ഡ്രാഗ്-കാൻ-മൂവ് ഇപ്പോൾ"
 
+# Action feedback mode set to OUTLINE
+# pravarttana phīḍ‌bākk mēāḍ lain ṭṭ‌laināyi sajjamākki
 #: gschem/src/iface/i_command.c:4810
 msgid "Action feedback mode set to OUTLINE"
-msgstr ""
+msgstr "പ്രവർത്തന ഫീഡ്‌ബാക്ക് മോഡ് ലൈൻ ട്ട്‌ലൈനായി സജ്ജമാക്കി"
 
+# Action feedback mode set to bounding box
+# pravarttana phīḍ‌bākk mēāḍ baṇṭiṅg bēāk‌silēkk sajjamākki
 #: gschem/src/iface/i_command.c:4814
 msgid "Action feedback mode set to BOUNDINGBOX"
-msgstr ""
+msgstr "പ്രവർത്തന ഫീഡ്‌ബാക്ക് മോഡ് ബൗണ്ടിംഗ് ബോക്‌സിലേക്ക് സജ്ജമാക്കി"
 
+# Auto-Pan is now => Automatic view is now; yāntrika kāḻ‌ca ippēāḷ
 #: gschem/src/iface/i_command.c:4842
 msgid "Auto-Pan is now"
-msgstr ""
+msgstr "യാന്ത്രിക കാഴ്‌ച ഇപ്പോൾ"
 
 #: gschem/src/iface/i_command.c:5064
 #, c-format

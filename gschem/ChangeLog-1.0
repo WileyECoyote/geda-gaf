@@ -12,6 +12,8 @@
 
     * po/fa.po: Update Persian translations.
 
+    * po/ml.po: Updated Malayalam translations.
+
 2021-03-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_picture.c: Revise error message to eliminate font style
