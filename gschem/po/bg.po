@@ -917,9 +917,10 @@ msgstr "Прекъснете се"
 msgid "Snap back to the grid (CAUTION!)"
 msgstr "Върнете се обратно към мрежата (ВНИМАНИЕ!)"
 
+# Rubber band mode is OFF; Rezhimŭt s gumena lenta e IZKLYUCHEN
 #: gschem/src/iface/i_command.c:4756
 msgid "Rubber band mode is OFF"
-msgstr ""
+msgstr "Режимът с гумена лента е ИЗКЛЮЧЕН"
 
 # Switch elastic mode on
 #: gschem/src/iface/i_command.c:4760
@@ -943,26 +944,33 @@ msgstr "Режимът на автоматична връзка е изключ�
 msgid "Off"
 msgstr "Изключено"
 
+# On; Na
 #: gschem/src/iface/i_command.c:4796 gschem/src/iface/i_command.c:4840
 #: gschem/src/x/x_compselect.c:134
 msgid "On"
-msgstr ""
+msgstr "На"
 
+# Drag-Can-Move is now; plŭzgane mozhe da se dvizhi e
 #: gschem/src/iface/i_command.c:4798
 msgid "Drag-Can-Move is now"
-msgstr ""
+msgstr "плъзгане може да се движи е"
 
+# Action feedback mode set to OUTLINE
+# Rezhimŭt za obratna vrŭzka za deĭstvie e zadaden na OUTLINE
 #: gschem/src/iface/i_command.c:4810
 msgid "Action feedback mode set to OUTLINE"
-msgstr ""
+msgstr "Режимът за обратна връзка за действие е зададен да се очертава"
 
+# Action feedback mode set to bounding box
+# Rezhimŭt za obratna vrŭzka za deĭstvie e zadaden na ogranichavashto pole
 #: gschem/src/iface/i_command.c:4814
 msgid "Action feedback mode set to BOUNDINGBOX"
-msgstr ""
+msgstr "Режимът за обратна връзка за действие е зададен на ограничаващо поле"
 
+# Auto-Pan is now => Automatic view is now; Avtomatichniyat izgled e veche
 #: gschem/src/iface/i_command.c:4842
 msgid "Auto-Pan is now"
-msgstr ""
+msgstr "Автоматичният изглед е вече"
 
 #: gschem/src/iface/i_command.c:5064
 #, c-format
