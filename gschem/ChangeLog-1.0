@@ -10,6 +10,8 @@
 
     * po/da.po: Update Danish translations.
 
+    * po/fa.po: Update Persian translations.
+
 2021-03-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_picture.c: Revise error message to eliminate font style

@@ -941,17 +941,20 @@ msgstr "بر"
 msgid "Drag-Can-Move is now"
 msgstr "کشیدن-حرکت-حرکت اکنون انجام شده است"
 
+# Action feedback mode set to OUTLINE
 #: gschem/src/iface/i_command.c:4810
 msgid "Action feedback mode set to OUTLINE"
-msgstr ""
+msgstr "حالت بازخورد اقدام به عنوان طرح کلی تنظیم شد"
 
+# Action feedback mode set to bounding box
 #: gschem/src/iface/i_command.c:4814
 msgid "Action feedback mode set to BOUNDINGBOX"
-msgstr ""
+msgstr "حالت بازخورد عملکرد روی جعبه محدود تنظیم شده است"
 
+# Auto-Pan is now => Automatic view is now
 #: gschem/src/iface/i_command.c:4842
 msgid "Auto-Pan is now"
-msgstr ""
+msgstr "نمای خودکار اکنون است"
 
 #: gschem/src/iface/i_command.c:5064
 #, c-format
