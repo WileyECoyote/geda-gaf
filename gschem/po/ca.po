@@ -944,31 +944,37 @@ msgstr "El mode de xarxa magnètica està ACTIVAT"
 msgid "Magnetic net mode is OFF"
 msgstr "El mode de xarxa magnètica està DESACTIVAT"
 
+# Off
 #: gschem/src/iface/i_command.c:4792 gschem/src/iface/i_command.c:4836
 #: gschem/src/x/x_compselect.c:135 gschem/src/x/x_toolbars.c:261
 msgid "Off"
-msgstr ""
+msgstr "Desactivat"
 
+# On
 #: gschem/src/iface/i_command.c:4796 gschem/src/iface/i_command.c:4840
 #: gschem/src/x/x_compselect.c:134
 msgid "On"
-msgstr ""
+msgstr "Encès"
 
+# Drag-Can-Move is now
 #: gschem/src/iface/i_command.c:4798
 msgid "Drag-Can-Move is now"
-msgstr ""
+msgstr "Ara pot arrossegar i moure"
 
+# Action feedback mode set to OUTLINE
 #: gschem/src/iface/i_command.c:4810
 msgid "Action feedback mode set to OUTLINE"
-msgstr ""
+msgstr "El mode de retroacció de l'acció s'ha definit com a esbós"
 
+# Action feedback mode set to bounding box
 #: gschem/src/iface/i_command.c:4814
 msgid "Action feedback mode set to BOUNDINGBOX"
-msgstr ""
+msgstr "El mode de retroacció de l'acció s'ha definit com a quadre de delimitació"
 
+# Auto-Pan is now => Automatic view is now
 #: gschem/src/iface/i_command.c:4842
 msgid "Auto-Pan is now"
-msgstr ""
+msgstr "La visualització automàtica és ara"
 
 #: gschem/src/iface/i_command.c:5064
 #, c-format
