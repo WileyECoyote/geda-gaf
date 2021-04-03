@@ -1,3 +1,7 @@
+2021-04-03 Wiley E. Hill <wileyhill@gmail.com>
+
+    * po/ar.po: Update Arabic translations.
+
 2021-03-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_picture.c: Revise error message to eliminate font style

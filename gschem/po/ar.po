@@ -848,10 +848,11 @@ msgstr "وضع الشبكة المغناطيسية: مشغل"
 msgid "Magnetic net mode is OFF"
 msgstr "وضع الشبكة المغناطيسية: موقف"
 
+# Off; ean
 #: gschem/src/iface/i_command.c:4792 gschem/src/iface/i_command.c:4836
 #: gschem/src/x/x_compselect.c:135 gschem/src/x/x_toolbars.c:261
 msgid "Off"
-msgstr ""
+msgstr "عن"
 
 #: gschem/src/iface/i_command.c:4796 gschem/src/iface/i_command.c:4840
 #: gschem/src/x/x_compselect.c:134
@@ -872,9 +873,10 @@ msgstr "وضع ردود الإجراء معيّن إلى حد الخارجي"
 msgid "Action feedback mode set to BOUNDINGBOX"
 msgstr "وضع ردود الإجراء معيّن إلى الإطار المحيط"
 
+# # Auto-Pan is now => Automatic view is now; aleard altiliqayiyu alan
 #: gschem/src/iface/i_command.c:4842
 msgid "Auto-Pan is now"
-msgstr ""
+msgstr "العرض التلقائي الآن"
 
 #: gschem/src/iface/i_command.c:5064
 #, c-format
