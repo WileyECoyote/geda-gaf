@@ -1,3 +1,10 @@
+2021-04-04 Wiley E. Hill <wileyhill@gmail.com>
+
+    * onsemi/switchreg/NCP101*-1.sym: Add new symbols; Monolithic power
+      switcher offline SMPS:
+
+            * onsemi/switchreg/NCP1012ST130T3G-1.sym
+
 2021-03-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * onsemi/switchreg/NCP101*-1.sym: Add new symbols; Monolithic power
