@@ -1,0 +1,110 @@
+v 20150315 2
+T 500 2400 8 10 1 1 0 0 1
+refdes=U?
+T 500 2200 9 10 1 1 0 0 1
+device=NCP1013AP100G
+T 2000 3000 5 10 0 0 0 0 1
+numslots=0
+T 500 2000 5 10 1 1 0 0 1
+footprint=DIP8
+T 500 2600 5 10 0 1 0 0 1
+description=Monolithic Switcher, 100kHz, 350mA, RDSON 11, DIP8
+T 500 2800 5 10 0 1 0 0 1
+documentation=www.onsemi.com/pdf/datasheet/ncp1010-d.pdf
+T 500 3000 5 10 0 0 0 0 1
+symversion=1.0
+T 500 3200 5 10 0 0 0 0 1
+dist-license=GPL3
+T 500 3400 5 10 0 0 0 0 1
+use-license=unlimited
+T 500 3600 5 10 0 0 0 0 1
+author=AutoTron
+B 500 400 1400 1500 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
+P 500 1600 200 1600 1 0 1
+{
+T 350 1650 5 8 1 1 0 6 1
+pinnumber=1
+T 350 1650 5 8 0 1 0 6 1
+pinseq=1
+T 550 1550 9 10 1 1 0 0 1
+pinlabel=VCC
+T 475 1475 5 8 0 1 0 6 1
+pintype=pwr
+}
+P 500 1200 200 1200 1 0 1
+{
+T 350 1250 5 8 1 1 0 6 1
+pinnumber=2
+T 350 1250 5 8 0 1 0 6 1
+pinseq=2
+T 550 1150 9 10 1 1 0 0 1
+pinlabel=NC
+T 475 1075 5 8 0 1 0 6 1
+pintype=pas
+}
+P 800 400 800 100 1 0 1
+{
+T 750 150 5 8 1 1 0 6 1
+pinnumber=3
+T 750 150 5 8 0 1 0 6 1
+pinseq=3
+T 650 450 9 10 1 1 0 0 1
+pinlabel=GND
+T 925 375 5 8 0 1 90 6 1
+pintype=pwr
+}
+P 1900 1200 2200 1200 1 0 1
+{
+T 2000 1250 5 8 1 1 0 0 1
+pinnumber=4
+T 2000 1250 5 8 0 1 0 0 1
+pinseq=4
+T 1850 1150 9 10 1 1 0 6 1
+pinlabel=FB
+T 1925 1100 5 8 0 1 0 0 1
+pintype=pas
+}
+P 1900 1600 2200 1600 1 0 1
+{
+T 2000 1650 5 8 1 1 0 0 1
+pinnumber=5
+T 2000 1650 5 8 0 1 0 0 1
+pinseq=5
+T 1850 1550 9 10 1 1 0 6 1
+pinlabel=DRAIN
+T 1925 1500 5 8 0 1 0 0 1
+pintype=oc
+}
+P 1900 800 2200 800 1 0 1
+{
+T 2050 850 5 8 1 1 0 0 1
+pinnumber=6
+T 2050 850 5 8 0 1 0 0 1
+pinseq=6
+T 1850 750 9 10 1 1 0 6 1
+pinlabel=NC
+T 1925 675 5 8 0 1 0 0 1
+pintype=pas
+}
+P 1200 400 1200 100 1 0 1
+{
+T 1150 150 5 8 1 1 0 6 1
+pinnumber=7
+T 1150 150 5 8 0 1 0 6 1
+pinseq=7
+T 1050 450 9 10 1 1 0 0 1
+pinlabel=GND
+T 1325 375 5 8 0 1 90 6 1
+pintype=pwr
+}
+P 1600 400 1600 100 1 0 1
+{
+T 1550 150 5 8 1 1 0 6 1
+pinnumber=8
+T 1550 150 5 8 0 1 0 6 1
+pinseq=8
+T 1450 450 9 10 1 1 0 0 1
+pinlabel=GND
+T 1725 375 5 8 0 1 90 6 1
+pintype=pwr
+}
