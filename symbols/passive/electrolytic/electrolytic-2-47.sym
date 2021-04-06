@@ -33,6 +33,7 @@ T 500 700 5 10 0 1 0 0 1
 device=POLARIZED_CAPACITOR
 T 500 1100 5 10 0 1 0 0 1
 description=electrolytic capacitor,47uF,?V,SMD0805
+T 500 1300 5 10 0 0 0 0 1
 numslots=0
 T 1000 100 9 10 0 1 0 0 1
 footprint=SMD_POLAR-80-50
@@ -46,4 +47,3 @@ T 500 1700 5 10 0 0 0 0 1
 dist-license=GPLv2
 T 500 1500 5 10 0 0 0 0 1
 use-license=unlimited
-T 500 1300 5 10 0 0 0 0 1
