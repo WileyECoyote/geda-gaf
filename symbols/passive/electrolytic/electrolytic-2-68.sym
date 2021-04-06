@@ -1,12 +1,4 @@
 v 20151230 2
-T 500 500 8 10 1 1 0 0 1
-refdes=C?
-T 500 700 5 10 0 1 0 0 1
-device=POLARIZED_CAPACITOR
-T 500 1100 5 10 0 1 0 0 1
-description=electrolytic capacitor,68uF,?V,SMD0805
-T 1000 100 9 10 0 1 0 0 1
-footprint=SMD_POLAR-80-50
 L 400 500 0 500 3 0 0 0 -1 -1
 L 200 200 200 400 3 0 0 0 -1 -1
 L 200 500 200 700 3 0 0 0 -1 -1
@@ -32,18 +24,26 @@ pinlabel=2
 T 175 300 5 6 0 1 0 8 1
 pintype=pas
 }
+A 200 -300 700 75 30 3 0 0 0 -1 -1
+L 400 600 300 600 3 12 1 0 -1 -1
+L 350 550 350 650 3 12 1 0 -1 -1
+T 500 500 8 10 1 1 0 0 1
+refdes=C?
+T 500 700 5 10 0 1 0 0 1
+device=POLARIZED_CAPACITOR
+T 500 1100 5 10 0 1 0 0 1
+description=electrolytic capacitor,68uF,?V,SMD0805
+T 500 1300 5 10 0 0 0 0 1
+numslots=0
+T 1000 100 9 10 0 1 0 0 1
+footprint=SMD_POLAR-80-50
 T 500 300 8 10 1 1 0 0 1
 value=68uF
 T 500 100 8 10 1 1 0 0 1
 value=Volts
-A 200 -300 700 75 30 3 0 0 0 -1 -1
-L 400 600 300 600 3 12 1 0 -1 -1
-L 350 550 350 650 3 12 1 0 -1 -1
 T 500 1900 5 10 0 0 0 0 1
 author=AutoTron
 T 500 1700 5 10 0 0 0 0 1
 dist-license=GPLv2
 T 500 1500 5 10 0 0 0 0 1
 use-license=unlimited
-T 500 1300 5 10 0 0 0 0 1
-numslots=0
