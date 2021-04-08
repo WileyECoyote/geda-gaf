@@ -1,7 +1,10 @@
 2021-04-08 Wiley E. Hill <wileyhill@gmail.com>
 
-    * ti/switchreg/TPS63802-1.sym: Add symbol: buck-boost switching
-      regulator.
+    * ti/switchreg/TPS63802-?.sym: Add symbol: buck-boost switching
+      regulator:
+
+            * ti/switchreg/TPS63802-1.sym
+            * ti/switchreg/TPS63802-2.sym
 
 2021-04-04 Wiley E. Hill <wileyhill@gmail.com>
 
