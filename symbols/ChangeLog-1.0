@@ -1,5 +1,7 @@
 2021-04-08 Wiley E. Hill <wileyhill@gmail.com>
 
+    * lineartech/LTC3225-1.sym: Add symbol: Supercapacitor charger, 150mA.
+
     * ti/switchreg/TPS6380?-?.sym: Add symbols: buck-boost switching
       regulator:
 
