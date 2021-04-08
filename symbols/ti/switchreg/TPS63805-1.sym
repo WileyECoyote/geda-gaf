@@ -1,0 +1,185 @@
+v 20150401 2
+B 300 300 1500 3100 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
+P 0 3200 300 3200 1 0 0
+{
+T 200 3275 5 8 1 1 0 6 1
+pinnumber=A1
+T 200 3175 5 8 0 1 0 8 1
+pinseq=2
+T 350 3150 9 10 1 1 0 0 1
+pinlabel=EN
+T 350 3100 5 8 0 1 0 2 1
+pintype=in
+}
+P 0 2600 300 2600 1 0 0
+{
+T 200 2650 5 8 1 1 0 6 1
+pinnumber=B1
+T 200 2575 5 8 0 1 0 8 1
+pinseq=7
+T 350 2550 9 10 1 1 0 0 1
+pinlabel=MODE
+T 350 2525 5 8 0 1 0 2 1
+pintype=in
+}
+P 0 2000 300 2000 1 0 0
+{
+T 200 2050 5 8 1 1 0 6 1
+pinnumber=C1
+T 200 1975 5 8 0 1 0 8 1
+pinseq=1
+T 350 1950 9 10 1 1 0 0 1
+pinlabel=AGND
+T 350 1950 5 8 0 1 0 2 1
+pintype=pwr
+}
+P 0 1400 300 1400 1 0 0
+{
+T 200 1450 5 8 1 1 0 6 1
+pinnumber=D1
+T 200 1375 5 8 0 1 0 8 1
+pinseq=3
+T 350 1350 9 10 1 1 0 0 1
+pinlabel=FB
+T 350 1325 5 8 0 1 0 2 1
+pintype=in
+}
+P 0 800 300 800 1 0 0
+{
+T 200 850 5 8 1 1 0 6 1
+pinnumber=E1
+T 200 775 5 8 0 1 0 8 1
+pinseq=8
+T 350 750 9 10 1 1 0 0 1
+pinlabel=PG
+T 350 725 5 8 0 1 0 2 1
+pintype=pwr
+}
+P 2100 800 1800 800 1 0 0
+{
+T 1925 850 5 8 1 1 0 0 1
+pinnumber=E2
+T 1925 775 5 8 0 1 0 2 1
+pinseq=10
+T 1750 750 9 10 1 1 0 6 1
+pinlabel=VOUT
+T 1750 725 5 8 0 1 0 8 1
+pintype=out
+}
+P 2100 500 1800 500 1 0 0
+{
+T 1925 550 5 8 1 1 0 0 1
+pinnumber=E3
+T 1925 475 5 8 0 1 0 2 1
+pinseq=10
+T 1750 450 9 10 1 1 0 6 1
+pinlabel=VOUT
+T 1750 425 5 8 0 1 0 8 1
+pintype=out
+}
+P 2100 1100 1800 1100 1 0 0
+{
+T 1925 1150 5 8 1 1 0 0 1
+pinnumber=D2
+T 1925 1075 5 8 0 1 0 2 1
+pinseq=6
+T 1750 1050 9 10 1 1 0 6 1
+pinlabel=L2
+T 1750 1000 5 8 0 1 0 8 1
+pintype=pas
+}
+P 2100 1400 1800 1400 1 0 0
+{
+T 1925 1450 5 8 1 1 0 0 1
+pinnumber=D3
+T 1925 1375 5 8 0 1 0 2 1
+pinseq=6
+T 1750 1350 9 10 1 1 0 6 1
+pinlabel=L2
+T 1750 1300 5 8 0 1 0 8 1
+pintype=pas
+}
+P 2100 1700 1800 1700 1 0 0
+{
+T 1925 1750 5 8 1 1 0 0 1
+pinnumber=C2
+T 1925 1675 5 8 0 1 0 2 1
+pinseq=4
+T 1750 1650 9 10 1 1 0 6 1
+pinlabel=GND
+T 1750 1625 5 8 0 1 0 8 1
+pintype=pwr
+}
+P 2100 2000 1800 2000 1 0 0
+{
+T 1925 2050 5 8 1 1 0 0 1
+pinnumber=C3
+T 1925 1975 5 8 0 1 0 2 1
+pinseq=4
+T 1750 1950 9 10 1 1 0 6 1
+pinlabel=GND
+T 1750 1925 5 8 0 1 0 8 1
+pintype=pwr
+}
+P 2100 2600 1800 2600 1 0 0
+{
+T 1925 2650 5 8 1 1 0 0 1
+pinnumber=B2
+T 1925 2550 5 8 0 1 0 2 1
+pinseq=5
+T 1750 2550 9 10 1 1 0 6 1
+pinlabel=L1
+T 1750 2525 5 8 0 1 0 8 1
+pintype=pas
+}
+P 2100 2300 1800 2300 1 0 0
+{
+T 1925 2350 5 8 1 1 0 0 1
+pinnumber=B3
+T 1925 2250 5 8 0 1 0 2 1
+pinseq=5
+T 1750 2250 9 10 1 1 0 6 1
+pinlabel=L1
+T 1750 2225 5 8 0 1 0 8 1
+pintype=pas
+}
+P 2100 3200 1800 3200 1 0 0
+{
+T 1900 3250 5 8 1 1 0 0 1
+pinnumber=A2
+T 1925 3175 5 8 0 1 0 2 1
+pinseq=9
+T 1750 3150 9 10 1 1 0 6 1
+pinlabel=VIN
+T 1750 3125 5 8 0 1 0 8 1
+pintype=pwr
+}
+P 2100 2900 1800 2900 1 0 0
+{
+T 1900 2950 5 8 1 1 0 0 1
+pinnumber=A3
+T 1925 2875 5 8 0 1 0 2 1
+pinseq=9
+T 1750 2850 9 10 1 1 0 6 1
+pinlabel=VIN
+T 1750 2825 5 8 0 1 0 8 1
+pintype=pwr
+}
+T 300 3450 8 10 1 1 0 0 1
+refdes=U?
+T 300 150 9 10 1 1 0 0 1
+device=TPS63805
+T 300 4250 5 10 0 1 0 0 1
+description=Switching regulator, buck-boost
+T 1400 4050 5 10 0 0 0 0 1
+numslots=0
+T 300 4450 5 10 0 1 0 0 1
+documentation=http://www.ti.com/lit/ds/symlink/tps63805.pdf
+T 300 3850 5 10 0 1 0 0 1
+value=TPS63805YFFR
+T 300 3650 5 10 0 1 0 0 1
+footprint=DSBGA-YFF-15
+T 300 4650 5 10 0 0 0 0 1
+author=AutoTron
+T 300 4050 5 8 0 0 0 0 1
+symversion=0.1
