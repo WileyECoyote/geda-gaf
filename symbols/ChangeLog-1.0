@@ -1,3 +1,8 @@
+2021-04-09 Wiley E. Hill <wileyhill@gmail.com>
+
+    * lineartech/LTC3110-1.sym: Add symbol: 2A bidirectional buck-boost
+      DC/DC Supercapacitor charger.
+
 2021-04-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * lineartech/LTC3225-1.sym: Add symbol: Supercapacitor charger, 150mA.
