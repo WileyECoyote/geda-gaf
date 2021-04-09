@@ -3,6 +3,9 @@
     * lineartech/LTC3110-1.sym: Add symbol: 2A bidirectional buck-boost
       DC/DC Supercapacitor charger.
 
+    * lineartech/LTC3128-1.sym: 3A bidirectional buck-boost DC/DC and
+      Super capacitor charger.
+
     * ti/switchreg/TPS6380?-?.sym: Add symbols: buck-boost switching
       regulator:
 
