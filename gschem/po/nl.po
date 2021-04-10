@@ -749,11 +749,10 @@ msgstr "fout"
 msgid "No component selected\n"
 msgstr "Geen component geselecteerd\n"
 
-# documents
+# Reverted document
 #: gschem/src/iface/i_command.c:3048 gschem/src/iface/i_window.c:333
-#, fuzzy
 msgid "Reverted document"
-msgstr "documenten"
+msgstr "Teruggezet document"
 
 #: gschem/src/iface/i_command.c:3106
 msgid "Confirm revert ALL documents"
@@ -1344,11 +1343,10 @@ msgstr ""
 msgid "When checked the image size will be exported"
 msgstr ""
 
-# Failed to load photo
+# Unable to load image
 #: gschem/src/object/o_picture.c:617
-#, fuzzy
 msgid "Failed to load picture"
-msgstr "<b>Kan foto te laden</b>"
+msgstr "Kan afbeelding niet laden"
 
 #: gschem/src/object/o_picture.c:627
 msgid "An unknown error occurred"
@@ -6669,7 +6667,3 @@ msgstr "~S is geen geldige toetsencombinatie."
 #, scheme-format
 msgid "~S is not a prefix key sequence."
 msgstr "~S is geen voorafgaande toetsen combinatie."
-
-# Error replacing images
-#~ msgid "<b>Failed to replace picture</b>"
-#~ msgstr "<b>Fout bij het vervangen van afbeeldingen</b>"
