@@ -787,11 +787,10 @@ msgstr "napaka"
 msgid "No component selected\n"
 msgstr "Izbrana ni nobena komponenta\n"
 
-# Confirm revert ALL documents
+# Reverted document
 #: gschem/src/iface/i_command.c:3048 gschem/src/iface/i_window.c:333
-#, fuzzy
 msgid "Reverted document"
-msgstr "Potrdite razveljavi VSE dokumente"
+msgstr "Razveljavljen dokument"
 
 # Confirm revert ALL documents
 #: gschem/src/iface/i_command.c:3106
@@ -906,17 +905,20 @@ msgstr "Izklopljen"
 msgid "On"
 msgstr "Vklopljen"
 
+# Drag-Can-Move is now
 #: gschem/src/iface/i_command.c:4798
 msgid "Drag-Can-Move is now"
-msgstr ""
+msgstr "Poteg povleci-premakni je zdaj"
 
+# Action feedback mode set to OUTLINE
 #: gschem/src/iface/i_command.c:4810
 msgid "Action feedback mode set to OUTLINE"
-msgstr ""
+msgstr "Način povratnih informacij o dejanju je nastavljen za oris"
 
+# Action feedback mode set to BOUNDINGBOX
 #: gschem/src/iface/i_command.c:4814
 msgid "Action feedback mode set to BOUNDINGBOX"
-msgstr ""
+msgstr "Način povratnih informacij o dejanju je nastavljen na omejevalno polje"
 
 #: gschem/src/iface/i_command.c:4842
 msgid "Auto-Pan is now"
@@ -1362,9 +1364,8 @@ msgstr ""
 
 # Error loading file
 #: gschem/src/object/o_picture.c:617
-#, fuzzy
 msgid "Failed to load picture"
-msgstr "Napaka pri nalaganju datoteke"
+msgstr "Slike ni bilo mogoče naložiti"
 
 #: gschem/src/object/o_picture.c:627
 msgid "An unknown error occurred"
