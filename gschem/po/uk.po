@@ -886,11 +886,10 @@ msgstr "помилка"
 msgid "No component selected\n"
 msgstr "Не вибрано компонент\n"
 
-# Confirm revert ALL documents; Pidtverdyty povernennya VSIKH dokumentiv
+# Reverted document; Skasovano dokument
 #: gschem/src/iface/i_command.c:3048 gschem/src/iface/i_window.c:333
-#, fuzzy
 msgid "Reverted document"
-msgstr "Підтвердити повернення ВСІХ документів"
+msgstr "Скасовано документ"
 
 # Confirm revert ALL documents; Pidtverdyty povernennya VSIKH dokumentiv
 #: gschem/src/iface/i_command.c:3106
@@ -1462,11 +1461,10 @@ msgstr ""
 msgid "When checked the image size will be exported"
 msgstr ""
 
-# Failed to descend into; Ne vdalosya spustytysya v
+# Failed to load picture; Ne vdalosya zavantazhyty zobrazhennya
 #: gschem/src/object/o_picture.c:617
-#, fuzzy
 msgid "Failed to load picture"
-msgstr "Не вдалося спуститися в"
+msgstr "Не вдалося завантажити зображення"
 
 #: gschem/src/object/o_picture.c:627
 msgid "An unknown error occurred"
