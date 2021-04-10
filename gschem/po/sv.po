@@ -822,11 +822,10 @@ msgstr "fel"
 msgid "No component selected\n"
 msgstr "Ingen komponent vald\n"
 
-# Confirm revert ALL documents; Bekräfta återställ ALLA dokument
+# Reverted document"
 #: gschem/src/iface/i_command.c:3048 gschem/src/iface/i_window.c:333
-#, fuzzy
 msgid "Reverted document"
-msgstr "Bekräfta återställ ALLA dokument"
+msgstr "Återställt dokument"
 
 # Confirm revert ALL documents; Bekräfta återställ ALLA dokument
 #: gschem/src/iface/i_command.c:3106
@@ -1388,11 +1387,10 @@ msgstr ""
 msgid "When checked the image size will be exported"
 msgstr ""
 
-# Failed to descend into
+# Failed to load picture
 #: gschem/src/object/o_picture.c:617
-#, fuzzy
 msgid "Failed to load picture"
-msgstr "Det gick inte att gå ner i"
+msgstr "Det gick inte att läsa in bilden"
 
 #: gschem/src/object/o_picture.c:627
 msgid "An unknown error occurred"
