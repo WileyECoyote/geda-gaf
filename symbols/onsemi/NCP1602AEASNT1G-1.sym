@@ -1,0 +1,86 @@
+v 20150315 2
+B 300 0 1700 1300 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
+T 300 1550 5 10 1 1 0 0 1
+device=NCP1602AEASNT1G
+T 300 1400 8 10 1 1 0 0 1
+refdes=U?
+T 300 1900 5 10 0 1 0 0 1
+description=Power Factor Controller, Vthres=1.553, Vstart=17.0
+T 300 2100 5 10 0 1 0 0 1
+documentation=www.onsemi.com/pdf/datasheet/ncp1602-d.pdf
+T 300 1700 5 10 1 1 0 0 1
+footprint=TSOP6
+T 650 75 9 10 0 0 0 0 1
+numslots=0
+P 0 1100 300 1100 1 0 0
+{
+T 125 1150 5 8 1 1 0 6 1
+pinnumber=1
+T 125 1150 5 8 0 1 0 6 1
+pinseq=1
+T 350 1100 9 14 1 1 0 1 1
+pinlabel=VCTRL
+T 275 975 5 8 0 1 0 6 1
+pintype=pas
+}
+P 0 700 300 700 1 0 0
+{
+T 125 750 5 8 1 1 0 6 1
+pinnumber=2
+T 125 750 5 8 0 1 0 6 1
+pinseq=2
+T 350 700 9 14 1 1 0 1 1
+pinlabel=GND
+T 275 575 5 8 0 1 0 6 1
+pintype=pwr
+}
+P 0 300 300 300 1 0 0
+{
+T 125 350 5 8 1 1 0 6 1
+pinnumber=3
+T 125 350 5 8 0 1 0 6 1
+pinseq=3
+T 350 300 9 14 1 1 0 1 1
+pinlabel=CS / ZCD
+T 275 175 5 8 0 1 0 6 1
+pintype=pas
+}
+P 2300 300 2000 300 1 0 0
+{
+T 2200 350 5 8 1 1 0 0 1
+pinnumber=4
+T 2200 350 5 8 0 1 0 0 1
+pinseq=4
+T 1950 300 9 14 1 1 0 7 1
+pinlabel=DRV
+T 2025 175 5 8 0 1 0 0 1
+pintype=out
+}
+P 2300 700 2000 700 1 0 0
+{
+T 2200 750 5 8 1 1 0 0 1
+pinnumber=5
+T 2200 750 5 8 0 1 0 0 1
+pinseq=5
+T 1950 700 9 14 1 1 0 7 1
+pinlabel=VCC
+T 2025 575 5 8 0 1 0 0 1
+pintype=pwr
+}
+P 2300 1100 2000 1100 1 0 0
+{
+T 2200 1150 5 8 1 1 0 0 1
+pinnumber=6
+T 2200 1150 5 8 0 1 0 0 1
+pinseq=6
+T 1950 1100 9 14 1 1 0 7 1
+pinlabel=FB
+T 2025 975 5 8 0 1 0 0 1
+pintype=pas
+}
+T 300 2700 5 10 0 0 0 0 1
+author=AutoTron
+T 300 2300 5 10 0 0 0 0 1
+dist-license=GPLv2
+T 300 2500 5 10 0 0 0 0 1
+use-license=unlimited
