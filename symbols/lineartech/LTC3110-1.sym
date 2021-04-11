@@ -63,7 +63,7 @@ pinnumber=6
 T 200 2650 5 10 0 1 0 6 1
 pinseq=6
 T 350 2600 9 10 1 1 0 0 1
-pinlabel=sgnd
+pinlabel=SGND
 T 0 2550 5 8 0 1 0 2 1
 pintype=pwr
 }
