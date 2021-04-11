@@ -1,7 +1,9 @@
 2021-04-11 Wiley E. Hill <wileyhill@gmail.com>
 
-    * onsemi/NCP1602ABASNT1G-1.sym: Add symbol: Power Factor Controller.
+    * onsemi/NCP1602*-1.sym: Add symbols: Power Factor Controllers:
 
+            * onsemi/NCP1602ABASNT1G-1.sym
+            * onsemi/NCP1602ACCSNT1G-1.sym
 
 2021-04-09 Wiley E. Hill <wileyhill@gmail.com>
 
