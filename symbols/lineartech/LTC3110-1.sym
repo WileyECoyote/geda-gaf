@@ -202,7 +202,7 @@ pintype=pwr
 P 2400 2600 2100 2600 1 0 0
 {
 T 2200 2650 5 10 1 1 0 0 1
-pinnumber=PGND
+pinnumber=19
 T 2200 2650 5 10 0 1 0 0 1
 pinseq=19
 T 2050 2600 9 10 1 1 0 6 1
