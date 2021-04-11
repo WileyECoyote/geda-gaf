@@ -1,3 +1,8 @@
+2021-04-11 Wiley E. Hill <wileyhill@gmail.com>
+
+    * onsemi/NCP1602ABASNT1G-1.sym: Add symbol: Power Factor Controller.
+
+
 2021-04-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * lineartech/LTC3110-1.sym: Add symbol: 2A bidirectional buck-boost
