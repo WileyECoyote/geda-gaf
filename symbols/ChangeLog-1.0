@@ -1,3 +1,7 @@
+2021-04-12 Wiley E. Hill <wileyhill@gmail.com>
+
+    * opto/6N135-1.sym: Rename symbol file with upper case N.
+
 2021-04-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * onsemi/NCP1602*-1.sym: Add symbols: Power Factor Controllers:
