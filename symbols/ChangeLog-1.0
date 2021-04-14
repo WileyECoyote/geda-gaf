@@ -2,6 +2,8 @@
 
     * diode/full-bridge/diode-bridge-1.sym: Add description attribute.
 
+    * diode/full-bridge/diode-bridge-4.sym: Add symbol; alternate pin-out.
+
 2021-04-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * opto/6N135-1.sym: Rename symbol file with upper case N.
