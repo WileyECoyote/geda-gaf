@@ -1,3 +1,7 @@
+2021-04-14 Wiley E. Hill <wileyhill@gmail.com>
+
+    * diode/full-bridge/diode-bridge-1.sym: Add description attribute.
+
 2021-04-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * opto/6N135-1.sym: Rename symbol file with upper case N.
