@@ -4,6 +4,8 @@
 
     * diode/full-bridge/diode-bridge-4.sym: Add symbol; alternate pin-out.
 
+    * passive/crystal/crystal-1.sym: Update footprint=SMD_4P_2520.
+
 2021-04-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * opto/6N135-1.sym: Rename symbol file with upper case N.

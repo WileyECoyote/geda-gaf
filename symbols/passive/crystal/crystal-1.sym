@@ -35,6 +35,6 @@ description=Crystal,XRCHA16M000F0A01R0,16MHz,+/-100PPM,8PF,SMD
 T 200 1200 5 10 0 0 0 0 1
 numslots=0
 T 900 400 9 10 0 1 0 0 1
-footprint=2520
+footprint=SMD_4P_2520
 T 200 400 8 10 1 1 0 0 1
 value=16MHz
