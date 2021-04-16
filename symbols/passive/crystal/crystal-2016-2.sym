@@ -49,6 +49,6 @@ T 200 500 9 10 1 0 0 0 1
 T 200 2700 5 10 0 0 0 0 1
 author=AutoTron
 T 200 2300 5 10 0 0 0 0 1
-dist-license=GPL
+dist-license=GPLv2
 T 200 2500 5 10 0 0 0 0 1
 use-license=unlimited
