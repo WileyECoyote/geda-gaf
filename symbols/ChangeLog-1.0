@@ -1,3 +1,10 @@
+2021-04-16 Wiley E. Hill <wileyhill@gmail.com>
+
+    * passive/*/inductor-?.sym: Remove unneeded symversion attribute from
+      static passive symbol.
+
+            * passive/inductor/inductor-1.sym
+
 2021-04-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * diode/full-bridge/diode-bridge-1.sym: Add description attribute.
