@@ -741,11 +741,10 @@ msgstr "خطأ"
 msgid "No component selected\n"
 msgstr "انتقيت الشبيكة النقطية\n"
 
-# Confirmation re-download all files
+# Reverted document; almustand almaead
 #: gschem/src/iface/i_command.c:3048 gschem/src/iface/i_window.c:333
-#, fuzzy
 msgid "Reverted document"
-msgstr "تأكيد إعادة تحميل كل الملفات"
+msgstr "المستند المعاد"
 
 # Confirmation re-download all files
 #: gschem/src/iface/i_command.c:3106
@@ -1330,10 +1329,10 @@ msgstr ""
 msgid "When checked the image size will be exported"
 msgstr ""
 
+# Failed to load picture; Image upload failed; fashilu tahmil alsuwra
 #: gschem/src/object/o_picture.c:617
-#, fuzzy
 msgid "Failed to load picture"
-msgstr "فشل تحميل الصورة: %s"
+msgstr "فشل تحميل الصورة"
 
 #: gschem/src/object/o_picture.c:627
 msgid "An unknown error occurred"
