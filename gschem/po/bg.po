@@ -812,11 +812,10 @@ msgstr "грешка"
 msgid "No component selected\n"
 msgstr "Не е избран компонент\n"
 
-# Create PDF document
+# Reverted document; Vŭzstanoven dokument
 #: gschem/src/iface/i_command.c:3048 gschem/src/iface/i_window.c:333
-#, fuzzy
 msgid "Reverted document"
-msgstr "Създаване на PDF документи"
+msgstr "Възстановен документ"
 
 # Confirm revert ALL documents; Potvŭrdete vŭzstanovyavane na VSICHKI dokumenti
 #: gschem/src/iface/i_command.c:3106
@@ -1401,11 +1400,11 @@ msgstr ""
 msgid "When checked the image size will be exported"
 msgstr ""
 
-# Failed to descend into; Ne uspya da sleze v
+# Failed to load picture; Image upload failed
+# Kachvaneto na izobrazhenieto ne be uspeshno
 #: gschem/src/object/o_picture.c:617
-#, fuzzy
 msgid "Failed to load picture"
-msgstr "Не успя да слезе в"
+msgstr "Качването на изображението не бе успешно"
 
 #: gschem/src/object/o_picture.c:627
 msgid "An unknown error occurred"
