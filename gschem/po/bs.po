@@ -802,11 +802,10 @@ msgstr "greška"
 msgid "No component selected\n"
 msgstr "nije izabrana nijedna komponenta\n"
 
-# Confirm reload All documents
+# Reverted document
 #: gschem/src/iface/i_command.c:3048 gschem/src/iface/i_window.c:333
-#, fuzzy
 msgid "Reverted document"
-msgstr "Potvrdi reload Svi dokumenti"
+msgstr "Vraćen dokument"
 
 # Confirm reload All documents
 #: gschem/src/iface/i_command.c:3106
@@ -1398,11 +1397,10 @@ msgstr ""
 msgid "When checked the image size will be exported"
 msgstr ""
 
-# Failed to load file
+# Failed to load picture; Image upload failed
 #: gschem/src/object/o_picture.c:617
-#, fuzzy
 msgid "Failed to load picture"
-msgstr "Nije bilo moguće učitati datoteku"
+msgstr "Učitavanje slike nije datoteku uspjelo"
 
 #: gschem/src/object/o_picture.c:627
 msgid "An unknown error occurred"
