@@ -733,10 +733,10 @@ msgstr "error"
 msgid "No component selected\n"
 msgstr "Seleccionada rejilla de puntos\n"
 
+# Reverted document
 #: gschem/src/iface/i_command.c:3048 gschem/src/iface/i_window.c:333
-#, fuzzy
 msgid "Reverted document"
-msgstr "Crear documento PDF"
+msgstr "Documento revertido"
 
 #: gschem/src/iface/i_command.c:3106
 msgid "Confirm revert ALL documents"
@@ -1303,10 +1303,10 @@ msgstr ""
 msgid "When checked the image size will be exported"
 msgstr ""
 
+# Failed to load picture; Image upload failed
 #: gschem/src/object/o_picture.c:617
-#, fuzzy
 msgid "Failed to load picture"
-msgstr "<b>Error al cargar la imagen</b>"
+msgstr "Error al cargar la imagen"
 
 #: gschem/src/object/o_picture.c:627
 msgid "An unknown error occurred"
