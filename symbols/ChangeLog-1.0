@@ -1,5 +1,9 @@
 2021-04-18 Wiley E. Hill <wileyhill@gmail.com>
 
+    * linear/switchreg/LM2596-?-TO263-?.sym: Add pin for gounded paddle:
+
+            * linear/switchreg/LM2596-3-TO263-1.sym
+
     * onsemi/NCP1602*-1.sym: Add symbols: Monolithic switcher:
 
             * onsemi/switchreg/NCP1014AP130G-1.sym
