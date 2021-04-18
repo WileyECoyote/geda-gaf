@@ -3,6 +3,7 @@
     * onsemi/NCP1602*-1.sym: Add symbols: Monolithic switcher:
 
             * onsemi/switchreg/NCP1014AP130G-1.sym
+            * onsemi/switchreg/NCP1014ST65T3G-1.sym
 
 2021-04-16 Wiley E. Hill <wileyhill@gmail.com>
 
