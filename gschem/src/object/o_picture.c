@@ -572,8 +572,7 @@ o_picture_motion (GschemToplevel *w_current, int w_x, int w_y)
  *  \param [in] w_current  The GschemToplevel object.
  *  \param [in] filename
  */
-bool
-o_picture_set_pixbuf(GschemToplevel *w_current, char *filename)
+bool o_picture_set_pixbuf(GschemToplevel *w_current, char *filename)
 {
   GError    *error = NULL;
   GdkPixbuf *pixbuf;
