@@ -49,7 +49,8 @@
 static void x_menu_main_popup_execute(GtkWidget *widget, int action_id);
 static void x_menu_path_popup_execute(GtkWidget *widget, int action_id);
 
-/* Note: These are referenced using pop_MenuItem defined in x_menus.h
+/*! \internal
+ * Note: These are referenced using pop_MenuItem defined in x_menus.h
  *       Actions are defined in i_actions.h
  */
 const char* IDS_Popup_Actions[] = {
