@@ -360,7 +360,7 @@ void o_place_invalidate_rubber (GschemToplevel *w_current, int drawing)
  * no mode / constraint changes were made between the pair, it is not
  * harmful to call the draw operation with "drawing=FALSE".
  *
- * \param [in] w_current   GschemToplevel which we're drawing for.
+ * \param [in] w_current   GschemToplevel which we are drawing for.
  * \param [in] drawing     Set to FALSE for undraw operations to ensure
  *                         matching conditions to a previous draw operation.
  */
