@@ -604,7 +604,7 @@ o_picture_set_pixbuf(GschemToplevel *w_current, char *filename)
     int width;
 
     w_current->current_pixbuf  = pixbuf;
-    w_current->pixbuf_filename = (char *) geda_utility_string_strdup(filename);
+    w_current->pixbuf_filename = (char*)geda_utility_string_strdup (filename);
 
     width  = gdk_pixbuf_get_width (pixbuf);
     height = gdk_pixbuf_get_height (pixbuf);
