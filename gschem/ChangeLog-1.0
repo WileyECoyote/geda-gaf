@@ -1,5 +1,7 @@
 2021-04-19 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/object/o_move.c: Add o_move_draw_rubber function documentation.
+
     * src/x/x_menus.c: Convert plain text into internal Doxygen
       documentation.
 

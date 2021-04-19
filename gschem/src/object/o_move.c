@@ -453,10 +453,14 @@ void o_move_motion (GschemToplevel *w_current, int w_x, int w_y)
   o_move_invalidate_rubber (w_current, TRUE);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Draw or Undraw during move operation
+ * \par Function Description
+ *  This function draws or undraws objects in the place buffer based
+ *  upon variables in the GschemToplevel structure <B>*w_current</B>.
  *
+ * \param [in] w_current  The GschemToplevel object.
+ * \param [in] drawing    True then draw, else undraw
  */
 void o_move_draw_rubber (GschemToplevel *w_current, int drawing)
 {
