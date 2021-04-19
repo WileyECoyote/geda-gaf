@@ -3,7 +3,7 @@
     * src/object/o_move.c: Add o_move_draw_rubber function documentation.
 
     * src/x/x_menus.c: Convert plain text into internal Doxygen
-      documentation.
+      documentation. Add Undo and Redo to context popup menu.
 
 2021-04-17 Wiley E. Hill <wileyhill@gmail.com>
 

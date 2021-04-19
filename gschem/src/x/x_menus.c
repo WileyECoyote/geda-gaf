@@ -66,7 +66,7 @@ const char* IDS_Popup_Actions[] = {
   ACTION(EDIT_MOVE),      ACTION(EDIT_MIRROR),    ACTION(EDIT_ROTATE_LEFT),
   ACTION(EDIT_SNAP),      ACTION(DOWN_SCHEMATIC), ACTION(DOWN_SYMBOL),
   ACTION(HIERARCHY_UP),   ACTION(EDIT_CB_CUT),    ACTION(EDIT_CB_COPY),
-  ACTION(EDIT_CB_PASTE),
+  ACTION(EDIT_CB_PASTE),  ACTION(EDIT_UNDO),      ACTION(EDIT_REDO),
   NULL
 };
 
@@ -147,6 +147,10 @@ static PopupEntry main_popup_items[] = {
   { N_("Cut to Clipboard"),  x_menu_main_popup_execute, pop_cb_cut,         1, "gtk-cut",         N_("Cut the current selection to the system clipboard") },
   { N_("Copy to Clipboard"), x_menu_main_popup_execute, pop_cb_copy,        1, "gtk-copy",        N_("Copy the current selection to the system clipboard") },
   { N_("Paste Clipboard"),   x_menu_main_popup_execute, pop_cb_paste,       1, "gtk-paste",       N_("Paste the contents of the system clipboard") },
+
+  { "SEPARATOR",             NULL,                      0,                  0,  NULL,             NULL },
+  { N_("Undo"),              x_menu_main_popup_execute, pop_edit_undo,      1, "geda-undo",       N_("Undo the last operation") },
+  { N_("Redo"),              x_menu_main_popup_execute, pop_edit_redo,      1, "geda-redo",       N_("Redo the last undo") },
   {NULL} /* sentinel */
 };
 

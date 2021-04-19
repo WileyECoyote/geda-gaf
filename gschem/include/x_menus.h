@@ -129,7 +129,9 @@ typedef enum {
   pop_hierarchy_up,
   pop_cb_cut,
   pop_cb_copy,
-  pop_cb_paste
+  pop_cb_paste,
+  pop_edit_undo,
+  pop_edit_redo,
 } pop_MenuItem;
 
 typedef enum {
