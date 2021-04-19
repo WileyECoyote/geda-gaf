@@ -1241,7 +1241,7 @@ msgstr ""
 
 #: gschem/src/object/o_picture.c:617
 msgid "Failed to load picture"
-msgstr "Failed to load picture"
+msgstr "Image upload failed"
 
 #: gschem/src/object/o_picture.c:627
 msgid "An unknown error occurred"
