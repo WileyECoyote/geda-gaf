@@ -3,8 +3,9 @@
     * allegro/6A259-1.sym: Clean symbol; fix over-lapping text, change
       description and documentation attributes to show value only.
 
-    * allegro/A3901-1.sym: Clean symbol; hide device attribute and set the
-      color to attribute color.
+    * allegro/A3901-1.sym: Clean symbol; hide device attribute and set
+      the color to attribute color, change description and documentation
+      attributes to show value only.
 
 2021-04-18 Wiley E. Hill <wileyhill@gmail.com>
 
