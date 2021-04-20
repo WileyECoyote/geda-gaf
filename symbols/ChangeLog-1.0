@@ -1,3 +1,7 @@
+2021-04-20 Wiley E. Hill <wileyhill@gmail.com>
+
+    * allegro/6A259-1.sym: Clean symbol; fix over-lapping text.
+
 2021-04-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * linear/switchreg/LM2596-?-TO263-?.sym: Add pin for gounded paddle:
