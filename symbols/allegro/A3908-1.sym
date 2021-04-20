@@ -8,7 +8,7 @@ description=Low Voltage DC Motor Driver
 T 300 2950 5 10 0 0 0 0 1
 numslots=0
 T 300 3150 5 10 0 1 0 0 1
-documentation=http://www.allegromicro.com/~/media/Files/Datasheets/A3908-Datasheet.ashx
+documentation=www.allegromicro.com/~/media/Files/Datasheets/A3908-Datasheet.ashx
 T 300 2350 9 10 1 1 0 0 1
 value=A3908
 T 300 2150 9 10 1 1 0 0 1
