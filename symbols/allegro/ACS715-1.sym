@@ -1,15 +1,15 @@
 v 20150101 2
 T 300 1800 8 10 1 1 0 0 1
 refdes=U?
-T 200 1950 8 10 0 0 0 0 1
+T 300 2250 9 10 0 0 0 0 1
 footprint=SO8
-T 200 2150 8 10 0 0 0 0 1
+T 300 3050 8 10 0 0 0 0 1
 author=Cory Cross
-T 200 2350 8 10 0 0 0 0 1
+T 300 2650 8 10 0 0 0 0 1
 documentation=http://www.allegromicro.com/en/Products/Part_Numbers/0715/0715.pdf
-T 200 2550 8 10 0 0 0 0 1
+T 300 2850 8 10 0 0 0 0 1
 description=Allegro Hall-Effect Current Sensor
-T 200 2750 8 10 0 0 0 0 1
+T 300 2450 9 10 0 0 0 0 1
 numslots=0
 P 0 1400 300 1400 1 0 0
 {
@@ -100,5 +100,5 @@ T 2150 1400 5 8 0 1 0 8 1
 pintype=pwr
 }
 B 300 0 1900 1700 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
-T 200 2900 8 10 1 1 0 0 1
+T 300 2000 5 10 1 1 0 0 1
 device=ACS715
