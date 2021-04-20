@@ -7,6 +7,8 @@
       the color to attribute color, change description and documentation
       attributes to show value only.
 
+    * allegro/ACS715-1.sym: Clean symbol; reposition refdes attribute.
+
 2021-04-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * linear/switchreg/LM2596-?-TO263-?.sym: Add pin for gounded paddle:
