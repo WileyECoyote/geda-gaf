@@ -132,7 +132,7 @@ footprint=DFN-3-4-10
 T 400 3700 5 10 0 0 0 0 1
 author=andrewmATthehacktoryDOTcom
 T 400 3900 5 10 0 1 0 0 1
-documentation=http://www.allegromicro.com/en/Products/Part_Numbers/3901/3901.pdf
+documentation=www.allegromicro.com/en/Products/Part_Numbers/3901/3901.pdf
 T 400 4100 5 10 0 1 0 0 1
 description=Allegro A3901 dual H-bridge
 T 400 4300 5 10 0 0 0 0 1
