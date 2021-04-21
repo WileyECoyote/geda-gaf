@@ -6,7 +6,7 @@ device=A3909
 T 300 3950 8 10 0 0 0 0 1
 author=AutoTron
 T 300 3750 8 10 0 1 0 0 1
-documentation=http://www.allegromicro.com/en/products/motor-drivers/brush-dc-motor-drivers/A3909
+documentation=www.allegromicro.com/en/products/motor-drivers/brush-dc-motor-drivers/A3909
 T 300 3350 5 10 0 1 0 0 1
 description=Dual Full Bridge Motor Driver
 T 300 3550 5 10 0 0 0 0 1
