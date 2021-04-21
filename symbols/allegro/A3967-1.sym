@@ -10,7 +10,7 @@ footprint=SO24M
 T 300 6450 8 10 0 0 0 0 1
 author=m. dickens <marvindickens@bellsouth.net>
 T 300 6250 8 10 0 0 0 0 1
-documentation=http://www.allegro.com
+documentation=www.allegro.com
 T 300 5850 5 10 0 1 0 0 1
 description=microstepping driver with translator
 T 300 6050 5 10 0 0 0 0 1
