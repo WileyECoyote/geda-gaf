@@ -4,7 +4,7 @@ refdes=U?
 T 300 2750 5 10 0 0 0 0 1
 device=A3910
 T 300 3350 8 10 0 1 0 0 1
-documentation=http://www.allegromicro.com/en/products/motor-drivers/brush-dc-motor-drivers/A3910
+documentation=www.allegromicro.com/en/products/motor-drivers/brush-dc-motor-drivers/A3910
 T 300 2950 5 10 0 1 0 0 1
 description=Dual Half Bridge Motor Driver
 T 300 3150 5 10 0 0 0 0 1
