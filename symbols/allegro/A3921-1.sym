@@ -315,7 +315,7 @@ refdes=U?
 T 400 6400 5 10 0 1 0 0 1
 footprint=TSSOP-28
 T 400 7400 5 10 0 1 0 0 1
-documentation=http://www.allegromicro.com/en/products/motor-drivers/brush-dc-motor-drivers/A3921
+documentation=www.allegromicro.com/en/products/motor-drivers/brush-dc-motor-drivers/A3921
 T 400 6800 5 10 0 1 0 0 1
 description=Full Bridge MOSFET Driver
 T 400 7200 5 10 0 0 0 0 1
