@@ -6,7 +6,7 @@ device=A3918
 T 300 5150 8 10 0 0 0 0 1
 author=AutoTron
 T 300 4950 8 10 0 1 0 0 1
-documentation=http://www.allegromicro.com/en/products/motor-drivers/brush-dc-motor-drivers/A3918
+documentation=www.allegromicro.com/en/products/motor-drivers/brush-dc-motor-drivers/A3918
 T 300 4550 5 10 0 1 0 0 1
 description=Low Voltage DC Motor Driver
 T 300 4750 5 10 0 0 0 0 1
