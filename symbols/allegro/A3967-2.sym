@@ -271,7 +271,7 @@ refdes=U?
 T 400 5800 5 10 0 1 0 0 1
 footprint=SOIC-127P-1047L1-24N
 T 400 6800 5 10 0 1 0 0 1
-documentation=http://www.allegro.com
+documentation=www.allegro.com
 T 400 6200 5 10 0 1 0 0 1
 description=microstepping driver with translator
 T 400 6600 5 10 0 0 0 0 1
