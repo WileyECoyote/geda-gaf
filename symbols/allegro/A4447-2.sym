@@ -97,7 +97,7 @@ T 2450 1500 5 8 0 1 0 8 1
 pintype=pwr
 }
 T 400 2600 5 10 0 1 0 0 1
-documentation=http://www.allegromicro.com/~/media/Files/Datasheets/A4447-Datasheet.ashx
+documentation=www.allegromicro.com/~/media/Files/Datasheets/A4447-Datasheet.ashx
 T 400 2000 5 10 1 1 0 0 1
 value=A4447SLJTR-T
 T 400 3400 5 10 0 0 0 0 1
