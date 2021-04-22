@@ -6,7 +6,7 @@ footprint=SO8
 T 300 3050 8 10 0 0 0 0 1
 author=Cory Cross
 T 300 2650 8 10 0 1 0 0 1
-documentation=http://www.allegromicro.com/en/Products/Part_Numbers/0715/0715.pdf
+documentation=www.allegromicro.com/en/Products/Part_Numbers/0715/0715.pdf
 T 300 2850 8 10 0 1 0 0 1
 description=Allegro Hall-Effect Current Sensor
 T 300 2450 9 10 0 0 0 0 1
