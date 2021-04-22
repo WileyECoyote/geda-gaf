@@ -181,7 +181,7 @@ T 650 975 5 8 0 1 0 2 1
 pintype=clk
 }
 T 2000 5000 5 10 0 1 0 0 1
-documentation=http://www.analog.com/media/en/technical-documentation/data-sheets/AD5308_5318_5328.pdf
+documentation=www.analog.com/media/en/technical-documentation/data-sheets/AD5308_5318_5328.pdf
 T 2000 4600 9 10 0 1 0 0 1
 description=10 Bit DAC, 2.5 V to 5.5 V Octal Output
 T 2000 4800 9 10 0 0 0 0 1
