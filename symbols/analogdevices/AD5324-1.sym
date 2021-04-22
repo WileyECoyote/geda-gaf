@@ -8,7 +8,7 @@ footprint=MSOP10
 T 375 3350 5 10 0 1 0 0 1
 description=Quad 12-Bit DACs,2.5 V to 5.5 V, 500 uA, Voltage Output, 3-wire
 T 375 3550 5 10 0 1 0 0 1
-documentation=http://www.analog.com/static/imported-files/data_sheets/AD5304_5314_5324.pdf
+documentation=www.analog.com/static/imported-files/data_sheets/AD5304_5314_5324.pdf
 P 1900 1500 1600 1500 1 0 0
 {
 T 1725 1550 5 8 1 1 0 0 1
