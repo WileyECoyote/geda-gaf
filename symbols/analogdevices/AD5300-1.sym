@@ -12,7 +12,7 @@ value=AD5300
 T 375 2150 5 10 0 1 0 0 1
 description=Rail-to-Rail Output 8-Bit DAC with 3-wire serial interface (SPI, QSPI, MICROWIRE)
 T 375 1950 5 10 0 1 0 0 1
-documentation=http://www.analog.com/static/imported-files/data_sheets/AD5300.pdf
+documentation=www.analog.com/static/imported-files/data_sheets/AD5300.pdf
 P 1700 1100 1400 1100 1 0 0
 {
 T 1500 1150 5 8 1 1 0 0 1
