@@ -193,4 +193,4 @@ symversion=0.1
 T 2300 4250 5 10 0 1 0 0 1
 description=ADC,16-Bit, Sigma-Delta,2-Channel
 T 2300 4450 5 10 0 1 0 0 1
-documentation=http://www.analog.com/media/en/technical-documentation/data-sheets/AD7705_7706.pdf
+documentation=www.analog.com/media/en/technical-documentation/data-sheets/AD7705_7706.pdf
