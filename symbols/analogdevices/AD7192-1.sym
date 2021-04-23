@@ -277,7 +277,7 @@ dist-license=GPLv2
 T 400 7500 5 10 0 0 0 0 1
 use-license=unlimited
 T 400 7300 5 10 0 1 0 0 1
-documentation=http://www.analog.com/media/en/technical-documentation/data-sheets/AD7192.pdf
+documentation=www.analog.com/media/en/technical-documentation/data-sheets/AD7192.pdf
 T 400 7100 5 10 0 0 0 0 1
 numslots=0
 T 400 6900 5 10 0 1 0 0 1
