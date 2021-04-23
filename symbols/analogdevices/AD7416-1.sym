@@ -12,7 +12,7 @@ numslots=0
 T 275 2050 5 10 0 0 0 0 1
 description=10-Bit Digital Temperature Sensor
 T 275 1850 5 10 0 0 0 0 1
-documentation=http://www.analog.com/static/imported-files/data_sheets/AD7416_7417_7418.pdf
+documentation=www.analog.com/static/imported-files/data_sheets/AD7416_7417_7418.pdf
 B 725 275 50 350 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
 L 775 575 800 575 3 0 0 0 -1 -1
 L 775 525 800 525 3 0 0 0 -1 -1
