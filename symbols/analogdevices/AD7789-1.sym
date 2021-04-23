@@ -120,7 +120,7 @@ value=AD7789
 T 300 3000 5 10 0 1 0 0 1
 description=A/D Converter,24-Bit,Single-Channel,Sigma Delta
 T 300 3400 5 10 0 1 0 0 1
-documentation=http://www.analog.com/en/products/analog-to-digital-converters/ad-converters/ad7789.html
+documentation=www.analog.com/en/products/analog-to-digital-converters/ad-converters/ad7789.html
 T 550 150 5 10 0 0 0 0 1
 symversion=0.1
 T 300 3200 5 10 0 0 0 0 1
