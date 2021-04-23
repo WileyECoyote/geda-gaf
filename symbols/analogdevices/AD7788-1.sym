@@ -120,7 +120,7 @@ pintype=in
 T 300 2400 9 10 1 1 0 0 1
 value=AD7788
 T 300 3400 5 10 0 1 0 0 1
-documentation=http://www.analog.com/en/products/analog-to-digital-converters/ad-converters/ad7788.html
+documentation=www.analog.com/en/products/analog-to-digital-converters/ad-converters/ad7788.html
 T 550 150 5 10 0 0 0 0 1
 symversion=0.1
 T 300 3200 5 10 0 0 0 0 1
