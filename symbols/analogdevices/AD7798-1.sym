@@ -189,7 +189,7 @@ footprint=TSSOP16
 T 500 4200 5 10 0 0 0 0 1
 numslots=0
 T 500 4400 5 10 0 1 0 0 1
-documentation=http://www.analog.com/en/products/analog-to-digital-converters/ad-converters/ad7788.html
+documentation=www.analog.com/en/products/analog-to-digital-converters/ad-converters/ad7788.html
 T 1350 50 5 8 0 0 0 0 1
 symversion=0.1
 T 500 5000 5 10 0 0 0 0 1
