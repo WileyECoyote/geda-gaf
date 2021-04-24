@@ -724,11 +724,10 @@ msgstr "erreur"
 msgid "No component selected\n"
 msgstr "Aucun composant sélectionné\n"
 
-# Confirm revert ALL documents
+# Reverted document
 #: gschem/src/iface/i_command.c:3048 gschem/src/iface/i_window.c:333
-#, fuzzy
 msgid "Reverted document"
-msgstr "Confirmer revenir à TOUS les documents"
+msgstr "Document rétabli"
 
 # Confirm revert ALL documents
 #: gschem/src/iface/i_command.c:3106
@@ -1294,10 +1293,10 @@ msgstr ""
 msgid "When checked the image size will be exported"
 msgstr ""
 
+# Failed to load picture
 #: gschem/src/object/o_picture.c:617
-#, fuzzy
 msgid "Failed to load picture"
-msgstr "Impossible de remplacer les images: %s"
+msgstr "Échec du chargement de l'image"
 
 #: gschem/src/object/o_picture.c:627
 msgid "An unknown error occurred"
