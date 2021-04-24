@@ -1440,10 +1440,10 @@ msgstr ""
 msgid "When checked the image size will be exported"
 msgstr ""
 
-# Failed to load file
+# Failed to load picture; citraṁ lēāḍuceyyunnatil parājayappeṭṭu
 #: gschem/src/object/o_picture.c:617
 msgid "Failed to load picture"
-msgstr "ഫയല്ലഭ്യമാക്കുന്നതില്പരാജയം"
+msgstr "ചിത്രം ലോഡുചെയ്യുന്നതിൽ പരാജയപ്പെട്ടു"
 
 #: gschem/src/object/o_picture.c:627
 msgid "An unknown error occurred"
