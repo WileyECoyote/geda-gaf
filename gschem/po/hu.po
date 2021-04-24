@@ -712,10 +712,10 @@ msgstr "hiba"
 msgid "No component selected\n"
 msgstr ""
 
+# Reverted document
 #: gschem/src/iface/i_command.c:3048 gschem/src/iface/i_window.c:333
-#, fuzzy
 msgid "Reverted document"
-msgstr "D_okumentáció"
+msgstr "Visszaállított dokumentum"
 
 #: gschem/src/iface/i_command.c:3106
 msgid "Confirm revert ALL documents"
@@ -1278,9 +1278,8 @@ msgstr ""
 
 # Could not load the image
 #: gschem/src/object/o_picture.c:617
-#, fuzzy
 msgid "Failed to load picture"
-msgstr "<b>Nem sikerült betölteni a képet</b>"
+msgstr "Nem sikerült betölteni a képet"
 
 #: gschem/src/object/o_picture.c:627
 msgid "An unknown error occurred"
