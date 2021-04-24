@@ -731,10 +731,10 @@ msgstr "errore"
 msgid "No component selected\n"
 msgstr "Selezionata griglia a punti\n"
 
+# Reverted document
 #: gschem/src/iface/i_command.c:3048 gschem/src/iface/i_window.c:333
-#, fuzzy
 msgid "Reverted document"
-msgstr "documenti"
+msgstr "Documento ripristinato"
 
 #: gschem/src/iface/i_command.c:3106
 msgid "Confirm revert ALL documents"
@@ -1296,9 +1296,8 @@ msgstr ""
 
 # Failed to load picture
 #: gschem/src/object/o_picture.c:617
-#, fuzzy
 msgid "Failed to load picture"
-msgstr "<b>Impossibile caricare la foto</b>"
+msgstr "Impossibile caricare la foto"
 
 #: gschem/src/object/o_picture.c:627
 msgid "An unknown error occurred"

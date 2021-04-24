@@ -8,6 +8,8 @@
 
     * po/hu.po: Update Hungarian translations.
 
+    * po/it.po: Update Italian translations.
+
 2021-04-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_move.c: Add o_move_draw_rubber function documentation.
