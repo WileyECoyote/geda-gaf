@@ -1,0 +1,99 @@
+v 20150315 2
+T 500 2600 8 10 1 1 0 0 1
+refdes=U?
+T 500 2400 9 10 1 1 0 0 1
+device=NCP1236AD65R2G
+T 2000 3200 5 10 0 0 0 0 1
+numslots=0
+T 500 2200 5 10 1 1 0 0 1
+footprint=SOIC-7
+T 500 2800 5 10 0 1 0 0 1
+description=Flyback Converter, 65kHz, Latched, FT=128ms
+T 500 3000 5 10 0 1 0 0 1
+documentation=www.onsemi.com/pdf/datasheet/ncp1010-d.pdf
+T 500 3200 5 10 0 0 0 0 1
+symversion=1.0
+T 500 3400 5 10 0 0 0 0 1
+dist-license=GPL3
+T 500 3600 5 10 0 0 0 0 1
+use-license=unlimited
+T 500 3800 5 10 0 0 0 0 1
+author=AutoTron
+B 500 400 1400 1700 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
+P 500 1300 200 1300 1 0 1
+{
+T 350 1350 5 8 1 1 0 6 1
+pinnumber=1
+T 350 1350 5 8 0 1 0 6 1
+pinseq=1
+T 550 1250 9 10 1 1 0 0 1
+pinlabel=LATCH
+T 475 1175 5 8 0 1 0 6 1
+pintype=pwr
+}
+P 1900 800 2200 800 1 0 1
+{
+T 2000 850 5 8 1 1 0 0 1
+pinnumber=2
+T 2000 850 5 8 0 1 0 0 1
+pinseq=2
+T 1850 750 9 10 1 1 0 6 1
+pinlabel=FB
+T 1925 700 5 8 0 1 0 0 1
+pintype=pas
+}
+P 500 800 200 800 1 0 1
+{
+T 350 850 5 8 1 1 0 6 1
+pinnumber=3
+T 350 850 5 8 0 1 0 6 1
+pinseq=3
+T 550 750 9 10 1 1 0 0 1
+pinlabel=CS
+T 475 675 5 8 0 1 0 6 1
+pintype=pas
+}
+P 1200 400 1200 100 1 0 1
+{
+T 1150 150 5 8 1 1 0 6 1
+pinnumber=4
+T 1150 150 5 8 0 1 0 6 1
+pinseq=4
+T 1050 450 9 10 1 1 0 0 1
+pinlabel=GND
+T 1325 375 5 8 0 1 90 6 1
+pintype=pwr
+}
+P 1900 1800 2200 1800 1 0 1
+{
+T 2000 1850 5 8 1 1 0 0 1
+pinnumber=5
+T 2000 1850 5 8 0 1 0 0 1
+pinseq=5
+T 1850 1750 9 10 1 1 0 6 1
+pinlabel=DRV
+T 1925 1700 5 8 0 1 0 0 1
+pintype=oc
+}
+P 1900 1300 2200 1300 1 0 1
+{
+T 2050 1350 5 8 1 1 0 0 1
+pinnumber=6
+T 2050 1350 5 8 0 1 0 0 1
+pinseq=6
+T 1850 1250 9 10 1 1 0 6 1
+pinlabel=VCC
+T 1925 1175 5 8 0 1 0 0 1
+pintype=pas
+}
+P 500 1800 200 1800 1 0 1
+{
+T 400 1850 5 8 1 1 0 6 1
+pinnumber=8
+T 400 1850 5 8 0 1 0 6 1
+pinseq=8
+T 550 1750 9 10 1 1 0 0 1
+pinlabel=HV
+T 475 1700 5 8 0 1 0 6 1
+pintype=pwr
+}
