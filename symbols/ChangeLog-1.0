@@ -1,3 +1,9 @@
+2021-04-25 Wiley E. Hill <wileyhill@gmail.com>
+
+    * onsemi/switchreg/NCP1236*-1.sym: Add symbols: Flyback Converter:
+
+            * onsemi/switchreg/NCP1236AD100R2G-1.sym
+
 2021-04-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * allegro/6A259-1.sym: Clean symbol; fix over-lapping text, change
