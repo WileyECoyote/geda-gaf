@@ -81,5 +81,5 @@ dist-license=GPLv2
 T 100 2600 5 10 0 0 0 0 1
 author=AutoTron
 T 100 2000 5 10 0 1 0 0 1
-documentation=http://www.analog.com/media/en/technical-documentation/data-sheets/AD8047_8048.pdf
+documentation=www.analog.com/media/en/technical-documentation/data-sheets/AD8047_8048.pdf
 
