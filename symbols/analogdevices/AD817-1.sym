@@ -97,7 +97,7 @@ numslots=0
 T 1000 2000 5 10 0 0 0 0 1
 symversion=0.2
 T 1000 2200 5 10 0 1 0 0 1
-documentation=http://www.analog.com/media/en/technical-documentation/data-sheets/AD817.pdf
+documentation=www.analog.com/media/en/technical-documentation/data-sheets/AD817.pdf
 T 1000 2600 5 10 0 0 0 0 1
 use-license=unlimited
 T 1000 2400 5 10 0 0 0 0 1
