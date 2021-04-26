@@ -10,7 +10,7 @@ numslots=0
 T 25 1350 5 10 0 0 0 0 1
 description=operational amplifier, 130 uV Maximum Offset Voltage
 T 25 1200 5 10 0 0 0 0 1
-documentation=http://www.analog.com/media/en/technical-documentation/data-sheets/AD8677.pdf
+documentation=www.analog.com/media/en/technical-documentation/data-sheets/AD8677.pdf
 L 200 850 200 150 3 0 0 0 -1 -1
 L 200 850 900 500 3 0 0 0 -1 -1
 L 900 500 200 150 3 0 0 0 -1 -1
