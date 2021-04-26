@@ -100,7 +100,7 @@ pintype=in
 T 100 1600 5 10 0 1 0 0 1
 description=Instrumentation Amplifier
 T 100 1800 5 10 0 1 0 0 1
-documentation=http://www.analog.com/media/en/technical-documentation/data-sheets/AD8421-EP.pdf
+documentation=www.analog.com/media/en/technical-documentation/data-sheets/AD8421-EP.pdf
 T 1000 900 9 10 0 1 0 0 1
 footprint=DIP8
 T 100 1400 5 10 0 0 0 0 1
