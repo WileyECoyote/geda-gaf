@@ -16,7 +16,7 @@ numslots=0
 T 25 1350 5 10 0 0 0 0 1
 description=operational amplifier, Low Noise, Low Distortion
 T 25 1200 5 10 0 0 0 0 1
-documentation=http://www.analog.com/en/all-operational-amplifiers-op-amps/operational-amplifiers-op-amps/ad797/products/product.html
+documentation=www.analog.com/en/all-operational-amplifiers-op-amps/operational-amplifiers-op-amps/ad797/products/product.html
 T 1025 200 9 10 0 0 0 0 1
 model-name=AD797A
 T 1000 50 9 10 0 1 0 0 1
