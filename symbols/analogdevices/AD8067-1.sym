@@ -79,7 +79,7 @@ numslots=0
 T 1050 550 5 10 0 0 0 0 1
 symversion=0.1
 T 1050 350 5 10 0 0 0 0 1
-documentation=http://www.analog.com/UploadedFiles/Data_Sheets/AD8067.pdf
+documentation=www.analog.com/UploadedFiles/Data_Sheets/AD8067.pdf
 T 1050 150 5 10 0 0 0 0 1
 device=AD8067
 T 550 800 9 8 1 0 0 0 1
