@@ -552,7 +552,7 @@ B 400 400 5400 6300 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
 T 5700 7000 9 10 1 1 0 0 1
 value=AD9511
 T 200 7600 5 10 0 0 0 0 1
-documentation=http://www.analog.com/en/products/clock-and-timing/clock-generation-distribution/ad9511.html
+documentation=www.analog.com/en/products/clock-and-timing/clock-generation-distribution/ad9511.html
 T 200 8200 5 10 0 0 0 0 1
 author=Darrell Harmon mail@dlharmon.com
 T 200 8000 5 10 0 0 0 0 1
