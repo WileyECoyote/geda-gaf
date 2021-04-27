@@ -132,7 +132,7 @@ B 400 400 1700 1500 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
 T 1800 2500 9 10 0 1 0 0 1
 footprint=DFN-3-4-10-EP
 T 1800 3300 5 10 0 0 0 0 1
-documentation=http://www.analog.com/media/en/technical-documentation/data-sheets/AD9837.PDF
+documentation=www.analog.com/media/en/technical-documentation/data-sheets/AD9837.PDF
 T 1800 2300 5 10 1 1 0 0 1
 value=AD9837
 T 2000 200 5 8 0 0 0 0 1
