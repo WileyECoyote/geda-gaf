@@ -378,7 +378,7 @@ value=AD9649
 T 400 6200 9 10 0 1 0 0 1
 footprint=QFN-32-5
 T 400 6800 5 10 0 1 0 0 1
-documentation=http://www.analog.com/media/en/technical-documentation/data-sheets/AD9649.pdf
+documentation=www.analog.com/media/en/technical-documentation/data-sheets/AD9649.pdf
 T 400 7400 5 10 0 0 0 0 1
 author=AutoTron
 T 400 7200 5 10 0 0 0 0 1
