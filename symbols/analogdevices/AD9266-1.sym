@@ -314,7 +314,7 @@ value=AD9266
 T 400 5200 9 10 0 1 0 0 1
 footprint=QFN-32-5
 T 400 5800 5 10 0 1 0 0 1
-documentation=http://www.analog.com/media/en/technical-documentation/data-sheets/AD9266.pdf
+documentation=www.analog.com/media/en/technical-documentation/data-sheets/AD9266.pdf
 T 400 6400 5 10 0 0 0 0 1
 author=AutoTron
 T 400 6200 5 10 0 0 0 0 1
