@@ -319,7 +319,7 @@ value=ADG707
 T 400 4900 5 10 0 1 0 0 1
 footprint=TSSOP28
 T 400 5500 5 10 0 0 0 0 1
-documentation=http://www.analog.com/media/en/technical-documentation/data-sheets/ADG706_707.pdf
+documentation=www.analog.com/media/en/technical-documentation/data-sheets/ADG706_707.pdf
 T 400 5700 5 10 0 0 0 0 1
 numslots=0
 T 800 200 5 8 0 0 0 0 1
