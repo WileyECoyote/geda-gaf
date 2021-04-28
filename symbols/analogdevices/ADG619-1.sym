@@ -101,6 +101,6 @@ description=ADG619 CMOS 5 V/+5 V   Single SPDT Switches
 T 300 1450 9 10 1 0 0 0 1
 ADG619
 T 300 2050 5 10 0 0 0 0 1
-documentation=http://www.analog.com/UploadedFiles/Data_Sheets/36565145644741ADG619_20_a.pdf
+documentation=www.analog.com/UploadedFiles/Data_Sheets/36565145644741ADG619_20_a.pdf
 T 300 2250 5 10 0 0 0 0 1
 symversion=0.1
