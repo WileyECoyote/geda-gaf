@@ -187,7 +187,7 @@ pintype=pwr
 T 1300 2500 5 10 1 1 0 3 1
 value=ADG659
 T 2100 4500 9 10 0 1 0 0 1
-documentation=http://www.analog.com/media/en/technical-documentation/data-sheets/ADG658_659.pdf
+documentation=www.analog.com/media/en/technical-documentation/data-sheets/ADG658_659.pdf
 T 2100 4700 9 10 0 0 0 0 1
 dist-license=GPLv2
 T 2100 4900 9 10 0 0 0 0 1
