@@ -205,7 +205,7 @@ net=VCC:20
 T 300 5150 5 10 0 0 0 0 1
 net=GND:10
 T 300 5350 5 10 0 0 0 0 1
-documentation=http://www.national.com/ds.cgi/AD/ADC0820.pdf
+documentation=www.national.com/ds.cgi/AD/ADC0820.pdf
 T 300 3950 9 8 1 0 0 0 1
 ADC0820
 V 2650 500 50 6 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
