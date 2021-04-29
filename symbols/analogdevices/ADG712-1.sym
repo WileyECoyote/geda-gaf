@@ -19,7 +19,7 @@ use-license=unlimited
 T 275 5050 5 10 0 0 0 0 1
 description=CMOS Low Voltage 4 Ohm Quad SPST/NO Switch
 T 275 4850 5 10 0 0 0 0 1
-documentation=http://www.analog.com/static/imported-files/data_sheets/ADG711_712_713.pdf
+documentation=www.analog.com/static/imported-files/data_sheets/ADG711_712_713.pdf
 P 1600 1400 1300 1400 1 0 0
 {
 T 1395 1445 5 8 1 1 0 0 1
