@@ -81,7 +81,7 @@ value=ADG776
 T 300 1900 9 10 0 1 0 0 1
 footprint=SC70-6
 T 300 2500 5 10 0 1 0 0 1
-documentation=https://www.analog.com/media/en/technical-documentation/data-sheets/adg779.pdf
+documentation=www.analog.com/media/en/technical-documentation/data-sheets/adg779.pdf
 T 300 3100 5 10 0 0 0 0 1
 author=AutoTron
 T 300 2900 5 10 0 0 0 0 1
