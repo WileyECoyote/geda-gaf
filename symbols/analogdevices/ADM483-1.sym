@@ -117,7 +117,7 @@ footprint=SO8
 T 1100 2500 5 10 0 1 0 0 1
 description=low-power, slew-rat-limited RS-485/RS422 transceiver
 T 1100 2700 5 10 0 1 0 0 1
-documentation=http://www.analog.com/media/en/technical-documentation/data-sheets/ADM383.pdf
+documentation=www.analog.com/media/en/technical-documentation/data-sheets/ADM383.pdf
 T 1800 500 9 10 1 1 0 0 1
 value=ADM483
 T 1100 1900 5 10 0 0 0 0 1
