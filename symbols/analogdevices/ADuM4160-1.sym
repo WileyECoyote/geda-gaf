@@ -181,7 +181,7 @@ value=ADuM4160
 T 400 3300 8 10 1 1 0 0 1
 refdes=U?
 T 400 3900 5 10 0 0 0 0 1
-documentation=http://www.analog.com/media/en/technical-documentation/data-sheets/ADuM4160.pdf
+documentation=www.analog.com/media/en/technical-documentation/data-sheets/ADuM4160.pdf
 T 400 2900 9 10 1 1 0 0 1
 footprint=SO16
 T 400 4500 5 10 0 0 0 0 1
