@@ -61,7 +61,7 @@ T 500 1350 5 8 0 1 0 0 1
 pintype=out
 }
 T 2000 3600 5 10 0 1 0 0 1
-documentation=http://www.analog.com/en/products/mems/mems-accelerometers/adxl362.html
+documentation=www.analog.com/en/products/mems/mems-accelerometers/adxl362.html
 T 2000 3000 9 10 0 1 0 0 1
 footprint=QFN-16-3.5
 T 2000 4000 5 10 0 0 0 0 1
