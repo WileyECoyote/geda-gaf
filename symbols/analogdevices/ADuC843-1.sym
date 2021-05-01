@@ -581,7 +581,7 @@ B 400 100 3900 8100 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
 T 400 9250 5 10 0 0 0 0 1
 numslots=0
 T 400 9450 5 10 0 1 0 0 1
-documentation=http://www.analog.com/media/en/technical-documentation/data-sheets/ADUC841_842_843.pdf
+documentation=www.analog.com/media/en/technical-documentation/data-sheets/ADUC841_842_843.pdf
 T 400 8450 5 10 0 1 0 0 1
 footprint=QFP-52-10
 T 400 8250 9 10 1 1 0 0 1
