@@ -198,7 +198,7 @@ footprint=LFCSP_LQ
 T 400 5600 5 10 0 0 0 0 1
 author=Uwe Hermann <uwe@hermann-uwe.de>
 T 400 4800 5 10 0 1 0 0 1
-documentation=http://www.analog.com/static/imported-files/data_sheets/ADXL335.pdf
+documentation=www.analog.com/static/imported-files/data_sheets/ADXL335.pdf
 T 400 5000 5 10 0 1 0 0 1
 description=3-Axis +/-3g Accelerometer,Low Power
 T 400 4600 5 10 0 0 0 0 1
