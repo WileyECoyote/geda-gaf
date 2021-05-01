@@ -64,7 +64,7 @@ pintype=out
 T 400 1500 9 10 1 1 0 0 1
 value=ADP121
 T 400 2500 5 10 0 1 0 0 1
-documentation=http://www.analog.com/media/en/technical-documentation/data-sheets/ADP121.pdf
+documentation=www.analog.com/media/en/technical-documentation/data-sheets/ADP121.pdf
 T 400 2300 5 10 0 1 0 0 1
 description=CMOS Linear Regulator,150 mA,Low Quiescent
 T 400 2100 5 10 0 0 0 0 1
