@@ -13,7 +13,7 @@ numslots=0
 T 400 2950 3 10 1 1 0 0 1
 value=ADuM1300
 T 400 3750 5 10 0 0 0 0 1
-documentation=http://www.analog.com/static/imported-files/data_sheets/ADuM1300_1301.pdf
+documentation=www.analog.com/static/imported-files/data_sheets/ADuM1300_1301.pdf
 T -5 -300 8 10 0 1 0 0 1
 author=andybusse
 P 400 2700 100 2700 1 0 1
