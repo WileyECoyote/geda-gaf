@@ -101,7 +101,7 @@ description=Power Operational Amplifier, ±40V, 10A
 T 1400 1100 9 10 1 1 0 0 1
 footprint=APEX-CE
 T 1400 1900 5 10 0 1 0 0 1
-documentation =http://www.apexanalog.com/resources/products/pa51u.pdf
+documentation=http://www.apexanalog.com/resources/products/pa51u.pdf
 T 1400 1500 5 10 0 0 0 0 1
 symversion=0.2
 T 1400 2100 5 10 0 0 0 0 1
