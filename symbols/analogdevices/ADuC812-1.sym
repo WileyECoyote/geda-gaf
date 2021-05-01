@@ -581,7 +581,7 @@ pintype=io
 }
 B 400 100 3900 8100 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
 T 200 8550 5 10 0 0 0 0 1
-documentation=http://www.analog.com/UploadedFiles/Data_Sheets/466325469ADuC812_0.pdf
+documentation=www.analog.com/UploadedFiles/Data_Sheets/466325469ADuC812_0.pdf
 T 200 9150 5 10 0 0 0 0 1
 footprint=QFP-52-10
 T 400 8250 9 10 1 1 0 0 1
