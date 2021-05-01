@@ -10,7 +10,7 @@ footprint=TQFP-32-7
 T 2500 2600 9 10 0 0 0 3 1
 numslots=0
 T 4800 5300 5 10 0 1 0 0 1
-documentation=http://www.analog.com/static/imported-files/data_sheets/ADV7123.pdf
+documentation=www.analog.com/static/imported-files/data_sheets/ADV7123.pdf
 L 700 4900 4600 4900 3 0 0 0 -1 -1
 L 700 400 4600 400 3 0 0 0 -1 -1
 L 700 4900 400 4600 3 0 0 0 -1 -1
