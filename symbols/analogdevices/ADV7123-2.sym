@@ -547,7 +547,7 @@ pintype=in
 T 2200 2205 9 10 0 1 0 3 1
 footprint=TQFP-32-7
 T 4000 4300 8 10 0 1 0 0 1
-documentation=http://www.analog.com/static/imported-files/data_sheets/ADV7123.pdf
+documentation=www.analog.com/static/imported-files/data_sheets/ADV7123.pdf
 T 4000 4900 8 10 0 0 0 0 1
 author=coldnew <coldnew.tw@gmail.com>
 T 4000 4700 8 10 0 0 0 0 1
