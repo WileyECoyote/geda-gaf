@@ -17,7 +17,7 @@ refdes=U?
 T 2700 400 9 10 0 0 0 0 1
 symversion=0.1
 T 2200 3100 5 10 0 1 0 0 1
-documentation=http://www.analog.com/en/products/mems/mems-accelerometers/adxl335.html
+documentation=www.analog.com/en/products/mems/mems-accelerometers/adxl335.html
 V 1000 900 75 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
 L 1075 900 1800 900 3 0 0 0 -1 -1
 L 947 953 1053 847 3 0 0 0 -1 -1
