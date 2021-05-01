@@ -181,7 +181,7 @@ value=ADuM5000
 T 400 3300 8 10 1 1 0 0 1
 refdes=U?
 T 400 3900 5 10 0 0 0 0 1
-documentation=http://www.analog.com/static/imported-files/data_sheets/ADuM5000.pdf
+documentation=www.analog.com/static/imported-files/data_sheets/ADuM5000.pdf
 T 400 2900 9 10 1 1 0 0 1
 footprint=SO16
 T 400 4500 5 10 0 0 0 0 1
