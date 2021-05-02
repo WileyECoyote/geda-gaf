@@ -372,7 +372,7 @@ footprint=TQFP32
 T 300 6400 5 10 0 0 0 0 1
 author=Dan Fekete <thefekete AT gmail DOT com>
 T 300 6800 5 10 0 0 0 0 1
-documentation=http://www.atmel.com/dyn/resources/prod_documents/doc8271.pdf
+documentation=www.atmel.com/dyn/resources/prod_documents/doc8271.pdf
 T 300 6000 5 10 0 0 0 0 1
 dist-license=GPLv2
 T 300 6200 5 10 0 0 0 0 1
