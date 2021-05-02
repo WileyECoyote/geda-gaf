@@ -233,7 +233,7 @@ value=XbeePro
 T 400 4300 9 10 0 0 0 0 1
 footprint=XbeePro
 T 400 4700 5 10 0 0 0 0 1
-documentation=http://ftp1.digi.com/support/documentation/manual_xb_oem-rf-modules_802.15.4_v1.xAx.pdf
+documentation=ftp1.digi.com/support/documentation/manual_xb_oem-rf-modules_802.15.4_v1.xAx.pdf
 T 400 5500 5 10 0 0 0 0 1
 author=Sam Fladung
 T 400 5300 5 10 0 0 0 0 1
