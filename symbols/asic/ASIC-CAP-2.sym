@@ -36,4 +36,4 @@ description=linear poly0 / poly1 capacitor
 T 1000 700 5 10 0 1 0 0 1
 footprint=POLYCAP_100000X139500
 T 1000 900 5 10 0 1 0 0 1
-documentation=http://www.aicdesign.org
+documentation=www.aicdesign.org
