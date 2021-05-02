@@ -145,7 +145,7 @@ description=High Voltage Power Operational Amplifier, ±200V, 4A
 T 1800 1400 9 10 1 1 0 0 1
 footprint=SIP-16
 T 1800 2200 5 10 0 1 0 0 1
-documentation=http://www.apexanalog.com/resources/products/pa92u.pdf
+documentation=www.apexanalog.com/resources/products/pa92u.pdf
 T 1800 1800 5 10 0 0 0 0 1
 symversion=0.2
 T 1800 2400 5 10 0 0 0 0 1
