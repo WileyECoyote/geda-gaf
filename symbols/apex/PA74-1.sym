@@ -108,7 +108,7 @@ description=Dual Power Operational Amplifiers
 T 1100 1200 9 10 1 1 0 0 1
 footprint=APEX-CE
 T 1000 3000 5 10 0 1 0 0 1
-documentation=http://www.apexanalog.com/resources/products/pa74u.pdf
+documentation=www.apexanalog.com/resources/products/pa74u.pdf
 T 1000 2600 5 10 0 0 0 0 1
 symversion=0.1
 T 1000 3200 5 10 0 0 0 0 1
