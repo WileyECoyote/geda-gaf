@@ -40,4 +40,4 @@ description=diode NWELL / PSUB
 T 1000 800 5 10 0 1 0 0 1
 footprint=NWELL_10000X10000
 T 1000 1000 5 10 0 1 0 0 1
-documentation=http://www.aicdesign.org
+documentation=www.aicdesign.org
