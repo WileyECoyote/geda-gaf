@@ -38,4 +38,4 @@ model-name=cpolylin
 T 1000 600 5 10 0 1 0 0 1
 footprint=POLYCAP_100000X139500
 T 1000 800 5 10 0 1 0 0 1
-documentation=http://www.aicdesign.org
+documentation=www.aicdesign.org
