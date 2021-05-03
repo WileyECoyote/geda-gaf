@@ -67,5 +67,5 @@ L 500 300 600 300 3 0 0 0 -1 -1
 T 1350 1000 5 10 0 1 0 0 1
 footprint=NMOS_100000X30000
 T 1350 1200 5 10 0 1 0 0 1
-documentation=http://www.aicdesign.org
+documentation=www.aicdesign.org
 L 250 500 200 500 3 0 2 0 -1 -1
