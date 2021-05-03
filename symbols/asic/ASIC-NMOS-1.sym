@@ -65,4 +65,4 @@ description=low voltage NMOS
 T 1400 1000 5 10 0 1 0 0 1
 footprint=NMOS_10000X30000
 T 1400 1200 5 10 0 1 0 0 1
-documentation=http://www.aicdesign.org
+documentation=www.aicdesign.org
