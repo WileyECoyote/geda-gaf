@@ -50,4 +50,4 @@ footprint=WBP100X100TIWAL
 T 900 1700 5 10 0 1 0 0 1
 description=Wire Bond Pad
 T 900 1900 5 10 0 1 0 0 1
-documentation=http://www.aicdesign.org
+documentation=www.aicdesign.org
