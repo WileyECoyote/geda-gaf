@@ -24,4 +24,4 @@ footprint=WBP100X100TIWAL
 T 900 800 5 10 0 1 0 0 1
 description=Wire Bond Pad
 T 900 1000 5 10 0 1 0 0 1
-documentation=https://www.mosis.com/pages/products/assembly/index
+documentation=www.mosis.com/pages/products/assembly/index
