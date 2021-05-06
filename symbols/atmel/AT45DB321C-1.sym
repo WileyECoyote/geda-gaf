@@ -10,7 +10,7 @@ footprint=TSOP28
 T 1300 3400 5 10 0 0 0 0 1
 author=Tomasz Nowak <nowak2000@poczta.onet.pl>
 T 1300 3200 5 10 0 1 0 0 1
-documentation=http://www.atmel.com/
+documentation=www.atmel.com/
 T 1300 3000 5 10 0 1 0 0 1
 description=32-Megabit DataFlash,TSOP28
 T 1800 550 9 10 0 0 0 0 1
