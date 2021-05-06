@@ -101,4 +101,4 @@ value=AT24C64
 T 300 1950 8 10 0 1 0 0 1
 description=EEPROM,8192 x 8,serial 2 wire,DIP8
 T 300 2150 8 10 0 1 0 0 1
-documentation=http://www.atmel.com/images/doc0336.pdf
+documentation=www.atmel.com/images/doc0336.pdf
