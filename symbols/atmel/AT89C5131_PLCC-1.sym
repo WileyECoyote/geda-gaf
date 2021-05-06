@@ -501,7 +501,7 @@ T 2950 2200 5 8 0 1 0 8 1
 pintype=io
 }
 T 400 11750 5 10 0 0 0 0 1
-documentation=http://www.atmel.com/dyn/resources/prod_documents/doc4136.pdf
+documentation=www.atmel.com/dyn/resources/prod_documents/doc4136.pdf
 T 400 11950 5 10 0 0 0 0 1
 description=USB C51-based microcontroller with 32kB  flash
 T 400 11150 5 10 0 0 0 0 1
