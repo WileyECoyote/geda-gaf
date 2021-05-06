@@ -6,7 +6,7 @@ footprint=SO8
 T 200 2100 5 10 0 0 0 0 1
 author=Cory Cross
 T 200 2300 5 10 0 0 0 0 1
-documentation=http://www.atmel.com/dyn/resources/prod_documents/doc3345.pdf
+documentation=www.atmel.com/dyn/resources/prod_documents/doc3345.pdf
 T 200 2500 5 10 0 0 0 0 1
 description=SPI flash
 T 200 2700 5 10 0 0 0 0 1
