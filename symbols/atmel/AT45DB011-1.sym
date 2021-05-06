@@ -10,7 +10,7 @@ footprint=SO8
 T 300 2650 8 10 0 0 0 0 1
 author=Arno Teigseth <arnotixe@gmail.com
 T 300 2850 8 10 0 0 0 0 1
-documentation=http://www.atmel.com/
+documentation=www.atmel.com/
 T 300 3050 8 10 0 0 0 0 1
 description=1-Megabit DataFlash
 T 300 1650 8 10 0 0 0 0 1
