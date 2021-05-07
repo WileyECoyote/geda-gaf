@@ -273,7 +273,7 @@ footprint=SO24W
 T 400 5800 5 10 0 0 0 0 1
 author=Cory Cross <crcross@mtu.edu>
 T 400 6000 5 10 0 0 0 0 1
-documentation=http://atmel.com/dyn/resources/prod_documents/doc4317.pdf
+documentation=atmel.com/dyn/resources/prod_documents/doc4317.pdf
 T 400 6200 5 10 0 0 0 0 1
 description=Atmel AVR series RISC microprocessor
 T 400 6400 5 10 0 0 0 0 1
