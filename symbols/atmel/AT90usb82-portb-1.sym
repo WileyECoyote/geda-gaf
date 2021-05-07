@@ -95,7 +95,7 @@ TQFP32 - PORTB
 T 0 3795 5 10 0 0 0 0 1
 footprint=TQFP32_7
 T 0 4000 5 10 0 0 0 0 1
-documentation=http://www.atmel.com/dyn/products/product_card.asp?part_id=4096
+documentation=www.atmel.com/dyn/products/product_card.asp?part_id=4096
 T 0 3600 5 10 0 0 0 0 1
 description=AVR 8-bit USB Microcontroller
 T 0 3400 5 10 0 0 0 0 1
