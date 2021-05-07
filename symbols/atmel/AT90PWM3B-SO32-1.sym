@@ -361,7 +361,7 @@ footprint=SO32
 T 400 7400 5 10 0 0 0 0 1
 author=Cory Cross
 T 400 7600 5 10 0 0 0 0 1
-documentation=http://atmel.com/dyn/resources/prod_documents/doc4317.pdf
+documentation=atmel.com/dyn/resources/prod_documents/doc4317.pdf
 T 400 7800 5 10 0 0 0 0 1
 description=Atmel AVR series RISC microprocessor
 T 400 8000 5 10 0 0 0 0 1
