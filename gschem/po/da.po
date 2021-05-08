@@ -955,23 +955,25 @@ msgstr "Automatisk visning er nu"
 #: gschem/src/iface/i_command.c:5064
 #, c-format
 msgid "(read only) width=%d, height=%d\n"
-msgstr ""
+msgstr "(skrivebeskyttet) bredde=%d, højde=%d\n"
 
+# Could not open the session file
 #: gschem/src/iface/i_sessions.c:263
 msgid "Could not open the session file"
-msgstr ""
+msgstr "Kunne ikke åbne sessionsfilen"
 
+# is not accessible
 #: gschem/src/iface/i_sessions.c:269 gschem/src/x/x_window.c:1025
 msgid "is not accessible"
-msgstr ""
+msgstr "er ikke tilgængelig"
 
 #: gschem/src/iface/i_sessions.c:273
 msgid "File"
-msgstr ""
+msgstr "Fil"
 
 #: gschem/src/iface/i_sessions.c:336
 msgid "Warning relative file names detected in session"
-msgstr ""
+msgstr "Advarsel om relative filnavne registreret i sessionen"
 
 #: gschem/src/iface/i_sessions.c:347 gschem/src/iface/i_sessions.c:360
 #: gschem/src/iface/i_sessions.c:967 gschem/src/x/x_sessions.c:242
