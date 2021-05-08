@@ -853,12 +853,12 @@ msgstr "Aktions-Rückmeldemodus wurde auf BOUNDINGBOX festgelegt."
 
 #: gschem/src/iface/i_command.c:4842
 msgid "Auto-Pan is now"
-msgstr ""
+msgstr "Das automatische Schwenken ist jetzt"
 
 #: gschem/src/iface/i_command.c:5064
 #, c-format
 msgid "(read only) width=%d, height=%d\n"
-msgstr ""
+msgstr "(schreibgeschützt) Breite=%d, Höhe=%d\n"
 
 # The session file could not be opened
 #: gschem/src/iface/i_sessions.c:263
