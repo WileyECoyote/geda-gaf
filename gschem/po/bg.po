@@ -971,26 +971,30 @@ msgstr "Режимът за обратна връзка за действие е
 msgid "Auto-Pan is now"
 msgstr "Автоматичният изглед е вече"
 
+# (samo za chetene) shirina =% d, visochina =% d
 #: gschem/src/iface/i_command.c:5064
 #, c-format
 msgid "(read only) width=%d, height=%d\n"
-msgstr ""
+msgstr "(само за четене) ширина=%d, височина=%d\n"
 
+# Faĭlŭt na sesiyata ne mozha da se otvori
 #: gschem/src/iface/i_sessions.c:263
 msgid "Could not open the session file"
-msgstr ""
+msgstr "Файлът на сесията не можа да се отвори"
 
+# is not accessible; ne e dostŭpen
 #: gschem/src/iface/i_sessions.c:269 gschem/src/x/x_window.c:1025
 msgid "is not accessible"
-msgstr ""
+msgstr "не е достъпен"
 
 #: gschem/src/iface/i_sessions.c:273
 msgid "File"
 msgstr "Файл"
 
+# Preduprezhdenie otnositelni imena na faĭlove, otkriti v sesiyata
 #: gschem/src/iface/i_sessions.c:336
 msgid "Warning relative file names detected in session"
-msgstr ""
+msgstr "Предупреждение относителни имена на файлове, открити в сесията"
 
 #: gschem/src/iface/i_sessions.c:347 gschem/src/iface/i_sessions.c:360
 #: gschem/src/iface/i_sessions.c:967 gschem/src/x/x_sessions.c:242
