@@ -8,6 +8,11 @@
             * ti/switchreg/LMR33630BDDA-1.sym
             * ti/switchreg/LMR33630BDDA-2.sym
 
+    * vishay/diode/1N493?-1.sym: Add symbols: Fast switching plastic
+      rectifiers:
+
+            * vishay/diode/1N4933-1.sym
+
 2021-04-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * onsemi/switchreg/NCP1236*-1.sym: Add symbols: Flyback Converter:
