@@ -1,0 +1,49 @@
+v 20150401 2
+T 300 1200 5 10 0 1 0 0 1
+device=DIODE
+T 500 600 8 10 1 1 0 0 1
+refdes=D?
+L 300 400 300 0 3 15 2 0 -1 -1
+L 300 400 600 200 3 15 0 0 -1 -1
+L 300 0 600 200 3 15 2 0 -1 -1
+L 600 400 600 0 3 15 1 0 -1 -1
+P 900 200 600 200 1 0 0
+{
+T 800 300 5 8 0 1 0 0 1
+pinnumber=1
+T 700 300 5 8 0 1 0 0 1
+pinseq=2
+T 800 300 9 8 0 1 0 0 1
+pinlabel=1
+T 650 75 5 8 0 1 0 0 1
+pintype=pas
+}
+P 0 200 300 200 1 0 0
+{
+T 100 300 5 8 0 1 0 6 1
+pinnumber=2
+T 200 300 5 8 0 1 0 6 1
+pinseq=1
+T 100 300 9 8 0 1 0 6 1
+pinlabel=2
+T 25 75 5 8 0 1 0 0 1
+pintype=pas
+}
+T 300 800 9 10 0 1 0 0 1
+footprint=DO-41
+T 1600 1400 5 10 0 0 0 0 1
+numslots=0
+T 300 1000 5 10 0 1 0 0 1
+description=Diode,400Volt
+T 850 0 5 10 1 1 0 0 1
+value=1N4936
+T 300 2200 5 10 0 0 0 0 1
+author=AuoTron
+T 300 2000 5 10 0 0 0 0 1
+dist-license=GPLv2
+T 300 1800 5 10 0 0 0 0 1
+use-license=unrestricted
+T 300 1400 5 10 0 0 0 0 1
+symversion=0.2
+T 300 1600 5 10 0 1 0 0 1
+documentation=https://www.vishay.com/product?docid=88508
