@@ -73,7 +73,7 @@ TQFP32- PORTC
 T 200 4095 5 10 0 0 0 0 1
 footprint=TQFP32
 T 200 4300 5 10 0 0 0 0 1
-documentation=http://www.atmel.com/dyn/products/product_card.asp?part_id=4096
+documentation=www.atmel.com/dyn/products/product_card.asp?part_id=4096
 T 200 3900 5 10 0 0 0 0 1
 description=AVR 8-bit USB Microcontroller
 T 200 3700 5 10 0 0 0 0 1
