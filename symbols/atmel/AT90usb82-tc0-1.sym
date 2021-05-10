@@ -29,7 +29,7 @@ TQFP32 - TC0
 T 100 2095 5 10 0 0 0 0 1
 footprint=TQFP32
 T 100 2300 5 10 0 0 0 0 1
-documentation=http://www.atmel.com/dyn/products/product_card.asp?part_id=4096
+documentation=www.atmel.com/dyn/products/product_card.asp?part_id=4096
 T 100 1900 5 10 0 0 0 0 1
 description=AVR 8-bit USB Microcontroller
 T 100 1700 5 10 0 0 0 0 1
