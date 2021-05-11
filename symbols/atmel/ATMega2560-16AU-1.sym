@@ -1115,7 +1115,7 @@ footprint=TQFP_100
 T 300 12600 5 10 0 0 0 0 1
 author=Daniel Fekete <thefekete AT gmail DOT com>
 T 300 11800 5 10 0 1 0 0 1
-documentation=http://www.atmel.com/dyn/resources/prod_documents/doc2549.pdf
+documentation=www.atmel.com/dyn/resources/prod_documents/doc2549.pdf
 T 300 12000 5 10 0 1 0 0 1
 description=AVR 8-bit Microcontroller with 256K Flash
 T 300 11600 5 10 0 0 0 0 1
