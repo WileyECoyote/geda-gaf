@@ -500,7 +500,7 @@ footprint=TQFP44_10
 T 400 5400 5 10 0 0 0 0 1
 author=Cory Cross
 T 400 5600 5 10 0 0 0 0 1
-documentation=http://www.atmel.com/dyn/resources/prod_documents/doc8011.pdf
+documentation=www.atmel.com/dyn/resources/prod_documents/doc8011.pdf
 T 400 5800 5 10 0 0 0 0 1
 description=Atmel 8-bit microprocessor
 T 400 6000 5 10 0 0 0 0 1
