@@ -458,5 +458,5 @@ ATmega16L
 T 400 9550 5 10 0 0 0 0 1
 symversion=2.1
 T 400 9750 5 10 0 0 0 0 1
-documentation=http://www.atmel.com/dyn/resources/prod_documents/doc2466.pdf
+documentation=www.atmel.com/dyn/resources/prod_documents/doc2466.pdf
 
