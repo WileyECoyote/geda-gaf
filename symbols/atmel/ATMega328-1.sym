@@ -363,7 +363,7 @@ footprint=TQFP-32-7
 T 350 6500 5 10 0 0 0 0 1
 author=Jon Noble
 T 350 6300 5 10 0 1 0 0 1
-documentation=http://www.atmel.com/dyn/resources/prod_documents/doc8271.pdf
+documentation=www.atmel.com/dyn/resources/prod_documents/doc8271.pdf
 T 350 6100 5 10 0 1 0 0 1
 description=Microcontroller,8-bit,AVR RISC
 T 1178 200 9 10 0 0 0 0 1
