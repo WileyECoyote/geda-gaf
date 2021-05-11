@@ -368,7 +368,7 @@ footprint=TQFP32
 T 400 9200 5 10 0 0 0 0 1
 author=Dan Fekete <thefekete AT gmail DOT com>
 T 400 9400 5 10 0 0 0 0 1
-documentation=http://www.atmel.com/dyn/resources/prod_documents/doc8271.pdf
+documentation=www.atmel.com/dyn/resources/prod_documents/doc8271.pdf
 T 400 9600 5 10 0 0 0 0 1
 description=8 bit Atmel MicroController
 T 400 9800 5 10 0 0 0 0 1
