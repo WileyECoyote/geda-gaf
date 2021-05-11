@@ -308,7 +308,7 @@ footprint=TQFP-44-10
 T 300 9400 5 10 0 0 0 0 1
 author=andrewmATthehacktoryDOTcom
 T 300 8800 5 10 0 0 0 0 1
-documentation=http://www.atmel.com/dyn/resources/prod_documents/doc2466.pdf
+documentation=www.atmel.com/dyn/resources/prod_documents/doc2466.pdf
 T 300 8600 5 10 0 0 0 0 1
 description=ATMega16,TQFP
 T 300 9200 5 10 0 0 0 0 1
