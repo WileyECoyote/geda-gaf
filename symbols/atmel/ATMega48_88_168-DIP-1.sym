@@ -317,7 +317,7 @@ B 400 100 3200 6400 3 0 0 0 100 100 0 0 45 50 135 50
 T 2700 7200 5 10 0 0 0 0 1
 symversion=0.2
 T 400 7400 5 10 0 1 0 0 1
-documentation=http://www.atmel.com/images/Atmel-7530-Automotive-Microcontrollers-ATmega48-ATmega88-ATmega168_Datasheet.pdf
+documentation=www.atmel.com/images/Atmel-7530-Automotive-Microcontrollers-ATmega48-ATmega88-ATmega168_Datasheet.pdf
 T 400 6750 5 10 1 1 0 0 1
 footprint=DIP28
 T 400 6550 5 10 1 1 0 0 1
