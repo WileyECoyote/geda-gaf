@@ -319,6 +319,6 @@ footprint=DIL-28-300
 T 400 7000 5 10 0 0 0 0 1
 numslots=0
 T 400 7200 5 10 0 0 0 0 1
-documentation=https://en.wikipedia.org/wiki/Atmel_AVR
+documentation=en.wikipedia.org/wiki/Atmel_AVR
 T 400 6800 5 10 0 0 0 0 1
 description=Microcontroller,8-bit,picoPower,AVR RISC
