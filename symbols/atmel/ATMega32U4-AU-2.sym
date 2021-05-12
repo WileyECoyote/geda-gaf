@@ -493,7 +493,7 @@ device=ATMEGA32U4-AU
 T 400 11200 5 10 0 1 0 0 1
 footprint=TQFP-44-10
 T 400 12000 5 10 0 1 0 0 1
-documentation=http://www.microchip.com/wwwproducts/en/ATmega32u4
+documentation=www.microchip.com/wwwproducts/en/ATmega32u4
 T 400 11800 5 10 0 1 0 0 1
 description=Microcontroller, 8-Bit AVR
 T 400 11400 5 10 0 0 0 0 1
