@@ -319,7 +319,7 @@ numslots=0
 T 400 7600 9 10 0 0 0 0 1
 footprint=DIL-28-300
 T 400 8200 5 10 0 1 0 0 1
-documentation=http://www.atmel.com/devices/atmega328p.aspx
+documentation=www.atmel.com/devices/atmega328p.aspx
 T 400 7800 5 10 0 1 0 0 1
 description=Microcontroller,8-bit,AVR RISC
 T 478 142 9 10 0 0 0 0 1
