@@ -6,7 +6,7 @@ ATmega8
 T 100 5000 8 10 0 0 0 0 1
 description=Low-power AVR 8-bit Microcontroller
 T 100 5200 8 10 0 0 0 0 1
-documentation=http://rocky.digikey.com/WebLib/Atmel/Web Data/ATmeg8(L) Preliminary Complete.pdf
+documentation=rocky.digikey.com/WebLib/Atmel/Web Data/ATmeg8(L) Preliminary Complete.pdf
 T 100 4800 8 10 0 0 0 0 1
 footprint=DIP28N
 T 2300 4600 8 10 1 1 0 6 1
