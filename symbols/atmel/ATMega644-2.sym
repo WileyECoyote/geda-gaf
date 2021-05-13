@@ -500,7 +500,7 @@ value=ATmega644PA
 T 400 5700 5 10 0 1 0 0 1
 footprint=TQFP-44-10
 T 400 6300 5 10 0 1 0 0 1
-documentation=http://www.atmel.com/dyn/resources/prod_documents/doc8272.pdf
+documentation=www.atmel.com/dyn/resources/prod_documents/doc8272.pdf
 T 400 6100 5 10 0 0 0 0 1
 numslots=0
 T 400 7100 5 10 0 0 0 0 1
