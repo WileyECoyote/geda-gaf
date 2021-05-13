@@ -1114,7 +1114,7 @@ footprint=TQFP_14
 T 300 7000 5 10 0 0 0 0 1
 author=Cory Cross
 T 300 7200 5 10 0 0 0 0 1
-documentation=http://atmel.com/dyn/resources/prod_documents/doc2549.pdf
+documentation=atmel.com/dyn/resources/prod_documents/doc2549.pdf
 T 300 7400 5 10 0 0 0 0 1
 description=Atmel AVR Processor
 T 300 7600 5 10 0 0 0 0 1
