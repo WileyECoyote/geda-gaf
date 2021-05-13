@@ -310,7 +310,7 @@ footprint=TQFP-32-7
 T 300 4800 5 10 0 0 0 0 1
 author=Rick Altherr
 T 300 5000 5 10 0 0 0 0 1
-documentation=http://www.atmel.com/products/microcontrollers/default.aspx
+documentation=www.atmel.com/products/microcontrollers/default.aspx
 T 300 5200 5 10 0 0 0 0 1
 description=Atmel 8-bit microcontrollr
 T 300 5400 5 10 0 0 0 0 1
