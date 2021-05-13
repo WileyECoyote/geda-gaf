@@ -361,7 +361,7 @@ footprint=TQFP-32-7
 T 3000 7050 5 10 0 0 0 0 1
 author=Cory Cross
 T 3000 7250 5 10 0 0 0 0 1
-documentation=http://atmel.com/dyn/resources/prod_documents/doc2545.pdf
+documentation=atmel.com/dyn/resources/prod_documents/doc2545.pdf
 T 3000 7450 5 10 0 0 0 0 1
 description=Atmel AVR series RISC microprocessor,TQFP32
 T 3000 7650 5 10 0 0 0 0 1
