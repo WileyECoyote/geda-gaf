@@ -496,7 +496,7 @@ pintype=pwr
 }
 B 300 0 3000 5400 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
 T 300 6500 5 10 0 1 0 0 1
-documentation=http://www.atmel.com/dyn/resources/prod_documents/doc8272.pdf
+documentation=www.atmel.com/dyn/resources/prod_documents/doc8272.pdf
 T 300 5500 9 10 1 1 0 0 1
 value=ATmega644PA
 T 300 5700 5 10 0 0 0 0 1
