@@ -53,6 +53,6 @@ pinseq=4
 }
 B 400 100 1400 800 3 0 0 0 100 100 0 0 45 50 135 50
 T 400 1800 5 10 0 1 0 0 1
-documentation=http://atmel.com/dyn/resources/prod_documents/doc2545.pdf
+documentation=atmel.com/dyn/resources/prod_documents/doc2545.pdf
 T 400 1400 5 10 0 1 0 0 1
 description=Atmel AVR series RISC microprocessor,DIP28
