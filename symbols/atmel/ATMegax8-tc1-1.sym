@@ -64,6 +64,6 @@ value=MEGAx8
 T 1800 1500 8 10 1 1 0 6 1
 refdes=U?
 T 400 2300 5 10 0 1 0 0 1
-documentation=http://atmel.com/dyn/resources/prod_documents/doc2545.pdf
+documentation=atmel.com/dyn/resources/prod_documents/doc2545.pdf
 T 400 1900 5 10 0 1 0 0 1
 description=Atmel AVR series RISC microprocessor,DIP28
