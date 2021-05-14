@@ -229,7 +229,7 @@ device=ATtiny2313
 T 300 4900 5 10 0 0 0 0 1
 author=andrewmATthehacktoryDOTcom
 T 300 5100 5 10 0 0 0 0 1
-documentation=http://www.atmel.com/dyn/resources/prod_documents/doc2543.pdf
+documentation=www.atmel.com/dyn/resources/prod_documents/doc2543.pdf
 T 300 5300 5 10 0 0 0 0 1
 description=ATtiny2313_DIP_SO
 T 300 5500 5 10 0 0 0 0 1
