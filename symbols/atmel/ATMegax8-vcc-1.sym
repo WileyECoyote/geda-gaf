@@ -40,7 +40,7 @@ pinseq=3
 }
 B 400 100 1400 800 3 0 0 0 100 100 0 0 45 50 135 50
 T 400 1600 5 10 0 1 0 0 1
-documentation=http://atmel.com/dyn/resources/prod_documents/doc2545.pdf
+documentation=atmel.com/dyn/resources/prod_documents/doc2545.pdf
 T 400 1200 9 10 0 1 0 0 1
 footprint=DIP28N
 T 400 1000 5 10 1 1 0 0 1
