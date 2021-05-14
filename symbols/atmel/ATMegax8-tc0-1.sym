@@ -55,4 +55,4 @@ footprint=DIP28N
 T 400 950 5 10 1 1 0 0 1
 value=MEGAx8
 T 400 1750 5 10 0 1 0 0 1
-documentation=http://atmel.com/dyn/resources/prod_documents/doc2545.pdf
+documentation=atmel.com/dyn/resources/prod_documents/doc2545.pdf
