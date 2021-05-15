@@ -1012,23 +1012,28 @@ msgstr "Режим магнітної мережі включений"
 msgid "Magnetic net mode is OFF"
 msgstr "Режим магнітної мережі вимкнено"
 
+# Off; Vymkneno
 #: gschem/src/iface/i_command.c:4792 gschem/src/iface/i_command.c:4836
 #: gschem/src/x/x_compselect.c:135 gschem/src/x/x_toolbars.c:261
 msgid "Off"
-msgstr ""
+msgstr "Вимкнено"
 
+# On; Uvimkneno
 #: gschem/src/iface/i_command.c:4796 gschem/src/iface/i_command.c:4840
 #: gschem/src/x/x_compselect.c:134
 msgid "On"
-msgstr ""
+msgstr "Увімкнено"
 
+# Peretyahuvannya mozhna peremistyty
 #: gschem/src/iface/i_command.c:4798
 msgid "Drag-Can-Move is now"
-msgstr ""
+msgstr "Перетягування можна перемістити"
 
+# Action feedback mode set to OUTLINE
+# Rezhym zvorotnoho zv'yazku pro diyi vstanovleno na kordon
 #: gschem/src/iface/i_command.c:4810
 msgid "Action feedback mode set to OUTLINE"
-msgstr ""
+msgstr "Режим зворотного зв'язку про дії встановлено на кордон"
 
 #: gschem/src/iface/i_command.c:4814
 msgid "Action feedback mode set to BOUNDINGBOX"
