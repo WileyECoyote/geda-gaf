@@ -925,11 +925,11 @@ msgstr "Açık"
 
 #: gschem/src/iface/i_command.c:4798
 msgid "Drag-Can-Move is now"
-msgstr ""
+msgstr "Drag-Can-Move artık"
 
 #: gschem/src/iface/i_command.c:4810
 msgid "Action feedback mode set to OUTLINE"
-msgstr ""
+msgstr "Eylem geri bildirim modu OUTLINE olarak ayarlandı"
 
 #: gschem/src/iface/i_command.c:4814
 msgid "Action feedback mode set to BOUNDINGBOX"
