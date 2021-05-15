@@ -872,7 +872,7 @@ msgstr "ist nicht zugänglich"
 
 #: gschem/src/iface/i_sessions.c:273
 msgid "File"
-msgstr "Datei:"
+msgstr "Datei"
 
 #: gschem/src/iface/i_sessions.c:336
 msgid "Warning relative file names detected in session"
@@ -883,13 +883,14 @@ msgstr ""
 msgid "Session"
 msgstr "_Name anzeigen"
 
+# opening
 #: gschem/src/iface/i_sessions.c:348
 msgid "opening"
-msgstr ""
+msgstr "Öffnung"
 
 #: gschem/src/iface/i_sessions.c:349
 msgid "of"
-msgstr ""
+msgstr "von"
 
 #: gschem/src/iface/i_sessions.c:350 gschem/src/iface/i_sessions.c:969
 #: gschem/src/iface/i_sessions.c:1143
