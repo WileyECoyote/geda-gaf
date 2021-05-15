@@ -687,26 +687,29 @@ msgstr "נוצר חלון חדש"
 msgid "Failed to Save All"
 msgstr "שמירת הכל נכשלה"
 
+# Saved All
 #: gschem/src/iface/i_command.c:1206 gschem/src/iface/i_command.c:1223
 msgid "Saved All"
-msgstr ""
+msgstr "שמור הכל"
 
+# Error encountered, Save Failed
 #: gschem/src/iface/i_command.c:1220
 msgid "Error encountered, Save Failed"
-msgstr ""
+msgstr "אירעה שגיאה, שמירה נכשלה"
 
 # Write Image
 #: gschem/src/iface/i_command.c:1290 gschem/src/x/x_image.c:545
 msgid "Write Image"
 msgstr "ככתוב תמונה"
 
+# Write PDF
 #: gschem/src/iface/i_command.c:1312
 msgid "Write PDF"
-msgstr ""
+msgstr "כתוב PDF"
 
 #: gschem/src/iface/i_command.c:1408 gschem/src/iface/i_sessions.c:184
 msgid "Canceled close all\n"
-msgstr ""
+msgstr "בוטל סגור הכל\n"
 
 # Closing all documents
 #: gschem/src/iface/i_command.c:1417 gschem/src/iface/i_sessions.c:193
@@ -715,19 +718,19 @@ msgstr "סוגר את כל המסמכים\n"
 
 #: gschem/src/iface/i_command.c:1440
 msgid "starting shut-down"
-msgstr ""
+msgstr "מתחיל כיבוי"
 
 #: gschem/src/iface/i_command.c:1454
 msgid "Symbol is not embedded, export anyway?"
-msgstr ""
+msgstr "הסמל אינו מוטבע, בכל מקרה ייצא?"
 
 #: gschem/src/iface/i_command.c:1478
 msgid "Picture is not embedded, export anyway?"
-msgstr ""
+msgstr "התמונה אינה מוטמעת, ייצא בכל מקרה?"
 
 #: gschem/src/iface/i_command.c:1625
 msgid "Empty buffer"
-msgstr ""
+msgstr "חיץ ריק"
 
 # Offset Mode
 #: gschem/src/iface/i_command.c:1890
