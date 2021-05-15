@@ -1001,20 +1001,20 @@ msgstr "Advertiment de noms de fitxers relatius detectats a la sessió"
 #: gschem/src/iface/i_sessions.c:347 gschem/src/iface/i_sessions.c:360
 #: gschem/src/iface/i_sessions.c:967 gschem/src/x/x_sessions.c:242
 msgid "Session"
-msgstr ""
+msgstr "sessió"
 
 #: gschem/src/iface/i_sessions.c:348
 msgid "opening"
-msgstr ""
+msgstr "obertura"
 
 #: gschem/src/iface/i_sessions.c:349
 msgid "of"
-msgstr ""
+msgstr "de"
 
 #: gschem/src/iface/i_sessions.c:350 gschem/src/iface/i_sessions.c:969
 #: gschem/src/iface/i_sessions.c:1143
 msgid "documents"
-msgstr ""
+msgstr "documents"
 
 #: gschem/src/iface/i_sessions.c:359
 msgid "did not contain any accessible documents"
