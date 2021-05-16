@@ -185,7 +185,7 @@ device=ATtiny2313
 T 300 4400 5 10 0 0 0 0 1
 author=andrewmATthehacktoryDOTcom
 T 300 4600 5 10 0 0 0 0 1
-documentation=http://www.atmel.com/dyn/resources/prod_documents/doc2543.pdf
+documentation=www.atmel.com/dyn/resources/prod_documents/doc2543.pdf
 T 300 4800 5 10 0 0 0 0 1
 description=ATtiny2313_DIP_SO_Physical_pinout
 T 300 5000 5 10 0 0 0 0 1
