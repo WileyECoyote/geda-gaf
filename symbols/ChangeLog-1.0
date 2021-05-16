@@ -1,4 +1,9 @@
-2021-05-09 Wiley E. Hill <wileyhill@gmail.com>
+2021-05-16 Wiley E. Hill <wileyhill@gmail.com>
+
+    * arduino/XBeePRO-1.sym: Rename symbol with dash 1.
+
+    * onsemi/switchreg/NCP13992-1.sym: Add symbol: Current mode controller
+      for half bridge resonant converters.
 
     * ti/switchreg/LMR33630CDDA-?.sym: Add symbols: 3A Synchronous Step-down
       Voltage Converters:
