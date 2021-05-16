@@ -19,7 +19,7 @@ use-license=unlimited
 T 275 3250 5 10 0 0 0 0 1
 description=ATtiny25/45/85 - 8-bit AVR RISC microcontrollers with 2/4/8 kb of flash memory (Atmel)
 T 275 3050 5 10 0 0 0 0 1
-documentation=http://www.atmel.com/dyn/resources/prod_documents/doc2586.pdf
+documentation=www.atmel.com/dyn/resources/prod_documents/doc2586.pdf
 P 0 1200 300 1200 1 0 0
 {
 T 205 1245 5 8 1 1 0 6 1
