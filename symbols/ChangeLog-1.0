@@ -1,6 +1,13 @@
 2021-05-09 Wiley E. Hill <wileyhill@gmail.com>
 
-    * ti/switchreg/LMR33630ADDA-1.sym: Add symbols: 3A Synchronous Step-down
+    * ti/switchreg/LMR33630CDDA-?.sym: Add symbols: 3A Synchronous Step-down
+      Voltage Converters:
+
+            * ti/switchreg/LMR33630CDDA-1.sym
+
+2021-05-09 Wiley E. Hill <wileyhill@gmail.com>
+
+    * ti/switchreg/LMR33630?DDA-?.sym: Add symbols: 3A Synchronous Step-down
       Voltage Converters:
 
             * ti/switchreg/LMR33630ADDA-1.sym
