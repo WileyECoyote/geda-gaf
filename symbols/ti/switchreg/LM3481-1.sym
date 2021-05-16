@@ -4,7 +4,7 @@ footprint=VSSOP-10-50P
 T 300 3050 5 10 0 0 0 0 1
 author=AutoTron
 T 300 2850 5 10 0 1 0 0 1
-documentation=http://www.ti.com/product/lm3481
+documentation=www.ti.com/product/lm3481
 T 300 2650 5 10 0 1 0 0 1
 description=Controller for Switching Regulators
 T 1300 2450 5 10 0 0 0 0 1
