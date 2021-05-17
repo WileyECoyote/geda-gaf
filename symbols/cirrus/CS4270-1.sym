@@ -273,7 +273,7 @@ footprint=TSSOP24
 T 400 5700 5 10 0 0 0 0 1
 author=Wojciech Zabolotny <wzab@ise.pw.edu.pl>
 T 400 4700 5 10 0 0 0 0 1
-documentation=http://www.cirrus.com/en/products/pro/detail/P1091.html
+documentation=www.cirrus.com/en/products/pro/detail/P1091.html
 T 400 4900 5 10 0 0 0 0 1
 description=105dB, 24-Bit, 192 kHz Stereo Audio CODEC
 T 400 5100 5 10 0 0 0 0 1
