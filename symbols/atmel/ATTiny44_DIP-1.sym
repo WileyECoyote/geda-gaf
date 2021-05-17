@@ -143,7 +143,7 @@ footprint=dip14-1
 T 300 3500 5 10 0 0 0 0 1
 author=Bill Gatliff <bgat@billgatliff.com>
 T 300 3700 5 10 0 0 0 0 1
-documentation=http://www.atmel.com/dyn/products/product_card.asp?part_id=3828
+documentation=www.atmel.com/dyn/products/product_card.asp?part_id=3828
 T 300 3900 5 10 0 0 0 0 1
 description=Atmel ATtiny44 8-Bit RISC Microcontroller
 T 300 4100 5 10 0 0 0 0 1
