@@ -3595,6 +3595,41 @@ COMMAND (do_add_attribute)
 }
 
 /*!
+ * \brief Action Add Source Attribute in i_command_Add_Actions
+ * \par Function Description
+ *  This is the action handler function for #ADD_SOURCE action.
+ *  The function.
+ */
+COMMAND (do_add_source_attribute)
+{
+  BEGIN_W_COMMAND(do_add_source_attribute);
+
+  GedaObject *o_current = o_select_return_first_object(w_current);
+
+  if (GEDA_IS_COMPLEX(o_current)) {
+
+    GedaObject *attrib;
+
+    attrib = geda_attrib_new_attached (o_current, "source", "?", VISIBLE, SHOW_VALUE);
+
+    x_attrib_edit_dialog(w_current, attrib);
+
+    geda_log(_("Added source attribute\n"));
+  }
+  else {
+    /* Nothing selected, go back to select state */
+    geda_log(_("No Complex selected\n"));
+    o_redraw_cleanstates(w_current);
+    i_status_action_stop(w_current);
+    i_status_set_state(w_current, SELECT);
+  }
+
+  i_status_set_state(w_current, SELECT);
+
+  EXIT_COMMAND(do_add_source_attribute);
+}
+
+/*!
  * \brief Add Line Mode  in i_command_Add_Actions
  * \par Function Description
  *  This is the action handler function for ADD_LINE.

@@ -163,6 +163,7 @@
 #define ADD_NET           add-net
 #define ADD_BUS           add-bus
 #define ADD_ATTRIB        add-attribute
+#define ADD_SOURCE        add-source-attribute
 #define ADD_TEXT          add-text
 #define ADD_LINE          add-line
 #define ADD_PIN           add-pin

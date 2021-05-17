@@ -1994,6 +1994,7 @@
 (map-icon "gschem-bus"                 "add-bus")
 (map-icon "gaf-add-attribute"          "add-attribute")
 ;(map-icon "insert-attribute"           "add-attribute")
+(map-icon "insert-attribute"           "add-source-attribute")
 (map-icon "gschem-text"                "add-text")
 ;(map-icon "gtk-bold"                   "add-text")
 (map-icon "geda-arc"                   "add-arc")
@@ -2281,6 +2282,7 @@
         (,(N_ "B_us")              add-bus                 "gschem-bus"       ,(N_ "Add bus"))
         (,(N_ "_Attribute...")     add-attribute           #f                 ,(N_ "Add attribute"))
         (,(N_ "_Text...")          add-text                #f                 ,(N_ "Add text"))
+        (,(N_ "_Source...")        add-source-attribute    #f                 ,(N_ "Add a source attribute"))
 
         ("SEPARATOR"              #f                       #f)
         (,(N_ "A_rc")              add-arc                 "geda-arc"         ,(N_ "Create an arc"))
