@@ -819,8 +819,7 @@ SCM g_rc_logging(SCM mode)
 /*! \brief This function processes log-destiny information
  *
  *  \par Function Description
- *       Process entry for the log-destiny
- *       string in the initialization rc file
+ *       Process entry for the log-destiny string in the initialization rc file.
  *
  */
 SCM g_rc_log_destiny(SCM mode)
