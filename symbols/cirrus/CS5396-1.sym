@@ -325,6 +325,6 @@ numslots=0
 T 300 6400 5 10 0 0 0 0 1
 symversion=0.1
 T 300 7200 5 10 0 0 0 0 1
-documentation=http://www.cirrus.com/en/pubs/proBulletin/5396pi_3.pdf
+documentation=www.cirrus.com/en/pubs/proBulletin/5396pi_3.pdf
 T 300 5750 3 10 1 1 0 0 1
 value=CS5396-KS
