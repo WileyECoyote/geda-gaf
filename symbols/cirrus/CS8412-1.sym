@@ -13,7 +13,7 @@ numslots=0
 T 1300 700 5 10 0 0 0 0 1
 symversion=0.1
 T 400 8000 5 10 0 1 0 0 1
-documentation=http://www.futurlec.com/Others/CS8412.shtml
+documentation=www.futurlec.com/Others/CS8412.shtml
 T 400 7050 3 10 1 1 0 0 1
 value=CS8412
 P 3400 4400 3700 4400 1 0 1
