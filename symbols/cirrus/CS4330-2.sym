@@ -101,7 +101,7 @@ dist-license=GPLv2
 T 400 3300 5 10 0 0 0 0 1
 use-license=unlimited
 T 400 3100 5 10 0 0 0 0 1
-documentation=http://www.csl.mtu.edu/cs4331/www/
+documentation=www.csl.mtu.edu/cs4331/www/
 T 400 2500 9 10 0 1 0 0 1
 footprint=SOIC8
 T 550 200 5 10 0 0 0 0 1
