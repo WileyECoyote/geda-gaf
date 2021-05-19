@@ -174,7 +174,7 @@ footprint=TBLOCK8
 T 300 3400 5 10 0 1 0 0 1
 value=282841-8
 T 300 4400 5 10 0 1 0 0 1
-documentation=http://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&DocNm=1308389_INTERFACE_MODULE_SYSTEMS&DocType=CS&DocLang=English
+documentation=www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&DocNm=1308389_INTERFACE_MODULE_SYSTEMS&DocType=CS&DocLang=English
 T 300 5000 5 10 0 0 0 0 1
 author=Daniel Fekete <thefekete AT gmail DOT com>
 T 300 4600 5 10 0 0 0 0 1
