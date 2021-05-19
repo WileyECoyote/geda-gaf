@@ -1109,7 +1109,7 @@ footprint=DIM100
 T 400 17700 5 10 0 0 0 0 1
 author=AutoTron
 T 400 16900 5 10 0 1 0 0 1
-documentation=http://www.ti.com/tool/TMDSDIM100CON5PK
+documentation=www.ti.com/tool/TMDSDIM100CON5PK
 T 400 16700 5 10 0 1 0 0 1
 description=DIMM Socket for Piccolo Microcontrollers
 T 400 17100 5 10 0 0 0 0 1
