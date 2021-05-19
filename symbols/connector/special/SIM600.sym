@@ -1109,7 +1109,7 @@ footprint=AXK5F00545YJ
 T 400 21200 5 10 0 0 0 0 1
 author=Wojciech Zabolotny <wzab@ise.pw.edu.pl>
 T 400 21400 5 10 0 0 0 0 1
-documentation=http://www.sim.com/productssolutions/wirelessmodule/sim600.htm
+documentation=www.sim.com/productssolutions/wirelessmodule/sim600.htm
 T 400 21600 5 10 0 0 0 0 1
 description=SIM600 GSM/GPRS/EDGE module board-to-board connector
 T 400 21800 5 10 0 0 0 0 1
