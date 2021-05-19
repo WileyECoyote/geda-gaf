@@ -214,4 +214,4 @@ description=8-bit D-type latch with tristate outputs
 T 50 4650 5 10 0 0 0 0 1
 numslots=0
 T 50 4850 5 10 0 0 0 0 1
-documentation=http://www.ti.com/lit/ds/symlink/cy74fct2573t.pdf
+documentation=www.ti.com/lit/ds/symlink/cy74fct2573t.pdf
