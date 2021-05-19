@@ -583,6 +583,6 @@ footprint=PQFP52_10X10_52
 T 4800 6300 5 8 0 0 0 0 1
 symversion=0.2
 T 1500 8200 5 10 0 1 0 0 1
-documentation=http://www.cypress.com/file/125331/download
+documentation=www.cypress.com/file/125331/download
 T 2500 5900 9 16 1 1 0 0 1
 description=USB Microcontroller
