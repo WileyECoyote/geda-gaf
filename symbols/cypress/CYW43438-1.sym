@@ -704,7 +704,7 @@ value=CYW43438
 T 400 13800 5 10 0 0 0 0 1
 footprint=BGA-CYW43438
 T 400 14200 5 10 0 1 0 0 1
-documentation=http://www.cypress.com/file/298076/download
+documentation=www.cypress.com/file/298076/download
 T 400 14000 5 10 0 1 0 0 1
 description=802.11 b,g,n, Bluetooth 4.2, FM Radio
 T 400 15000 5 10 0 0 0 0 1
