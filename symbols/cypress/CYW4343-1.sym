@@ -1694,7 +1694,7 @@ footprint=CYW4343
 T 400 32000 5 10 0 0 0 0 1
 author=AutoTron
 T 400 32200 5 10 0 0 0 0 1
-documentation=http://www.cypress.com/file/358916/download
+documentation=www.cypress.com/file/358916/download
 T 400 32400 5 10 0 0 0 0 1
 description=802.11 b,g,n, 5G, Bluetooth 4.1, FM Radio
 T 400 32600 5 10 0 0 0 0 1
