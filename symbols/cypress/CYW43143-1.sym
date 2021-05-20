@@ -623,7 +623,7 @@ device=CYW43143
 T 7800 8500 5 10 0 0 0 0 1
 numslots=0
 T 7800 8100 5 10 0 1 0 0 1
-documentation=http://www.cypress.com/file/298756/download
+documentation=www.cypress.com/file/298756/download
 T 7800 8300 5 10 0 1 0 0 1
 description=IEEE 802.11 b,g,n MAC,PHY,Radio, USB, SDIO
 T 7800 7500 9 10 1 1 0 0 1
