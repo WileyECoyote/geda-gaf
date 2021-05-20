@@ -1547,7 +1547,7 @@ device=CYW43455
 T 400 31500 5 10 0 0 0 0 1
 numslots=0
 T 400 31700 5 10 0 0 0 0 1
-documentation=http://www.cypress.com/file/358916/download
+documentation=www.cypress.com/file/358916/download
 T 400 31900 5 10 0 0 0 0 1
 description=802.11 b,g,n, 5G, Bluetooth 4.1, FM Receiver
 T 400 30900 9 10 1 1 0 0 1
