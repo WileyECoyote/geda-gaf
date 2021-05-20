@@ -2119,7 +2119,7 @@ device=CYW4356
 T 8950 11100 5 10 0 0 0 0 1
 numslots=0
 T 8950 11300 5 10 0 1 0 0 1
-documentation=http://www.cypress.com/file/298756/download
+documentation=www.cypress.com/file/298756/download
 T 8950 11500 5 10 0 1 0 0 1
 description=IEEE 802.11 ac 2x2 MAC,PHY,Radio, USB, SDIO
 T 8950 10500 9 10 1 1 0 0 1
