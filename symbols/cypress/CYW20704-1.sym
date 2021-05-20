@@ -535,7 +535,7 @@ device=CYW20704
 T 400 12100 5 10 0 0 0 0 1
 numslots=0
 T 400 12300 5 10 0 1 0 0 1
-documentation=http://www.cypress.com/file/298026/download
+documentation=www.cypress.com/file/298026/download
 T 400 12500 5 10 0 1 0 0 1
 description=802.11 b,g,n, bluetooth 5.0, baseband processor
 T 400 11500 9 10 1 1 0 0 1
