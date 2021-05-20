@@ -757,7 +757,7 @@ footprint=BGA-CYW43362
 T 400 17500 5 10 0 0 0 0 1
 author=AutoTron
 T 400 16500 5 10 0 0 0 0 1
-documentation=http://www.cypress.com/file/298001/download
+documentation=www.cypress.com/file/298001/download
 T 400 16700 5 10 0 0 0 0 1
 description=2.4 GHz WLAN 802.11 b/g/n MAC/baseband/radio
 T 400 16900 5 10 0 0 0 0 1
