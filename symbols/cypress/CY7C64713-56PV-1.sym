@@ -625,7 +625,7 @@ footprint=SSOP56W
 T 2300 7000 5 8 0 0 0 0 1
 symversion=0.2
 T 1500 8200 5 10 0 1 0 0 1
-documentation=http://www.cypress.com/file/125331/download
+documentation=www.cypress.com/file/125331/download
 T 3700 6100 9 16 1 1 0 3 1
 description=USB Microcontroller
 T 3700 6700 9 30 1 1 0 4 1
