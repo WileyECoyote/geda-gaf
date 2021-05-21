@@ -19,7 +19,7 @@ use-license=unlimited
 T 175 2850 5 10 0 0 0 0 1
 description=Programmable resolution 1-Wire digital thermometer (Maxim/Dallas)
 T 175 2650 5 10 0 0 0 0 1
-documentation=http://datasheets.maxim-ic.com/en/ds/DS18B20.pdf
+documentation=datasheets.maxim-ic.com/en/ds/DS18B20.pdf
 B 100 200 50 350 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
 L 150 500 175 500 3 0 0 0 -1 -1
 L 150 450 175 450 3 0 0 0 -1 -1
