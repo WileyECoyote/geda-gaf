@@ -19,7 +19,7 @@ use-license=unlimited
 T 275 3450 5 10 0 0 0 0 1
 description=DS1631/DS1631A/DS1731 High-Precision Digital Thermometer and Thermostat
 T 275 3250 5 10 0 0 0 0 1
-documentation=http://datasheets.maxim-ic.com/en/ds/DS1631-DS1731.pdf
+documentation=datasheets.maxim-ic.com/en/ds/DS1631-DS1731.pdf
 P 0 600 300 600 1 0 0
 {
 T 205 645 5 8 1 1 0 6 1
