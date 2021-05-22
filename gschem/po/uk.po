@@ -1037,20 +1037,22 @@ msgstr "Режим зворотного зв'язку про дії встано
 
 #: gschem/src/iface/i_command.c:4814
 msgid "Action feedback mode set to BOUNDINGBOX"
-msgstr ""
+msgstr "Для режиму зворотного зв'язку про дію встановлено обмежувальне поле"
 
 #: gschem/src/iface/i_command.c:4842
 msgid "Auto-Pan is now"
-msgstr ""
+msgstr "Автоматичне панорамування зараз"
 
+# (lyshe dlya chytannya) shyryna, vysota
 #: gschem/src/iface/i_command.c:5064
 #, c-format
 msgid "(read only) width=%d, height=%d\n"
-msgstr ""
+msgstr "(лише для читання) ширина=%d, висота=%d\n"
 
+# Could not open the session file; Ne vdalosya vidkryty fayl seansu
 #: gschem/src/iface/i_sessions.c:263
 msgid "Could not open the session file"
-msgstr ""
+msgstr "Не вдалося відкрити файл сеансу"
 
 #: gschem/src/iface/i_sessions.c:269 gschem/src/x/x_window.c:1025
 msgid "is not accessible"
