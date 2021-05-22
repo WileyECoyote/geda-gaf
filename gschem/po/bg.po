@@ -1001,22 +1001,25 @@ msgstr "Предупреждение относителни имена на фа
 msgid "Session"
 msgstr "Сесия"
 
+# opening
 #: gschem/src/iface/i_sessions.c:348
 msgid "opening"
-msgstr ""
+msgstr "отваряне"
 
 #: gschem/src/iface/i_sessions.c:349
 msgid "of"
-msgstr ""
+msgstr "на"
 
+# documents; dokumenti
 #: gschem/src/iface/i_sessions.c:350 gschem/src/iface/i_sessions.c:969
 #: gschem/src/iface/i_sessions.c:1143
 msgid "documents"
-msgstr ""
+msgstr "документи"
 
+# ne sŭdŭrzha dostŭpni dokumenti
 #: gschem/src/iface/i_sessions.c:359
 msgid "did not contain any accessible documents"
-msgstr ""
+msgstr "не съдържа достъпни документи"
 
 #: gschem/src/iface/i_sessions.c:796
 msgid "Sessions"
