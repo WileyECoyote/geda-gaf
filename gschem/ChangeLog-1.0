@@ -10,6 +10,8 @@
 
     * po/fi.po: Update Finnish translations.
 
+    * po/hu.po: Update Hungarian translations.
+
 2021-05-17 Wiley E. Hill <wileyhill@gmail.com>
 
     * etc/system-gschemrc.scm: Add source attribute menu option.
