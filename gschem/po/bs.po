@@ -975,9 +975,10 @@ msgstr "Upozorenje relativna imena datoteka otkrivena u sesiji"
 msgid "Session"
 msgstr "kolekcija datoteka"
 
+# opening
 #: gschem/src/iface/i_sessions.c:348
 msgid "opening"
-msgstr ""
+msgstr "otvaranje"
 
 #: gschem/src/iface/i_sessions.c:349
 msgid "of"
@@ -986,11 +987,11 @@ msgstr ""
 #: gschem/src/iface/i_sessions.c:350 gschem/src/iface/i_sessions.c:969
 #: gschem/src/iface/i_sessions.c:1143
 msgid "documents"
-msgstr ""
+msgstr "od"
 
 #: gschem/src/iface/i_sessions.c:359
 msgid "did not contain any accessible documents"
-msgstr ""
+msgstr "nije sadržavao nijedan dostupan dokument"
 
 # Sessions
 #: gschem/src/iface/i_sessions.c:796
@@ -1004,7 +1005,7 @@ msgstr "Uklanjanje sjednica"
 
 #: gschem/src/iface/i_sessions.c:886
 msgid "Failed to remove session"
-msgstr ""
+msgstr "Uklanjanje sesije nije uspjelo"
 
 #: gschem/src/iface/i_sessions.c:889
 msgid "<b>Could not remove session</b>"
