@@ -1018,19 +1018,19 @@ msgstr "documents"
 
 #: gschem/src/iface/i_sessions.c:359
 msgid "did not contain any accessible documents"
-msgstr ""
+msgstr "no contenia cap document accessible"
 
 #: gschem/src/iface/i_sessions.c:796
 msgid "Sessions"
-msgstr ""
+msgstr "Sessions"
 
 #: gschem/src/iface/i_sessions.c:860
 msgid "Removing session"
-msgstr ""
+msgstr "S'està eliminant la sessió"
 
 #: gschem/src/iface/i_sessions.c:886
 msgid "Failed to remove session"
-msgstr ""
+msgstr "No s'ha pogut eliminar la sessió"
 
 #: gschem/src/iface/i_sessions.c:889
 msgid "<b>Could not remove session</b>"
