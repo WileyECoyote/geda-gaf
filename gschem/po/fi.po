@@ -942,20 +942,21 @@ msgstr "Toiminnan palautetilaksi on asetettu OUTLINE"
 
 #: gschem/src/iface/i_command.c:4814
 msgid "Action feedback mode set to BOUNDINGBOX"
-msgstr ""
+msgstr "Toimintapalautustila asetettu rajoittavaan ruutuun"
 
 #: gschem/src/iface/i_command.c:4842
 msgid "Auto-Pan is now"
-msgstr ""
+msgstr "Auto-Pan on nyt"
 
 #: gschem/src/iface/i_command.c:5064
 #, c-format
 msgid "(read only) width=%d, height=%d\n"
-msgstr ""
+msgstr "(vain luku) leveys=%d, korkeus=%d\n"
 
+# Could not open the session file
 #: gschem/src/iface/i_sessions.c:263
 msgid "Could not open the session file"
-msgstr ""
+msgstr "Istuntotiedostoa ei voitu avata"
 
 #: gschem/src/iface/i_sessions.c:269 gschem/src/x/x_window.c:1025
 msgid "is not accessible"
