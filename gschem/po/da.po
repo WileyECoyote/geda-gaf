@@ -995,19 +995,19 @@ msgstr "Dokumenter"
 
 #: gschem/src/iface/i_sessions.c:359
 msgid "did not contain any accessible documents"
-msgstr ""
+msgstr "indeholdt ingen tilgængelige dokumenter"
 
 #: gschem/src/iface/i_sessions.c:796
 msgid "Sessions"
-msgstr ""
+msgstr "Sessioner"
 
 #: gschem/src/iface/i_sessions.c:860
 msgid "Removing session"
-msgstr ""
+msgstr "Fjerner session"
 
 #: gschem/src/iface/i_sessions.c:886
 msgid "Failed to remove session"
-msgstr ""
+msgstr "Kunne ikke fjerne sessionen"
 
 #: gschem/src/iface/i_sessions.c:889
 msgid "<b>Could not remove session</b>"
