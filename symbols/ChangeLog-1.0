@@ -1,6 +1,9 @@
 2021-05-23 Wiley E. Hill <wileyhill@gmail.com>
 
-    * dallas/DS1808-1.sym: Add symbol: Dual log digital potentiometer.
+    * dallas/DS1808-1.sym: Add symbols: Dual log digital potentiometer:
+
+            * dallas/DS1808-1.sym:
+            * dallas/DS1808-2.sym:
 
 2021-05-16 Wiley E. Hill <wileyhill@gmail.com>
 
