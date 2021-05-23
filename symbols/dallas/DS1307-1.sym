@@ -19,7 +19,7 @@ use-license=unlimited
 T 275 3850 5 10 0 0 0 0 1
 description=I2C real-time clock and calendar
 T 275 3650 5 10 0 0 0 0 1
-documentation=datasheets.maxim-ic.com/en/ds/DS1307.pdf
+documentation=datasheets.maximintegrated.com/en/ds/DS1307.pdf
 V 875 725 175 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
 V 875 725 200 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
 L 800 800 875 725 3 0 0 0 -1 -1
