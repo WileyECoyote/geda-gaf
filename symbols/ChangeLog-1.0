@@ -1,5 +1,10 @@
 2021-05-23 Wiley E. Hill <wileyhill@gmail.com>
 
+    * dallas/DS1802-?.sym: Add symbols: Dual audio taper digital potentiometer
+      with button control:
+
+            * dallas/DS1802-1.sym
+
     * dallas/DS1808-1.sym: Add symbols: Dual log digital potentiometer:
 
             * dallas/DS1808-1.sym:
