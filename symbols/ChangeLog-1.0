@@ -5,6 +5,9 @@
             * dallas/DS1808-1.sym:
             * dallas/DS1808-2.sym:
 
+    * onsemi/switchreg/NCP13992-1.sym: Fix symbol; set pin type attributes
+      invisible.
+
 2021-05-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * arduino/XBeePRO-1.sym: Rename symbol with dash 1.
