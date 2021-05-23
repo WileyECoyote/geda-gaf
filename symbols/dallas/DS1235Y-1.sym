@@ -7,7 +7,7 @@ refdes=U?
 T 300 4950 5 10 0 1 0 0 1
 description=Nonvolatile SRAM, 256k
 T 300 5950 5 10 0 1 0 0 1
-documentation=https://www.mouser.com/datasheet/2/256/DS1230AB-DS1230Y-1513026.pdf
+documentation=www.mouser.com/datasheet/2/256/DS1230AB-DS1230Y-1513026.pdf
 P 0 4100 300 4100 1 0 0
 {
 T 150 4150 5 8 1 1 0 6 1
