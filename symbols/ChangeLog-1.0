@@ -1,3 +1,9 @@
+2021-05-24 Wiley E. Hill <wileyhill@gmail.com>
+
+    * dallas/DS*-1.sym: Convert plain text to value attribute.
+
+            * dallas/DS1307-1.sym
+
 2021-05-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * dallas/DS1802-?.sym: Add symbols: Dual audio taper digital potentiometer
