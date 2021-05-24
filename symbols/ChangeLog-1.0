@@ -11,6 +11,7 @@
     * dallas/DS*-1.sym: Add documentation attribute:
 
             * dallas/DS12885-1.sym
+            * dallas/DS12887-1.sym
 
 2021-05-23 Wiley E. Hill <wileyhill@gmail.com>
 
