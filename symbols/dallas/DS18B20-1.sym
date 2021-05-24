@@ -7,7 +7,7 @@ refdes=U?
 T 175 2250 5 10 0 0 0 0 1
 footprint=TO92
 T 0 750 9 10 1 0 0 0 1
-DS18B20
+value=DS18B20
 T 175 1650 5 10 0 0 0 0 1
 author=Anton Dubniak <twister@tfsoft.org.ua>
 T 175 2050 5 10 0 0 0 0 1
