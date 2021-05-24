@@ -10,7 +10,7 @@ footprint=DIP8
 T 300 2650 5 10 0 0 0 0 1
 author=Brendan Howell (mute@howell-ersatz.com)
 T 300 2850 5 10 0 0 0 0 1
-documentation=
+documentation=datasheets.maximintegrated.com/en/ds/DS1866.pdf
 T 300 3050 5 10 0 0 0 0 1
 description=Log Trimmer Potentiometer
 T 300 3250 5 10 0 0 0 0 1
