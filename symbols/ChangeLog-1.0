@@ -8,6 +8,10 @@
             * dallas/DS18B20-1.sym
             * dallas/DS89C450-1.sym
 
+    * dallas/DS*-1.sym: Add documentation attribute:
+
+            * dallas/DS12885-1.sym
+
 2021-05-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * dallas/DS1802-?.sym: Add symbols: Dual audio taper digital potentiometer

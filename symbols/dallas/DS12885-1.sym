@@ -2,7 +2,7 @@ v 20080127 1
 B 300 0 1400 4800 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
 T 300 5050 5 10 0 0 0 0 1
 device=12885
-T 1700 4900 8 10 1 1 0 6 1
+T 1700 4850 8 10 1 1 0 6 1
 refdes=U?
 T 300 5650 5 10 0 0 0 0 1
 net=GND:12,16
@@ -12,7 +12,9 @@ T 300 5250 5 10 0 0 0 0 1
 footprint=DIP24
 T 300 5450 5 10 0 0 0 0 1
 description=12885 Real Time Clock
-T 300 6250 5 10 0 0 0 0 1
+T 300 6200 5 10 0 1 0 0 1
+documentation=datasheets.maximintegrated.com/en/ds/DS12885-DS12C887A.pdf
+T 300 6050 5 10 0 0 0 0 1
 numslots=0
 T 300 4840 9 10 1 0 0 0 1
 12885
