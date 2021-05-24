@@ -3,11 +3,11 @@ T 3000 8900 2 10 1 1 0 6 1
 refdes=U?
 T 400 8850 9 10 1 0 0 0 1
 value=DS89C450
-T 400 9650 8 10 0 0 0 0 1
+T 400 9500 8 10 0 0 0 0 1
 footprint=PLCC44
-T 400 9850 8 10 0 0 0 0 1
+T 400 9700 8 10 0 0 0 0 1
 net=GND:1,22,23,34
-T 400 10050 8 10 0 0 0 0 1
+T 400 9900 8 10 0 0 0 0 1
 net=VCC:12,44
 P 3300 1600 3000 1600 1 0 0
 {
@@ -430,9 +430,11 @@ T 2500 600 5 8 0 1 0 3 1
 pintype=out
 }
 B 400 400 2600 8400 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
-T 400 9450 8 10 0 0 0 0 1
+T 400 9300 8 10 0 0 0 0 1
 numslots=0
-T 400 9250 8 10 0 0 0 0 1
+T 400 9100 8 10 0 0 0 0 1
 description=Ultra-High-Speed Flash Microcontroller
-T 400 10250 8 10 0 0 0 0 1
+T 400 10300 5 10 0 1 0 0 1
+documentation=datasheets.maximintegrated.com/en/ds/DS89C430-DS89C450.pdf
+T 400 10100 8 10 0 0 0 0 1
 device=DS89C450

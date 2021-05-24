@@ -12,6 +12,7 @@
 
             * dallas/DS12885-1.sym
             * dallas/DS12887-1.sym
+            * dallas/DS89C450-1.sym
 
 2021-05-23 Wiley E. Hill <wileyhill@gmail.com>
 
