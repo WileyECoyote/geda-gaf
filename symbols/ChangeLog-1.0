@@ -4,6 +4,7 @@
 
             * dallas/DS1307-1.sym
             * dallas/DS1631-1.sym
+            * dallas/DS1866-1.sym
 
 2021-05-23 Wiley E. Hill <wileyhill@gmail.com>
 
