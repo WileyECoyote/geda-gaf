@@ -7,7 +7,7 @@ refdes=U?
 T 275 2250 5 10 0 0 0 0 1
 footprint=SO8
 T 300 950 9 10 1 0 0 0 1
-DS1631
+value=DS1631
 T 275 1650 5 10 0 0 0 0 1
 author=Anton Dubniak <twister@tfsoft.org.ua>
 T 275 2050 5 10 0 0 0 0 1
