@@ -7,6 +7,11 @@
             * dallas/DS1801S-1.sym
             * dallas/DS1801S-2.sym
 
+    * dallas/DS1807*.sym: Add symbols: Dual addressable audio taper
+      potentiometers:
+
+            * dallas/DS1807-1.sym
+
 2021-05-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * dallas/DS*-1.sym: Convert plain text to value attribute.
