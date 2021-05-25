@@ -3,6 +3,7 @@
     * dallas/DS1801*.sym: Add symbols: Dual audio taper digital potentiometer:
 
             * dallas/DS1801-1.sym
+            * dallas/DS1801-2.sym
 
 2021-05-24 Wiley E. Hill <wileyhill@gmail.com>
 
