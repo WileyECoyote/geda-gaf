@@ -5,7 +5,7 @@ V 1550 1450 1150 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
 T 300 2600 9 10 1 1 0 0 1
 value=12SQ7
 T 2500 3200 9 8 0 1 0 0 1
-documentation=http://tubedata.milbert.com/sheets13.html
+documentation=tubedata.milbert.com/sheets13.html
 L 900 1200 900 1400 3 0 0 0 -1 -1
 L 900 1400 2100 1400 3 0 0 0 -1 -1
 L 2100 1400 2100 1000 3 0 0 0 -1 -1
@@ -89,4 +89,4 @@ device=12SQ7
 T 2500 3600 5 10 0 0 0 0 1
 comment=Octal version of 12AV6
 T 2500 3800 5 10 0 1 0 0 1
-documentation=https://en.wikipedia.org/wiki/List_of_vacuum_tubes
+documentation=en.wikipedia.org/wiki/List_of_vacuum_tubes
