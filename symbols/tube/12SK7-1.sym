@@ -95,4 +95,4 @@ author=AutoTron
 T 2200 3300 5 10 0 1 0 0 1
 comment=Octal version of 12BA6
 T 2200 3500 5 10 0 1 0 0 1
-documentation=https://en.wikipedia.org/wiki/List_of_vacuum_tubes
+documentation=en.wikipedia.org/wiki/List_of_vacuum_tubes
