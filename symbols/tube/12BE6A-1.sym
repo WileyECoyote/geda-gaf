@@ -115,6 +115,6 @@ T 350 1250 5 8 0 1 0 2 1
 pintype=io
 }
 T 2300 3100 5 10 0 1 0 0 1
-documentation=http://www.radiomuseum.org/tubes/tube_12be6a.html
+documentation=www.radiomuseum.org/tubes/tube_12be6a.html
 T 2300 2900 5 10 0 1 0 0 1
 description=Heptode, Pentagrid-Converter
