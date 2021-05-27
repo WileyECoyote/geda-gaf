@@ -143,4 +143,4 @@ footprint=K9A
 T 2400 3100 8 10 1 1 0 0 1
 description=Triode-Pentode
 T 2400 3500 5 10 0 1 0 0 1
-documentation=http://drtube.com/datasheets/6bm8-sed1996.pdf
+documentation=drtube.com/datasheets/6bm8-sed1996.pdf
