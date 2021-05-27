@@ -138,4 +138,4 @@ footprint=K9A
 T 2400 3100 8 10 1 1 0 0 1
 description=Triode-Pentode
 T 2400 3500 5 10 0 1 0 0 1
-documentation=http://www.digchip.com/datasheets/parts/datasheet/1019/ECL80-pdf.php
+documentation=www.digchip.com/datasheets/parts/datasheet/1019/ECL80-pdf.php
