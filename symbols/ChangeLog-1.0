@@ -1,3 +1,7 @@
+2021-05-28 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tube/12SQ7-1.sym: Remove redundant documentation attribute.
+
 2021-05-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * dallas/DS1801*.sym: Add symbols: Dual audio taper digital potentiometer:
