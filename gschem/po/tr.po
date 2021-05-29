@@ -949,9 +949,10 @@ msgstr "(skrivskyddad) bredd=%d, höjd=%d\n"
 msgid "Could not open the session file"
 msgstr "Oturum dosyası açılamadı"
 
+# is not accessible
 #: gschem/src/iface/i_sessions.c:269 gschem/src/x/x_window.c:1025
 msgid "is not accessible"
-msgstr ""
+msgstr "ulaşılabilir değil"
 
 #: gschem/src/iface/i_sessions.c:273
 msgid "File"
