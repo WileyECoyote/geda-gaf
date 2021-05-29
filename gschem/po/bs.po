@@ -982,12 +982,12 @@ msgstr "otvaranje"
 
 #: gschem/src/iface/i_sessions.c:349
 msgid "of"
-msgstr ""
+msgstr "od"
 
 #: gschem/src/iface/i_sessions.c:350 gschem/src/iface/i_sessions.c:969
 #: gschem/src/iface/i_sessions.c:1143
 msgid "documents"
-msgstr "od"
+msgstr "dokumenti"
 
 #: gschem/src/iface/i_sessions.c:359
 msgid "did not contain any accessible documents"
