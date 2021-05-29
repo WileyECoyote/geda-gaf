@@ -895,11 +895,11 @@ msgstr "von"
 #: gschem/src/iface/i_sessions.c:350 gschem/src/iface/i_sessions.c:969
 #: gschem/src/iface/i_sessions.c:1143
 msgid "documents"
-msgstr "_Dokumentation..."
+msgstr "Unterlagen"
 
 #: gschem/src/iface/i_sessions.c:359
 msgid "did not contain any accessible documents"
-msgstr ""
+msgstr "enthielt keine zugänglichen Dokumente"
 
 #: gschem/src/iface/i_sessions.c:796
 msgid "Sessions"
