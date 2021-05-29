@@ -1054,17 +1054,20 @@ msgstr "(лише для читання) ширина=%d, висота=%d\n"
 msgid "Could not open the session file"
 msgstr "Не вдалося відкрити файл сеансу"
 
+# is not accessible; ne dostupnyy
 #: gschem/src/iface/i_sessions.c:269 gschem/src/x/x_window.c:1025
 msgid "is not accessible"
-msgstr ""
+msgstr "не доступний"
 
+# File; Fayl
 #: gschem/src/iface/i_sessions.c:273
 msgid "File"
-msgstr ""
+msgstr "Файл"
 
+# Poperedzhennya vidnosnykh imen fayliv, vyyavlenykh pid chas seansu
 #: gschem/src/iface/i_sessions.c:336
 msgid "Warning relative file names detected in session"
-msgstr ""
+msgstr "Попередження відносних імен файлів, виявлених під час сеансу"
 
 #: gschem/src/iface/i_sessions.c:347 gschem/src/iface/i_sessions.c:360
 #: gschem/src/iface/i_sessions.c:967 gschem/src/x/x_sessions.c:242
