@@ -1067,13 +1067,15 @@ msgstr "Открита сесия"
 msgid "Renaming session"
 msgstr "Преименуването на сесията"
 
+# to; da se
 #: gschem/src/iface/i_sessions.c:1080 gschem/src/object/o_attrib.c:178
 msgid "to"
-msgstr ""
+msgstr "да се"
 
+# Failed to rename session; Preimenuvaneto na sesiyata ne be uspeshno
 #: gschem/src/iface/i_sessions.c:1104
 msgid "Failed to rename session"
-msgstr ""
+msgstr "Преименуването на сесията не бе успешно"
 
 #: gschem/src/iface/i_sessions.c:1107
 msgid "<b>Could not rename session</b>"
