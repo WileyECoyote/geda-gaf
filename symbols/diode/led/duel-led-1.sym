@@ -57,4 +57,4 @@ use-license=GPLv3
 T 100 2600 5 10 0 0 0 0 1
 author=AutoTron
 T 100 2000 5 10 0 1 0 0 1
-documentation=https://en.wikipedia.org/wiki/Light-emitting_diode
+documentation=en.wikipedia.org/wiki/Light-emitting_diode
