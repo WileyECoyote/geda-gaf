@@ -51,7 +51,7 @@ device=DIODE
 T 0 1300 5 10 0 0 0 0 1
 author=Cory Cross
 T 0 1500 5 10 0 0 0 0 1
-documentation=http://www.fairchildsemi.com/ds/BA/BAT54.pdf
+documentation=www.fairchildsemi.com/ds/BA/BAT54.pdf
 T 0 1700 5 10 0 0 0 0 1
 description=Dual diode w/ common cathode (usually SOT-23)
 T 0 1900 5 10 0 0 0 0 1
