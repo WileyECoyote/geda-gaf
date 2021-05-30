@@ -42,4 +42,4 @@ value=1N5711
 T 300 1500 5 10 0 1 0 0 1
 description=diode,schottky,70V,15mA,Vf=0.41V@1mA
 T 300 1700 5 10 0 1 0 0 1
-documentation=http://wikipedia.org/wiki/Schottky_diode
+documentation=wikipedia.org/wiki/Schottky_diode
