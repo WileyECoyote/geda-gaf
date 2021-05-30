@@ -189,7 +189,7 @@ footprint=DIP18
 T 2900 4700 9 10 0 1 0 0 1
 description=Interrupt Controller
 T 2900 4900 9 10 0 1 0 0 1
-documentation=http://www.chdickman.com/qbus_ide/chipkit.pdf
+documentation=www.chdickman.com/qbus_ide/chipkit.pdf
 T 2900 5100 8 10 0 0 0 0 1
 net=VCC:18
 T 2900 5300 8 10 0 0 0 0 1
