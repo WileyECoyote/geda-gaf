@@ -42,4 +42,4 @@ value=1N5818
 T 300 1500 5 10 0 1 0 0 1
 description=diode,schottky,30V,1A,Vf=0.50Volts
 T 300 1700 5 10 0 1 0 0 1
-documentation=http://wikipedia.org/wiki/Schottky_diode
+documentation=wikipedia.org/wiki/Schottky_diode
