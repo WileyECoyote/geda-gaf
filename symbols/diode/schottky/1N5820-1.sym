@@ -42,4 +42,4 @@ value=1N5820
 T 300 1500 5 10 0 1 0 0 1
 description=diode,schottky,20V,3A,Vf=0.52Volts
 T 300 1700 5 10 0 1 0 0 1
-documentation=http://wikipedia.org/wiki/Schottky_diode
+documentation=wikipedia.org/wiki/Schottky_diode
