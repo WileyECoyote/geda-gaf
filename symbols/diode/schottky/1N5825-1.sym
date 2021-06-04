@@ -42,4 +42,4 @@ value=1N5825
 T 300 1500 5 10 0 1 0 0 1
 description=diode,rectifier,schottky,40V,5A,Vf=0.36V@5A
 T 300 1700 5 10 0 1 0 0 1
-documentation=http://wikipedia.org/wiki/Schottky_diode
+documentation=wikipedia.org/wiki/Schottky_diode
