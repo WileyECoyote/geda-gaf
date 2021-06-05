@@ -656,37 +656,46 @@ msgstr "すべてのファイルを保存できませんでした"
 msgid "Saved All"
 msgstr "すべて保存"
 
+# Error encountered, Save Failed
+# Erā ga hassei shimashita. Hozon ni shippai shimashita
 #: gschem/src/iface/i_command.c:1220
 msgid "Error encountered, Save Failed"
-msgstr ""
+msgstr "エラーが発生しました。保存に失敗しました"
 
 #: gschem/src/iface/i_command.c:1290 gschem/src/x/x_image.c:545
 msgid "Write Image"
 msgstr "画像として保存"
 
+# Write PDF; PDF o kaku
 #: gschem/src/iface/i_command.c:1312
 msgid "Write PDF"
-msgstr ""
+msgstr "PDFを書く"
 
+# Canceled close all; Kyanseru shimashita subete tojiru
 #: gschem/src/iface/i_command.c:1408 gschem/src/iface/i_sessions.c:184
 msgid "Canceled close all\n"
-msgstr ""
+msgstr "キャンセルしました すべて閉じる\n"
 
 #: gschem/src/iface/i_command.c:1417 gschem/src/iface/i_sessions.c:193
 msgid "Closing all documents\n"
 msgstr "すべての文書を閉じる\n"
 
+# starting shut-down; Shattodaun no kaishi
 #: gschem/src/iface/i_command.c:1440
 msgid "starting shut-down"
-msgstr ""
+msgstr "シャットダウンの開始"
 
+# Symbol is not embedded, export anyway
+# Shinboru ga umekoma rete inai, tonikaku ekusupōto
 #: gschem/src/iface/i_command.c:1454
 msgid "Symbol is not embedded, export anyway?"
-msgstr ""
+msgstr "シンボルが埋め込まれていない、とにかくエクスポート?"
 
+# Picture is not embedded, export anyway
+# Gazō ga umekoma rete inai, tonikaku ekusupōto
 #: gschem/src/iface/i_command.c:1478
 msgid "Picture is not embedded, export anyway?"
-msgstr ""
+msgstr "画像が埋め込まれていない、とにかくエクスポート?"
 
 # Empty buffer; Sora no baffa
 #: gschem/src/iface/i_command.c:1625
