@@ -1107,27 +1107,31 @@ msgstr "جلسات نمایش در هنگام راه اندازی اکنون غ�
 msgid "Session system initialized!\n"
 msgstr "سیستم جلسه مقداردهی اولیه!\n"
 
+# Deselect Mode
 #: gschem/src/iface/i_status.c:138 gschem/etc/system-gschemrc.scm:2161
 msgid "Deselect Mode"
-msgstr "Select Mode"
+msgstr "لغو انتخاب حالت"
 
+# Select Mode => Selection mode
 #: gschem/src/iface/i_status.c:142 gschem/src/x/x_status_bar.c:419
 #: gschem/etc/system-gschemrc.scm:2160 gschem/scheme/gschem/builtins.scm:170
 msgid "Select Mode"
-msgstr "Select Mode"
+msgstr "حالت انتخاب"
 
+# Select Box Mode => Select with box mode
 #: gschem/src/iface/i_status.c:144
 msgid "Select Box Mode"
-msgstr "Select Mode"
+msgstr "با حالت جعبه انتخاب کنید"
 
 # Zoom Box
 #: gschem/src/iface/i_status.c:146 gschem/scheme/gschem/builtins.scm:227
 msgid "Zoom Box"
 msgstr "جعبه زوم"
 
+# Copy to point
 #: gschem/src/iface/i_status.c:149
 msgid "Copy to point"
-msgstr "Copy into 1"
+msgstr "کپی کردن در نقطه"
 
 #: gschem/src/iface/i_status.c:151 gschem/scheme/gschem/builtins.scm:122
 #: gschem/scheme/gschem/builtins.scm:125
@@ -1146,9 +1150,10 @@ msgstr "حالت آینه"
 msgid "Pan Mode"
 msgstr ""
 
+# Update Component
 #: gschem/src/iface/i_status.c:159
 msgid "Choose component"
-msgstr "Update Component"
+msgstr "به روزرسانی کامپوننت"
 
 #: gschem/src/iface/i_status.c:162
 msgid "Magnetic Net Mode"
