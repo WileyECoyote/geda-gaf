@@ -724,7 +724,7 @@ msgstr "Verschuivingsmodus"
 
 #: gschem/src/iface/i_command.c:1891
 msgid "Specify offset distance:"
-msgstr ""
+msgstr "Geef de offset-afstand op:"
 
 #: gschem/src/iface/i_command.c:2487
 msgid "Zoom Magnification"
@@ -732,13 +732,13 @@ msgstr "Zoomvergroting"
 
 #: gschem/src/iface/i_command.c:2487
 msgid "Specify new zoom:"
-msgstr ""
+msgstr "Geef nieuwe zoom op:"
 
 #: gschem/src/iface/i_command.c:2529 gschem/src/iface/i_command.c:4893
 #: gschem/src/iface/i_command.c:4923 gschem/src/iface/i_command.c:4944
 #: gschem/src/iface/i_command.c:4964
 msgid "Check path:"
-msgstr ""
+msgstr "Controleer pad:"
 
 #: gschem/src/iface/i_command.c:2540
 msgid "error"
@@ -756,7 +756,7 @@ msgstr "Teruggezet document"
 
 #: gschem/src/iface/i_command.c:3106
 msgid "Confirm revert ALL documents"
-msgstr ""
+msgstr "Bevestig ALLE documenten terugzetten"
 
 # Search for source
 #: gschem/src/iface/i_command.c:3288
