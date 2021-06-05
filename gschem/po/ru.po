@@ -1087,25 +1087,27 @@ msgstr "Переименование сессии"
 
 #: gschem/src/iface/i_sessions.c:1080 gschem/src/object/o_attrib.c:178
 msgid "to"
-msgstr ""
+msgstr "к"
 
 # Failed to rename session
 #: gschem/src/iface/i_sessions.c:1104
 msgid "Failed to rename session"
 msgstr "Не удалось переименовать сеанс"
 
+# Could not rename session; Ne udalos' pereimenovat' seans
 #: gschem/src/iface/i_sessions.c:1107
 msgid "<b>Could not rename session</b>"
-msgstr ""
+msgstr "<b>Не удалось переименовать сеанс</b>"
 
 # Created session
 #: gschem/src/iface/i_sessions.c:1141
 msgid "Created session"
 msgstr "Дата создания сеанса"
 
+# with; s uchastiyem
 #: gschem/src/iface/i_sessions.c:1142
 msgid "with"
-msgstr ""
+msgstr "с участием"
 
 #: gschem/src/iface/i_sessions.c:1152 gschem/src/x/x_window.c:1252
 #: gschem/src/x/x_window.c:1255
@@ -1137,9 +1139,10 @@ msgstr "Показать Сессии при запуске теперь ВКЛ�
 msgid "Show Sessions at startup is now DISABLED\n"
 msgstr "Показать Сессии при запуске теперь отключена\n"
 
+# Session system initialized; Sistema seansa initsializirovana
 #: gschem/src/iface/i_sessions.c:1338
 msgid "Session system initialized!\n"
-msgstr ""
+msgstr "Система сеанса инициализирована!\n"
 
 # Unselect objects
 #: gschem/src/iface/i_status.c:138 gschem/etc/system-gschemrc.scm:2161
@@ -1169,9 +1172,10 @@ msgstr "Скопировать в точку"
 msgid "Rotate Mode"
 msgstr "Поворот"
 
+# Side to offset; Storona smeshcheniya
 #: gschem/src/iface/i_status.c:153
 msgid "Side to offset?"
-msgstr ""
+msgstr "Сторона смещения?"
 
 #: gschem/src/iface/i_status.c:155 gschem/scheme/gschem/builtins.scm:116
 msgid "Mirror Mode"
@@ -1275,9 +1279,11 @@ msgstr "Привязка отключена"
 msgid "Resnap Active"
 msgstr "Режим перепривязки"
 
+# Initializing default configuration settings
+# Initsializatsiya nastroyek konfiguratsii po umolchaniyu
 #: gschem/src/iface/i_vars.c:805
 msgid "Initializing default configuration settings\n"
-msgstr ""
+msgstr "Инициализация настроек конфигурации по умолчанию\n"
 
 # Failed to save user configuration to
 #: gschem/src/iface/i_vars.c:847
