@@ -1787,9 +1787,10 @@ msgstr ""
 msgid "Close without saving"
 msgstr "bet daoy min roksaatouk"
 
+# Cancel closing and return to editor
 #: gschem/src/x/x_confirm_close.c:575
 msgid "Cancel closing and return to editor"
-msgstr ""
+msgstr "baohbng kar bet haey tralb tow kammovithi nipon"
 
 # Save changes
 #: gschem/src/x/x_confirm_close.c:581
@@ -2292,7 +2293,7 @@ msgstr ""
 
 #: gschem/src/x/x_dialog.c:3250
 msgid "Enter a single digit or a coordinate pair"
-msgstr ""
+msgstr "banhchoul khtang temuoy ryy kou kauardaone"
 
 # Adjust the view to extents after transformation
 #: gschem/src/x/x_dialog.c:3251
@@ -2481,7 +2482,7 @@ msgstr ""
 
 #: gschem/src/x/x_edit_array.c:1027
 msgid "Indicates total number of objects currently selected"
-msgstr ""
+msgstr "bangheanh chamnuon saroub nei vottho del ban chreusareusa bachchobban"
 
 # Selection x size
 #: gschem/src/x/x_edit_array.c:1028
@@ -2505,11 +2506,11 @@ msgstr "chamnuon chuorochhr del trauv bangkeut"
 
 #: gschem/src/x/x_edit_array.c:1032
 msgid "Vertical pitch of array, negative is downward"
-msgstr ""
+msgstr "chomreal banhchhor nei a re,  avichchman ku thleakchoh"
 
 #: gschem/src/x/x_edit_array.c:1033
 msgid "Horizontal pitch of array, negative is to left"
-msgstr ""
+msgstr "chomreal phdek nei a re,  avichchman ku tow khangochhveng"
 
 #: gschem/src/x/x_edit_array.c:1051 gschem/scheme/gschem/builtins.scm:131
 msgid "Create Array"
