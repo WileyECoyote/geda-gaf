@@ -739,7 +739,7 @@ msgstr "מצב אופסט"
 
 #: gschem/src/iface/i_command.c:1891
 msgid "Specify offset distance:"
-msgstr ""
+msgstr "ציין מרחק קיזוז:"
 
 #: gschem/src/iface/i_command.c:2487
 msgid "Zoom Magnification"
@@ -747,13 +747,13 @@ msgstr "ההגדלה"
 
 #: gschem/src/iface/i_command.c:2487
 msgid "Specify new zoom:"
-msgstr ""
+msgstr "ציין זום חדש:"
 
 #: gschem/src/iface/i_command.c:2529 gschem/src/iface/i_command.c:4893
 #: gschem/src/iface/i_command.c:4923 gschem/src/iface/i_command.c:4944
 #: gschem/src/iface/i_command.c:4964
 msgid "Check path:"
-msgstr ""
+msgstr "נתיב בדיקה:"
 
 # error
 #: gschem/src/iface/i_command.c:2540
@@ -762,7 +762,7 @@ msgstr "שְׁגִיאָה"
 
 #: gschem/src/iface/i_command.c:2551
 msgid "No component selected\n"
-msgstr ""
+msgstr "לא נבחר רכיב\n"
 
 # Reverted document
 #: gschem/src/iface/i_command.c:3048 gschem/src/iface/i_window.c:333
@@ -771,15 +771,15 @@ msgstr "מסמך שהוחזר"
 
 #: gschem/src/iface/i_command.c:3106
 msgid "Confirm revert ALL documents"
-msgstr ""
+msgstr "אשר את ביטול כל המסמכים"
 
 #: gschem/src/iface/i_command.c:3288
 msgid "Searching for source"
-msgstr ""
+msgstr "מחפש מקור"
 
 #: gschem/src/iface/i_command.c:3323
 msgid "Failed to descend into"
-msgstr ""
+msgstr "נכשל הירידה לתוכו"
 
 # Hierarchy Error
 #: gschem/src/iface/i_command.c:3332
@@ -788,15 +788,15 @@ msgstr "שגיאת היררכיה"
 
 #: gschem/src/iface/i_command.c:3409
 msgid "Searching for symbol"
-msgstr ""
+msgstr "מחפש סמל"
 
 #: gschem/src/iface/i_command.c:3419
 msgid "Symbol is not a real file. Symbol cannot be loaded.\n"
-msgstr ""
+msgstr "סמל אינו קובץ אמיתי. לא ניתן לטעון את הסמל.\n"
 
 #: gschem/src/iface/i_command.c:3467
 msgid "Cannot find any schematics above the current one!\n"
-msgstr ""
+msgstr "לא ניתן למצוא סכמות מעל לזו הנוכחית!\n"
 
 #: gschem/src/iface/i_command.c:3597
 msgid "Object is attached to something\n"
