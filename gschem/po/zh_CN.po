@@ -277,30 +277,36 @@ msgstr ""
 "适销性或特定用途的适用性，在一定程度上\n"
 "法律允许.\n"
 
+# error parsing; Cuòwù jiěxī
 #: gschem/src/base/gschem_parsecmd.c:256
 msgid "error parsing"
-msgstr ""
+msgstr "错误解析"
 
+# ERROR; Cuòwù
 #: gschem/src/base/gschem_parsecmd.c:292 gschem/src/x/x_rc.c:100
 #: gschem/src/x/x_rc.c:145
 msgid "ERROR"
-msgstr ""
+msgstr "错误"
 
+# option requires an argument; Xuǎnxiàng xūyào yīgè cānshù
 #: gschem/src/base/gschem_parsecmd.c:296
 msgid "option requires an argument"
-msgstr ""
+msgstr "选项需要一个参数"
 
+# Unknown option; Wèizhī xuǎnxiàng
 #: gschem/src/base/gschem_parsecmd.c:302
 msgid "Unknown option"
-msgstr ""
+msgstr "未知选项"
 
+# Unknown option character; Wèizhī xuǎnxiàng zìfú
 #: gschem/src/base/gschem_parsecmd.c:308
 msgid "Unknown option character"
-msgstr ""
+msgstr "未知选项字符"
 
+# help for more information; Bāngzhù huòqǔ gèng duō xìnxī
 #: gschem/src/base/gschem_parsecmd.c:315
 msgid "help for more information"
-msgstr ""
+msgstr "帮助获取更多信息"
 
 #: gschem/src/base/gschem_parsecmd.c:317
 msgid "Run"
