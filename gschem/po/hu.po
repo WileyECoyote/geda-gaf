@@ -361,7 +361,7 @@ msgstr "szélesség x magasság"
 
 #: gschem/src/base/gschem_status_bar.c:615
 msgid "Sets the height of the status bar"
-msgstr ""
+msgstr "Beállítja az állapotsor magasságát"
 
 #: gschem/src/base/gschem_status_bar.c:624
 msgid "Left Button Text"
@@ -369,7 +369,7 @@ msgstr "Balról jobbra"
 
 #: gschem/src/base/gschem_status_bar.c:625
 msgid "Set the string for the Left Button Text"
-msgstr ""
+msgstr "Állítsa be a karakterláncot a Bal gomb szövegéhez"
 
 #: gschem/src/base/gschem_status_bar.c:631
 msgid "Middle Button Text"
@@ -377,7 +377,7 @@ msgstr "Bal közép"
 
 #: gschem/src/base/gschem_status_bar.c:632
 msgid "Set the string for the Middle Button Text"
-msgstr ""
+msgstr "Állítsa be a karakterláncot a középső gomb szövegéhez"
 
 #: gschem/src/base/gschem_status_bar.c:638
 msgid "Right Button Text"
@@ -385,23 +385,23 @@ msgstr "Jobbról balra"
 
 #: gschem/src/base/gschem_status_bar.c:639
 msgid "Set the string for the Right Button Text"
-msgstr ""
+msgstr "Állítsa be a karakterláncot a Jobb gomb szövegéhez"
 
 #: gschem/src/base/gschem_status_bar.c:645
 msgid "Snap Mode"
-msgstr "\"Középre\" üzemmód"
+msgstr "Snap mód"
 
 #: gschem/src/base/gschem_status_bar.c:646
 msgid "Sets the Snap Mode to display on the status bar"
-msgstr ""
+msgstr "Beállítja, hogy a Snap Mode megjelenjen az állapotsoron"
 
 #: gschem/src/base/gschem_status_bar.c:655 gschem/src/x/x_dialog.c:642
 msgid "Snap Size"
-msgstr ""
+msgstr "Snap méret"
 
 #: gschem/src/base/gschem_status_bar.c:656
 msgid "Sets the Snap Size to display on the status bar"
-msgstr ""
+msgstr "Beállítja a Snap Size megjelenítését az állapotsoron"
 
 #: gschem/src/base/gschem_status_bar.c:665
 msgid "Status Text"
@@ -409,7 +409,7 @@ msgstr "Állapot."
 
 #: gschem/src/base/gschem_status_bar.c:666
 msgid "Set the string for the text on the Status Bar"
-msgstr ""
+msgstr "Állítsa be a szöveg karakterláncát az állapotsoron"
 
 #: gschem/src/base/gschem_status_bar.c:672
 #: gschem/src/base/gschem_status_bar.c:673
@@ -422,7 +422,7 @@ msgstr "Állapot."
 
 #: gschem/src/base/gschem_status_bar.c:687
 msgid "Set or get the height of the status bar"
-msgstr ""
+msgstr "Állítsa be vagy kapja meg az állapotsor magasságát"
 
 # Coordinate display, right click for format options
 #: gschem/src/base/gschem_status_bar.c:1193
