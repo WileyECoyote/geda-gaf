@@ -46,7 +46,7 @@ symversion=0.5
 T 300 1000 5 10 0 1 0 0 1
 description=diode,schottky,30V,200mA,Vf=0.50V@30mA
 T 300 1200 5 10 0 1 0 0 1
-documentation=http://wikipedia.org/wiki/Schottky_diode
+documentation=wikipedia.org/wiki/Schottky_diode
 T 300 1800 5 10 0 0 0 0 1
 author=Daniel Fekete <thefekete AT gmail DOT com>
 T 300 1600 5 10 0 0 0 0 1
