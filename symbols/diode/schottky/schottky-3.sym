@@ -38,7 +38,7 @@ pintype=pas
 T 100 950 5 10 0 1 0 0 1
 description=diode,schottky,30V,500mA,Vf=0.4Volts
 T 100 1150 5 10 0 1 0 0 1
-documentation=http://en.wikipedia.org/wiki/Schottky_diode
+documentation=en.wikipedia.org/wiki/Schottky_diode
 T 100 550 9 10 0 1 0 0 1
 footprint=DO-35
 T 800 600 5 10 0 0 0 0 1
