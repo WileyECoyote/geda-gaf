@@ -38,6 +38,6 @@ numslots=0
 T 500 100 8 10 0 1 0 0 1
 footprint=DO-41
 T 500 1300 5 10 0 1 0 0 1
-documentation=http://en.wikipedia.org/wiki/Zener_diode
+documentation=en.wikipedia.org/wiki/Zener_diode
 T 500 700 5 10 0 1 0 0 1
 description=Zener Diode
