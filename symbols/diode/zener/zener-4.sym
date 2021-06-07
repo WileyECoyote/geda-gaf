@@ -37,4 +37,4 @@ footprint=DO-21
 T 600 800 5 10 0 1 0 0 1
 description=Zener Diode
 T 600 1200 5 10 0 1 0 0 1
-documentation=http://en.wikipedia.org/wiki/Zener_diode
+documentation=en.wikipedia.org/wiki/Zener_diode
