@@ -48,7 +48,7 @@ author=AutoTron
 T 300 1100 5 10 0 1 0 0 1
 description=diode,schottky,30V,500mA,Vf=0.5Volts
 T 300 1300 5 10 0 1 0 0 1
-documentation=http://en.wikipedia.org/wiki/Schottky_diode
+documentation=en.wikipedia.org/wiki/Schottky_diode
 T 300 1500 5 10 0 0 0 0 1
 use-license=unlimited
 T 300 1700 5 10 0 0 0 0 1
