@@ -38,7 +38,7 @@ footprint=DO-35
 T 500 400 5 10 1 1 0 0 1
 value=12V
 T 500 1200 5 10 0 1 0 0 1
-documentation=http://en.wikipedia.org/wiki/Zener_diode
+documentation=en.wikipedia.org/wiki/Zener_diode
 T 500 1800 8 10 0 0 0 0 1
 author=AutoTron
 T 500 1600 8 10 0 0 0 0 1
