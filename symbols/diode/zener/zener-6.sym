@@ -40,7 +40,7 @@ footprint=DO-214AB
 T 500 800 5 10 0 1 0 0 1
 description=Zener Diode
 T 500 1400 5 10 0 1 0 0 1
-documentation=http://en.wikipedia.org/wiki/Zener_diode
+documentation=en.wikipedia.org/wiki/Zener_diode
 T 500 2000 5 10 0 0 0 0 1
 author=Amand Tihon amand.tihon@alrj.org
 T 500 1800 5 10 0 0 0 0 1
