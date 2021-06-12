@@ -497,11 +497,11 @@ msgstr "NENHUM"
 
 #: gschem/src/guile/g_attrib.c:101
 msgid "Object ~A is not included in the current page."
-msgstr ""
+msgstr "O objeto ~A não está incluído na página atual"
 
 #: gschem/src/guile/g_attrib.c:122
 msgid "Invalid text name/value visibility ~A."
-msgstr ""
+msgstr "Visibilidade do nome/valor do texto inválido ~A."
 
 # Processing
 #: gschem/src/guile/g_rc.c:83 gschem/src/guile/g_rc.c:95
@@ -510,11 +510,11 @@ msgstr "Processando"
 
 #: gschem/src/guile/g_rc.c:87 gschem/src/guile/g_rc.c:99
 msgid "Skipping"
-msgstr ""
+msgstr "Pulando"
 
 #: gschem/src/guile/g_rc.c:119
 msgid "entry in rc file"
-msgstr ""
+msgstr "entrada no ficheiro rc"
 
 #: gschem/src/guile/g_rc.c:123
 msgid "Bad Value"
@@ -522,23 +522,23 @@ msgstr "Valor inválido"
 
 #: gschem/src/guile/g_rc.c:124 gschem/src/guile/g_rc.c:2102
 msgid "check"
-msgstr ""
+msgstr "Verifica"
 
 #: gschem/src/guile/g_rc.c:125
 msgid "or Scheme, continuing with"
-msgstr ""
+msgstr "ou Scheme, continuando com"
 
 #: gschem/src/guile/g_rc.c:133
 msgid "maximum value"
-msgstr ""
+msgstr "valor máximo"
 
 #: gschem/src/guile/g_rc.c:137
 msgid "minimum value"
-msgstr ""
+msgstr "valor minimo"
 
 #: gschem/src/guile/g_rc.c:141
 msgid "default value"
-msgstr ""
+msgstr "valor padrão"
 
 # Invalid type assignment, verify
 #: gschem/src/guile/g_rc.c:155
