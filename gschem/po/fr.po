@@ -761,13 +761,14 @@ msgstr "Le symbole n'est pas un fichier réel. Il ne peut pas être chargé.\n"
 msgid "Cannot find any schematics above the current one!\n"
 msgstr "Impossible de trouver des schémas au-dessus de celui-ci!\n"
 
+# Object is attached to something
 #: gschem/src/iface/i_command.c:3597
 msgid "Object is attached to something\n"
-msgstr ""
+msgstr "L'objet est attaché à quelque chose\n"
 
 #: gschem/src/iface/i_command.c:4003
 msgid "Attribute is already attached\n"
-msgstr ""
+msgstr "L'attribut est déjà attaché\n"
 
 #: gschem/src/iface/i_command.c:4417
 msgid "WARNING: Do not translate with snap off!\n"
