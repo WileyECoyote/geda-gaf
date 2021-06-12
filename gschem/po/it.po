@@ -264,7 +264,7 @@ msgid ""
 "for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE, to the extent\n"
 "permitted by law.\n"
 msgstr ""
-"Copyright (C) 1998-2017 sviluppatori gEDA\n"
+"Diritto d'autore (C) 1998-2017 sviluppatori gEDA\n"
 "Questo è software libero, è possibile la sua ridistribuzione sotto\n"
 "certe condizioni. Per i dettagli, vedere il file `COPYING', incluso\n"
 "nella distribuzione di gEDA.\n"
@@ -469,7 +469,7 @@ msgstr "Indica lo stato del comando corrente"
 
 #: gschem/src/base/gschem_status_bar.c:1199
 msgid "Gschem status bar"
-msgstr ""
+msgstr "Gschem barra di stato"
 
 #: gschem/src/base/gschem_status_bar.c:1877
 msgid "Grid"
@@ -478,7 +478,7 @@ msgstr "Modalità Arco"
 #: gschem/src/base/gschem_status_bar.c:1883
 #: gschem/src/base/gschem_status_bar.c:1904
 msgid "OFF"
-msgstr ""
+msgstr "Spento"
 
 #: gschem/src/base/gschem_status_bar.c:1896 gschem/src/object/o_picture.c:623
 #: gschem/src/object/o_picture.c:627
@@ -487,7 +487,7 @@ msgstr "Specchio"
 
 #: gschem/src/base/gschem_status_bar.c:1908
 msgid "NONE"
-msgstr ""
+msgstr "Nessuna"
 
 #: gschem/src/guile/g_attrib.c:101
 msgid "Object ~A is not included in the current page."
@@ -503,11 +503,11 @@ msgstr "lavorazione"
 
 #: gschem/src/guile/g_rc.c:87 gschem/src/guile/g_rc.c:99
 msgid "Skipping"
-msgstr ""
+msgstr "Saltare"
 
 #: gschem/src/guile/g_rc.c:119
 msgid "entry in rc file"
-msgstr ""
+msgstr "voce nel file rc"
 
 #: gschem/src/guile/g_rc.c:123
 msgid "Bad Value"
@@ -515,23 +515,23 @@ msgstr "Valore"
 
 #: gschem/src/guile/g_rc.c:124 gschem/src/guile/g_rc.c:2102
 msgid "check"
-msgstr ""
+msgstr "dai un'occhiata"
 
 #: gschem/src/guile/g_rc.c:125
 msgid "or Scheme, continuing with"
-msgstr ""
+msgstr "o Schema, continuando con"
 
 #: gschem/src/guile/g_rc.c:133
 msgid "maximum value"
-msgstr ""
+msgstr "valore massimo"
 
 #: gschem/src/guile/g_rc.c:137
 msgid "minimum value"
-msgstr ""
+msgstr "valore minimo"
 
 #: gschem/src/guile/g_rc.c:141
 msgid "default value"
-msgstr ""
+msgstr "valore predefinito"
 
 #: gschem/src/guile/g_rc.c:155
 msgid "Invalid type assignment, check"
