@@ -798,31 +798,32 @@ msgstr "סמל אינו קובץ אמיתי. לא ניתן לטעון את הס�
 msgid "Cannot find any schematics above the current one!\n"
 msgstr "לא ניתן למצוא סכמות מעל לזו הנוכחית!\n"
 
+# Object is attached to something
 #: gschem/src/iface/i_command.c:3597
 msgid "Object is attached to something\n"
-msgstr ""
+msgstr "חפץ קשור למשהו\n"
 
 #: gschem/src/iface/i_command.c:4003
 msgid "Attribute is already attached\n"
-msgstr ""
+msgstr "המאפיין כבר מצורף\n"
 
 #: gschem/src/iface/i_command.c:4417
 msgid "WARNING: Do not translate with snap off!\n"
-msgstr ""
+msgstr "אזהרה: אין לתרגם עם כיבוי\n"
 
 #: gschem/src/iface/i_command.c:4418
 msgid "WARNING: Turning snap on and continuing with translation.\n"
-msgstr ""
+msgstr "אזהרה: הפעלת הצמד וממשיכה בתרגום.\n"
 
 #: gschem/src/iface/i_command.c:4424
 msgid "WARNING: Snap grid size is not equal to 100!\n"
-msgstr ""
+msgstr "אזהרה: גודל רשת הצמד אינו שווה ל 100!\n"
 
 #: gschem/src/iface/i_command.c:4425
 msgid ""
 "WARNING: If you are translating a symbol to the origin, the snap grid size "
 "should be set to 100\n"
-msgstr ""
+msgstr "אזהרה: אם אתה מתרגם סמל למקור, יש להגדיר את גודל רשת הצמד ל 100"
 
 #: gschem/src/iface/i_command.c:4637
 msgid "Grid OFF\n"
