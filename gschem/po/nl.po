@@ -788,11 +788,11 @@ msgstr "Kan geen schema's vinden boven het huidige schema!\n"
 
 #: gschem/src/iface/i_command.c:3597
 msgid "Object is attached to something\n"
-msgstr ""
+msgstr "Object is ergens aan vastgemaakt\n"
 
 #: gschem/src/iface/i_command.c:4003
 msgid "Attribute is already attached\n"
-msgstr ""
+msgstr "Attribuut is al bijgevoegd\n"
 
 #: gschem/src/iface/i_command.c:4417
 msgid "WARNING: Do not translate with snap off!\n"
@@ -883,12 +883,12 @@ msgstr "Aktie terugkoppel mode is ingesteld op BOUNDINGBOX."
 
 #: gschem/src/iface/i_command.c:4842
 msgid "Auto-Pan is now"
-msgstr ""
+msgstr "Automatisch pannen is nu"
 
 #: gschem/src/iface/i_command.c:5064
 #, c-format
 msgid "(read only) width=%d, height=%d\n"
-msgstr ""
+msgstr "(alleen lezen) breedte=%d, hoogte=%d\n"
 
 # Unable to open the session file
 #: gschem/src/iface/i_sessions.c:263
@@ -897,7 +897,7 @@ msgstr "Kan de sessie bestand niet openen"
 
 #: gschem/src/iface/i_sessions.c:269 gschem/src/x/x_window.c:1025
 msgid "is not accessible"
-msgstr ""
+msgstr "is niet toegankelijk"
 
 # File
 #: gschem/src/iface/i_sessions.c:273
@@ -906,7 +906,7 @@ msgstr "Bestand"
 
 #: gschem/src/iface/i_sessions.c:336
 msgid "Warning relative file names detected in session"
-msgstr ""
+msgstr "Waarschuwing relatieve bestandsnamen gedetecteerd in sessie"
 
 #: gschem/src/iface/i_sessions.c:347 gschem/src/iface/i_sessions.c:360
 #: gschem/src/iface/i_sessions.c:967 gschem/src/x/x_sessions.c:242
