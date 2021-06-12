@@ -405,7 +405,7 @@ msgstr "Beállítja a Snap Size megjelenítését az állapotsoron"
 
 #: gschem/src/base/gschem_status_bar.c:665
 msgid "Status Text"
-msgstr "Állapot."
+msgstr "Állapotszöveg"
 
 #: gschem/src/base/gschem_status_bar.c:666
 msgid "Set the string for the text on the Status Bar"
@@ -414,11 +414,11 @@ msgstr "Állítsa be a szöveg karakterláncát az állapotsoron"
 #: gschem/src/base/gschem_status_bar.c:672
 #: gschem/src/base/gschem_status_bar.c:673
 msgid "Status State"
-msgstr "Állapot."
+msgstr "Állapot állapota"
 
 #: gschem/src/base/gschem_status_bar.c:686
 msgid "Status Bar Height"
-msgstr "Állapot."
+msgstr "Állapotsor magassága"
 
 #: gschem/src/base/gschem_status_bar.c:687
 msgid "Set or get the height of the status bar"
