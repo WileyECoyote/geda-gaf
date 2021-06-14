@@ -40,7 +40,7 @@ value=3.3V
 T 550 -15 8 10 0 1 0 0 1
 description=ZENER DIODE,3.3V,1/2W
 T 550 1000 8 10 0 1 0 0 1
-documentation=http://wikipedia.org/wiki/Zener_diode
+documentation=wikipedia.org/wiki/Zener_diode
 T 550 1600 8 10 0 0 0 0 1
 author=AutoTron
 T 550 1400 8 10 0 0 0 0 1
