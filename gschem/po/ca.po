@@ -1032,9 +1032,10 @@ msgstr "S'està eliminant la sessió"
 msgid "Failed to remove session"
 msgstr "No s'ha pogut eliminar la sessió"
 
+# Could not remove session
 #: gschem/src/iface/i_sessions.c:889
 msgid "<b>Could not remove session</b>"
-msgstr ""
+msgstr "<b>No s'ha pogut eliminar la sessió</b>"
 
 #: gschem/src/iface/i_sessions.c:940
 #, c-format
