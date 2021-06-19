@@ -1033,6 +1033,7 @@ msgstr "Премахване на сесията"
 msgid "Failed to remove session"
 msgstr "Неуспешно премахване на сесията"
 
+# >Could not remove session; Sesiyata ne mozha da bŭde premakhnata
 #: gschem/src/iface/i_sessions.c:889
 msgid "<b>Could not remove session</b>"
 msgstr "<b>не можа да се премахне сесия</b>"
@@ -1077,9 +1078,10 @@ msgstr "да се"
 msgid "Failed to rename session"
 msgstr "Преименуването на сесията не бе успешно"
 
+# Could not rename session; Sesiyata ne mozha da bŭde preimenuvana
 #: gschem/src/iface/i_sessions.c:1107
 msgid "<b>Could not rename session</b>"
-msgstr ""
+msgstr "<b>Сесията не можа да бъде преименувана</b>"
 
 #: gschem/src/iface/i_sessions.c:1141
 msgid "Created session"
