@@ -929,7 +929,7 @@ msgstr "documenten"
 
 #: gschem/src/iface/i_sessions.c:359
 msgid "did not contain any accessible documents"
-msgstr ""
+msgstr "bevatte geen toegankelijke documenten"
 
 #: gschem/src/iface/i_sessions.c:796
 msgid "Sessions"
@@ -946,7 +946,7 @@ msgstr "Mislukt sessie verwijderen"
 
 #: gschem/src/iface/i_sessions.c:889
 msgid "<b>Could not remove session</b>"
-msgstr ""
+msgstr "<b>Kan sessie niet verwijderen</b>"
 
 # There are no saved sessions
 #: gschem/src/iface/i_sessions.c:940
@@ -956,7 +956,7 @@ msgstr "Laad de geselecteerde sessie"
 
 #: gschem/src/iface/i_sessions.c:968
 msgid "created with"
-msgstr ""
+msgstr "gemaakt met"
 
 # An error occurred while making session
 #: gschem/src/iface/i_sessions.c:976
@@ -965,7 +965,7 @@ msgstr "Er is een fout opgetreden tijdens het maken sessie"
 
 #: gschem/src/iface/i_sessions.c:986 gschem/src/iface/i_sessions.c:1170
 msgid "<b>Session Error</b>"
-msgstr ""
+msgstr "<b>Sessiefout</b>"
 
 #: gschem/src/iface/i_sessions.c:986
 msgid "Creation failed"
@@ -990,7 +990,7 @@ msgstr "niet in staat om de sessie te hernoemen"
 
 #: gschem/src/iface/i_sessions.c:1107
 msgid "<b>Could not rename session</b>"
-msgstr ""
+msgstr "<b>Kan de naam van sessie niet wijzigen</b>"
 
 #: gschem/src/iface/i_sessions.c:1141
 msgid "Created session"
@@ -998,7 +998,7 @@ msgstr "Gemaakt sessie"
 
 #: gschem/src/iface/i_sessions.c:1142
 msgid "with"
-msgstr ""
+msgstr "met"
 
 #: gschem/src/iface/i_sessions.c:1152 gschem/src/x/x_window.c:1252
 #: gschem/src/x/x_window.c:1255
@@ -1032,7 +1032,7 @@ msgstr "toon sessies bij het opstarten is nu uitgeschakeld\n"
 
 #: gschem/src/iface/i_sessions.c:1338
 msgid "Session system initialized!\n"
-msgstr ""
+msgstr "Sessiesysteem geïnitialiseerd!\n"
 
 # Deselect Mode
 #: gschem/src/iface/i_status.c:138 gschem/etc/system-gschemrc.scm:2161
