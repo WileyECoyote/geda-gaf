@@ -1009,9 +1009,10 @@ msgstr "Fjerner session"
 msgid "Failed to remove session"
 msgstr "Kunne ikke fjerne sessionen"
 
+# Could not remove session
 #: gschem/src/iface/i_sessions.c:889
 msgid "<b>Could not remove session</b>"
-msgstr ""
+msgstr "<b>Kunne ikke fjerne session</b>"
 
 #: gschem/src/iface/i_sessions.c:940
 #, c-format
