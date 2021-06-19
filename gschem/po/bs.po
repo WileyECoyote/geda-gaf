@@ -1007,9 +1007,10 @@ msgstr "Uklanjanje sjednica"
 msgid "Failed to remove session"
 msgstr "Uklanjanje sesije nije uspjelo"
 
+# Could not remove session
 #: gschem/src/iface/i_sessions.c:889
 msgid "<b>Could not remove session</b>"
-msgstr ""
+msgstr "<b>Nije moguće ukloniti sesiju</b>"
 
 # There are no saved sessions
 #: gschem/src/iface/i_sessions.c:940
