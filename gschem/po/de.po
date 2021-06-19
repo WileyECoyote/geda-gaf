@@ -913,9 +913,10 @@ msgstr "_Alles speichern"
 msgid "Failed to remove session"
 msgstr "Das Bild konnte nicht geladen werden"
 
+# Could not remove session
 #: gschem/src/iface/i_sessions.c:889
 msgid "<b>Could not remove session</b>"
-msgstr ""
+msgstr "<b>Sitzung konnte nicht entfernt werden</b>"
 
 # There are no saved sessions
 #: gschem/src/iface/i_sessions.c:940
