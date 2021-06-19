@@ -949,24 +949,24 @@ msgstr "Opozorilo relativnih imen datotek, zaznanih v seji"
 #: gschem/src/iface/i_sessions.c:347 gschem/src/iface/i_sessions.c:360
 #: gschem/src/iface/i_sessions.c:967 gschem/src/x/x_sessions.c:242
 msgid "Session"
-msgstr ""
+msgstr "Seja"
 
 #: gschem/src/iface/i_sessions.c:348
 msgid "opening"
-msgstr ""
+msgstr "odpiranje"
 
 #: gschem/src/iface/i_sessions.c:349
 msgid "of"
-msgstr ""
+msgstr "od"
 
 #: gschem/src/iface/i_sessions.c:350 gschem/src/iface/i_sessions.c:969
 #: gschem/src/iface/i_sessions.c:1143
 msgid "documents"
-msgstr ""
+msgstr "dokumentov"
 
 #: gschem/src/iface/i_sessions.c:359
 msgid "did not contain any accessible documents"
-msgstr ""
+msgstr "ni vseboval nobenih dostopnih dokumentov"
 
 # Sessions
 #: gschem/src/iface/i_sessions.c:796
@@ -980,11 +980,12 @@ msgstr "odstranjevanje sejo"
 
 #: gschem/src/iface/i_sessions.c:886
 msgid "Failed to remove session"
-msgstr ""
+msgstr "Seje ni bilo mogoče odstraniti"
 
+# Could not remove session
 #: gschem/src/iface/i_sessions.c:889
 msgid "<b>Could not remove session</b>"
-msgstr ""
+msgstr "<b>Seje ni bilo mogoče odstraniti</b>"
 
 # There are no saved sessions
 #: gschem/src/iface/i_sessions.c:940
