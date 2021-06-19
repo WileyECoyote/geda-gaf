@@ -992,40 +992,41 @@ msgstr "Varning relativa filnamn upptäcktes under sessionen"
 #: gschem/src/iface/i_sessions.c:347 gschem/src/iface/i_sessions.c:360
 #: gschem/src/iface/i_sessions.c:967 gschem/src/x/x_sessions.c:242
 msgid "Session"
-msgstr ""
+msgstr "Session"
 
 #: gschem/src/iface/i_sessions.c:348
 msgid "opening"
-msgstr ""
+msgstr "öppning"
 
 #: gschem/src/iface/i_sessions.c:349
 msgid "of"
-msgstr ""
+msgstr "av"
 
 #: gschem/src/iface/i_sessions.c:350 gschem/src/iface/i_sessions.c:969
 #: gschem/src/iface/i_sessions.c:1143
 msgid "documents"
-msgstr ""
+msgstr "dokument"
 
 #: gschem/src/iface/i_sessions.c:359
 msgid "did not contain any accessible documents"
-msgstr ""
+msgstr "innehöll inga tillgängliga dokument"
 
 #: gschem/src/iface/i_sessions.c:796
 msgid "Sessions"
-msgstr ""
+msgstr "Sessioner"
 
 #: gschem/src/iface/i_sessions.c:860
 msgid "Removing session"
-msgstr ""
+msgstr "Tar bort sessionen"
 
 #: gschem/src/iface/i_sessions.c:886
 msgid "Failed to remove session"
-msgstr ""
+msgstr "Det gick inte att ta bort sessionen"
 
+# Could not remove session
 #: gschem/src/iface/i_sessions.c:889
 msgid "<b>Could not remove session</b>"
-msgstr ""
+msgstr "<b>Det gick inte att ta bort sessionen</b>"
 
 #: gschem/src/iface/i_sessions.c:940
 #, c-format
