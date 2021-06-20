@@ -22,17 +22,17 @@ T 700 50 5 8 0 1 0 0 1
 pintype=pas
 }
 V 450 200 200 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
-T 0 650 8 10 0 0 0 0 1
+T 300 700 8 10 0 0 0 0 1
 device=VOLTAGE_SOURCE
 L 200 200 250 200 3 0 0 0 -1 -1
 L 650 200 700 200 3 0 0 0 -1 -1
 T 300 500 8 10 1 1 0 0 1
 refdes=M?
-T 0 800 8 10 0 1 0 0 1
+T 300 900 8 10 0 1 0 0 1
 description=A voltage measurement device
-T 0 1000 9 10 0 0 0 0 1
+T 300 1100 9 10 0 0 0 0 1
 numslots=0
-T 0 1200 9 10 0 0 0 0 1
+T 300 1300 9 10 0 0 0 0 1
 footprint=unknown
 T 300 125 9 12 1 0 0 0 1
 +V
