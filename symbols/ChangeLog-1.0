@@ -1,3 +1,8 @@
+2021-06-20 Wiley E. Hill <wileyhill@gmail.com>
+
+    * emechanic/motor/2phase-stepper4-1.sym: Rename symbol file; 2phase-
+      stepper -> 2phase-stepper4.
+
 2021-06-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * diode/zener52/zener*B.sym: Add documentation attribute.
