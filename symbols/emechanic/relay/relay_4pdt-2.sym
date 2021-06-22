@@ -202,7 +202,7 @@ device=RELAY
 T 2325 1850 8 10 1 1 0 0 1
 refdes=RL?
 T 300 3550 8 10 0 0 0 0 1
-documentation=https://en.wikipedia.org/wiki/Relay
+documentation=en.wikipedia.org/wiki/Relay
 T 300 3750 8 10 0 0 0 0 1
 description=Relay, 
 T 600 100 9 10 0 0 0 0 1
