@@ -84,7 +84,7 @@ footprint=unknown
 T 650 2200 5 10 0 0 0 0 1
 description=Relay, SPDT
 T 650 2600 5 10 0 1 0 0 1
-documentation=https://en.wikipedia.org/wiki/Relay
+documentation=en.wikipedia.org/wiki/Relay
 T 650 1600 8 10 1 1 0 0 1
 refdes=RL?
 T 650 2400 5 10 0 0 0 0 1
