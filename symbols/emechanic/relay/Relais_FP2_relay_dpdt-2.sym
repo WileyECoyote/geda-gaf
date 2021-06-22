@@ -98,7 +98,7 @@ L 1100 1800 1100 1700 3 0 0 0 -1 -1
 T 500 4100 5 8 0 0 0 0 1
 description=double pole, double throw relay
 T 500 3900 5 8 0 0 0 0 1
-documentation=http://catalog.tycoelectronics.com/TE/bin/TE.Connect?C=1&M=BYPN&TCPN=1462033-5&RQPN=D3002
+documentation=catalog.tycoelectronics.com/TE/bin/TE.Connect?C=1&M=BYPN&TCPN=1462033-5&RQPN=D3002
 T 1400 800 8 10 1 1 0 0 1
 refdes=RL?
 T 1400 1000 8 10 1 1 0 0 1
