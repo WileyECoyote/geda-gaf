@@ -6,7 +6,7 @@ refdes=RL?
 T 3700 3900 5 10 0 0 0 0 1
 numslots=0
 T 3700 3900 5 10 0 0 0 0 1
-documentation=http://www.hamlin.com/specsheets/HE700.pdf
+documentation=www.hamlin.com/specsheets/HE700.pdf
 T 200 1300 5 10 0 1 0 0 1
 description=SPST reed relay
 T 200 900 5 10 0 1 0 0 1
