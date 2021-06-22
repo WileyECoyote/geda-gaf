@@ -136,9 +136,9 @@ T 1595 2650 8 10 1 1 0 0 1
 refdes=U?
 T 295 2695 8 10 0 1 0 0 1
 device=BMA220
-T -5 2895 8 10 0 1 0 0 1
+T 300 2895 8 10 0 1 0 0 1
 description=BMA220 3-axis accelerometer.
-T -5 3295 8 10 0 0 0 0 1
+T 300 3295 8 10 0 0 0 0 1
 footprint=LGA12ld
-T 0 3100 9 10 0 0 0 0 1
+T 300 3100 9 10 0 0 0 0 1
 numslots=0
