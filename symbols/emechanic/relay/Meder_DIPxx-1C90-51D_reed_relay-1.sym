@@ -81,7 +81,7 @@ device=Relay
 T 100 1400 5 10 0 0 0 0 1
 footprint=Reed-Relay_Meder_DIPxx-1C90-51D
 T 100 1800 5 10 0 1 0 0 1
-documentation=http://www.meder.com/upload/produkte/36_de_1_Relais%20DIP%20Serie%20d.pdf
+documentation=www.meder.com/upload/produkte/36_de_1_Relais%20DIP%20Serie%20d.pdf
 T 100 1600 5 10 0 1 0 0 1
 description=Reed-Relay Meder DIPxx-1C90-51D
 T 100 2000 5 10 0 0 0 0 1
