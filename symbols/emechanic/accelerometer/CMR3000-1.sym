@@ -114,9 +114,9 @@ T 300 1450 9 10 1 0 0 0 1
 CMR3000
 T 1745 1450 8 10 1 1 0 0 1
 refdes=U?
-T -5 1600 8 10 0 0 0 0 1
+T 300 1700 8 10 0 0 0 0 1
 footprint=CMR3000
-T -5 1800 8 10 0 1 0 0 1
+T 300 1900 8 10 0 1 0 0 1
 description=CMR3000 3-axis gyroscopic yaw sensor VTI Technologies.
-T -5 2000 8 10 0 0 0 0 1
+T 300 2100 8 10 0 0 0 0 1
 device=CMR3000
