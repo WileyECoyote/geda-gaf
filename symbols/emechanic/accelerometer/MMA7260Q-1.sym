@@ -7,13 +7,13 @@ T 300 2650 5 10 0 0 0 0 1
 device=mma7260q
 T 300 2850 5 10 0 0 0 0 1
 footprint=QFN16_6
-T 300 3050 5 10 0 0 0 0 1
+T 300 4100 5 10 0 0 0 0 1
 author=Brendan Howell (mute@howell-ersatz.com)
-T 300 3250 5 10 0 0 0 0 1
+T 300 3100 5 10 0 0 0 0 1
 documentation=
-T 300 3450 5 10 0 0 0 0 1
+T 300 3300 5 10 0 0 0 0 1
 description=1.5g - 6g Three Axis Low-g Micromachined Accelerometer
-T 300 3650 5 10 0 0 0 0 1
+T 300 3500 5 10 0 0 0 0 1
 numslots=0
 P 2000 2000 1700 2000 1 0 0
 {
