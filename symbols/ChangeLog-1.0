@@ -1,3 +1,7 @@
+2021-06-23 Wiley E. Hill <wileyhill@gmail.com>
+
+    * linear/regulator/LT317A-1.sym: Relocate symbol file in library.
+
 2021-06-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * emechanic/motor/2phase-stepper4-1.sym: Rename symbol file; 2phase-
