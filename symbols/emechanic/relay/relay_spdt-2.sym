@@ -76,7 +76,7 @@ device=RELAY
 T 1500 1700 8 10 1 1 0 0 1
 refdes=RL?
 T 1500 700 8 10 0 1 0 0 1
-documentation=https://en.wikipedia.org/wiki/Relay
+documentation=en.wikipedia.org/wiki/Relay
 T 1500 900 8 10 0 1 0 0 1
 description=Relay, SPDT
 T 1500 1100 9 10 0 0 0 0 1
