@@ -89,7 +89,7 @@ device=RELAY
 T 2000 1800 5 8 0 1 0 0 1
 description=double pole, single throw relay, NC
 T 2000 1600 5 8 0 1 0 0 1
-documentation=https://en.wikipedia.org/wiki/Relay
+documentation=en.wikipedia.org/wiki/Relay
 T 2000 1200 8 8 0 1 0 0 1
 footprint=unknown
 T 2000 600 5 8 0 0 0 0 1
