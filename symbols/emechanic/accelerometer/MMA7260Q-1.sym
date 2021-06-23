@@ -105,9 +105,7 @@ T 350 400 5 8 0 1 0 2 1
 pintype=in
 }
 B 300 0 1400 2400 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
-T 0 0 8 10 0 0 0 0 1
+T 300 3900 8 10 0 0 0 0 1
 dist-license=GPL
-T 1600 0 8 10 0 0 0 0 1
+T 300 3700 8 10 0 0 0 0 1
 use-license=unlimited
-T 0 200 8 10 0 0 0 0 1
-comment=Suggested library: unknown
