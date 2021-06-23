@@ -1,5 +1,10 @@
 2021-06-23 Wiley E. Hill <wileyhill@gmail.com>
 
+    * geda-clib.scm: Create group "Accelerometer" under analogdevices.
+
+    * analogdevices/accelerometer/ADXL3??-1.sym: Relocate existing
+      accelerometer symbol files to accelerometer subdirectory.
+
     * linear/regulator/LT317A-1.sym: Relocate symbol file in library.
 
 2021-06-20 Wiley E. Hill <wileyhill@gmail.com>

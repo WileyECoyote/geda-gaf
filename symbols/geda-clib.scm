@@ -196,6 +196,7 @@
                   ("allegro"         "Manufacturers/Allegro Microsystems")
                   ("altera"          "Manufacturers/Altera")
                   ("analogdevices"   "Manufacturers/Analog Devices")
+                     ("analogdevices/accelerometer"    "Manufacturers/Accelerometer")
                      ("analogdevices/supervisor"       "Manufacturers/Microprocessor Supervisors")
                   ("amphenol"        "Manufacturers/Amphenol")
                   ("apex"            "Manufacturers/Apex Microtechnology")
