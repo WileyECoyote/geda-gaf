@@ -72,7 +72,7 @@ device=RELAY
 T 1900 1800 5 10 0 1 0 0 1
 description=Relay, SPDT
 T 1900 1400 8 10 0 1 0 0 1
-documentation=https://en.wikipedia.org/wiki/Relay
+documentation=en.wikipedia.org/wiki/Relay
 T 1900 2200 5 10 0 1 0 0 1
 footprint=DIP8
 T 1900 1600 9 10 0 0 0 0 1
