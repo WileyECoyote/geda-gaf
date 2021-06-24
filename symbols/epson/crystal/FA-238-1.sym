@@ -68,4 +68,4 @@ footprint=SMD_4P_3225
 T 200 900 9 10 1 1 0 0 1
 value=FA-238
 T 200 2250 5 10 0 1 0 0 1
-documentation=http://www.epsondevice.com/docs/qd/en/DownloadServlet?id=ID000658
+documentation=www.epsondevice.com/docs/qd/en/DownloadServlet?id=ID000658
