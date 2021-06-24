@@ -1,3 +1,7 @@
+2021-06-24 Wiley E. Hill <wileyhill@gmail.com>
+
+    * emechanic/switch/switch_spdt-3.sym: Revise symbol.
+
 2021-06-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * geda-clib.scm: Create group "Accelerometer" under analogdevices.
