@@ -34,7 +34,7 @@ description=Push button Schurter LSH1301.xx
 T 300 1200 5 10 0 0 0 0 1
 numslots=0
 T 300 1400 5 10 0 0 0 0 1
-dist-license=GPL
+dist-license=GPLv2
 T 300 1600 5 10 0 0 0 0 1
 use-license=unlimited
 V 499 24 25 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
