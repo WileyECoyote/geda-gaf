@@ -202,4 +202,4 @@ B 400 100 1800 3600 3 0 0 0 100 100 0 0 45 50 135 50
 T 400 4600 5 10 0 1 0 0 1
 description=Synchronous Step Down COT Controller, 40V
 T 400 5000 5 10 0 1 0 0 1
-documentation=https://www.exar.com/ds/xr75100.pdf
+documentation=www.exar.com/ds/xr75100.pdf
