@@ -12,7 +12,7 @@ refdes=U?
 T 400 4400 5 10 0 0 0 0 1
 device=XR75100
 T 400 5000 5 10 0 1 0 0 1
-documentation=https://www.exar.com/ds/xr75100.pdf
+documentation=www.exar.com/ds/xr75100.pdf
 T 400 4600 5 10 0 1 0 0 1
 description=Synchronous Step Down COT Controller, 40V
 P 2500 1900 2200 1900 1 0 0
