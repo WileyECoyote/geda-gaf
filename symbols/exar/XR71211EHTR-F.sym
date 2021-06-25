@@ -136,4 +136,4 @@ B 400 100 1800 2400 3 0 0 0 100 100 0 0 45 50 135 50
 T 400 3400 5 10 0 0 0 0 1
 description=Low Dropout Voltage Regulator
 T 400 3800 5 10 0 0 0 0 1
-documentation=http://www.exar.com/ds/xr71211.pdf
+documentation=www.exar.com/ds/xr71211.pdf
