@@ -1040,23 +1040,23 @@ msgstr "<b>No s'ha pogut eliminar la sessió</b>"
 #: gschem/src/iface/i_sessions.c:940
 #, c-format
 msgid "There are no saved sessions"
-msgstr ""
+msgstr "No hi ha sessions desades"
 
 #: gschem/src/iface/i_sessions.c:968
 msgid "created with"
-msgstr ""
+msgstr "creat amb"
 
 #: gschem/src/iface/i_sessions.c:976
 msgid "An error occurred attempting to create session"
-msgstr ""
+msgstr "S'ha produït un error en intentar crear la sessió"
 
 #: gschem/src/iface/i_sessions.c:986 gschem/src/iface/i_sessions.c:1170
 msgid "<b>Session Error</b>"
-msgstr ""
+msgstr "<b>Error de sessió</b>"
 
 #: gschem/src/iface/i_sessions.c:986
 msgid "Creation failed"
-msgstr ""
+msgstr "Error de sessió"
 
 #: gschem/src/iface/i_sessions.c:1030
 msgid "Opened session"
