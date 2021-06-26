@@ -1031,23 +1031,23 @@ msgstr "<b>Det gick inte att ta bort sessionen</b>"
 #: gschem/src/iface/i_sessions.c:940
 #, c-format
 msgid "There are no saved sessions"
-msgstr ""
+msgstr "Det finns inga sparade sessioner"
 
 #: gschem/src/iface/i_sessions.c:968
 msgid "created with"
-msgstr ""
+msgstr "skapad med"
 
 #: gschem/src/iface/i_sessions.c:976
 msgid "An error occurred attempting to create session"
-msgstr ""
+msgstr "Ett fel uppstod när du försökte skapa session"
 
 #: gschem/src/iface/i_sessions.c:986 gschem/src/iface/i_sessions.c:1170
 msgid "<b>Session Error</b>"
-msgstr ""
+msgstr "<b>Sessionsfel</b>"
 
 #: gschem/src/iface/i_sessions.c:986
 msgid "Creation failed"
-msgstr ""
+msgstr "Sessionsfel"
 
 #: gschem/src/iface/i_sessions.c:1030
 msgid "Opened session"
