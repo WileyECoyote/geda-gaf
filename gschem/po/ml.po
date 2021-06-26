@@ -996,15 +996,15 @@ msgstr "യാന്ത്രിക കാഴ്‌ച ഇപ്പോൾ"
 #: gschem/src/iface/i_command.c:5064
 #, c-format
 msgid "(read only) width=%d, height=%d\n"
-msgstr ""
+msgstr "(വായിക്കാൻ മാത്രം) വീതി=%d, ഉയരം=%d\n"
 
 #: gschem/src/iface/i_sessions.c:263
 msgid "Could not open the session file"
-msgstr ""
+msgstr "സെഷൻ ഫയൽ തുറക്കാൻ കഴിഞ്ഞില്ല"
 
 #: gschem/src/iface/i_sessions.c:269 gschem/src/x/x_window.c:1025
 msgid "is not accessible"
-msgstr ""
+msgstr "ആക്‌സസ്സുചെയ്യാനാകില്ല"
 
 # File
 #: gschem/src/iface/i_sessions.c:273
@@ -1013,50 +1013,50 @@ msgstr "ഫയല്‍"
 
 #: gschem/src/iface/i_sessions.c:336
 msgid "Warning relative file names detected in session"
-msgstr ""
+msgstr "മുന്നറിയിപ്പ് ആപേക്ഷിക ഫയൽ നാമങ്ങൾ സെഷനിൽ കണ്ടെത്തി"
 
 #: gschem/src/iface/i_sessions.c:347 gschem/src/iface/i_sessions.c:360
 #: gschem/src/iface/i_sessions.c:967 gschem/src/x/x_sessions.c:242
 msgid "Session"
-msgstr ""
+msgstr "സെഷൻ"
 
 #: gschem/src/iface/i_sessions.c:348
 msgid "opening"
-msgstr ""
+msgstr "തുറക്കുന്നു"
 
 #: gschem/src/iface/i_sessions.c:349
 msgid "of"
-msgstr ""
+msgstr "ന്റെ"
 
 #: gschem/src/iface/i_sessions.c:350 gschem/src/iface/i_sessions.c:969
 #: gschem/src/iface/i_sessions.c:1143
 msgid "documents"
-msgstr ""
+msgstr "പ്രമാണങ്ങൾ"
 
 #: gschem/src/iface/i_sessions.c:359
 msgid "did not contain any accessible documents"
-msgstr ""
+msgstr "ആക്‌സസ് ചെയ്യാവുന്ന പ്രമാണങ്ങളൊന്നും അടങ്ങിയിട്ടില്ല"
 
 #: gschem/src/iface/i_sessions.c:796
 msgid "Sessions"
-msgstr ""
+msgstr "സെഷനുകൾ"
 
 #: gschem/src/iface/i_sessions.c:860
 msgid "Removing session"
-msgstr ""
+msgstr "സെഷൻ നീക്കംചെയ്യുന്നു"
 
 #: gschem/src/iface/i_sessions.c:886
 msgid "Failed to remove session"
-msgstr ""
+msgstr "സെഷൻ നീക്കംചെയ്യുന്നതിൽ പരാജയപ്പെട്ടു"
 
 #: gschem/src/iface/i_sessions.c:889
 msgid "<b>Could not remove session</b>"
-msgstr ""
+msgstr "<b>സെഷൻ നീക്കംചെയ്യാനായില്ല</b>"
 
 #: gschem/src/iface/i_sessions.c:940
 #, c-format
 msgid "There are no saved sessions"
-msgstr ""
+msgstr "സംരക്ഷിച്ച സെഷനുകളൊന്നുമില്ല"
 
 #: gschem/src/iface/i_sessions.c:968
 msgid "created with"
