@@ -926,7 +926,7 @@ msgstr "Der er ingen gemte sessioner"
 
 #: gschem/src/iface/i_sessions.c:968
 msgid "created with"
-msgstr ""
+msgstr "hergestellt mit"
 
 # An error occurred while creating the session
 #: gschem/src/iface/i_sessions.c:976
