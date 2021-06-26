@@ -1015,19 +1015,19 @@ msgstr "Kayıtlı oturum adlarını listele"
 
 #: gschem/src/iface/i_sessions.c:968
 msgid "created with"
-msgstr ""
+msgstr "ile oluşturulan"
 
 #: gschem/src/iface/i_sessions.c:976
 msgid "An error occurred attempting to create session"
-msgstr ""
+msgstr "Ett fel uppstod när du försökte skapa session"
 
 #: gschem/src/iface/i_sessions.c:986 gschem/src/iface/i_sessions.c:1170
 msgid "<b>Session Error</b>"
-msgstr ""
+msgstr "<b>Oturum Hatası</b>"
 
 #: gschem/src/iface/i_sessions.c:986
 msgid "Creation failed"
-msgstr ""
+msgstr "Oluşturulamadı"
 
 # Opened session
 #: gschem/src/iface/i_sessions.c:1030
