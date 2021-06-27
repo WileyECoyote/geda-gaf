@@ -1,3 +1,10 @@
+2021-06-27 Wiley E. Hill <wileyhill@gmail.com>
+
+    * exar/XR76203*.sym: Add symbols: 40V, 3A Synchronous Step Down COT
+      Regulator:
+
+            * exar/XR76203EL-F.sym
+
 2021-06-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * emechanic/switch/switch_spdt-3.sym: Revise symbol.
