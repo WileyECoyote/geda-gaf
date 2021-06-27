@@ -10,7 +10,7 @@ refdes=U?
 T 400 7100 5 10 0 0 0 0 1
 device=XR76115ELMTR-F
 T 400 7700 5 10 0 1 0 0 1
-documentation=http://www.exar.com/ds/xr76115.pdf
+documentation=www.exar.com/ds/xr76115.pdf
 T 400 7300 5 10 0 1 0 0 1
 description=Synchronous Step Down COT Regulator, 15A
 P 2450 2300 2150 2300 1 0 0
