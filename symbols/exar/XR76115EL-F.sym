@@ -431,4 +431,4 @@ B 400 100 1800 6300 3 0 0 0 100 100 0 0 45 50 135 50
 T 400 7300 5 10 0 1 0 0 1
 description=Synchronous Step Down COT Regulator, 15A
 T 400 7700 5 10 0 1 0 0 1
-documentation=http://www.exar.com/ds/xr76115.pdf
+documentation=www.exar.com/ds/xr76115.pdf
