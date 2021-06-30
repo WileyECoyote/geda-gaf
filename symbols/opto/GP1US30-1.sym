@@ -10,7 +10,7 @@ footprint=GP1US30
 T 850 2450 5 10 0 0 0 0 1
 author=andrewmATthehacktoryDOTcom
 T 850 1850 5 10 0 0 0 0 1
-documentation=http://www.sharp-world.com/
+documentation=www.sharp-world.com/
 T 850 1650 5 10 0 0 0 0 1
 description=GP1US30 infrared receiver module
 T 850 2050 5 10 0 0 0 0 1
