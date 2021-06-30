@@ -88,7 +88,7 @@ author=Joe Rowan jrowan@jretrading.com
 T 0 2800 5 10 0 0 0 0 1
 description=Dual optocoupler
 T 0 2000 5 10 0 0 0 0 1
-documentation=http://www.avagotech.com/docs/AV02-1429EN
+documentation=www.avagotech.com/docs/AV02-1429EN
 T 0 1800 5 10 0 0 0 0 1
 footprint=DIP8
 T 0 1600 5 10 0 0 0 0 1
