@@ -44,7 +44,7 @@ pintype=out
 }
 B 300 0 800 725 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
 T 300 2550 5 10 0 1 0 0 1
-documentation=http://www.avagotech.com/docs/AV02-0962EN
+documentation=www.avagotech.com/docs/AV02-0962EN
 T 300 1150 5 10 0 1 0 0 1
 description=Dual channel 20 MBd optocoupler
 T 1400 200 5 10 0 0 0 0 1
