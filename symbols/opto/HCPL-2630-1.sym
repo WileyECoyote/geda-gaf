@@ -56,6 +56,6 @@ slot=1
 T 300 775 9 8 1 0 0 0 1
 HCPL-2630
 T 300 2750 5 10 0 0 0 0 1
-documentation=http://www.avagotech.com/docs/AV02-0940EN
+documentation=www.avagotech.com/docs/AV02-0940EN
 T 1200 100 5 8 0 0 0 0 1
 symversion=0.1
