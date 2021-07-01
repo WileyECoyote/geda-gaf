@@ -127,7 +127,7 @@ value=HCPL-2631
 T 100 1800 9 10 0 0 0 0 1
 footprint=DIP8
 T 100 2600 9 10 0 1 0 0 1
-documentation=https://www.fairchildsemi.com/datasheets/HC/HCPL2631.pdf
+documentation=www.fairchildsemi.com/datasheets/HC/HCPL2631.pdf
 T 100 3200 8 10 0 0 0 0 1
 author=AutoTron
 T 100 3000 8 10 0 0 0 0 1
