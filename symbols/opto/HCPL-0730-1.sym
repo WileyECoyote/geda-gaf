@@ -101,7 +101,7 @@ numslots=0
 T 300 2600 5 10 0 1 0 0 1
 description=Dual-Channel Darlington optocoupler
 T 300 2800 5 10 0 1 0 0 1
-documentation=http://docs.broadcom.com/docs-and-downloads/optocouplers/AV01-0546EN_DS_HCPL-x73x_2017-08-25.pdf
+documentation=docs.broadcom.com/docs-and-downloads/optocouplers/AV01-0546EN_DS_HCPL-x73x_2017-08-25.pdf
 T 300 3000 5 10 0 0 0 0 1
 use-license=unlimited
 T 300 3200 5 10 0 0 0 0 1
