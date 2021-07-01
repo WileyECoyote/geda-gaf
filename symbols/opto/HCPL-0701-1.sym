@@ -85,4 +85,4 @@ numslots=0
 T 300 2600 5 10 0 0 0 0 1
 description=Darlington optocoupler
 T 300 2800 5 10 0 0 0 0 1
-documentation=http://www.fairchildsemi.com/ds/HC/HCPL0701.pdf 
+documentation=www.fairchildsemi.com/ds/HC/HCPL0701.pdf 
