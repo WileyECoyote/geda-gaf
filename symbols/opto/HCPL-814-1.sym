@@ -84,7 +84,7 @@ value=HCPL-814
 T 100 1400 8 10 0 0 0 0 1
 footprint=DIP4.fp
 T 100 1600 8 10 0 0 0 0 1
-documentation=http://www.avagotech.com/docs/AV02-0265EN
+documentation=www.avagotech.com/docs/AV02-0265EN
 T 100 1200 8 10 0 0 0 0 1
 numslots=0
 T 100 2400 8 10 0 0 0 0 1
