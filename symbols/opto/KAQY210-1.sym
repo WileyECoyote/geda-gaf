@@ -80,7 +80,7 @@ value=KAQY210S
 T 300 2200 5 10 0 1 0 0 1
 description=Solid State Relay, N.O.,MOSFET,350V
 T 300 2400 5 10 0 1 0 0 1
-documentation=http://www.cosmo-ic.com/object/products/KAQY210.pdf
+documentation=www.cosmo-ic.com/object/products/KAQY210.pdf
 T 300 2600 5 10 0 0 0 0 1
 numslots=0
 L 1500 1000 1500 900 3 0 0 0 -1 -1
