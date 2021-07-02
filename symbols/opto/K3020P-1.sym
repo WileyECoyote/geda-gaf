@@ -85,7 +85,7 @@ numslots=0
 T 300 2500 5 10 0 1 0 0 1
 description=Optocoupler, Phototriac Output, Non-Zero Crossing, 400V
 T 300 2900 5 10 0 1 0 0 1
-documentation=http://www.vishay.com/docs/83505/k3020p.pdf
+documentation=www.vishay.com/docs/83505/k3020p.pdf
 T 300 1900 9 10 0 1 0 0 1
 footprint=DIP6
 T 300 2300 5 10 0 0 0 0 1
