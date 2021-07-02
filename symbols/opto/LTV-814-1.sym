@@ -96,7 +96,7 @@ value=LTV-814
 T 700 1600 8 10 0 0 0 0 1
 device=LTV-814
 T 700 1800 8 10 0 1 0 0 1
-documentation=http://media.digikey.com/pdf/Data%20Sheets/Lite-On%20PDFs/LTV-814H_824H_844H%20(M,S,S_TA1).pdf
+documentation=media.digikey.com/pdf/Data%20Sheets/Lite-On%20PDFs/LTV-814H_824H_844H%20(M,S,S_TA1).pdf
 T 700 1400 8 10 0 0 0 0 1
 numslots=0
 T 700 2600 8 10 0 0 0 0 1
