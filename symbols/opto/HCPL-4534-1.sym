@@ -88,7 +88,7 @@ footprint=DIP8
 T 2800 1500 8 10 1 1 0 6 1
 refdes=U?
 T 300 2700 5 10 0 1 0 0 1
-documentation=https://datasheet.octopart.com/HCPL-4534-020E-Avago-datasheet-21098.pdf
+documentation=datasheet.octopart.com/HCPL-4534-020E-Avago-datasheet-21098.pdf
 T 300 2900 5 10 0 0 0 0 1
 description=Dual Channel Optocoupler
 T 350 50 5 10 0 0 0 0 1
