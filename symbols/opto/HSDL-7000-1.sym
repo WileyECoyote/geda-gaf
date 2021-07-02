@@ -106,4 +106,4 @@ footprint=SOIC8
 T 300 2900 5 10 0 0 0 0 1
 author=AutoTron
 T 300 2700 5 10 0 1 0 0 1
-documentation=https://media.digikey.com/pdf/Data Sheets/Lite-On PDFs/HSDL-7000.pdf
+documentation=media.digikey.com/pdf/Data Sheets/Lite-On PDFs/HSDL-7000.pdf
