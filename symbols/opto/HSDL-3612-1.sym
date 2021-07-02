@@ -108,7 +108,7 @@ pinlabel=Vcc
 T 2200 3700 8 10 0 1 0 0 1
 description=IrDA SIR integrated transceiver,115.2Kb/s
 T 2200 4500 8 10 0 1 0 0 1
-documentation=http://media.digikey.com/pdf/Data%20Sheets/Lite-On%20PDFs/HSDL-3612.pdf
+documentation=media.digikey.com/pdf/Data%20Sheets/Lite-On%20PDFs/HSDL-3612.pdf
 T 2200 4300 8 10 0 0 0 0 1
 numslots=0
 T 2200 4100 8 10 0 0 0 0 1
