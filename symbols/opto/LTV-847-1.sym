@@ -311,7 +311,7 @@ L 675 400 665 378 3 0 0 0 -1 -1
 L 625 375 650 375 3 0 0 0 -1 -1
 L 650 375 600 350 3 0 0 0 -1 -1
 T 300 5075 8 10 0 0 0 0 1
-documentation=http://media.digikey.com/pdf/Data%20Sheets/Lite-On%20PDFs/LTV-817_827_847(M,S,S_TA1).pdf
+documentation=media.digikey.com/pdf/Data%20Sheets/Lite-On%20PDFs/LTV-817_827_847(M,S,S_TA1).pdf
 T 300 4475 8 10 0 0 0 0 1
 numslots=0
 T 300 4075 8 10 0 0 0 0 1
