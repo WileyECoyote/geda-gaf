@@ -351,7 +351,7 @@ T 1000 0 5 10 0 1 0 6 1
 pinseq=9
 }
 T 300 4900 8 10 0 0 0 0 1
-documentation=http://media.digikey.com/pdf/Data%20Sheets/Lite-On%20PDFs/LTV-814H_824H_844H%20(M,S,S_TA1).pdf
+documentation=media.digikey.com/pdf/Data%20Sheets/Lite-On%20PDFs/LTV-814H_824H_844H%20(M,S,S_TA1).pdf
 T 300 4300 8 10 0 0 0 0 1
 numslots=0
 T 300 3900 8 10 0 0 0 0 1
