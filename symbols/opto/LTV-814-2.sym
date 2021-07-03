@@ -84,7 +84,7 @@ LTV-814
 T 0 1200 8 10 0 0 0 0 1
 footprint=DIP4.fp
 T 0 1600 8 10 0 0 0 0 1
-documentation=http://media.digikey.com/pdf/Data%20Sheets/Lite-On%20PDFs/LTV-817_827_847(M,S,S_TA1).pdf
+documentation=media.digikey.com/pdf/Data%20Sheets/Lite-On%20PDFs/LTV-817_827_847(M,S,S_TA1).pdf
 T 0 1400 8 10 0 0 0 0 1
 numslots=0
 T 0 2400 8 10 0 0 0 0 1
