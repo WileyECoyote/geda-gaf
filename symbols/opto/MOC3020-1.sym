@@ -105,7 +105,7 @@ footprint=DIP6
 T 300 3250 5 10 0 1 0 0 1
 description=Optoisolators Triac Driver Output
 T 300 3050 5 10 0 1 0 0 1
-documentation=https://www.mouser.com/ds/2/239/MOC302-1175440.pdf
+documentation=www.mouser.com/ds/2/239/MOC302-1175440.pdf
 T 300 2650 5 10 0 0 0 0 1
 numslots=0
 T 300 2850 5 10 0 0 0 0 1
