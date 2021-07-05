@@ -107,7 +107,7 @@ footprint=DIP6
 T 300 3250 5 10 0 1 0 0 1
 description=Zero-Cross Optoisolators Triac Driver Output,15mA
 T 300 3050 5 10 0 1 0 0 1
-documentation=http://isocom.com/wp-content/uploads/2017/08/MOC3040_41_42_43.pdf
+documentation=isocom.com/wp-content/uploads/2017/08/MOC3040_41_42_43.pdf
 T 300 3850 5 10 0 0 0 0 1
 author=Lucas Vogelsang lucasvoATgmx.ch
 T 300 3450 5 10 0 0 0 0 1
