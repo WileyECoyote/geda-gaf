@@ -73,7 +73,7 @@ slot=1
 T 700 100 9 10 0 0 0 0 1
 symversion=0.2
 T 700 1700 5 10 0 1 0 0 1
-documentation=http://www.cel.com/pdf/datasheets/ps2501.pdf
+documentation=www.cel.com/pdf/datasheets/ps2501.pdf
 T 700 2300 5 10 0 0 0 0 1
 author=AutoTron
 T 700 2100 5 10 0 0 0 0 1
