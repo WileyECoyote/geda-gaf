@@ -12,7 +12,7 @@ numslots=0
 T 0 2025 9 10 0 0 0 0 1
 description=Opto Isolator, 1.5kV
 T 0 2200 9 10 0 0 0 0 1
-documentation=http://www.ti.com/product/TIL111
+documentation=www.ti.com/product/TIL111
 L 300 1100 700 1100 3 0 0 0 -1 -1
 L 700 1100 700 800 3 0 0 0 -1 -1
 L 900 600 500 600 3 0 0 0 -1 -1
