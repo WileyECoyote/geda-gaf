@@ -94,6 +94,6 @@ footprint=TFDT4500
 T 1900 2900 5 10 0 0 0 0 1
 symversion=0.2
 T 1900 3100 5 10 0 0 0 0 1
-documentation=http://www.micropik.com/PDF/tfds4500.pdf
+documentation=www.micropik.com/PDF/tfds4500.pdf
 T 1900 1900 9 10 0 1 0 0 1
 value=TFDT4500–TR3
