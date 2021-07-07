@@ -64,6 +64,6 @@ numslots=0
 T 0 2500 5 10 0 0 0 0 1
 description=Photo Module,36 kHz PCM Remote Control Systems
 T 0 2700 5 10 0 0 0 0 1
-documentation=http://www.mouser.com/ds/2/427/geninfo-537189.pdf
+documentation=www.mouser.com/ds/2/427/geninfo-537189.pdf
 T 0 1500 9 10 1 1 0 0 1
 value=TSOP1736
