@@ -88,7 +88,7 @@ description=Half-bridge gate driver
 T 250 2690 9 10 1 0 0 0 1
 FAN7380
 T 250 3450 5 10 0 0 0 0 1
-documentation=http://www.fairchildsemi.com/ds/FA/FAN7380.pdf
+documentation=www.fairchildsemi.com/ds/FA/FAN7380.pdf
 P 2300 2000 2000 2000 1 0 0
 {
 T 2100 2050 5 8 1 1 0 0 1
