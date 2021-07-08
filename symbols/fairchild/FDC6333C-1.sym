@@ -10,7 +10,7 @@ footprint=SuperSOT6
 T 200 2600 5 10 0 0 0 0 1
 author=andrewmATthehacktoryDOTcom
 T 200 2800 5 10 0 0 0 0 1
-documentation=http://www.fairchildsemi.com/ds/FD/FD_FDC6333C.pdf
+documentation=www.fairchildsemi.com/ds/FD/FD_FDC6333C.pdf
 T 200 3000 5 10 0 0 0 0 1
 description=Dual N/P channel MOSFET
 V 1450 450 349 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
