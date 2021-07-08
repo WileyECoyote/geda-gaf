@@ -62,6 +62,6 @@ footprint=SOT23
 T 600 400 8 8 0 0 0 0 1
 author=Thomas Wagner Nielsen <thomasATdiagramtips.com>
 T 600 100 8 8 0 0 0 0 1
-documentation=http://www.fairchildsemi.com/ds/BA/BAT54.pdf
+documentation=www.fairchildsemi.com/ds/BA/BAT54.pdf
 T 700 1300 9 10 1 1 0 0 1
 device=BAT54S
