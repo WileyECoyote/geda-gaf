@@ -40,7 +40,7 @@ numslots=0
 T 500 1200 9 10 0 0 0 0 1
 footprint=PHOTORES-400
 T 500 1800 5 10 0 0 0 0 1
-documentation=https://en.wikipedia.org/wiki/Photoresistor
+documentation=en.wikipedia.org/wiki/Photoresistor
 T 500 2200 5 10 0 0 0 0 1
 dist-license=GPLv2
 T 500 2000 5 10 0 0 0 0 1
