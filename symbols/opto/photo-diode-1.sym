@@ -51,6 +51,6 @@ numslots=0
 T 800 800 9 10 0 1 0 0 1
 footprint=TO-18
 T 810 1610 5 10 0 1 0 0 1
-documentation=https://en.wikipedia.org/wiki/Photodiode
+documentation=en.wikipedia.org/wiki/Photodiode
 T 810 1810 5 10 0 0 0 0 1
 author=AutoTron
