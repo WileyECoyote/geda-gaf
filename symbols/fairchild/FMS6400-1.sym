@@ -10,7 +10,7 @@ footprint=SOIC8
 T 300 2850 8 10 0 0 0 0 1
 author=David Griffith <davidgriffith@acm.org>
 T 300 3050 8 10 0 0 0 0 1
-documentation=http://www.fairchildsemi.com/ds/FM%2FFMS6400.pdf
+documentation=www.fairchildsemi.com/ds/FM%2FFMS6400.pdf
 T 300 3250 8 10 0 0 0 0 1
 description=Dual Channel Video Driver with Integrated Filters and Composite Video Summer
 T 300 3450 8 10 0 0 0 0 1
