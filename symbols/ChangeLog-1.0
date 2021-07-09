@@ -3,6 +3,7 @@
     * ti/ldo/*.sym: Relocate symbol from generic linear regulators:
 
             * ti/ldo/TPS74001-1.sym
+            * ti/ldo/TPS74012-1.sym
 
 2021-06-27 Wiley E. Hill <wileyhill@gmail.com>
 
