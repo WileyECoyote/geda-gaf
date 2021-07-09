@@ -10,7 +10,7 @@ footprint=SC75_6
 T 0 1900 5 10 0 0 0 0 1
 author=andrewmATthehacktoryDOTcom
 T 0 2100 5 10 0 0 0 0 1
-documentation=http://www.fairchildsemi.com/ds/FD/FDJ128N.pdf
+documentation=www.fairchildsemi.com/ds/FD/FDJ128N.pdf
 T 0 2300 5 10 0 0 0 0 1
 description=FDJ128N N channel MOSFET
 T 0 2500 5 10 0 0 0 0 1
