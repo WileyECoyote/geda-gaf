@@ -10,7 +10,7 @@ numslots=0
 T 400 1700 9 10 1 1 0 0 1
 footprint=DIP8
 T 400 3100 8 10 0 0 0 0 1
-documentation=https://www.fairchildsemi.com/datasheets/RV/RV4141A.pdf
+documentation=www.fairchildsemi.com/datasheets/RV/RV4141A.pdf
 B 400 100 1400 1500 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
 P 100 1300 400 1300 1 0 0
 {
