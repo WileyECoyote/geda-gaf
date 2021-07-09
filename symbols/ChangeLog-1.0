@@ -1,3 +1,9 @@
+2021-07-09 Wiley E. Hill <wileyhill@gmail.com>
+
+    * ti/ldo/*.sym: Relocate symbol from generic linear regulators:
+
+            * ti/ldo/TPS74001-1.sym
+
 2021-06-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * exar/XR76203*.sym: Add symbols: 40V, 3A Synchronous Step Down COT
