@@ -1069,60 +1069,72 @@ msgstr "Файл"
 msgid "Warning relative file names detected in session"
 msgstr "Попередження відносних імен файлів, виявлених під час сеансу"
 
+# Session; Sesiya
 #: gschem/src/iface/i_sessions.c:347 gschem/src/iface/i_sessions.c:360
 #: gschem/src/iface/i_sessions.c:967 gschem/src/x/x_sessions.c:242
 msgid "Session"
-msgstr ""
+msgstr "Сесія"
 
+# opening; vidkryttya
 #: gschem/src/iface/i_sessions.c:348
 msgid "opening"
-msgstr ""
+msgstr "відкриття"
 
 #: gschem/src/iface/i_sessions.c:349
 msgid "of"
-msgstr ""
+msgstr "з"
 
+# documents; dokumenty
 #: gschem/src/iface/i_sessions.c:350 gschem/src/iface/i_sessions.c:969
 #: gschem/src/iface/i_sessions.c:1143
 msgid "documents"
-msgstr ""
+msgstr "документи"
 
+# ne mistyv zhodnykh dostupnykh dokumentiv
 #: gschem/src/iface/i_sessions.c:359
 msgid "did not contain any accessible documents"
-msgstr ""
+msgstr "не містив жодних доступних документів"
 
+# Sessions; Sesiyi
 #: gschem/src/iface/i_sessions.c:796
 msgid "Sessions"
-msgstr ""
+msgstr "Сесії"
 
+# Removing session; Vydalennya seansu
 #: gschem/src/iface/i_sessions.c:860
 msgid "Removing session"
-msgstr ""
+msgstr "Видалення сеансу"
 
+# Failed to remove session; Ne vdalosya vydalyty seans
 #: gschem/src/iface/i_sessions.c:886
 msgid "Failed to remove session"
-msgstr ""
+msgstr "Не вдалося видалити сеанс"
 
+# Could not remove session; Ne vdalosya vydalyty seans
 #: gschem/src/iface/i_sessions.c:889
 msgid "<b>Could not remove session</b>"
-msgstr ""
+msgstr "<b>Не вдалося видалити сеанс</b>"
 
+# There are no saved sessions
 #: gschem/src/iface/i_sessions.c:940
 #, c-format
 msgid "There are no saved sessions"
-msgstr ""
+msgstr "Немає збережених сеансів"
 
+# created with
 #: gschem/src/iface/i_sessions.c:968
 msgid "created with"
-msgstr ""
+msgstr "створено за допомогою"
 
+# An error occurred attempting to create session
 #: gschem/src/iface/i_sessions.c:976
 msgid "An error occurred attempting to create session"
-msgstr ""
+msgstr "Під час спроби створення сеансу сталася помилка"
 
+# Session Error; Pomylka seansu
 #: gschem/src/iface/i_sessions.c:986 gschem/src/iface/i_sessions.c:1170
 msgid "<b>Session Error</b>"
-msgstr ""
+msgstr "<b>Помилка сеансу</b>"
 
 #: gschem/src/iface/i_sessions.c:986
 msgid "Creation failed"
