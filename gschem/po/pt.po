@@ -31,11 +31,11 @@ msgstr ""
 
 #: gschem/src/base/gschem.c:223
 msgid "Assuming schematic file suffix for"
-msgstr "Assumindo sufixo de arquivo esquemático para"
+msgstr "Assumindo sufixo de ficheiro esquemático para"
 
 #: gschem/src/base/gschem.c:239
 msgid "Assuming symbol file suffix for"
-msgstr "Assumindo o sufixo do arquivo de símbolos para"
+msgstr "Assumindo o sufixo do ficheiro de símbolos para"
 
 # An error was encountered loading requested session
 #: gschem/src/base/gschem.c:269
@@ -240,13 +240,13 @@ msgstr ""
 "  -t, --title-block <FILE>   Start a new drawing using the specified title-"
 "block.\n"
 "  -u, --undo-dir <DIR>       Especifique um diretório temporário para "
-"arquivos Desfazer.\n"
+"ficheiros Desfazer.\n"
 "  -v, --verbose              Oferece mais retornos.\n"
 "  -V, --version              Apresenta informações da versão.\n"
 "  -x (EXPR)                  Expressão Scheme para executar ao iniciar.\n"
 "  -z, --minimized            Ocultar a janela principal, usada para scripts\n"
 "  --                         Todos os argumentos restantes são nomes de "
-"arquivos.\n"
+"ficheiros.\n"
 "\n"
 "Reportagens de bugs para <https://bugs.launchpad.net/geda>\n"
 "Pagina inicial gEDA/gaf: <http://www.geda-project.org/>\n"
@@ -262,7 +262,7 @@ msgid ""
 msgstr ""
 "direito autoral (C) 1998-2017 gEDA Desenvolvedores\n"
 "Este é um software livre, e você pode redistribuí-lo sob\n"
-"certas condições. Para obter detalhes, consulte o arquivo `COPYING ', que é\n"
+"certas condições. Para obter detalhes, consulte o ficheiro `COPYING ', que é\n"
 "Incluído na distribuição gEDA.\n"
 "Não há GARANTIA, na medida permitida por lei.\n"
 
@@ -552,66 +552,75 @@ msgstr "Esta é gEDA/gschem versão"
 
 #: gschem/src/guile/g_rc.c:197
 msgid "but you have a version"
-msgstr ""
+msgstr "pero tienes una versión"
 
 #: gschem/src/guile/g_rc.c:198
 msgid "Please be sure that you have the latest rc file"
-msgstr ""
+msgstr "Certifique-se de que possui o ficheiro rc mais recente"
 
 #: gschem/src/guile/g_rc.c:205 gschem/src/x/x_image.c:537
 msgid "file"
-msgstr ""
+msgstr "ficheiro"
 
 #: gschem/src/guile/g_rc.c:729
 #, c-format
 msgid "Invalid value, zoom-gain cannot be zero, check entry in rc file\n"
 msgstr ""
+"Valor inválido, ganho de zoom não pode ser zero, verifique a entrada no ficheiro rc\n"
 
 #: gschem/src/guile/g_rc.c:734
 #, c-format
 msgid "Invalid type assignment, check zoom-gain entry in rc file\n"
 msgstr ""
+"Atribuição de tipo inválida, verifique a entrada de ganho de zoom no ficheiro rc\n"
 
 #: gschem/src/guile/g_rc.c:735 gschem/src/guile/g_rc.c:1312
 #: gschem/src/guile/g_rc.c:1458 gschem/src/guile/g_rc.c:2054
 msgid "Continuing with default value"
-msgstr ""
+msgstr "Continuando com o valor padrão"
 
 #: gschem/src/guile/g_rc.c:815
 #, c-format
 msgid "Invalid type assignment, check logging entry in rc file\n"
 msgstr ""
+"Atribuição de tipo inválida, verifique a entrada de registro no ficheiro rc\n"
 
 #: gschem/src/guile/g_rc.c:1306
 #, c-format
 msgid "Invalid value, snap-size cannot be zero, check entry rc file\n"
 msgstr ""
+"Valor inválido, o tamanho do snap não pode ser zero, verifique o ficheiro rc de entrada\n"
 
 #: gschem/src/guile/g_rc.c:1311
 #, c-format
 msgid "Invalid type assignment, check snap-size entry in rc file\n"
 msgstr ""
+"Atribuição de tipo inválida, verifique a entrada do tamanho do snap no ficheiro rc\n"
 
 #: gschem/src/guile/g_rc.c:1452
 #, c-format
 msgid "Invalid value, bus-ripper-size cannot be zero, check entry rc file\n"
 msgstr ""
+"Valor inválido, bus-ripper-tamanho não pode ser zero, verifique o ficheiro rc de entrada\n"
 
 #: gschem/src/guile/g_rc.c:1457
 #, c-format
 msgid "Invalid type assignment, check bus-ripper-size entry in rc file\n"
 msgstr ""
+"Atribuição de tipo inválida, verifique a entrada bus-ripper-tamanho no ficheiro rc\n"
 
 #: gschem/src/guile/g_rc.c:2048
 #, c-format
 msgid ""
 "Can not scroll 0 steps, invalid scrollpan-steps, check entry in rc file\n"
 msgstr ""
+"Não é possível rolar 0 passos, passos de rolagem inválidos, verificar entrada no ficheiro rc\n"
 
 #: gschem/src/guile/g_rc.c:2053
 #, c-format
 msgid "Invalid type assignment, check scrollpan-steps entry in rc file\n"
 msgstr ""
+"Atribuição de tipo inválida, verifique a entrada scrollpan-steps no ficheiro rc\n"
 
 # Magnification Factor is invalid
 #: gschem/src/guile/g_rc.c:2100
@@ -1201,7 +1210,7 @@ msgstr "Ocorreu um erro durante o processamento da solicitação para reverter"
 
 #: gschem/src/iface/i_window.c:353
 msgid "<b>File error.</b>"
-msgstr "<b>Erro de arquivo.</b>"
+msgstr "<b>Erro de ficheiro.</b>"
 
 # Revert failed
 #: gschem/src/iface/i_window.c:353
@@ -1211,7 +1220,7 @@ msgstr "Reverter falhou"
 # Error encountered during file operation
 #: gschem/src/iface/i_window.c:360
 msgid "Error encountered during file operation"
-msgstr "Erro encontrado durante a operação de arquivo"
+msgstr "Erro encontrado durante a operação de ficheiro"
 
 # # Recovery: Undo the last operation
 #: gschem/src/iface/i_window.c:361
@@ -1910,7 +1919,7 @@ msgstr "Mundo"
 # Could not load image file
 #: gschem/src/x/x_dialog.c:508
 msgid "Could not load image file"
-msgstr "Não foi possível carregar o arquivo de imagem"
+msgstr "Não foi possível carregar o ficheiro de imagem"
 
 # gEDA: GPL Electronic Design Automation
 #: gschem/src/x/x_dialog.c:514
@@ -3303,7 +3312,7 @@ msgstr "Ativar para ampliar a pré-visualizar"
 # Auto file Suffix
 #: gschem/src/x/x_fileselect.c:286
 msgid "Auto file Suffix"
-msgstr "Sufixo de arquivo automático"
+msgstr "Sufixo de ficheiro automático"
 
 # Automatically append the file extension
 #: gschem/src/x/x_fileselect.c:289
@@ -3322,7 +3331,7 @@ msgstr "Sobrepor"
 
 #: gschem/src/x/x_fileselect.c:338
 msgid "Overwrite file?"
-msgstr "Sobrepor de arquivo?"
+msgstr "Sobrepor de ficheiro?"
 
 #: gschem/src/x/x_fileselect.c:340
 msgid "Save canceled on user request\n"
@@ -3425,7 +3434,7 @@ msgstr ""
 # Error: Unable to write eps file
 #: gschem/src/x/x_image.c:410
 msgid "Error: Unable to write eps file"
-msgstr "Erro: Não foi possível gravar o arquivo eps"
+msgstr "Erro: Não foi possível gravar o ficheiro eps"
 
 # Wrote black and white image to
 #: gschem/src/x/x_image.c:413 gschem/src/x/x_image.c:562
@@ -3450,7 +3459,7 @@ msgstr "Ocorreu um erro ao salvar a imagem com o tipo"
 # to filename
 #: gschem/src/x/x_image.c:534
 msgid "to filename"
-msgstr "ao nome do arquivo"
+msgstr "ao nome do ficheiro"
 
 # Error Writing Imaging
 #: gschem/src/x/x_image.c:545
@@ -4320,7 +4329,7 @@ msgstr ""
 # Could not open file
 #: gschem/src/x/x_recent_menu.c:111
 msgid "Could not open file"
-msgstr "Não foi possível abrir o arquivo"
+msgstr "Não foi possível abrir o ficheiro"
 
 # Remove => Withdraw
 #: gschem/src/x/x_recent_menu.c:224
@@ -4464,7 +4473,7 @@ msgstr "Escreveu a configuração para"
 # File error
 #: gschem/src/x/x_settings.c:621
 msgid "File error"
-msgstr "Erro de arquivo"
+msgstr "Erro de ficheiro"
 
 #: gschem/src/x/x_settings_dialog.c:1128
 msgid "Clear attributes and restore default filter list?"
@@ -4749,7 +4758,7 @@ msgstr ""
 # image file not found
 #: gschem/src/x/x_toolbars.c:346
 msgid "image file not found"
-msgstr "Não foi encontrado o arquivo de imagem"
+msgstr "Não foi encontrado o ficheiro de imagem"
 
 # Toolbar icon not found
 #: gschem/src/x/x_toolbars.c:424
@@ -4779,7 +4788,7 @@ msgstr "Não foi possível salvar a configuração da barra de ferramentas"
 # toolbar configuration file error
 #: gschem/src/x/x_toolbars.c:701
 msgid "Error, Toolbar configuration key file"
-msgstr "Erro no arquivo de configuração da barra de ferramentas"
+msgstr "Erro no ficheiro de configuração da barra de ferramentas"
 
 # Retrieving toolbar geometry
 #: gschem/src/x/x_toolbars.c:709
@@ -4800,7 +4809,7 @@ msgstr "Aviso, Erro ao restaurar a configuração da barra de ferramentas"
 #: gschem/src/x/x_toolbars.c:748
 msgid "Warning, toolbar configuration file access error"
 msgstr ""
-"Aviso, Erro de acesso ao arquivo de configuração da barra de ferramentas"
+"Aviso, Erro de acesso ao ficheiro de configuração da barra de ferramentas"
 
 # Toolbar configuration not found
 #: gschem/src/x/x_toolbars.c:770
@@ -4918,7 +4927,7 @@ msgstr "_Novo"
 # Create a new file
 #: gschem/etc/system-gschemrc.scm:2091
 msgid "Create a new file"
-msgstr "Crie um novo arquivo"
+msgstr "Crie um novo ficheiro"
 
 #: gschem/etc/system-gschemrc.scm:2092 gschem/etc/system-gschemrc.scm:2302
 msgid "_Open..."
@@ -4930,7 +4939,7 @@ msgstr "Abrir Recen_te"
 
 #: gschem/etc/system-gschemrc.scm:2093
 msgid "Open recently accessed schematic or symbol files"
-msgstr "Aberto recentemente acessada esquema ou arquivos de símbolo"
+msgstr "Aberto recentemente acessada esquema ou ficheiros de símbolo"
 
 #: gschem/etc/system-gschemrc.scm:2098 gschem/etc/system-gschemrc.scm:2306
 msgid "Save _As..."
