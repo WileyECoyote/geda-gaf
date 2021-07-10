@@ -1019,17 +1019,20 @@ msgstr "odprl zasedanje"
 msgid "Renaming session"
 msgstr "Preimenovanje seje"
 
+# to
 #: gschem/src/iface/i_sessions.c:1080 gschem/src/object/o_attrib.c:178
 msgid "to"
-msgstr ""
+msgstr "do"
 
+# Failed to rename session
 #: gschem/src/iface/i_sessions.c:1104
 msgid "Failed to rename session"
-msgstr ""
+msgstr "Seje ni bilo mogoče preimenovati"
 
+# Could not rename session
 #: gschem/src/iface/i_sessions.c:1107
 msgid "<b>Could not rename session</b>"
-msgstr ""
+msgstr "<b>Seje ni bilo mogoče preimenovati</b>"
 
 # Created session
 #: gschem/src/iface/i_sessions.c:1141
