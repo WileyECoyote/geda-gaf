@@ -547,66 +547,75 @@ msgstr "Esta é gEDA/gschem versão"
 
 #: gschem/src/guile/g_rc.c:197
 msgid "but you have a version"
-msgstr ""
+msgstr "pero tienes una versión"
 
 #: gschem/src/guile/g_rc.c:198
 msgid "Please be sure that you have the latest rc file"
-msgstr ""
+msgstr "Certifique-se de que possui o arquivo rc mais recente"
 
 #: gschem/src/guile/g_rc.c:205 gschem/src/x/x_image.c:537
 msgid "file"
-msgstr ""
+msgstr "arquivo"
 
 #: gschem/src/guile/g_rc.c:729
 #, c-format
 msgid "Invalid value, zoom-gain cannot be zero, check entry in rc file\n"
 msgstr ""
+"Valor inválido, ganho de zoom não pode ser zero, verifique a entrada no arquivo rc\n"
 
 #: gschem/src/guile/g_rc.c:734
 #, c-format
 msgid "Invalid type assignment, check zoom-gain entry in rc file\n"
 msgstr ""
+"Atribuição de tipo inválida, verifique a entrada de ganho de zoom no arquivo rc\n"
 
 #: gschem/src/guile/g_rc.c:735 gschem/src/guile/g_rc.c:1312
 #: gschem/src/guile/g_rc.c:1458 gschem/src/guile/g_rc.c:2054
 msgid "Continuing with default value"
-msgstr ""
+msgstr "Continuando com o valor padrão"
 
 #: gschem/src/guile/g_rc.c:815
 #, c-format
 msgid "Invalid type assignment, check logging entry in rc file\n"
 msgstr ""
+"Atribuição de tipo inválida, verifique a entrada de registro no arquivo rc\n"
 
 #: gschem/src/guile/g_rc.c:1306
 #, c-format
 msgid "Invalid value, snap-size cannot be zero, check entry rc file\n"
 msgstr ""
+"Valor inválido, o tamanho do snap não pode ser zero, verifique o arquivo rc de entrada\n"
 
 #: gschem/src/guile/g_rc.c:1311
 #, c-format
 msgid "Invalid type assignment, check snap-size entry in rc file\n"
 msgstr ""
+"Atribuição de tipo inválida, verifique a entrada do tamanho do snap no arquivo rc\n"
 
 #: gschem/src/guile/g_rc.c:1452
 #, c-format
 msgid "Invalid value, bus-ripper-size cannot be zero, check entry rc file\n"
 msgstr ""
+"Valor inválido, bus-ripper-tamanho não pode ser zero, verifique o arquivo rc de entrada\n"
 
 #: gschem/src/guile/g_rc.c:1457
 #, c-format
 msgid "Invalid type assignment, check bus-ripper-size entry in rc file\n"
 msgstr ""
+"Atribuição de tipo inválida, verifique a entrada bus-ripper-tamanho no arquivo rc\n"
 
 #: gschem/src/guile/g_rc.c:2048
 #, c-format
 msgid ""
 "Can not scroll 0 steps, invalid scrollpan-steps, check entry in rc file\n"
 msgstr ""
+"Não é possível rolar 0 passos, passos de rolagem inválidos, verificar entrada no arquivo rc\n"
 
 #: gschem/src/guile/g_rc.c:2053
 #, c-format
 msgid "Invalid type assignment, check scrollpan-steps entry in rc file\n"
 msgstr ""
+"Atribuição de tipo inválida, verifique a entrada scrollpan-steps no arquivo rc\n"
 
 # Invalid zoom factor
 #: gschem/src/guile/g_rc.c:2100
