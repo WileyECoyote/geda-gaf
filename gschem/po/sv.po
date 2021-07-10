@@ -1049,25 +1049,29 @@ msgstr "<b>Sessionsfel</b>"
 msgid "Creation failed"
 msgstr "Sessionsfel"
 
+# Opened session
 #: gschem/src/iface/i_sessions.c:1030
 msgid "Opened session"
-msgstr ""
+msgstr "Öppnad session"
 
+# Renaming session
 #: gschem/src/iface/i_sessions.c:1079
 msgid "Renaming session"
-msgstr ""
+msgstr "Byter namn på session"
 
 #: gschem/src/iface/i_sessions.c:1080 gschem/src/object/o_attrib.c:178
 msgid "to"
-msgstr ""
+msgstr "till"
 
+# Failed to rename session
 #: gschem/src/iface/i_sessions.c:1104
 msgid "Failed to rename session"
-msgstr ""
+msgstr "Det gick inte att byta namn på sessionen"
 
+# Could not rename session
 #: gschem/src/iface/i_sessions.c:1107
 msgid "<b>Could not rename session</b>"
-msgstr ""
+msgstr "<b>Det gick inte att byta namn på sessionen</b>"
 
 #: gschem/src/iface/i_sessions.c:1141
 msgid "Created session"
