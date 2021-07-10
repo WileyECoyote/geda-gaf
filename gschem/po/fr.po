@@ -834,7 +834,7 @@ msgstr "Mode Piste magnétique est désactivé"
 #: gschem/src/iface/i_command.c:4792 gschem/src/iface/i_command.c:4836
 #: gschem/src/x/x_compselect.c:135 gschem/src/x/x_toolbars.c:261
 msgid "Off"
-msgstr ""
+msgstr "Désactivé"
 
 #: gschem/src/iface/i_command.c:4796 gschem/src/iface/i_command.c:4840
 #: gschem/src/x/x_compselect.c:134
@@ -862,7 +862,7 @@ msgstr "Le panoramique automatique est maintenant"
 #: gschem/src/iface/i_command.c:5064
 #, c-format
 msgid "(read only) width=%d, height=%d\n"
-msgstr ""
+msgstr "(lecture seule) largeur=%d, hauteur=%d\n"
 
 #: gschem/src/iface/i_sessions.c:263
 msgid "Could not open the session file"
@@ -870,7 +870,7 @@ msgstr "Impossible d'ouvrir le fichier de session"
 
 #: gschem/src/iface/i_sessions.c:269 gschem/src/x/x_window.c:1025
 msgid "is not accessible"
-msgstr ""
+msgstr "n'est pas accessible"
 
 #: gschem/src/iface/i_sessions.c:273
 msgid "File"
@@ -878,7 +878,7 @@ msgstr "Fichier"
 
 #: gschem/src/iface/i_sessions.c:336
 msgid "Warning relative file names detected in session"
-msgstr ""
+msgstr "Avertissement noms de fichiers relatifs détectés dans la session"
 
 #: gschem/src/iface/i_sessions.c:347 gschem/src/iface/i_sessions.c:360
 #: gschem/src/iface/i_sessions.c:967 gschem/src/x/x_sessions.c:242
@@ -887,11 +887,11 @@ msgstr "Afficher le _nom"
 
 #: gschem/src/iface/i_sessions.c:348
 msgid "opening"
-msgstr ""
+msgstr "ouverture"
 
 #: gschem/src/iface/i_sessions.c:349
 msgid "of"
-msgstr ""
+msgstr "de"
 
 #: gschem/src/iface/i_sessions.c:350 gschem/src/iface/i_sessions.c:969
 #: gschem/src/iface/i_sessions.c:1143
@@ -900,7 +900,7 @@ msgstr "documents"
 
 #: gschem/src/iface/i_sessions.c:359
 msgid "did not contain any accessible documents"
-msgstr ""
+msgstr "ne contenait aucun document accessible"
 
 #: gschem/src/iface/i_sessions.c:796
 msgid "Sessions"
@@ -916,7 +916,7 @@ msgstr "Échec de la suppression de la session"
 
 #: gschem/src/iface/i_sessions.c:889
 msgid "<b>Could not remove session</b>"
-msgstr ""
+msgstr "<b>Impossible de supprimer la session</b>"
 
 # There are no saved sessions
 #: gschem/src/iface/i_sessions.c:940
@@ -926,7 +926,7 @@ msgstr "Aucune session enregistrée"
 
 #: gschem/src/iface/i_sessions.c:968
 msgid "created with"
-msgstr ""
+msgstr "créé avec"
 
 #: gschem/src/iface/i_sessions.c:976
 msgid "An error occurred attempting to create session"
@@ -951,7 +951,7 @@ msgstr "Enregistrer toutes les pages"
 
 #: gschem/src/iface/i_sessions.c:1080 gschem/src/object/o_attrib.c:178
 msgid "to"
-msgstr ""
+msgstr "à"
 
 #: gschem/src/iface/i_sessions.c:1104
 msgid "Failed to rename session"
@@ -959,7 +959,7 @@ msgstr "Impossible de renommer la session"
 
 #: gschem/src/iface/i_sessions.c:1107
 msgid "<b>Could not rename session</b>"
-msgstr ""
+msgstr "<b>Impossible de renommer la session</b>"
 
 #: gschem/src/iface/i_sessions.c:1141
 msgid "Created session"
@@ -967,7 +967,7 @@ msgstr "Vue en cours"
 
 #: gschem/src/iface/i_sessions.c:1142
 msgid "with"
-msgstr ""
+msgstr "avec"
 
 #: gschem/src/iface/i_sessions.c:1152 gschem/src/x/x_window.c:1252
 #: gschem/src/x/x_window.c:1255
@@ -997,7 +997,7 @@ msgstr "Afficher les sessions au démarrage est désactivé\n"
 
 #: gschem/src/iface/i_sessions.c:1338
 msgid "Session system initialized!\n"
-msgstr ""
+msgstr "Système de session initialisé!\n"
 
 #: gschem/src/iface/i_status.c:138 gschem/etc/system-gschemrc.scm:2161
 msgid "Deselect Mode"
