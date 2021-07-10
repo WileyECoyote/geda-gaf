@@ -1058,41 +1058,50 @@ msgstr "<b>സെഷൻ നീക്കംചെയ്യാനായില്�
 msgid "There are no saved sessions"
 msgstr "സംരക്ഷിച്ച സെഷനുകളൊന്നുമില്ല"
 
+# created with; upayēāgicc sr̥ṣṭiccat
 #: gschem/src/iface/i_sessions.c:968
 msgid "created with"
-msgstr ""
+msgstr "ഉപയോഗിച്ച് സൃഷ്ടിച്ചത്"
 
+# An error occurred attempting to create session
+# seṣan sr̥ṣṭikkān śramikkumpēāḷ oru piśak sambhaviccu
 #: gschem/src/iface/i_sessions.c:976
 msgid "An error occurred attempting to create session"
-msgstr ""
+msgstr "സെഷൻ സൃഷ്ടിക്കാൻ ശ്രമിക്കുമ്പോൾ ഒരു പിശക് സംഭവിച്ചു"
 
+# Session Error; seṣan piśak
 #: gschem/src/iface/i_sessions.c:986 gschem/src/iface/i_sessions.c:1170
 msgid "<b>Session Error</b>"
-msgstr ""
+msgstr "<b>സെഷൻ പിശക്</b>"
 
+# Creation failed; sr̥ṣṭi parājayappeṭṭu
 #: gschem/src/iface/i_sessions.c:986
 msgid "Creation failed"
-msgstr ""
+msgstr "സൃഷ്ടി പരാജയപ്പെട്ടു"
 
+# Opened session; tuṟanna seṣan
 #: gschem/src/iface/i_sessions.c:1030
 msgid "Opened session"
-msgstr ""
+msgstr "തുറന്ന സെഷൻ"
 
+# Renaming session; seṣanṟe pērumāṟṟunnu
 #: gschem/src/iface/i_sessions.c:1079
 msgid "Renaming session"
-msgstr ""
+msgstr "സെഷന്റെ പേരുമാറ്റുന്നു"
 
 #: gschem/src/iface/i_sessions.c:1080 gschem/src/object/o_attrib.c:178
 msgid "to"
-msgstr ""
+msgstr "ടു"
 
+# Failed to rename session; seṣanṟe pērumāṟṟunnatil parājayappeṭṭu
 #: gschem/src/iface/i_sessions.c:1104
 msgid "Failed to rename session"
-msgstr ""
+msgstr "സെഷന്റെ പേരുമാറ്റുന്നതിൽ പരാജയപ്പെട്ടു"
 
+# Could not rename session; seṣanṟe pērumāṟṟān kaḻiññilla
 #: gschem/src/iface/i_sessions.c:1107
 msgid "<b>Could not rename session</b>"
-msgstr ""
+msgstr "<b>സെഷന്റെ പേരുമാറ്റാൻ കഴിഞ്ഞില്ല</b>"
 
 #: gschem/src/iface/i_sessions.c:1141
 msgid "Created session"
