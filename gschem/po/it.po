@@ -551,58 +551,67 @@ msgstr "Assicurarsi di avere l'ultimo file rc"
 
 #: gschem/src/guile/g_rc.c:205 gschem/src/x/x_image.c:537
 msgid "file"
-msgstr ""
+msgstr "file"
 
 #: gschem/src/guile/g_rc.c:729
 #, c-format
 msgid "Invalid value, zoom-gain cannot be zero, check entry in rc file\n"
 msgstr ""
+"Valore non valido, il guadagno dello zoom non può essere zero, controllare la voce nel file rc\n"
 
 #: gschem/src/guile/g_rc.c:734
 #, c-format
 msgid "Invalid type assignment, check zoom-gain entry in rc file\n"
 msgstr ""
+"Assegnazione del tipo non valida, controlla la voce di guadagno dello zoom nel file rc\n"
 
 #: gschem/src/guile/g_rc.c:735 gschem/src/guile/g_rc.c:1312
 #: gschem/src/guile/g_rc.c:1458 gschem/src/guile/g_rc.c:2054
 msgid "Continuing with default value"
-msgstr ""
+msgstr "Continuando con il valore predefinito"
 
 #: gschem/src/guile/g_rc.c:815
 #, c-format
 msgid "Invalid type assignment, check logging entry in rc file\n"
 msgstr ""
+"Assegnazione del tipo non valida, controlla la voce di registrazione nel file rc\n"
 
 #: gschem/src/guile/g_rc.c:1306
 #, c-format
 msgid "Invalid value, snap-size cannot be zero, check entry rc file\n"
 msgstr ""
+"Valore non valido, la dimensione dello snap non può essere zero, controllare la voce file rc\n"
 
 #: gschem/src/guile/g_rc.c:1311
 #, c-format
 msgid "Invalid type assignment, check snap-size entry in rc file\n"
 msgstr ""
+"Assegnazione del tipo non valida, controlla la voce della dimensione dello snap nel file rc\n"
 
 #: gschem/src/guile/g_rc.c:1452
 #, c-format
 msgid "Invalid value, bus-ripper-size cannot be zero, check entry rc file\n"
 msgstr ""
+"Valore non valido, la dimensione del bus-ripper non può essere zero, controllare il file rc della voce\n"
 
 #: gschem/src/guile/g_rc.c:1457
 #, c-format
 msgid "Invalid type assignment, check bus-ripper-size entry in rc file\n"
 msgstr ""
+"Assegnazione del tipo non valida, controlla la voce della dimensione del bus-ripper nel file rc\n"
 
 #: gschem/src/guile/g_rc.c:2048
 #, c-format
 msgid ""
 "Can not scroll 0 steps, invalid scrollpan-steps, check entry in rc file\n"
 msgstr ""
+"un non scorrere 0 passaggi, passaggi di scorrimento non validi, controllare la voce nel file rc\n"
 
 #: gschem/src/guile/g_rc.c:2053
 #, c-format
 msgid "Invalid type assignment, check scrollpan-steps entry in rc file\n"
 msgstr ""
+"Assegnazione del tipo non valida, controlla la voce dei passaggi di scorrimento nel file rc\n"
 
 #: gschem/src/guile/g_rc.c:2100
 msgid "Invalid zoom factor"
