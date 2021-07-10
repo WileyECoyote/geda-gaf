@@ -497,35 +497,35 @@ msgstr "bezárása"
 
 #: gschem/src/guile/g_rc.c:87 gschem/src/guile/g_rc.c:99
 msgid "Skipping"
-msgstr ""
+msgstr "Ugró"
 
 #: gschem/src/guile/g_rc.c:119
 msgid "entry in rc file"
-msgstr ""
+msgstr "bejegyzés az rc fájlba"
 
 #: gschem/src/guile/g_rc.c:123
 msgid "Bad Value"
-msgstr "Érték"
+msgstr "Rossz Érték"
 
 #: gschem/src/guile/g_rc.c:124 gschem/src/guile/g_rc.c:2102
 msgid "check"
-msgstr ""
+msgstr "jelölje be"
 
 #: gschem/src/guile/g_rc.c:125
 msgid "or Scheme, continuing with"
-msgstr ""
+msgstr "vagy Scheme, folytatva"
 
 #: gschem/src/guile/g_rc.c:133
 msgid "maximum value"
-msgstr ""
+msgstr "maximális érték"
 
 #: gschem/src/guile/g_rc.c:137
 msgid "minimum value"
-msgstr ""
+msgstr "minimális érték"
 
 #: gschem/src/guile/g_rc.c:141
 msgid "default value"
-msgstr ""
+msgstr "alapértelmezett érték"
 
 #: gschem/src/guile/g_rc.c:155
 msgid "Invalid type assignment, check"
