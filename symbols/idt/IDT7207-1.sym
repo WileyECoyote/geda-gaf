@@ -305,7 +305,7 @@ net=14:GND
 T 1400 5250 5 10 0 0 0 0 1
 net=28:VCC
 T 300 5900 5 10 0 1 0 0 1
-documentation=http://www1.idt.com/pcms/tempDocs/7203-7208_DS.pdf
+documentation=www.idt.com/pcms/tempDocs/7203-7208_DS.pdf
 T 300 5500 9 10 0 0 0 0 1
 numslots=0
 T 300 4650 5 10 1 1 0 0 1
