@@ -1,3 +1,8 @@
+2021-07-11 Wiley E. Hill <wileyhill@gmail.com>
+
+    * linear/regulator/LT317AT-1.sym: Add symbols: Positive adjustable
+      voltage regulator.
+
 2021-07-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * ti/ldo/*.sym: Relocate symbol from generic linear regulators:
