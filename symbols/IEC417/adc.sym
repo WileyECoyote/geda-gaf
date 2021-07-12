@@ -58,4 +58,4 @@ refdes=unknown
 T 200 1700 5 10 0 1 0 0 1
 description=Analog to Digital Converter
 T 200 1900 5 10 0 1 0 0 1
-documentation=http://std.iec.ch/iec60617
+documentation=std.iec.ch/iec60617
