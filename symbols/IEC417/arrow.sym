@@ -12,6 +12,6 @@ refdes=none
 T 0 400 8 10 0 0 0 0 1
 symversion=0.1
 T 0 1400 5 10 0 1 0 0 1
-documentation=http://www.ddpp.com/DDPP3_pdf/IEEEsyms.pdf
+documentation=www.ddpp.com/DDPP3_pdf/IEEEsyms.pdf
 T 0 1200 5 10 0 1 0 0 1
 description=Direction of signal flow
