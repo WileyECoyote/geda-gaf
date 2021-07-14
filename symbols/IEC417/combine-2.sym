@@ -50,6 +50,6 @@ footprint=unknown
 T 200 900 8 10 0 1 0 0 1
 refdes=unknown
 T 200 1900 5 10 0 1 0 0 1
-documentation=https://en.wikipedia.org/wiki/Category:Combiners_Transformers
+documentation=en.wikipedia.org/wiki/Category:Combiners_Transformers
 T 200 1700 5 10 0 1 0 0 1
 description=Combiner
