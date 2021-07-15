@@ -21,6 +21,6 @@ T 200 350 8 10 0 1 0 0 1
 refdes=unknown
 A 100 100 100 30 300 3 0 0 0 100 100
 T 200 1150 5 10 0 1 0 0 1
-documentation=http://www.ddpp.com/DDPP3_pdf/IEEEsyms.pdf
+documentation=www.ddpp.com/DDPP3_pdf/IEEEsyms.pdf
 T 200 950 5 10 0 1 0 0 1
 description=Coaxial Connector
