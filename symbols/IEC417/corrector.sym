@@ -37,6 +37,6 @@ footprint=unknown
 T 200 900 8 10 0 1 0 0 1
 refdes=unknown
 T 200 1900 5 10 0 1 0 0 1
-documentation=http://www.ddpp.com/DDPP3_pdf/IEEEsyms.pdf
+documentation=www.ddpp.com/DDPP3_pdf/IEEEsyms.pdf
 T 200 1700 5 10 0 1 0 0 1
 description=Corrector
