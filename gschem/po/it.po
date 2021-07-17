@@ -637,7 +637,7 @@ msgstr "valore corrente"
 
 #: gschem/src/iface/i_command.c:137 gschem/src/iface/i_command.c:5412
 msgid "is"
-msgstr ""
+msgstr "è"
 
 #: gschem/src/iface/i_command.c:555
 msgid "Processing Action"
@@ -650,11 +650,11 @@ msgstr "Seleziona prima l'oggetto"
 
 #: gschem/src/iface/i_command.c:694
 msgid "Cannot"
-msgstr ""
+msgstr "Non può"
 
 #: gschem/src/iface/i_command.c:694
 msgid "while inside an action!\n"
-msgstr ""
+msgstr "mentre all'interno di un'azione!\n"
 
 #: gschem/src/iface/i_command.c:961 gschem/src/iface/i_command.c:3010
 msgid "New page created"
@@ -675,7 +675,7 @@ msgstr "Salvato Tutto"
 
 #: gschem/src/iface/i_command.c:1220
 msgid "Error encountered, Save Failed"
-msgstr ""
+msgstr "Si è verificato un errore, salvataggio non riuscito"
 
 #: gschem/src/iface/i_command.c:1290 gschem/src/x/x_image.c:545
 msgid "Write Image"
@@ -683,15 +683,15 @@ msgstr "Scrivi immagine"
 
 #: gschem/src/iface/i_command.c:1312
 msgid "Write PDF"
-msgstr ""
+msgstr "Scrivi PDF"
 
 #: gschem/src/iface/i_command.c:1408 gschem/src/iface/i_sessions.c:184
 msgid "Canceled close all\n"
-msgstr ""
+msgstr "Annullato chiudi tutto\n"
 
 #: gschem/src/iface/i_command.c:1417 gschem/src/iface/i_sessions.c:193
 msgid "Closing all documents\n"
-msgstr ""
+msgstr "Chiusura di tutti i documenti\n"
 
 #: gschem/src/iface/i_command.c:1440
 msgid "starting shut-down"
