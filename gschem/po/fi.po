@@ -1042,32 +1042,35 @@ msgstr "Tallenna _kaikki"
 
 #: gschem/src/iface/i_sessions.c:1080 gschem/src/object/o_attrib.c:178
 msgid "to"
-msgstr ""
+msgstr "että"
 
 #: gschem/src/iface/i_sessions.c:1104
 msgid "Failed to rename session"
-msgstr ""
+msgstr "Istunnon uudelleennimeäminen epäonnistui"
 
 #: gschem/src/iface/i_sessions.c:1107
 msgid "<b>Could not rename session</b>"
-msgstr ""
+msgstr "<b>Istuntoa ei voitu nimetä uudelleen</b>"
 
 #: gschem/src/iface/i_sessions.c:1141
 msgid "Created session"
 msgstr "Tallenna _kaikki"
 
+# with
 #: gschem/src/iface/i_sessions.c:1142
 msgid "with"
-msgstr ""
+msgstr "kanssa"
 
+# Saved
 #: gschem/src/iface/i_sessions.c:1152 gschem/src/x/x_window.c:1252
 #: gschem/src/x/x_window.c:1255
 msgid "Saved"
-msgstr ""
+msgstr "Tallennettu"
 
+# documents to session
 #: gschem/src/iface/i_sessions.c:1153
 msgid "documents to session"
-msgstr "D_okumentaatio..."
+msgstr ""
 
 #: gschem/src/iface/i_sessions.c:1163
 msgid "An error occurred attempting to save session"
