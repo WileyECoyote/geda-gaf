@@ -1056,15 +1056,18 @@ msgstr "<b>Session name could not be renamed</b>"
 msgid "Created session"
 msgstr "Oturum oluşturuldu"
 
+# with
 #: gschem/src/iface/i_sessions.c:1142
 msgid "with"
-msgstr ""
+msgstr "ile"
 
+# Saved
 #: gschem/src/iface/i_sessions.c:1152 gschem/src/x/x_window.c:1252
 #: gschem/src/x/x_window.c:1255
 msgid "Saved"
-msgstr ""
+msgstr "kaydedildi"
 
+# documents to session
 #: gschem/src/iface/i_sessions.c:1153
 msgid "documents to session"
 msgstr ""
