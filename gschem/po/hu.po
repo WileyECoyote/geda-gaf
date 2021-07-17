@@ -529,7 +529,7 @@ msgstr "alapértelmezett érték"
 
 #: gschem/src/guile/g_rc.c:155
 msgid "Invalid type assignment, check"
-msgstr ""
+msgstr "Érvénytelen típus-hozzárendelés, ellenőrizze"
 
 #: gschem/src/guile/g_rc.c:196
 msgid "This is gEDA/gschem version"
@@ -724,7 +724,7 @@ msgstr "Adja meg az eltolási távolságot:"
 
 #: gschem/src/iface/i_command.c:2487
 msgid "Zoom Magnification"
-msgstr "/Nagyítás"
+msgstr "Nagyítás"
 
 #: gschem/src/iface/i_command.c:2487
 msgid "Specify new zoom:"
@@ -734,7 +734,7 @@ msgstr "Adja meg az új zoomot:"
 #: gschem/src/iface/i_command.c:4923 gschem/src/iface/i_command.c:4944
 #: gschem/src/iface/i_command.c:4964
 msgid "Check path:"
-msgstr ""
+msgstr "Ellenőrizze az utat:"
 
 # error
 #: gschem/src/iface/i_command.c:2540
@@ -743,16 +743,17 @@ msgstr "hiba"
 
 #: gschem/src/iface/i_command.c:2551
 msgid "No component selected\n"
-msgstr ""
+msgstr "Nincs kiválasztva összetevő\n"
 
 # Reverted document
 #: gschem/src/iface/i_command.c:3048 gschem/src/iface/i_window.c:333
 msgid "Reverted document"
 msgstr "Visszaállított dokumentum"
 
+# Confirm revert ALL documents
 #: gschem/src/iface/i_command.c:3106
 msgid "Confirm revert ALL documents"
-msgstr ""
+msgstr "Erősítse meg az ÖSSZES dokumentum visszaállítását"
 
 # Find resources
 #: gschem/src/iface/i_command.c:3288
@@ -775,27 +776,27 @@ msgstr "szimbólum keresése"
 
 #: gschem/src/iface/i_command.c:3419
 msgid "Symbol is not a real file. Symbol cannot be loaded.\n"
-msgstr ""
+msgstr "A szimbólum nem valós fájl. A szimbólum nem tölthető be.\n"
 
 #: gschem/src/iface/i_command.c:3467
 msgid "Cannot find any schematics above the current one!\n"
-msgstr ""
+msgstr "A jelenlegi fölött nem található sematikus ábra!\n"
 
 #: gschem/src/iface/i_command.c:3597
 msgid "Object is attached to something\n"
-msgstr ""
+msgstr "Az objektum valamihez kapcsolódik\n"
 
 #: gschem/src/iface/i_command.c:4003
 msgid "Attribute is already attached\n"
-msgstr ""
+msgstr "Az attribútum már csatolva van\n"
 
 #: gschem/src/iface/i_command.c:4417
 msgid "WARNING: Do not translate with snap off!\n"
-msgstr ""
+msgstr "FIGYELMEZTETÉS: Ne fordítson lefordítva!\n"
 
 #: gschem/src/iface/i_command.c:4418
 msgid "WARNING: Turning snap on and continuing with translation.\n"
-msgstr ""
+msgstr "FIGYELEM: A bepattintás bekapcsolása és a fordítás folytatása.\n"
 
 #: gschem/src/iface/i_command.c:4424
 msgid "WARNING: Snap grid size is not equal to 100!\n"
@@ -815,15 +816,15 @@ msgstr "Háló ki\n"
 
 #: gschem/src/iface/i_command.c:4638
 msgid "Dot grid activated\n"
-msgstr ""
+msgstr "Pont rács aktiválva\n"
 
 #: gschem/src/iface/i_command.c:4639
 msgid "Mesh grid activated\n"
-msgstr ""
+msgstr "A háló rács aktiválva\n"
 
 #: gschem/src/iface/i_command.c:4718
 msgid "Snap OFF (CAUTION!)"
-msgstr ""
+msgstr "Snap OFF (VIGYÁZAT!)"
 
 # Snap ON => Alignment ON
 #: gschem/src/iface/i_command.c:4724
@@ -832,7 +833,7 @@ msgstr "Igazítás BE"
 
 #: gschem/src/iface/i_command.c:4729
 msgid "Snap back to the grid (CAUTION!)"
-msgstr ""
+msgstr "Csattanjon vissza a rácsra (VIGYÁZAT!)"
 
 #: gschem/src/iface/i_command.c:4756
 msgid "Rubber band mode is OFF"
