@@ -1039,15 +1039,18 @@ msgstr "<b>Seje ni bilo mogoče preimenovati</b>"
 msgid "Created session"
 msgstr "ustvaril seje"
 
+# with
 #: gschem/src/iface/i_sessions.c:1142
 msgid "with"
-msgstr ""
+msgstr "s"
 
+# Saved
 #: gschem/src/iface/i_sessions.c:1152 gschem/src/x/x_window.c:1252
 #: gschem/src/x/x_window.c:1255
 msgid "Saved"
-msgstr ""
+msgstr "Shranjeno"
 
+# documents to session
 #: gschem/src/iface/i_sessions.c:1153
 msgid "documents to session"
 msgstr ""
