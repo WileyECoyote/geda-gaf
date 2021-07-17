@@ -1136,46 +1136,55 @@ msgstr "Під час спроби створення сеансу сталас�
 msgid "<b>Session Error</b>"
 msgstr "<b>Помилка сеансу</b>"
 
+# Creation failed; Pomylka stvorennya
 #: gschem/src/iface/i_sessions.c:986
 msgid "Creation failed"
-msgstr ""
+msgstr "Помилка створення"
 
+# Opened session; Vidkryta sesiya
 #: gschem/src/iface/i_sessions.c:1030
 msgid "Opened session"
-msgstr ""
+msgstr "Відкрита сесія"
 
+# Renaming session; Pereymenuvannya sesiyi
 #: gschem/src/iface/i_sessions.c:1079
 msgid "Renaming session"
-msgstr ""
+msgstr "Перейменування сесії"
 
 #: gschem/src/iface/i_sessions.c:1080 gschem/src/object/o_attrib.c:178
 msgid "to"
-msgstr ""
+msgstr "до"
 
+# Failed to rename session; Ne vdalosya pereymenuvaty seans
 #: gschem/src/iface/i_sessions.c:1104
 msgid "Failed to rename session"
-msgstr ""
+msgstr "Не вдалося перейменувати сеанс"
 
+# Ne vdalosya pereymenuvaty seans
 #: gschem/src/iface/i_sessions.c:1107
 msgid "<b>Could not rename session</b>"
-msgstr ""
+msgstr "<b>Не вдалося перейменувати сеанс</b>"
 
+# Created session
 #: gschem/src/iface/i_sessions.c:1141
 msgid "Created session"
-msgstr ""
+msgstr "Створена сесія"
 
+# with
 #: gschem/src/iface/i_sessions.c:1142
 msgid "with"
-msgstr ""
+msgstr "з"
 
+# Saved; Zberezheno
 #: gschem/src/iface/i_sessions.c:1152 gschem/src/x/x_window.c:1252
 #: gschem/src/x/x_window.c:1255
 msgid "Saved"
-msgstr ""
+msgstr "Збережено"
 
+# documents to session; dokumenty na sesiyu
 #: gschem/src/iface/i_sessions.c:1153
 msgid "documents to session"
-msgstr ""
+msgstr "документи на сесію"
 
 #: gschem/src/iface/i_sessions.c:1163
 msgid "An error occurred attempting to save session"
