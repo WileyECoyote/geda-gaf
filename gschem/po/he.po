@@ -827,19 +827,19 @@ msgstr "אזהרה: אם אתה מתרגם סמל למקור, יש להגדיר 
 
 #: gschem/src/iface/i_command.c:4637
 msgid "Grid OFF\n"
-msgstr ""
+msgstr "רשת כבויה\n"
 
 #: gschem/src/iface/i_command.c:4638
 msgid "Dot grid activated\n"
-msgstr ""
+msgstr "רשת הנקודות הופעלה\n"
 
 #: gschem/src/iface/i_command.c:4639
 msgid "Mesh grid activated\n"
-msgstr ""
+msgstr "רשת רשת הופעלה\n"
 
 #: gschem/src/iface/i_command.c:4718
 msgid "Snap OFF (CAUTION!)"
-msgstr ""
+msgstr "כבה (התראה!)"
 
 # Snap ON => Straight automatically
 #: gschem/src/iface/i_command.c:4724
@@ -848,7 +848,7 @@ msgstr "ישר באופן אוטומטי"
 
 #: gschem/src/iface/i_command.c:4729
 msgid "Snap back to the grid (CAUTION!)"
-msgstr ""
+msgstr "הצמד חזרה לרשת (זהירות!)"
 
 #: gschem/src/iface/i_command.c:4756
 msgid "Rubber band mode is OFF"
