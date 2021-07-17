@@ -1103,19 +1103,23 @@ msgstr "സെഷന്റെ പേരുമാറ്റുന്നതിൽ �
 msgid "<b>Could not rename session</b>"
 msgstr "<b>സെഷന്റെ പേരുമാറ്റാൻ കഴിഞ്ഞില്ല</b>"
 
+# Created session; seṣan sr̥ṣṭiccu
 #: gschem/src/iface/i_sessions.c:1141
 msgid "Created session"
-msgstr ""
+msgstr "സെഷൻ സൃഷ്ടിച്ചു"
 
+# with; kūṭe
 #: gschem/src/iface/i_sessions.c:1142
 msgid "with"
-msgstr ""
+msgstr "കൂടെ"
 
+# Saved; sanrakṣiccu
 #: gschem/src/iface/i_sessions.c:1152 gschem/src/x/x_window.c:1252
 #: gschem/src/x/x_window.c:1255
 msgid "Saved"
-msgstr ""
+msgstr "സംരക്ഷിച്ചു"
 
+# documents to session
 #: gschem/src/iface/i_sessions.c:1153
 msgid "documents to session"
 msgstr ""
