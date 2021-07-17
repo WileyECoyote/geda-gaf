@@ -1073,19 +1073,23 @@ msgstr "Det gick inte att byta namn på sessionen"
 msgid "<b>Could not rename session</b>"
 msgstr "<b>Det gick inte att byta namn på sessionen</b>"
 
+# Created session
 #: gschem/src/iface/i_sessions.c:1141
 msgid "Created session"
-msgstr ""
+msgstr "Skapad session"
 
+# with
 #: gschem/src/iface/i_sessions.c:1142
 msgid "with"
-msgstr ""
+msgstr "med"
 
+# Saved
 #: gschem/src/iface/i_sessions.c:1152 gschem/src/x/x_window.c:1252
 #: gschem/src/x/x_window.c:1255
 msgid "Saved"
-msgstr ""
+msgstr "Sparat"
 
+# documents to session
 #: gschem/src/iface/i_sessions.c:1153
 msgid "documents to session"
 msgstr ""
