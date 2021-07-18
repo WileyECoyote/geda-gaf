@@ -62,6 +62,6 @@ footprint=unknown
 T 300 800 8 10 0 1 0 0 1
 refdes=SW?
 T 300 1800 5 10 0 1 0 0 1
-documentation=http://www.ddpp.com/DDPP3_pdf/IEEEsyms.pdf
+documentation=www.ddpp.com/DDPP3_pdf/IEEEsyms.pdf
 T 300 1600 5 8 0 1 0 0 1
 description=Double Pole Single Throw Switch
