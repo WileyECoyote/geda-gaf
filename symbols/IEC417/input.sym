@@ -23,6 +23,6 @@ T 70 3 5 10 0 1 0 0 1
 pinlabel=in
 }
 T 200 1500 5 10 0 1 0 0 1
-documentation=http://www.ddpp.com/DDPP3_pdf/IEEEsyms.pdf
+documentation=www.ddpp.com/DDPP3_pdf/IEEEsyms.pdf
 T 200 1300 5 10 0 1 0 0 1
 description=Input
