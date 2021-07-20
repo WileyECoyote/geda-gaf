@@ -40,6 +40,6 @@ footprint=unknown
 T 200 1000 8 10 0 1 0 0 1
 refdes=unknown
 T 200 2000 5 10 0 1 0 0 1
-documentation=https://en.wikipedia.org/wiki/Modulation
+documentation=en.wikipedia.org/wiki/Modulation
 T 200 1800 5 10 0 1 0 0 1
 description=Modulator
