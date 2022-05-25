@@ -26,6 +26,6 @@ footprint=unknown
 T 300 600 8 10 1 1 0 0 1
 refdes=unknown
 T 300 1600 5 10 0 1 0 0 1
-documentation=https://en.wikipedia.org/wiki/Network_termination
+documentation=en.wikipedia.org/wiki/Network_termination
 T 300 1400 5 10 0 1 0 0 1
 description=Terminator

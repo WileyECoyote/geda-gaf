@@ -82,6 +82,6 @@ footprint=unknown
 T 100 1200 8 10 1 1 0 0 1
 refdes=SW?
 T 100 2200 5 10 0 1 0 0 1
-documentation=http://www.ddpp.com/DDPP3_pdf/IEEEsyms.pdf
+documentation=www.ddpp.com/DDPP3_pdf/IEEEsyms.pdf
 T 100 2000 5 10 0 1 0 0 1
 description=Double Pole Double Throw, Common

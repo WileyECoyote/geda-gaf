@@ -35,6 +35,6 @@ footprint=unknown
 T 550 350 9 10 0 1 0 0 1
 refdes=none
 T 0 1500 5 10 0 1 0 0 1
-documentation=http://www.ddpp.com/DDPP3_pdf/IEEEsyms.pdf
+documentation=www.ddpp.com/DDPP3_pdf/IEEEsyms.pdf
 T 0 1300 5 10 0 1 0 0 1
 description=Pad

@@ -29,7 +29,7 @@ device=none
 T 100 1200 5 10 0 1 0 0 1
 description=Single Pole Single Throw Switch
 T 100 1400 5 10 0 1 0 0 1
-documentation=http://www.ddpp.com/DDPP3_pdf/IEEEsyms.pdf
+documentation=www.ddpp.com/DDPP3_pdf/IEEEsyms.pdf
 T 100 800 9 10 0 0 0 0 1
 footprint=unknown
 T 100 1000 9 10 0 0 0 0 1
