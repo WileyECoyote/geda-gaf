@@ -401,7 +401,7 @@ static GedaObject *o_complex_create_placeholder(GedaToplevel *toplevel,
   complex->prim_objs = g_list_prepend (complex->prim_objs, new_prim_obj);
   GEDA_FREE(not_found_text);
 
-  /* figure out where to put the hazard triangle, we could only be here during
+  /* Figure out where to put the hazard triangle, we could only be here during
    * a read failure, there is no page so we can not use normal bounds routines
    * instead we will try ...*/
   geda_toplevel_set_text_bounds (toplevel, new_prim_obj);
@@ -409,7 +409,7 @@ static GedaObject *o_complex_create_placeholder(GedaToplevel *toplevel,
   x_offset = (right - left) / 4;
   y_offset = bottom - top + 100;  /* 100 is just an additional offset */
 
-  /* add hazard triangle */
+  /* Add the hazard triangle */
   new_prim_obj = geda_line_object_new(DETACHED_ATTRIBUTE_COLOR,
                                       x + NOT_FOUND_TEXT_X + x_offset,
                                       y + NOT_FOUND_TEXT_Y + y_offset,
