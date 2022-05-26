@@ -1,3 +1,7 @@
+2022-05-26 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/s_symstruct.c: Replace u_log_message macro with geda_log
+
 2019-10-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * etc/system-gsymcheckrc.in: Add "manufacturer" to list of valid attributes,
