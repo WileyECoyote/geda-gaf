@@ -36,7 +36,7 @@
 
 #endif
 
-#include <geda_toolbar.h>
+#include "geda_toolbar.h"
 
 #define GEDA_TYPE_HANDLE_BOX            (geda_handle_box_get_type ())
 #define GEDA_HANDLE_BOX(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), GEDA_TYPE_HANDLE_BOX, GedaHandleBox))
