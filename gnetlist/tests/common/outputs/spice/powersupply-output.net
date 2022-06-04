@@ -1,7 +1,7 @@
 * Spice netlister for gnetlist
 U2 eight ten eleven LM317
-C4 eleven nine 1uf
-C3 ten nine 22uF
+C4 eleven nine 22uF
+C3 ten nine 1uf
 R1 nine nine ten 5k
 C2 eight nine 0.1uF
 R2 ten eleven 220

@@ -2,7 +2,7 @@ Part TO-220 { Name U2 }
 Part RADIAL-CAN-X00 { Name C4 }
 Part RADIAL-CAN-X00 { Name C3 }
 Part unknown { Name R1 }
-Part RADIAL-CAN-X00 { Name C2 }
+Part 0603 { Name C2 }
 Part 0402 { Name R2 }
 Part RADIAL-CAN-X00 { Name C1 }
 Part none { Name S1 }

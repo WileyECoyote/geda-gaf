@@ -31,6 +31,9 @@ ARCHITECTURE netlist OF not found IS
     COMPONENT RESISTOR
     END COMPONENT ;
 
+    COMPONENT CAPACITOR
+    END COMPONENT ;
+
     COMPONENT LM317
     END COMPONENT ;
 
@@ -69,7 +72,7 @@ BEGIN
         2 => nine,
         3 => ten);
 
-    C2 : POLARIZED_CAPACITOR
+    C2 : CAPACITOR
     PORT MAP (
         1 => eight,
         2 => nine);

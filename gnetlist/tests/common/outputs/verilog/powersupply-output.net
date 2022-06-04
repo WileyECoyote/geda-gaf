@@ -52,7 +52,7 @@ RESISTOR R1 (
     .\3  ( ten )
     );
 
-POLARIZED_CAPACITOR C2 ( 
+CAPACITOR C2 ( 
     .\1  ( eight ),
     .\2  ( nine )
     );

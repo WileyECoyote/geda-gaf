@@ -202,7 +202,7 @@
 	)
 	(instance "RADIAL-CAN-X00" "C4"
 		(device "POLARIZED_CAPACITOR")
-		(value "1uf")
+		(value "22uF")
 		(gateswap "0")
 		(pinswap "0")
 		(component_space "0.00000000e+000")
@@ -229,7 +229,7 @@
 	)
 	(instance "RADIAL-CAN-X00" "C3"
 		(device "POLARIZED_CAPACITOR")
-		(value "22uF")
+		(value "1uf")
 		(gateswap "0")
 		(pinswap "0")
 		(component_space "0.00000000e+000")
@@ -289,8 +289,8 @@
 			(gate "")
 		)
 	)
-	(instance "RADIAL-CAN-X00" "C2"
-		(device "POLARIZED_CAPACITOR")
+	(instance "0603" "C2"
+		(device "CAPACITOR")
 		(value "0.1uF")
 		(gateswap "0")
 		(pinswap "0")

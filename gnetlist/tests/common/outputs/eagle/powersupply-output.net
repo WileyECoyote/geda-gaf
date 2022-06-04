@@ -2,12 +2,12 @@
 ADD 'U2' TO-220@smd-ipc (1 1);
 VALUE 'U2' 'LM317';
 ADD 'C4' RADIAL-CAN-X00@smd-ipc (1 1);
-VALUE 'C4' '1uf';
+VALUE 'C4' '22uF';
 ADD 'C3' RADIAL-CAN-X00@smd-ipc (1 1);
-VALUE 'C3' '22uF';
+VALUE 'C3' '1uf';
 ADD 'R1' unknown@smd-ipc (1 1);
 VALUE 'R1' '5k';
-ADD 'C2' RADIAL-CAN-X00@smd-ipc (1 1);
+ADD 'C2' 0603@smd-ipc (1 1);
 VALUE 'C2' '0.1uF';
 ADD 'R2' 0402@smd-ipc (1 1);
 VALUE 'R2' '220';

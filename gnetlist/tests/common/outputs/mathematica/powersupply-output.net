@@ -42,10 +42,10 @@ i["T1","3"]+i["U1","2"]==0,
 i["T1","4"]+i["U1","1"]==0};
 modelEquations={
 lm317[value->LM317]["U2"],
-polarized_capacitor[value->1uf]["C4"],
-polarized_capacitor[value->22uF]["C3"],
+polarized_capacitor[value->22uF]["C4"],
+polarized_capacitor[value->1uf]["C3"],
 resistor[value->5k]["R1"],
-polarized_capacitor[value->0.1uF]["C2"],
+capacitor[value->0.1uF]["C2"],
 resistor[value->220]["R2"],
 polarized_capacitor[value->2200uF]["C1"],
 switch[value->s1]["S1"],

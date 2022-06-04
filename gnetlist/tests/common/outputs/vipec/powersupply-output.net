@@ -6,7 +6,7 @@ CKT
 	error	1 7 	% C4
 	error	2 7 	% C3
 	RES	7 7 2 R=5k		% R1
-	error	8 7 	% C2
+	CAP	8 7 C=0.1uF		% C2
 	RES	2 1 R=220		% R2
 	error	8 7 	% C1
 	error	3 6 	% S1

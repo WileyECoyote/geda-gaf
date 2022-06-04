@@ -4,7 +4,7 @@ PARTS
     C4 : RADIAL-CAN-X00;
     C3 : RADIAL-CAN-X00;
     R1 : unknown;
-    C2 : RADIAL-CAN-X00;
+    C2 : 0603;
     R2 : 0402;
     C1 : RADIAL-CAN-X00;
     S1 : none;

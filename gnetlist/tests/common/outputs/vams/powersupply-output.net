@@ -23,16 +23,18 @@ BEGIN
  
   C4 : ENTITY POLARIZED_CAPACITOR
 	GENERIC MAP (
-			value => 1uf, 
-			symversion => 0.2, 
+			footprint => RADIAL-CAN-X00, 
+			value => 22uF, 
+			value => 22uF, 
 			device => POLARIZED_CAPACITOR)
 	PORT MAP (	1 => eleven,
 			2 => nine);
  
   C3 : ENTITY POLARIZED_CAPACITOR
 	GENERIC MAP (
-			value => 22uF, 
-			symversion => 0.2, 
+			value => 1uf, 
+			footprint => RADIAL-CAN-X00, 
+			value => 1uf, 
 			device => POLARIZED_CAPACITOR)
 	PORT MAP (	1 => ten,
 			2 => nine);
@@ -44,11 +46,12 @@ BEGIN
 			2 => nine,
 			3 => ten);
  
-  C2 : ENTITY POLARIZED_CAPACITOR
+  C2 : ENTITY CAPACITOR
 	GENERIC MAP (
 			value => 0.1uF, 
-			symversion => 0.2, 
-			device => POLARIZED_CAPACITOR)
+			footprint => 0603, 
+			value => 0.1uF, 
+			device => CAPACITOR)
 	PORT MAP (	1 => eight,
 			2 => nine);
  
@@ -61,8 +64,9 @@ BEGIN
  
   C1 : ENTITY POLARIZED_CAPACITOR
 	GENERIC MAP (
+			footprint => RADIAL-CAN-X00, 
 			value => 2200uF, 
-			symversion => 0.2, 
+			value => 2200uF, 
 			device => POLARIZED_CAPACITOR)
 	PORT MAP (	1 => eight,
 			2 => nine);
@@ -95,6 +99,8 @@ BEGIN
 			2 => three);
  
   U1 : ENTITY DIODE-BRIDGE
+	GENERIC MAP (
+			device => DIODE-BRIDGE)
 	PORT MAP (	1 => seven,
 			2 => six,
 			3 => eight,

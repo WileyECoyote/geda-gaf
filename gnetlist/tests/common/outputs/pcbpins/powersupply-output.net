@@ -19,8 +19,8 @@ ChangePinName(R1, 2, 2)
 ChangePinName(R1, 1, 1)
 
 # Start of element C2
-ChangePinName(C2, 2, -)
-ChangePinName(C2, 1, +)
+ChangePinName(C2, 2, 2)
+ChangePinName(C2, 1, 1)
 
 # Start of element R2
 ChangePinName(R2, 2, 2)

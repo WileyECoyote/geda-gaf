@@ -5,6 +5,10 @@
 
     * tests/bom/powersupply.bom: Update test output.
 
+    * tests/common/inputs/powersupply.sch: Clean up schematic; re-assign
+      values, remove symversion attribute from capacitors. Regenerate
+      test outputs.
+
 2020-10-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * gnetlist/src/gnetlist.c: Remove redundant setting of bindtextdomain
