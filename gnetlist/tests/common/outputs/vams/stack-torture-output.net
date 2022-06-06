@@ -1032,7 +1032,6 @@ BEGIN
  
   C? : ENTITY CAPACITOR
 	GENERIC MAP (
-			symversion => 0.1, 
 			device => CAPACITOR)
 	PORT MAP (	1 => unnamed_net1,
 			2 => unnamed_net2,

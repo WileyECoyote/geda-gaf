@@ -1,5 +1,7 @@
 2022-06-06 Wiley E. Hill <wileyhill@gmail.com>
 
+    * tests/common/inputs/stack-torture.sch: Use dedicated cap symbol.
+
     * tests/common/inputs/sym/stack-torture-cap.sym: Add dedicated cap
       symbol for stack-torture.sch.
 
