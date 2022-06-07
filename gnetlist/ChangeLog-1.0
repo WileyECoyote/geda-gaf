@@ -1,3 +1,7 @@
+2022-06-07 Wiley E. Hill <wileyhill@gmail.com>
+
+    * scheme/gnet-spice-sdb.scm: Add spice-sdb-version.
+
 2022-06-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/common/inputs/stack-torture.sch: Use dedicated cap symbol.
