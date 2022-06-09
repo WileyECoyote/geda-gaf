@@ -1,3 +1,8 @@
+2022-06-09 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_text.c: Revise o_text_get_rendered_bounds to use
+      GSCHEM_TOPLEVEL and remove g_return_val_if_fail.
+
 2021-07-17 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/fi.po: Update Finnish translations.

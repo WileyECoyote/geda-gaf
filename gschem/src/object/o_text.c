@@ -40,15 +40,13 @@ int o_text_get_rendered_bounds (void *user_data, GedaObject *o_current,
                                 int  *min_x, int *min_y,
                                 int  *max_x, int *max_y)
 {
-  GschemToplevel *w_current = (GschemToplevel *) user_data;
+  GschemToplevel *w_current = GSCHEM_TOPLEVEL(user_data);
 
   int result;
   int t = 0;
   int l = 0;
   int r = 0;
   int b = 0;
-
-  g_return_val_if_fail ((w_current != NULL), FALSE);
 
   /* First check if this is hidden text. */
   if (geda_object_get_is_visible(o_current)) {
