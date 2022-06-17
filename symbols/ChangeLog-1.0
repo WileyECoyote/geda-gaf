@@ -1,7 +1,17 @@
+2022-06-17 Wiley E. Hill <wileyhill@gmail.com>
+
+    * passive/capacitor/capacitor-?.sym: Change value=value? -> value=unknown.
+
+    * passive/electrolytic/capacitor-2.sym: Change value=value? -> value=unknown.
+
 2021-07-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * linear/regulator/LT317AT-1.sym: Add symbols: Positive adjustable
       voltage regulator.
+
+    * ti/ldo/*.sym: Relocate symbol from generic linear regulators:
+
+            * ti/ldo/TPS73025DBVT-1.sym
 
 2021-07-09 Wiley E. Hill <wileyhill@gmail.com>
 
