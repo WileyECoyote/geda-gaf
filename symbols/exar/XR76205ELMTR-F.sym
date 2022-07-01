@@ -1,0 +1,346 @@
+v 20180521 2
+T 400 6400 9 10 0 0 0 0 1
+numslots=0
+T 400 5400 5 10 1 1 0 0 1
+value=XR76205ELMTR-F
+T 400 5800 9 10 0 0 0 0 1
+footprint=QFN-30_5X5
+T 400 5600 8 10 1 1 0 0 1
+refdes=U?
+T 400 6000 5 10 0 0 0 0 1
+device=XR76205ELMTR-F
+P 2500 2600 2200 2600 1 0 0
+{
+T 2350 2665 5 8 1 1 0 0 1
+pinnumber=1
+T 2350 2665 5 8 0 1 0 0 1
+pinseq=1
+T 2125 2600 3 10 1 1 0 7 1
+pinlabel=ILIM
+T 2125 2525 5 8 0 1 0 8 1
+pintype=pas
+}
+P 100 2600 400 2600 1 0 0
+{
+T 150 2665 5 8 1 1 0 0 1
+pinnumber=2
+T 150 2665 5 8 0 1 0 0 1
+pinseq=2
+T 450 2600 3 10 1 1 0 1 1
+pinlabel=EN/MODE
+T 450 2525 5 8 0 1 0 2 1
+pintype=in
+}
+P 100 1000 400 1000 1 0 0
+{
+T 150 1065 5 8 1 1 0 0 1
+pinnumber=3
+T 150 1065 5 8 0 1 0 0 1
+pinseq=3
+T 450 1000 3 10 1 1 0 1 1
+pinlabel=TON
+T 450 925 5 8 0 1 0 2 1
+pintype=pas
+}
+P 100 1400 400 1400 1 0 0
+{
+T 150 1465 5 8 1 1 0 0 1
+pinnumber=4
+T 150 1465 5 8 0 1 0 0 1
+pinseq=4
+T 450 1400 3 10 1 1 0 1 1
+pinlabel=SS
+T 450 1325 5 8 0 1 0 2 1
+pintype=pas
+}
+P 100 2200 400 2200 1 0 0
+{
+T 150 2265 5 8 1 1 0 0 1
+pinnumber=5
+T 150 2265 5 8 0 1 0 0 1
+pinseq=5
+T 450 2200 3 10 1 1 0 1 1
+pinlabel=PGOOD
+T 450 2125 5 8 0 1 0 2 1
+pintype=out
+}
+P 2500 2200 2200 2200 1 0 0
+{
+T 2350 2265 5 8 1 1 0 0 1
+pinnumber=6
+T 2350 2265 5 8 0 1 0 0 1
+pinseq=6
+T 2125 2200 3 10 1 1 0 7 1
+pinlabel=FB
+T 2125 2125 5 8 0 1 0 8 1
+pintype=in
+}
+P 100 600 400 600 1 0 0
+{
+T 150 665 5 8 1 1 0 0 1
+pinnumber=7
+T 150 665 5 8 0 1 0 0 1
+pinseq=7
+T 450 600 3 10 1 1 0 1 1
+pinlabel=AGND
+T 450 525 5 8 0 1 0 2 1
+pintype=pwr
+}
+P 2500 5100 2200 5100 1 0 0
+{
+T 2350 5165 5 8 1 1 0 0 1
+pinnumber=8
+T 2350 5165 5 8 0 1 0 0 1
+pinseq=8
+T 2125 5100 3 10 1 1 0 7 1
+pinlabel=VIN
+T 2125 5025 5 8 0 1 0 8 1
+pintype=in
+}
+P 100 1800 400 1800 1 0 0
+{
+T 150 1865 5 8 1 1 0 0 1
+pinnumber=9
+T 150 1865 5 8 0 1 0 0 1
+pinseq=9
+T 450 1800 3 10 1 1 0 1 1
+pinlabel=VCC
+T 450 1725 5 8 0 1 0 2 1
+pintype=pwr
+}
+P 100 300 400 300 1 0 0
+{
+T 150 365 5 8 1 1 0 0 1
+pinnumber=10
+T 150 365 5 8 0 1 0 0 1
+pinseq=10
+T 450 300 3 10 1 1 0 1 1
+pinlabel=AGND
+T 450 225 5 8 0 1 0 2 1
+pintype=pwr
+}
+P 2500 3000 2200 3000 1 0 0
+{
+T 2350 3065 5 8 1 1 0 0 1
+pinnumber=11
+T 2350 3065 5 8 0 1 0 0 1
+pinseq=11
+T 2125 3000 3 10 1 1 0 7 1
+pinlabel=SW
+T 2125 2925 5 8 0 1 0 8 1
+pintype=pas
+}
+P 2500 3300 2200 3300 1 0 0
+{
+T 2350 3365 5 8 1 1 0 0 1
+pinnumber=12
+T 2350 3365 5 8 0 1 0 0 1
+pinseq=12
+T 2125 3300 3 10 1 1 0 7 1
+pinlabel=SW
+T 2125 3225 5 8 0 1 0 8 1
+pintype=pas
+}
+P 2500 3600 2200 3600 1 0 0
+{
+T 2350 3665 5 8 1 1 0 0 1
+pinnumber=13
+T 2350 3665 5 8 0 1 0 0 1
+pinseq=13
+T 2125 3600 3 10 1 1 0 7 1
+pinlabel=SW
+T 2125 3525 5 8 0 1 0 8 1
+pintype=pas
+}
+P 2500 3900 2200 3900 1 0 0
+{
+T 2350 3965 5 8 1 1 0 0 1
+pinnumber=14
+T 2350 3965 5 8 0 1 0 0 1
+pinseq=14
+T 2125 3900 3 10 1 1 0 7 1
+pinlabel=SW
+T 2125 3825 5 8 0 1 0 8 1
+pintype=pas
+}
+P 2500 300 2200 300 1 0 0
+{
+T 2350 365 5 8 1 1 0 0 1
+pinnumber=15
+T 2350 365 5 8 0 1 0 0 1
+pinseq=15
+T 2125 300 3 10 1 1 0 7 1
+pinlabel=PGND
+T 2125 225 5 8 0 1 0 8 1
+pintype=pwr
+}
+P 2500 600 2200 600 1 0 0
+{
+T 2350 665 5 8 1 1 0 0 1
+pinnumber=16
+T 2350 665 5 8 0 1 0 0 1
+pinseq=16
+T 2125 600 3 10 1 1 0 7 1
+pinlabel=PGND
+T 2125 525 5 8 0 1 0 8 1
+pintype=pwr
+}
+P 2500 900 2200 900 1 0 0
+{
+T 2350 965 5 8 1 1 0 0 1
+pinnumber=17
+T 2350 965 5 8 0 1 0 0 1
+pinseq=17
+T 2125 900 3 10 1 1 0 7 1
+pinlabel=PGND
+T 2125 825 5 8 0 1 0 8 1
+pintype=pwr
+}
+P 2500 1200 2200 1200 1 0 0
+{
+T 2350 1265 5 8 1 1 0 0 1
+pinnumber=18
+T 2350 1265 5 8 0 1 0 0 1
+pinseq=18
+T 2125 1200 3 10 1 1 0 7 1
+pinlabel=PGND
+T 2125 1125 5 8 0 1 0 8 1
+pintype=pwr
+}
+P 2500 1500 2200 1500 1 0 0
+{
+T 2350 1565 5 8 1 1 0 0 1
+pinnumber=19
+T 2350 1565 5 8 0 1 0 0 1
+pinseq=19
+T 2125 1500 3 10 1 1 0 7 1
+pinlabel=PGND
+T 2125 1425 5 8 0 1 0 8 1
+pintype=pwr
+}
+P 2500 4200 2200 4200 1 0 0
+{
+T 2350 4265 5 8 1 1 0 0 1
+pinnumber=20
+T 2350 4265 5 8 0 1 0 0 1
+pinseq=20
+T 2125 4200 3 10 1 1 0 7 1
+pinlabel=SW
+T 2125 4125 5 8 0 1 0 8 1
+pintype=pas
+}
+P 100 5100 400 5100 1 0 0
+{
+T 150 5165 5 8 1 1 0 0 1
+pinnumber=21
+T 150 5165 5 8 0 1 0 0 1
+pinseq=21
+T 450 5100 3 10 1 1 0 1 1
+pinlabel=PVIN
+T 450 5025 5 8 0 1 0 2 1
+pintype=in
+}
+P 100 4800 400 4800 1 0 0
+{
+T 150 4865 5 8 1 1 0 0 1
+pinnumber=22
+T 150 4865 5 8 0 1 0 0 1
+pinseq=22
+T 450 4800 3 10 1 1 0 1 1
+pinlabel=PVIN
+T 450 4725 5 8 0 1 0 2 1
+pintype=in
+}
+P 100 4500 400 4500 1 0 0
+{
+T 150 4565 5 8 1 1 0 0 1
+pinnumber=23
+T 150 4565 5 8 0 1 0 0 1
+pinseq=23
+T 450 4500 3 10 1 1 0 1 1
+pinlabel=PVIN
+T 450 4425 5 8 0 1 0 2 1
+pintype=in
+}
+P 100 4200 400 4200 1 0 0
+{
+T 150 4265 5 8 1 1 0 0 1
+pinnumber=24
+T 150 4265 5 8 0 1 0 0 1
+pinseq=24
+T 450 4200 3 10 1 1 0 1 1
+pinlabel=PVIN
+T 450 4125 5 8 0 1 0 2 1
+pintype=in
+}
+P 100 3900 400 3900 1 0 0
+{
+T 150 3965 5 8 1 1 0 0 1
+pinnumber=25
+T 150 3965 5 8 0 1 0 0 1
+pinseq=25
+T 450 3900 3 10 1 1 0 1 1
+pinlabel=PVIN
+T 450 3825 5 8 0 1 0 2 1
+pintype=in
+}
+P 100 3600 400 3600 1 0 0
+{
+T 150 3665 5 8 1 1 0 0 1
+pinnumber=26
+T 150 3665 5 8 0 1 0 0 1
+pinseq=26
+T 450 3600 3 10 1 1 0 1 1
+pinlabel=PVIN
+T 450 3525 5 8 0 1 0 2 1
+pintype=in
+}
+P 100 3300 400 3300 1 0 0
+{
+T 150 3365 5 8 1 1 0 0 1
+pinnumber=27
+T 150 3365 5 8 0 1 0 0 1
+pinseq=27
+T 450 3300 3 10 1 1 0 1 1
+pinlabel=PVIN
+T 450 3225 5 8 0 1 0 2 1
+pintype=in
+}
+P 100 3000 400 3000 1 0 0
+{
+T 150 3065 5 8 1 1 0 0 1
+pinnumber=28
+T 150 3065 5 8 0 1 0 0 1
+pinseq=28
+T 450 3000 3 10 1 1 0 1 1
+pinlabel=PVIN
+T 450 2925 5 8 0 1 0 2 1
+pintype=in
+}
+P 2500 4500 2200 4500 1 0 0
+{
+T 2350 4565 5 8 1 1 0 0 1
+pinnumber=29
+T 2350 4565 5 8 0 1 0 0 1
+pinseq=29
+T 2125 4500 3 10 1 1 0 7 1
+pinlabel=SW
+T 2125 4425 5 8 0 1 0 8 1
+pintype=pas
+}
+P 2500 4800 2200 4800 1 0 0
+{
+T 2350 4865 5 8 1 1 0 0 1
+pinnumber=30
+T 2350 4865 5 8 0 1 0 0 1
+pinseq=30
+T 2125 4800 3 10 1 1 0 7 1
+pinlabel=BST
+T 2125 4725 5 8 0 1 0 8 1
+pintype=pas
+}
+B 400 100 1800 5200 3 0 0 0 100 100 0 0 45 50 135 50
+T 400 6600 5 10 0 1 0 0 1
+documentation=http://www.exar.com/ds/xr76203_xr76205_xr76208.pdf
+T 400 6200 5 10 0 1 0 0 1
+description=Synchronous Step Down COT Regulator, 40V, 5A
