@@ -6,6 +6,9 @@
     * exar/XR76205ELMTR-F.sym: Add symbol: Synchronous Step Down COT Regulator,
       40V, 5A.
 
+    * exar/XR76205ELTR-F.sym: Add symbol: Synchronous Step Down COT Regulator,
+      40V, 5A.
+
 2022-06-17 Wiley E. Hill <wileyhill@gmail.com>
 
     * passive/capacitor/capacitor-?.sym: Change value=value? -> value=unknown.
