@@ -1,3 +1,8 @@
+2022-07-01 Wiley E. Hill <wileyhill@gmail.com>
+
+    * exar/XR76205EL-F.sym: Add symbols: Synchronous Step Down COT Regulator,
+      40V, 5A.
+
 2022-06-17 Wiley E. Hill <wileyhill@gmail.com>
 
     * passive/capacitor/capacitor-?.sym: Change value=value? -> value=unknown.
