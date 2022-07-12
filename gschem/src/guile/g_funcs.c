@@ -571,7 +571,7 @@ SCM g_funcs_tiff_image(SCM scm_filename)
  *  by configuration will be retain, if default is a non RC_NIL value
  *  the current "default" will over-ride values set during configuration.
  */
-SCM g_funcs_use_rc_values(void)
+SCM g_funcs_apply_rc_values(void)
 {
   i_vars_set(g_current_window ());
 

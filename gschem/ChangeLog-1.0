@@ -1,3 +1,8 @@
+2022-07-12 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/guile/g_funcs.c: Rename function g_funcs_use_rc_values =>
+      g_funcs_apply_rc_values.
+
 2021-07-17 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/fi.po: Update Finnish translations.

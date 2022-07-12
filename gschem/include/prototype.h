@@ -25,22 +25,22 @@ void  g_init_attrib ();
 void  g_init_builtins (void);
 
 /* g_funcs.c */
-SCM   g_funcs_bmp_image      (SCM filename);
-SCM   g_funcs_confirm        (SCM msg);
-SCM   g_funcs_confirm_cancel (SCM msg);
-SCM   g_funcs_exit           (SCM status);
-SCM   g_funcs_filesel        (SCM msg, SCM templ, SCM flags);
-SCM   g_funcs_jpeg_image     (SCM filename);
-SCM   g_funcs_log            (SCM msg);
-SCM   g_funcs_msg            (SCM msg);
-SCM   g_funcs_output_type    (void);
-SCM   g_funcs_pdf            (SCM filename);
-SCM   g_funcs_png_image      (SCM filename);
-SCM   g_funcs_postscript     (SCM filename);
-SCM   g_funcs_print          (SCM filename);
-SCM   g_funcs_save_file      (void);
-SCM   g_funcs_tiff_image     (SCM filename);
-SCM   g_funcs_use_rc_values  (void);
+SCM   g_funcs_bmp_image        (SCM filename);
+SCM   g_funcs_confirm          (SCM msg);
+SCM   g_funcs_confirm_cancel   (SCM msg);
+SCM   g_funcs_exit             (SCM status);
+SCM   g_funcs_filesel          (SCM msg, SCM templ, SCM flags);
+SCM   g_funcs_jpeg_image       (SCM filename);
+SCM   g_funcs_log              (SCM msg);
+SCM   g_funcs_msg              (SCM msg);
+SCM   g_funcs_output_type      (void);
+SCM   g_funcs_pdf              (SCM filename);
+SCM   g_funcs_png_image        (SCM filename);
+SCM   g_funcs_postscript       (SCM filename);
+SCM   g_funcs_print            (SCM filename);
+SCM   g_funcs_save_file        (void);
+SCM   g_funcs_tiff_image       (SCM filename);
+SCM   g_funcs_apply_rc_values  (void);
 
 SCM   get_selected_component_attributes     (GschemToplevel *w_current);
 
