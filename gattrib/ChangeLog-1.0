@@ -1,3 +1,10 @@
+2022-07-12 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x_toolbars.c: Fix MINGW builds: undefine DELETE to allow expansion
+      of GTK_STOCK_DELETE in macros, DELETE is defined in Microsoft headers
+      included by guild for MINGW builds, see libguile/iselect.h, which includes
+      winsock2.h.
+
 2021-01-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gtksheet/gtkdatatextview.c: Reformat source documentation:
