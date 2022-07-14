@@ -2,6 +2,8 @@
 
     * ti/battery/BQ25504-1.sym: Revise symbol to cleanup text overlap.
 
+    * ti/battery/BQ79600-Q1-1.sym: Add symbol; Battery Communication Interface.
+
 2022-07-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * exar/XR76205EL-F.sym: Add symbol: Synchronous Step Down COT Regulator,
