@@ -1,3 +1,7 @@
+2022-07-14 Wiley E. Hill <wileyhill@gmail.com>
+
+    * ti/battery/BQ25504-1.sym: Revise symbol to cleanup text overlap.
+
 2022-07-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * exar/XR76205EL-F.sym: Add symbol: Synchronous Step Down COT Regulator,
