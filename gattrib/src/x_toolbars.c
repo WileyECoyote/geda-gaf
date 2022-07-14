@@ -28,6 +28,11 @@
 #include <geda_gtk_compat.h>
 #include <geda_debug.h>
 
+/* Undefine DELETE to allow expansion of GTK_STOCK_DELETE in macros, DELETE
+ * is defined in Microsoft headers included by guild for MINGW builds, see
+ * libguile/iselect.h which include winsock2.h */
+#undef DELETE
+
 /* See IDS_Toolbar enumerations in include/globals.h */
 static ToolbarStringData ToolbarStrings[] = {
    /* Standard Toolbar*/
