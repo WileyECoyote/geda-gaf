@@ -19,157 +19,157 @@ L 300 0 1900 0 3 0 0 0 -1 -1
 L 1900 3000 1900 0 3 0 0 0 -1 -1
 P 0 2700 300 2700 1 0 0
 {
-T 100 2550 5 10 0 1 0 0 1
-pintype=in
-T 350 2700 9 8 1 1 180 7 1
-pinlabel=DISCH1
 T 200 2750 5 8 1 1 0 6 1
 pinnumber=1
 T 200 2750 5 8 0 1 0 6 1
 pinseq=1
+T 350 2700 9 8 1 1 180 7 1
+pinlabel=DISCH1
+T 100 2550 5 10 0 1 0 0 1
+pintype=in
 }
 P 0 2300 300 2300 1 0 0
 {
-T 100 2150 5 10 0 1 0 0 1
-pintype=in
-T 350 2300 9 8 1 1 0 1 1
-pinlabel=THRES1
 T 200 2350 5 8 1 1 0 6 1
 pinnumber=2
 T 200 2350 5 8 0 1 0 6 1
 pinseq=2
+T 350 2300 9 8 1 1 0 1 1
+pinlabel=THRES1
+T 100 2150 5 10 0 1 0 0 1
+pintype=in
 }
 P 0 1900 300 1900 1 0 0
 {
-T 100 1750 5 10 0 1 0 0 1
-pintype=in
-T 350 1900 9 8 1 1 180 7 1
-pinlabel=CONT1
 T 200 1950 5 8 1 1 0 6 1
 pinnumber=3
 T 200 1950 5 8 0 1 0 6 1
 pinseq=3
+T 350 1900 9 8 1 1 180 7 1
+pinlabel=CONT1
+T 100 1750 5 10 0 1 0 0 1
+pintype=in
 }
 P 0 1500 300 1500 1 0 0
 {
-T 100 1350 5 10 0 1 0 0 1
-pintype=in
-T 350 1500 9 8 1 1 180 7 1
-pinlabel=RESET1
 T 200 1550 5 8 1 1 0 6 1
 pinnumber=4
 T 200 1550 5 8 0 1 0 6 1
 pinseq=4
+T 350 1500 9 8 1 1 180 7 1
+pinlabel=RESET1
+T 100 1350 5 10 0 1 0 0 1
+pintype=in
 }
 P 0 1100 300 1100 1 0 0
 {
-T 50 950 5 10 0 1 0 0 1
-pintype=out
-T 350 1100 9 8 1 1 0 1 1
-pinlabel=OUT1
 T 200 1150 5 8 1 1 0 6 1
 pinnumber=5
 T 200 1150 5 8 0 1 0 6 1
 pinseq=5
+T 350 1100 9 8 1 1 0 1 1
+pinlabel=OUT1
+T 50 950 5 10 0 1 0 0 1
+pintype=out
 }
 P 0 700 300 700 1 0 0
 {
-T 100 550 5 10 0 1 0 0 1
-pintype=in
-T 350 705 9 8 1 1 180 7 1
-pinlabel=TRIG1
 T 200 750 5 8 1 1 0 6 1
 pinnumber=6
 T 200 750 5 8 0 1 0 6 1
 pinseq=6
+T 350 705 9 8 1 1 180 7 1
+pinlabel=TRIG1
+T 100 550 5 10 0 1 0 0 1
+pintype=in
 }
 P 0 300 300 300 1 0 0
 {
-T 50 150 5 10 0 1 0 0 1
-pintype=pwr
-T 350 300 9 8 1 1 0 1 1
-pinlabel=GND
 T 200 350 5 8 1 1 0 6 1
 pinnumber=7
 T 200 350 5 8 0 1 0 6 1
 pinseq=7
+T 350 300 9 8 1 1 0 1 1
+pinlabel=GND
+T 50 150 5 10 0 1 0 0 1
+pintype=pwr
 }
 P 2200 300 1900 300 1 0 0
 {
-T 2000 150 5 10 0 1 0 0 1
-pintype=in
-T 1850 300 9 8 1 1 0 7 1
-pinlabel=TRIG2
 T 2000 350 5 8 1 1 0 0 1
 pinnumber=8
 T 2000 350 5 8 0 1 0 0 1
 pinseq=8
+T 1850 300 9 8 1 1 0 7 1
+pinlabel=TRIG2
+T 2000 150 5 10 0 1 0 0 1
+pintype=in
 }
 P 2200 700 1900 700 1 0 0
 {
-T 2000 550 5 10 0 1 0 0 1
-pintype=out
-T 1850 700 9 8 1 1 0 7 1
-pinlabel=OUT2
 T 2000 750 5 8 1 1 0 0 1
 pinnumber=9
 T 2000 750 5 8 0 1 0 0 1
 pinseq=9
+T 1850 700 9 8 1 1 0 7 1
+pinlabel=OUT2
+T 2000 550 5 10 0 1 0 0 1
+pintype=out
 }
 P 2200 1100 1900 1100 1 0 0
 {
-T 2000 950 5 10 0 1 0 0 1
-pintype=in
-T 1850 1100 9 8 1 1 0 7 1
-pinlabel=RESET2
 T 2000 1150 5 8 1 1 0 0 1
 pinnumber=10
 T 2000 1150 5 8 0 1 0 0 1
 pinseq=10
+T 1850 1100 9 8 1 1 0 7 1
+pinlabel=RESET2
+T 2000 950 5 10 0 1 0 0 1
+pintype=in
 }
 P 2200 1500 1900 1500 1 0 0
 {
-T 2000 1350 5 10 0 1 0 0 1
-pintype=in
-T 1850 1495 9 8 1 1 0 7 1
-pinlabel=CONT2
 T 2000 1550 5 8 1 1 0 0 1
 pinnumber=11
 T 2000 1550 5 8 0 1 0 0 1
 pinseq=11
+T 1850 1495 9 8 1 1 0 7 1
+pinlabel=CONT2
+T 2000 1350 5 10 0 1 0 0 1
+pintype=in
 }
 P 2200 1900 1900 1900 1 0 0
 {
-T 2000 1750 5 10 0 1 0 0 1
-pintype=in
-T 1850 1900 9 8 1 1 0 7 1
-pinlabel=THRES2
 T 2000 1950 5 8 1 1 0 0 1
 pinnumber=12
 T 2000 1950 5 8 0 1 0 0 1
 pinseq=12
+T 1850 1900 9 8 1 1 0 7 1
+pinlabel=THRES2
+T 2000 1750 5 10 0 1 0 0 1
+pintype=in
 }
 P 2200 2300 1900 2300 1 0 0
 {
-T 2000 2150 5 10 0 1 0 0 1
-pintype=in
-T 1850 2300 9 8 1 1 0 7 1
-pinlabel=DISCH2
 T 2000 2350 5 8 1 1 0 0 1
 pinnumber=13
 T 2000 2350 5 8 0 1 0 0 1
 pinseq=13
+T 1850 2300 9 8 1 1 0 7 1
+pinlabel=DISCH2
+T 2000 2150 5 10 0 1 0 0 1
+pintype=in
 }
 P 2200 2700 1900 2700 1 0 0
 {
-T 2000 2550 5 10 0 1 0 0 1
-pintype=pwr
-T 1850 2700 9 8 1 1 0 7 1
-pinlabel=VDD
 T 2000 2750 5 8 1 1 0 0 1
 pinnumber=14
 T 2000 2750 5 8 0 1 0 0 1
 pinseq=14
+T 1850 2700 9 8 1 1 0 7 1
+pinlabel=VDD
+T 2000 2550 5 10 0 1 0 0 1
+pintype=pwr
 }
 T 1900 3100 5 10 1 1 0 6 1
 refdes=U?

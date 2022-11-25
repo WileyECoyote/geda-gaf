@@ -1,5 +1,9 @@
 2022-11-25 Wiley E. Hill <wileyhill@gmail.com>
 
+    * linear/timers/LM555-1.sym: Update dist-license, resequence attributes.
+
+    * linear/timers/LM556-1.sym: Resequence attributes.
+
     * logic/74H/74HC123-1.sym: Add symbol: Dual retriggerable monoflops with clear
 
     * logic/74H/74HC123-2.sym: Add symbol: dash 2.
