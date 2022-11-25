@@ -13,9 +13,9 @@ symversion=0.2
 T 300 1850 9 8 0 0 0 0 1
 documentation=http://www.wikki.com/
 T 300 2000 8 10 0 0 0 0 1
-dist-license=GPL3
+dist-license=GPLv2
 T 300 2150 8 10 0 0 0 0 1
-use-license=GPL3
+use-license=GPLv2
 T 300 2300 8 10 0 0 0 0 1
 author=AutoTron
 T 300 950 9 10 1 0 0 0 1

@@ -1,5 +1,7 @@
 2022-11-25 Wiley E. Hill <wileyhill@gmail.com>
 
+    * linear/regulator/LF33ABV-1.sym: Update license attributes.
+
     * linear/timers/LM555-1.sym: Update dist-license, resequence attributes.
 
     * linear/timers/LM556-1.sym: Resequence attributes.
