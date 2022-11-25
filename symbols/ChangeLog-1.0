@@ -1,3 +1,11 @@
+2022-11-25 Wiley E. Hill <wileyhill@gmail.com>
+
+    * logic/74H/74HC123-1.sym: Add symbol: Dual retriggerable monoflops with clear
+
+    * logic/74H/74HC123-2.sym: Add symbol: dash 2.
+
+    * logic/74H/74HC123-3.sym: Add symbol: dash 3.
+
 2022-07-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * ti/battery/BQ25504-1.sym: Revise symbol to cleanup text overlap.
